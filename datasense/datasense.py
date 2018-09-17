@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def five_number_summary(data: pd.Series) -> pd.DataFrame:
     """
     Return five statistics
