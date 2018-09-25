@@ -92,3 +92,15 @@ def seven_number_summary(data: pd.Series) -> pd.DataFrame:
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr', 'n']
     ).set_index(['interpolation'])
 
+def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
+    """
+    Produces two charts, an X chart of individual values and a mR chart
+    of moving range values.
+    """
+    # Define the X chart labels.
+    x_chart_title = 'Individuals Control Chart'
+    x_chart_subtitle = 'Travel Cost'
+    x_chart_ylabel = 'Travel Cost (USD)'
+    x_chart_xlabel = 'Date'
+    subgroup_size = 2
+    return print(data)
