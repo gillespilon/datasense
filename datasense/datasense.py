@@ -96,6 +96,8 @@ def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
+    Must have (for now) control_chart_constants.csv in current working
+    directory.
     """
     # Define the X chart labels.
     x_chart_title = 'Individuals Control Chart'
