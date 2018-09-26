@@ -119,6 +119,31 @@ def nonparametric_summary(data: pd.Series) -> pd.DataFrame:
         columns=['interpolation', 'n', 'min', 'max', 'q2', 'iqr']
     ).set_index(['interpolation'])
 
+def parametric_summary(data: pd.Series) -> pd.DataFrame:
+    """
+    Return parametric statistics
+
+    Returns
+    -------
+    n              = sample size
+    min            = minimum value
+    max            = maximum value
+    average
+    confidence interval of the average
+    s              = sample standard deviation
+    confidence interval of the sample standard deviation
+    var            = sample variance
+    confidence interval of the sample variance
+    """
+    return pd.DataFrame(
+        [(data.count(),
+          data.min(),
+          data.max(),
+          data.mean(),
+          data.std(),
+          data.var())],
+        columns=['n', 'min', 'max', 'ave', 's', 'var'])
+
 def control_chart_constants():
     """
     This function creates a dataframe from a dictionary of constants and
