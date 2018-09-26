@@ -92,6 +92,33 @@ def seven_number_summary(data: pd.Series) -> pd.DataFrame:
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr', 'n']
     ).set_index(['interpolation'])
 
+def nonparametric_summary(data: pd.Series) -> pd.DataFrame:
+    """
+    Return nonparametric statistics
+
+    Returns
+    -------
+    n              = sample size
+    min            = minimum value
+    max            = maximum value
+    quantile(0.50) = median
+    confidence interval of the median
+    iqr            = interquartile range
+    confidence interval of the interquartile range
+    """
+    return pd.DataFrame(
+        [(interpolation,
+          data.count(),
+          data.min(),
+          data.max(),
+          data.quantile(0.50, interpolation=interpolation),
+          (data.quantile(0.75, interpolation=interpolation) -
+           data.quantile(0.25, interpolation=interpolation)))
+         for interpolation
+         in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
+        columns=['interpolation', 'n', 'min', 'max', 'q2', 'iqr']
+    ).set_index(['interpolation'])
+
 def control_chart_constants():
     """
     This function creates a dataframe from a dictionary of constants and
