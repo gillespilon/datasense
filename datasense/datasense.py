@@ -145,7 +145,7 @@ def parametric_summary(data: pd.Series) -> pd.DataFrame:
           data.var())],
         columns=['n', 'min', 'max', 'ave', 's', 'var'])
 
-def control_chart_constants(n, value):
+def control_chart_constants(n, col):
     """
     This function creates a dataframe from a dictionary of constants and
     returns requested constants.
@@ -220,7 +220,8 @@ def control_chart_constants(n, value):
              0.680, 0.667, 0.656, 0.647, 0.638, 0.631, 0.624, 0.618, 0.612,
              0.607, 0.598]))
     constants = pd.DataFrame.from_dict(data, orient='index').transpose()
-    answer = constants.loc[constants['n'] == n, value]
+#    constant = constants.loc[constants['n'] == n, col]
+    constant = constants[col][constants['n'] == n].values[0]
     return answer
 
 def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
