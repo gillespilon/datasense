@@ -237,4 +237,9 @@ def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
     x_chart_ylabel = 'Travel Cost (USD)'
     x_chart_xlabel = 'Date'
     subgroup_size = 2
+    # Define the mR chart labels.
+    mr_chart_title = 'Moving Range Control Chart'
+    mr_chart_subtitle = 'Travel Cost Difference'
+    mr_chart_ylabel = 'Travel Cost Moving Range (USD)'
+    mr_chart_xlabel = 'Date'
     return print(data)
