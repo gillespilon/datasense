@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def five_number_summary(data: pd.Series) -> pd.DataFrame:
+def five_number_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return five statistics
 
@@ -15,11 +15,11 @@ def five_number_summary(data: pd.Series) -> pd.DataFrame:
     """
     return pd.DataFrame(
         [(interpolation,
-          data.min(),
-          data.quantile(0.25, interpolation=interpolation),
-          data.quantile(0.50, interpolation=interpolation),
-          data.quantile(0.75, interpolation=interpolation),
-          data.max())
+          df.min(),
+          df.quantile(0.25, interpolation=interpolation),
+          df.quantile(0.50, interpolation=interpolation),
+          df.quantile(0.75, interpolation=interpolation),
+          df.max())
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest',
              'midpoint')],
@@ -28,7 +28,7 @@ def five_number_summary(data: pd.Series) -> pd.DataFrame:
     ).set_index(['interpolation'])
 
 
-def six_number_summary(data: pd.Series) -> pd.DataFrame:
+def six_number_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return six statistics
 
@@ -42,25 +42,25 @@ def six_number_summary(data: pd.Series) -> pd.DataFrame:
     iqr            = interquartile range
     """
     # Pourqoi pas juste:
-    #     five = five_number_summary(data)
+    #     five = five_number_summary(df)
     #     five['iqr'] = five['q3'] - five['q1']
     #     return five
     return pd.DataFrame(
         [(interpolation,
-          data.min(),
-          data.quantile(0.25, interpolation=interpolation),
-          data.quantile(0.50, interpolation=interpolation),
-          data.quantile(0.75, interpolation=interpolation),
-          data.max(),
-          (data.quantile(0.75, interpolation=interpolation) -
-           data.quantile(0.25, interpolation=interpolation)))
+          df.min(),
+          df.quantile(0.25, interpolation=interpolation),
+          df.quantile(0.50, interpolation=interpolation),
+          df.quantile(0.75, interpolation=interpolation),
+          df.max(),
+          (df.quantile(0.75, interpolation=interpolation) -
+           df.quantile(0.25, interpolation=interpolation)))
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr']
     ).set_index(['interpolation'])
 
 
-def seven_number_summary(data: pd.Series) -> pd.DataFrame:
+def seven_number_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return six statistics
 
@@ -75,25 +75,25 @@ def seven_number_summary(data: pd.Series) -> pd.DataFrame:
     n              = sample size
     """
     # Pourqoi pas juste:
-    #     five = five_number_summary(data)
+    #     five = five_number_summary(df)
     #     five['iqr'] = five['q3'] - five['q1']
     #     return five
     return pd.DataFrame(
         [(interpolation,
-          data.min(),
-          data.quantile(0.25, interpolation=interpolation),
-          data.quantile(0.50, interpolation=interpolation),
-          data.quantile(0.75, interpolation=interpolation),
-          data.max(),
-          (data.quantile(0.75, interpolation=interpolation) -
-           data.quantile(0.25, interpolation=interpolation)),
-          data.count())
+          df.min(),
+          df.quantile(0.25, interpolation=interpolation),
+          df.quantile(0.50, interpolation=interpolation),
+          df.quantile(0.75, interpolation=interpolation),
+          df.max(),
+          (df.quantile(0.75, interpolation=interpolation) -
+           df.quantile(0.25, interpolation=interpolation)),
+          df.count())
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr', 'n']
     ).set_index(['interpolation'])
 
-def nonparametric_summary(data: pd.Series) -> pd.DataFrame:
+def nonparametric_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return nonparametric statistics
 
@@ -109,18 +109,18 @@ def nonparametric_summary(data: pd.Series) -> pd.DataFrame:
     """
     return pd.DataFrame(
         [(interpolation,
-          data.count(),
-          data.min(),
-          data.max(),
-          data.quantile(0.50, interpolation=interpolation),
-          (data.quantile(0.75, interpolation=interpolation) -
-           data.quantile(0.25, interpolation=interpolation)))
+          df.count(),
+          df.min(),
+          df.max(),
+          df.quantile(0.50, interpolation=interpolation),
+          (df.quantile(0.75, interpolation=interpolation) -
+           df.quantile(0.25, interpolation=interpolation)))
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'n', 'min', 'max', 'q2', 'iqr']
     ).set_index(['interpolation'])
 
-def parametric_summary(data: pd.Series) -> pd.DataFrame:
+def parametric_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return parametric statistics
 
@@ -137,12 +137,12 @@ def parametric_summary(data: pd.Series) -> pd.DataFrame:
     confidence interval of the sample variance
     """
     return pd.DataFrame(
-        [(data.count(),
-          data.min(),
-          data.max(),
-          data.mean(),
-          data.std(),
-          data.var())],
+        [(df.count(),
+          df.min(),
+          df.max(),
+          df.mean(),
+          df.std(),
+          df.var())],
         columns=['n', 'min', 'max', 'ave', 's', 'var'])
 
 def control_chart_constants(n, col):
@@ -150,7 +150,7 @@ def control_chart_constants(n, col):
     This function creates a dataframe from a dictionary of constants and
     returns requested constants.
     """
-    data = dict(
+    df = dict(
         n = np.array([
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20, 21, 22, 23, 24, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75,
@@ -219,12 +219,12 @@ def control_chart_constants(n, col):
              0.803, 0.794, 0.786, 0.778, 0.770, 0.763, 0.734, 0.712, 0.694,
              0.680, 0.667, 0.656, 0.647, 0.638, 0.631, 0.624, 0.618, 0.612,
              0.607, 0.598]))
-    constants = pd.DataFrame.from_dict(data, orient='index').transpose()
+    constants = pd.DataFrame.from_dict(df, orient='index').transpose()
 #    constant = constants.loc[constants['n'] == n, col]
     constant = constants[col][constants['n'] == n].values[0]
     return constant
 
-def control_chart_xmr(data: pd.Series, subgroup_size) -> pd.DataFrame:
+def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
