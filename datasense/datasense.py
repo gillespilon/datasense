@@ -222,9 +222,9 @@ def control_chart_constants(n, col):
     constants = pd.DataFrame.from_dict(data, orient='index').transpose()
 #    constant = constants.loc[constants['n'] == n, col]
     constant = constants[col][constants['n'] == n].values[0]
-    return answer
+    return constant
 
-def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
+def control_chart_xmr(data: pd.Series, subgroup_size) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -242,4 +242,5 @@ def control_chart_xmr(data: pd.Series) -> pd.DataFrame:
     mr_chart_subtitle = 'Travel Cost Difference'
     mr_chart_ylabel = 'Travel Cost Moving Range (USD)'
     mr_chart_xlabel = 'Date'
-    return print(data)
+    # Calculate average moving range.
+    return print('works')
