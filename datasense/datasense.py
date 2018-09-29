@@ -236,7 +236,7 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     x_chart_subtitle = 'Travel Cost'
     x_chart_ylabel = 'Travel Cost (USD)'
     x_chart_xlabel = 'Date'
-    subgroup_size = 2
+    n = subgroup_size
     # Define the mR chart labels.
     mr_chart_title = 'Moving Range Control Chart'
     mr_chart_subtitle = 'Travel Cost Difference'
@@ -246,5 +246,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
 #    average_mr = (df.rolling(subgroup_size).agg(lambda x: x[0] - x[1]).abs()).mean()
 #    average_mr = df.mean()
     dftemp = df.to_frame()
+    average = dftemp.mean()
 #    return print(dftemp), average_mr
-    return dftemp
+    return average
