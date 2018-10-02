@@ -288,4 +288,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     ax.axhline(y=x_chart_ucl, color=limits_c)
     # Add the lower control limits for the X chart.
     ax.axhline(y=x_chart_lcl, color=limits_c)
+    # Add the chart title and subtitle
+    ax.set_title(x_chart_title + '\n' + x_chart_subtitle)
     return ax
