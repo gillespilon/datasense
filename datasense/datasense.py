@@ -314,5 +314,7 @@ def control_chart_xmr(
         ax.spines[spine].set_color('none')
     # Add average line to mR chart.
     ax.axhline(y=average_mr, color=average_c)
+    # Add the upper control limits for the mR chart.
+    ax.axhline(y=r_chart_ucl, color=limits_c)
     plt.show()
     return ax
