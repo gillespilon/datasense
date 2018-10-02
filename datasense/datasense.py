@@ -246,4 +246,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     average_mr = (df.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
             .abs())\
             .mean()
-    return average_mr
+    d2 = control_chart_constants(n, 'd2')
+    d3 = control_chart_constants(n, 'd3')
+    return (d2, d3)
