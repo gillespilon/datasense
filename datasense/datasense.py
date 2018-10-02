@@ -252,4 +252,8 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     sigma_r = average_mr * d3 / d2
     # Calculate the range chart upper control limit.
     r_chart_ucl = average_mr + 3 * sigma_r
-    return r_chart_ucl
+    # Calculate the range chart lower control limit.
+    r_chart_lcl = average_mr - 3 * sigma_r
+    if r_chart_lcl < 0:
+        r_chart_lcl = 0
+    return r_chart_lcl
