@@ -248,4 +248,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
             .mean()
     d2 = control_chart_constants(n, 'd2')
     d3 = control_chart_constants(n, 'd3')
-    return (d2, d3)
+    # Calculate Sigma(R).
+    sigma_r = average_mr * d3 / d2
+    return sigma_r
