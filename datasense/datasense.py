@@ -231,9 +231,11 @@ def control_chart_xmr(
         dfy: pd.Series,
         subgroup_size,
         x_chart_title,
+        mr_chart_title,
         x_chart_subtitle,
         x_chart_ylabel,
         x_chart_xlabel,
+        mr_chart_subtitle,
         svgfilename) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
@@ -244,8 +246,6 @@ def control_chart_xmr(
     # Define the X chart labels.
     n = subgroup_size
     # Define the mR chart labels.
-    mr_chart_title = 'Moving Range Control Chart'
-    mr_chart_subtitle = 'Travel Cost Difference'
     mr_chart_ylabel = 'Travel Cost Moving Range (USD)'
     mr_chart_xlabel = 'Date'
     # Moving range chart statistics.
@@ -318,5 +318,7 @@ def control_chart_xmr(
     ax.axhline(y=r_chart_ucl, color=limits_c)
     # Add the lower control limits for the mR chart.
     ax.axhline(y=r_chart_lcl, color=limits_c)
+    # Add the chart title and subtitle
+    ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle)
     plt.show()
     return ax
