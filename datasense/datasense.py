@@ -309,8 +309,10 @@ def control_chart_xmr(
              .abs())\
              .plot.line(legend=False, marker='o',
                         markersize=3, color=lines_c)
-    # Remove the top and right psines.
+    # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
+    # Add average line to mR chart.
+    ax.axhline(y=average_mr, color=average_c)
     plt.show()
     return ax
