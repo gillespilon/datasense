@@ -226,7 +226,9 @@ def control_chart_constants(n, col):
     constant = constants[col][constants['n'] == n].values[0]
     return constant
 
-def control_chart_xmr(df: pd.Series,
+def control_chart_xmr(
+        dfx: pd.Series,
+        dfy: pd.Series,
         subgroup_size,
         x_chart_title,
         x_chart_subtitle,
@@ -247,7 +249,7 @@ def control_chart_xmr(df: pd.Series,
     mr_chart_xlabel = 'Date'
     # Moving range chart statistics.
     # Calculate average moving range.
-    average_mr = (df.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
+    average_mr = (dfy.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
             .abs())\
             .mean()
     d2 = control_chart_constants(n, 'd2')
@@ -262,7 +264,7 @@ def control_chart_xmr(df: pd.Series,
         r_chart_lcl = 0
     # X chart statistics.
     # Calculate the average of all values.
-    average = df.mean()
+    average = dfy.mean()
     # Calculate Sigma(X).
     sigma_x = average_mr / d2
     # Calculate the X chart upper control limit.
@@ -280,7 +282,8 @@ def control_chart_xmr(df: pd.Series,
     # Use a colour-blind friendly colormap, "Paired".
     lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
-    ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c)
+    ax = dfy.plot.line(x=dfx, y=dfy, legend=False, marker='o',
+                       markersize=3, color=lines_c)
     # Remove the top and right psines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
