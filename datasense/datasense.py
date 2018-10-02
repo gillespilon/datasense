@@ -286,4 +286,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     ax.axhline(y=average, color=average_c)
     # Add the upper control limits for the X chart.
     ax.axhline(y=x_chart_ucl, color=limits_c)
+    # Add the lower control limits for the X chart.
+    ax.axhline(y=x_chart_lcl, color=limits_c)
     return ax
