@@ -257,4 +257,7 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     r_chart_lcl = average_mr - 3 * sigma_r
     if r_chart_lcl < 0:
         r_chart_lcl = 0
-    return r_chart_lcl
+    # X chart statistics.
+    # Calculate the average of all values.
+    average = df.mean()
+    return average
