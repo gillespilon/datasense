@@ -284,4 +284,4 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
         ax.spines[spine].set_color('none')
     # Add average line to X chart.
     ax.axhline(y=average, color=average_c)
-    return
+    return ax
