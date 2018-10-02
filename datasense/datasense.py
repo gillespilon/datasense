@@ -229,7 +229,8 @@ def control_chart_constants(n, col):
 def control_chart_xmr(df: pd.Series,
         subgroup_size,
         x_chart_title,
-        x_chart_subtitle) -> pd.DataFrame:
+        x_chart_subtitle,
+        x_chart_ylabel) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -237,7 +238,6 @@ def control_chart_xmr(df: pd.Series,
     directory.
     """
     # Define the X chart labels.
-    x_chart_ylabel = 'Travel Cost (USD)'
     x_chart_xlabel = 'Date'
     n = subgroup_size
     # Define the mR chart labels.
@@ -292,5 +292,7 @@ def control_chart_xmr(df: pd.Series,
     ax.axhline(y=x_chart_lcl, color=limits_c)
     # Add the chart title and subtitle
     ax.set_title(x_chart_title + '\n' + x_chart_subtitle)
+    # Add the Y axis label.
+    ax.set_ylabel(x_chart_ylabel)
     plt.show()
     return ax
