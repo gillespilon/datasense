@@ -272,4 +272,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     x_chart_lcl = average - 3 * sigma_x
     # Calculate two Sigma(X) below the average.
     minus_two_sigma_x = average - 2 * sigma_x
+    # Calculate one Sigma(X) below the average.
+    minus_one_sigma_x = average - sigma_x
     return x_chart_lcl
