@@ -260,4 +260,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     # X chart statistics.
     # Calculate the average of all values.
     average = df.mean()
-    return average
+    # Calculate Sigma(X).
+    sigma_x = average_mr / d2
+    return sigma_x
