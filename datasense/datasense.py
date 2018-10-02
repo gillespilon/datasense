@@ -316,5 +316,7 @@ def control_chart_xmr(
     ax.axhline(y=average_mr, color=average_c)
     # Add the upper control limits for the mR chart.
     ax.axhline(y=r_chart_ucl, color=limits_c)
+    # Add the lower control limits for the mR chart.
+    ax.axhline(y=r_chart_lcl, color=limits_c)
     plt.show()
     return ax
