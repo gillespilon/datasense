@@ -283,7 +283,9 @@ def control_chart_xmr(
     # Use a colour-blind friendly colormap, "Paired".
     lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
-    ax = dfy.plot(legend=False, marker='o', markersize=3, color=lines_c)
+    ax = dfy.plot.line(x=dfx, y=dfy,
+                       legend=False, marker='o',
+                       markersize=3, color=lines_c)
     # Remove the top and right psines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
@@ -301,5 +303,11 @@ def control_chart_xmr(
     ax.set_xlabel(x_chart_xlabel)
     # Save the graph as svg.
     ax.figure.savefig(f'{svgfilename}.svg', format='svg')
+    plt.show()
+    #Create the mR chart.
+    ax = (dfy.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
+             .abs())\
+             .plot.line(legend=False, marker='o',
+                        markersize=3, color=lines_c)
     plt.show()
     return ax
