@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.cm as cm
 
 def five_number_summary(df: pd.Series) -> pd.DataFrame:
     """
@@ -274,4 +275,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     minus_two_sigma_x = average - 2 * sigma_x
     # Calculate one Sigma(X) below the average.
     minus_one_sigma_x = average - sigma_x
+    # Use a colour-blind friendly colormap, "Paired".
+    lines_c, limits_c, average_c, *_ = cm.Paired.colors 
     return x_chart_lcl
