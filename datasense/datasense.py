@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
+import matplotlib.pyplot as plt
 
 def five_number_summary(df: pd.Series) -> pd.DataFrame:
     """
@@ -225,7 +226,8 @@ def control_chart_constants(n, col):
     constant = constants[col][constants['n'] == n].values[0]
     return constant
 
-def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
+def control_chart_xmr(df: pd.Series, subgroup_size,
+        x_chart_title) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -233,7 +235,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     directory.
     """
     # Define the X chart labels.
-    x_chart_title = 'Individuals Control Chart'
     x_chart_subtitle = 'Travel Cost'
     x_chart_ylabel = 'Travel Cost (USD)'
     x_chart_xlabel = 'Date'
@@ -290,4 +291,5 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     ax.axhline(y=x_chart_lcl, color=limits_c)
     # Add the chart title and subtitle
     ax.set_title(x_chart_title + '\n' + x_chart_subtitle)
+    plt.show()
     return ax
