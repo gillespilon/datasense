@@ -278,5 +278,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     # Use a colour-blind friendly colormap, "Paired".
     lines_c, limits_c, average_c, *_ = cm.Paired.colors 
     # Create the X chart.
-    ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c)
+    ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c,
+            label='pd.Series.name')
     return ax
