@@ -243,5 +243,7 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     mr_chart_ylabel = 'Travel Cost Moving Range (USD)'
     mr_chart_xlabel = 'Date'
     # Calculate average moving range.
-    average_mr = (df.rolling(n).agg(lambda x: x[0] - x[1]).abs()).mean()
+    average_mr = (df.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
+            .abs())\
+            .mean()
     return average_mr
