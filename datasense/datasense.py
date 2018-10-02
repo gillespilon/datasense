@@ -280,4 +280,4 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     # Create the X chart.
     ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c,
             label='pd.Series.name')
-    return ax
+    return
