@@ -230,7 +230,8 @@ def control_chart_xmr(df: pd.Series,
         subgroup_size,
         x_chart_title,
         x_chart_subtitle,
-        x_chart_ylabel) -> pd.DataFrame:
+        x_chart_ylabel,
+        x_chart_xlabel) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -238,7 +239,6 @@ def control_chart_xmr(df: pd.Series,
     directory.
     """
     # Define the X chart labels.
-    x_chart_xlabel = 'Date'
     n = subgroup_size
     # Define the mR chart labels.
     mr_chart_title = 'Moving Range Control Chart'
@@ -294,5 +294,7 @@ def control_chart_xmr(df: pd.Series,
     ax.set_title(x_chart_title + '\n' + x_chart_subtitle)
     # Add the Y axis label.
     ax.set_ylabel(x_chart_ylabel)
+    # Add the X axis label.
+    ax.set_xlabel(x_chart_xlabel)
     plt.show()
     return ax
