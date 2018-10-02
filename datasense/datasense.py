@@ -262,4 +262,6 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     average = df.mean()
     # Calculate Sigma(X).
     sigma_x = average_mr / d2
-    return sigma_x
+    # Calculate the X chart upper control limit.
+    x_chart_ucl = average + 3 * sigma_x
+    return x_chart_ucl
