@@ -233,7 +233,8 @@ def control_chart_xmr(
         x_chart_title,
         x_chart_subtitle,
         x_chart_ylabel,
-        x_chart_xlabel) -> pd.DataFrame:
+        x_chart_xlabel,
+        svgfilename) -> pd.DataFrame:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -282,8 +283,7 @@ def control_chart_xmr(
     # Use a colour-blind friendly colormap, "Paired".
     lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
-    ax = dfy.plot.line(x=dfx, y=dfy, legend=False, marker='o',
-                       markersize=3, color=lines_c)
+    ax = dfy.plot(legend=False, marker='o', markersize=3, color=lines_c)
     # Remove the top and right psines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
@@ -299,5 +299,7 @@ def control_chart_xmr(
     ax.set_ylabel(x_chart_ylabel)
     # Add the X axis label.
     ax.set_xlabel(x_chart_xlabel)
+    # Save the graph as svg.
+    ax.figure.savefig(f'{svgfilename}.svg', format='svg')
     plt.show()
     return ax
