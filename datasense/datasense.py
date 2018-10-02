@@ -276,8 +276,10 @@ def control_chart_xmr(df: pd.Series, subgroup_size) -> pd.DataFrame:
     # Calculate one Sigma(X) below the average.
     minus_one_sigma_x = average - sigma_x
     # Use a colour-blind friendly colormap, "Paired".
-    lines_c, limits_c, average_c, *_ = cm.Paired.colors 
+    lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
-    ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c,
-            label='pd.Series.name')
+    ax = df.plot.line(legend=False, marker='o', markersize=3, color=lines_c)
+    # Remove the top and right psines.
+    for spine in 'right', 'top':
+        ax.spines[spine].set_color('none')
     return
