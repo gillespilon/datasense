@@ -313,7 +313,9 @@ def control_chart_xmr(
     # Save the graph as svg.
     ax.figure.savefig(f'{svgfilename}.svg', format='svg')
     plt.show()
+    print(x_chart_ucl, average, x_chart_lcl)
     # Create the mR chart.
+    df.set_index(df.columns[0])
     ax = (df.iloc[:, [1]]
             .rolling(n)
             .agg(lambda x: x.iloc[0] - x.iloc[1])
@@ -334,4 +336,5 @@ def control_chart_xmr(
     # Add the Y axis label.
     ax.set_ylabel(mr_chart_ylabel)
     plt.show()
+    print(r_chart_ucl, average_mr, r_chart_lcl)
     return ax
