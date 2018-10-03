@@ -269,7 +269,6 @@ def control_chart_xmr(
     r_chart_ucl = average_mr + 3 * sigma_r
     # Calculate the range chart lower control limit.
     r_chart_lcl = average_mr - 3 * sigma_r
-    print(average_mr, d2, d3, sigma_r, r_chart_ucl, r_chart_lcl)
     if r_chart_lcl.all() < 0:
         r_chart_lcl = 0
     # X chart statistics.
