@@ -269,7 +269,7 @@ def control_chart_xmr(
     r_chart_ucl = average_mr + 3 * sigma_r
     # Calculate the range chart lower control limit.
     r_chart_lcl = average_mr - 3 * sigma_r
-    if r_chart_lcl.all() < 0:
+    if r_chart_lcl.any() < 0:
         r_chart_lcl = 0
     # X chart statistics.
     # Calculate the average of all values.
@@ -295,6 +295,10 @@ def control_chart_xmr(
         df.set_index(df.columns[0])
           .plot.line(legend=False, marker='o', markersize=3, color=lines_c)
     )
+    #ax = (
+    #    df.plot.scatter(x=df.columns[0], y=df.columns[1], legend=False,
+    #                    marker='o', color=lines_c)
+    #)
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
@@ -311,17 +315,23 @@ def control_chart_xmr(
     # Add the X axis label.
     ax.set_xlabel(x_chart_xlabel)
     # Save the graph as svg.
-    ax.figure.savefig(f'{svgfilename}.svg', format='svg')
+    ax.figure.savefig(f'{svgfilename}.svg', format='svg');
     plt.show()
-    print(x_chart_ucl, average, x_chart_lcl)
     # Create the mR chart.
-    df.set_index(df.columns[0])
+    #df.set_index(df.columns[0])
     ax = (df.iloc[:, [1]]
             .rolling(n)
             .agg(lambda x: x.iloc[0] - x.iloc[1])
             .abs()
             .plot.line(legend=False, marker='o',
                        markersize=3, color=lines_c))
+    #ax = (df.iloc[:, [1]]
+    #        .rolling(n)
+    #        .agg(lambda x: x.iloc[0] - x.iloc[1])
+    #        .abs()
+    #        .plot.scatter(x=df.columns[0], y=df.columns[1],
+    #                      legend=False, marker='o',
+    #                      color=lines_c))
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
@@ -334,7 +344,6 @@ def control_chart_xmr(
     # Add the chart title and subtitle
     ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle)
     # Add the Y axis label.
-    ax.set_ylabel(mr_chart_ylabel)
+    ax.set_ylabel(mr_chart_ylabel);
     plt.show()
-    print(r_chart_ucl, average_mr, r_chart_lcl)
     return ax
