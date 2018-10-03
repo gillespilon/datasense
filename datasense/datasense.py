@@ -227,8 +227,7 @@ def control_chart_constants(n, col):
     return constant
 
 def control_chart_xmr(
-        dfx: pd.Series,
-        dfy: pd.Series,
+        df: pd.Series,
         subgroup_size,
         x_chart_title,
         mr_chart_title,
@@ -250,7 +249,7 @@ def control_chart_xmr(
     mr_chart_xlabel = 'Date'
     # Moving range chart statistics.
     # Calculate average moving range.
-    average_mr = (dfy.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
+    average_mr = (df.iloc[:, [1]].rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
             .abs())\
             .mean()
     d2 = control_chart_constants(n, 'd2')
@@ -261,11 +260,12 @@ def control_chart_xmr(
     r_chart_ucl = average_mr + 3 * sigma_r
     # Calculate the range chart lower control limit.
     r_chart_lcl = average_mr - 3 * sigma_r
-    if r_chart_lcl < 0:
+    print(average_mr, d2, d3, sigma_r, r_chart_ucl, r_chart_lcl)
+    if r_chart_lcl.all() < 0:
         r_chart_lcl = 0
     # X chart statistics.
     # Calculate the average of all values.
-    average = dfy.mean()
+    average = df.iloc[:, [1]].mean()
     # Calculate Sigma(X).
     sigma_x = average_mr / d2
     # Calculate the X chart upper control limit.
@@ -283,10 +283,9 @@ def control_chart_xmr(
     # Use a colour-blind friendly colormap, "Paired".
     lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
-    ax = dfy.plot.line(x=dfx, y=dfy,
-                       legend=False, marker='o',
-                       markersize=3, color=lines_c)
-    # Remove the top and right psines.
+    ax = df.iloc[:, [1]].set_index(df.iloc[:, [0]]).plot.line(legend=False, marker='o',
+                                      markersize=3, color=lines_c)
+    # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
     # Add average line to X chart.
@@ -305,10 +304,10 @@ def control_chart_xmr(
     ax.figure.savefig(f'{svgfilename}.svg', format='svg')
     plt.show()
     #Create the mR chart.
-    ax = (dfy.rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
-             .abs())\
-             .plot.line(legend=False, marker='o',
-                        markersize=3, color=lines_c)
+    ax = (df.iloc[:, [1]].rolling(n).agg(lambda x: x.iloc[0] - x.iloc[1])\
+            .abs())\
+            .plot.line(legend=False, marker='o',
+                       markersize=3, color=lines_c)
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
