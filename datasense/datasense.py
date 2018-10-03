@@ -227,7 +227,6 @@ def control_chart_constants(n, col):
             0.680, 0.667, 0.656, 0.647, 0.638, 0.631, 0.624, 0.618, 0.612,
             0.607, 0.598]))
     constants = pd.DataFrame.from_dict(df, orient='index').transpose()
-#    constant = constants.loc[constants['n'] == n, col]
     constant = constants[col][constants['n'] == n].values[0]
     return constant
 
