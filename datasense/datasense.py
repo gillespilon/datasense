@@ -241,6 +241,7 @@ def control_chart_xmr(
         x_chart_xlabel,
         mr_chart_subtitle,
         mr_chart_ylabel,
+        mr_chart_xlabel,
         svgfilename) -> axes.Axes:
     """
     Produces two charts, an X chart of individual values and a mR chart
@@ -250,8 +251,6 @@ def control_chart_xmr(
     """
     # Define the X chart labels.
     n = subgroup_size
-    # Define the mR chart labels.
-    mr_chart_xlabel = 'Date'
     # Moving range chart statistics.
     # Calculate average moving range.
     average_mr = (
@@ -269,7 +268,6 @@ def control_chart_xmr(
     r_chart_ucl = average_mr + 3 * sigma_r
     # Calculate the range chart lower control limit.
     r_chart_lcl = average_mr - 3 * sigma_r
-    #__import__('pdb').set_trace()
     if (r_chart_lcl < 0).any():
         r_chart_lcl = 0
     # X chart statistics.
@@ -345,5 +343,8 @@ def control_chart_xmr(
     ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle)
     # Add the Y axis label.
     ax.set_ylabel(mr_chart_ylabel)
+    # Add the X axis label.
+    ax.set_xlabel(mr_chart_xlabel)
     plt.show()
+    #__import__('pdb').set_trace()
     return ax
