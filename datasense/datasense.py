@@ -255,7 +255,7 @@ def control_chart_xmr(
     # Moving range chart statistics.
     # Calculate average moving range.
     average_mr = (
-        df.iloc[:, [1]]
+        df.iloc[:, 1]
           .rolling(n)
           .agg(lambda x: x.iloc[0] - x.iloc[1])
           .abs()
@@ -269,11 +269,12 @@ def control_chart_xmr(
     r_chart_ucl = average_mr + 3 * sigma_r
     # Calculate the range chart lower control limit.
     r_chart_lcl = average_mr - 3 * sigma_r
-    if r_chart_lcl.any() < 0:
+    #__import__('pdb').set_trace()
+    if (r_chart_lcl < 0).any():
         r_chart_lcl = 0
     # X chart statistics.
     # Calculate the average of all values.
-    average = df.iloc[:, [1]].mean()
+    average = df.iloc[:, 1].mean()
     # Calculate Sigma(X).
     sigma_x = average_mr / d2
     # Calculate the X chart upper control limit.
@@ -303,11 +304,11 @@ def control_chart_xmr(
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
     # Add average line to X chart.
-    ax.axhline(y=average.iloc[0], color=average_c)
+    ax.axhline(y=average, color=average_c)
     # Add the upper control limits for the X chart.
-    ax.axhline(y=x_chart_ucl.iloc[0], color=limits_c)
+    ax.axhline(y=x_chart_ucl, color=limits_c)
     # Add the lower control limits for the X chart.
-    ax.axhline(y=x_chart_lcl.iloc[0], color=limits_c)
+    ax.axhline(y=x_chart_lcl, color=limits_c)
     # Add the chart title and subtitle
     ax.set_title(x_chart_title + '\n' + x_chart_subtitle)
     # Add the Y axis label.
@@ -315,11 +316,10 @@ def control_chart_xmr(
     # Add the X axis label.
     ax.set_xlabel(x_chart_xlabel)
     # Save the graph as svg.
-    ax.figure.savefig(f'{svgfilename}.svg', format='svg');
+    ax.figure.savefig(f'{svgfilename}.svg', format='svg')
     plt.show()
     # Create the mR chart.
-    #df.set_index(df.columns[0])
-    ax = (df.iloc[:, [1]]
+    ax = (df.set_index(df.columns[0])
             .rolling(n)
             .agg(lambda x: x.iloc[0] - x.iloc[1])
             .abs()
@@ -336,14 +336,14 @@ def control_chart_xmr(
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
     # Add average line to mR chart.
-    ax.axhline(y=average_mr.iloc[0], color=average_c)
+    ax.axhline(y=average_mr, color=average_c)
     # Add the upper control limits for the mR chart.
-    ax.axhline(y=r_chart_ucl.iloc[0], color=limits_c)
+    ax.axhline(y=r_chart_ucl, color=limits_c)
     # Add the lower control limits for the mR chart.
-    ax.axhline(y=r_chart_lcl.iloc[0], color=limits_c)
+    ax.axhline(y=r_chart_lcl, color=limits_c)
     # Add the chart title and subtitle
     ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle)
     # Add the Y axis label.
-    ax.set_ylabel(mr_chart_ylabel);
+    ax.set_ylabel(mr_chart_ylabel)
     plt.show()
     return ax
