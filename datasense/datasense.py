@@ -239,10 +239,10 @@ def control_chart_xmr(
         x_chart_subtitle,
         x_chart_ylabel,
         x_chart_xlabel,
+        x_chart_svgfilename,
         mr_chart_subtitle,
         mr_chart_ylabel,
-        mr_chart_xlabel,
-        svgfilename) -> axes.Axes:
+        mr_chart_xlabel) -> axes.Axes:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -314,7 +314,7 @@ def control_chart_xmr(
     # Add the X axis label.
     ax.set_xlabel(x_chart_xlabel)
     # Save the graph as svg.
-    ax.figure.savefig(f'{svgfilename}.svg', format='svg')
+    ax.figure.savefig(f'{x_chart_svgfilename}.svg', format='svg')
     plt.show()
     # Create the mR chart.
     ax = (df.set_index(df.columns[0])
