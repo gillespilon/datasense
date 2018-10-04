@@ -295,6 +295,8 @@ def control_chart_xmr(
         df.set_index(df.columns[0])
           .plot.line(legend=False, marker='o', markersize=3, color=lines_c)
     )
+    # Get the X axis limits to use to set the limits for the mR chart.
+    xmin, xmax = ax.get_xlim()
     #ax = (
     #    df.plot.scatter(x=df.columns[0], y=df.columns[1], legend=False,
     #                    marker='o', color=lines_c)
@@ -323,7 +325,9 @@ def control_chart_xmr(
             .agg(lambda x: x.iloc[0] - x.iloc[1])
             .abs()
             .plot.line(legend=False, marker='o',
-                       markersize=3, color=lines_c))
+                       markersize=3, color=lines_c,))
+    # Set the X axis limits of the mR chart to be the same as the X chart.
+    ax.set_xlim(xmin, xmax)
     #ax = (df.iloc[:, [1]]
     #        .rolling(n)
     #        .agg(lambda x: x.iloc[0] - x.iloc[1])
