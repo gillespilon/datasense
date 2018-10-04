@@ -242,7 +242,8 @@ def control_chart_xmr(
         x_chart_svgfilename,
         mr_chart_subtitle,
         mr_chart_ylabel,
-        mr_chart_xlabel) -> axes.Axes:
+        mr_chart_xlabel,
+        mr_chart_svgfilename) -> axes.Axes:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
@@ -345,6 +346,8 @@ def control_chart_xmr(
     ax.set_ylabel(mr_chart_ylabel)
     # Add the X axis label.
     ax.set_xlabel(mr_chart_xlabel)
+    # Save the graph as svg.
+    ax.figure.savefig(f'{mr_chart_svgfilename}.svg', format='svg')
     plt.show()
     #__import__('pdb').set_trace()
     return ax
