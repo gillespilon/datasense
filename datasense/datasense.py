@@ -345,7 +345,7 @@ def control_chart_xmr(
     # Add the lower control limits for the mR chart.
     ax.axhline(y=r_chart_lcl, color=limits_c)
     # Add the chart title and subtitle
-    ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle)
+    ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle, fontweight='bold')
     # Add the Y axis label.
     ax.set_ylabel(mr_chart_ylabel)
     # Add the X axis label.
