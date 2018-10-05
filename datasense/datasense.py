@@ -233,17 +233,17 @@ def control_chart_constants(n, col):
 
 def control_chart_xmr(
         df: pd.DataFrame,
-        subgroup_size,
-        x_chart_title,
-        x_chart_subtitle,
-        x_chart_ylabel,
-        x_chart_xlabel,
-        x_chart_svgfilename,
-        mr_chart_title,
-        mr_chart_subtitle,
-        mr_chart_ylabel,
-        mr_chart_xlabel,
-        mr_chart_svgfilename) -> axes.Axes:
+        subgroup_size=2,
+        x_chart_title='X control chart title',
+        x_chart_subtitle='X control chart subtitle',
+        x_chart_ylabel='Response (units)',
+        x_chart_xlabel='Sample',
+        x_chart_svgfilename='y_x',
+        mr_chart_title='mR control chart title',
+        mr_chart_subtitle='mR control chart subtitle',
+        mr_chart_ylabel='Response (units)',
+        mr_chart_xlabel='Sample',
+        mr_chart_svgfilename='y_mr') -> axes.Axes:
     """
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
