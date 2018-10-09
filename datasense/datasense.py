@@ -6,6 +6,33 @@ import matplotlib.axes as axes
 import scipy.stats.mstats as ms
 
 
+def sommaire_cinq_numeros (df: pd.Series) -> pd.DataFrame:
+    """
+    Return five statistics using mquantiles
+
+    Returns
+    -------
+    min            = minimum value
+    quantile(0.25) = first quartile
+    quantile(0.50) = median
+    quantile(0.75) = third quartile
+    max            = maximum value
+    """
+    return pd.DataFrame(
+        [(alphap,
+          betap,
+          df.min(),
+          ms.mquantiles(df,
+                       prob=(0.25, 0.50, 0.75),
+                       alphap=alphap,
+                       betap=betap).round(3),
+          df.max())
+         for alphap, betap
+         in ((0,1), (0.5,0.5), (0,0), (1,1), (0.33,0.33), (0.375,0.375))],
+        columns=['alphap', 'betap', 'min', 'quantiles', 'max']
+    ).set_index(['alphap', 'betap'])
+
+
 def five_number_summary(df: pd.Series) -> pd.DataFrame:
     """
     Return five statistics
