@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
+import scipy.stats.mstats as ms
 
 
 def five_number_summary(df: pd.Series) -> pd.DataFrame:
