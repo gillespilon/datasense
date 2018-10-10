@@ -22,14 +22,14 @@ def sommaire_cinq_numeros (df: pd.Series) -> pd.DataFrame:
         [(alphap,
           betap,
           df.min(),
-          ms.mquantiles(df,
-                       prob=(0.25, 0.50, 0.75),
-                       alphap=alphap,
-                       betap=betap).round(3),
+          *ms.mquantiles(df,
+                         prob=(0.25, 0.50, 0.75),
+                         alphap=alphap,
+                         betap=betap).round(3),
           df.max())
          for alphap, betap
          in ((0,1), (0.5,0.5), (0,0), (1,1), (0.33,0.33), (0.375,0.375))],
-        columns=['alphap', 'betap', 'min', 'quantiles', 'max']
+        columns=['alphap', 'betap', 'min', 'q1', 'q2', 'q3', 'max']
     ).set_index(['alphap', 'betap'])
 
 
