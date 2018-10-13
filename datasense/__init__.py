@@ -1,3 +1,7 @@
+'''
+TODO
+'''
+
 import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
@@ -6,8 +10,14 @@ import matplotlib.axes as axes
 import scipy.stats.mstats as ms
 
 
-def sommaire_cinq_numeros (df: pd.Series) -> pd.DataFrame:
-    """
+_QUANTILES = (0.25, 0.50, 0.75)
+_QUANTILE_METHODS = [
+    (0, 1), (0.5, 0.5), (0, 0), (1, 1), (0.33, 0.33), (0.375, 0.375)
+]
+
+
+def sommaire_cinq_numeros(series: pd.Series) -> pd.DataFrame:
+    '''
     Return five statistics using mquantiles
 
     Returns
@@ -17,24 +27,24 @@ def sommaire_cinq_numeros (df: pd.Series) -> pd.DataFrame:
     quantile(0.50) = median
     quantile(0.75) = third quartile
     max            = maximum value
-    """
+    '''
     return pd.DataFrame(
         [(alphap,
           betap,
-          df.min(),
-          *ms.mquantiles(df,
-                         prob=(0.25, 0.50, 0.75),
+          series.min(),
+          *ms.mquantiles(series,
+                         prob=_QUANTILES,
                          alphap=alphap,
                          betap=betap).round(3),
-          df.max())
+          series.max())
          for alphap, betap
-         in ((0,1), (0.5,0.5), (0,0), (1,1), (0.33,0.33), (0.375,0.375))],
+         in _QUANTILE_METHODS],
         columns=['alphap', 'betap', 'min', 'q1', 'q2', 'q3', 'max']
     ).set_index(['alphap', 'betap'])
 
 
-def five_number_summary(df: pd.Series) -> pd.DataFrame:
-    """
+def five_number_summary(series: pd.Series) -> pd.DataFrame:
+    '''
     Return five statistics
 
     Returns
@@ -44,24 +54,22 @@ def five_number_summary(df: pd.Series) -> pd.DataFrame:
     quantile(0.50) = median
     quantile(0.75) = third quartile
     max            = maximum value
-    """
+    '''
     return pd.DataFrame(
         [(interpolation,
-          df.min(),
-          df.quantile(0.25, interpolation=interpolation),
-          df.quantile(0.50, interpolation=interpolation),
-          df.quantile(0.75, interpolation=interpolation),
-          df.max())
+          series.min(),
+          series.quantile(0.25, interpolation=interpolation),
+          series.quantile(0.50, interpolation=interpolation),
+          series.quantile(0.75, interpolation=interpolation),
+          series.max())
          for interpolation
-         in ('linear', 'lower', 'higher', 'nearest',
-             'midpoint')],
-        columns=['interpolation', 'min', 'q1', 'q2',
-                 'q3', 'max']
+         in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
+        columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max']
     ).set_index(['interpolation'])
 
 
-def six_number_summary(df: pd.Series) -> pd.DataFrame:
-    """
+def six_number_summary(series: pd.Series) -> pd.DataFrame:
+    '''
     Return six statistics
 
     Returns
@@ -72,28 +80,28 @@ def six_number_summary(df: pd.Series) -> pd.DataFrame:
     quantile(0.75) = third quartile
     max            = maximum value
     iqr            = interquartile range
-    """
+    '''
     # Pourqoi pas juste:
-    #     five = five_number_summary(df)
+    #     five = five_number_summary(series)
     #     five['iqr'] = five['q3'] - five['q1']
     #     return five
     return pd.DataFrame(
         [(interpolation,
-          df.min(),
-          df.quantile(0.25, interpolation=interpolation),
-          df.quantile(0.50, interpolation=interpolation),
-          df.quantile(0.75, interpolation=interpolation),
-          df.max(),
-          (df.quantile(0.75, interpolation=interpolation) -
-           df.quantile(0.25, interpolation=interpolation)))
+          series.min(),
+          series.quantile(0.25, interpolation=interpolation),
+          series.quantile(0.50, interpolation=interpolation),
+          series.quantile(0.75, interpolation=interpolation),
+          series.max(),
+          (series.quantile(0.75, interpolation=interpolation) -
+           series.quantile(0.25, interpolation=interpolation)))
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr']
     ).set_index(['interpolation'])
 
 
-def seven_number_summary(df: pd.Series) -> pd.DataFrame:
-    """
+def seven_number_summary(series: pd.Series) -> pd.DataFrame:
+    '''
     Return six statistics
 
     Returns
@@ -105,29 +113,29 @@ def seven_number_summary(df: pd.Series) -> pd.DataFrame:
     max            = maximum value
     iqr            = interquartile range
     n              = sample size
-    """
+    '''
     # Pourqoi pas juste:
-    #     five = five_number_summary(df)
+    #     five = five_number_summary(series)
     #     five['iqr'] = five['q3'] - five['q1']
     #     return five
     return pd.DataFrame(
         [(interpolation,
-          df.min(),
-          df.quantile(0.25, interpolation=interpolation),
-          df.quantile(0.50, interpolation=interpolation),
-          df.quantile(0.75, interpolation=interpolation),
-          df.max(),
-          (df.quantile(0.75, interpolation=interpolation) -
-           df.quantile(0.25, interpolation=interpolation)),
-          df.count())
+          series.min(),
+          series.quantile(0.25, interpolation=interpolation),
+          series.quantile(0.50, interpolation=interpolation),
+          series.quantile(0.75, interpolation=interpolation),
+          series.max(),
+          (series.quantile(0.75, interpolation=interpolation) -
+           series.quantile(0.25, interpolation=interpolation)),
+          series.count())
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr', 'n']
     ).set_index(['interpolation'])
 
 
-def nonparametric_summary(df: pd.Series) -> pd.DataFrame:
-    """
+def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
+    '''
     Return nonparametric statistics
 
     Returns
@@ -139,23 +147,23 @@ def nonparametric_summary(df: pd.Series) -> pd.DataFrame:
     confidence interval of the median
     iqr            = interquartile range
     confidence interval of the interquartile range
-    """
+    '''
     return pd.DataFrame(
         [(interpolation,
-          df.count(),
-          df.min(),
-          df.max(),
-          df.quantile(0.50, interpolation=interpolation),
-          (df.quantile(0.75, interpolation=interpolation) -
-           df.quantile(0.25, interpolation=interpolation)))
+          series.count(),
+          series.min(),
+          series.max(),
+          series.quantile(0.50, interpolation=interpolation),
+          (series.quantile(0.75, interpolation=interpolation) -
+           series.quantile(0.25, interpolation=interpolation)))
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
         columns=['interpolation', 'n', 'min', 'max', 'q2', 'iqr']
     ).set_index(['interpolation'])
 
 
-def parametric_summary(df: pd.Series) -> pd.DataFrame:
-    """
+def parametric_summary(series: pd.Series) -> pd.DataFrame:
+    '''
     Return parametric statistics
 
     Returns
@@ -169,23 +177,23 @@ def parametric_summary(df: pd.Series) -> pd.DataFrame:
     confidence interval of the sample standard deviation
     var            = sample variance
     confidence interval of the sample variance
-    """
+    '''
     return pd.DataFrame(
-        [(df.count(),
-          df.min(),
-          df.max(),
-          df.mean(),
-          df.std(),
-          df.var())],
+        [(series.count(),
+          series.min(),
+          series.max(),
+          series.mean(),
+          series.std(),
+          series.var())],
         columns=['n', 'min', 'max', 'ave', 's', 'var'])
 
 
-def control_chart_constants(n, col):
-    """
+def control_chart_constants(n: int, col: str) -> float:
+    '''
     This function creates a dataframe from a dictionary of constants and
     returns requested constants.
-    """
-    df = dict(
+    '''
+    d = dict(
         n=np.array([
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20, 21, 22, 23, 24, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75,
@@ -254,30 +262,31 @@ def control_chart_constants(n, col):
             0.803, 0.794, 0.786, 0.778, 0.770, 0.763, 0.734, 0.712, 0.694,
             0.680, 0.667, 0.656, 0.647, 0.638, 0.631, 0.624, 0.618, 0.612,
             0.607, 0.598]))
-    constants = pd.DataFrame.from_dict(df, orient='index').transpose()
-    constant = constants[col][constants['n'] == n].values[0]
+    constants = pd.DataFrame.from_dict(d, orient='index').transpose()
+    constant = constants[col][constants['n'] == n].values[0]  # type: ignore
     return constant
 
 
 def control_chart_xmr(
         df: pd.DataFrame,
-        subgroup_size=2,
-        x_chart_title='X control chart title',
-        x_chart_subtitle='X control chart subtitle',
-        x_chart_ylabel='Response (units)',
-        x_chart_xlabel='Sample',
-        x_chart_svgfilename='y_x',
-        mr_chart_title='mR control chart title',
-        mr_chart_subtitle='mR control chart subtitle',
-        mr_chart_ylabel='Response (units)',
-        mr_chart_xlabel='Sample',
-        mr_chart_svgfilename='y_mr') -> axes.Axes:
-    """
+        subgroup_size: int = 2,
+        x_chart_title: str = 'X control chart title',
+        x_chart_subtitle: str = 'X control chart subtitle',
+        x_chart_ylabel: str = 'Response (units)',
+        x_chart_xlabel: str = 'Sample',
+        x_chart_svgfilename: str = 'y_x',
+        mr_chart_title: str = 'mR control chart title',
+        mr_chart_subtitle: str = 'mR control chart subtitle',
+        mr_chart_ylabel: str = 'Response (units)',
+        mr_chart_xlabel: str = 'Sample',
+        mr_chart_svgfilename: str = 'y_mr') -> axes.Axes:
+    '''
     Produces two charts, an X chart of individual values and a mR chart
     of moving range values.
+
     Must have (for now) control_chart_constants.csv in current working
     directory.
-    """
+    '''
     # Define the X chart labels.
     n = subgroup_size
     # Moving range chart statistics.
@@ -316,7 +325,7 @@ def control_chart_xmr(
     minus_two_sigma_x = average - 2 * sigma_x
     # Calculate one Sigma(X) below the average.
     minus_one_sigma_x = average - sigma_x
-    # Use a colour-blind friendly colormap, "Paired".
+    # Use a colour-blind friendly colormap, 'Paired'.
     lines_c, limits_c, average_c, *_ = cm.Paired.colors
     # Create the X chart.
     ax = (
@@ -383,3 +392,15 @@ def control_chart_xmr(
     plt.show()
     #__import__('pdb').set_trace()
     return ax
+
+
+__all__ = (
+    'sommaire_cinq_numeros',
+    'five_number_summary',
+    'six_number_summary',
+    'seven_number_summary',
+    'nonparametric_summary',
+    'parametric_summary',
+    'control_chart_constants',
+    'control_chart_xmr',
+)

@@ -1,5 +1,5 @@
 from glob import glob
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
@@ -8,25 +8,29 @@ setup(
     url='https://github.com/gillespilon/datasense',
     version='0.1',
     install_requires=[
-        'regex',
+        'pandas',
+        'numpy',
+        'matplotlib',
+        'scipy',
     ],
     author='Gilles Pilon',
     author_email='gillespilon13@gmail.com',
-    packages=['datasense'],
+    packages=find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 3',
+        'Development Status :: 3 - Alpha',
+        'License :: OSI Approved :: ISC License (ISCL)',
     ],
+    license='License :: OSI Approved :: ISC License (ISCL)',
     setup_requires=[
         # run pytest, coverage and checks when running python setup.py test.
         'pytest-runner',
         'pytest-cov',
-        'pytest-flakes',
     ],
     tests_require=[
         'pytest',
         'coverage',
     ],
     scripts=glob('bin/*'),
-    license='ISC',
 )
 
