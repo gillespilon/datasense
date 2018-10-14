@@ -390,6 +390,23 @@ def control_chart_xmr(
     #__import__('pdb').set_trace()
     return ax
 
+def control_chart_xbarr(
+        df: pd.DataFrame,
+        subgroup_size: int = 5,
+        xbar_chart_title: str = 'Xbar control chart title',
+        xbar_chart_subtitle: str = 'Xbar control chart subtitle',
+        xbar_chart_ylabel: str = 'Response (units)',
+        xbar_chart_xlabel: str = 'Sample',
+        xbar_chart_svgfilename: str = 'y_xbar',
+        r_chart_title: str = 'R control chart title',
+        r_chart_subtitle: str = 'R control chart subtitle',
+        r_chart_ylabel: str = 'Response (units)',
+        r_chart_xlabel: str = 'Sample',
+        r_chart_svgfilename: str = 'y_r') -> axes.Axes:
+    '''
+    Produces two charts, an Xbar chart of average values and an R chart
+    of range values.
+    '''
 
 __all__ = (
     'sommaire_cinq_numeros',
@@ -400,4 +417,5 @@ __all__ = (
     'parametric_summary',
     'control_chart_constants',
     'control_chart_xmr',
+    'control_chart_xbarr',
 )
