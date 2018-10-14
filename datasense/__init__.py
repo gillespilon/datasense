@@ -331,10 +331,6 @@ def control_chart_xmr(
     )
     # Get the X axis limits to use to set the limits for the mR chart.
     xmin, xmax = ax.get_xlim()
-    #ax = (
-    #    df.plot.scatter(x=df.columns[0], y=df.columns[1], legend=False,
-    #                    marker='o', color=lines_c)
-    #)
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
