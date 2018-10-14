@@ -398,6 +398,7 @@ def control_chart_xbarr(
     of range values.
     '''
 
+
 __all__ = (
     'sommaire_cinq_numeros',
     'five_number_summary',
