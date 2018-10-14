@@ -376,7 +376,7 @@ def control_chart_xmr(
     # Save the graph as svg.
     ax.figure.savefig(f'{mr_chart_svgfilename}.svg', format='svg')
     plt.show()
-    #__import__('pdb').set_trace()
+    # __import__('pdb').set_trace()
     return ax
 
 
