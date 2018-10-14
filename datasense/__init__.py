@@ -379,6 +379,7 @@ def control_chart_xmr(
     #__import__('pdb').set_trace()
     return ax
 
+
 def control_chart_xbarr(
         df: pd.DataFrame,
         subgroup_size: int = 5,
