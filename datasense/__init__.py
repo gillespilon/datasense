@@ -29,6 +29,9 @@ Why this?
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
 
+from typing import NamedTuple, Union, Tuple
+import math
+
 import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
@@ -419,11 +422,174 @@ def control_chart_xbarr(
         r_chart_subtitle: str = 'R control chart subtitle',
         r_chart_ylabel: str = 'Response (units)',
         r_chart_xlabel: str = 'Sample',
-        r_chart_svgfilename: str = 'y_r') -> axes.Axes:
+        r_chart_svgfilename: str = 'y_r') -> Tuple[axes.Axes, axes.Axes]:
     '''
     Produces two charts, an Xbar chart of average values and an R chart
     of range values.
     '''
+
+
+def _despine(ax: axes.Axes) -> None:
+    'Remove the top and right spines'
+    for spine in 'right', 'top':
+        ax.spines[spine].set_color('none')
+
+
+class Sigmas:
+    def __init__(self, mean: float, sigma: float):
+        self._mean = mean
+        self._sigma = sigma
+
+    def __getitem__(self, index: Union[int, slice]) -> float:
+        if isinstance(index, int):
+            return self._mean + index * self._sigma
+        elif isinstance(index, slice):
+            raise NotImplementedError()
+        else:
+            raise ValueError()
+
+
+class ControlChart(NamedTuple):
+    ucl: float  # Upper control limit
+    lcl: float  # Lower control limit
+    sigma: float  # E.g., Sigma(R)
+    mean: float  # E.g., Average moving range
+    ax: axes.Axes  # Plot
+
+    def __str__(self) -> str:
+        raise NotImplementedError()
+
+    @property
+    def sigmas(self):
+        '''
+        TODO
+
+        Ex:
+
+            cc = ProcessBehaviourCharts(df)
+            cc.X_chart.sigmas[-3]  # or +2
+        '''
+        return Sigmas(mean=self.mean, sigma=self.sigma)
+
+
+class ProcessBehaviourCharts:
+    def __init__(self, data: pd.DataFrame):
+        self._subgroup_size = len(data.columns)
+        assert self._subgroup_size >= 2
+        self._df = data.copy()
+
+    def X_chart(self) -> ControlChart:
+        raise NotImplementedError()
+
+    def mR_chart(self) -> ControlChart:
+        raise NotImplementedError()
+
+    '''
+    df = …
+    pbc = ProcessBehaviourCharts(df)
+    r = pbc.R_chart()
+    r.ax.set_title(df.caption)
+    r.ax.set_ylabel('Response')
+    r.ax.set_xlabel('Sample')
+    r.ax.savefig('foo.svg')
+    '''
+
+    def R_chart(self) -> ControlChart:
+        # TODO: Factor out?
+        d_two = control_chart_constants(n=len(self._df.columns), col='d2')
+        d_three = control_chart_constants(n=len(self._df.columns), col='d3')
+
+        # TODO: factor out
+        # R chart statistics
+        # Calculate average range
+        average_range = (self._df.max(axis='columns') -
+                         self._df.min(axis='columns')).mean()
+
+        # Calculate the range chart upper control limit.
+        range_chart_upper_control_limit = (
+            average_range
+            + 3
+            * d_three
+            * average_range
+            / d_two
+        )
+        # Calculate the range chart lower control limit.
+        range_chart_lower_control_limit = (
+            average_range
+            - 3
+            * d_three
+            * average_range
+            / d_two
+        )
+        # Set the moving range lower control limit to 0 if it is < 0.
+        if range_chart_lower_control_limit < 0:
+            range_chart_lower_control_limit = 0.0
+
+        # Create a graph of "range values v. sample".
+        ax = (
+            self._df.max(axis='columns')
+            - self._df.min(axis='columns')
+        ).plot.line(legend=False,
+                    marker='o',
+                    markersize=3,
+                    color='blue')
+        ax.axhline(y=average_range, color='b')
+        ax.axhline(y=range_chart_upper_control_limit, color='r')
+        ax.axhline(y=range_chart_lower_control_limit, color='r')
+        _despine(ax)
+
+        return ControlChart(ucl=range_chart_upper_control_limit,
+                            lcl=range_chart_lower_control_limit,
+                            mean=average_range,
+                            sigma=average_range * d_three / d_two,
+                            ax=ax)
+
+    def Xbar_chart(self) -> ControlChart:
+        # TODO: factor out
+        # R chart statistics
+        # Calculate average range
+        average_range = (self._df.max(axis='columns') -
+                         self._df.min(axis='columns')).mean()
+
+        # TODO: Factor out?
+        d_two = control_chart_constants(n=self._subgroup_size, col='d2')
+
+        # Xbar chart statistics
+        # Calculate average of averages.
+        average_of_averages = (self._df.mean(axis='columns')).mean()
+        # Calculate the averages chart upper control limit.
+        ucl = (
+            average_of_averages
+            + 3
+            * average_range
+            / (d_two * math.sqrt(self._subgroup_size))
+        )
+        # Calculate the averages chart lower control limit.
+        lcl = (
+            average_of_averages
+            - 3
+            * average_range
+            / (d_two * math.sqrt(self._subgroup_size))
+        )
+
+        # Create a graph of "average values v. sample".
+        ax = self._df.mean(axis='columns') \
+                     .plot.line(legend=False,
+                                marker='o',
+                                markersize=3,
+                                color='blue')
+        ax.axhline(y=average_of_averages, color='b')
+        ax.axhline(y=ucl, color='r')
+        ax.axhline(y=lcl, color='r')
+        _despine(ax)
+
+        return ControlChart(ucl=ucl,
+                            lcl=lcl,
+                            sigma=average_range
+                            / d_two
+                            / math.sqrt(self._subgroup_size),
+                            mean=average_of_averages,
+                            ax=ax)
 
 
 __all__ = (
@@ -436,4 +602,6 @@ __all__ = (
     'control_chart_constants',
     'control_chart_xmr',
     'control_chart_xbarr',
+    'ControlChart',
+    'ProcessBehaviourCharts',
 )
