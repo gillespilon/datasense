@@ -29,13 +29,13 @@ Why this?
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
 
-from typing import NamedTuple, Union, Tuple
-import math
+from typing import Union, Tuple, Optional
+from abc import ABC, abstractmethod
+from math import sqrt
 
 import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
-import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import scipy.stats.mstats as ms
 
@@ -297,138 +297,6 @@ def control_chart_constants(n: int, col: str) -> float:
     return constant
 
 
-def control_chart_xmr(
-        df: pd.DataFrame,
-        subgroup_size: int = 2,
-        x_chart_title: str = 'X control chart title',
-        x_chart_subtitle: str = 'X control chart subtitle',
-        x_chart_ylabel: str = 'Response (units)',
-        x_chart_xlabel: str = 'Sample',
-        x_chart_svgfilename: str = 'y_x',
-        mr_chart_title: str = 'mR control chart title',
-        mr_chart_subtitle: str = 'mR control chart subtitle',
-        mr_chart_ylabel: str = 'Response (units)',
-        mr_chart_xlabel: str = 'Sample',
-        mr_chart_svgfilename: str = 'y_mr') -> axes.Axes:
-    '''
-    Produces two charts, an X chart of individual values and a mR chart
-    of moving range values.
-    '''
-    # Define the X chart labels.
-    n = subgroup_size
-    # Moving range chart statistics.
-    # Calculate average moving range.
-    average_mr = (
-        df.iloc[:, 1]
-          .rolling(n)
-          .agg(lambda x: x.iloc[0] - x.iloc[1])
-          .abs()
-          .mean()
-    )
-    d2 = control_chart_constants(n, 'd2')
-    d3 = control_chart_constants(n, 'd3')
-    # Calculate Sigma(R).
-    sigma_r = average_mr * d3 / d2
-    # Calculate the range chart upper control limit.
-    r_chart_ucl = average_mr + 3 * sigma_r
-    # Calculate the range chart lower control limit.
-    r_chart_lcl = average_mr - 3 * sigma_r
-    if (r_chart_lcl < 0).any():
-        r_chart_lcl = 0
-    # X chart statistics.
-    # Calculate the average of all values.
-    average = df.iloc[:, 1].mean()
-    # Calculate Sigma(X).
-    sigma_x = average_mr / d2
-    # Calculate the X chart upper control limit.
-    x_chart_ucl = average + 3 * sigma_x
-    # Calculate two Sigma(X) above the average.
-    plus_two_sigma_x = average + 2 * sigma_x
-    # Calculate one Sigma(X) above the average.
-    plus_one_sigma_x = average + sigma_x
-    # Calculate the X chart lower control limit.
-    x_chart_lcl = average - 3 * sigma_x
-    # Calculate two Sigma(X) below the average.
-    minus_two_sigma_x = average - 2 * sigma_x
-    # Calculate one Sigma(X) below the average.
-    minus_one_sigma_x = average - sigma_x
-    # Use a colour-blind friendly colormap, 'Paired'.
-    lines_c, limits_c, average_c, *_ = cm.Paired.colors
-    # Create the X chart.
-    ax = (
-        df.set_index(df.columns[0])
-          .plot.line(legend=False, marker='o', markersize=3, color=lines_c)
-    )
-    # Get the X axis limits to use to set the limits for the mR chart.
-    xmin, xmax = ax.get_xlim()
-    # Remove the top and right spines.
-    for spine in 'right', 'top':
-        ax.spines[spine].set_color('none')
-    # Add average line to X chart.
-    ax.axhline(y=average, color=average_c)
-    # Add the upper control limits for the X chart.
-    ax.axhline(y=x_chart_ucl, color=limits_c)
-    # Add the lower control limits for the X chart.
-    ax.axhline(y=x_chart_lcl, color=limits_c)
-    # Add the chart title and subtitle
-    ax.set_title(x_chart_title + '\n' + x_chart_subtitle, fontweight='bold')
-    # Add the Y axis label.
-    ax.set_ylabel(x_chart_ylabel)
-    # Add the X axis label.
-    ax.set_xlabel(x_chart_xlabel)
-    # Save the graph as svg.
-    ax.figure.savefig(f'{x_chart_svgfilename}.svg', format='svg')
-    plt.show()
-    # Create the mR chart.
-    ax = (df.set_index(df.columns[0])
-            .rolling(n)
-            .agg(lambda x: x.iloc[0] - x.iloc[1])
-            .abs()
-            .plot.line(legend=False, marker='o',
-                       markersize=3, color=lines_c,))
-    # Set the X axis limits of the mR chart to be the same as the X chart.
-    ax.set_xlim(xmin, xmax)
-    # Remove the top and right spines.
-    for spine in 'right', 'top':
-        ax.spines[spine].set_color('none')
-    # Add average line to mR chart.
-    ax.axhline(y=average_mr, color=average_c)
-    # Add the upper control limits for the mR chart.
-    ax.axhline(y=r_chart_ucl, color=limits_c)
-    # Add the lower control limits for the mR chart.
-    ax.axhline(y=r_chart_lcl, color=limits_c)
-    # Add the chart title and subtitle
-    ax.set_title(mr_chart_title + '\n' + mr_chart_subtitle, fontweight='bold')
-    # Add the Y axis label.
-    ax.set_ylabel(mr_chart_ylabel)
-    # Add the X axis label.
-    ax.set_xlabel(mr_chart_xlabel)
-    # Save the graph as svg.
-    ax.figure.savefig(f'{mr_chart_svgfilename}.svg', format='svg')
-    plt.show()
-    # __import__('pdb').set_trace()
-    return ax
-
-
-def control_chart_xbarr(
-        df: pd.DataFrame,
-        subgroup_size: int = 5,
-        xbar_chart_title: str = 'Xbar control chart title',
-        xbar_chart_subtitle: str = 'Xbar control chart subtitle',
-        xbar_chart_ylabel: str = 'Response (units)',
-        xbar_chart_xlabel: str = 'Sample',
-        xbar_chart_svgfilename: str = 'y_xbar',
-        r_chart_title: str = 'R control chart title',
-        r_chart_subtitle: str = 'R control chart subtitle',
-        r_chart_ylabel: str = 'Response (units)',
-        r_chart_xlabel: str = 'Sample',
-        r_chart_svgfilename: str = 'y_r') -> Tuple[axes.Axes, axes.Axes]:
-    '''
-    Produces two charts, an Xbar chart of average values and an R chart
-    of range values.
-    '''
-
-
 def _despine(ax: axes.Axes) -> None:
     'Remove the top and right spines'
     for spine in 'right', 'top':
@@ -449,13 +317,39 @@ class Sigmas:
             raise ValueError()
 
 
-class ControlChart(NamedTuple):
-    ucl: float  # Upper control limit
-    lcl: float  # Lower control limit
-    sigma: float  # E.g., Sigma(R)
-    mean: float  # E.g., Average moving range
-    ax: axes.Axes  # Plot
+class ControlChart(ABC):
+    def __init__(self, data: pd.DataFrame):
+        self._df = data
 
+    @property
+    @abstractmethod
+    def ucl(self) -> float:
+        'Upper control limit'
+        raise NotImplementedError()
+
+    @property
+    @abstractmethod
+    def lcl(self) -> float:
+        'Lower control limit'
+        raise NotImplementedError()
+
+    @property
+    @abstractmethod
+    def sigma(self) -> float:
+        raise NotImplementedError()
+
+    @property
+    @abstractmethod
+    def mean(self) -> float:
+        raise NotImplementedError()
+
+    @property
+    @abstractmethod
+    def ax(self) -> axes.Axes:
+        'Matplotlib control chart plot'
+        raise NotImplementedError()
+
+    #@abstractmethod
     def __str__(self) -> str:
         raise NotImplementedError()
 
@@ -471,61 +365,166 @@ class ControlChart(NamedTuple):
         '''
         return Sigmas(mean=self.mean, sigma=self.sigma)
 
-
-class ProcessBehaviourCharts:
-    def __init__(self, data: pd.DataFrame):
-        self._subgroup_size = len(data.columns)
-        assert self._subgroup_size >= 2
-        self._df = data.copy()
-
-    def X_chart(self) -> ControlChart:
-        raise NotImplementedError()
-
-    def mR_chart(self) -> ControlChart:
-        raise NotImplementedError()
-
-    '''
-    df = …
-    pbc = ProcessBehaviourCharts(df)
-    r = pbc.R_chart()
-    r.ax.set_title(df.caption)
-    r.ax.set_ylabel('Response')
-    r.ax.set_xlabel('Sample')
-    r.ax.savefig('foo.svg')
-    '''
-
-    def R_chart(self) -> ControlChart:
-        # TODO: Factor out?
-        d_two = control_chart_constants(n=len(self._df.columns), col='d2')
-        d_three = control_chart_constants(n=len(self._df.columns), col='d3')
-
-        # TODO: factor out
-        # R chart statistics
-        # Calculate average range
-        average_range = (self._df.max(axis='columns') -
-                         self._df.min(axis='columns')).mean()
-
-        # Calculate the range chart upper control limit.
-        range_chart_upper_control_limit = (
-            average_range
-            + 3
-            * d_three
-            * average_range
-            / d_two
+    def _average_mr(self, subgroup_size: Optional[int] = 2) -> float:
+        'Average moving range'
+        if subgroup_size is None:
+            subgroup_size = 2
+        assert subgroup_size >= 2
+        return (
+            self._df.iloc[:, 0]
+                    .rolling(subgroup_size)
+                    .agg(lambda x: x.iloc[0] - x.iloc[1])
+                    .abs()
+                    .mean()
         )
-        # Calculate the range chart lower control limit.
-        range_chart_lower_control_limit = (
-            average_range
+
+
+# Use a colour-blind friendly colormap, 'Paired'.
+_lines_c, _limits_c, _average_c, *_ = cm.Paired.colors
+
+
+class X(ControlChart):
+    def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
+        super().__init__(data)
+
+        if subgroup_size is None:
+            subgroup_size = 2
+        assert subgroup_size >= 2
+        self.subgroup_size = subgroup_size
+
+    @property
+    def _d2(self) -> float:
+        return control_chart_constants(self.subgroup_size, 'd2')
+
+    @property
+    def sigma(self) -> float:
+        return self._average_mr(self.subgroup_size) / self._d2
+
+    @property
+    def ucl(self) -> float:
+        return self.mean + 3 * self.sigma
+
+    @property
+    def lcl(self) -> float:
+        return self.mean - 3 * self.sigma
+
+    @property
+    def mean(self) -> float:
+        return self._df.iloc[:, 0].mean()
+
+    @property
+    def ax(self) -> axes.Axes:
+        ax = self._df.plot.line(legend=False, marker='o', markersize=3,
+                                color=_lines_c)
+        # Remove the top and right spines.
+        _despine(ax)
+        # Add average line to X chart.
+        ax.axhline(y=self.mean, color=_average_c)
+        # Add the upper control limits for the X chart.
+        ax.axhline(y=self.ucl, color=_limits_c)
+        # Add the lower control limits for the X chart.
+        ax.axhline(y=self.lcl, color=_limits_c)
+
+        return ax
+
+
+class mR(ControlChart):
+    def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
+        super().__init__(data)
+
+        if subgroup_size is None:
+            subgroup_size = 2
+        assert subgroup_size >= 2
+        self.subgroup_size = subgroup_size
+
+    @property
+    def _d2(self) -> float:
+        return control_chart_constants(self.subgroup_size, 'd2')
+
+    @property
+    def _d3(self) -> float:
+        return control_chart_constants(self.subgroup_size, 'd3')
+
+    @property
+    def sigma(self) -> float:
+        'Sigma(R)'
+        return self._average_mr(self.subgroup_size) * self._d3 / self._d2
+
+    @property
+    def ucl(self) -> float:
+        return self._average_mr(self.subgroup_size) + 3 * self.sigma
+
+    @property
+    def lcl(self) -> float:
+        r_chart_lcl = self._average_mr(self.subgroup_size) - 3 * self.sigma
+        if (r_chart_lcl < 0).any():
+            r_chart_lcl = 0
+        return r_chart_lcl
+
+    @property
+    def mean(self) -> float:
+        return self._average_mr(self.subgroup_size)
+
+    @property
+    def ax(self) -> axes.Axes:
+        'Matplotlib control chart plot'
+        ax = (self._df
+                  .rolling(self.subgroup_size)
+                  .agg(lambda x: x.iloc[0] - x.iloc[1])
+                  .abs()
+                  .plot.line(legend=False, marker='o',
+                             markersize=3, color=_lines_c,))
+        # TODO? ax.set_xlim(0, len(self._df.columns))
+        _despine(ax)
+        ax.axhline(y=self.mean, color=_average_c)
+        ax.axhline(y=self.ucl, color=_limits_c)
+        ax.axhline(y=self.lcl, color=_limits_c)
+
+        return ax
+
+
+class R(ControlChart):
+    @property
+    def _d2(self) -> float:
+        return control_chart_constants(n=len(self._df.columns), col='d2')
+
+    @property
+    def _d3(self) -> float:
+        return control_chart_constants(n=len(self._df.columns), col='d3')
+
+    @property
+    def mean(self) -> float:
+        'Average range'
+        return (
+            self._df.max(axis='columns') - self._df.min(axis='columns')
+        ).mean()
+
+    @property
+    def ucl(self) -> float:
+        return (
+            self.mean
+            + 3
+            * self._d3
+            * self.mean
+            / self._d2
+        )
+
+    @property
+    def lcl(self) -> float:
+        ret = (
+            self.mean
             - 3
-            * d_three
-            * average_range
-            / d_two
+            * self._d3
+            * self.mean
+            / self._d2
         )
         # Set the moving range lower control limit to 0 if it is < 0.
-        if range_chart_lower_control_limit < 0:
-            range_chart_lower_control_limit = 0.0
+        if ret < 0:
+            ret = 0.0
+        return ret
 
-        # Create a graph of "range values v. sample".
+    @property
+    def ax(self) -> axes.Axes:
         ax = (
             self._df.max(axis='columns')
             - self._df.min(axis='columns')
@@ -533,63 +532,74 @@ class ProcessBehaviourCharts:
                     marker='o',
                     markersize=3,
                     color='blue')
-        ax.axhline(y=average_range, color='b')
-        ax.axhline(y=range_chart_upper_control_limit, color='r')
-        ax.axhline(y=range_chart_lower_control_limit, color='r')
+        ax.axhline(y=self.mean, color='b')
+        ax.axhline(y=self.ucl, color='r')
+        ax.axhline(y=self.lcl, color='r')
         _despine(ax)
+        return ax
 
-        return ControlChart(ucl=range_chart_upper_control_limit,
-                            lcl=range_chart_lower_control_limit,
-                            mean=average_range,
-                            sigma=average_range * d_three / d_two,
-                            ax=ax)
+    @property
+    def sigma(self) -> float:
+        return self.mean * self._d3 / self._d2
 
-    def Xbar_chart(self) -> ControlChart:
-        # TODO: factor out
-        # R chart statistics
-        # Calculate average range
-        average_range = (self._df.max(axis='columns') -
-                         self._df.min(axis='columns')).mean()
 
-        # TODO: Factor out?
-        d_two = control_chart_constants(n=self._subgroup_size, col='d2')
+class Xbar(ControlChart):
+    @property
+    def _average_range(self) -> float:
+        'Average range'
+        return (
+            self._df.max(axis='columns') -
+            self._df.min(axis='columns')
+        ).mean()
 
-        # Xbar chart statistics
-        # Calculate average of averages.
-        average_of_averages = (self._df.mean(axis='columns')).mean()
-        # Calculate the averages chart upper control limit.
-        ucl = (
-            average_of_averages
+    @property
+    def _subgroup_size(self) -> int:
+        return len(self._df.columns)
+
+    @property
+    def _d2(self) -> float:
+        return control_chart_constants(n=self._subgroup_size, col='d2')
+
+    @property
+    def mean(self) -> float:
+        'Average of averages'
+        return self._df.mean(axis='columns').mean()
+
+    @property
+    def ucl(self) -> float:
+        return (
+            self.mean
             + 3
-            * average_range
-            / (d_two * math.sqrt(self._subgroup_size))
-        )
-        # Calculate the averages chart lower control limit.
-        lcl = (
-            average_of_averages
-            - 3
-            * average_range
-            / (d_two * math.sqrt(self._subgroup_size))
+            * self._average_range
+            / (self._d2 * sqrt(self._subgroup_size))
         )
 
-        # Create a graph of "average values v. sample".
+    @property
+    def lcl(self) -> float:
+        return (
+            self.mean
+            - 3
+            * self._average_range
+            / (self._d2 * sqrt(self._subgroup_size))
+        )
+
+    @property
+    def ax(self) -> axes.Axes:
+        'average values v. sample'
         ax = self._df.mean(axis='columns') \
                      .plot.line(legend=False,
                                 marker='o',
                                 markersize=3,
                                 color='blue')
-        ax.axhline(y=average_of_averages, color='b')
-        ax.axhline(y=ucl, color='r')
-        ax.axhline(y=lcl, color='r')
+        ax.axhline(y=self.mean, color='b')
+        ax.axhline(y=self.ucl, color='r')
+        ax.axhline(y=self.lcl, color='r')
         _despine(ax)
+        return ax
 
-        return ControlChart(ucl=ucl,
-                            lcl=lcl,
-                            sigma=average_range
-                            / d_two
-                            / math.sqrt(self._subgroup_size),
-                            mean=average_of_averages,
-                            ax=ax)
+    @property
+    def sigma(self) -> float:
+        return self._average_range / self._d2 / sqrt(self._subgroup_size)
 
 
 __all__ = (
@@ -603,5 +613,5 @@ __all__ = (
     'control_chart_xmr',
     'control_chart_xbarr',
     'ControlChart',
-    'ProcessBehaviourCharts',
+    'X',
 )
