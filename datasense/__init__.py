@@ -342,6 +342,7 @@ class ControlChart(ABC):
     @property
     @abstractmethod
     def mean(self) -> float:
+        'average'
         raise NotImplementedError()
 
     @property
