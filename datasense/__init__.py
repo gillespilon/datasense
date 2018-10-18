@@ -336,6 +336,7 @@ class ControlChart(ABC):
     @property
     @abstractmethod
     def sigma(self) -> float:
+        'sigma appropriate to method used'
         raise NotImplementedError()
 
     @property
