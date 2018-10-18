@@ -9,7 +9,7 @@ from datasense import X
 
 
 chart_data = pd.read_csv(Path(__file__).parent / '../control_charts/xmr.csv',
-                         index_col='Time') \
+                         index_col='Sample') \
                .iloc[:, 0:]
 x = X(chart_data)
 print('X chart')
