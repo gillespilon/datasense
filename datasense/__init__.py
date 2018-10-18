@@ -330,7 +330,7 @@ class ControlChart(ABC):
     @property
     @abstractmethod
     def lcl(self) -> float:
-        'Lower control limit'
+        'lower control limit'
         raise NotImplementedError()
 
     @property
