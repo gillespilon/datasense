@@ -17,9 +17,8 @@ print('Upper control limit', x.ucl, sep=' = ')
 print('Average moving range', x.mean, sep=' = ')
 print('Lower control limit', x.lcl, sep=' = ')
 print(f'Sigma(X)', x.sigma, sep=' = ')
-print('-3 Sigma, -2 Sigma, … + 3 Sigma',
-        ', '.join(map(str, [x.sigmas[i] for i in range(-3, 4)])),
-        sep=' = ')
+for i in range(-3, 4):
+    print(f'{i} Sigma', ' '.join(map(str, [x.sigmas[i]])), sep=' = ')
 x.ax.set_title('X')
 plt.show()
 #plt.clf()
@@ -29,9 +28,8 @@ print('Upper control limit', mr.ucl, sep=' = ')
 print('Average moving range', mr.mean, sep=' = ')
 print('Lower control limit', mr.lcl, sep=' = ')
 print(f'Sigma(X)', mr.sigma, sep=' = ')
-print('-3 Sigma, -2 Sigma, … + 3 Sigma',
-        ', '.join(map(str, [mr.sigmas[i] for i in range(-3, 4)])),
-        sep=' = ')
+for i in range(-3, 4):
+    print(f'{i} Sigma', ' '.join(map(str, [mr.sigmas[i]])), sep=' = ')
 mr.ax.set_title('mR')
 plt.show()
 #plt.clf()
