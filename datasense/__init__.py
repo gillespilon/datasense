@@ -324,7 +324,7 @@ class ControlChart(ABC):
     @property
     @abstractmethod
     def ucl(self) -> float:
-        'Upper control limit'
+        'upper control limit'
         raise NotImplementedError()
 
     @property
