@@ -533,10 +533,10 @@ class R(ControlChart):
         ).plot.line(legend=False,
                     marker='o',
                     markersize=3,
-                    color='blue')
-        ax.axhline(y=self.mean, color='b')
-        ax.axhline(y=self.ucl, color='r')
-        ax.axhline(y=self.lcl, color='r')
+                    color=_lines_c)
+        ax.axhline(y=self.mean, color=_average_c)
+        ax.axhline(y=self.ucl, color=_limits_c)
+        ax.axhline(y=self.lcl, color=_limits_c)
         _despine(ax)
         return ax
 
