@@ -28,6 +28,12 @@ Why this?
 # TODO: MSA probable error.
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
+# TODO: Convert sommaire_cinq_numéros.
+# TODO: Convert five_number summary.
+# TODO: Convert six_number summary.
+# TODO: Convert seven_number summary.
+# TODO: Convert nonparametric_summary.
+# TODO: Convert parametric summary.
 
 from typing import Union, Tuple, Optional
 from abc import ABC, abstractmethod
