@@ -19,7 +19,6 @@ Why this?
 
 # TODO: Measurement system analysis (MSA) using control charts.
 # TODO: MSA range chart.
-# TODO: MSA range chart.
 # TODO: MSA average chart.
 # TODO: MSA parallelism chart.
 # TODO: MSA main effects chart (ANOME).
