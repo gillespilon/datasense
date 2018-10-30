@@ -188,13 +188,15 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
         [(interpolation,
           series.count(),
           series.min(),
-          series.max(),
+          series.quantile(0.25, interpolation=interpolation),
           series.quantile(0.50, interpolation=interpolation),
+          series.quantile(0.75, interpolation=interpolation),
           (series.quantile(0.75, interpolation=interpolation) -
-           series.quantile(0.25, interpolation=interpolation)))
+           series.quantile(0.25, interpolation=interpolation)),
+          series.max())
          for interpolation
          in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
-        columns=['interpolation', 'n', 'min', 'max', 'q2', 'iqr']
+        columns=['interpolation', 'n', 'min', 'q1', 'q2', 'q3', 'iqr', 'max']
     ).set_index(['interpolation'])
 
 
