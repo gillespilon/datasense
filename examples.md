@@ -4,7 +4,7 @@
 
 ## Dataframe with single column and index
 
-Download [xmr.csv](https://drive.google.com/open?id=0BzrdQfHR2I5DRld4MndVT2R0dEk) if you need and example file.
+Download [xmr.csv](https://drive.google.com/open?id=0BzrdQfHR2I5DRld4MndVT2R0dEk) if you need an example file.
 
     from pathlib import Path
 
