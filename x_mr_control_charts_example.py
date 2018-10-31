@@ -9,7 +9,10 @@ from datasense import X, mR
 
 chart_data = pd.read_csv(Path(__file__).parent / 'xmr.csv',
                          index_col='Sample').iloc[:, 0:]
-x = X(chart_data)
+x = X(chart_data) # This default method works for subgroup of 2.
+#  x = X(chart_data, 2) # One way to specify the subgroup size.
+#  x = X(chart_data, subgropu_size=2) # Another way to specify.
+
 print('X chart')
 print('Upper control limit', x.ucl, sep=' = ')
 print('Average moving range', x.mean, sep=' = ')
