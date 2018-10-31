@@ -51,40 +51,6 @@ _QUANTILE_METHODS = [
 ]
 
 
-def seven_number_summary(series: pd.Series) -> pd.DataFrame:
-    '''
-    Return six statistics
-
-    Returns
-    -------
-    min            = minimum value
-    quantile(0.25) = first quartile
-    quantile(0.50) = median
-    quantile(0.75) = third quartile
-    max            = maximum value
-    iqr            = interquartile range
-    n              = sample size
-    '''
-    # Pourqoi pas juste:
-    #     five = five_number_summary(series)
-    #     five['iqr'] = five['q3'] - five['q1']
-    #     return five
-    return pd.DataFrame(
-        [(interpolation,
-          series.min(),
-          series.quantile(0.25, interpolation=interpolation),
-          series.quantile(0.50, interpolation=interpolation),
-          series.quantile(0.75, interpolation=interpolation),
-          series.max(),
-          (series.quantile(0.75, interpolation=interpolation) -
-           series.quantile(0.25, interpolation=interpolation)),
-          series.count())
-         for interpolation
-         in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
-        columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max', 'iqr', 'n']
-    ).set_index(['interpolation'])
-
-
 def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
     '''
     Return nonparametric statistics
@@ -98,6 +64,10 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
     confidence interval of the median
     iqr            = interquartile range
     confidence interval of the interquartile range
+    # Pourqoi pas juste:
+    #     five = five_number_summary(series)
+    #     five['iqr'] = five['q3'] - five['q1']
+    #     return five
     '''
     return pd.DataFrame(
         [(interpolation,
