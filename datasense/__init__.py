@@ -27,7 +27,6 @@ Why this?
 # TODO: MSA probable error.
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
-# TODO: Convert sommaire_cinq_numéros.
 # TODO: Convert five_number summary.
 # TODO: Convert six_number summary.
 # TODO: Convert seven_number summary.
@@ -50,33 +49,6 @@ _QUANTILES = (0.25, 0.50, 0.75)
 _QUANTILE_METHODS = [
     (0, 1), (0.5, 0.5), (0, 0), (1, 1), (0.33, 0.33), (0.375, 0.375)
 ]
-
-
-def sommaire_cinq_numeros(series: pd.Series) -> pd.DataFrame:
-    '''
-    Return five statistics using mquantiles
-
-    Returns
-    -------
-    min            = minimum value
-    quantile(0.25) = first quartile
-    quantile(0.50) = median
-    quantile(0.75) = third quartile
-    max            = maximum value
-    '''
-    return pd.DataFrame(
-        [(alphap,
-          betap,
-          series.min(),
-          *ms.mquantiles(series,
-                         prob=_QUANTILES,
-                         alphap=alphap,
-                         betap=betap).round(3),
-          series.max())
-         for alphap, betap
-         in _QUANTILE_METHODS],
-        columns=['alphap', 'betap', 'min', 'q1', 'q2', 'q3', 'max']
-    ).set_index(['alphap', 'betap'])
 
 
 def five_number_summary(series: pd.Series) -> pd.DataFrame:
