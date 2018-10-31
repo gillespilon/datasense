@@ -9,10 +9,6 @@ import datasense as ds
 from pytest import approx, mark
 
 
-def test_six_number_summary():
-    raise NotImplementedError()
-
-
 def test_seven_number_summary():
     raise NotImplementedError()
 
