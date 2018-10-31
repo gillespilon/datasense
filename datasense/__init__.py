@@ -51,31 +51,6 @@ _QUANTILE_METHODS = [
 ]
 
 
-def five_number_summary(series: pd.Series) -> pd.DataFrame:
-    '''
-    Return five statistics
-
-    Returns
-    -------
-    min            = minimum value
-    quantile(0.25) = first quartile
-    quantile(0.50) = median
-    quantile(0.75) = third quartile
-    max            = maximum value
-    '''
-    return pd.DataFrame(
-        [(interpolation,
-          series.min(),
-          series.quantile(0.25, interpolation=interpolation),
-          series.quantile(0.50, interpolation=interpolation),
-          series.quantile(0.75, interpolation=interpolation),
-          series.max())
-         for interpolation
-         in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
-        columns=['interpolation', 'min', 'q1', 'q2', 'q3', 'max']
-    ).set_index(['interpolation'])
-
-
 def six_number_summary(series: pd.Series) -> pd.DataFrame:
     '''
     Return six statistics
