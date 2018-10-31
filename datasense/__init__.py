@@ -381,8 +381,7 @@ class ControlChart(ABC):
         assert subgroup_size >= 2
         return (
             self._df.iloc[:, 0]
-                    .rolling(subgroup_size)
-                    .agg(lambda x: x.iloc[0] - x.iloc[1])
+                    .diff(subgroup_size - 1)
                     .abs()
                     .mean()
         )
@@ -478,8 +477,7 @@ class mR(ControlChart):
     def ax(self) -> axes.Axes:
         'Matplotlib control chart plot'
         ax = (self._df
-                  .rolling(self.subgroup_size)
-                  .agg(lambda x: x.iloc[0] - x.iloc[1])
+                  .diff(periods=self.subgroup_size - 1)
                   .abs()
                   .plot.line(legend=False, marker='o',
                              markersize=3, color=_lines_c,))
