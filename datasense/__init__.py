@@ -38,6 +38,7 @@ from typing import Union, Tuple, Optional
 from abc import ABC, abstractmethod
 from math import sqrt
 
+from cached_property import cached_property
 import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
@@ -328,31 +329,31 @@ class ControlChart(ABC):
     def __init__(self, data: pd.DataFrame):
         self._df = data
 
-    @property
+    @cached_property
     @abstractmethod
     def ucl(self) -> float:
         'upper control limit'
         raise NotImplementedError()
 
-    @property
+    @cached_property
     @abstractmethod
     def lcl(self) -> float:
         'lower control limit'
         raise NotImplementedError()
 
-    @property
+    @cached_property
     @abstractmethod
     def sigma(self) -> float:
         'sigma appropriate to method used'
         raise NotImplementedError()
 
-    @property
+    @cached_property
     @abstractmethod
     def mean(self) -> float:
         'average'
         raise NotImplementedError()
 
-    @property
+    @cached_property
     @abstractmethod
     def ax(self) -> axes.Axes:
         'Matplotlib control chart plot'
@@ -362,7 +363,7 @@ class ControlChart(ABC):
     def __str__(self) -> str:
         raise NotImplementedError()
 
-    @property
+    @cached_property
     def sigmas(self):
         '''
         TODO
@@ -374,6 +375,7 @@ class ControlChart(ABC):
         '''
         return Sigmas(mean=self.mean, sigma=self.sigma)
 
+    # TODO: cache
     def _average_mr(self, subgroup_size: Optional[int] = 2) -> float:
         'Average moving range'
         if subgroup_size is None:
@@ -400,27 +402,27 @@ class X(ControlChart):
         assert subgroup_size >= 2
         self.subgroup_size = subgroup_size
 
-    @property
+    @cached_property
     def _d2(self) -> float:
         return control_chart_constants(self.subgroup_size, 'd2')
 
-    @property
+    @cached_property
     def sigma(self) -> float:
         return self._average_mr(self.subgroup_size) / self._d2
 
-    @property
+    @cached_property
     def ucl(self) -> float:
         return self.mean + 3 * self.sigma
 
-    @property
+    @cached_property
     def lcl(self) -> float:
         return self.mean - 3 * self.sigma
 
-    @property
+    @cached_property
     def mean(self) -> float:
         return self._df.iloc[:, 0].mean()
 
-    @property
+    @cached_property
     def ax(self) -> axes.Axes:
         ax = self._df.plot.line(legend=False, marker='o', markersize=3,
                                 color=_lines_c)
@@ -445,35 +447,35 @@ class mR(ControlChart):
         assert subgroup_size >= 2
         self.subgroup_size = subgroup_size
 
-    @property
+    @cached_property
     def _d2(self) -> float:
         return control_chart_constants(self.subgroup_size, 'd2')
 
-    @property
+    @cached_property
     def _d3(self) -> float:
         return control_chart_constants(self.subgroup_size, 'd3')
 
-    @property
+    @cached_property
     def sigma(self) -> float:
         'Sigma(R)'
         return self._average_mr(self.subgroup_size) * self._d3 / self._d2
 
-    @property
+    @cached_property
     def ucl(self) -> float:
         return self._average_mr(self.subgroup_size) + 3 * self.sigma
 
-    @property
+    @cached_property
     def lcl(self) -> float:
         r_chart_lcl = self._average_mr(self.subgroup_size) - 3 * self.sigma
         if (r_chart_lcl < 0).any():
             r_chart_lcl = 0
         return r_chart_lcl
 
-    @property
+    @cached_property
     def mean(self) -> float:
         return self._average_mr(self.subgroup_size)
 
-    @property
+    @cached_property
     def ax(self) -> axes.Axes:
         'Matplotlib control chart plot'
         ax = (self._df
@@ -491,22 +493,22 @@ class mR(ControlChart):
 
 
 class R(ControlChart):
-    @property
+    @cached_property
     def _d2(self) -> float:
         return control_chart_constants(n=len(self._df.columns), col='d2')
 
-    @property
+    @cached_property
     def _d3(self) -> float:
         return control_chart_constants(n=len(self._df.columns), col='d3')
 
-    @property
+    @cached_property
     def mean(self) -> float:
         'Average range'
         return (
             self._df.max(axis='columns') - self._df.min(axis='columns')
         ).mean()
 
-    @property
+    @cached_property
     def ucl(self) -> float:
         return (
             self.mean
@@ -516,7 +518,7 @@ class R(ControlChart):
             / self._d2
         )
 
-    @property
+    @cached_property
     def lcl(self) -> float:
         ret = (
             self.mean
@@ -530,7 +532,7 @@ class R(ControlChart):
             ret = 0.0
         return ret
 
-    @property
+    @cached_property
     def ax(self) -> axes.Axes:
         ax = (
             self._df.max(axis='columns')
@@ -545,13 +547,13 @@ class R(ControlChart):
         _despine(ax)
         return ax
 
-    @property
+    @cached_property
     def sigma(self) -> float:
         return self.mean * self._d3 / self._d2
 
 
 class Xbar(ControlChart):
-    @property
+    @cached_property
     def _average_range(self) -> float:
         'Average range'
         return (
@@ -559,20 +561,20 @@ class Xbar(ControlChart):
             self._df.min(axis='columns')
         ).mean()
 
-    @property
+    @cached_property
     def _subgroup_size(self) -> int:
         return len(self._df.columns)
 
-    @property
+    @cached_property
     def _d2(self) -> float:
         return control_chart_constants(n=self._subgroup_size, col='d2')
 
-    @property
+    @cached_property
     def mean(self) -> float:
         'Average of averages'
         return self._df.mean(axis='columns').mean()
 
-    @property
+    @cached_property
     def ucl(self) -> float:
         return (
             self.mean
@@ -581,7 +583,7 @@ class Xbar(ControlChart):
             / (self._d2 * sqrt(self._subgroup_size))
         )
 
-    @property
+    @cached_property
     def lcl(self) -> float:
         return (
             self.mean
@@ -590,7 +592,7 @@ class Xbar(ControlChart):
             / (self._d2 * sqrt(self._subgroup_size))
         )
 
-    @property
+    @cached_property
     def ax(self) -> axes.Axes:
         'average values v. sample'
         ax = self._df.mean(axis='columns') \
@@ -604,7 +606,7 @@ class Xbar(ControlChart):
         _despine(ax)
         return ax
 
-    @property
+    @cached_property
     def sigma(self) -> float:
         return self._average_range / self._d2 / sqrt(self._subgroup_size)
 

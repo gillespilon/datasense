@@ -12,6 +12,7 @@ setup(
         'numpy',
         'matplotlib',
         'scipy',
+        'cached_property',
     ],
     author='Gilles Pilon',
     author_email='gillespilon13@gmail.com',
