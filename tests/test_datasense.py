@@ -267,6 +267,7 @@ minitab_control = {
 test_25_12_csv = pd.read_csv(Path(__file__).with_name('test_25_12.csv'),
                              index_col='sample')
 
+
 @mark.parametrize('column,expected',
                   [(name, values)
                    for (name, constructor), values
