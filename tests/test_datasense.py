@@ -1,7 +1,7 @@
 from pathlib import Path
 from io import BytesIO
 
-from matplotlib.pyplot import clf
+import matplotlib.pyplot as plt
 import pandas as pd
 
 import datasense as ds
@@ -304,11 +304,12 @@ def test_X(column, expected, subgroup_size):
     # environment, such as matplotlib defaults in config file, etc.
     X.ax.figure.savefig(fig, format='png')
     fig.seek(0)
-    assert fig.read() == (
+    same = fig.read() == (
         Path(__file__).parent
                       .joinpath('prerenders', f'{column}-X.png')
                       .read_bytes()
     )
+    assert same, 'Plots not the same; save/compare manually with debugger'
     clf()
 
 
@@ -328,11 +329,12 @@ def test_mR(column, expected, subgroup_size):
     fig = BytesIO()
     mR.ax.figure.savefig(fig, format='png')
     fig.seek(0)
-    assert fig.read() == (
+    same = fig.read() == (
         Path(__file__).parent
                       .joinpath('prerenders', f'{column}-mR.png')
                       .read_bytes()
     )
+    assert same, 'Plots not the same; save/compare manually with debugger'
     clf()
 
 
@@ -351,12 +353,14 @@ def test_Xbar(columns, expected):
     fig = BytesIO()
     xbar.ax.figure.savefig(fig, format='png')
     fig.seek(0)
-    assert fig.read() == (
+    # Workaround for slow pytest. Hangs here if not the same.
+    same = fig.read() == (
         Path(__file__).parent
                       .joinpath('prerenders',
                                 f'{columns.start}:{columns.stop}-Xbar.png')
                       .read_bytes()
     )
+    assert same, 'Plots not the same; save/compare manually with debugger'
     clf()
 
 
@@ -375,10 +379,11 @@ def test_R(columns, expected):
     fig = BytesIO()
     R.ax.figure.savefig(fig, format='png')
     fig.seek(0)
-    assert fig.read() == (
+    same = fig.read() == (
         Path(__file__).parent
                       .joinpath('prerenders',
                                 f'{columns.start}:{columns.stop}-R.png')
                       .read_bytes()
     )
+    assert same, 'Plots not the same; save/compare manually with debugger'
     clf()
