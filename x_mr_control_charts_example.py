@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+# datasense/x_mr_control_charts_example.py
+
 from pathlib import Path
 
 import pandas as pd
@@ -7,11 +9,12 @@ import matplotlib.pyplot as plt
 
 from datasense import X, mR
 
-chart_data = pd.read_csv(Path(__file__).parent / 'xmr.csv',
-                         index_col='Sample').iloc[:, 0:]
-x = X(chart_data) # This default method works for subgroup of 2.
-#  x = X(chart_data, 2) # One way to specify the subgroup size.
-#  x = X(chart_data, subgropu_size=2) # Another way to specify.
+csvfile = input('File name of csv file to read? -> ')
+subgroup_size = int(input('Subgroup size?                 -> '))
+chart_data = pd.read_csv(csvfile, index_col='Sample').iloc[:, 0:]
+# chart_data = pd.read_csv(Path(__file__).parent / 'xmr.csv',
+#                          index_col='Sample').iloc[:, 0:]
+x = X(chart_data, subgroup_size)
 
 print('X chart')
 print('Upper control limit', x.ucl, sep=' = ')
@@ -27,7 +30,7 @@ ax1.set_xlabel('X axis label')
 ax1.figure.savefig('x.svg', format='svg') # Comment if you wish interactive
 # plt.show() # Uncomment if you wish interactive
 plt.clf() # Comment if you wish interactive
-mr = mR(chart_data)
+mr = mR(chart_data, subgroup_size)
 print('mR chart')
 print('Upper control limit', mr.ucl, sep=' = ')
 print('Average moving range', mr.mean, sep=' = ')
