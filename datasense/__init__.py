@@ -495,10 +495,6 @@ class Xbar(ControlChart):
 
 
 __all__ = (
-    'sommaire_cinq_numeros',
-    'five_number_summary',
-    'six_number_summary',
-    'seven_number_summary',
     'nonparametric_summary',
     'parametric_summary',
     'control_chart_constants',
