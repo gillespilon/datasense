@@ -265,12 +265,11 @@ class ControlChart(ABC):
         if subgroup_size is None:
             subgroup_size = 2
         assert subgroup_size >= 2
+        _ = self._df.iloc[:, 0]
         return (
-            self._df.iloc[:, 0]
-                    .diff(subgroup_size - 1)
-                    .abs()
-                    .mean()
-        )
+            _.rolling(subgroup_size).max() -
+            _.rolling(subgroup_size).min()
+        ).mean()
 
 
 # Use a colour-blind friendly colormap, 'Paired'.
@@ -362,11 +361,11 @@ class mR(ControlChart):
     @cached_property
     def ax(self) -> axes.Axes:
         'Matplotlib control chart plot'
-        ax = (self._df
-                  .diff(periods=self.subgroup_size - 1)
-                  .abs()
-                  .plot.line(legend=False, marker='o',
-                             markersize=3, color=_lines_c,))
+        ax = (
+            self._df.rolling(self.subgroup_size).max() -
+            self._df.rolling(self.subgroup_size).min()
+        ).plot.line(legend=False, marker='o',
+                    markersize=3, color=_lines_c,)
         # TODO? ax.set_xlim(0, len(self._df.columns))
         _despine(ax)
         ax.axhline(y=self.mean, color=_average_c)
