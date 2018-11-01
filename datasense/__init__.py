@@ -33,7 +33,7 @@ Why this?
 # TODO: Convert nonparametric_summary.
 # TODO: Convert parametric summary.
 
-from typing import Union, Tuple, Optional
+from typing import Union, Optional
 from abc import ABC, abstractmethod
 from math import sqrt
 
@@ -42,7 +42,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
 import matplotlib.axes as axes
-import scipy.stats.mstats as ms
 
 
 _QUANTILES = (0.25, 0.50, 0.75)
