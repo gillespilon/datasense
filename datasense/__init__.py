@@ -215,31 +215,31 @@ class ControlChart(ABC):
 
     @cached_property
     @abstractmethod
-    def ucl(self) -> float:
+    def ucl(self) -> float:  # pragma: no cover
         'upper control limit'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
-    def lcl(self) -> float:
+    def lcl(self) -> float:  # pragma: no cover
         'lower control limit'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
-    def sigma(self) -> float:
+    def sigma(self) -> float:  # pragma: no cover
         'sigma appropriate to method used'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
-    def mean(self) -> float:
+    def mean(self) -> float:  # pragma: no cover
         'average'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
-    def ax(self) -> axes.Axes:
+    def ax(self) -> axes.Axes:  # pragma: no cover
         'Matplotlib control chart plot'
         raise NotImplementedError()
 
