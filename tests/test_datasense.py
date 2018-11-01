@@ -21,21 +21,6 @@ def test_control_chart_constants():
     raise NotImplementedError()
 
 
-def test_X():
-    df = pd.read_csv(Path(__file__).with_name('xmr.csv'),
-                     index_col='Time') \
-           .iloc[:, 0:]
-    x = ds.X(df)
-    assert x.ucl == 1023.4230206318505
-    assert x.lcl == 292.6203127014828
-    assert x.mean == 658.0216666666666
-    assert x.sigma == 121.80045132172795
-    assert x.sigmas[+1] == 779.8221179883946
-    assert x.sigmas[+2] == 901.6225693101226
-    assert x.sigmas[-1] == 536.2212153449387
-    assert x.sigmas[-2] == 414.4207640232107
-
-
 minitab_control = {
     ('x1', ds.X): {
         'sigma': 9.325113791639287,
