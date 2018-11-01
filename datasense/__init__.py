@@ -350,7 +350,7 @@ class mR(ControlChart):
     @cached_property
     def lcl(self) -> float:
         r_chart_lcl = self._average_mr(self.subgroup_size) - 3 * self.sigma
-        if (r_chart_lcl < 0).any():
+        if r_chart_lcl < 0:
             r_chart_lcl = 0
         return r_chart_lcl
 
