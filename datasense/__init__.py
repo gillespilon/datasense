@@ -19,3 +19,4 @@ Why this?
 
 from .stats import *
 from .control_charts import *
+from .msa import *
