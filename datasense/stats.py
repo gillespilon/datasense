@@ -35,7 +35,7 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
     ).set_index(['interpolation'])
 
 
-def parametric_summary(series: pd.Series) -> pd.DataFrame:
+def parametric_summary(series: pd.Series) -> pd.Series:
     '''
     Return parametric statistics
 
@@ -51,14 +51,14 @@ def parametric_summary(series: pd.Series) -> pd.DataFrame:
     var            = sample variance
     confidence interval of the sample variance
     '''
-    return pd.DataFrame(
-        [(series.count(),
-          series.min(),
-          series.max(),
-          series.mean(),
-          series.std(),
-          series.var())],
-        columns=['n', 'min', 'max', 'ave', 's', 'var'])
+    return pd.Series({
+        'n': series.count(),
+        'min': series.min(),
+        'max': series.max(),
+        'ave': series.mean(),
+        's': series.std(),
+        'var': series.var(),
+    })
 
 
 __all__ = (
