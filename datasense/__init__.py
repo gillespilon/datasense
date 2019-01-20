@@ -3,8 +3,9 @@ datasense
 
 Statistical and graphical functions for:
 
-- Data science
+- Analytics
 - Analysing process variation
+- Data science
 - Six Sigma methodology
 
 Why this?
@@ -15,6 +16,7 @@ Why this?
 - Wanted Python functions that are available in R and SAS.
 - Other packages have limited features for process control analysis.
 - Other packages are abandoned or inadequately supported.
+
 '''
 
 from .stats import *
