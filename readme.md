@@ -8,6 +8,12 @@ This repository contains a package of statistical and graphical functions that I
 pip install git+https://github.com/gillespilon/datasense#egg=datasense
 ```
 
+# To update #
+
+```
+pip install git+https://github.com/gillespilon/datasense#egg=datasense --upgrade
+```
+
 # Examples
 
 Examples of the XmR and XbarR control charts are found in [examples.md](examples.md).
