@@ -1,38 +1,47 @@
 import pandas as pd
+import numpy as np
+from scipy.stats.mstats import mquantiles as mq
 
 
 def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
+    # TODO: add alphap, betap as parameters in the parameter list
+    # TODO: implement at least 8 methods of nonparametrics
     '''
-    Return nonparametric statistics
+    Calculate empirical quantiles for a series.
 
-    Returns
-    -------
-    n              = sample size
-    min            = minimum value
-    max            = maximum value
-    quantile(0.50) = median
-    confidence interval of the median
-    iqr            = interquartile range
-    confidence interval of the interquartile range
-    # Pourqoi pas juste:
-    #     five = five_number_summary(series)
-    #     five['iqr'] = five['q3'] - five['q1']
-    #     return five
+    R method 8 uses:
+    alphap=0.33, betap=0.33 and is the recommended method
+
+    Minitab uses R method 6:
+    alphap=0, betap=0
     '''
-    return pd.DataFrame(
-        [(interpolation,
-          series.count(),
-          series.min(),
-          series.quantile(0.25, interpolation=interpolation),
-          series.quantile(0.50, interpolation=interpolation),
-          series.quantile(0.75, interpolation=interpolation),
-          (series.quantile(0.75, interpolation=interpolation) -
-           series.quantile(0.25, interpolation=interpolation)),
-          series.max())
-         for interpolation
-         in ('linear', 'lower', 'higher', 'nearest', 'midpoint')],
-        columns=['interpolation', 'n', 'min', 'q1', 'q2', 'q3', 'iqr', 'max']
-    ).set_index(['interpolation'])
+    xm = np.ma.masked_array(series, mask=np.isnan(series))
+    q50 = mq(xm, prob=(0.50), alphap=0.33, betap=0.33)
+    q75 = mq(xm, prob=(0.75), alphap=0.33, betap=0.33)
+    q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
+    iqr = q75 - q25
+    # Calculate the inner fences.
+    uif = (q75 + iqr * 1.5).clip(min=0)
+    lif = (q25 - iqr * 1.5).clip(min=0)
+    # Calculate the outer fences.
+    uof = (q75 + iqr * 3).clip(min=0)
+    lof = (q25 - iqr * 3).clip(min=0)
+    # Identify outliers outside inner fences.
+    inner_outliers = [x for x in series.round(1) if x < lif or x > uif]
+    # Identify outliers outside outer fences.
+    outliers_outer = [x for x in series.round(1) if x < lof or x > uof]
+    return pd.Series({
+        'lower outer fence': lof[0].round(1),
+        'lower inner fence': lif[0].round(1),
+        'lower quartile': q25[0].round(1),
+        'median': q50[0].round(1),
+        'upper quartile': q75[0].round(1),
+        'upper inner fence': uif[0].round(1),
+        'upper outer fence': uof[0].round(1),
+        'interquartile range': iqr[0].round(1),
+        'inner outliers': inner_outliers,
+        'outer outliers': outliers_outer,
+    })
 
 
 def parametric_summary(series: pd.Series) -> pd.Series:
