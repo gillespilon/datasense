@@ -16,6 +16,8 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
     alphap=0, betap=0
     '''
     xm = np.ma.masked_array(series, mask=np.isnan(series))
+    minval = series.min()
+    maxval = series.max()
     q50 = mq(xm, prob=(0.50), alphap=0.33, betap=0.33)
     q75 = mq(xm, prob=(0.75), alphap=0.33, betap=0.33)
     q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
@@ -41,6 +43,8 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
         'interquartile range': iqr[0].round(1),
         'inner outliers': inner_outliers,
         'outer outliers': outliers_outer,
+        'minimum value': minval,
+        'maximum value': maxval
     })
 
 
