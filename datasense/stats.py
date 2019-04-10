@@ -3,27 +3,46 @@ import numpy as np
 from scipy.stats.mstats import mquantiles as mq
 
 
-def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
-    # TODO: add alphap, betap as parameters in the parameter list
+def nonparametric_summary(series: pd.Series,
+                          alphap=1/3,
+                          betap=1/3) -> pd.DataFrame:
     # TODO: implement at least 8 methods of nonparametrics
     '''
     Calculate empirical quantiles for a series.
 
-    R method 8 uses:
-    alphap=0.33, betap=0.33 and is the recommended method
+    R method 1, SAS method 3:
+    not implemented
 
-    Minitab uses R method 6:
+    R method 2, SAS method 5:
+    not implemented
+
+    R method 3, SAS method 2:
+    not implemented
+
+    R method 4, SAS method 1:
+    alphap=0, betap=1
+
+    R method 5:
+    alphap=0.5, betap=0.5
+
+    R method 6, Minitab:
     alphap=0, betap=0
+
+    R method 7:
+    alphap=1, betap=1
+
+    R method 8 uses:
+    alphap=0.33, betap=0.33; is the recommended method
     '''
     xm = np.ma.masked_array(series, mask=np.isnan(series))
-    lof = (q25 - iqr * 3).clip(min=0)
-    lif = (q25 - iqr * 1.5).clip(min=0)
     q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
     q50 = mq(xm, prob=(0.50), alphap=0.33, betap=0.33)
     q75 = mq(xm, prob=(0.75), alphap=0.33, betap=0.33)
+    iqr = q75 - q25
+    lof = (q25 - iqr * 3).clip(min=0)
+    lif = (q25 - iqr * 1.5).clip(min=0)
     uif = (q75 + iqr * 1.5).clip(min=0)
     uof = (q75 + iqr * 3).clip(min=0)
-    iqr = q75 - q25
     inner_outliers = [x for x in series.round(1) if x < lif or x > uif]
     outliers_outer = [x for x in series.round(1) if x < lof or x > uof]
     minval = series.min()
