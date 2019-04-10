@@ -16,22 +16,18 @@ def nonparametric_summary(series: pd.Series) -> pd.DataFrame:
     alphap=0, betap=0
     '''
     xm = np.ma.masked_array(series, mask=np.isnan(series))
-    minval = series.min()
-    maxval = series.max()
+    lof = (q25 - iqr * 3).clip(min=0)
+    lif = (q25 - iqr * 1.5).clip(min=0)
+    q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
     q50 = mq(xm, prob=(0.50), alphap=0.33, betap=0.33)
     q75 = mq(xm, prob=(0.75), alphap=0.33, betap=0.33)
-    q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
-    iqr = q75 - q25
-    # Calculate the inner fences.
     uif = (q75 + iqr * 1.5).clip(min=0)
-    lif = (q25 - iqr * 1.5).clip(min=0)
-    # Calculate the outer fences.
     uof = (q75 + iqr * 3).clip(min=0)
-    lof = (q25 - iqr * 3).clip(min=0)
-    # Identify outliers outside inner fences.
+    iqr = q75 - q25
     inner_outliers = [x for x in series.round(1) if x < lif or x > uif]
-    # Identify outliers outside outer fences.
     outliers_outer = [x for x in series.round(1) if x < lof or x > uof]
+    minval = series.min()
+    maxval = series.max()
     return pd.Series({
         'lower outer fence': lof[0].round(1),
         'lower inner fence': lif[0].round(1),
