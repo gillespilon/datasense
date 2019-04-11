@@ -25,37 +25,46 @@ def nonparametric_summary(series: pd.Series,
     R method 5:
     alphap=0.5, betap=0.5
 
-    R method 6, Minitab:
+    R method 6, SAS method 4, Minitab, SPSS:
     alphap=0, betap=0
 
     R method 7:
     alphap=1, betap=1
 
-    R method 8 uses:
+    R method 8:
     alphap=0.33, betap=0.33; is the recommended method
+
+    R method 9:
+    alphap=0.375, betap=0.375
+
+    Cunnane's method:
+    alphap=0.4, betap=0.4
+
+    APL method;
+    alphap=0.35, betap=0.35
     '''
     xm = np.ma.masked_array(series, mask=np.isnan(series))
-    q25 = mq(xm, prob=(0.25), alphap=0.33, betap=0.33)
-    q50 = mq(xm, prob=(0.50), alphap=0.33, betap=0.33)
-    q75 = mq(xm, prob=(0.75), alphap=0.33, betap=0.33)
+    q25 = mq(xm, prob=(0.25), alphap=alphap, betap=betap)
+    q50 = mq(xm, prob=(0.50), alphap=alphap, betap=betap)
+    q75 = mq(xm, prob=(0.75), alphap=alphap, betap=betap)
     iqr = q75 - q25
     lof = (q25 - iqr * 3).clip(min=0)
     lif = (q25 - iqr * 1.5).clip(min=0)
     uif = (q75 + iqr * 1.5).clip(min=0)
     uof = (q75 + iqr * 3).clip(min=0)
-    inner_outliers = [x for x in series.round(1) if x < lif or x > uif]
-    outliers_outer = [x for x in series.round(1) if x < lof or x > uof]
+    inner_outliers = [x for x in series.round(3) if x < lif or x > uif]
+    outliers_outer = [x for x in series.round(3) if x < lof or x > uof]
     minval = series.min()
     maxval = series.max()
     return pd.Series({
-        'lower outer fence': lof[0].round(1),
-        'lower inner fence': lif[0].round(1),
-        'lower quartile': q25[0].round(1),
-        'median': q50[0].round(1),
-        'upper quartile': q75[0].round(1),
-        'upper inner fence': uif[0].round(1),
-        'upper outer fence': uof[0].round(1),
-        'interquartile range': iqr[0].round(1),
+        'lower outer fence': lof[0].round(3),
+        'lower inner fence': lif[0].round(3),
+        'lower quartile': q25[0].round(3),
+        'median': q50[0].round(3),
+        'upper quartile': q75[0].round(3),
+        'upper inner fence': uif[0].round(3),
+        'upper outer fence': uof[0].round(3),
+        'interquartile range': iqr[0].round(3),
         'inner outliers': inner_outliers,
         'outer outliers': outliers_outer,
         'minimum value': minval,
