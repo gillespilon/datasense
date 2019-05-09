@@ -177,8 +177,10 @@ class ControlChart(ABC):
         ).mean()
 
 
-# Use a colour-blind friendly colormap, 'Paired'.
-_lines_c, _limits_c, _average_c, *_ = cm.Paired.colors
+c = cm.Paired.colors
+# c[0] c[1] ... c[11]
+# See "paired" in "qualitative colormaps"
+# https://matplotlib.org/tutorials/colors/colormaps.html
 
 
 class X(ControlChart):
@@ -213,15 +215,15 @@ class X(ControlChart):
     @cached_property
     def ax(self) -> axes.Axes:
         ax = self._df.plot.line(legend=False, marker='o', markersize=3,
-                                color=_lines_c)
+                                color=c[0])
         # Remove the top and right spines.
         _despine(ax)
         # Add average line to X chart.
-        ax.axhline(y=self.mean, color=_average_c)
+        ax.axhline(y=self.mean, color=c[2])
         # Add the upper control limits for the X chart.
-        ax.axhline(y=self.ucl, color=_limits_c)
+        ax.axhline(y=self.ucl, color=c[1])
         # Add the lower control limits for the X chart.
-        ax.axhline(y=self.lcl, color=_limits_c)
+        ax.axhline(y=self.lcl, color=c[1])
 
         return ax
 
@@ -270,12 +272,12 @@ class mR(ControlChart):
             self._df.rolling(self.subgroup_size).max() -
             self._df.rolling(self.subgroup_size).min()
         ).plot.line(legend=False, marker='o',
-                    markersize=3, color=_lines_c,)
+                    markersize=3, color=c[0],)
         # TODO? ax.set_xlim(0, len(self._df.columns))
         _despine(ax)
-        ax.axhline(y=self.mean, color=_average_c)
-        ax.axhline(y=self.ucl, color=_limits_c)
-        ax.axhline(y=self.lcl, color=_limits_c)
+        ax.axhline(y=self.mean, color=c[2])
+        ax.axhline(y=self.ucl, color=c[1])
+        ax.axhline(y=self.lcl, color=c[1])
 
         return ax
 
@@ -328,10 +330,10 @@ class R(ControlChart):
         ).plot.line(legend=False,
                     marker='o',
                     markersize=3,
-                    color=_lines_c)
-        ax.axhline(y=self.mean, color=_average_c)
-        ax.axhline(y=self.ucl, color=_limits_c)
-        ax.axhline(y=self.lcl, color=_limits_c)
+                    color=c[0])
+        ax.axhline(y=self.mean, color=c[2])
+        ax.axhline(y=self.ucl, color=c[1])
+        ax.axhline(y=self.lcl, color=c[1])
         _despine(ax)
         return ax
 
@@ -387,10 +389,10 @@ class Xbar(ControlChart):
                      .plot.line(legend=False,
                                 marker='o',
                                 markersize=3,
-                                color=_lines_c)
-        ax.axhline(y=self.mean, color=_average_c)
-        ax.axhline(y=self.ucl, color=_limits_c)
-        ax.axhline(y=self.lcl, color=_limits_c)
+                                color=c[0])
+        ax.axhline(y=self.mean, color=c[2])
+        ax.axhline(y=self.ucl, color=c[1])
+        ax.axhline(y=self.lcl, color=c[1])
         _despine(ax)
         return ax
 
