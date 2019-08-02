@@ -7,3 +7,9 @@ __pycache__
 htmlcov
 /venv
 *.egg-info
+*svg
+*csv
+*MPJ
+*odt
+*rtf
+*txt
