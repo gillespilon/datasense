@@ -1,4 +1,4 @@
-import datasense.stats as stats
+import datasense.stats as st
 
 
 def test_nonparametric_summary():
