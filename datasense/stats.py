@@ -10,6 +10,8 @@ def nonparametric_summary(series: pd.Series,
     '''
     Calculate empirical quantiles for a series.
 
+    scipy.stats.mstats.mquantiles
+
     R method 1, SAS method 3:
     not implemented
 
