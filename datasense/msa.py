@@ -22,9 +22,10 @@ class MSA:
     '''
     def __init__(self, df: pd.DataFrame) -> None:
         '''
-        :param df: Must be a dataframe with an index set, and 2+ numeric columns
+        :param df: Must be a dataframe with an index set and 2+ numeric columns
         '''
-        do_the_calculations()
+        # call def:
+        # do_the_calculations()
 
     def _subcalc0(self):
         pass
