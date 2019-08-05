@@ -1,4 +1,4 @@
-import datasense.stats as st
+import datasense as ds
 import pandas as pd
 
 
@@ -6,10 +6,10 @@ myseries = pd.Series([1, 3, 6])
 
 
 def test_nonparametric_summary():
-    st.nonparametric_summary(myseries)
+    ds.nonparametric_summary(myseries)
     return
 
 
 def test_parametric_summary():
-    st.parametric_summary(myseries)
+    ds.parametric_summary(myseries)
     return
