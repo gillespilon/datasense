@@ -58,19 +58,29 @@ def nonparametric_summary(series: pd.Series,
     lif = (q25 - iqr * 1.5)
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
-    inner_outliers = [x for x in series.round(3) if x < lif or x > uif]
-    outliers_outer = [x for x in series.round(3) if x < lof or x > uof]
+    # inner_outliers = [x for x in series.round(3) if x < lif or x > uif]
+    # outliers_outer = [x for x in series.round(3) if x < lof or x > uof]
+    inner_outliers = [x for x in series if x < lif or x > uif]
+    outliers_outer = [x for x in series if x < lof or x > uof]
     minval = series.min()
     maxval = series.max()
     return pd.Series({
-        'lower outer fence': lof[0].round(3),
-        'lower inner fence': lif[0].round(3),
-        'lower quartile': q25[0].round(3),
-        'median': q50[0].round(3),
-        'upper quartile': q75[0].round(3),
-        'upper inner fence': uif[0].round(3),
-        'upper outer fence': uof[0].round(3),
-        'interquartile range': iqr[0].round(3),
+        # 'lower outer fence': lof[0].round(3),
+        # 'lower inner fence': lif[0].round(3),
+        # 'lower quartile': q25[0].round(3),
+        # 'median': q50[0].round(3),
+        # 'upper quartile': q75[0].round(3),
+        # 'upper inner fence': uif[0].round(3),
+        # 'upper outer fence': uof[0].round(3),
+        # 'interquartile range': iqr[0].round(3),
+        'lower outer fence': lof[0],
+        'lower inner fence': lif[0],
+        'lower quartile': q25[0],
+        'median': q50[0],
+        'upper quartile': q75[0],
+        'upper inner fence': uif[0],
+        'upper outer fence': uof[0],
+        'interquartile range': iqr[0],
         'inner outliers': inner_outliers,
         'outer outliers': outliers_outer,
         'minimum value': minval,
