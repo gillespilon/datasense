@@ -50,10 +50,14 @@ def nonparametric_summary(series: pd.Series,
     q50 = mq(xm, prob=(0.50), alphap=alphap, betap=betap)
     q75 = mq(xm, prob=(0.75), alphap=alphap, betap=betap)
     iqr = q75 - q25
-    lof = (q25 - iqr * 3).clip(min=0)
-    lif = (q25 - iqr * 1.5).clip(min=0)
-    uif = (q75 + iqr * 1.5).clip(min=0)
-    uof = (q75 + iqr * 3).clip(min=0)
+    # lof = (q25 - iqr * 3).clip(min=0)
+    # lif = (q25 - iqr * 1.5).clip(min=0)
+    # uif = (q75 + iqr * 1.5).clip(min=0)
+    # uof = (q75 + iqr * 3).clip(min=0)
+    lof = (q25 - iqr * 3)
+    lif = (q25 - iqr * 1.5)
+    uif = (q75 + iqr * 1.5)
+    uof = (q75 + iqr * 3)
     inner_outliers = [x for x in series.round(3) if x < lif or x > uif]
     outliers_outer = [x for x in series.round(3) if x < lof or x > uof]
     minval = series.min()
