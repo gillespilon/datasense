@@ -13,3 +13,8 @@ def test_nonparametric_summary():
 def test_parametric_summary():
     ds.parametric_summary(myseries)
     return
+
+# TODO:
+# Add utility function for series, expected
+# Add test for method 6
+# Add test for method 8
