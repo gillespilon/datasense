@@ -48,7 +48,7 @@ class MSA:
             self.emp_gauge_rr_results(),
 
             self.main_effects_chart_anome(),
-            self.analysis_of_mean_ranges()
+            self.mean_ranges_chart_anomr()
         ]
 
     # Charts
@@ -77,7 +77,7 @@ class MSA:
         '''
         raise NotImplementedError()
 
-    def analysis_of_mean_ranges(self):
+    def mean_ranges_chart_anomr(self):
         '''
         TODO
         '''
