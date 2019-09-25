@@ -45,7 +45,7 @@ class MSA:
             self.classification(),
             self.effective_resolution(),
             self.variance_components(),
-            self.emp_gauge_rr_results(),
+            self.msa_gauge_rr_results(),
 
             self.main_effects_chart_anome(),
             self.mean_ranges_chart_anomr()
@@ -109,7 +109,7 @@ class MSA:
         '''
         raise NotImplementedError()
 
-    def emp_gauge_rr_results(self):
+    def msa_gauge_rr_results(self):
         '''
         TODO
         '''
