@@ -41,7 +41,7 @@ class MSA:
             self.average_chart(),
             self.parallelism_chart(),
 
-            self.emp_results(),
+            self.msa_results(),
             self.classification(),
             self.effective_resolution(),
             self.variance_components(),
@@ -85,7 +85,7 @@ class MSA:
 
     # Tables
 
-    def emp_results(self):
+    def msa_results(self):
         '''
         TODO
         '''
