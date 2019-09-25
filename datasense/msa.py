@@ -39,7 +39,7 @@ class MSA:
         return [
             self.range_chart(),
             self.average_chart(),
-            self.parallelism_plot(),
+            self.parallelism_chart(),
 
             self.emp_results(),
             self.classification(),
@@ -65,7 +65,7 @@ class MSA:
         '''
         raise NotImplementedError()
 
-    def parallelism_plot(self):
+    def parallelism_chart(self):
         '''
         TODO
         '''
