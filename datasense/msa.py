@@ -47,7 +47,7 @@ class MSA:
             self.variance_components(),
             self.emp_gauge_rr_results(),
 
-            self.analysis_of_main_effects(),
+            self.main_effects_chart_anome(),
             self.analysis_of_mean_ranges()
         ]
 
@@ -71,7 +71,7 @@ class MSA:
         '''
         raise NotImplementedError()
 
-    def analysis_of_main_effects(self):
+    def main_effects_chart_anome(self):
         '''
         TODO
         '''
