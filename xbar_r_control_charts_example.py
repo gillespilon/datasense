@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+'''
+datasense/xbar_r_control_charts_example.py
+
+./xbar_r_control_charts_example.py
+./xbar_r_control_charts_example.py | tee xbar_r.txt
+'''
+
 from pathlib import Path
 
 import pandas as pd
