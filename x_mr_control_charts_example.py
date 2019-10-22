@@ -5,7 +5,7 @@ datasense/x_mr_control_charts_example.py
 
 The csv file should have:
     - Column named 'Sample' with values 1, 2, ...
-    - Column named 'X' with values
+    - Columns named 'X' with values
 
 ./x_mr_control_charts_example.py
 ./x_mr_control_charts_example.py | tee x_mr.txt
