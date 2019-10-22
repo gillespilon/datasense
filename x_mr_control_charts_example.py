@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 
 '''
+datasense/x_mr_control_charts_example.py
+
 ./x_mr_control_charts_example.py
 ./x_mr_control_charts_example.py | tee x_mr.txt
 
