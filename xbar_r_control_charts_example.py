@@ -18,8 +18,10 @@ import matplotlib.pyplot as plt
 
 from datasense import Xbar, R
 
-chart_data = pd.read_csv(Path(__file__).parent / 'xbarr.csv',
-                         index_col='Sample').iloc[:, 0:]
+csvfile = input('File name of csv file to read? -> ')
+chart_data = pd.read_csv(csvfile, index_col='Sample').iloc[:, 0:]
+# chart_data = pd.read_csv(Path(__file__).parent / 'xbarr.csv',
+#                          index_col='Sample').iloc[:, 0:]
 xbar = Xbar(chart_data)
 print('Xbar chart')
 print('Upper control limit', xbar.ucl, sep=' = ')
