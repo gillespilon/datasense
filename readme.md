@@ -16,4 +16,4 @@ pip install git+https://github.com/gillespilon/datasense#egg=datasense --upgrade
 
 # Examples
 
-Examples of the XmR and XbarR control charts are found in [examples.md](examples.md).
+Examples of the XmR and XbarR control charts are found in [control charts](https://github.com/gillespilon/control_charts).
