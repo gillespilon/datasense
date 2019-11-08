@@ -97,7 +97,7 @@ def control_chart_constants(n: int, col: str) -> float:
 def _despine(ax: axes.Axes) -> None:
     'Remove the top and right spines'
     for spine in 'right', 'top':
-        ax.spines[spine].set_color('none')
+        ax.spines[spine].set_visible(False)
 
 
 class Sigmas:
