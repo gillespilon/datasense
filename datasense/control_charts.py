@@ -95,7 +95,11 @@ def control_chart_constants(n: int, col: str) -> float:
 
 
 def _despine(ax: axes.Axes) -> None:
-    'Remove the top and right spines'
+    '''
+    Remove the top and right spines of a graph.
+
+    There is only one x axis, on the bottom, and one y axis, on the left.
+    '''
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
 
