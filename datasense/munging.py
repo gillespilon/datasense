@@ -63,7 +63,19 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     return df
 
 
+def read_file(readfilename: str) -> pd.DataFrame:
+    '''
+    Read csv file into dataframe
+    Sort columns in ascending order of column name
+    '''
+    df = pd.read_csv(readfilename)
+    column_names_sorted = sorted(df.columns)
+    df = df[column_names_sorted]
+    return df
+
+
 __all__ = (
     'dataframe_info',
+    'read_file',
 )
 
