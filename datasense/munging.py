@@ -63,6 +63,24 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     return df
 
 
+def find_int_float_columns(df: pd.DataFrame) -> List[str]:
+    '''
+    Find all integer and float columns
+    '''
+    columns_int_float = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].dtype in ('int64', 'float64')
+    })
+    print('There are',
+          len(columns_int_float),
+          'not-null integer & float columns in',
+          len(df.columns),
+          'total columns.')
+    # print(columns_int_float)
+    print()
+    return columns_int_float
+
+
 def read_file(readfilename: str) -> pd.DataFrame:
     '''
     Read csv file into dataframe
@@ -76,6 +94,7 @@ def read_file(readfilename: str) -> pd.DataFrame:
 
 __all__ = (
     'dataframe_info',
+    'find_int_float_columns',
     'read_file',
 )
 
