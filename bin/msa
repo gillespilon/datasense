@@ -1,0 +1,14 @@
+#! /usr/bin/env python3
+
+from argparse import ArgumentParser
+
+from datasense.msa import MSA
+
+
+argument_parser = ArgumentParser(description=__doc__)
+argument_parser.add_argument('csv', type=pd.read_csv,
+                                help='Path to CSV file')
+
+args = argument_parser.parse_args()
+msa = MSA(args.csv)
+msa.report()

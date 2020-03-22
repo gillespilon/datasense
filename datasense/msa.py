@@ -185,13 +185,6 @@ class MSA:
     # TODO: Gauge R&R
 
 
-if __name__ == '__main__':
-    from argparse import ArgumentParser
-
-    argument_parser = ArgumentParser(description=__doc__)
-    argument_parser.add_argument('csv', type=pd.read_csv,
-                                 help='Path to CSV file')
-
-    args = argument_parser.parse_args()
-    msa = MSA(args.csv)
-    msa.report()
+__all__ = (
+    'MSA',
+)
