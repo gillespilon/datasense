@@ -2,6 +2,7 @@ from typing import List
 
 
 import pandas as pd
+from beautifultable import BeautifulTable
 
 
 def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
@@ -82,6 +83,40 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     # print(columns_int_float)
     print()
     return columns_int_float
+
+
+def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
+    '''
+    Create a table of empty cell counts and percentages for each column
+    '''
+    print('Information about non-empty columns')
+    table = BeautifulTable(max_width=90)
+    table.set_style(BeautifulTable.STYLE_COMPACT)
+    column_alignments = {
+        'Column': BeautifulTable.ALIGN_LEFT,
+        'Data type': BeautifulTable.ALIGN_LEFT,
+        'Empty cell count': BeautifulTable.ALIGN_RIGHT,
+        'Empty cell percentage': BeautifulTable.ALIGN_RIGHT,
+    }
+    table.column_headers = list(column_alignments.keys())
+    for item, (_column_name, alignment) in\
+            enumerate(column_alignments.items()):
+        table.column_alignments[item] = alignment
+    num_rows = df.shape[0]
+    for column_name in df:
+        try:
+            sum_nan = sum(pd.isnull(df[column_name]))
+            percent_nan = round(sum_nan / num_rows * 100, 3)
+            table.append_row(
+                [column_name,
+                 df[column_name].dtype,
+                 sum_nan,
+                 percent_nan]
+            )
+        except KeyError:
+            print('Error on column:', column_name)
+    print(table)
+    print()
 
 
 def process_columns(df: pd.DataFrame) -> (
