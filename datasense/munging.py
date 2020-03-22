@@ -210,5 +210,5 @@ __all__ = (
     'number_empty_cells_in_columns',
     'process_columns',
     'process_rows',
-    'read_file',
+    'read_file'
 )
