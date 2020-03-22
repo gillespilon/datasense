@@ -4,9 +4,10 @@ This repository contains a package of statistical and graphical functions that I
 
 # To install #
 
-```
-pip install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
-```
+Do this if this is your first-time installation.
+
+    pip install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
+
 
 # To update #
 
