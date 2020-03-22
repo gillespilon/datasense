@@ -1,3 +1,6 @@
+from typing import List
+
+
 import pandas as pd
 
 
@@ -81,6 +84,20 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     return columns_int_float
 
 
+def process_rows(df: pd.DataFrame) -> (pd.DataFrame, int, int, int):
+    '''
+    Count number of rows (rows_in_count)
+    Count number of empty rows (rows_empty_count)
+    Count number of non-empty rows (rows_out_count)
+    Delete empty rows
+    '''
+    rows_in_count = df.shape[0]
+    df = df.dropna(axis='rows', how='all')
+    rows_out_count = df.shape[0]
+    rows_empty_count = rows_in_count - rows_out_count
+    return df, rows_in_count, rows_out_count, rows_empty_count
+
+
 def read_file(readfilename: str) -> pd.DataFrame:
     '''
     Read csv file into dataframe
@@ -97,4 +114,3 @@ __all__ = (
     'find_int_float_columns',
     'read_file',
 )
-
