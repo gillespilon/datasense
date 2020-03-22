@@ -179,7 +179,7 @@ def process_columns(df: pd.DataFrame) -> (
     )
 
 
-def process_rows(df: pd.DataFrame) -> (pd.DataFrame, int, int, int):
+def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     '''
     Count number of rows (rows_in_count)
     Count number of empty rows (rows_empty_count)
@@ -207,5 +207,8 @@ def read_file(readfilename: str) -> pd.DataFrame:
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
+    'number_empty_cells_in_columns',
+    'process_columns',
+    'process_rows',
     'read_file',
 )
