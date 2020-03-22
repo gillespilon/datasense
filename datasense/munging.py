@@ -84,6 +84,66 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     return columns_int_float
 
 
+def process_columns(df: pd.DataFrame) -> (
+    pd.DataFrame, int, int, int, List[str], List[str], List[str], int,
+    List[str], int, List[str], int, List[str], int
+):
+    '''
+    Create count of columns
+        (columns_in_count)
+    Create count and list of empty columns
+        (columns_empty_count, columns_empty_list)
+    Create count and list of non-empty columns
+        (columns_non_empty_count, columns_non_empty_list)
+    Delete empty columns
+    Create count and list of float columns
+        (columns_float_count, columns_float_list)
+    Create count and list of string columns
+        (columns_object_count, columns_object_list)
+    Create count and list of integer columns
+        (columns_integer_count, columns_integer_list)
+    Create count and list of datetime columns
+        (columns_datetime_count, columns_datetime_list)
+    '''
+    columns_empty_list = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].isnull().all()
+    })
+    columns_in_count = len(df.columns)
+    columns_empty_count = len(columns_empty_list)
+    columns_non_empty_count = columns_in_count - columns_empty_count
+    df = df.drop(columns_empty_list, axis='columns')
+    columns_non_empty_list = sorted(df.columns)
+    columns_float_list = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].dtype == 'float'
+    })
+    columns_float_count = len(columns_float_list)
+    columns_integer_list = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].dtype == 'int64'
+    })
+    columns_integer_count = len(columns_integer_list)
+    columns_datetime_list = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].dtype == 'datetime64[ns]'
+    })
+    columns_datetime_count = len(columns_datetime_list)
+    columns_object_list = sorted({
+        column_name for column_name in df.columns
+        if df[column_name].dtype == 'object'
+    })
+    columns_object_count = len(columns_object_list)
+    return (
+        df, columns_in_count, columns_non_empty_count,
+        columns_empty_count, columns_empty_list, columns_non_empty_list,
+        columns_float_list, columns_float_count,
+        columns_integer_list, columns_integer_count,
+        columns_datetime_list, columns_datetime_count,
+        columns_object_list, columns_object_count
+    )
+
+
 def process_rows(df: pd.DataFrame) -> (pd.DataFrame, int, int, int):
     '''
     Count number of rows (rows_in_count)
