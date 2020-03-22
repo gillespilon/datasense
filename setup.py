@@ -13,6 +13,7 @@ setup(
         'matplotlib',
         'scipy',
         'cached_property',
+        'beautifultable',
     ],
     author='Gilles Pilon',
     author_email='gillespilon13@gmail.com',
@@ -27,10 +28,6 @@ setup(
         # run pytest, coverage and checks when running python setup.py test.
         'pytest-runner',
         'pytest-cov',
-    ],
-    tests_require=[
-        'pytest',
-        'coverage',
     ],
     scripts=glob('bin/*'),
 )
