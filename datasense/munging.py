@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 
 import pandas as pd
@@ -119,10 +119,22 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     print()
 
 
-def process_columns(df: pd.DataFrame) -> (
-    pd.DataFrame, int, int, int, List[str], List[str], List[str], int,
-    List[str], int, List[str], int, List[str], int
-):
+def process_columns(df: pd.DataFrame) -> Tuple[
+    pd.DataFrame,
+    int,
+    int,
+    int,
+    List[str],
+    List[str],
+    List[str],
+    int,
+    List[str],
+    int,
+    List[str],
+    int,
+    List[str],
+    int
+]:
     '''
     Create count of columns
         (columns_in_count)
