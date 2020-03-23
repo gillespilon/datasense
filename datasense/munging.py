@@ -9,7 +9,7 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     '''
     Display count of rows (rows_in_count)
     Display count of empty rows (rows_empty_count)
-    Display count of non-empty rows (rows_non_empty_count)
+    Display count of non-empty rows (rows_out_count)
     Display count of columns (columns_in_count)
     Display count of empty columns (columns_empty_count)
     Display count of non-empty columns (columns_non_empty_count)
