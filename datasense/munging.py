@@ -151,12 +151,12 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     Delete empty columns
     Create count and list of float columns
         (columns_float_count, columns_float_list)
-    Create count and list of string columns
-        (columns_object_count, columns_object_list)
     Create count and list of integer columns
         (columns_integer_count, columns_integer_list)
     Create count and list of datetime columns
         (columns_datetime_count, columns_datetime_list)
+    Create count and list of string columns
+        (columns_object_count, columns_object_list)
     '''
     columns_empty_list = sorted({
         column_name for column_name in df.columns
