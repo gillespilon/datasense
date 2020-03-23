@@ -92,7 +92,8 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
 
 def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     '''
-    Create a table of empty cell counts and percentages for each column
+    Create a table of data type, empty-cell count, and empty-all percentage
+    for non-empty columns.
     '''
     print('Information about non-empty columns')
     table = BeautifulTable(max_width=90)
