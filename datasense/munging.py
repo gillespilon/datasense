@@ -200,9 +200,9 @@ def process_columns(df: pd.DataFrame) -> Tuple[
 def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     '''
     Count number of rows (rows_in_count)
-    Count number of empty rows (rows_empty_count)
-    Count number of non-empty rows (rows_out_count)
     Delete empty rows
+    Count number of non-empty rows (rows_out_count)
+    Count number of empty rows (rows_empty_count)
     '''
     rows_in_count = df.shape[0]
     df = df.dropna(axis='rows', how='all')
