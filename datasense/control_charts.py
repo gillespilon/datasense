@@ -1,3 +1,8 @@
+'''
+Shewhart control charts
+'''
+
+
 from typing import Union, Optional
 from abc import ABC, abstractmethod
 from math import sqrt
