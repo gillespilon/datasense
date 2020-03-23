@@ -22,8 +22,8 @@ _QUANTILE_METHODS = [
 
 def control_chart_constants(n: int, col: str) -> float:
     '''
-    This function creates a dataframe from a dictionary of constants and
-    returns requested constants.
+    Create a dataframe from a dictionary of constants and
+    return a requested constant.
     '''
     d = dict(
         n=np.array([
@@ -130,25 +130,25 @@ class ControlChart(ABC):
     @cached_property
     @abstractmethod
     def ucl(self) -> float:  # pragma: no cover
-        'upper control limit'
+        'Calculate the upper control limit'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def lcl(self) -> float:  # pragma: no cover
-        'lower control limit'
+        'Calculate the lower control limit'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def sigma(self) -> float:  # pragma: no cover
-        'sigma appropriate to method used'
+        'Calculate the standard deviation appropriate to method used'
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def mean(self) -> float:  # pragma: no cover
-        'average'
+        'Calculate the average'
         raise NotImplementedError()
 
     @cached_property
@@ -175,7 +175,7 @@ class ControlChart(ABC):
 
     # TODO: cache
     def _average_mr(self, subgroup_size: Optional[int] = 2) -> float:
-        'Average moving range'
+        'Calculate the average moving range'
         if subgroup_size is None:
             subgroup_size = 2
         assert subgroup_size >= 2
@@ -354,7 +354,7 @@ class R(ControlChart):
 class Xbar(ControlChart):
     @cached_property
     def _average_range(self) -> float:
-        'Average range'
+        'Calculate the average range'
         return (
             self._df.max(axis='columns') -
             self._df.min(axis='columns')
@@ -370,7 +370,7 @@ class Xbar(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        'Average of averages'
+        'Calculate the average of averages'
         return self._df.mean(axis='columns').mean()
 
     @cached_property
