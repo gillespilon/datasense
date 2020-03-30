@@ -14,12 +14,8 @@ import matplotlib.cm as cm
 import matplotlib.axes as axes
 
 
-def control_chart_constants(n: int, col: str) -> float:
-    '''
-    Create a dataframe from a dictionary of constants and
-    return a requested constant.
-    '''
-    d = dict(
+CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
+    dict(
         n=np.array([
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20, 21, 22, 23, 24, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75,
@@ -87,10 +83,9 @@ def control_chart_constants(n: int, col: str) -> float:
             0.945, 0.921, 0.899, 0.881, 0.864, 0.849, 0.836, 0.824, 0.813,
             0.803, 0.794, 0.786, 0.778, 0.770, 0.763, 0.734, 0.712, 0.694,
             0.680, 0.667, 0.656, 0.647, 0.638, 0.631, 0.624, 0.618, 0.612,
-            0.607, 0.598]))
-    constants = pd.DataFrame.from_dict(d, orient='index').transpose()
-    constant = constants[col][constants['n'] == n].values[0]  # type: ignore
-    return constant
+            0.607, 0.598])
+    ),
+    orient='index').transpose().set_index('n')
 
 
 def _despine(ax: axes.Axes) -> None:
@@ -197,7 +192,7 @@ class X(ControlChart):
 
     @cached_property
     def _d2(self) -> float:
-        return control_chart_constants(self.subgroup_size, 'd2')
+        return CONSTANTS['d2'].loc[self.subgroup_size]
 
     @cached_property
     def sigma(self) -> float:
@@ -242,11 +237,11 @@ class mR(ControlChart):
 
     @cached_property
     def _d2(self) -> float:
-        return control_chart_constants(self.subgroup_size, 'd2')
+        return CONSTANTS['d2'].loc[self.subgroup_size]
 
     @cached_property
     def _d3(self) -> float:
-        return control_chart_constants(self.subgroup_size, 'd3')
+        return CONSTANTS['d3'].loc[self.subgroup_size]
 
     @cached_property
     def sigma(self) -> float:
@@ -288,11 +283,11 @@ class mR(ControlChart):
 class R(ControlChart):
     @cached_property
     def _d2(self) -> float:
-        return control_chart_constants(n=len(self._df.columns), col='d2')
+        return CONSTANTS['d2'].loc[len(self._df.columns)]
 
     @cached_property
     def _d3(self) -> float:
-        return control_chart_constants(n=len(self._df.columns), col='d3')
+        return CONSTANTS['d3'].loc[len(self._df.columns)]
 
     @cached_property
     def mean(self) -> float:
@@ -360,7 +355,7 @@ class Xbar(ControlChart):
 
     @cached_property
     def _d2(self) -> float:
-        return control_chart_constants(n=self._subgroup_size, col='d2')
+        return CONSTANTS['d2'].loc[len(self._df.columns)]
 
     @cached_property
     def mean(self) -> float:
