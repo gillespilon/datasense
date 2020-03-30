@@ -10,10 +10,9 @@ from scipy.stats.mstats import mquantiles as mq
 
 def nonparametric_summary(
     series: pd.Series,
-    alphap: str = 1/3,
+    alphap: float = 1/3,
     betap: float = 1/3
 ) -> pd.DataFrame:
-    # TODO: implement at least 8 methods of nonparametrics
     '''
     Calculate empirical quantiles for a series.
 
@@ -57,29 +56,15 @@ def nonparametric_summary(
     q50 = mq(xm, prob=(0.50), alphap=alphap, betap=betap)
     q75 = mq(xm, prob=(0.75), alphap=alphap, betap=betap)
     iqr = q75 - q25
-    # lof = (q25 - iqr * 3).clip(min=0)
-    # lif = (q25 - iqr * 1.5).clip(min=0)
-    # uif = (q75 + iqr * 1.5).clip(min=0)
-    # uof = (q75 + iqr * 3).clip(min=0)
     lof = (q25 - iqr * 3)
     lif = (q25 - iqr * 1.5)
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
-    # inner_outliers = [x for x in series.round(3) if x < lif or x > uif]
-    # outliers_outer = [x for x in series.round(3) if x < lof or x > uof]
     inner_outliers = [x for x in series if x < lif or x > uif]
     outliers_outer = [x for x in series if x < lof or x > uof]
     minval = series.min()
     maxval = series.max()
     return pd.Series({
-        # 'lower outer fence': lof[0].round(3),
-        # 'lower inner fence': lif[0].round(3),
-        # 'lower quartile': q25[0].round(3),
-        # 'median': q50[0].round(3),
-        # 'upper quartile': q75[0].round(3),
-        # 'upper inner fence': uif[0].round(3),
-        # 'upper outer fence': uof[0].round(3),
-        # 'interquartile range': iqr[0].round(3),
         'lower outer fence': lof[0],
         'lower inner fence': lif[0],
         'lower quartile': q25[0],
