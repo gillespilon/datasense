@@ -10,8 +10,8 @@ from scipy.stats.mstats import mquantiles as mq
 
 def nonparametric_summary(
     series: pd.Series,
-    alphap:float=1/3,
-    betap:float=1/3
+    alphap: str = 1/3,
+    betap: float = 1/3
 ) -> pd.DataFrame:
     # TODO: implement at least 8 methods of nonparametrics
     '''
