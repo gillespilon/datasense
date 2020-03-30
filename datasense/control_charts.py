@@ -14,12 +14,6 @@ import matplotlib.cm as cm
 import matplotlib.axes as axes
 
 
-_QUANTILES = (0.25, 0.50, 0.75)
-_QUANTILE_METHODS = [
-    (0, 1), (0.5, 0.5), (0, 0), (1, 1), (0.33, 0.33), (0.375, 0.375)
-]
-
-
 def control_chart_constants(n: int, col: str) -> float:
     '''
     Create a dataframe from a dictionary of constants and
