@@ -141,6 +141,12 @@ class ControlChart(ABC):
         'Calculate the average'
         raise NotImplementedError()
 
+    @cached_property
+    @abstractmethod
+    def y(self) -> pd.DataFrame:  # pragma: no cover
+        'The y coordinates of the points on a plot of this chart'
+        raise NotImplementedError()
+
     @abstractmethod
     def ax(self,
            fig: Optional[plt.Figure] = None) -> axes.Axes:  # pragma: no cover
@@ -211,12 +217,16 @@ class X(ControlChart):
     def mean(self) -> float:
         return self._df.iloc[:, 0].mean()
 
+    @cached_property
+    def y(self) -> pd.DataFrame:
+        return self._df
+
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
         _despine(ax)
-        ax.plot(self._df.index, self._df,
+        ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
@@ -262,17 +272,20 @@ class mR(ControlChart):
     def mean(self) -> float:
         return self._average_mr(self.subgroup_size)
 
+    @cached_property
+    def y(self) -> pd.DataFrame:
+        return (
+            self._df.rolling(self.subgroup_size).max() -
+            self._df.rolling(self.subgroup_size).min()
+        )
+
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         'Matplotlib control chart plot'
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
         _despine(ax)
-        rolling = (
-            self._df.rolling(self.subgroup_size).max() -
-            self._df.rolling(self.subgroup_size).min()
-        )
-        ax.plot(rolling.index, rolling,
+        ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=c[0])
         # TODO? ax.set_xlim(0, len(self._df.columns))
         ax.axhline(y=self.mean, color=c[2])
@@ -322,16 +335,19 @@ class R(ControlChart):
             ret = 0.0
         return ret
 
+    @cached_property
+    def y(self) -> pd.DataFrame:
+        return (
+            self._df.max(axis='columns')
+            - self._df.min(axis='columns')
+        )
+
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
         _despine(ax)
-        ranges = (
-            self._df.max(axis='columns')
-            - self._df.min(axis='columns')
-        )
-        ax.plot(ranges.index, ranges,
+        ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
@@ -383,14 +399,17 @@ class Xbar(ControlChart):
             / (self._d2 * sqrt(self._subgroup_size))
         )
 
+    @cached_property
+    def y(self) -> pd.DataFrame:
+        return self._df.mean(axis='columns')
+
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         'average values v. sample'
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
         _despine(ax)
-        means = self._df.mean(axis='columns')
-        ax.plot(means.index, means,
+        ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
