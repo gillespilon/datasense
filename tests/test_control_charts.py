@@ -338,7 +338,7 @@ def test_Xbar(columns, expected):
         same = fig.read() == (
             Path(__file__).parent
                           .joinpath('prerenders',
-                                    f'{columns.start}:{columns.stop}-Xbar.png')
+                                    f'{columns.start}-{columns.stop}-Xbar.png')
                           .read_bytes()
         )
         assert same, 'Plots not the same; save/compare manually with debugger'
@@ -366,7 +366,7 @@ def test_R(columns, expected):
         same = fig.read() == (
             Path(__file__).parent
                           .joinpath('prerenders',
-                                    f'{columns.start}:{columns.stop}-R.png')
+                                    f'{columns.start}-{columns.stop}-R.png')
                           .read_bytes()
         )
         assert same, 'Plots not the same; save/compare manually with debugger'
