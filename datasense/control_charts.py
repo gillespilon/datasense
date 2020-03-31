@@ -429,7 +429,12 @@ class Xbar(ControlChart):
 
 
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    'Return out of control (>ucl, <lcl) points'
+    '''
+    Shewhart and Western Electric Rule one
+    Nelson and Minitab rule one
+    One point above three sigma or one point below three sigma
+    This rule is used with the X chart and the mR chart
+    '''
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
 
