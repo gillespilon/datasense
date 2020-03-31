@@ -448,7 +448,13 @@ def draw_rule(cc: ControlChart,
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    'Return out of control (8 or more consecutive above or below the mean)'
+    '''
+    Shewhart and Western Electric rule four
+    Nelson and Minitab rule two
+    Eight successive values fall above the central line or
+    eight successive values fall below the central line
+    This rule is used with the X chart
+    '''
     count_above = 0
     count_below = 0
     points_above = []
