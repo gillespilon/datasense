@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.cm as cm
 import matplotlib.axes as axes
+import matplotlib.pyplot as plt
 
 
 CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
@@ -140,9 +141,9 @@ class ControlChart(ABC):
         'Calculate the average'
         raise NotImplementedError()
 
-    @cached_property
     @abstractmethod
-    def ax(self) -> axes.Axes:  # pragma: no cover
+    def ax(self,
+           fig: Optional[plt.Figure] = None) -> axes.Axes:  # pragma: no cover
         'Matplotlib control chart plot'
         raise NotImplementedError()
 
@@ -210,17 +211,15 @@ class X(ControlChart):
     def mean(self) -> float:
         return self._df.iloc[:, 0].mean()
 
-    @cached_property
-    def ax(self) -> axes.Axes:
-        ax = self._df.plot.line(legend=False, marker='o', markersize=3,
-                                color=c[0])
-        # Remove the top and right spines.
+    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+        if fig is None:
+            fig = plt.figure()
+        ax = fig.add_subplot(111)
         _despine(ax)
-        # Add average line to X chart.
+        ax.plot(self._df.index, self._df,
+                marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
-        # Add the upper control limits for the X chart.
         ax.axhline(y=self.ucl, color=c[1])
-        # Add the lower control limits for the X chart.
         ax.axhline(y=self.lcl, color=c[1])
 
         return ax
@@ -263,16 +262,19 @@ class mR(ControlChart):
     def mean(self) -> float:
         return self._average_mr(self.subgroup_size)
 
-    @cached_property
-    def ax(self) -> axes.Axes:
+    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         'Matplotlib control chart plot'
-        ax = (
+        if fig is None:
+            fig = plt.figure()
+        ax = fig.add_subplot(111)
+        _despine(ax)
+        rolling = (
             self._df.rolling(self.subgroup_size).max() -
             self._df.rolling(self.subgroup_size).min()
-        ).plot.line(legend=False, marker='o',
-                    markersize=3, color=c[0],)
+        )
+        ax.plot(rolling.index, rolling,
+                marker='o', markersize=3, color=c[0])
         # TODO? ax.set_xlim(0, len(self._df.columns))
-        _despine(ax)
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
         ax.axhline(y=self.lcl, color=c[1])
@@ -320,19 +322,20 @@ class R(ControlChart):
             ret = 0.0
         return ret
 
-    @cached_property
-    def ax(self) -> axes.Axes:
-        ax = (
+    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+        if fig is None:
+            fig = plt.figure()
+        ax = fig.add_subplot(111)
+        _despine(ax)
+        ranges = (
             self._df.max(axis='columns')
             - self._df.min(axis='columns')
-        ).plot.line(legend=False,
-                    marker='o',
-                    markersize=3,
-                    color=c[0])
+        )
+        ax.plot(ranges.index, ranges,
+                marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
         ax.axhline(y=self.lcl, color=c[1])
-        _despine(ax)
         return ax
 
     @cached_property
@@ -380,18 +383,18 @@ class Xbar(ControlChart):
             / (self._d2 * sqrt(self._subgroup_size))
         )
 
-    @cached_property
-    def ax(self) -> axes.Axes:
+    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         'average values v. sample'
-        ax = self._df.mean(axis='columns') \
-                     .plot.line(legend=False,
-                                marker='o',
-                                markersize=3,
-                                color=c[0])
+        if fig is None:
+            fig = plt.figure()
+        ax = fig.add_subplot(111)
+        _despine(ax)
+        means = self._df.mean(axis='columns')
+        ax.plot(means.index, means,
+                marker='o', markersize=3, color=c[0])
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
         ax.axhline(y=self.lcl, color=c[1])
-        _despine(ax)
         return ax
 
     @cached_property
