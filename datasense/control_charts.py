@@ -479,7 +479,7 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 
 # TODO: General form.
-# We can't use for group in series.rolling(5) because it's not implemened yet…
+# We can't use for group in series.rolling(5) because it's not implemened yet,
 # since 2015. We also can't use rolling(3) (on a bool column) .sum() >= 2
 # because we wouldn't know whether to annotate point 2 or 3 in a group. At that
 # point, you'd have to write manual Python code to figure it out. Just do a
