@@ -339,11 +339,10 @@ class R(ControlChart):
 
     @cached_property
     def y(self) -> pd.Series:
-        df = (
+        return (
             self._df.max(axis='columns')
             - self._df.min(axis='columns')
         )
-        return df[df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         if fig is None:
