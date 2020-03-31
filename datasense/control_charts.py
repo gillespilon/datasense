@@ -1,5 +1,10 @@
 '''
 Shewhart control charts
+
+Create X, mR, Xbar, R control charts
+Invoke Shewhart rules 1, 2, 4
+
+TODO: Shewhart rule 3
 '''
 
 
