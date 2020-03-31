@@ -20,4 +20,4 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 
 # Examples
 
-Examples of the XmR and XbarR control charts are found in [control charts](https://github.com/gillespilon/control_charts).
+In the [scripts](scripts/) directory, there are example scripts and data files.
