@@ -3,9 +3,10 @@ Shewhart control charts
 '''
 
 
+from itertools import tee
 from typing import Union, Optional, Tuple
-from abc import ABC, abstractmethod
 from math import sqrt
+from abc import ABC, abstractmethod
 
 from cached_property import cached_property
 import pandas as pd
@@ -462,6 +463,49 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     return pd.Series(dict(points_above)), pd.Series(dict(points_below))
 
 
+# TODO: General form.
+# We can't use for group in series.rolling(5) because it's not implemened yet…
+# since 2015. We also can't use rolling(3) (on a bool column) .sum() >= 2
+# because we wouldn't know whether to annotate point 2 or 3 in a group. At that
+# point, you'd have to write manual Python code to figure it out. Just do a
+# plain old Python loop.
+# Here's the rolling code until we realised it wouldn't work.
+#    cc.y.loc[(cc.y > cc.sigmas[2]).rolling(2).sum() >= 2]
+def _threewise(it):
+    a, b, c = tee(it, 3)
+    next(b, None)
+    next(c, None)
+    next(c, None)
+    return zip(a, b, c)
+
+
+def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    '''
+    Shewhart and Western Electric rule two
+    Nelson and Minitab rule five
+    Two-out-of-three successive values > two sigma & above the central line
+    or two-out-of-three successive values < two sigma & below the central line
+    This rule is used with the X chart
+    '''
+
+    above = []
+    below = []
+    for group in _threewise(cc.y.items()):
+        above_in_window = [(x, y)
+                           for x, y
+                           in group
+                           if y > cc.sigmas[+2]]
+        if len(above_in_window) >= 2:
+            above.append(above_in_window[-1])
+        below_in_window = [(x, y)
+                           for x, y
+                           in group
+                           if y < cc.sigmas[-2]]
+        if len(below_in_window) >= 2:
+            below.append(below_in_window[-1])
+    return pd.Series(dict(above)), pd.Series(dict(below))
+
+
 # TODO: Merge points that violate many rules
 
 
@@ -471,4 +515,8 @@ __all__ = (
     'mR',
     'R',
     'Xbar',
+    'draw_rule',
+    'points_one',
+    'points_two',
+    'points_four',
 )
