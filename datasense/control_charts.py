@@ -3,7 +3,7 @@ Shewhart control charts
 '''
 
 
-from typing import Union, Optional
+from typing import Union, Optional, Tuple
 from abc import ABC, abstractmethod
 from math import sqrt
 
@@ -421,6 +421,48 @@ class Xbar(ControlChart):
     @cached_property
     def sigma(self) -> float:
         return self._average_range / self._d2 / sqrt(self._subgroup_size)
+
+
+def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    'Return out of control (>ucl, <lcl) points'
+    return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
+
+
+def draw_rule(cc: ControlChart,
+              ax: axes.Axes,
+              above: pd.Series,
+              below: pd.Series,
+              rule_name: str) -> None:
+    y_percent = (cc.y.max() - cc.y.min()) / 100
+
+    for x, y in above.items():
+        ax.annotate(rule_name, xy=(x, y), xytext=(x, y + y_percent * 5))
+
+    for x, y in below.items():
+        ax.annotate(rule_name, xy=(x, y), xytext=(x, y - y_percent * 5))
+
+
+def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    'Return out of control (8 or more consecutive above or below the mean)'
+    count_above = 0
+    count_below = 0
+    points_above = []
+    points_below = []
+    for x, y in cc.y.items():
+        if y > cc.mean:
+            count_above += 1
+            count_below = 0
+        elif y < cc.mean:
+            count_above = 0
+            count_below += 1
+        if count_above >= 8:
+            points_above.append((x, y))
+        elif count_below >= 8:
+            points_below.append((x, y))
+    return pd.Series(dict(points_above)), pd.Series(dict(points_below))
+
+
+# TODO: Merge points that violate many rules
 
 
 __all__ = (
