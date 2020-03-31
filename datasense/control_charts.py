@@ -443,6 +443,12 @@ def draw_rule(cc: ControlChart,
               above: pd.Series,
               below: pd.Series,
               rule_name: str) -> None:
+    '''
+    Invokes one of the points_* rules to identify out-of-control points
+
+    TODO: add code to jitter annotation if two or more rules fall on same
+    point
+    '''
     y_percent = (cc.y.max() - cc.y.min()) / 100
 
     for x, y in above.items():
