@@ -143,7 +143,7 @@ class ControlChart(ABC):
 
     @cached_property
     @abstractmethod
-    def y(self) -> pd.DataFrame:  # pragma: no cover
+    def y(self) -> pd.Series:  # pragma: no cover
         'The y coordinates of the points on a plot of this chart'
         raise NotImplementedError()
 
@@ -218,8 +218,8 @@ class X(ControlChart):
         return self._df.iloc[:, 0].mean()
 
     @cached_property
-    def y(self) -> pd.DataFrame:
-        return self._df
+    def y(self) -> pd.Series:
+        return self._df[self._df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         if fig is None:
@@ -273,11 +273,12 @@ class mR(ControlChart):
         return self._average_mr(self.subgroup_size)
 
     @cached_property
-    def y(self) -> pd.DataFrame:
-        return (
+    def y(self) -> pd.Series:
+        df = (
             self._df.rolling(self.subgroup_size).max() -
             self._df.rolling(self.subgroup_size).min()
         )
+        return df[df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         'Matplotlib control chart plot'
@@ -336,11 +337,12 @@ class R(ControlChart):
         return ret
 
     @cached_property
-    def y(self) -> pd.DataFrame:
-        return (
+    def y(self) -> pd.Series:
+        df = (
             self._df.max(axis='columns')
             - self._df.min(axis='columns')
         )
+        return df[df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
         if fig is None:
@@ -400,7 +402,7 @@ class Xbar(ControlChart):
         )
 
     @cached_property
-    def y(self) -> pd.DataFrame:
+    def y(self) -> pd.Series:
         return self._df.mean(axis='columns')
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
