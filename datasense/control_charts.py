@@ -159,7 +159,7 @@ class ControlChart(ABC):
         'Matplotlib control chart plot'
         raise NotImplementedError()
 
-    #@abstractmethod
+    # @abstractmethod
     def __str__(self) -> str:
         raise NotImplementedError()
 
