@@ -452,10 +452,12 @@ def draw_rule(cc: ControlChart,
     y_percent = (cc.y.max() - cc.y.min()) / 100
 
     for x, y in above.items():
-        ax.annotate(rule_name, xy=(x, y), xytext=(x, y + y_percent * 5), color=c[5])
+        ax.annotate(rule_name, xy=(x, y), xytext=(x, y + y_percent * 5),
+                    color=c[5])
 
     for x, y in below.items():
-        ax.annotate(rule_name, xy=(x, y), xytext=(x, y - y_percent * 5), color=c[5])
+        ax.annotate(rule_name, xy=(x, y), xytext=(x, y - y_percent * 5),
+                    color=c[5])
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
