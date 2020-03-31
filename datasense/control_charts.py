@@ -428,16 +428,6 @@ class Xbar(ControlChart):
         return self._average_range / self._d2 / sqrt(self._subgroup_size)
 
 
-def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
-    Shewhart and Western Electric Rule one
-    Nelson and Minitab rule one
-    One point above three sigma or one point below three sigma
-    This rule is used with the X chart and the mR chart
-    '''
-    return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
-
-
 def draw_rule(cc: ControlChart,
               ax: axes.Axes,
               above: pd.Series,
@@ -460,32 +450,6 @@ def draw_rule(cc: ControlChart,
                     color=c[5])
 
 
-def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
-    Shewhart and Western Electric rule four
-    Nelson and Minitab rule two
-    Eight successive values fall above the central line or
-    eight successive values fall below the central line
-    This rule is used with the X chart
-    '''
-    count_above = 0
-    count_below = 0
-    points_above = []
-    points_below = []
-    for x, y in cc.y.items():
-        if y > cc.mean:
-            count_above += 1
-            count_below = 0
-        elif y < cc.mean:
-            count_above = 0
-            count_below += 1
-        if count_above >= 8:
-            points_above.append((x, y))
-        elif count_below >= 8:
-            points_below.append((x, y))
-    return pd.Series(dict(points_above)), pd.Series(dict(points_below))
-
-
 # TODO: General form.
 # We can't use for group in series.rolling(5) because it's not implemened yet,
 # since 2015. We also can't use rolling(3) (on a bool column) .sum() >= 2
@@ -500,6 +464,16 @@ def _threewise(it):
     next(c, None)
     next(c, None)
     return zip(a, b, c)
+
+
+def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    '''
+    Shewhart and Western Electric Rule one
+    Nelson and Minitab rule one
+    One point above three sigma or one point below three sigma
+    This rule is used with the X chart and the mR chart
+    '''
+    return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
 
 def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
@@ -527,6 +501,43 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
         if len(below_in_window) >= 2:
             below.append(below_in_window[-1])
     return pd.Series(dict(above)), pd.Series(dict(below))
+
+
+def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    '''
+    Shewhart or Western Electric rule three
+    Nelson or Minitab rule six
+    Four-out-of-five successive values > one sigma & above the central line
+    or four-out-of-five successive values < one sigma & below the central line
+    This rule is used with the X chart
+    '''
+    pass
+
+
+def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+    '''
+    Shewhart and Western Electric rule four
+    Nelson and Minitab rule two
+    Eight successive values fall above the central line or
+    eight successive values fall below the central line
+    This rule is used with the X chart
+    '''
+    count_above = 0
+    count_below = 0
+    points_above = []
+    points_below = []
+    for x, y in cc.y.items():
+        if y > cc.mean:
+            count_above += 1
+            count_below = 0
+        elif y < cc.mean:
+            count_above = 0
+            count_below += 1
+        if count_above >= 8:
+            points_above.append((x, y))
+        elif count_below >= 8:
+            points_below.append((x, y))
+    return pd.Series(dict(points_above)), pd.Series(dict(points_below))
 
 
 # TODO: Merge points that violate many rules
