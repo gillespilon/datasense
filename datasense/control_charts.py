@@ -504,21 +504,21 @@ def _threewise(it):
 
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
-    Shewhart and Western Electric Rule one
-    Nelson and Minitab rule one
-    One point outside the three-sigma limits
-    This rule is used with the X, mR, Xbar, and R charts
+    Shewhart and Western Electric Rule one.
+    Nelson and Minitab rule one.
+    One point outside the three-sigma limits.
+    This rule is used with the X, mR, Xbar, and R charts.
     '''
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
 
 def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
-    Shewhart and Western Electric rule two
-    Nelson and Minitab rule five
+    Shewhart and Western Electric rule two.
+    Nelson and Minitab rule five.
     Two-out-of-three successive points on the same side of the central line
-    and both are more than two sigma units away from the central line
-    This rule is used with the X and Xbar charts
+    and both are more than two sigma units away from the central line.
+    This rule is used with the X and Xbar charts.
     '''
 
     above = []
@@ -541,21 +541,21 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
-    Shewhart or Western Electric rule three
-    Nelson or Minitab rule six
+    Shewhart or Western Electric rule three.
+    Nelson or Minitab rule six.
     Four-out-of-five successive points on the same side of the central line
-    and are more than one sigma units away from the central line
-    This rule is used with the X and Xbar charts
+    and are more than one sigma units away from the central line.
+    This rule is used with the X and Xbar charts.
     '''
     pass
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
-    Shewhart and Western Electric rule four
-    Nelson and Minitab rule two
-    Eight successive points all on the same side of the central line
-    This rule is used with the X and Xbar charts
+    Shewhart and Western Electric rule four.
+    Nelson and Minitab rule two.
+    Eight successive points all on the same side of the central line.
+    This rule is used with the X and Xbar charts.
     '''
     count_above = 0
     count_below = 0
