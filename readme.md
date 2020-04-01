@@ -1,6 +1,8 @@
 # In brevi
 
-This repository contains a package of statistical and graphical functions that I use in my work of making sense of data to create information and understanding.
+This repository contains a package of statistical and graphical functions
+that I use in my work of making sense of data to create information
+and understanding.
 
 # To install #
 
@@ -21,3 +23,13 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 # Examples
 
 In the [scripts](scripts/) directory, there are example scripts and data files.
+
+Here are some plots:
+
+![sample data column x9 X chart](tests/prerenders/x9-X.png)
+
+![sample data column x9 moving range chart](tests/prerenders/x9-mR.png)
+
+![sample data column x9 R chart](tests/prerenders/x9:x12-R.png)
+
+![sample data column x9 X bar chart](tests/prerenders/x9:x12-Xbar.png)
