@@ -251,6 +251,15 @@ class X(ControlChart):
 
 
 class mR(ControlChart):
+    '''
+    Creates an mR chart
+    Plots calculated moving ranges (y axis) versus
+    the index of the dataframe (x axis)
+
+    import matplotlib.pyplot as plt
+    from datasense import control_charts as cc
+    mr = cc.mR(df)  # default subgroup size = 2
+    '''
     def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
         super().__init__(data)
 
