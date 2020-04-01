@@ -401,7 +401,7 @@ class Xbar(ControlChart):
 
     import matplotlib.pyplot as plt
     from datasense import control_charts as cc
-    xbar = cc.xbar(df)
+    xbar = cc.Xbar(df)
     '''
     @cached_property
     def _average_range(self) -> float:
