@@ -544,13 +544,13 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
                            in group
                            if y > cc.sigmas[+2]]
         if len(above_in_window) >= 2:
-            above.append(above_in_window[-1])
+            above.append(above_in_window[1])  # whether 2 or 3, 2nd
         below_in_window = [(x, y)
                            for x, y
                            in group
                            if y < cc.sigmas[-2]]
         if len(below_in_window) >= 2:
-            below.append(below_in_window[-1])
+            below.append(below_in_window[1])  # whether 2 or 3, 2nd
     return pd.Series(dict(above)), pd.Series(dict(below))
 
 
@@ -570,13 +570,13 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
                            in group
                            if y > cc.sigmas[+1]]
         if len(above_in_window) >= 4:
-            above.append(above_in_window[-1])
+            above.append(above_in_window[3])  # whether 4 or 5, 4th point
         below_in_window = [(x, y)
                            for x, y
                            in group
                            if y < cc.sigmas[-1]]
         if len(below_in_window) >= 4:
-            below.append(below_in_window[-1])
+            below.append(below_in_window[3])  # whether 4 or 5, 4th point
     return pd.Series(dict(above)), pd.Series(dict(below))
 
 
