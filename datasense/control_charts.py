@@ -516,9 +516,9 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     Shewhart and Western Electric rule two
     Nelson and Minitab rule five
-    Two-out-of-three successive values > two sigma & above the central line
-    or two-out-of-three successive values < two sigma & below the central line
-    This rule is used with the X chart
+    Two-out-of-three successive points on the same side of the central line
+    and both are more than two sigma units away from the central line
+    This rule is used with the X and Xbar charts
     '''
 
     above = []
@@ -543,9 +543,9 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     Shewhart or Western Electric rule three
     Nelson or Minitab rule six
-    Four-out-of-five successive values > one sigma & above the central line
-    or four-out-of-five successive values < one sigma & below the central line
-    This rule is used with the X chart
+    Four-out-of-five successive points on the same side of the central line
+    and are more than one sigma units away from the central line
+    This rule is used with the X and Xbar charts
     '''
     pass
 
