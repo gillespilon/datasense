@@ -385,6 +385,15 @@ class R(ControlChart):
 
 
 class Xbar(ControlChart):
+    '''
+    Creates an Xbar chart
+    Plots calculated averages (y axis) versus
+    the index of the dataframe (x axis)
+
+    import matplotlib.pyplot as plt
+    from datasense import control_charts as cc
+    xbar = cc.xbar(df)
+    '''
     @cached_property
     def _average_range(self) -> float:
         'Calculate the average range'
