@@ -321,6 +321,15 @@ class mR(ControlChart):
 
 
 class R(ControlChart):
+    '''
+    Creates an R chart
+    Plots calculated ranges (y axis) versus
+    the index of the dataframe (x axis)
+
+    import matplotlib.pyplot as plt
+    from datasense import control_charts as cc
+    r = cc.R(df)
+    '''
     @cached_property
     def _d2(self) -> float:
         return CONSTANTS['d2'].loc[len(self._df.columns)]
