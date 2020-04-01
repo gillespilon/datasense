@@ -246,9 +246,6 @@ class X(ControlChart):
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
         ax.axhline(y=self.lcl, color=c[1])
-        # next two lines temporary, to test points_three()
-        ax.axhline(y=(self.mean + self.sigma), color=c[3])
-        ax.axhline(y=(self.mean - self.sigma), color=c[3])
 
         return ax
 
