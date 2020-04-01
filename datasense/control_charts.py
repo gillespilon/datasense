@@ -246,6 +246,9 @@ class X(ControlChart):
         ax.axhline(y=self.mean, color=c[2])
         ax.axhline(y=self.ucl, color=c[1])
         ax.axhline(y=self.lcl, color=c[1])
+        # next two lines temporary, to test points_three()
+        ax.axhline(y=(self.mean + self.sigma), color=c[3])
+        ax.axhline(y=(self.mean - self.sigma), color=c[3])
 
         return ax
 
@@ -502,6 +505,21 @@ def _threewise(it):
     return zip(a, b, c)
 
 
+def _fivewise(it):
+    a, b, c, d, e = tee(it, 5)
+    next(b, None)
+    next(c, None)
+    next(c, None)
+    next(d, None)
+    next(d, None)
+    next(d, None)
+    next(e, None)
+    next(e, None)
+    next(e, None)
+    next(e, None)
+    return zip(a, b, c, d, e)
+
+
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     Shewhart and Western Electric Rule one.
@@ -547,7 +565,22 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     and are more than one sigma units away from the central line.
     This rule is used with the X and Xbar charts.
     '''
-    pass
+    above = []
+    below = []
+    for group in _fivewise(cc.y.items()):
+        above_in_window = [(x, y)
+                           for x, y
+                           in group
+                           if y > cc.sigmas[+1]]
+        if len(above_in_window) >= 4:
+            above.append(above_in_window[-1])
+        below_in_window = [(x, y)
+                           for x, y
+                           in group
+                           if y < cc.sigmas[-1]]
+        if len(below_in_window) >= 4:
+            below.append(below_in_window[-1])
+    return pd.Series(dict(above)), pd.Series(dict(below))
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
