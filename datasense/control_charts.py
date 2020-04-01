@@ -506,8 +506,8 @@ def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     Shewhart and Western Electric Rule one
     Nelson and Minitab rule one
-    One point above three sigma or one point below three sigma
-    This rule is used with the X chart and the mR chart
+    One point outside the three-sigma limits
+    This rule is used with the X, mR, Xbar, and R charts
     '''
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
