@@ -554,9 +554,8 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     Shewhart and Western Electric rule four
     Nelson and Minitab rule two
-    Eight successive values fall above the central line or
-    eight successive values fall below the central line
-    This rule is used with the X chart
+    Eight successive points all on the same side of the central line
+    This rule is used with the X and Xbar charts
     '''
     count_above = 0
     count_below = 0
