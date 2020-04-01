@@ -195,6 +195,15 @@ c = cm.Paired.colors
 
 
 class X(ControlChart):
+    '''
+    Creates an X control chart
+    Plots individual values of the column of the dataframe (y axis) versus
+    the index of the dataframe (x axis)
+
+    import matplotlib.pyplot as plt
+    from datasense import control_charts as cc
+    x = cc.X(df)  # default subgroup size = 2
+    '''
     def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
         super().__init__(data)
 
