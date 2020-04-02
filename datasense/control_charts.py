@@ -357,13 +357,18 @@ class R(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        'Average range'
+        '''
+        Average(R)
+        '''
         return (
             self._df.max(axis='columns') - self._df.min(axis='columns')
         ).mean()
 
     @cached_property
     def ucl(self) -> float:
+        '''
+        Upper control limit
+        '''
         return (
             self.mean
             + 3
@@ -374,6 +379,9 @@ class R(ControlChart):
 
     @cached_property
     def lcl(self) -> float:
+        '''
+        Lower control limit
+        '''
         ret = (
             self.mean
             - 3
