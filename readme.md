@@ -30,6 +30,6 @@ Here are some plots:
 
 ![sample data column x9 moving range chart](tests/prerenders/x9-mR.png)
 
-![sample data column x9 R chart](tests/prerenders/x9:x12-R.png)
+![sample data column x9 R chart](tests/prerenders/x9-x12-R.png)
 
-![sample data column x9 X bar chart](tests/prerenders/x9:x12-Xbar.png)
+![sample data column x9 X bar chart](tests/prerenders/x9-x12-Xbar.png)
