@@ -6,7 +6,7 @@ and understanding.
 
 # To install #
 
-Do this if this is your first-time installation.
+Do this if this is your first-time installation. Ensure you have `git` installed.
 
 ```
 pip install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
