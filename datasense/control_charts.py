@@ -8,6 +8,7 @@ TODO: Shewhart rule 3
 '''
 
 
+from collections import defaultdict
 from itertools import tee
 from typing import Union, Optional, Tuple, Iterable, TypeVar
 from math import sqrt
@@ -471,9 +472,6 @@ def draw_rule(cc: ControlChart,
               rule_name: str) -> None:
     '''
     Invokes one of the points_* rules to identify out-of-control points
-
-    TODO: add code to jitter annotation if two or more rules fall on same
-    point
     '''
     y_percent = (cc.y.max() - cc.y.min()) / 100
 
@@ -590,6 +588,31 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
         elif count_below >= 8:
             points_below.append((x, y))
     return pd.Series(dict(points_above)), pd.Series(dict(points_below))
+
+
+# TODO: Split into separate finder and plotter.
+def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
+    aboves = defaultdict(str)
+    belows = defaultdict(str)
+    for label, rule in [('1', points_one),
+                        ('2', points_two),
+                        ('3', points_three),
+                        ('4', points_four)]:
+        above, below = rule(cc)
+        for x, y in above.items():
+            aboves[(x, y)] += label
+        for x, y in below.items():
+            belows[(x, y)] += label
+
+    y_percent = (cc.y.max() - cc.y.min()) / 100
+
+    for (x, y), rule_names in aboves.items():
+        ax.annotate(rule_names, xy=(x, y), xytext=(x, y + y_percent * 5),
+                    color=c[5])
+
+    for (x, y), rule_names in belows.items():
+        ax.annotate(rule_names, xy=(x, y), xytext=(x, y - y_percent * 5),
+                    color=c[5])
 
 
 # TODO: Merge points that violate many rules

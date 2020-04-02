@@ -381,3 +381,27 @@ def test_nwise():
     assert list(cc._nwise([1,2,3,4], 2)) == [(1,2), (2,3), (3,4)]
     assert list(cc._nwise([1,2,3,4,5], 3)) == [(1,2,3), (2,3,4), (3,4,5)]
     assert list(cc._nwise([1,2,3,4,5], 5)) == [(1,2,3,4,5)]
+
+
+def test_draw_rules():
+    df = pd.DataFrame({
+        'Sample': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+        'X': [25.0, 24.0, 35.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0, 16.0,
+              16.0, 16.0],
+    }).set_index('Sample')
+    X = cc.X(df[['X']])
+    fig = BytesIO()
+    try:
+        ax = X.ax()
+        cc.draw_rules(X, ax)
+        ax.figure.savefig(fig, format='png')
+        fig.seek(0)
+        same = fig.read() == (
+            Path(__file__).parent
+                          .joinpath('prerenders', 'X-rules.png')
+                          .read_bytes()
+        )
+        assert same, 'Plots not the same; save/compare manually with debugger'
+    finally:
+        plt.clf()
+        plt.close('all')
