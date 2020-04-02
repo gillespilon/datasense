@@ -28,7 +28,7 @@ Here are some plots:
 
 ![X control chart](scripts/x_mr_example_x.svg)
 
-![sample data column x9 moving range chart](tests/prerenders/x9-mR.png)
+![mR control chart](scripts/x_mr_example_mr.svg)
 
 ![sample data column x9 R chart](tests/prerenders/x9-x12-R.png)
 
