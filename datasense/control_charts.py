@@ -510,6 +510,8 @@ def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
 
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
+    Return out of control points as Series of only said points
+
     Shewhart and Western Electric Rule one.
     Nelson and Minitab rule one.
     One point outside the three-sigma limits.
@@ -520,6 +522,8 @@ def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
+    Return out of control points as Series of only said points
+
     Shewhart and Western Electric rule two.
     Nelson and Minitab rule five.
     Two-out-of-three successive points on the same side of the central line
@@ -550,6 +554,8 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
+    Return out of control points as Series of only said points
+
     Shewhart or Western Electric rule three.
     Nelson or Minitab rule six.
     Four-out-of-five successive points on the same side of the central line
@@ -579,6 +585,8 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
+    Return out of control points as Series of only said points
+
     Shewhart and Western Electric rule four.
     Nelson and Minitab rule two.
     Eight successive points all on the same side of the central line.
