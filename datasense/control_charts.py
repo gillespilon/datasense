@@ -536,7 +536,10 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
                            if y < cc.sigmas[-2]]
         if len(below_in_window) >= 2:
             below.append(below_in_window[1])  # whether 2 or 3, 2nd
-    return pd.Series(dict(above)), pd.Series(dict(below))
+    return (
+        pd.Series(dict(above), dtype='float64'),
+        pd.Series(dict(below), dtype='float64'),
+    )
 
 
 def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
@@ -562,7 +565,10 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
                            if y < cc.sigmas[-1]]
         if len(below_in_window) >= 4:
             below.append(below_in_window[3])  # whether 4 or 5, 4th point
-    return pd.Series(dict(above)), pd.Series(dict(below))
+    return (
+        pd.Series(dict(above), dtype='float64'),
+        pd.Series(dict(below), dtype='float64'),
+    )
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
@@ -587,7 +593,10 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
             points_above.append((x, y))
         elif count_below >= 8:
             points_below.append((x, y))
-    return pd.Series(dict(points_above)), pd.Series(dict(points_below))
+    return (
+        pd.Series(dict(points_above), dtype='float64'),
+        pd.Series(dict(points_below), dtype='float64'),
+    )
 
 
 # TODO: Split into separate finder and plotter.
