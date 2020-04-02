@@ -197,13 +197,7 @@ c = cm.Paired.colors
 
 class X(ControlChart):
     '''
-    Creates an X control chart
-    Plots individual values of the column of the dataframe (y axis) versus
-    the index of the dataframe (x axis)
-
-    import matplotlib.pyplot as plt
-    from datasense import control_charts as cc
-    x = cc.X(df)  # default subgroup size = 2
+    X control chart
     '''
     def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
         super().__init__(data)
@@ -238,6 +232,14 @@ class X(ControlChart):
         return self._df[self._df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+        '''
+        Plots individual values of the column of the dataframe (y axis) versus
+        the index of the dataframe (x axis)
+
+            import matplotlib.pyplot as plt
+            from datasense import control_charts as cc
+            x = cc.X(df)  # default subgroup size = 2
+        '''
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -253,13 +255,7 @@ class X(ControlChart):
 
 class mR(ControlChart):
     '''
-    Creates an mR chart
-    Plots calculated moving ranges (y axis) versus
-    the index of the dataframe (x axis)
-
-    import matplotlib.pyplot as plt
-    from datasense import control_charts as cc
-    mr = cc.mR(df)  # default subgroup size = 2
+    mR chart
     '''
     def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
         super().__init__(data)
@@ -306,7 +302,14 @@ class mR(ControlChart):
         return df[df.columns[0]]
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
-        'Matplotlib control chart plot'
+        '''
+        Plots calculated moving ranges (y axis) versus
+        the index of the dataframe (x axis)
+
+            import matplotlib.pyplot as plt
+            from datasense import control_charts as cc
+            mr = cc.mR(df)  # default subgroup size = 2
+        '''
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -323,13 +326,7 @@ class mR(ControlChart):
 
 class R(ControlChart):
     '''
-    Creates an R chart
-    Plots calculated ranges (y axis) versus
-    the index of the dataframe (x axis)
-
-    import matplotlib.pyplot as plt
-    from datasense import control_charts as cc
-    r = cc.R(df)
+    R chart
     '''
     @cached_property
     def _d2(self) -> float:
@@ -378,6 +375,14 @@ class R(ControlChart):
         )
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+        '''
+        Plots calculated ranges (y axis) versus
+        the index of the dataframe (x axis)
+
+            import matplotlib.pyplot as plt
+            from datasense import control_charts as cc
+            r = cc.R(df)
+        '''
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -396,13 +401,7 @@ class R(ControlChart):
 
 class Xbar(ControlChart):
     '''
-    Creates an Xbar chart
-    Plots calculated averages (y axis) versus
-    the index of the dataframe (x axis)
-
-    import matplotlib.pyplot as plt
-    from datasense import control_charts as cc
-    xbar = cc.Xbar(df)
+    Xbar chart
     '''
     @cached_property
     def _average_range(self) -> float:
@@ -448,7 +447,14 @@ class Xbar(ControlChart):
         return self._df.mean(axis='columns')
 
     def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
-        'average values v. sample'
+        '''
+        Plots calculated averages (y axis) versus
+        the index of the dataframe (x axis)
+
+            import matplotlib.pyplot as plt
+            from datasense import control_charts as cc
+            xbar = cc.Xbar(df)
+        '''
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
