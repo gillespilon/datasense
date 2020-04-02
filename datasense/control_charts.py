@@ -638,4 +638,5 @@ __all__ = (
     'points_two',
     'points_three',
     'points_four',
+    'draw_rules',
 )
