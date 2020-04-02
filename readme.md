@@ -30,6 +30,6 @@ Here are some plots:
 
 ![mR control chart](scripts/x_mr_example_mr.svg)
 
-![Xbar control chart](scripts/x_bar_example_xbar.svg)
+![Xbar control chart](scripts/xbar_r_example_xbar.svg)
 
-![sample data column x9 X bar chart](tests/prerenders/x9-x12-Xbar.png)
+![R control chart](scripts/xbar_r_example_r.svg)
