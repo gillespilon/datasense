@@ -211,18 +211,30 @@ class X(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
+        '''
+        Sigma(X)
+        '''
         return self._average_mr(self.subgroup_size) / self._d2
 
     @cached_property
     def ucl(self) -> float:
+        '''
+        Upper control limit
+        '''
         return self.mean + 3 * self.sigma
 
     @cached_property
     def lcl(self) -> float:
+        '''
+        Lower control limit
+        '''
         return self.mean - 3 * self.sigma
 
     @cached_property
     def mean(self) -> float:
+        '''
+        Average(X)
+        '''
         return self._df.iloc[:, 0].mean()
 
     @cached_property
