@@ -171,8 +171,8 @@ class ControlChart(ABC):
 
         Ex:
 
-            cc = ProcessBehaviourCharts(df)
-            cc.X_chart.sigmas[-3]  # or +2
+            cc = ControlChart(some_data)
+            cc.x - cc.mean * 3 == .X_chart.sigmas[-3]
         '''
         return Sigmas(mean=self.mean, sigma=self.sigma)
 
