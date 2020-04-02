@@ -678,8 +678,6 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     )
 
 
-
-
 __all__ = (
     'ControlChart',
     'X',
