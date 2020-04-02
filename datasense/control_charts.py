@@ -532,6 +532,36 @@ def draw_rule(cc: ControlChart,
 # plain old Python loop.
 # Here's the rolling code until we realised it wouldn't work.
 #    cc.y.loc[(cc.y > cc.sigmas[2]).rolling(2).sum() >= 2]
+
+
+# TODO: Split into separate finder and plotter.
+def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
+    '''
+    Invokes all of the points_* rules to identify out-of-control points
+    '''
+    aboves = defaultdict(str)
+    belows = defaultdict(str)
+    for label, rule in [('1', points_one),
+                        ('2', points_two),
+                        ('3', points_three),
+                        ('4', points_four)]:
+        above, below = rule(cc)
+        for x, y in above.items():
+            aboves[(x, y)] += label
+        for x, y in below.items():
+            belows[(x, y)] += label
+
+    y_percent = (cc.y.max() - cc.y.min()) / 100
+
+    for (x, y), rule_names in aboves.items():
+        ax.annotate(rule_names, xy=(x, y), xytext=(x, y + y_percent * 5),
+                    color=c[5])
+
+    for (x, y), rule_names in belows.items():
+        ax.annotate(rule_names, xy=(x, y), xytext=(x, y - y_percent * 5),
+                    color=c[5])
+
+
 T = TypeVar('T')
 
 
@@ -648,32 +678,6 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     )
 
 
-# TODO: Split into separate finder and plotter.
-def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
-    aboves = defaultdict(str)
-    belows = defaultdict(str)
-    for label, rule in [('1', points_one),
-                        ('2', points_two),
-                        ('3', points_three),
-                        ('4', points_four)]:
-        above, below = rule(cc)
-        for x, y in above.items():
-            aboves[(x, y)] += label
-        for x, y in below.items():
-            belows[(x, y)] += label
-
-    y_percent = (cc.y.max() - cc.y.min()) / 100
-
-    for (x, y), rule_names in aboves.items():
-        ax.annotate(rule_names, xy=(x, y), xytext=(x, y + y_percent * 5),
-                    color=c[5])
-
-    for (x, y), rule_names in belows.items():
-        ax.annotate(rule_names, xy=(x, y), xytext=(x, y - y_percent * 5),
-                    color=c[5])
-
-
-# TODO: Merge points that violate many rules
 
 
 __all__ = (
