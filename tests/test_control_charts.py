@@ -373,3 +373,11 @@ def test_R(columns, expected):
     finally:
         plt.clf()
         plt.close('all')
+
+
+def test_nwise():
+    assert list(cc._nwise([1,2,3,4], 0)) == []
+    assert list(cc._nwise([1,2,3,4], 1)) == [(1,), (2,), (3,), (4,)]
+    assert list(cc._nwise([1,2,3,4], 2)) == [(1,2), (2,3), (3,4)]
+    assert list(cc._nwise([1,2,3,4,5], 3)) == [(1,2,3), (2,3,4), (3,4,5)]
+    assert list(cc._nwise([1,2,3,4,5], 5)) == [(1,2,3,4,5)]

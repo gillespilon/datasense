@@ -9,7 +9,7 @@ TODO: Shewhart rule 3
 
 
 from itertools import tee
-from typing import Union, Optional, Tuple
+from typing import Union, Optional, Tuple, Iterable, TypeVar
 from math import sqrt
 from abc import ABC, abstractmethod
 
@@ -486,7 +486,6 @@ def draw_rule(cc: ControlChart,
                     color=c[5])
 
 
-# TODO: General form.
 # We can't use for group in series.rolling(5) because it's not implemened yet,
 # since 2015. We also can't use rolling(3) (on a bool column) .sum() >= 2
 # because we wouldn't know whether to annotate point 2 or 3 in a group. At that
@@ -494,27 +493,15 @@ def draw_rule(cc: ControlChart,
 # plain old Python loop.
 # Here's the rolling code until we realised it wouldn't work.
 #    cc.y.loc[(cc.y > cc.sigmas[2]).rolling(2).sum() >= 2]
-def _threewise(it):
-    a, b, c = tee(it, 3)
-    next(b, None)
-    next(c, None)
-    next(c, None)
-    return zip(a, b, c)
+T = TypeVar('T')
 
 
-def _fivewise(it):
-    a, b, c, d, e = tee(it, 5)
-    next(b, None)
-    next(c, None)
-    next(c, None)
-    next(d, None)
-    next(d, None)
-    next(d, None)
-    next(e, None)
-    next(e, None)
-    next(e, None)
-    next(e, None)
-    return zip(a, b, c, d, e)
+def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
+    its = tee(it, n)
+    for it_i in range(1, n):
+        for tee_times in range(it_i):
+            next(its[it_i], None)
+    return zip(*its)
 
 
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
@@ -538,7 +525,7 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
     above = []
     below = []
-    for group in _threewise(cc.y.items()):
+    for group in _nwise(cc.y.items(), 3):
         above_in_window = [(x, y)
                            for x, y
                            in group
@@ -564,7 +551,7 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     '''
     above = []
     below = []
-    for group in _fivewise(cc.y.items()):
+    for group in _nwise(cc.y.items(), 5):
         above_in_window = [(x, y)
                            for x, y
                            in group
