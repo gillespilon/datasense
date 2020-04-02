@@ -285,15 +285,21 @@ class mR(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        'Sigma(R)'
+        'Sigma(mR)'
         return self._average_mr(self.subgroup_size) * self._d3 / self._d2
 
     @cached_property
     def ucl(self) -> float:
+        '''
+        Upper control limit
+        '''
         return self._average_mr(self.subgroup_size) + 3 * self.sigma
 
     @cached_property
     def lcl(self) -> float:
+        '''
+        Lower control limit
+        '''
         r_chart_lcl = self._average_mr(self.subgroup_size) - 3 * self.sigma
         if r_chart_lcl < 0:
             r_chart_lcl = 0
@@ -301,6 +307,9 @@ class mR(ControlChart):
 
     @cached_property
     def mean(self) -> float:
+        '''
+        Average(mR)
+        '''
         return self._average_mr(self.subgroup_size)
 
     @cached_property
