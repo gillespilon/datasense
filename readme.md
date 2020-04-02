@@ -26,7 +26,7 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 Here are some plots:
 
-![sample data column x9 X chart](tests/prerenders/x9-X.png)
+![X control chart](scripts/x_mr_example_x.svg)
 
 ![sample data column x9 moving range chart](tests/prerenders/x9-mR.png)
 
