@@ -448,11 +448,16 @@ class Xbar(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        'Calculate the average of averages'
+        '''
+        Average(Xbar)
+        '''
         return self._df.mean(axis='columns').mean()
 
     @cached_property
     def ucl(self) -> float:
+        '''
+        Upper control limit
+        '''
         return (
             self.mean
             + 3
@@ -462,6 +467,9 @@ class Xbar(ControlChart):
 
     @cached_property
     def lcl(self) -> float:
+        '''
+        Lower control limit
+        '''
         return (
             self.mean
             - 3
