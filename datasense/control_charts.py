@@ -422,7 +422,22 @@ class Xbar(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            fig = plt.figure(figsize=(8, 6))
             xbar = cc.Xbar(df)
+            ax = xbar.ax(fig)
+            ax.axhline(y=xbar.sigmas[+1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=xbar.sigmas[-1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=xbar.sigmas[+2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=xbar.sigmas[-2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            cc.draw_rules(xbar, ax)
+            ax.set_title(xbar_chart_title, fontweight='bold')
+            ax.set_ylabel(xbar_chart_ylabel)
+            ax.set_xlabel(xbar_chart_xlabel)
+            ax.figure.savefig('<yourfile>_xbar.svg')
         '''
         if fig is None:
             fig = plt.figure()
