@@ -249,6 +249,18 @@ class X(ControlChart):
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
             x = cc.X(df)  # default subgroup size = 2
+            ax.axhline(y=x.sigmas[+1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=x.sigmas[-1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=x.sigmas[+2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=x.sigmas[-2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            c    ax.set_title(x_chart_title, fontweight='bold')
+            ax.set_ylabel(x_chart_ylabel)
+            ax.set_xlabel(x_chart_xlabel)
+            ax.figure.savefig('<yourfile>_x.svg')c.draw_rules(x, ax)
         '''
         if fig is None:
             fig = plt.figure()
