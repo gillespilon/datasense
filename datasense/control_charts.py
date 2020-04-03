@@ -360,6 +360,86 @@ class mR(ControlChart):
         return ax
 
 
+class Xbar(ControlChart):
+    '''
+    Xbar chart
+    '''
+    @cached_property
+    def _average_range(self) -> float:
+        'Calculate the average range'
+        return (
+            self._df.max(axis='columns') -
+            self._df.min(axis='columns')
+        ).mean()
+
+    @cached_property
+    def _subgroup_size(self) -> int:
+        return len(self._df.columns)
+
+    @cached_property
+    def _d2(self) -> float:
+        return CONSTANTS['d2'].loc[len(self._df.columns)]
+
+    @cached_property
+    def mean(self) -> float:
+        '''
+        Average(Xbar)
+        '''
+        return self._df.mean(axis='columns').mean()
+
+    @cached_property
+    def ucl(self) -> float:
+        '''
+        Upper control limit
+        '''
+        return (
+            self.mean
+            + 3
+            * self._average_range
+            / (self._d2 * sqrt(self._subgroup_size))
+        )
+
+    @cached_property
+    def lcl(self) -> float:
+        '''
+        Lower control limit
+        '''
+        return (
+            self.mean
+            - 3
+            * self._average_range
+            / (self._d2 * sqrt(self._subgroup_size))
+        )
+
+    @cached_property
+    def y(self) -> pd.Series:
+        return self._df.mean(axis='columns')
+
+    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+        '''
+        Plots calculated averages (y axis) versus
+        the index of the dataframe (x axis)
+
+            import matplotlib.pyplot as plt
+            from datasense import control_charts as cc
+            xbar = cc.Xbar(df)
+        '''
+        if fig is None:
+            fig = plt.figure()
+        ax = fig.add_subplot(111)
+        _despine(ax)
+        ax.plot(self.y.index, self.y,
+                marker='o', markersize=3, color=c[0])
+        ax.axhline(y=self.mean, color=c[2])
+        ax.axhline(y=self.ucl, color=c[1])
+        ax.axhline(y=self.lcl, color=c[1])
+        return ax
+
+    @cached_property
+    def sigma(self) -> float:
+        return self._average_range / self._d2 / sqrt(self._subgroup_size)
+
+
 class R(ControlChart):
     '''
     R chart
@@ -441,86 +521,6 @@ class R(ControlChart):
     @cached_property
     def sigma(self) -> float:
         return self.mean * self._d3 / self._d2
-
-
-class Xbar(ControlChart):
-    '''
-    Xbar chart
-    '''
-    @cached_property
-    def _average_range(self) -> float:
-        'Calculate the average range'
-        return (
-            self._df.max(axis='columns') -
-            self._df.min(axis='columns')
-        ).mean()
-
-    @cached_property
-    def _subgroup_size(self) -> int:
-        return len(self._df.columns)
-
-    @cached_property
-    def _d2(self) -> float:
-        return CONSTANTS['d2'].loc[len(self._df.columns)]
-
-    @cached_property
-    def mean(self) -> float:
-        '''
-        Average(Xbar)
-        '''
-        return self._df.mean(axis='columns').mean()
-
-    @cached_property
-    def ucl(self) -> float:
-        '''
-        Upper control limit
-        '''
-        return (
-            self.mean
-            + 3
-            * self._average_range
-            / (self._d2 * sqrt(self._subgroup_size))
-        )
-
-    @cached_property
-    def lcl(self) -> float:
-        '''
-        Lower control limit
-        '''
-        return (
-            self.mean
-            - 3
-            * self._average_range
-            / (self._d2 * sqrt(self._subgroup_size))
-        )
-
-    @cached_property
-    def y(self) -> pd.Series:
-        return self._df.mean(axis='columns')
-
-    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
-        '''
-        Plots calculated averages (y axis) versus
-        the index of the dataframe (x axis)
-
-            import matplotlib.pyplot as plt
-            from datasense import control_charts as cc
-            xbar = cc.Xbar(df)
-        '''
-        if fig is None:
-            fig = plt.figure()
-        ax = fig.add_subplot(111)
-        _despine(ax)
-        ax.plot(self.y.index, self.y,
-                marker='o', markersize=3, color=c[0])
-        ax.axhline(y=self.mean, color=c[2])
-        ax.axhline(y=self.ucl, color=c[1])
-        ax.axhline(y=self.lcl, color=c[1])
-        return ax
-
-    @cached_property
-    def sigma(self) -> float:
-        return self._average_range / self._d2 / sqrt(self._subgroup_size)
 
 
 def draw_rule(cc: ControlChart,
