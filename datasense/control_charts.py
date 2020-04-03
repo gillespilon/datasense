@@ -340,6 +340,11 @@ class mR(ControlChart):
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
             mr = cc.mR(df)  # default subgroup size = 2
+            cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
+            ax.set_title(mr_chart_title, fontweight='bold')
+            ax.set_ylabel(mr_chart_ylabel)
+            ax.set_xlabel(mr_chart_xlabel)
+            ax.figure.savefig('<yourfile>_mr.svg')
         '''
         if fig is None:
             fig = plt.figure()
