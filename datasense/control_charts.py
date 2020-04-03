@@ -520,7 +520,22 @@ class R(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            fig = plt.figure(figsize=(8, 6))
             r = cc.R(df)
+            ax = r.ax(fig)
+            ax.axhline(y=r.sigmas[+1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=r.sigmas[-1], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=r.sigmas[+2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(y=r.sigmas[-2], linestyle='--', dashes=(5, 5),
+                       c=cm.Paired.colors[0], alpha=0.5)
+            cc.draw_rule(r, ax, *cc.points_one(r), '1')
+            ax.set_title(r_chart_title, fontweight='bold')
+            ax.set_ylabel(r_chart_ylabel)
+            ax.set_xlabel(r_chart_xlabel)
+            ax.figure.savefig('<yourfile>_r.svg')
         '''
         if fig is None:
             fig = plt.figure()
