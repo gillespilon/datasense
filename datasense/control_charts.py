@@ -641,6 +641,9 @@ T = TypeVar('T')
 
 
 def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
+    '''
+    Creates iterable m of n for points rules
+    '''
     its = tee(it, n)
     for it_i in range(1, n):
         for tee_times in range(it_i):
