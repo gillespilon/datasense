@@ -125,26 +125,34 @@ class ControlChart(ABC):
     @cached_property
     @abstractmethod
     def ucl(self) -> float:  # pragma: no cover
-        'Calculate the upper control limit'
+        '''
+        Calculate the upper control limit
+        '''
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def lcl(self) -> float:  # pragma: no cover
-        'Calculate the lower control limit'
+        '''
+        Calculate the lower control limit
+        '''
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def sigma(self) -> float:  # pragma: no cover
-        'Calculate the standard deviation appropriate to method used'
-        raise NotImplementedError()
+        '''
+        Calculate the standard deviation appropriate to method used
+        '''
+       raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def mean(self) -> float:  # pragma: no cover
-        'Calculate the average'
-        raise NotImplementedError()
+        '''
+        Calculate the average
+        '''
+       raise NotImplementedError()
 
     @cached_property
     @abstractmethod
@@ -176,8 +184,10 @@ class ControlChart(ABC):
 
     # TODO: cache
     def _average_mr(self, subgroup_size: Optional[int] = 2) -> float:
-        'Calculate the average moving range'
-        if subgroup_size is None:
+        '''
+        Calculate the average moving range
+        '''
+       if subgroup_size is None:
             subgroup_size = 2
         assert subgroup_size >= 2
         _ = self._df.iloc[:, 0]
@@ -366,8 +376,10 @@ class Xbar(ControlChart):
     '''
     @cached_property
     def _average_range(self) -> float:
-        'Calculate the average range'
-        return (
+        '''
+        Calculate the average range
+        '''
+       return (
             self._df.max(axis='columns') -
             self._df.min(axis='columns')
         ).mean()
