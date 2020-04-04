@@ -225,6 +225,8 @@ class X(ControlChart):
     def sigma(self) -> float:
         '''
         Sigma(X)
+
+        Standard deviation using rational subgroup estimator
         '''
         return self._average_mr(self.subgroup_size) / self._d2
 
@@ -309,7 +311,11 @@ class mR(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        'Sigma(mR)'
+        '''
+        Sigma(mR)
+
+        Standard deviation using rational subgroup estimator
+        '''
         return self._average_mr(self.subgroup_size) * self._d3 / self._d2
 
     @cached_property
@@ -464,6 +470,11 @@ class Xbar(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
+        '''
+        Sigma(Xbar)
+
+        Standard deviation using rational subgroup estimator
+        '''
         return self._average_range / self._d2 / sqrt(self._subgroup_size)
 
 
@@ -562,6 +573,11 @@ class R(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
+        '''
+        Sigma(R)
+
+        Standard deviation using rational subgroup estimator
+        '''
         return self.mean * self._d3 / self._d2
 
 
