@@ -144,7 +144,7 @@ class ControlChart(ABC):
         '''
         Calculate the standard deviation appropriate to method used
         '''
-       raise NotImplementedError()
+        raise NotImplementedError()
 
     @cached_property
     @abstractmethod
@@ -152,12 +152,14 @@ class ControlChart(ABC):
         '''
         Calculate the average
         '''
-       raise NotImplementedError()
+        raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def y(self) -> pd.Series:  # pragma: no cover
-        'The y coordinates of the points on a plot of this chart'
+        '''
+        The y coordinates of the points on a plot of this chart
+        '''
         raise NotImplementedError()
 
     @abstractmethod
@@ -187,7 +189,7 @@ class ControlChart(ABC):
         '''
         Calculate the average moving range
         '''
-       if subgroup_size is None:
+        if subgroup_size is None:
             subgroup_size = 2
         assert subgroup_size >= 2
         _ = self._df.iloc[:, 0]
@@ -376,10 +378,8 @@ class Xbar(ControlChart):
     '''
     @cached_property
     def _average_range(self) -> float:
-        '''
-        Calculate the average range
-        '''
-       return (
+        'Calculate the average range'
+        return (
             self._df.max(axis='columns') -
             self._df.min(axis='columns')
         ).mean()
