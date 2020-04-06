@@ -174,7 +174,14 @@ def r_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(r_chart_ylabel)
     ax.set_xlabel(r_chart_xlabel)
     ax.figure.savefig(f'{data_file}_r.svg')
-
+    print(
+        f'R Report\n'
+        f'============\n'
+        f'UCL        : {r.ucl}\n'
+        f'Rbar       : {r.mean}\n'
+        f'LCL        : {r.lcl}\n'
+        f'Sigma(Xbar): {r.sigma}\n'
+    )
 
 if __name__ == '__main__':
     main()
