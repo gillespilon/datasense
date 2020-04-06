@@ -141,6 +141,14 @@ def xbar_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(xbar_chart_ylabel)
     ax.set_xlabel(xbar_chart_xlabel)
     ax.figure.savefig(f'{data_file}_xbar.svg')
+    print(
+        f'Xbar Report\n'
+        f'============\n'
+        f'UCL        : {xbar.ucl}\n'
+        f'Xbarbar    : {xbar.mean}\n'
+        f'LCL        : {xbar.lcl}\n'
+        f'Sigma(Xbar): {xbar.sigma}\n'
+    )
 
 
 def r_chart(df: pd.DataFrame) -> None:
