@@ -109,6 +109,14 @@ def x_chart(df: pd.DataFrame) -> None:
     ax.set_title(x_chart_title, fontweight='bold')
     ax.set_ylabel(x_chart_ylabel)
     ax.set_xlabel(x_chart_xlabel)
+    print(
+       f'X Report\n'
+       f'============\n'
+       f'UCL        : {x.ucl}\n'
+       f'Xbarbar    : {x.mean}\n'
+       f'LCL        : {x.lcl}\n'
+       f'Sigma(Xbar): {x.sigma}\n'
+    )
     ax.figure.savefig(f'{data_file}_x.svg')
 
 
