@@ -388,6 +388,14 @@ def test_Xbar_many():
     assert xbar.sigma == approx(0.522966887)
 
 
+def test_R_many():
+    r = cc.R(df_many)
+    assert r.ucl == approx(5.75141)
+    assert r.mean == approx(2.72)
+    assert r.lcl == approx(0)
+    assert r.sigma == approx(1.010469475)
+
+
 def test_nwise():
     assert list(cc._nwise([1, 2, 3, 4], 0)) == []
     assert list(cc._nwise([1, 2, 3, 4], 1)) == [(1,), (2,), (3,), (4,)]
