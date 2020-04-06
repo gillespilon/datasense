@@ -375,12 +375,26 @@ def test_R(columns, expected):
         plt.close('all')
 
 
+df_many = pd.read_csv(Path(__file__)
+                      .with_name('camshaft_length_machine_1.csv'),
+                      index_col='Sample')
+
+
+def test_Xbar_many():
+    xbar = cc.Xbar(df_many)
+    assert xbar.ucl == approx(601.641)
+    assert xbar.mean == approx(600.072)
+    assert xbar.lcl == approx(598.503)
+    assert xbar.sigma == approx(0.522966887)
+
+
 def test_nwise():
-    assert list(cc._nwise([1,2,3,4], 0)) == []
-    assert list(cc._nwise([1,2,3,4], 1)) == [(1,), (2,), (3,), (4,)]
-    assert list(cc._nwise([1,2,3,4], 2)) == [(1,2), (2,3), (3,4)]
-    assert list(cc._nwise([1,2,3,4,5], 3)) == [(1,2,3), (2,3,4), (3,4,5)]
-    assert list(cc._nwise([1,2,3,4,5], 5)) == [(1,2,3,4,5)]
+    assert list(cc._nwise([1, 2, 3, 4], 0)) == []
+    assert list(cc._nwise([1, 2, 3, 4], 1)) == [(1,), (2,), (3,), (4,)]
+    assert list(cc._nwise([1, 2, 3, 4], 2)) == [(1, 2), (2, 3), (3, 4)]
+    assert list(cc._nwise([1, 2, 3, 4, 5], 3)) == [(1, 2, 3), (2, 3, 4),
+                                                   (3, 4, 5)]
+    assert list(cc._nwise([1, 2, 3, 4, 5], 5)) == [(1, 2, 3, 4, 5)]
 
 
 def test_draw_rules():
