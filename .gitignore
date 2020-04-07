@@ -4,3 +4,13 @@
 __pycache__
 .ipynb_checkpoints
 htmlcov
+*csv
+*txt
+*docx
+*ods
+*xlsx
+*MPJ
+*odt
+*rtf
+*svg
+*zip
