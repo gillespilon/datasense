@@ -376,7 +376,7 @@ def test_R(columns, expected):
 
 
 df_many = pd.read_csv(Path(__file__)
-                      .with_name('camshaft_length_machine_1.csv'),
+                      .with_name('test_data_01.csv'),
                       index_col='Sample')
 
 
