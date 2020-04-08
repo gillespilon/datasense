@@ -24,11 +24,13 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
-Here are some plots:
+These are the X and mR plots.
 
 ![X control chart](scripts/x_mr_example_x.svg)
 
 ![mR control chart](scripts/x_mr_example_mr.svg)
+
+These are the Xbar and R plots.
 
 ![Xbar control chart](scripts/xbar_r_example_xbar.svg)
 
