@@ -215,6 +215,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 def read_file(
     filename: str,
     datecolumnsort: str = None,
+    datetimeparser: str = None,
     columnnamessort: str = False
 ) -> pd.DataFrame:
     '''
@@ -225,21 +226,21 @@ def read_file(
         df = pd.read_excel(
             filename,
             engine='odf',
-            parse_dates=datecolumnsort,
-            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+            parse_dates=[datecolumnsort],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
     elif '.csv' in filename:
         df = pd.read_csv(
             filename,
-            parse_dates=datecolumnsort,
-            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+            parse_dates=[datecolumnsort],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
     elif '.xlsx' in filename:
         df = pd.read_excel(
             filename,
             engine='odf',
-            parse_dates=datecolumnsort,
-            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+            parse_dates=[datecolumnsort],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
     if datecolumnsort is not None:
         df = df.sort_values(
@@ -259,5 +260,5 @@ __all__ = (
     'number_empty_cells_in_columns',
     'process_columns',
     'process_rows',
-    'read_file'
+    'read_file',
 )
