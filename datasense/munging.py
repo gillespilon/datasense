@@ -3,6 +3,7 @@ Data munging
 '''
 
 
+from datetime import datetime
 from typing import List, Tuple
 
 
@@ -211,14 +212,44 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     return df, rows_in_count, rows_out_count, rows_empty_count
 
 
-def read_file(readfilename: str) -> pd.DataFrame:
+def read_file(
+    filename: str,
+    datecolumnsort: str = None,
+    columnnamessort: str = False
+) -> pd.DataFrame:
     '''
-    Read csv file into dataframe
-    Sort columns in ascending order of column name
+    Creates a dataframe.
+    Reads an ods, csv, or xlsx file.
     '''
-    df = pd.read_csv(readfilename)
-    column_names_sorted = sorted(df.columns)
-    df = df[column_names_sorted]
+    if '.ods' in filename:
+        df = pd.read_excel(
+            filename,
+            engine='odf',
+            parse_dates=datecolumnsort,
+            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+        )
+    elif '.csv' in filename:
+        df = pd.read_csv(
+            filename,
+            parse_dates=datecolumnsort,
+            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+        )
+    elif '.xlsx' in filename:
+        df = pd.read_excel(
+            filename,
+            engine='odf',
+            parse_dates=datecolumnsort,
+            date_parser=lambda s: datetime.strptime(s, '%d%b%Y:%H:%M:%S'),
+        )
+    if datecolumnsort is not None:
+        df = df.sort_values(
+            by=datecolumnsort,
+            axis='rows',
+            ascending=True
+        )
+    if columnnamessort is True:
+        sortedcolumnnames = sorted(df.columns)
+        df = df[sortedcolumnnames]
     return df
 
 
