@@ -6,6 +6,7 @@ Statistical analysis
 import pandas as pd
 import numpy as np
 from scipy.stats.mstats import mquantiles as mq
+from scipy.interpolate import CubicSpline
 
 
 def nonparametric_summary(
@@ -106,7 +107,23 @@ def parametric_summary(series: pd.Series) -> pd.Series:
     })
 
 
+def cubic_spline(df, columnx, columny) -> CubicSpline:
+    '''
+    Estimates the spline object for columnx, columny of a dataframe
+    Requires that columnx, columny be integer or float
+    Removes rows where there are missing values in columnx and columny
+    Removes duplicate rows
+    Sorts the dataframe by columnx in increasing order
+    '''
+    df = df.dropna(subset=[columny])
+    df = df.sort_values(by=columnx, axis='rows', ascending=True)
+    df = df.drop_duplicates(subset=columnx, keep='first')
+    spline = CubicSpline(df[columnx], df[columny])
+    return spline
+
+
 __all__ = (
     'nonparametric_summary',
     'parametric_summary',
+    'cubic_spline',
 )
