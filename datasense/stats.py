@@ -115,7 +115,7 @@ def cubic_spline(df, columnx, columny) -> CubicSpline:
     Removes duplicate rows
     Sorts the dataframe by columnx in increasing order
     '''
-    df = df.dropna(subset=[columny])
+    df = df.dropna(subset=[columnx, columny])
     df = df.sort_values(by=columnx, axis='rows', ascending=True)
     df = df.drop_duplicates(subset=columnx, keep='first')
     spline = CubicSpline(df[columnx], df[columny])
