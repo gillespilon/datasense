@@ -26,7 +26,7 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 - [XmR control charts](#xmr-control-charts)
 - [XbarR control charts](#xbarr-control-charts)
-- [cubic spline for Y vs X line plot](cubic-spline-for-y-vs-x-line-plot)
+- [cubic spline for Y vs X line plot](#cubic-spline-for-y-vs-x-line-plot)
 
 ## XmR control charts
 
