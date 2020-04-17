@@ -1,5 +1,9 @@
 '''
 Statistical analysis
+
+- Non-parametric statistical summary
+- Parametric statistical summary
+- Cubic spline smoothing for Y vs X, can handle missing values
 '''
 
 
