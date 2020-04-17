@@ -25,7 +25,8 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
 - [XmR control charts](#xmr-control-charts)
-- [XbarR control charts](#xbar-control-charts)
+- [XbarR control charts](#xbarr-control-charts)
+- [cubic spline for Y vs X line plot](cubic-spline-for-y-vs-x-line-plot)
 
 ## XmR control charts
 
@@ -38,3 +39,7 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 ![Xbar control chart](scripts/xbar_r_example_xbar.svg)
 
 ![R control chart](scripts/xbar_r_example_r.svg)
+
+# Cubic spline for Y vs X line plot
+
+![cubic spline for Y vs X line plot](scripts/cubic_spline.svg)
