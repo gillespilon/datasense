@@ -111,7 +111,11 @@ def parametric_summary(series: pd.Series) -> pd.Series:
     })
 
 
-def cubic_spline(df, columnx, columny) -> CubicSpline:
+def cubic_spline(
+    df: pd.DataFrame,
+    columnx: str,
+    columny: str
+) -> CubicSpline:
     '''
     Estimates the spline object for columnx, columny of a dataframe
     Requires that columnx, columny be integer or float
