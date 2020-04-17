@@ -214,37 +214,51 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def read_file(
     filename: str,
-    datecolumnsort: str = None,
+    datecolumn: str = None,
     datetimeparser: str = None,
     columnnamessort: str = False
 ) -> pd.DataFrame:
     '''
-    Creates a dataframe.
-    Reads an ods, csv, or xlsx file.
+    Creates a dataframe
+    Reads an ods, csv, or xlsx file
+    Sorts on datecolumn if datecolumn is True
+    Sorts on columnnames if columnnamessort is True
     '''
-    if '.ods' in filename:
+    if '.ods' in filename and datecolumn and datetimeparser:
         df = pd.read_excel(
             filename,
             engine='odf',
-            parse_dates=[datecolumnsort],
+            parse_dates=[datecolumn],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
-    elif '.csv' in filename:
+    elif '.ods' in filename and not datecolumn and not datetimeparser:
+        df = pd.read_excel(
+            filename,
+            engine='odf',
+        )
+    elif '.csv' in filename and datecolumn and datetimeparser:
         df = pd.read_csv(
             filename,
-            parse_dates=[datecolumnsort],
+            parse_dates=[datecolumn],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
+        )
+    elif '.csv' in filename and not datecolumn and not datetimeparser:
+        df = pd.read_csv(
+            filename,
+        )
+    elif '.xlsx' in filename and datecolumn and datetimeparser:
+        df = pd.read_excel(
+            filename,
+            parse_dates=[datecolumn],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
     elif '.xlsx' in filename:
         df = pd.read_excel(
             filename,
-            engine='odf',
-            parse_dates=[datecolumnsort],
-            date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
-    if datecolumnsort is not None:
+    if datecolumn is not None:
         df = df.sort_values(
-            by=datecolumnsort,
+            by=datecolumn,
             axis='rows',
             ascending=True
         )
