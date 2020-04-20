@@ -15,12 +15,14 @@ To estimate a spline requires that the pandas DataFrame has:
 import numpy as np
 import pandas as pd
 import datasense as ds
+import matplotlib.axes as axes
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
 
 column_x = 'datetime'
 column_y = 'observed'
+column_z = 'predicted'
 c = cm.Paired.colors
 
 
@@ -29,11 +31,15 @@ def main():
     # If column_x is datetime64[ns], convert to numeric
     data[column_x] = pd.to_numeric(data[column_x])
     spline = ds.cubic_spline(data, column_x, column_y)
-    data['predicted'] = spline(data[column_x])
-    plot_graph(data, column_x, column_y, 'predicted')
+    data[column_z] = spline(data[column_x])
+    ax = plot_graph(data, column_x, column_y, column_z)
+    despine(ax)
+    ax.figure.savefig('cubic_spline_numeric.svg', format='svg')
     # Column_x can be converted to datetime64[ns] afterward
     data[column_x] = data[column_x].astype('datetime64[ns]')
-    plot_graph(data, column_x, column_y, 'predicted')
+    ax = plot_graph(data, column_x, column_y, column_z)
+    despine(ax)
+    ax.figure.savefig('cubic_spline_datetime.svg', format='svg')
 
 
 def create_data() -> pd.DataFrame:
@@ -54,17 +60,32 @@ def create_data() -> pd.DataFrame:
     return pd.DataFrame(df).astype({'datetime': 'datetime64[ns]'})
 
 
-def plot_graph(df, colx, coly, colz):
+def plot_graph(
+    df: pd.DataFrame,
+    columnx: str,
+    columny: str,
+    columnz: str
+) -> axes.Axes:
     '''
-    Create a scatter plot of column_x and column_y, and overlay with the
-    predicted y from the spline.
+    Create a scatter plot of column_x and column_y, and overlay with
+    the predicted y from the spline.
     '''
     figure_width_height = (8, 6)
     fig = plt.figure(figsize=figure_width_height)
     ax = fig.add_subplot(111)
-    ax.plot(df[colx], df[coly], marker='.', linestyle=None, color=c[1])
-    ax.plot(df[colx], df[colz], marker=None, linestyle='-', color=c[5])
-    ax.figure.savefig('cubic_spline.svg', format='svg')
+    ax.plot(df[columnx], df[columny], marker='.', linestyle='', color=c[1])
+    ax.plot(df[columnx], df[columnz], marker=None, linestyle='-', color=c[5])
+    return ax
+
+
+def despine(ax: axes.Axes) -> None:
+    '''
+    Remove the top and right spines of a graph.
+
+    There is only one x axis, on the bottom, and one y axis, on the left.
+    '''
+    for spine in 'right', 'top':
+        ax.spines[spine].set_visible(False)
 
 
 if __name__ == '__main__':
