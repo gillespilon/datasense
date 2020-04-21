@@ -214,51 +214,51 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def read_file(
     filename: str,
-    datecolumn: str = None,
+    abscissa: str = None,
     datetimeparser: str = None,
     columnnamessort: str = False
 ) -> pd.DataFrame:
     '''
     Creates a dataframe
     Reads an ods, csv, or xlsx file
-    Sorts on datecolumn if datecolumn is True
+    Sorts on abscissa if datetimeparser is True
     Sorts on columnnames if columnnamessort is True
     '''
-    if '.ods' in filename and datecolumn and datetimeparser:
+    if '.ods' in filename and abscissa and datetimeparser:
         df = pd.read_excel(
             filename,
             engine='odf',
-            parse_dates=[datecolumn],
+            parse_dates=[abscissa],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
-    elif '.ods' in filename and not datecolumn and not datetimeparser:
+    elif '.ods' in filename and not abscissa and not datetimeparser:
         df = pd.read_excel(
             filename,
             engine='odf',
         )
-    elif '.csv' in filename and datecolumn and datetimeparser:
+    elif '.csv' in filename and abscissa and datetimeparser:
         df = pd.read_csv(
             filename,
-            parse_dates=[datecolumn],
+            parse_dates=[abscissa],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
-    elif '.csv' in filename and not datecolumn and not datetimeparser:
+    elif '.csv' in filename and not datetimeparser:
         df = pd.read_csv(
             filename,
         )
-    elif '.xlsx' in filename and datecolumn and datetimeparser:
+    elif '.xlsx' in filename and abscissa and datetimeparser:
         df = pd.read_excel(
             filename,
-            parse_dates=[datecolumn],
+            parse_dates=[abscissa],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
-    elif '.xlsx' in filename:
+    elif '.xlsx' in filename and not datetimeparser:
         df = pd.read_excel(
             filename,
         )
-    if datecolumn is not None:
+    if datetimeparser is not None:
         df = df.sort_values(
-            by=datecolumn,
+            by=abscissa,
             axis='rows',
             ascending=True
         )
