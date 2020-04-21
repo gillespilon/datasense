@@ -113,20 +113,20 @@ def parametric_summary(series: pd.Series) -> pd.Series:
 
 def cubic_spline(
     df: pd.DataFrame,
-    columnx: str,
-    columny: str
+    abscissa: str,
+    ordinate: str
 ) -> CubicSpline:
     '''
-    Estimates the spline object for columnx, columny of a dataframe
-    Requires that columnx, columny be integer or float
-    Removes rows where there are missing values in columnx and columny
+    Estimates the spline object for abscissa, ordinate of a dataframe
+    Requires that abscissa, ordinate be integer or float
+    Removes rows where there are missing values in abscissa and ordinate
     Removes duplicate rows
-    Sorts the dataframe by columnx in increasing order
+    Sorts the dataframe by abscissa in increasing order
     '''
-    df = df.dropna(subset=[columnx, columny])
-    df = df.sort_values(by=columnx, axis='rows', ascending=True)
-    df = df.drop_duplicates(subset=columnx, keep='first')
-    spline = CubicSpline(df[columnx], df[columny])
+    df = df.dropna(subset=[abscissa, ordinate])
+    df = df.sort_values(by=abscissa, axis='rows', ascending=True)
+    df = df.drop_duplicates(subset=abscissa, keep='first')
+    spline = CubicSpline(df[abscissa], df[ordinate])
     return spline
 
 
