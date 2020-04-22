@@ -10,8 +10,8 @@ This script has several functions:
 - Plot the raw data as a scatter plot
 - Plot the cubic spline as a line plot
 
-time -f '%e' ./cubic_spline.py
-./cubic_spline.py
+time -f '%e' ./cubic_spline_example.py
+./cubic_spline_example.py
 '''
 
 
