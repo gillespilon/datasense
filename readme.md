@@ -45,3 +45,9 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 ![cubic spline for Y vs X line plot](scripts/cubic_spline_datetime_float.svg)
 
 ![cubic spline for Y vs X line plot](scripts/cubic_spline_integer_float.svg)
+
+# Exponentially weighted average for Y vs X line plot
+
+![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_datetime_float.svg)
+
+![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_integer_float.svg)
