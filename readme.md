@@ -42,4 +42,6 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 # Cubic spline for Y vs X line plot
 
-![cubic spline for Y vs X line plot](scripts/cubic_spline_datetime.svg)
+![cubic spline for Y vs X line plot](scripts/cubic_spline_datetime_float.svg)
+
+![cubic spline for Y vs X line plot](scripts/cubic_spline_integer_float.svg)
