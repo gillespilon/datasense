@@ -50,6 +50,36 @@ def plot_line_x_y1_y2(
     return (ax1, ax2)
 
 
+def plot_scatter_line_x_y1_y2(
+    df: pd.DataFrame,
+    X: str,
+    y1: str,
+    y2: str,
+    figuresize: Optional[plt.Figure] = None
+) -> axes.Axes:
+    '''
+    Scatter plot of y1 versus x
+    Line plot of y2 versus x
+    '''
+    if figuresize is None:
+        fig = plt.figure()
+    else:
+        fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if df[X].dtype in ['int64', 'float64']:
+        ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
+        ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
+    elif df[X].dtype in ['datetime64[ns]']:
+        ax.plot(df[X], df[y1], color=c[1])
+        ax.xaxis.set_major_locator(MonthLocator())
+        ax.xaxis.set_minor_locator(NullLocator())
+        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
+        ax.xaxis.set_minor_formatter(NullFormatter())
+        ax.plot(df[X], df[y2], color=c[5])
+    return ax
+
+
 __all__ = (
     'plot_line_x_y1_y2',
+    'plot_scatter_line_x_y1_y2',
 )
