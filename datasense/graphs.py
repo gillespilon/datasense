@@ -7,6 +7,7 @@ from typing import Optional, Tuple
 import matplotlib.axes as axes
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter, MonthLocator
 from matplotlib.ticker import NullFormatter, NullLocator
 import pandas as pd
@@ -70,12 +71,9 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
         ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
     elif df[X].dtype in ['datetime64[ns]']:
-        ax.plot(df[X], df[y1], color=c[1])
-        ax.xaxis.set_major_locator(MonthLocator())
-        ax.xaxis.set_minor_locator(NullLocator())
-        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
-        ax.xaxis.set_minor_formatter(NullFormatter())
-        ax.plot(df[X], df[y2], color=c[5])
+        fig.autofmt_xdate()
+        ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
+        ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
     return ax
 
 
