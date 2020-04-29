@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 '''
-Exponentially weighted average plot
+Exponentially weighted average for an X and Y plot
 
 This script has several functions:
 
