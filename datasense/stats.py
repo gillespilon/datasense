@@ -4,13 +4,18 @@ Statistical analysis
 - Non-parametric statistical summary
 - Parametric statistical summary
 - Cubic spline smoothing for Y vs X, can handle missing values
+- Piecewise natural cubic spline helper
 '''
 
 
 import pandas as pd
 import numpy as np
+from typing import List
+from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.interpolate import CubicSpline
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
 
 
 def nonparametric_summary(
@@ -130,8 +135,45 @@ def cubic_spline(
     return spline
 
 
+def natural_cubic_spline(
+    x: pd.Series,
+    y: pd.Series,
+    minval: int = None,
+    maxval: int = None,
+    numberknots: int = None,
+    listknots: List[int] = None
+) -> Pipeline:
+    '''
+    Piecewise natural cubic spline helper function
+
+    Provide numberknots or listknots
+
+    If numberknots is given, the calculated knots are equally-spaced
+    within minval and maxval. The endpoints are not included as knots.
+
+    minval:       the minimum of the interval containing the knots
+    maxval:       the maximum of the interval containing the knots
+    numberknots:  the number of knots to create.
+    listknots:    the knots
+    model:        the model object
+    '''
+    if listknots:
+        spline = NaturalCubicSpline(knots=listknots)
+    else:
+        spline = NaturalCubicSpline(
+            max=maxval, min=minval, n_knots=numberknots
+        )
+    p = Pipeline([
+        ('natural_cubic_spline', spline),
+        ('linear_regression', LinearRegression(fit_intercept=True))
+    ])
+    p.fit(x, y)
+    return p
+
+
 __all__ = (
     'nonparametric_summary',
     'parametric_summary',
     'cubic_spline',
+    'natural_cubic_spline',
 )

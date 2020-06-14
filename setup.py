@@ -14,6 +14,8 @@ setup(
         'scipy',
         'cached_property',
         'beautifultable',
+        'basis_expansions',
+        'sklearn',
     ],
     author='Gilles Pilon',
     author_email='gillespilon13@gmail.com',
