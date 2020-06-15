@@ -1,0 +1,11 @@
+File names,Targets,Features,Number of knots
+piecewise_natural_cubic_spline_observed.csv,ordinate,abscissa,10
+piecewise_natural_cubic_spline_predicted.csv,,,20
+,,,30
+,,,40
+,,,50
+,,,60
+,,,70
+,,,80
+,,,90
+,,,100
