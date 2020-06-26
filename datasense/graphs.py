@@ -4,17 +4,21 @@ Graphical analysis
 
 
 from typing import Optional, Tuple
+# from matplotlib.ticker import NullFormatter, NullLocator
+# from matplotlib.dates import DateFormatter, MonthLocator
+# import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-from matplotlib.dates import DateFormatter, MonthLocator
-from matplotlib.ticker import NullFormatter, NullLocator
 import pandas as pd
 
 
 c = cm.Paired.colors
 
+
+# TODO
+# def plot_scatter_x_y()
+# def plot_scatter_x_y1_y2()
 
 def plot_line_x_y1_y2(
     df: pd.DataFrame,
