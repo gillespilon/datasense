@@ -29,6 +29,9 @@ def plot_lineleft_lineright_x_y1_y2(
     Line plot of y2 right vertical axis versus X
     Optional smoothing applied to y1, y2
 
+    This graph is useful if y1 and y2 have different units or scales,
+    and you wish to see if they are correlated.
+
     X:  column name for horizontal axis
     y1: column name for y1 to plot using left vertical axis
     y2: column name for y2 to plot using right vertical axis
@@ -60,11 +63,15 @@ def plot_scatter_line_x_y1_y2(
     X: str,
     y1: str,
     y2: str,
-    figuresize: Optional[plt.Figure] = None
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None
 ) -> axes.Axes:
     '''
     Scatter plot of y1 versus X
     Line plot of y2 versus X
+    Optional smoothing applied to y1, y2
+
+    This grpah is useful if y1 and y2 have the same units.
 
     x:  column name for horizontal axis
     y1: column name for y1 to plot on vertical axis
@@ -90,11 +97,15 @@ def plot_scatter_scatter_x_y1_y2(
     X: str,
     y1: str,
     y2: str,
-    figuresize: Optional[plt.Figure] = None
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None
 ) -> axes.Axes:
     '''
     Scatter plot of y1 versus X
     Scatter plot of y2 versus X
+    Optional smoothing applied to y1, y2
+
+    This graph is useful if y1 and y2 have the same units.
 
     x:  column name for horizontal axis
     y1: column name for y1 to plot on vertical axis
@@ -107,11 +118,11 @@ def plot_scatter_scatter_x_y1_y2(
     ax = fig.add_subplot(111)
     if df[X].dtype in ['int64', 'float64']:
         ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
-        ax.plot(df[X], df[y2], marker='.', linestyle='-', color=c[5])
+        ax.plot(df[X], df[y2], marker='.', linestyle='', color=c[5])
     elif df[X].dtype in ['datetime64[ns]']:
         fig.autofmt_xdate()
         ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
-        ax.plot(df[X], df[y2], marker='.', linestyle='-', color=c[5])
+        ax.plot(df[X], df[y2], marker='.', linestyle='', color=c[5])
     return ax
 
 
@@ -119,10 +130,12 @@ def plot_scatter_x_y(
     df: pd.DataFrame,
     X: str,
     y: str,
-    figuresize: Optional[plt.Figure] = None
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None
 ) -> axes.Axes:
     '''
     Scatter plot of y versus X
+    Optional smoothing applied to y
 
     X: column name for horizontal axis
     y: column name for vertical axis
@@ -144,4 +157,5 @@ __all__ = (
     'plot_lineleft_lineright_x_y1_y2',
     'plot_scatter_line_x_y1_y2',
     'plot_scatter_x_y',
+    'plot_scatter_scatter_x_y1_y2',
 )
