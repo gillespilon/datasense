@@ -155,7 +155,7 @@ def natural_cubic_spline(
     maxval:       the maximum of the interval containing the knots
     numberknots:  the number of knots to create.
     listknots:    the knots
-    model:        the model object
+    spline:       the model object
     '''
     if listknots:
         spline = NaturalCubicSpline(knots=listknots)
