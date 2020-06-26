@@ -21,12 +21,13 @@ def plot_line_x_y1_y2(
     X: str,
     y1: str,
     y2: str,
-    figuresize: Optional[plt.Figure] = None
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None
 ) -> Tuple[axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus x
     Line plot of y2 right vertical axis versus x
-    Smoothing applied to y1, y2
+    Optional smoothing applied to y1, y2
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -38,11 +39,8 @@ def plot_line_x_y1_y2(
         ax1.plot(df[X], df[y1], color=c[1])
         ax2.plot(df[X], df[y2], color=c[5])
     elif df[X].dtype in ['datetime64[ns]']:
+        fig.autofmt_xdate()
         ax1.plot(df[X], df[y1], color=c[1])
-        ax1.xaxis.set_major_locator(MonthLocator())
-        ax1.xaxis.set_minor_locator(NullLocator())
-        ax1.xaxis.set_major_formatter(DateFormatter('%Y-%m'))
-        ax1.xaxis.set_minor_formatter(NullFormatter())
         ax2.plot(df[X], df[y2], color=c[5])
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
