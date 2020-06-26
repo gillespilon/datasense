@@ -29,9 +29,13 @@ def plot_line_x_y1_y2(
     smoothing: str = None
 ) -> Tuple[axes.Axes]:
     '''
-    Line plot of y1 left vertical axis versus x
-    Line plot of y2 right vertical axis versus x
+    Line plot of y1 left vertical axis versus X
+    Line plot of y2 right vertical axis versus X
     Optional smoothing applied to y1, y2
+
+    X:  column name for horizontal axis
+    y1: column name for y1 to plot using left vertical axis
+    y2: column name for y2 to plot using right vertical axis
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -61,8 +65,12 @@ def plot_scatter_line_x_y1_y2(
     figuresize: Optional[plt.Figure] = None
 ) -> axes.Axes:
     '''
-    Scatter plot of y1 versus x
-    Line plot of y2 versus x
+    Scatter plot of y1 versus X
+    Line plot of y2 versus X
+
+    x:  column name for horizontal axis
+    y1: column name for y1 to plot on vertical axis
+    y2: column name for y2 to plot on vertical axis
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -79,7 +87,33 @@ def plot_scatter_line_x_y1_y2(
     return ax
 
 
+def plot_scatter_x_y(
+    df: pd.DataFrame,
+    X: str,
+    y: str,
+    figuresize: Optional[plt.Figure] = None
+) -> axes.Axes:
+    '''
+    Scatter plot of y versus X
+
+    X: column name for horizontal axis
+    y: column name for vertical axis
+    '''
+    if figuresize is None:
+        fig = plt.figure()
+    else:
+        fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if df[X].dtype in ['int64', 'float64']:
+        ax.plot(df[X], df[y], marker='.', linestyle='', color=c[1])
+    elif df[X].dtype in ['datetime64[ns]']:
+        fig.autofmt_xdate()
+        ax.plot(df[X], df[y], marker='.', linestyle='', color=c[1])
+    return ax
+
+
 __all__ = (
     'plot_line_x_y1_y2',
     'plot_scatter_line_x_y1_y2',
+    'plot_scatter_x_y',
 )
