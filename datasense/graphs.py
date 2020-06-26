@@ -16,7 +16,7 @@ import pandas as pd
 c = cm.Paired.colors
 
 
-def plot_line_x_y1_y2(
+def plot_lineleft_lineright_x_y1_y2(
     df: pd.DataFrame,
     X: str,
     y1: str,
@@ -141,7 +141,7 @@ def plot_scatter_x_y(
 
 
 __all__ = (
-    'plot_line_x_y1_y2',
+    'plot_lineleft_lineright_x_y1_y2',
     'plot_scatter_line_x_y1_y2',
     'plot_scatter_x_y',
 )
