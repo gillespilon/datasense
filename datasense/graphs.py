@@ -16,10 +16,6 @@ import pandas as pd
 c = cm.Paired.colors
 
 
-# TODO
-# def plot_scatter_x_y()
-# def plot_scatter_x_y1_y2()
-
 def plot_line_x_y1_y2(
     df: pd.DataFrame,
     X: str,
@@ -36,6 +32,8 @@ def plot_line_x_y1_y2(
     X:  column name for horizontal axis
     y1: column name for y1 to plot using left vertical axis
     y2: column name for y2 to plot using right vertical axis
+
+    If smoothing is applied, the column must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -84,6 +82,36 @@ def plot_scatter_line_x_y1_y2(
         fig.autofmt_xdate()
         ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
         ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
+    return ax
+
+
+def plot_scatter_scatter_x_y1_y2(
+    df: pd.DataFrame,
+    X: str,
+    y1: str,
+    y2: str,
+    figuresize: Optional[plt.Figure] = None
+) -> axes.Axes:
+    '''
+    Scatter plot of y1 versus X
+    Scatter plot of y2 versus X
+
+    x:  column name for horizontal axis
+    y1: column name for y1 to plot on vertical axis
+    y2: column name for y2 to plot on vertical axis
+    '''
+    if figuresize is None:
+        fig = plt.figure()
+    else:
+        fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if df[X].dtype in ['int64', 'float64']:
+        ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
+        ax.plot(df[X], df[y2], marker='.', linestyle='-', color=c[5])
+    elif df[X].dtype in ['datetime64[ns]']:
+        fig.autofmt_xdate()
+        ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
+        ax.plot(df[X], df[y2], marker='.', linestyle='-', color=c[5])
     return ax
 
 
