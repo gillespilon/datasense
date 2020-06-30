@@ -30,9 +30,9 @@ def plot_line_line_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    x:  column name for horizontal axis
-    y1: column name for y1 to plot on vertical axis
-    y2: column name for y2 to plot on vertical axis
+    X:  series for horizontal axis
+    y1: series for y1 to plot on vertical axis
+    y2: series for y2 to plot on vertical axis
     '''
     if figuresize is None:
         fig = plt.figure()
