@@ -4,9 +4,8 @@ Graphical analysis
 
 
 from typing import Optional, Tuple
-# from matplotlib.ticker import NullFormatter, NullLocator
-# from matplotlib.dates import DateFormatter, MonthLocator
-# import matplotlib.dates as mdates
+
+from datasense import natural_cubic_spline
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import matplotlib.cm as cm
@@ -21,7 +20,8 @@ def plot_line_line_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None
+    smoothing: str = None,
+    numknots: int = None
 ) -> axes.Axes:
     '''
     Line plot of y1 versus X
@@ -98,7 +98,7 @@ def plot_scatter_line_x_y1_y2(
     Line plot of y2 versus X
     Optional smoothing applied to y1, y2
 
-    This grpah is useful if y1 and y2 have the same units.
+    This graph is useful if y1 and y2 have the same units.
 
     x:  series for horizontal axis
     y1: series for y1 to plot on vertical axis
@@ -154,7 +154,8 @@ def plot_scatter_x_y(
     X: pd.Series,
     y: pd.Series,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None
+    smoothing: str = None,
+    numknots: int = None
 ) -> axes.Axes:
     '''
     Scatter plot of y versus X
@@ -170,9 +171,19 @@ def plot_scatter_x_y(
     else:
         fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
-    if X.dtype in ['datetime64[ns]']:
-        fig.autofmt_xdate()
-    ax.plot(X, y, marker='.', linestyle='', color=c[1])
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            fig.autofmt_xdate()
+        ax.plot(X, y, marker='.', linestyle='', color=c[1])
+    else:
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model = natural_cubic_spline(XX, y, numknots)
+        ax.plot(X, model.predict(XX), marker='', color=c[1])
+        # ax.plot(X, y, linestyle='', marker='.', color=c[1], alpha=0.20)
     return ax
 
 
@@ -215,10 +226,11 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
 
 __all__ = (
-    'plot_line_line_x_y1_y2',
-    'plot_lineleft_lineright_x_y1_y2',
-    'plot_scatter_line_x_y1_y2',
     'plot_scatter_x_y',
+    'plot_line_x_y',
     'plot_scatter_scatter_x_y1_y2',
+    'plot_scatter_line_x_y1_y2',
+    'plot_line_line_x_y1_y2',
     'plot_scatterleft_scatterright_x_y1_y2',
+    'plot_lineleft_lineright_x_y1_y2',
 )
