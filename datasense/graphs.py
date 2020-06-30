@@ -87,10 +87,9 @@ def plot_lineleft_lineright_x_y1_y2(
 
 
 def plot_scatter_line_x_y1_y2(
-    df: pd.DataFrame,
-    X: str,
-    y1: str,
-    y2: str,
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None
 ) -> axes.Axes:
@@ -101,9 +100,9 @@ def plot_scatter_line_x_y1_y2(
 
     This grpah is useful if y1 and y2 have the same units.
 
-    x:  column name for horizontal axis
-    y1: column name for y1 to plot on vertical axis
-    y2: column name for y2 to plot on vertical axis
+    x:  series for horizontal axis
+    y1: series for y1 to plot on vertical axis
+    y2: series for y2 to plot on vertical axis
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
@@ -112,10 +111,10 @@ def plot_scatter_line_x_y1_y2(
     else:
         fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
-    if df[X].dtype in ['datetime64[ns]']:
+    if X.dtype in ['datetime64[ns]']:
         fig.autofmt_xdate()
-    ax.plot(df[X], df[y1], marker='.', linestyle='', color=c[1])
-    ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
+    ax.plot(X, y1, marker='.', linestyle='', color=c[1])
+    ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
     return ax
 
 
