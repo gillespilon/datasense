@@ -187,6 +187,43 @@ def plot_scatter_x_y(
     return ax
 
 
+def plot_line_x_y(
+    X: pd.Series,
+    y: pd.Series,
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None,
+    numknots: int = None
+) -> axes.Axes:
+    '''
+    Scatter plot of y versus X
+    Optional smoothing applied to y
+
+    X: series for horizontal axis
+    y: series for vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
+    '''
+    if figuresize is None:
+        fig = plt.figure()
+    else:
+        fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            fig.autofmt_xdate()
+        ax.plot(X, y, marker='', color=c[1])
+    else:
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model = natural_cubic_spline(XX, y, numknots)
+        ax.plot(X, model.predict(XX), marker='', color=c[1])
+        # ax.plot(X, y, linestyle='', marker='.', color=c[1], alpha=0.20)
+    return ax
+
+
 def plot_scatterleft_scatterright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
