@@ -17,10 +17,9 @@ c = cm.Paired.colors
 
 
 def plot_line_line_x_y1_y2(
-    df: pd.DataFrame,
-    X: str,
-    y1: str,
-    y2: str,
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None
 ) -> axes.Axes:
@@ -40,10 +39,10 @@ def plot_line_line_x_y1_y2(
     else:
         fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
-    if df[X].dtype in ['datetime64[ns]']:
+    if X.dtype in ['datetime64[ns]']:
         fig.autofmt_xdate()
-    ax.plot(df[X], df[y1], marker=None, linestyle='-', color=c[1])
-    ax.plot(df[X], df[y2], marker=None, linestyle='-', color=c[5])
+    ax.plot(X, y1, marker=None, linestyle='-', color=c[1])
+    ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
     return ax
 
 
