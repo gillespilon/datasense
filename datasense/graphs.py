@@ -33,6 +33,8 @@ def plot_line_line_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -47,10 +49,9 @@ def plot_line_line_x_y1_y2(
 
 
 def plot_lineleft_lineright_x_y1_y2(
-    df: pd.DataFrame,
-    X: str,
-    y1: str,
-    y2: str,
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None
 ) -> Tuple[axes.Axes]:
@@ -62,11 +63,11 @@ def plot_lineleft_lineright_x_y1_y2(
     This graph is useful if y1 and y2 have different units or scales,
     and you wish to see if they are correlated.
 
-    X:  column name for horizontal axis
-    y1: column name for y1 to plot using left vertical axis
-    y2: column name for y2 to plot using right vertical axis
+    x:  series for horizontal axis
+    y1: series for y1 to plot using left vertical axis
+    y2: series for y2 to plot using right vertical axis
 
-    If smoothing is applied, the column must not contain NaN, inf, or -inf
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -74,10 +75,10 @@ def plot_lineleft_lineright_x_y1_y2(
         fig = plt.figure(figsize=figuresize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
-    if df[X].dtype in ['datetime64[ns]']:
+    if X.dtype in ['datetime64[ns]']:
         fig.autofmt_xdate()
-    ax1.plot(df[X], df[y1], color=c[1])
-    ax2.plot(df[X], df[y2], color=c[5])
+    ax1.plot(X, y1, color=c[1])
+    ax2.plot(X, y2, color=c[5])
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
@@ -103,6 +104,8 @@ def plot_scatter_line_x_y1_y2(
     x:  column name for horizontal axis
     y1: column name for y1 to plot on vertical axis
     y2: column name for y2 to plot on vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -134,6 +137,8 @@ def plot_scatter_scatter_x_y1_y2(
     x:  column name for horizontal axis
     y1: column name for y1 to plot on vertical axis
     y2: column name for y2 to plot on vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -160,6 +165,8 @@ def plot_scatter_x_y(
 
     X: column name for horizontal axis
     y: column name for vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
@@ -192,7 +199,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     y1: column name for y1 to plot using left vertical axis
     y2: column name for y2 to plot using right vertical axis
 
-    If smoothing is applied, the column must not contain NaN, inf, or -inf
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
     '''
     if figuresize is None:
         fig = plt.figure()
