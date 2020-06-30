@@ -152,9 +152,8 @@ def plot_scatter_scatter_x_y1_y2(
 
 
 def plot_scatter_x_y(
-    df: pd.DataFrame,
-    X: str,
-    y: str,
+    X: pd.Series,
+    y: pd.Series,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None
 ) -> axes.Axes:
@@ -172,9 +171,9 @@ def plot_scatter_x_y(
     else:
         fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
-    if df[X].dtype in ['datetime64[ns]']:
+    if X.dtype in ['datetime64[ns]']:
         fig.autofmt_xdate()
-    ax.plot(df[X], df[y], marker='.', linestyle='', color=c[1])
+    ax.plot(X, y, marker='.', linestyle='', color=c[1])
     return ax
 
 
