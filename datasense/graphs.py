@@ -81,6 +81,47 @@ def plot_line_x_y(
     return ax
 
 
+def plot_scatter_scatter_x_y1_y2(
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None,
+    numknots: int = None
+) -> axes.Axes:
+    '''
+    Scatter plot of y1 versus X
+    Scatter plot of y2 versus X
+    Optional smoothing applied to y1, y2
+
+    This graph is useful if y1 and y2 have the same units.
+
+    x:  series for horizontal axis
+    y1: series for y1 to plot on vertical axis
+    y2: series for y2 to plot on vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf
+    '''
+    fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            fig.autofmt_xdate()
+        ax.plot(X, y1, marker='.', linestyle='', color=c[1])
+        ax.plot(X, y2, marker='.', linestyle='', color=c[5])
+    elif smoothing == 'natural_cubic_spline':
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model1 = natural_cubic_spline(XX, y1, numknots)
+        model2 = natural_cubic_spline(XX, y2, numknots)
+        ax.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
+        ax.plot(X, model2.predict(XX), marker='.', linestyle='', color=c[5])
+    return ax
+
+
 def plot_line_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
@@ -172,35 +213,6 @@ def plot_scatter_line_x_y1_y2(
         fig.autofmt_xdate()
     ax.plot(X, y1, marker='.', linestyle='', color=c[1])
     ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
-    return ax
-
-
-def plot_scatter_scatter_x_y1_y2(
-    X: pd.Series,
-    y1: pd.Series,
-    y2: pd.Series,
-    figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None
-) -> axes.Axes:
-    '''
-    Scatter plot of y1 versus X
-    Scatter plot of y2 versus X
-    Optional smoothing applied to y1, y2
-
-    This graph is useful if y1 and y2 have the same units.
-
-    x:  series for horizontal axis
-    y1: series for y1 to plot on vertical axis
-    y2: series for y2 to plot on vertical axis
-
-    If smoothing is applied, the series must not contain NaN, inf, or -inf
-    '''
-    fig = plt.figure(figsize=figuresize)
-    ax = fig.add_subplot(111)
-    if X.dtype in ['datetime64[ns]']:
-        fig.autofmt_xdate()
-    ax.plot(X, y1, marker='.', linestyle='', color=c[1])
-    ax.plot(X, y2, marker='.', linestyle='', color=c[5])
     return ax
 
 
