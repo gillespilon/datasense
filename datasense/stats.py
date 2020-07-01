@@ -136,10 +136,8 @@ def cubic_spline(
 
 
 def natural_cubic_spline(
-    x: pd.Series,
+    X: pd.Series,
     y: pd.Series,
-    minval: int = None,
-    maxval: int = None,
     numberknots: int = None,
     listknots: List[int] = None
 ) -> Pipeline:
@@ -151,8 +149,8 @@ def natural_cubic_spline(
     If numberknots is given, the calculated knots are equally-spaced
     within minval and maxval. The endpoints are not included as knots.
 
-    minval:       the minimum of the interval containing the knots
-    maxval:       the maximum of the interval containing the knots
+    min:          the minimum of the interval containing the knots
+    max:          the maximum of the interval containing the knots
     numberknots:  the number of knots to create.
     listknots:    the knots
     spline:       the model object
@@ -161,13 +159,13 @@ def natural_cubic_spline(
         spline = NaturalCubicSpline(knots=listknots)
     else:
         spline = NaturalCubicSpline(
-            max=maxval, min=minval, n_knots=numberknots
+            max=max(X), min=min(X), n_knots=numberknots
         )
     p = Pipeline([
         ('natural_cubic_spline', spline),
         ('linear_regression', LinearRegression(fit_intercept=True))
     ])
-    p.fit(x, y)
+    p.fit(X, y)
     return p
 
 
