@@ -37,7 +37,7 @@ def plot_scatter_x_y(
         if X.dtype in ['datetime64[ns]']:
             fig.autofmt_xdate()
         ax.plot(X, y, marker='.', linestyle='', color=c[1])
-    else:
+    elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
@@ -70,7 +70,7 @@ def plot_line_x_y(
         if X.dtype in ['datetime64[ns]']:
             fig.autofmt_xdate()
         ax.plot(X, y, marker='', color=c[1])
-    else:
+    elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
