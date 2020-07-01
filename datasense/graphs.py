@@ -229,10 +229,21 @@ def plot_scatterleft_scatterright_x_y1_y2(
     fig = plt.figure(figsize=figuresize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
-    if X.dtype in ['datetime64[ns]']:
-        fig.autofmt_xdate()
-    ax1.plot(X, y1, marker='.', linestyle='', color=c[1])
-    ax2.plot(X, y2, marker='.', linestyle='', color=c[5])
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            fig.autofmt_xdate()
+        ax1.plot(X, y1, marker='.', linestyle='', color=c[1])
+        ax2.plot(X, y2, marker='.', linestyle='', color=c[5])
+    elif smoothing == 'natural_cubic_spline':
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model1 = natural_cubic_spline(XX, y1, numknots)
+        model2 = natural_cubic_spline(XX, y2, numknots)
+        ax1.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
+        ax2.plot(X, model2.predict(XX), marker='.', linestyle='', color=c[5])
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
