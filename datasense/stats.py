@@ -74,6 +74,7 @@ def nonparametric_summary(
     outliers_outer = [x for x in series if x < lof or x > uof]
     minval = series.min()
     maxval = series.max()
+    count = series.count()
     return pd.Series({
         'lower outer fence': lof[0],
         'lower inner fence': lif[0],
@@ -86,7 +87,8 @@ def nonparametric_summary(
         'inner outliers': inner_outliers,
         'outer outliers': outliers_outer,
         'minimum value': minval,
-        'maximum value': maxval
+        'maximum value': maxval,
+        'count': count
     })
 
 
