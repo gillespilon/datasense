@@ -71,8 +71,11 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     for element in new_list:
         print(element)
     print()
-    print(f'List of {columns_datetime_count} datetime columns:\n'
-          f'{columns_datetime_list}')
+    print(f'List of {columns_datetime_count} datetime columns:')
+    string_not_list = ", ".join(columns_datetime_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
     print()
     print(f'List of {columns_object_count} string columns:\n'
           f'{columns_object_list}')
