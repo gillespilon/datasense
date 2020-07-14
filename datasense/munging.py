@@ -65,8 +65,11 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     for element in new_list:
         print(element)
     print()
-    print(f'List of {columns_integer_count} integer columns:\n'
-          f'{columns_integer_list}')
+    print(f'List of {columns_integer_count} integer columns:')
+    string_not_list = ", ".join(columns_integer_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
     print()
     print(f'List of {columns_datetime_count} datetime columns:\n'
           f'{columns_datetime_list}')
