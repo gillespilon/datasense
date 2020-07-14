@@ -3,12 +3,12 @@ Data munging
 '''
 
 
-from datetime import datetime
 from typing import List, Tuple
+from datetime import datetime
+import textwrap
 
-
-import pandas as pd
 from beautifultable import BeautifulTable
+import pandas as pd
 
 
 def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
@@ -41,6 +41,7 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
         columns_datetime_list, columns_datetime_count,\
         columns_object_list, columns_object_count\
         = process_columns(df)
+    wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
     print(f'Dataframe information for: {filein}')
     print()
@@ -52,8 +53,11 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     print(f'Columns not empty : {columns_non_empty_count}')
     print()
     number_empty_cells_in_columns(df)
-    print(f'List of {columns_non_empty_count} non-empty columns:\n'
-          f'{columns_non_empty_list}')
+    print(f'List of {columns_non_empty_count} non-empty columns:')
+    string_not_list = ", ".join(columns_non_empty_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
     print()
     print(f'List of {columns_float_count} float columns:\n'
           f'{columns_float_list}')
