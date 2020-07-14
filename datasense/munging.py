@@ -77,8 +77,11 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     for element in new_list:
         print(element)
     print()
-    print(f'List of {columns_object_count} string columns:\n'
-          f'{columns_object_list}')
+    print(f'List of {columns_object_count} string columns:')
+    string_not_list = ", ".join(columns_object_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
     print()
     print(f'List of {columns_empty_count} empty columns:\n'
           f'{columns_empty_list}')
