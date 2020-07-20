@@ -43,7 +43,7 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
         = process_columns(df)
     wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
-    print(f'Dataframe information for: {filein}')
+    print(f'DataFrame information for: {filein}')
     print()
     print(f'Rows total        : {rows_in_count}')
     print(f'Rows empty        : {rows_empty_count} (deleted)')
