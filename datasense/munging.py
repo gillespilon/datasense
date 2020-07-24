@@ -287,6 +287,35 @@ def read_file(
     return df
 
 
+def html_header(
+    headertitle: str,
+    headerid: str
+) -> None:
+    print('<!DOCTYPE html>')
+    print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
+    print('<head>')
+    print('<meta charset="utf-8"/>')
+    print(
+        '<meta content="width=device-width, initial-scale=1.0, '
+        'user-scalable=yes" name="viewport"/>'
+    )
+    print(f'<title>{headertitle}</title>')
+    print('</head>')
+    print('<body>')
+    print(
+        f'<h1 class="title"'
+        f' id="{headerid}">'
+        f'{headertitle}</h1>'
+    )
+    print('<pre>')
+
+
+def html_footer() -> None:
+    print('</pre>')
+    print('</body>')
+    print('</html>')
+
+
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
@@ -294,4 +323,6 @@ __all__ = (
     'process_columns',
     'process_rows',
     'read_file',
+    'html_header',
+    'html_footer',
 )
