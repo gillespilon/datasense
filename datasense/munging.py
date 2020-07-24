@@ -291,6 +291,9 @@ def html_header(
     headertitle: str,
     headerid: str
 ) -> None:
+    '''
+    Creates an html header
+    '''
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
     print('<head>')
@@ -311,6 +314,9 @@ def html_header(
 
 
 def html_footer() -> None:
+    '''
+    Creates an html footer
+    '''
     print('</pre>')
     print('</body>')
     print('</html>')
