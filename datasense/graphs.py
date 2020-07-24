@@ -43,7 +43,6 @@ def plot_scatter_x_y(
             fig.autofmt_xdate()
         ax.plot(X, y, marker='.', linestyle='', color=c[1])
     elif smoothing == 'natural_cubic_spline':
-        # TODO: need to test with dates
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
@@ -81,7 +80,6 @@ def plot_line_x_y(
             fig.autofmt_xdate()
         ax.plot(X, y, marker='', color=c[1])
     elif smoothing == 'natural_cubic_spline':
-        # TODO: need to test with dates
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
@@ -117,6 +115,10 @@ def plot_scatter_scatter_x_y1_y2(
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax.plot(X, y1, marker='.', linestyle='', color=c[1])
         ax.plot(X, y2, marker='.', linestyle='', color=c[5])
@@ -130,7 +132,7 @@ def plot_scatter_scatter_x_y1_y2(
         model2 = natural_cubic_spline(XX, y2, numknots)
         ax.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
         ax.plot(X, model2.predict(XX), marker='.', linestyle='', color=c[5])
-    return ax
+    return (fig, ax)
 
 
 def plot_scatter_line_x_y1_y2(
@@ -158,6 +160,10 @@ def plot_scatter_line_x_y1_y2(
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax.plot(X, y1, marker='.', linestyle='', color=c[1])
         ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
@@ -171,7 +177,7 @@ def plot_scatter_line_x_y1_y2(
         model2 = natural_cubic_spline(XX, y2, numknots)
         ax.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
         ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[5])
-    return ax
+    return (fig, ax)
 
 
 def plot_line_line_x_y1_y2(
@@ -199,6 +205,10 @@ def plot_line_line_x_y1_y2(
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax.plot(X, y1, marker=None, linestyle='-', color=c[1])
         ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
@@ -212,7 +222,7 @@ def plot_line_line_x_y1_y2(
         model2 = natural_cubic_spline(XX, y2, numknots)
         ax.plot(X, model1.predict(XX), marker=None, linestyle='-', color=c[1])
         ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[5])
-    return ax
+    return (fig, ax)
 
 
 def plot_scatterleft_scatterright_x_y1_y2(
@@ -242,6 +252,10 @@ def plot_scatterleft_scatterright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax1.plot(X, y1, marker='.', linestyle='', color=c[1])
         ax2.plot(X, y2, marker='.', linestyle='', color=c[5])
@@ -289,6 +303,10 @@ def plot_lineleft_lineright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax1.plot(X, y1, color=c[1])
         ax2.plot(X, y2, color=c[5])
