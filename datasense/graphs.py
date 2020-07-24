@@ -22,7 +22,7 @@ def plot_scatter_x_y(
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None,
     numknots: int = None
-) -> axes.Axes:
+) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y versus X
     Optional smoothing applied to y
@@ -36,9 +36,14 @@ def plot_scatter_x_y(
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
+            loc = mdates.AutoDateLocator()
+            fmt = mdates.AutoDateFormatter(loc)
+            ax.xaxis.set_major_locator(loc)
+            ax.xaxis.set_major_formatter(fmt)
             fig.autofmt_xdate()
         ax.plot(X, y, marker='.', linestyle='', color=c[1])
     elif smoothing == 'natural_cubic_spline':
+        # TODO: need to test with dates
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
@@ -46,7 +51,7 @@ def plot_scatter_x_y(
             XX = X
         model = natural_cubic_spline(XX, y, numknots)
         ax.plot(X, model.predict(XX), marker='.', linestyle='', color=c[1])
-    return ax
+    return (fig, ax)
 
 
 def plot_line_x_y(
@@ -76,6 +81,7 @@ def plot_line_x_y(
             fig.autofmt_xdate()
         ax.plot(X, y, marker='', color=c[1])
     elif smoothing == 'natural_cubic_spline':
+        # TODO: need to test with dates
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
