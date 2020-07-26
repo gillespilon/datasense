@@ -233,6 +233,8 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def read_file(
     filename: str,
+    sheetname: str=None,
+    index_col: str = None,
     abscissa: str = None,
     datetimeparser: str = None,
     columnnamessort: str = False
@@ -274,6 +276,12 @@ def read_file(
     elif '.xlsx' in filename and not datetimeparser:
         df = pd.read_excel(
             filename,
+        )
+    elif '.xlsx' in filename and sheetname and index_col:
+        df = pd.read_excel(
+            filename,
+            sheetname=sheetname,
+            index_col=index_col
         )
     if datetimeparser is not None:
         df = df.sort_values(
