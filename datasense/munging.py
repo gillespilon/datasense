@@ -233,7 +233,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def read_file(
     filename: str,
-    sheetname: str=None,
+    sheetname: str = None,
     index_col: str = None,
     abscissa: str = None,
     datetimeparser: str = None,
