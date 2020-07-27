@@ -6,6 +6,7 @@ Statistical and graphical functions for:
 - Analytics
 - Analysing process variation
 - Data science
+- Supervised machine learning
 - Six Sigma methodology
 
 Why this?
