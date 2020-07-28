@@ -231,6 +231,18 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     return df, rows_in_count, rows_out_count, rows_empty_count
 
 
+def save_file(
+    df: pd.DataFrame,
+    filename: str,
+    index: bool
+) -> None:
+    '''
+    Save a dataframe to a csv file.
+    '''
+
+    df.to_csv(filename, index=index)
+
+
 def read_file(
     filename: str,
     sheetname: str = None,
@@ -337,6 +349,7 @@ __all__ = (
     'process_columns',
     'process_rows',
     'read_file',
+    'save_file',
     'html_header',
     'html_footer',
 )
