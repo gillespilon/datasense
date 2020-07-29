@@ -50,7 +50,7 @@ def nonparametric_summary(
     alphap=1, betap=1
 
     R method 8:
-    alphap=0.33, betap=0.33; is the recommended method
+    alphap=0.33, betap=0.33; is the recommended, default method
 
     R method 9:
     alphap=0.375, betap=0.375
@@ -61,6 +61,7 @@ def nonparametric_summary(
     APL method;
     alphap=0.35, betap=0.35
     '''
+
     xm = np.ma.masked_array(series, mask=np.isnan(series))
     q25 = mq(xm, prob=(0.25), alphap=alphap, betap=betap)
     q50 = mq(xm, prob=(0.50), alphap=alphap, betap=betap)
@@ -70,11 +71,6 @@ def nonparametric_summary(
     lif = (q25 - iqr * 1.5)
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
-    inner_outliers = [x for x in series if x < lif or x > uif]
-    outliers_outer = [x for x in series if x < lof or x > uof]
-    minval = series.min()
-    maxval = series.max()
-    count = series.count()
     return pd.Series({
         'lower outer fence': lof[0],
         'lower inner fence': lif[0],
@@ -84,17 +80,17 @@ def nonparametric_summary(
         'upper inner fence': uif[0],
         'upper outer fence': uof[0],
         'interquartile range': iqr[0],
-        'inner outliers': inner_outliers,
-        'outer outliers': outliers_outer,
-        'minimum value': minval,
-        'maximum value': maxval,
-        'count': count
+        'inner outliers':[x for x in series if x < lif or x > uif],
+        'outer outliers':[x for x in series if x < lof or x > uof],
+        'minimum value': series.min(),
+        'maximum value': series.max(),
+        'count': series.count()
     })
 
 
 def parametric_summary(series: pd.Series) -> pd.Series:
     '''
-    Return parametric statistics
+    Return parametric statistics.
 
     Returns
     -------
@@ -108,6 +104,7 @@ def parametric_summary(series: pd.Series) -> pd.Series:
     var            = sample variance
     confidence interval of the sample variance
     '''
+
     return pd.Series({
         'n': series.count(),
         'min': series.min(),
@@ -130,6 +127,7 @@ def cubic_spline(
     Removes duplicate rows
     Sorts the dataframe by abscissa in increasing order
     '''
+
     df = df.dropna(subset=[abscissa, ordinate])
     df = df.sort_values(by=abscissa, axis='rows', ascending=True)
     df = df.drop_duplicates(subset=abscissa, keep='first')
@@ -157,6 +155,7 @@ def natural_cubic_spline(
     listknots:    the knots
     spline:       the model object
     '''
+
     if listknots:
         spline = NaturalCubicSpline(knots=listknots)
     else:
