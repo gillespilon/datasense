@@ -11,8 +11,13 @@ from beautifultable import BeautifulTable
 import pandas as pd
 
 
-def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
+def dataframe_info(
+    df: pd.DataFrame,
+    filein: str
+) -> pd.DataFrame:
     '''
+    Describe a DataFrame.
+
     Display count of rows (rows_in_count)
     Display count of empty rows (rows_empty_count)
     Display count of non-empty rows (rows_out_count)
@@ -34,6 +39,7 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
     Display count and list of empty columns
         (columns_empty_count, columns_empty_list)
     '''
+
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
         columns_empty_list, columns_non_empty_list, columns_float_list,\
@@ -94,8 +100,9 @@ def dataframe_info(df: pd.DataFrame, filein: str) -> pd.DataFrame:
 
 def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     '''
-    Find all integer and float columns
+    Find all integer and float columns.
     '''
+
     columns_int_float = sorted({
         column_name for column_name in df.columns
         if df[column_name].dtype in ('int64', 'float64')
@@ -115,6 +122,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     Create a table of data type, empty-cell count, and empty-all percentage
     for non-empty columns.
     '''
+
     print('Information about non-empty columns')
     table = BeautifulTable(max_width=90)
     table.set_style(BeautifulTable.STYLE_COMPACT)
@@ -162,6 +170,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     int
 ]:
     '''
+    Create various counts of columns.
+
     Create count of columns
         (columns_in_count)
     Create count and list of empty columns
@@ -178,6 +188,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     Create count and list of string columns
         (columns_object_count, columns_object_list)
     '''
+
     columns_empty_list = sorted({
         column_name for column_name in df.columns
         if df[column_name].isnull().all()
@@ -219,11 +230,14 @@ def process_columns(df: pd.DataFrame) -> Tuple[
 
 def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     '''
+    Create various counts of rows.
+
     Count number of rows (rows_in_count)
     Delete empty rows
     Count number of non-empty rows (rows_out_count)
     Count number of empty rows (rows_empty_count)
     '''
+
     rows_in_count = df.shape[0]
     df = df.dropna(axis='rows', how='all')
     rows_out_count = df.shape[0]
@@ -237,7 +251,7 @@ def save_file(
     index: bool
 ) -> None:
     '''
-    Save a dataframe to a csv file.
+    Save a DataFrame to a csv file.
     '''
 
     df.to_csv(filename, index=index)
@@ -252,11 +266,13 @@ def read_file(
     columnnamessort: str = False
 ) -> pd.DataFrame:
     '''
-    Creates a dataframe
+    Create a DataFrame from an external file.
+
     Reads an ods, csv, or xlsx file
     Sorts on abscissa if datetimeparser is True
     Sorts on columnnames if columnnamessort is True
     '''
+
     if '.ods' in filename and abscissa and datetimeparser:
         df = pd.read_excel(
             filename,
@@ -312,8 +328,9 @@ def html_header(
     headerid: str
 ) -> None:
     '''
-    Creates an html header
+    Creates an html header.
     '''
+
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
     print('<head>')
@@ -335,8 +352,9 @@ def html_header(
 
 def html_footer() -> None:
     '''
-    Creates an html footer
+    Creates an html footer.
     '''
+
     print('</pre>')
     print('</body>')
     print('</html>')
