@@ -324,8 +324,8 @@ def read_file(
 
 
 def html_header(
-    headertitle: str,
-    headerid: str
+    headertitle: str = 'Report',
+    headerid: str = 'report'
 ) -> None:
     '''
     Creates an html header.
@@ -339,6 +339,7 @@ def html_header(
         '<meta content="width=device-width, initial-scale=1.0, '
         'user-scalable=yes" name="viewport"/>'
     )
+    print('<style type="text/css">@import url("support.css");</style>')
     print(f'<title>{headertitle}</title>')
     print('</head>')
     print('<body>')
