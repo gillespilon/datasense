@@ -74,6 +74,32 @@ def plot_scatter_x_y(
     return (fig, ax)
 
 
+def plot_line_y(
+    y: pd.Series,
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: str = None,
+    numknots: int = None
+) -> (plt.figure, axes.Axes):
+    '''
+    Line plot of y.
+    Optional smoothing applied to y.
+
+    y: series for vertical axis
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    '''
+
+    fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    X = pd.Series(range(1, y.size + 1, 1))
+    if smoothing is None:
+        ax.plot(y, marker='', linestyle='-', color=c[1])
+    elif smoothing == 'natural_cubic_spline':
+        model = natural_cubic_spline(X, y, numknots)
+        ax.plot(X, model.predict(X), marker='', linestyle='-', color=c[1])
+    return (fig, ax)
+
+
 def plot_line_x_y(
     X: pd.Series,
     y: pd.Series,
@@ -348,6 +374,7 @@ def format_dates(
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
+    'plot_line_y',
     'plot_line_x_y',
     'plot_scatter_scatter_x_y1_y2',
     'plot_scatter_line_x_y1_y2',
