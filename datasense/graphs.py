@@ -26,8 +26,15 @@ def plot_scatter_y(
     Optional smoothing applied to y.
 
     y: series for vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -53,8 +60,15 @@ def plot_scatter_x_y(
 
     X: series for horizontal axis
     y: series for vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -85,8 +99,15 @@ def plot_line_y(
     Optional smoothing applied to y.
 
     y: series for vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -113,8 +134,15 @@ def plot_line_x_y(
 
     X: series for horizontal axis
     y: series for vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -152,8 +180,15 @@ def plot_scatter_scatter_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -194,8 +229,15 @@ def plot_scatter_line_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -236,8 +278,15 @@ def plot_line_line_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -279,8 +328,15 @@ def plot_scatterleft_scatterright_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot using left vertical axis
     y2: series for y2 to plot using right vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
@@ -327,8 +383,15 @@ def plot_lineleft_lineright_x_y1_y2(
     X:  series for horizontal axis
     y1: series for y1 to plot using left vertical axis
     y2: series for y2 to plot using right vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
     '''
 
     fig = plt.figure(figsize=figuresize)
