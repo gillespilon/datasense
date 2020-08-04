@@ -291,6 +291,13 @@ def read_file(
             parse_dates=[abscissa],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
+    elif '.csv' in filename and abscissa and datetimeparser \
+            and indexcol is False:
+        df = pd.read_csv(
+            filename,
+            parse_dates=[abscissa],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
+        )
     elif '.csv' in filename and not datetimeparser:
         df = pd.read_csv(
             filename,
