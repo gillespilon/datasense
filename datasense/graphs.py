@@ -216,6 +216,7 @@ def plot_scatter_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
+    *,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None,
     numknots: int = None,
