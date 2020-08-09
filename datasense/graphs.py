@@ -154,6 +154,7 @@ def plot_line_x_y(
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
+            # TODO: is this necessary?
             fig.autofmt_xdate()
         else:
             XX = X
@@ -217,7 +218,9 @@ def plot_scatter_line_x_y1_y2(
     y2: pd.Series,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None,
-    numknots: int = None
+    numknots: int = None,
+    labellegendy1: str = None,
+    labellegendy2: str = None
 ) -> axes.Axes:
     '''
     Scatter plot of y1 versus X.
@@ -245,8 +248,8 @@ def plot_scatter_line_x_y1_y2(
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
-        ax.plot(X, y1, marker='.', linestyle='', color=c[1])
-        ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
+        ax.plot(X, y1, marker='.', linestyle='', color=c[1], label=labellegendy1)
+        ax.plot(X, y2, marker=None, linestyle='-', color=c[5], label=labellegendy2)
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
