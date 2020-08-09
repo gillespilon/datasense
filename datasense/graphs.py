@@ -272,6 +272,7 @@ def plot_line_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
+    *,
     figuresize: Optional[plt.Figure] = None,
     smoothing: str = None,
     numknots: int = None
@@ -302,8 +303,12 @@ def plot_line_line_x_y1_y2(
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
-        ax.plot(X, y1, marker=None, linestyle='-', color=c[1])
-        ax.plot(X, y2, marker=None, linestyle='-', color=c[5])
+        ax.plot(
+            X, y1, marker=None, linestyle='-', color=c[1], label=labellegendy1
+        )
+        ax.plot(
+            X, y2, marker=None, linestyle='-', color=c[5], label=labellegendy2
+        )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
