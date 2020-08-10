@@ -218,10 +218,10 @@ def plot_scatter_line_x_y1_y2(
     y2: pd.Series,
     *,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None,
-    numknots: int = None,
-    labellegendy1: str = None,
-    labellegendy2: str = None
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None,
+    labellegendy1: Optional[str] = None,
+    labellegendy2: Optional[str] = None
 ) -> axes.Axes:
     '''
     Scatter plot of y1 versus X.
