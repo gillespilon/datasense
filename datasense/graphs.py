@@ -274,8 +274,8 @@ def plot_line_line_x_y1_y2(
     y2: pd.Series,
     *,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None,
-    numknots: int = None
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None
 ) -> axes.Axes:
     '''
     Line plot of y1 versus X.
