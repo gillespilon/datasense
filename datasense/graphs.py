@@ -275,7 +275,9 @@ def plot_line_line_x_y1_y2(
     *,
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
+    numknots: Optional[int] = None,
+    labellegendy1: Optional[str] = None,
+    labellegendy2: Optional[str] = None
 ) -> axes.Axes:
     '''
     Line plot of y1 versus X.
