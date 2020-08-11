@@ -92,9 +92,10 @@ def plot_scatter_x_y(
 
 def plot_line_y(
     y: pd.Series,
+    *,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None,
-    numknots: int = None
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None
 ) -> (plt.figure, axes.Axes):
     '''
     Line plot of y.
