@@ -10,7 +10,7 @@ Statistical analysis
 
 import pandas as pd
 import numpy as np
-from typing import List
+from typing import List, Optional
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.interpolate import CubicSpline
@@ -80,8 +80,8 @@ def nonparametric_summary(
         'upper inner fence': uif[0],
         'upper outer fence': uof[0],
         'interquartile range': iqr[0],
-        'inner outliers':[x for x in series if x < lif or x > uif],
-        'outer outliers':[x for x in series if x < lof or x > uof],
+        'inner outliers': [x for x in series if x < lif or x > uif],
+        'outer outliers': [x for x in series if x < lof or x > uof],
         'minimum value': series.min(),
         'maximum value': series.max(),
         'count': series.count()
@@ -138,8 +138,9 @@ def cubic_spline(
 def natural_cubic_spline(
     X: pd.Series,
     y: pd.Series,
-    numberknots: int = None,
-    listknots: List[int] = None
+    *,
+    numberknots: Optional[int] = None,
+    listknots: Optional[List[int]] = None
 ) -> Pipeline:
     '''
     Piecewise natural cubic spline helper function
