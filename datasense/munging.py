@@ -3,7 +3,7 @@ Data munging
 '''
 
 
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 from datetime import datetime
 import textwrap
 
@@ -260,11 +260,11 @@ def save_file(
 def read_file(
     filename: str,
     *,
-    sheetname: str = None,
-    indexcol: bool = None,
-    abscissa: str = None,
-    datetimeparser: str = None,
-    columnnamessort: str = False
+    sheetname: Optional[str] = None,
+    indexcol: Optional[bool] = None,
+    abscissa: Optional[str] = None,
+    datetimeparser: Optional[str] = None,
+    columnnamessort: Optional[str] = False
 ) -> pd.DataFrame:
     '''
     Create a DataFrame from an external file.
