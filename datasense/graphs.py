@@ -389,9 +389,10 @@ def plot_lineleft_lineright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
+    *,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None,
-    numknots: int = None
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None
 ) -> Tuple[axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
