@@ -17,9 +17,10 @@ c = cm.Paired.colors
 
 def plot_scatter_y(
     y: pd.Series,
+    *,
     figuresize: Optional[plt.Figure] = None,
-    smoothing: str = None,
-    numknots: int = None
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None
 ) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y.
