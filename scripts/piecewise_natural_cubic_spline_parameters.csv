@@ -1,11 +1,10 @@
-File names,Targets,Features,Number of knots
-piecewise_natural_cubic_spline_observed.csv,ordinate,abscissa,10
-piecewise_natural_cubic_spline_predicted.csv,,,20
-,,,30
-,,,40
-,,,50
-,,,60
-,,,70
-,,,80
-,,,90
-,,,100
+File names,Targets,Features,Number of knots,Other parameter,Other parameter values
+piecewise_natural_cubic_spline.csv,TARGET,FEATURE,10,date_time_parser,%Y-%m-%d %H:%M:%S
+,,,20,graphics_directory,piecewise_natural_cubic_spline_graphs
+,,,30,figure_width_height,"9, 5"
+,,,40,x_axis_label,Abscissa
+,,,50,y_axis_label,Ordinate
+,,,,axis_title,Piecewise natural cubic spline
+,,,,output_url,view_spline_graphs.html
+,,,,header_title,Piecewise natural cubic spline graphs
+,,,,header_id,piecewise-natural-cubic-spline-graphs

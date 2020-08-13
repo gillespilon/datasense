@@ -32,53 +32,42 @@ The graphs can be viewed with the view_spline_graphs.html file created.
 
 
 from multiprocessing import Pool
-from pathlib import Path
+from typing import List, Tuple
 from shutil import rmtree
-from typing import Tuple
+from pathlib import Path
+import webbrowser
 import itertools
 import sys
-import datasense as ds
+
+import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import matplotlib.cm as cm
-import matplotlib.pyplot as plt
+import datasense as ds
 import pandas as pd
 
 
-# Data set must not contain NaN, inf, or -inf
-parameters = pd.read_excel(
-    'piecewise_natural_cubic_spline_parameters.csv',
-    index_col=False
-)
-file_names = [x for x in parameters['File names']
-              if str(x) != 'nan']
-targets = [x for x in parameters['Targets']
-           if str(x) != 'nan']
-features = [x for x in parameters['Features']
-            if str(x) != 'nan']
-num_knots = [int(x) for x in parameters['Number of knots']
-             if str(x) != 'nan']
-graphics_directory = 'piecewise_natural_cubic_spline_graphs'
-figure_width_height = (9, 5)
-x_axis_label = 'Abscissa'
-y_axis_label = 'Ordinate'
-axis_title = 'Piecewise natural cubic spline'
-c = cm.Paired.colors
-
-
 def main():
+    global figure_width_height, c, axis_title, x_axis_label, y_axis_label,\
+        graphics_directory
+    file_names, targets, features, num_knots, graphics_directory, \
+        figure_width_height, x_axis_label, y_axis_label, axis_title, c, \
+        date_time_parser, output_url, header_title, header_id = parameters()
     set_up_graphics_directory(graphics_directory)
     original_stdout = sys.stdout
     sys.stdout = open('view_spline_graphs.html', 'w')
-    html_header()
+    ds.html_header(header_title, header_id)
     for file, target, feature in itertools.product(
         file_names, targets, features
     ):
-        data = pd.read_csv(file)
-        x = data[feature]
+        data = ds.read_file(
+            filename=file,
+            abscissa=feature
+        )
+        data[target] = data[target].fillna(data[target].mean())
+        dates = True
+        X = pd.to_numeric(data[feature])
         y = data[target]
-        min_val = min(x)
-        max_val = max(x)
-        t = ((x, y, min_val, max_val, file, target, feature, knot)
+        t = ((X, y, file, target, feature, knot, dates)
              for knot in num_knots)
         with Pool() as pool:
             for _ in pool.imap_unordered(plot_scatter_line, t):
@@ -89,9 +78,77 @@ def main():
                 f'spline_{file.strip(".csv")}_'
                 f'{target}_{feature}_{knot}.svg"/></p>'
             )
-    html_footer()
+    ds.html_footer()
     sys.stdout.close()
     sys.stdout = original_stdout
+    webbrowser.open_new_tab(output_url)
+
+
+def parameters(
+) -> (
+    List[str],
+    List[str],
+    List[str],
+    List[int],
+    str,
+    Tuple[int, int],
+    str,
+    str,
+    str,
+    Tuple[Tuple[float]],
+    str,
+    str
+):
+    '''
+    Set parameters.
+    '''
+
+    parameters = ds.read_file(
+        filename='piecewise_natural_cubic_spline_parameters.csv'
+    )
+    filenames = [x for x in parameters['File names'] if str(x) != 'nan']
+    targets = [x for x in parameters['Targets'] if str(x) != 'nan']
+    features = [x for x in parameters['Features'] if str(x) != 'nan']
+    numknots = [int(x) for x in parameters['Number of knots'] if str(x) != 'nan']
+    datetimeparser = parameters['Other parameter values'][0]
+    graphicsdirectory = parameters['Other parameter values'][1]
+    figurewidthheight = eval(parameters['Other parameter values'][2])
+    xaxislabel = parameters['Other parameter values'][3]
+    yaxislabel = parameters['Other parameter values'][4]
+    axistitle = parameters['Other parameter values'][5]
+    outputurl = parameters['Other parameter values'][6]
+    headertitle = parameters['Other parameter values'][7]
+    headerid = parameters['Other parameter values'][8]
+    c = cm.Paired.colors
+    return (
+        filenames, targets, features, numknots, graphicsdirectory,
+        figurewidthheight, xaxislabel, yaxislabel, axistitle, c,
+        datetimeparser, outputurl, headertitle, headerid
+    )
+
+
+def page_break() -> None:
+    '''
+    Creates a page break for html output.
+    '''
+
+    print('<p style="page-break-after: always">')
+    print('<p style="page-break-before: always">')
+
+
+def summary(
+    elapsedtime: float,
+    readfilename: List[str],
+    savefilename: List[str]
+) -> None:
+    '''
+    Print report summary.
+    '''
+
+    print('<h1>Report summary</h1>')
+    print(f'Execution time: {elapsedtime:.3f} s')
+    print(f'Files read    : {readfilename}')
+    print(f'Files saved   : {savefilename}')
 
 
 def set_up_graphics_directory(graphdir: str) -> None:
@@ -105,41 +162,23 @@ def set_up_graphics_directory(graphdir: str) -> None:
     Path(graphdir).mkdir(parents=True, exist_ok=True)
 
 
-def html_header():
-    print('<!DOCTYPE html>')
-    print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
-    print('<head>')
-    print('<meta charset="utf-8"/>')
-    print(
-        '<meta content="width=device-width, initial-scale=1.0, '
-        'user-scalable=yes" name="viewport"/>'
-    )
-    print('<title>Piecewise natural cubic spline graphs</title>')
-    print('</head>')
-    print('<body>')
-    print(
-        '<h1 class="title"'
-        ' id="piecewise-natural-cubic-spline-graphs">'
-        'Piecewise natural cubic spline graphs</h1>'
-    )
-
-
-def html_footer():
-    print('</body>')
-    print('</html>')
-
-
-def plot_scatter_line(t: Tuple[str, str]) -> None:
-    x, y, min_val, max_val, file, target, feature, numknots = t
+def plot_scatter_line(
+        t: Tuple[pd.Series, pd.Series, int, int, str, str, str, int, bool]
+) -> None:
+    X, y, file, target, feature, numknots, dates = t
     model = ds.natural_cubic_spline(
-        x, y, min_val, max_val, numberknots=numknots
+        X, y, numberknots=numknots
     )
-    fig = plt.figure(figsize=figure_width_height)
-    ax = fig.add_subplot(111)
-    ax.plot(x, y, ls='', marker='.', color=c[1], alpha=0.20)
-    ax.plot(
-        x, model.predict(x), marker='', color=c[5],
-        label=f'number knots = {numknots}'
+    if dates:
+        XX = X.astype('datetime64[ns]')
+    else:
+        XX = X
+    fig, ax = ds.plot_scatter_line_x_y1_y2(
+        X=XX,
+        y1=y,
+        y2=model.predict(X),
+        figuresize=figure_width_height,
+        labellegendy2=f'number knots = {numknots}'
     )
     ax.legend(frameon=False, loc='best')
     ax.set_title(
@@ -172,3 +211,4 @@ def despine(ax: axes.Axes) -> None:
 
 if __name__ == '__main__':
     main()
+
