@@ -124,7 +124,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     '''
 
     print('Information about non-empty columns')
-    table = BeautifulTable(max_width=90)
+    table = BeautifulTable(maxwidth=90)
     table.set_style(BeautifulTable.STYLE_COMPACT)
     column_alignments = {
         'Column': BeautifulTable.ALIGN_LEFT,
@@ -272,6 +272,13 @@ def read_file(
     Reads an ods, csv, or xlsx file
     Sorts on abscissa if datetimeparser is True
     Sorts on columnnames if columnnamessort is True
+
+    filename       :
+    sheetname      :
+    indexcol       :
+    abscissa       :
+    datetimeparser : str such as %Y-%m-%d %H:%M:%S
+    columnnamessort:
     '''
 
     if '.ods' in filename and abscissa and datetimeparser:
@@ -303,7 +310,7 @@ def read_file(
     elif '.csv' in filename and abscissa:
         df = pd.read_csv(
             filename,
-            parse_dates=[abscissa],
+            parse_dates=[abscissa]
         )
     elif '.csv' in filename:
         df = pd.read_csv(
