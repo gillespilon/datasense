@@ -135,7 +135,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     table.columns.header = list(column_alignments.keys())
     for item, (_column_name, alignment) in\
             enumerate(column_alignments.items()):
-        table.column_alignments[item] = alignment
+        table.columns.alignment[item] = alignment
     num_rows = df.shape[0]
     for column_name in df:
         try:
