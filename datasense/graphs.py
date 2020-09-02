@@ -329,6 +329,71 @@ def plot_line_line_x_y1_y2(
     return (fig, ax)
 
 
+def plot_line_line_line_x_y1_y2_y3(
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
+    y3: pd.Series,
+    *,
+    figuresize: Optional[plt.Figure] = None,
+    smoothing: Optional[str] = None,
+    numknots: Optional[int] = None,
+    labellegendy1: Optional[str] = None,
+    labellegendy2: Optional[str] = None,
+    labellegendy3: Optional[str] = None
+) -> axes.Axes:
+    '''
+    Line plot of y1 versus X.
+    Line plot of y2 versus X.
+    Line plot of y3 versus X.
+    Optional smoothing applied to y1, y2, y3.
+
+    This graph is useful if y1, y2, and y3 have the same units.
+
+    X:  series for horizontal axis
+    y1: series for y1 to plot on vertical axis
+    y2: series for y2 to plot on vertical axis
+    y3: series for y3 to plot on vertical axis
+    smoothing: str
+        Option: natural_cubic_spline
+    numknots: positive integer
+        The number of knots to create.
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
+    '''
+
+    fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            format_dates(fig, ax)
+        ax.plot(
+            X, y1, marker=None, linestyle='-', color=c[0], label=labellegendy1
+        )
+        ax.plot(
+            X, y2, marker=None, linestyle='-', color=c[1], label=labellegendy2
+        )
+        ax.plot(
+            X, y3, marker=None, linestyle='-', color=c[2], label=labellegendy3
+        )
+    elif smoothing == 'natural_cubic_spline':
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model1 = natural_cubic_spline(XX, y1, numknots)
+        model2 = natural_cubic_spline(XX, y2, numknots)
+        model3 = natural_cubic_spline(XX, y3, numknots)
+        ax.plot(X, model1.predict(XX), marker=None, linestyle='-', color=c[0])
+        ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[1])
+        ax.plot(X, model3.predict(XX), marker=None, linestyle='-', color=c[2])
+    return (fig, ax)
+
+
 def plot_scatterleft_scatterright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
@@ -464,6 +529,7 @@ __all__ = (
     'plot_scatter_scatter_x_y1_y2',
     'plot_scatter_line_x_y1_y2',
     'plot_line_line_x_y1_y2',
+    'plot_line_line_line_x_y1_y2_y3',
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_lineleft_lineright_x_y1_y2',
     'format_dates',
