@@ -288,6 +288,12 @@ def read_file(
             parse_dates=[abscissa],
             date_parser=lambda s: datetime.strptime(s, datetimeparser),
         )
+    elif '.ods' in filename and abscissa and not datetimeparser:
+        df = pd.read_excel(
+            filename,
+            engine='odf',
+            parse_dates=[abscissa]
+        )
     elif '.ods' in filename and not abscissa and not datetimeparser:
         df = pd.read_excel(
             filename,
