@@ -242,7 +242,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     df = df.dropna(axis='rows', how='all')
     rows_out_count = df.shape[0]
     rows_empty_count = rows_in_count - rows_out_count
-    return df, rows_in_count, rows_out_count, rows_empty_count
+    return (df, rows_in_count, rows_out_count, rows_empty_count)
 
 
 def save_file(
