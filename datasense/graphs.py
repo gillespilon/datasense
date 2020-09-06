@@ -175,7 +175,7 @@ def plot_scatter_scatter_x_y1_y2(
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None
-) -> axes.Axes:
+) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y1 versus X.
     Scatter plot of y2 versus X.
@@ -227,7 +227,7 @@ def plot_scatter_line_x_y1_y2(
     numknots: Optional[int] = None,
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> axes.Axes:
+) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y1 versus X.
     Line plot of y2 versus X.
@@ -283,7 +283,7 @@ def plot_line_line_x_y1_y2(
     numknots: Optional[int] = None,
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> axes.Axes:
+) -> (plt.figure, axes.Axes):
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -341,7 +341,7 @@ def plot_line_line_line_x_y1_y2_y3(
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None,
     labellegendy3: Optional[str] = None
-) -> axes.Axes:
+) -> (plt.figure, axes.Axes):
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
