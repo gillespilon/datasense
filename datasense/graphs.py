@@ -296,11 +296,13 @@ def plot_line_line_x_y1_y2(
     marker2size: Optional[int] = 8,
     linestyle1: Optional[str] = '-',
     linestyle2: Optional[str] = '-',
+    linewidth1: Optional[float] = 1,
+    linewidth2: Optional[float] = 1,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes):
+) -> Tuple[plt.figure, axes.Axes]:
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -333,6 +335,7 @@ def plot_line_line_x_y1_y2(
             marker=marker1,
             markersize=marker1size,
             linestyle=linestyle1,
+            linewidth=linewidth1,
             color=colour1,
             label=labellegendy1
         )
@@ -342,6 +345,7 @@ def plot_line_line_x_y1_y2(
             marker=marker2,
             markersize=marker2size,
             linestyle=linestyle2,
+            linewidth=linewidth2,
             color=colour2,
             label=labellegendy2
         )
