@@ -300,7 +300,7 @@ def plot_line_line_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> (plt.figure, axes.Axes):
+) -> Tuple[plt.figure, axes.Axes):
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
