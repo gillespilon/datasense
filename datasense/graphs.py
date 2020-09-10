@@ -1,5 +1,14 @@
 '''
 Graphical analysis
+
+Colours used are colour-blind friendly.
+    blue    '#0077bb'
+    cyan    '#33bbee'
+    teal    '#009988'
+    orange  '#ee7733'
+    red     '#cc3311'
+    magenta '#ee3377'
+    grey    '#bbbbbb'
 '''
 
 from typing import Optional, Tuple
@@ -281,6 +290,14 @@ def plot_line_line_x_y1_y2(
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
+    marker1: Optional[str] = '.',
+    marker2: Optional[str] = '.',
+    marker1size: Optional[int] = 8,
+    marker2size: Optional[int] = 8,
+    linestyle1: Optional[str] = '-',
+    linestyle2: Optional[str] = '-',
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
 ) -> (plt.figure, axes.Axes):
@@ -311,10 +328,22 @@ def plot_line_line_x_y1_y2(
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
         ax.plot(
-            X, y1, marker=None, linestyle='-', color=c[1], label=labellegendy1
+            X,
+            y1,
+            marker=marker1,
+            markersize=marker1size,
+            linestyle=linestyle1,
+            color=colour1,
+            label=labellegendy1
         )
         ax.plot(
-            X, y2, marker=None, linestyle='-', color=c[5], label=labellegendy2
+            X,
+            y2,
+            marker=marker2,
+            markersize=marker2size,
+            linestyle=linestyle2,
+            color=colour2,
+            label=labellegendy2
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
@@ -402,7 +431,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None
-) -> Tuple[axes.Axes]:
+) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
     '''
     Scatter plot of y1 left vertical axis versus X.
     Scatter plot of y2 right vertical axis versus X.
@@ -447,7 +476,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
         tl.set_color(c[5])
-    return (ax1, ax2)
+    return (fig, ax1, ax2)
 
 
 def plot_lineleft_lineright_x_y1_y2(
@@ -458,7 +487,7 @@ def plot_lineleft_lineright_x_y1_y2(
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None
-) -> Tuple[axes.Axes]:
+) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
@@ -495,15 +524,23 @@ def plot_lineleft_lineright_x_y1_y2(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(XX, y1, numknots)
-        model2 = natural_cubic_spline(XX, y2, numknots)
+        model1 = natural_cubic_spline(
+            X=XX,
+            y=y1,
+            numberknots=numknots
+        )
+        model2 = natural_cubic_spline(
+            X=XX,
+            y=y2,
+            numberknots=numknots
+        )
         ax1.plot(X, model1.predict(XX), color=c[1])
         ax2.plot(X, model2.predict(XX), color=c[5])
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
         tl.set_color(c[5])
-    return (ax1, ax2)
+    return (fig, ax1, ax2)
 
 
 def format_dates(
