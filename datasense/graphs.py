@@ -33,7 +33,7 @@ def plot_scatter_y(
     marker: Optional[str] = '.',
     markersize: Optional[int] = 8,
     colour: Optional[str] = '#0077bb'
-) -> (plt.figure, axes.Axes):
+) -> Tuple[plt.figure, axes.Axes]:
     '''
     Scatter plot of y.
     Optional smoothing applied to y.
