@@ -23,7 +23,8 @@ def main():
         y=df['BOARD_MIXER_KW'],
         figuresize=(8, 6),
         marker='1',
-        markersize=4
+        markersize=4,
+        colour='#ee7733'
     )
     fig.savefig('plot_scatter_y_test.svg')
 
