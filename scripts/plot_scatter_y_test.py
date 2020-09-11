@@ -26,7 +26,7 @@ def main():
         markersize=4,
         colour='#ee7733'
     )
-    fig.savefig('plot_scatter_y_test.svg')
+    fig.savefig('plot_scatter_y_test.svg', format='svg')
 
 
 if __name__ == '__main__':
