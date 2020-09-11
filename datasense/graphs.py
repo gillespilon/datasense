@@ -29,7 +29,10 @@ def plot_scatter_y(
     *,
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
+    numknots: Optional[int] = None,
+    marker: Optional[str] = '.',
+    markersize: Optional[int] = 8,
+    colour: Optional[str] = '#0077bb'
 ) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y.
@@ -51,10 +54,23 @@ def plot_scatter_y(
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
-        ax.plot(y, marker='.', linestyle='', color=c[1])
+        ax.plot(
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle='None',
+            color=colour
+        )
     elif smoothing == 'natural_cubic_spline':
         model = natural_cubic_spline(X, y, numknots)
-        ax.plot(X, model.predict(X), marker='.', linestyle='', color=c[1])
+        ax.plot(
+            X,
+            model.predict(X),
+            marker=marker,
+            markersize=markersize,
+            linestyle='None',
+            color=colour
+        )
     return (fig, ax)
 
 
