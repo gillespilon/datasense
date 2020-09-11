@@ -21,7 +21,8 @@ def main():
     print(df.dtypes)
     fig, ax = ds.plot_scatter_y(
         y=df['BOARD_MIXER_KW'],
-        figuresize=(8, 6)
+        figuresize=(8, 6),
+        marker='1'
     )
     fig.savefig('plot_scatter_y_test.svg')
 
