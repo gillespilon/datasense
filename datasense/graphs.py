@@ -35,8 +35,7 @@ def plot_scatter_y(
     colour: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
     '''
-    Scatter plot of y.
-    Optional smoothing applied to y.
+    Scatter plot of y. Optional smoothing applied to y.
 
     y: series for vertical axis
     smoothing: str
