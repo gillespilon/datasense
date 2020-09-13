@@ -520,7 +520,7 @@ def plot_lineleft_lineright_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[plt.Figure] = None,
+    figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
