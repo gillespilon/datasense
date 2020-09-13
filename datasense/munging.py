@@ -366,7 +366,18 @@ def html_header(
         '<meta content="width=device-width, initial-scale=1.0, '
         'user-scalable=yes" name="viewport"/>'
     )
-    print('<style type="text/css">@import url("support.css");</style>')
+    print('<style type="text/css">@import url("support.css");')
+    print(
+        'pre{'
+        'overflow-x:auto;'
+        'white-space:pre-wrap;'
+        'white-space:-moz-pre-wrap;'
+        'white-space:-pre-wrap;'
+        'white-space:-o-pre-wrap;'
+        'word-wrap:break-word;'
+        '}'
+    )
+    print('</style>')
     print(f'<title>{headertitle}</title>')
     print('</head>')
     print('<body>')
