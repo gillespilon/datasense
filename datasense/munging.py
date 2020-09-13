@@ -388,6 +388,15 @@ def html_footer() -> None:
     print('</html>')
 
 
+def page_break():
+    '''
+    Create a page break for html output.
+    '''
+
+    print('<p style="page-break-after:always">')
+    print('<p style="page-break-before:always"')
+
+
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
@@ -398,4 +407,5 @@ __all__ = (
     'save_file',
     'html_header',
     'html_footer',
+    'page_break',
 )
