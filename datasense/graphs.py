@@ -400,7 +400,7 @@ def plot_line_line_line_x_y1_y2_y3(
     y2: pd.Series,
     y3: pd.Series,
     *,
-    figuresize: Optional[plt.Figure] = None,
+    figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
     labellegendy1: Optional[str] = None,
