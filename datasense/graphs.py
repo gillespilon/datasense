@@ -27,7 +27,7 @@ c = cm.Paired.colors
 def plot_scatter_y(
     y: pd.Series,
     *,
-    figuresize: Optional[plt.Figure] = None,
+    figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
     marker: Optional[str] = '.',
