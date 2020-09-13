@@ -2,7 +2,6 @@
 datasense
 
 Statistical and graphical functions for:
-
 - Analytics
 - Analysing process variation
 - Data science
@@ -10,14 +9,13 @@ Statistical and graphical functions for:
 - Six Sigma methodology
 
 Why this?
-
-- Wanted functions to support process control charts.
-- Wanted functions to support measurement system analysis.
-- Develop a package that is open-source for those unable to buy software.
-- Wanted Python functions that are available in R and SAS.
-- Other packages have limited features for process control analysis.
+- Functions to support process control charts.
+- Functions to support measurement system analysis.
+- Functions to simplify statistics, graphs, etc.
+- Develop a free open-source package.
+- Equivalent Python functions that are available in R and SAS.
+- Other packages have limited process control analysis features.
 - Other packages are abandoned or inadequately supported.
-
 '''
 
 
