@@ -31,7 +31,7 @@ def plot_scatter_y(
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
     marker: Optional[str] = '.',
-    markersize: Optional[int] = 8,
+    markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
     '''
@@ -81,7 +81,7 @@ def plot_scatter_x_y(
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
     marker: Optional[str] = '.',
-    markersize: Optional[int] = 8,
+    markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
 ) -> (plt.figure, axes.Axes):
     '''
