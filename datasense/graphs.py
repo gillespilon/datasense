@@ -79,7 +79,10 @@ def plot_scatter_x_y(
     *,
     figuresize: Optional[plt.Figure] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
+    numknots: Optional[int] = None,
+    marker: Optional[str] = '.',
+    markersize: Optional[int] = 8,
+    colour: Optional[str] = '#0077bb'
 ) -> (plt.figure, axes.Axes):
     '''
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -102,7 +105,14 @@ def plot_scatter_x_y(
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
-        ax.plot(X, y, marker='.', linestyle='', color=c[1])
+        ax.plot(
+            X,
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle='None',
+            color=colour
+        )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
@@ -110,7 +120,14 @@ def plot_scatter_x_y(
         else:
             XX = X
         model = natural_cubic_spline(XX, y, numknots)
-        ax.plot(X, model.predict(XX), marker='.', linestyle='', color=c[1])
+        ax.plot(
+            X,
+            model.predict(XX),
+            marker=marker,
+            markersize=markersize,
+            linestyle='None',
+            color=colour
+        )
     return (fig, ax)
 
 
