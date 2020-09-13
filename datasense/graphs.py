@@ -77,7 +77,7 @@ def plot_scatter_x_y(
     X: pd.Series,
     y: pd.Series,
     *,
-    figuresize: Optional[plt.Figure] = None,
+    figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
     marker: Optional[str] = '.',
