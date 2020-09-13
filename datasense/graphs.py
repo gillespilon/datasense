@@ -213,7 +213,7 @@ def plot_scatter_scatter_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[plt.Figure] = None,
+    figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None
 ) -> (plt.figure, axes.Axes):
