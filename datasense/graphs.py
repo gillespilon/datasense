@@ -20,7 +20,6 @@ import matplotlib.axes as axes
 import matplotlib.cm as cm
 import pandas as pd
 
-
 c = cm.Paired.colors
 
 
@@ -34,7 +33,6 @@ def plot_scatter_y(
     markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
-
     '''
     Scatter plot of y. Optional smoothing applied to y.
 
@@ -65,7 +63,6 @@ def plot_scatter_y(
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
