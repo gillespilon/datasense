@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-
 '''
 Test def plot_scatter_x_y() of graphs.py
 
