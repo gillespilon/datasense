@@ -101,17 +101,34 @@ def plot_scatter_x_y(
     '''
     Scatter plot of y versus X.  Optional smoothing applied to y.
 
-    X: series for horizontal axis
-    y: series for vertical axis
-    smoothing: str
-        Option: natural_cubic_spline
-    numknots: positive integer
-        The number of knots to create.
-
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    x : pd.Series
+        The data to plot on the abscissa.
+    y : pd.Series
+        The data to plot on the ordinate.
+    figuresize : Option[Tuple[float, float]] = None
+        The (width, height) of the figure (in, in).
+    smoothing : Optinal[str] = None
+        The type of smoothing to apply.
+    numknots : Optinal[int] = None
+        The number of knots for natural cubic spline smoothing.
+    marker : Optional[str] = '.'
+        The type of plot point.
+    markersize : Optional[float] = 8
+        The size of the plot point (pt).
+    colour : Optional[str] = '#0077bb'
+        The colour of the plot point (hexadecimal triplet string).
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
     '''
 
     fig = plt.figure(figsize=figuresize)
