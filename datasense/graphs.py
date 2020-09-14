@@ -62,6 +62,19 @@ def plot_scatter_y(
     -------
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
+
+    Example
+    ------
+        import matplotlib.pyplot as plt
+        from numpy.random import default_rng
+        import datasense as ds
+        import pandas as pd
+
+        rng = default_rng()
+        data = rng.standard_normal(size=42)
+        series = pd.Series(data)
+        fig, ax = ds.plot_scatter_y(y=series)
+        plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
