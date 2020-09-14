@@ -2,7 +2,6 @@
 Data munging
 '''
 
-
 from typing import List, Optional, Tuple
 from datetime import datetime
 import textwrap
