@@ -44,7 +44,7 @@ def plot_scatter_y(
     Parameters
     ----------
     y : pd.Series
-        The data to plot.
+        The data to plot on the ordinate.
     figuresize : Option[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optinal[str] = None
