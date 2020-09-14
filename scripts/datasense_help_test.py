@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-
 '''
 Test help for datasense.
 
@@ -10,9 +9,7 @@ time -f '%e' ./datasense_help_test.py
 import webbrowser
 import sys
 
-
 import datasense as ds
-
 
 output_url = 'datasense_help_test.html'
 header_title = 'datasense help'
