@@ -429,6 +429,20 @@ def html_begin(
     return originalstdout
 
 
+def html_end(
+    originalstdout: IO[str],
+    outputurl: str
+) -> None:
+    '''
+    '''
+    html_footer()
+    sys.stdout.close()
+    sys.stdout = originalstdout
+    webbrowser.open_new_tab(
+        url=outputurl
+    )
+
+
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
@@ -441,4 +455,5 @@ __all__ = (
     'html_footer',
     'page_break',
     'html_begin',
+    'html_end',
 )
