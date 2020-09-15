@@ -6,13 +6,26 @@ time -f '%e' ./plot_scatter_x_y_test.py
 ./plot_scatter_x_y_test.py
 '''
 
+import webbrowser
+import sys
+
 from numpy.random import default_rng
 import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
+output_url = 'plot_scatter_x_y_test.html'
+header_title = 'plot_scatter_x_y_test'
+header_id = 'plot-scatter-x-y-test'
+
 
 def main():
+    original_stdout = sys.stdout
+    sys.stdout = open(output_url, 'w')
+    ds.html_header(
+        headertitle=header_title,
+        headerid=header_id
+    )
     df = ds.read_file(
         filename='norfolk.csv',
         abscissa='LAB_BOARD_DAT_COD',
@@ -30,6 +43,15 @@ def main():
         colour='#ee7733'
     )
     fig.savefig('plot_scatter_x_y_datex_test.svg', format='svg')
+    print(
+        '<p>'
+        '<figure>'
+        '<img src="plot_scatter_x_y_datex_test.svg" '
+        'alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_datex_test</figcaption>'
+        '</figure>'
+        '</p>'
+    )
 
     fig, ax = ds.plot_scatter_x_y(
         df['BOARD_MIXER_MANIFOLD_PRESS'],
@@ -40,6 +62,15 @@ def main():
         colour='#ee7733'
     )
     fig.savefig('plot_scatter_x_y_floatx_test.svg', format='svg')
+    print(
+        '<p>'
+        '<figure>'
+        '<img src="plot_scatter_x_y_floatx_test.svg" '
+        'alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_floatx_test</figcaption>'
+        '</figure>'
+        '</p>'
+    )
 
     rng = default_rng()
     data_x = rng.uniform(
@@ -55,6 +86,14 @@ def main():
         y=series_y
     )
     fig.savefig('plot_scatter_x_y_test_1.svg', format='svg')
+    print(
+        '<p>'
+        '<figure>'
+        '<img src="plot_scatter_x_y_test_1.svg" alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_test_1</figcaption>'
+        '</figure>'
+        '</p>'
+    )
 
     data_x = rng.uniform(
         low=13,
@@ -73,6 +112,18 @@ def main():
         colour='#cc3311'
     )
     fig.savefig('plot_scatter_x_y_test_2.svg', format='svg')
+    print(
+        '<p>'
+        '<figure>'
+        '<img src="plot_scatter_x_y_test_2.svg" alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_test_2</figcaption>'
+        '</figure>'
+        '</p>'
+    )
+    ds.html_footer()
+    sys.stdout.close()
+    sys.stdout = original_stdout
+    webbrowser.open_new_tab(output_url)
 
 
 if __name__ == '__main__':
