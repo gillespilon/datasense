@@ -175,7 +175,6 @@ def plot_scatter_x_y(
     >>> plt.show()
 
     Example 2
-    >>> rng = default_rng()
     >>> data_x = rng.uniform(
     >>>     low=13,
     >>>     high=69,
