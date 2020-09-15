@@ -78,7 +78,6 @@ def plot_scatter_y(
         >>> plt.show()
 
     Example 2
-        >>> rng = default_rng()
         >>> data = rng.standard_normal(size=42)
         >>> series = pd.Series(data)
         >>> fig, ax = ds.plot_scatter_y(
