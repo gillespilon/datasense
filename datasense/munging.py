@@ -4,7 +4,9 @@ Data munging
 
 from typing import List, Optional, Tuple
 from datetime import datetime
+import webbrowser
 import textwrap
+import sys
 
 from beautifultable import BeautifulTable
 import pandas as pd
@@ -407,6 +409,22 @@ def page_break():
     print('<p style="page-break-before:always"')
 
 
+def html_begin(
+    outputurl: str,
+    *,
+    headertitle: Optional[str] = 'Report',
+    headerid: Optional[str] = 'report',
+) -> None:
+    '''
+    '''
+    original_stdout = sys.stdout
+    sys.stdout = open(outputurl, 'w')
+    html_header(
+        headertitle=headertitle,
+        headerid=headerid
+    )
+
+
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
@@ -418,4 +436,5 @@ __all__ = (
     'html_header',
     'html_footer',
     'page_break',
+    'html_begin',
 )
