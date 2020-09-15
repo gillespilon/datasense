@@ -56,7 +56,6 @@ def main():
     )
     fig.savefig('plot_scatter_x_y_test_1.svg', format='svg')
 
-    rng = default_rng()
     data_x = rng.uniform(
         low=13,
         high=69,
