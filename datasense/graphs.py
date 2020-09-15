@@ -63,8 +63,8 @@ def plot_scatter_y(
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
-    Example
-    ------
+    Examples
+    --------
     Example 1
         >>> import matplotlib.pyplot as plt
         >>> from numpy.random import default_rng
@@ -156,8 +156,8 @@ def plot_scatter_x_y(
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
-    Example
-    ------
+    Examples
+    --------
     Example 1
     >>> rng = default_rng()
     >>> data_x = rng.uniform(
@@ -230,32 +230,89 @@ def plot_line_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
-) -> (plt.figure, axes.Axes):
+    numknots: Optional[int] = None,
+    marker: Optional[str] = '.',
+    markersize: Optional[float] = 8,
+    colour: Optional[str] = '#0077bb'
+) -> Tuple[plt.figure, axes.Axes]:
     '''
-    Line plot of y.
-    Optional smoothing applied to y.
-
-    y: series for vertical axis
-    smoothing: str
-        Option: natural_cubic_spline
-    numknots: positive integer
-        The number of knots to create.
+    Line plot of y. Optional smoothing applied to y.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    y : pd.Series
+        The data to plot on the ordinate.
+    figuresize : Option[Tuple[float, float]] = None
+        The (width, height) of the figure (in, in).
+    smoothing : Optinal[str] = None
+        The type of smoothing to apply.
+    numknots : Optinal[int] = None
+        The number of knots for natural cubic spline smoothing.
+    marker : Optional[str] = '.'
+        The type of plot point.
+    markersize : Optional[float] = 8
+        The size of the plot point (pt).
+    colour : Optional[str] = '#0077bb'
+        The colour of the plot point (hexadecimal triplet string).
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
+
+    Examples
+    --------
+    Example 1
+        >>> import matplotlib.pyplot as plt
+        >>> from numpy.random import default_rng
+        >>> import datasense as ds
+        >>> import pandas as pd
+        >>>
+        >>> rng = default_rng()
+        >>> data = rng.standard_normal(size=42)
+        >>> series = pd.Series(data)
+        >>> fig, ax = ds.plot_scatter_y(y=series)
+        >>> plt.show()
+
+    Example 2
+        >>> data = rng.standard_normal(size=42)
+        >>> series = pd.Series(data)
+        >>> fig, ax = ds.plot_scatter_y(
+        >>>     y=series,
+        >>>     figuresize=(8, 6),
+        >>>     marker='o',
+        >>>     markersize=8,
+        >>>     colour='#cc3311'
+        >>> )
+        >>> plt.show()
     '''
 
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
-        ax.plot(y, marker='', linestyle='-', color=c[1])
+        ax.plot(
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle='-',
+            color=colour
+        )
     elif smoothing == 'natural_cubic_spline':
         model = natural_cubic_spline(X, y, numknots)
-        ax.plot(X, model.predict(X), marker='', linestyle='-', color=c[1])
+        ax.plot(
+            X,
+            model.predict(X),
+            marker=marker,
+            markersize=markersize,
+            linestyle='-',
+            color=colour
+        )
     return (fig, ax)
 
 
