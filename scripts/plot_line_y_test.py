@@ -47,11 +47,6 @@ def main():
     )
     fig.savefig('plot_line_y_test_3.svg', format='svg')
 
-rng = default_rng()
-data = rng.standard_normal(size=42)
-series = pd.Series(data)
-fig, ax = ds.plot_line_y(y=series)
-
 
 if __name__ == '__main__':
     main()
