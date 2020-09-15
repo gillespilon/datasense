@@ -2,7 +2,7 @@
 Data munging
 '''
 
-from typing import List, Optional, Tuple
+from typing import IO, List, Optional, Tuple
 from datetime import datetime
 import webbrowser
 import textwrap
@@ -414,15 +414,19 @@ def html_begin(
     *,
     headertitle: Optional[str] = 'Report',
     headerid: Optional[str] = 'report',
-) -> None:
+) -> IO[str]:
     '''
     '''
-    original_stdout = sys.stdout
-    sys.stdout = open(outputurl, 'w')
+    originalstdout = sys.stdout
+    sys.stdout = open(
+        file=outputurl,
+        mode='w'
+    )
     html_header(
         headertitle=headertitle,
         headerid=headerid
     )
+    return originalstdout
 
 
 __all__ = (
