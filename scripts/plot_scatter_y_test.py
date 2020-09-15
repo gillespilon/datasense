@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
-
 output_url = 'plot_scatter_y_test.html'
 header_title = 'plot_scatter_y_test'
 header_id = 'plot-scatter-y-test'
