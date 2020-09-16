@@ -461,6 +461,25 @@ def html_end(
     outputurl: str
 ) -> None:
     '''
+    Set footer, close html file, open html file in new tab in web browser.
+
+    Parameters
+    ----------
+    originalstdout : IO[str]
+        The original stdout.
+    outputurl : str
+        The file name for the html output.
+
+    Example
+    -------
+        >>> import datasense as ds
+        >>>
+        >>> output_url = 'my_html_file.html'
+        >>> # see original_stdout example in def html_begin()
+        >>> ds.html_end(
+        >>>     originalstdout=original_stdout,
+        >>>     outputurl=output_url
+        >>> )
     '''
     html_footer()
     sys.stdout.close()
