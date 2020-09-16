@@ -6,11 +6,7 @@ time -f '%e' ./plot_scatter_x_y_test.py
 ./plot_scatter_x_y_test.py
 '''
 
-import webbrowser
-import sys
-
 from numpy.random import default_rng
-import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
