@@ -66,28 +66,28 @@ def plot_scatter_y(
     Examples
     --------
     Example 1
-        >>> import matplotlib.pyplot as plt
-        >>> from numpy.random import default_rng
-        >>> import datasense as ds
-        >>> import pandas as pd
-        >>>
-        >>> rng = default_rng()
-        >>> data = rng.standard_normal(size=42)
-        >>> series = pd.Series(data)
-        >>> fig, ax = ds.plot_scatter_y(y=series)
-        >>> plt.show()
+    >>> import matplotlib.pyplot as plt
+    >>> from numpy.random import default_rng
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>>
+    >>> rng = default_rng()
+    >>> data = rng.standard_normal(size=42)
+    >>> series = pd.Series(data)
+    >>> fig, ax = ds.plot_scatter_y(y=series)
+    >>> plt.show()
 
     Example 2
-        >>> data = rng.standard_normal(size=42)
-        >>> series = pd.Series(data)
-        >>> fig, ax = ds.plot_scatter_y(
-        >>>     y=series,
-        >>>     figuresize=(8, 6),
-        >>>     marker='o',
-        >>>     markersize=8,
-        >>>     colour='#cc3311'
-        >>> )
-        >>> plt.show()
+    >>> data = rng.standard_normal(size=42)
+    >>> series = pd.Series(data)
+    >>> fig, ax = ds.plot_scatter_y(
+    >>>     y=series,
+    >>>     figuresize=(8, 6),
+    >>>     marker='o',
+    >>>     markersize=8,
+    >>>     colour='#cc3311'
+    >>> )
+    >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
@@ -275,28 +275,28 @@ def plot_line_y(
     Examples
     --------
     Example 1
-        >>> import matplotlib.pyplot as plt
-        >>> from numpy.random import default_rng
-        >>> import datasense as ds
-        >>> import pandas as pd
-        >>>
-        >>> rng = default_rng()
-        >>> data = rng.standard_normal(size=42)
-        >>> series = pd.Series(data)
-        >>> fig, ax = ds.plot_scatter_y(y=series)
-        >>> plt.show()
+    >>> import matplotlib.pyplot as plt
+    >>> from numpy.random import default_rng
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>>
+    >>> rng = default_rng()
+    >>> data = rng.standard_normal(size=42)
+    >>> series = pd.Series(data)
+    >>> fig, ax = ds.plot_scatter_y(y=series)
+    >>> plt.show()
 
     Example 2
-        >>> data = rng.standard_normal(size=42)
-        >>> series = pd.Series(data)
-        >>> fig, ax = ds.plot_scatter_y(
-        >>>     y=series,
-        >>>     figuresize=(8, 6),
-        >>>     marker='o',
-        >>>     markersize=8,
-        >>>     colour='#cc3311'
-        >>> )
-        >>> plt.show()
+    >>> data = rng.standard_normal(size=42)
+    >>> series = pd.Series(data)
+    >>> fig, ax = ds.plot_scatter_y(
+    >>>     y=series,
+    >>>     figuresize=(8, 6),
+    >>>     marker='o',
+    >>>     markersize=8,
+    >>>     colour='#cc3311'
+    >>> )
+    >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
