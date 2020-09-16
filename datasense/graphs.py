@@ -193,7 +193,6 @@ def plot_scatter_x_y(
     >>> )
     >>> plt.show()
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -291,7 +290,6 @@ def plot_line_y(
         >>> )
         >>> plt.show()
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
@@ -340,7 +338,6 @@ def plot_line_x_y(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -388,7 +385,6 @@ def plot_scatter_scatter_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -440,7 +436,6 @@ def plot_scatter_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -506,7 +501,6 @@ def plot_line_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -580,7 +574,6 @@ def plot_line_line_line_x_y1_y2_y3(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
@@ -640,7 +633,6 @@ def plot_scatterleft_scatterright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
@@ -696,7 +688,6 @@ def plot_lineleft_lineright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-
     fig = plt.figure(figsize=figuresize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
@@ -737,7 +728,6 @@ def format_dates(
     '''
     Format dates and ticks for plotting.
     '''
-
     loc = mdates.AutoDateLocator()
     fmt = mdates.AutoDateFormatter(loc)
     ax.xaxis.set_major_locator(loc)
