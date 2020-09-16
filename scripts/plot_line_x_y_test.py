@@ -6,9 +6,6 @@ time -f '%e' ./plot_line_x_y_test.py
 ./plot_line_x_y_test.py
 '''
 
-import webbrowser
-import sys
-
 from numpy.random import default_rng
 import datasense as ds
 import pandas as pd
