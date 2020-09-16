@@ -10,7 +10,6 @@ import webbrowser
 import sys
 
 from numpy.random import default_rng
-import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
