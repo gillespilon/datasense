@@ -6,9 +6,6 @@ time -f '%e' ./datasense_help_test.py
 ./datasense_help_test.py
 '''
 
-import webbrowser
-import sys
-
 import datasense as ds
 
 output_url = 'datasense_help_test.html'
