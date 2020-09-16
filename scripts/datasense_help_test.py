@@ -18,17 +18,16 @@ header_id = 'datasense-help'
 
 def main():
     input_value = eval(input(r'module.file.function name? > '))
-    original_stdout = sys.stdout
-    sys.stdout = open(output_url, 'w')
-    ds.html_header(
+    original_stdout = ds.html_begin(
+        outputurl=output_url,
         headertitle=header_title,
         headerid=header_id
     )
     help(input_value)
-    ds.html_footer()
-    sys.stdout.close()
-    sys.stdout = original_stdout
-    webbrowser.open_new_tab(output_url)
+    ds.html_end(
+        originalstdout=original_stdout,
+        outputurl=output_url
+    )
 
 
 if __name__ == '__main__':
