@@ -6,24 +6,19 @@ time -f '%e' ./plot_line_y_test.py
 ./plot_line_y_test.py
 '''
 
-import webbrowser
-import sys
-
 from numpy.random import default_rng
-import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
 
-output_url = 'plot_scatter_x_y_test.html'
-header_title = 'plot_scatter_x_y_test'
+output_url = 'plot_line_y_test.html'
+header_title = 'plot_line_y_test'
 header_id = 'plot-scatter-x-y-test'
 
 
 def main():
-    original_stdout = sys.stdout
-    sys.stdout = open(output_url, 'w')
-    ds.html_header(
+    original_stdout = ds.html_begin(
+        outputurl=output_url,
         headertitle=header_title,
         headerid=header_id
     )
@@ -84,10 +79,10 @@ def main():
         '</figure>'
         '</p>'
     )
-    ds.html_footer()
-    sys.stdout.close()
-    sys.stdout = original_stdout
-    webbrowser.open_new_tab(output_url)
+    ds.html_end(
+        originalstdout=original_stdout,
+        outputurl=output_url
+    )
 
 
 if __name__ == '__main__':
