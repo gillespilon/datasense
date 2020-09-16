@@ -363,7 +363,11 @@ def plot_line_x_y(
             fig.autofmt_xdate()
         else:
             XX = X
-        model = natural_cubic_spline(XX, y, numknots)
+        model = natural_cubic_spline(
+            X=XX,
+            y=y,
+            numberknots=numknots
+        )
         ax.plot(X, model.predict(XX), marker='', color=c[1])
     return (fig, ax)
 
