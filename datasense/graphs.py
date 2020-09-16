@@ -103,7 +103,7 @@ def plot_scatter_y(
     elif smoothing == 'natural_cubic_spline':
         model = natural_cubic_spline(
             X=X,
-            y-y,
+            y=y,
             numberknots=numknots
         )
         ax.plot(
@@ -216,7 +216,11 @@ def plot_scatter_x_y(
             fig.autofmt_xdate()
         else:
             XX = X
-        model = natural_cubic_spline(XX, y, numknots)
+        model = natural_cubic_spline(
+            X=XX,
+            y=y,
+            numberknots=numknots
+        )
         ax.plot(
             X,
             model.predict(XX),
