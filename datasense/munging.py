@@ -416,6 +416,33 @@ def html_begin(
     headerid: Optional[str] = 'report',
 ) -> IO[str]:
     '''
+    Open file to write html and set header.
+
+    Parameters
+    ----------
+    outputurl : str
+        The file name for the html output.
+    headertitle : Optional[str]
+        The file title.
+    headerid : Optional[str]
+        The id for the headertitle.
+
+    Examples
+    --------
+    Example 1
+        >>> import datasense as ds
+        >>>
+        >>> output_url = 'my_html_file.html'
+        >>> original_stdout = ds.html_begin(outputurl=output_url)
+
+    Example 2
+        >>> header_title = 'My Report'
+        >>> header_id = 'my-report'
+        >>> original_stdout = ds.html_begin(
+        >>>     outputurl=output_url,
+        >>>     headertitle=header_title,
+        >>>     headerid=header_id
+        >>> )
     '''
     originalstdout = sys.stdout
     sys.stdout = open(
