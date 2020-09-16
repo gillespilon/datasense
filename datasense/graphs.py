@@ -310,7 +310,11 @@ def plot_line_y(
             color=colour
         )
     elif smoothing == 'natural_cubic_spline':
-        model = natural_cubic_spline(X, y, numknots)
+        model = natural_cubic_spline(
+            X=X,
+            y=y,
+            numberknots=numknots
+        )
         ax.plot(
             X,
             model.predict(X),
