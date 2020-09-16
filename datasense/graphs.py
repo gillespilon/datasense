@@ -634,9 +634,21 @@ def plot_line_line_line_x_y1_y2_y3(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(XX, y1, numknots)
-        model2 = natural_cubic_spline(XX, y2, numknots)
-        model3 = natural_cubic_spline(XX, y3, numknots)
+        model1 = natural_cubic_spline(
+            X=XX,
+            y=y1,
+            numberknots=numknots
+        )
+        model2 = natural_cubic_spline(
+            X=XX,
+            y=y2,
+            numberknots=numknots
+        )
+        model3 = natural_cubic_spline(
+            X=XX,
+            y=y3,
+            numberknots=numknots
+        )
         ax.plot(X, model1.predict(XX), marker=None, linestyle='-', color=c[0])
         ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[1])
         ax.plot(X, model3.predict(XX), marker=None, linestyle='-', color=c[2])
