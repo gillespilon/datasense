@@ -332,30 +332,97 @@ def plot_line_x_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
-) -> (plt.figure, axes.Axes):
+    numknots: Optional[int] = None,
+    marker: Optional[str] = '.',
+    markersize: Optional[float] = 8,
+    linestyle: Optional[str] = '-',
+    colour: Optional[str] = '#0077bb'
+) -> Tuple[plt.figure, axes.Axes]:
     '''
-    Scatter plot of y versus X.
-    Optional smoothing applied to y.
-
-    X: series for horizontal axis
-    y: series for vertical axis
-    smoothing: str
-        Option: natural_cubic_spline
-    numknots: positive integer
-        The number of knots to create.
+    Scatter plot of y versus X. Optional smoothing applied to y.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    x : pd.Series
+        The data to plot on the abscissa.
+    y : pd.Series
+        The data to plot on the ordinate.
+    figuresize : Option[Tuple[float, float]] = None
+        The (width, height) of the figure (in, in).
+    smoothing : Optinal[str] = None
+        The type of smoothing to apply.
+    numknots : Optinal[int] = None
+        The number of knots for natural cubic spline smoothing.
+    marker : Optional[str] = '.'
+        The type of plot point.
+    markersize : Optional[float] = 8
+        The size of the plot point (pt).
+    linestyle : Optional[str] = '-'
+        The style of the line joining the points.
+    colour : Optional[str] = '#0077bb'
+        The colour of the plot point (hexadecimal triplet string).
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
+
+    Examples
+    --------
+    Example 1
+    >>> rng = default_rng()
+    >>> data_x = rng.uniform(
+    >>>     low=13,
+    >>>     high=69,
+    >>>     size=42
+    >>> )
+    >>> series_x = pd.Series(data_x)
+    >>> data_y = rng.standard_normal(size=42)
+    >>> series_y = pd.Series(data_y)
+    >>> fig, ax = ds.plot_line_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y
+    >>> )
+    >>> plt.show()
+
+    Example 2
+    >>> data_x = rng.uniform(
+    >>>     low=13,
+    >>>     high=69,
+    >>>     size=42
+    >>> )
+    >>> series_x = pd.Series(data_x)
+    >>> data_y = rng.standard_normal(size=42)
+    >>> series_y = pd.Series(data_y)
+    >>> fig, ax = ds.plot_line_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y,
+    >>>     figuresize=(8, 6),
+    >>>     marker='o',
+    >>>     markersize=8,
+    >>>     linestyle=':',
+    >>>     colour='#cc3311'
+    >>> )
+    >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
-        ax.plot(X, y, marker='', color=c[1])
+        ax.plot(
+            X,
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle=linestyle,
+            color='#0077bb'
+        )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
@@ -368,7 +435,14 @@ def plot_line_x_y(
             y=y,
             numberknots=numknots
         )
-        ax.plot(X, model.predict(XX), marker='', color=c[1])
+        ax.plot(
+            X,
+            model.predict(XX),
+            marker=marker,
+            markersize=markersize,
+            linestyle=linestyle,
+            color='#0077bb'
+        )
     return (fig, ax)
 
 
