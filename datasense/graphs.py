@@ -47,11 +47,11 @@ def plot_scatter_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Option[Tuple[float, float]] = None
+    figuresize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optinal[str] = None
+    smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optinal[int] = None
+    numknots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -145,11 +145,11 @@ def plot_scatter_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Option[Tuple[float, float]] = None
+    figuresize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optinal[str] = None
+    smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optinal[int] = None
+    numknots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -259,11 +259,11 @@ def plot_line_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Option[Tuple[float, float]] = None
+    figuresize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optinal[str] = None
+    smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optinal[int] = None
+    numknots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -358,11 +358,11 @@ def plot_line_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Option[Tuple[float, float]] = None
+    figuresize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optinal[str] = None
+    smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optinal[int] = None
+    numknots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -472,7 +472,7 @@ def plot_scatter_scatter_x_y1_y2(
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
@@ -531,7 +531,7 @@ def plot_scatter_line_x_y1_y2(
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
@@ -604,7 +604,7 @@ def plot_line_line_x_y1_y2(
     y1: series for y1 to plot on vertical axis
     y2: series for y2 to plot on vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
@@ -685,7 +685,7 @@ def plot_line_line_line_x_y1_y2_y3(
     y2: series for y2 to plot on vertical axis
     y3: series for y3 to plot on vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
@@ -756,7 +756,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     y1: series for y1 to plot using left vertical axis
     y2: series for y2 to plot using right vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
@@ -819,7 +819,7 @@ def plot_lineleft_lineright_x_y1_y2(
     y1: series for y1 to plot using left vertical axis
     y2: series for y2 to plot using right vertical axis
     smoothing: str
-        Option: natural_cubic_spline
+        Optional: natural_cubic_spline
     numknots: positive integer
         The number of knots to create.
 
