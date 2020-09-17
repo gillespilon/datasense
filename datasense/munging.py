@@ -478,6 +478,32 @@ def html_end(
     )
 
 
+def html_figure(
+    filename: str,
+    *,
+    caption: Optional[str] = None
+) -> None:
+    """
+    Print html tag for a figure.
+
+    Parameters
+    ----------
+    filename : str
+        The file name of the image.
+    caption : Optional[str]
+        The figure caption.
+    """
+    if caption is None:
+        caption = filename
+    print(
+        '<figure>'
+        f'<img src="{filename}" '
+        f'alt="{filename}"/>'
+        f'<figcaption>{caption}</figcaption>'
+        '</figure>'
+    )
+
+
 __all__ = (
     'dataframe_info',
     'find_int_float_columns',
@@ -491,4 +517,5 @@ __all__ = (
     'page_break',
     'html_begin',
     'html_end',
+    'html_figure',
 )
