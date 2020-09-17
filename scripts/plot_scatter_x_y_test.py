@@ -38,15 +38,8 @@ def main():
         y=series_y
     )
     fig.savefig('plot_scatter_x_y_datex_test.svg', format='svg')
-    print(
-        '<p>'
-        '<figure>'
-        '<img src="plot_scatter_x_y_datex_test.svg" '
-        'alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_datex_test</figcaption>'
-        '</figure>'
-        '</p>'
-    )
+    ds.html_figure(filename='plot_scatter_x_y_datex_test.svg')
+    ds.page_break()
     series_x = Series(
         rng.uniform(
             low=13,
@@ -59,32 +52,17 @@ def main():
         y=series_y
     )
     fig.savefig('plot_scatter_x_y_intx_test.svg', format='svg')
-    print(
-        '<p>'
-        '<figure>'
-        '<img src="plot_scatter_x_y_intx_test.svg" '
-        'alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_intx_test</figcaption>'
-        '</figure>'
-        '</p>'
-    )
+    ds.html_figure(filename='plot_scatter_x_y_intx_test.svg')
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
         y=series_y,
-        figuresize=(8, 6),
+        figuresize=(8, 5),
         marker='o',
         markersize=8,
         colour='#cc3311'
     )
     fig.savefig('plot_scatter_x_y_test.svg', format='svg')
-    print(
-        '<p>'
-        '<figure>'
-        '<img src="plot_scatter_x_y_test.svg" alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_test</figcaption>'
-        '</figure>'
-        '</p>'
-    )
+    ds.html_figure(filename='plot_scatter_x_y_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
