@@ -35,11 +35,7 @@ def main():
     series_y = Series(rng.standard_normal(size=42))
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
-        y=series_y,
-        figuresize=(8, 6),
-        marker='1',
-        markersize=4,
-        colour='#ee7733'
+        y=series_y
     )
     fig.savefig('plot_scatter_x_y_datex_test.svg', format='svg')
     print(
@@ -60,42 +56,18 @@ def main():
     )
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
-        y=series_y,
-        figuresize=(8, 6),
-        marker='1',
-        markersize=4,
-        colour='#ee7733'
-    )
-    fig.savefig('plot_scatter_x_y_floatx_test.svg', format='svg')
-    print(
-        '<p>'
-        '<figure>'
-        '<img src="plot_scatter_x_y_floatx_test.svg" '
-        'alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_floatx_test</figcaption>'
-        '</figure>'
-        '</p>'
-    )
-
-    fig, ax = ds.plot_scatter_x_y(
-        X=series_x,
         y=series_y
     )
-    fig.savefig('plot_scatter_x_y_test_1.svg', format='svg')
+    fig.savefig('plot_scatter_x_y_intx_test.svg', format='svg')
     print(
         '<p>'
         '<figure>'
-        '<img src="plot_scatter_x_y_test_1.svg" alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_test_1</figcaption>'
+        '<img src="plot_scatter_x_y_intx_test.svg" '
+        'alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_intx_test</figcaption>'
         '</figure>'
         '</p>'
     )
-    data_x = rng.uniform(
-        low=13,
-        high=69,
-        size=42
-    )
-    series_x = Series(data_x)
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
         y=series_y,
@@ -104,12 +76,12 @@ def main():
         markersize=8,
         colour='#cc3311'
     )
-    fig.savefig('plot_scatter_x_y_test_2.svg', format='svg')
+    fig.savefig('plot_scatter_x_y_test.svg', format='svg')
     print(
         '<p>'
         '<figure>'
-        '<img src="plot_scatter_x_y_test_2.svg" alt="alternate text graph 1"/>'
-        '<figcaption>plot_scatter_x_y_test_2</figcaption>'
+        '<img src="plot_scatter_x_y_test.svg" alt="alternate text graph 1"/>'
+        '<figcaption>plot_scatter_x_y_test</figcaption>'
         '</figure>'
         '</p>'
     )
