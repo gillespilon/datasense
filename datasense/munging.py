@@ -367,18 +367,7 @@ def html_header(
         '<meta content="width=device-width, initial-scale=1.0, '
         'user-scalable=yes" name="viewport"/>'
     )
-    print('<style type="text/css">@import url("support.css");')
-    print(
-        'pre{'
-        'overflow-x:auto;'
-        'white-space:pre-wrap;'
-        'white-space:-moz-pre-wrap;'
-        'white-space:-pre-wrap;'
-        'white-space:-o-pre-wrap;'
-        'word-wrap:break-word;'
-        '}'
-    )
-    print('</style>')
+    print('<style>@import url("support.css");</style>')
     print(f'<title>{headertitle}</title>')
     print('</head>')
     print('<body>')
@@ -387,7 +376,7 @@ def html_header(
         f' id="{headerid}">'
         f'{headertitle}</h1>'
     )
-    print('<pre>')
+    # print('<pre>')
 
 
 def html_footer() -> None:
@@ -395,7 +384,7 @@ def html_footer() -> None:
     Creates an html footer.
     '''
 
-    print('</pre>')
+    # print('</pre>')
     print('</body>')
     print('</html>')
 
@@ -406,7 +395,7 @@ def page_break():
     '''
 
     print('<p style="page-break-after:always">')
-    print('<p style="page-break-before:always"')
+    print('<p style="page-break-before:always">')
 
 
 def html_begin(
