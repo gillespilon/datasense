@@ -36,6 +36,8 @@ def plot_scatter_y(
     '''
     Scatter plot of y. Optional smoothing applied to y.
 
+    The abscissa is a series of integers 1 to the size of y.
+
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
@@ -94,6 +96,7 @@ def plot_scatter_y(
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
+            X,
             y,
             marker=marker,
             markersize=markersize,
@@ -136,8 +139,8 @@ def plot_scatter_x_y(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
 
-    Parameters
     ----------
+    Parameters
     x : pd.Series
         The data to plot on the abscissa.
     y : pd.Series
@@ -159,8 +162,8 @@ def plot_scatter_x_y(
     -------
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
-
     Examples
+
     --------
     Example 1
     >>> rng = default_rng()
@@ -245,6 +248,8 @@ def plot_line_y(
     '''
     Line plot of y. Optional smoothing applied to y.
 
+    The abscissa is a series of integers 1 to the size of y.
+
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
@@ -303,6 +308,7 @@ def plot_line_y(
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
+            X,
             y,
             marker=marker,
             markersize=markersize,
