@@ -8,9 +8,9 @@ time -f '%e' ./plot_scatter_x_y_test.py
 
 from numpy.random import default_rng
 from datetime import timedelta
-from pandas import Series
 from numpy import arange
 import datasense as ds
+import pandas as pd
 
 output_url = 'plot_scatter_x_y_test.html'
 header_title = 'plot_scatter_x_y_test'
@@ -24,7 +24,7 @@ def main():
         headerid=header_id
     )
     rng = default_rng()
-    series_x = Series(
+    series_x = pd.Series(
         arange(
             '2020-01-01T13:13:13',
             '2020-02-12T13:13:13',
@@ -32,14 +32,14 @@ def main():
             dtype='datetime64[s]'
         )
     )
-    series_y = Series(rng.standard_normal(size=42))
+    series_y = pd.Series(rng.standard_normal(size=42))
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
         y=series_y
     )
     fig.savefig('plot_scatter_x_y_datex_test.svg', format='svg')
     ds.html_figure(filename='plot_scatter_x_y_datex_test.svg')
-    series_x = Series(
+    series_x = pd.Series(
         rng.uniform(
             low=13,
             high=69,
@@ -49,13 +49,13 @@ def main():
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
         y=series_y,
-        figuresize=(8, 5),
+        figuresize=(8, 4.5),
         marker='o',
         markersize=8,
         colour='#cc3311'
     )
-    fig.savefig('plot_scatter_x_y_test.svg', format='svg')
-    ds.html_figure(filename='plot_scatter_x_y_test.svg')
+    fig.savefig('plot_scatter_x_y_intx_test.svg', format='svg')
+    ds.html_figure(filename='plot_scatter_x_y_intx_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
