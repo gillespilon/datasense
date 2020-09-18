@@ -245,6 +245,7 @@ def plot_line_y(
     numknots: Optional[int] = None,
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
+    linestyle: Optional[str] = '-',
     colour: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
     '''
@@ -300,6 +301,7 @@ def plot_line_y(
     >>>     markersize=4,
     >>>     colour='#ee7733'
     >>> )
+    >>> )
     >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
@@ -311,7 +313,7 @@ def plot_line_y(
             y,
             marker=marker,
             markersize=markersize,
-            linestyle='-',
+            linestyle=linestyle,
             color=colour
         )
     elif smoothing == 'natural_cubic_spline':
@@ -325,7 +327,7 @@ def plot_line_y(
             model.predict(X),
             marker=marker,
             markersize=markersize,
-            linestyle='-',
+            linestyle=linestyle,
             color=colour
         )
     return (fig, ax)

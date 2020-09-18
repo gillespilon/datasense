@@ -32,6 +32,7 @@ def main():
         figuresize=(8, 4.5),
         marker='o',
         markersize=4,
+        linestyle=':',
         colour='#ee7733'
     )
     fig.savefig('plot_line_y_test_2.svg', format='svg')
