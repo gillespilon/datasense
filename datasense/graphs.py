@@ -68,8 +68,8 @@ def plot_scatter_y(
     Examples
     --------
     Example 1
-    >>> import matplotlib.pyplot as plt
     >>> from numpy.random import default_rng
+    >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> import pandas as pd
     >>>
@@ -163,15 +163,21 @@ def plot_scatter_x_y(
 
     --------
     Example 1
+    >>> from numpy.random import default_rng
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>>
     >>> rng = default_rng()
-    >>> data_x = rng.uniform(
-    >>>     low=13,
-    >>>     high=69,
-    >>>     size=42
+    >>> series_x = pd.Series(
+    >>>     arange(
+    >>>         '2020-01-01T13:13:13',
+    >>>         '2020-02-12T13:13:13',
+    >>>         timedelta(hours=24),
+    >>>         dtype='datetime64[s]'
+    >>>     )
     >>> )
-    >>> series_x = pd.Series(data_x)
-    >>> data_y = rng.standard_normal(size=42)
-    >>> series_y = pd.Series(data_y)
+    >>> series_y = pd.Series(rng.standard_normal(size=42))
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
@@ -179,18 +185,17 @@ def plot_scatter_x_y(
     >>> plt.show()
 
     Example 2
-    >>> data_x = rng.uniform(
-    >>>     low=13,
-    >>>     high=69,
-    >>>     size=42
+    >>> series_x = pd.Series(
+    >>>     rng.uniform(
+    >>>         low=13,
+    >>>         high=69,
+    >>>         size=42
+    >>>     )
     >>> )
-    >>> series_x = pd.Series(data_x)
-    >>> data_y = rng.standard_normal(size=42)
-    >>> series_y = pd.Series(data_y)
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
-    >>>     figuresize=(8, 6),
+    >>>     figuresize=(8, 4.5),
     >>>     marker='o',
     >>>     markersize=8,
     >>>     colour='#cc3311'
