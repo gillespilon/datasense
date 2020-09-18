@@ -382,6 +382,11 @@ def plot_line_x_y(
     Examples
     --------
     Example 1
+    >>> from numpy.random import default_rng
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>>
     >>> rng = default_rng()
     >>> data_x = rng.uniform(
     >>>     low=13,
@@ -447,9 +452,7 @@ def plot_line_x_y(
             model.predict(XX),
             marker=marker,
             markersize=markersize,
-            linestyle=linestyle,
-            color='#0077bb'
-        )
+            linestyle=linestyle, color='#0077bb')
     return (fig, ax)
 
 
@@ -533,6 +536,11 @@ def plot_scatter_scatter_x_y1_y2(
     Examples
     --------
     Example 1
+    >>> from numpy.random import default_rng
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>>
     >>> rng = default_rng()
     >>> series_x = Series(
     >>>     arange(
