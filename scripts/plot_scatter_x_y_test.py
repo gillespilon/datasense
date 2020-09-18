@@ -39,7 +39,6 @@ def main():
     )
     fig.savefig('plot_scatter_x_y_datex_test.svg', format='svg')
     ds.html_figure(filename='plot_scatter_x_y_datex_test.svg')
-    ds.page_break()
     series_x = Series(
         rng.uniform(
             low=13,
@@ -47,12 +46,6 @@ def main():
             size=42
         )
     )
-    fig, ax = ds.plot_scatter_x_y(
-        X=series_x,
-        y=series_y
-    )
-    fig.savefig('plot_scatter_x_y_intx_test.svg', format='svg')
-    ds.html_figure(filename='plot_scatter_x_y_intx_test.svg')
     fig, ax = ds.plot_scatter_x_y(
         X=series_x,
         y=series_y,
