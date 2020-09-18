@@ -282,26 +282,23 @@ def plot_line_y(
     Examples
     --------
     Example 1
-    >>> import matplotlib.pyplot as plt
     >>> from numpy.random import default_rng
+    >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> import pandas as pd
     >>>
     >>> rng = default_rng()
-    >>> data = rng.standard_normal(size=42)
-    >>> series = pd.Series(data)
-    >>> fig, ax = ds.plot_scatter_y(y=series)
+    >>> series_y = pd.Series(rng.standard_normal(size=42))
+    >>> fig, ax = ds.plot_line_y(y=series_y)
     >>> plt.show()
 
     Example 2
-    >>> data = rng.standard_normal(size=42)
-    >>> series = pd.Series(data)
-    >>> fig, ax = ds.plot_scatter_y(
-    >>>     y=series,
-    >>>     figuresize=(8, 6),
+    >>> fig, ax = ds.plot_line_y(
+    >>>     y=series_y,
+    >>>     figuresize=(8, 4.5),
     >>>     marker='o',
-    >>>     markersize=8,
-    >>>     colour='#cc3311'
+    >>>     markersize=4,
+    >>>     colour='#ee7733'
     >>> )
     >>> plt.show()
     '''
