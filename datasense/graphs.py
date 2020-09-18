@@ -74,20 +74,17 @@ def plot_scatter_y(
     >>> import pandas as pd
     >>>
     >>> rng = default_rng()
-    >>> data = rng.standard_normal(size=42)
-    >>> series = pd.Series(data)
-    >>> fig, ax = ds.plot_scatter_y(y=series)
+    >>> series_y = pd.Series(rng.standard_normal(size=42))
+    >>> fig, ax = ds.plot_scatter_y(y=series_y)
     >>> plt.show()
 
     Example 2
-    >>> data = rng.standard_normal(size=42)
-    >>> series = pd.Series(data)
     >>> fig, ax = ds.plot_scatter_y(
-    >>>     y=series,
-    >>>     figuresize=(8, 6),
+    >>>     y=series_y,
+    >>>     figuresize=(8, 4.5),
     >>>     marker='o',
-    >>>     markersize=8,
-    >>>     colour='#cc3311'
+    >>>     markersize=4,
+    >>>     colour='#ee7733'
     >>> )
     >>> plt.show()
     '''
