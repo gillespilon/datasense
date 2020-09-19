@@ -1014,6 +1014,10 @@ def format_dates(
     fig.autofmt_xdate()
 
 
+def npp() -> None:
+    pass
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1026,4 +1030,5 @@ __all__ = (
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_lineleft_lineright_x_y1_y2',
     'format_dates',
+    'npp',
 )
