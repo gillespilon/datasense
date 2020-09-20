@@ -14,6 +14,7 @@ Colours used are colour-blind friendly.
 from typing import Optional, Tuple
 
 from datasense import natural_cubic_spline
+from scipy.stats import norm, probplot
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
@@ -1014,8 +1015,23 @@ def format_dates(
     fig.autofmt_xdate()
 
 
-def npp() -> None:
-    pass
+def probability_plot(
+    data: pd.Series,
+    *,
+    figuresize: Optional[Tuple[float, float]] = None,
+    distribution: Optional[object] = norm,
+    fit: Optional[bool] = True,
+    plot: Optional[object] = None
+) -> Tuple[plt.figure, axes.Axes]:
+    fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    (osm, osr), (slope, intercept, r) = probplot(
+        x=data,
+        dist=distribution,
+        fit=True,
+        plot=ax
+    )
+    return (fig, ax)
 
 
 __all__ = (
@@ -1030,5 +1046,5 @@ __all__ = (
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_lineleft_lineright_x_y1_y2',
     'format_dates',
-    'npp',
+    'probability_plot',
 )
