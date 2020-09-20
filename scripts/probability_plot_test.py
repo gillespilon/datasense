@@ -1,6 +1,9 @@
 #! /usr/bin/env python3
 """
-test
+Test def probability_plot() of graphs.py.
+
+tim e-f '%e' ./probability_plot_test.py
+./probability_plot_test.py
 """
 
 from matplotlib.pyplot import show
