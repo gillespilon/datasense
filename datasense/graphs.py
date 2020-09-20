@@ -1023,6 +1023,19 @@ def probability_plot(
     fit: Optional[bool] = True,
     plot: Optional[object] = None
 ) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Example
+    -------
+    >>> from matplotlib.pyplot import show
+    >>> from scipy.stats import norm
+    >>> import datasense as ds
+    >>>
+    >>> data = norm.rvs(size=42)
+    >>> fig, ax = ds.probability_plot(
+    >>>     data=data
+    >>> )
+    >>> show()
+    """
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
     (osm, osr), (slope, intercept, r) = probplot(
