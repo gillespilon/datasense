@@ -1024,6 +1024,27 @@ def probability_plot(
     plot: Optional[object] = None
 ) -> Tuple[plt.figure, axes.Axes]:
     """
+    Plot a probability plot of data against the quantiles of a specified
+    theoretical distribution.
+
+    Parameters
+    ----------
+    data : pd.Series
+        A pandas Series.
+    figuresize : Optional[Tuple[flot, float]]
+        The (width, height) of the figure (in, in).
+    distribution : Optional[object] = norm
+        Fit a normal distribution by default.
+    fit : Optional[bool] = True
+        Fit a least-squares regression line to the data if True.
+    plot : Optional[object] = None
+        If given, plot the quantiles and least-squares fit.
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
+
     Example
     -------
     >>> from matplotlib.pyplot import show
