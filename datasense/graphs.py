@@ -1047,7 +1047,7 @@ def probability_plot(
 
     Example
     -------
-    >>> from matplotlib.pyplot import show
+    >>> import matplotlib.pyplot as plt
     >>> from scipy.stats import norm
     >>> import datasense as ds
     >>>
@@ -1055,7 +1055,7 @@ def probability_plot(
     >>> fig, ax = ds.probability_plot(
     >>>     data=data
     >>> )
-    >>> show()
+    >>> plt.show()
     """
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
