@@ -8,14 +8,16 @@ Statistical analysis
 '''
 
 
-import pandas as pd
-import numpy as np
 from typing import List, Optional
+
+from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.interpolate import CubicSpline
-from sklearn.linear_model import LinearRegression
+from scipy.stats import norm, uniform
 from sklearn.pipeline import Pipeline
+import pandas as pd
+import numpy as np
 
 
 def nonparametric_summary(
@@ -171,9 +173,41 @@ def natural_cubic_spline(
     return p
 
 
+def random_data(
+    distribution: str = 'norm',
+    numrows: int = 42
+) -> pd.Series:
+    """
+    Create a series of random numbers from a distribution.
+
+    Parameters
+    ----------
+    distribution : str = 'norm'
+        A scipy.stats distribution.
+    numrows : int = 42
+        The number of rows to create.
+
+    Returns
+    -------
+    pd.Series
+        A pandas series of random numbers.
+    """
+    distribution_list_one = ['norm', 'uniform']
+    if distribution in distribution_list_one:
+        series = pd.Series(eval(distribution).rvs(size=numrows))
+    else:
+        print(
+            f'Random distribution instance {distribution} is not implemented '
+            'in datasense.'
+            )
+        exit()
+    return series
+
+
 __all__ = (
     'nonparametric_summary',
     'parametric_summary',
     'cubic_spline',
     'natural_cubic_spline',
+    'random_data',
 )
