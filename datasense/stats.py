@@ -216,6 +216,20 @@ def random_data(
     >>>     loc=53,
     >>>     size=11
     >>> )
+
+    Example 3
+    >>> # Create series of the standard uniform distribution, size = 42
+    >>> series = ds.random_data(distribution='uniform')
+
+    Example 4
+    >>> # Create series of the uniform distribution, size = 113,
+    >>> # min = 13, max = 69
+    >>> series = ds.random_data(
+    >>>     distribution='uniform',
+    >>>     size=113,
+    >>>     loc=13,
+    >>>     size=69
+    >>> )
     """
     distribution_list_one = ['norm', 'uniform']
     if distribution in distribution_list_one:
