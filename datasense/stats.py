@@ -198,6 +198,24 @@ def random_data(
     -------
     pd.Series
         A pandas series of random numbers.
+
+    Examples
+    --------
+    Example 1
+    >>> import datasense as ds
+    >>> from scipy.stats import norm, uniform
+    >>> # Create series of the standard normal distribution, size = 42
+    >>> series = ds.random_data()
+
+    Example 2
+    >>> # Create series of the normal distribution, size = 113, mean = 69,
+    >>> # standard deviation = 13
+    >>> series = ds.random_data(
+    >>>     distribution='norm',
+    >>>     size=117,
+    >>>     loc=53,
+    >>>     size=11
+    >>> )
     """
     distribution_list_one = ['norm', 'uniform']
     if distribution in distribution_list_one:
