@@ -174,8 +174,11 @@ def natural_cubic_spline(
 
 
 def random_data(
-    distribution: str = 'norm',
-    numrows: int = 42
+    *,
+    distribution: Optional[str] = 'norm',
+    size: Optional[int] = 42,
+    loc: Optional[float] = 0,
+    scale: Optional[float] = 1,
 ) -> pd.Series:
     """
     Create a series of random numbers from a distribution.
@@ -184,8 +187,12 @@ def random_data(
     ----------
     distribution : str = 'norm'
         A scipy.stats distribution.
-    numrows : int = 42
+    size : int = 42
         The number of rows to create.
+    loc : float = 0
+        The center of a distribution.
+    scale : float = 1
+        The spread of a distribution.
 
     Returns
     -------
@@ -194,7 +201,12 @@ def random_data(
     """
     distribution_list_one = ['norm', 'uniform']
     if distribution in distribution_list_one:
-        series = pd.Series(eval(distribution).rvs(size=numrows))
+        series = pd.Series(eval(distribution).rvs(
+            size=size,
+            loc=loc,
+            scale=scale
+            )
+        )
     else:
         print(
             f'Random distribution instance {distribution} is not implemented '
