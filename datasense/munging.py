@@ -264,8 +264,8 @@ def save_file(
     index : bool
         If True, creates an index.
 
-    Example
-    -------
+    Examples
+    --------
     Example 1
     ---------
     >>> import datasense as ds

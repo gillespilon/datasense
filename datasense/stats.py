@@ -188,7 +188,7 @@ def random_data(
     Parameters
     ----------
     distribution : str = 'norm'
-        A scipy.stats distribution.
+        A scipy.stats distribution, the standard normal by default.
     size : int = 42
         The number of rows to create.
     loc : float = 0
