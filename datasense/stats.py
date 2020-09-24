@@ -8,12 +8,13 @@ Statistical analysis
 '''
 
 from typing import List, Optional
+import sys
 
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.interpolate import CubicSpline
-from scipy.stats import norm, uniform
+from scipy.stats import norm, uniform, randint
 from sklearn.pipeline import Pipeline
 import pandas as pd
 import numpy as np
@@ -178,6 +179,8 @@ def random_data(
     size: Optional[int] = 42,
     loc: Optional[float] = 0,
     scale: Optional[float] = 1,
+    low: Optional[int] = 13,
+    high: Optional[int] = 69
 ) -> pd.Series:
     """
     Create a series of random numbers from a distribution.
@@ -230,20 +233,28 @@ def random_data(
     >>>     scale=69
     >>> )
     """
-    distribution_list_one = ['norm', 'uniform']
-    if distribution in distribution_list_one:
+    distribution_list_continuous = ['norm', 'uniform']
+    distribution_list_discrete = ['randint']
+    if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
             loc=loc,
             scale=scale
             )
         )
+    elif distribution in distribution_list_discrete:
+        series = pd.Series(eval(distribution).rvs(
+            low=low,
+            high=high,
+            size=size
+            )
+        )
     else:
-        print(
-            f'Random distribution instance {distribution} is not implemented '
+        return print(
+            f'Distribution instance {distribution} is not implemented '
             'in datasense.'
             )
-        exit()
+        sys.exit()
     return series
 
 
