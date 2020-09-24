@@ -253,6 +253,15 @@ def save_file(
 ) -> None:
     '''
     Save a DataFrame to a csv file.
+
+    Parameters
+    ---------
+    df : pd.DataFrame
+        The dataframe to be saved to a file.
+    filename : str
+        The name of the file to be saved.
+    index : bool
+        If True, creates an index.:w
     '''
 
     df.to_csv(filename, index=index)
