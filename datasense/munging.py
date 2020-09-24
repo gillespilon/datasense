@@ -264,7 +264,10 @@ def save_file(
         If True, creates an index.:w
     '''
 
-    df.to_csv(filename, index=index)
+    df.to_csv(
+        path_or_buf=filename,
+        index=index
+    )
 
 
 def read_file(
