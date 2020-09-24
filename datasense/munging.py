@@ -39,8 +39,27 @@ def dataframe_info(
         (columns_object_count, columns_object_list)
     Display count and list of empty columns
         (columns_empty_count, columns_empty_list)
-    '''
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+    filein : str
+        The name of the file from which df was created.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> df = ds.dataframe_info(
+    >>>     df=df,
+    >>>     filein='myfile.csv'
+    >>> )
+    '''
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
         columns_empty_list, columns_non_empty_list, columns_float_list,\
