@@ -7,7 +7,6 @@ Statistical analysis
 - Piecewise natural cubic spline helper
 '''
 
-
 from typing import List, Optional
 
 from sklearn.linear_model import LinearRegression
@@ -214,7 +213,7 @@ def random_data(
     >>>     distribution='norm',
     >>>     size=117,
     >>>     loc=53,
-    >>>     size=11
+    >>>     scale=11
     >>> )
 
     Example 3
@@ -228,7 +227,7 @@ def random_data(
     >>>     distribution='uniform',
     >>>     size=113,
     >>>     loc=13,
-    >>>     size=69
+    >>>     scale=69
     >>> )
     """
     distribution_list_one = ['norm', 'uniform']
