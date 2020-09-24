@@ -249,7 +249,8 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 def save_file(
     df: pd.DataFrame,
     filename: str,
-    index: bool
+    *,
+    index: Optional[bool] = False
 ) -> None:
     '''
     Save a DataFrame to a csv file.
@@ -261,9 +262,33 @@ def save_file(
     filename : str
         The name of the file to be saved.
     index : bool
-        If True, creates an index.:w
-    '''
+        If True, creates an index.
 
+    Example
+    -------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'x': ds.random_data(),
+    >>>         'y': ds.random_data()
+    >>>     }
+    >>> )
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     filename='x_y.csv'
+    >>> )
+
+    Example 2
+    ---------
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     filename='x_y.csv',
+    >>>     index=True
+    >>> )
+    '''
     df.to_csv(
         path_or_buf=filename,
         index=index
