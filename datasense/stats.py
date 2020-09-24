@@ -232,6 +232,14 @@ def random_data(
     >>>     loc=13,
     >>>     scale=69
     >>> )
+
+    Example 5
+    >>> series = ds.random_data(
+    >>>     distribution='randint',
+    >>>     size=113,
+    >>>     loc=13,
+    >>>     scale=69
+    >>> )
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
