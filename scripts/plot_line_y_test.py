@@ -19,7 +19,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    series_y = (ds.random_data())
+    series_y = ds.random_data()
     fig, ax = ds.plot_line_y(y=series_y)
     fig.savefig(
         fname='plot_line_y_test_1.svg',
