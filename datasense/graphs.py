@@ -161,21 +161,11 @@ def plot_scatter_x_y(
 
     --------
     Example 1
-    >>> from numpy.random import default_rng
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> import pandas as pd
     >>>
-    >>> rng = default_rng()
-    >>> series_x = pd.Series(
-    >>>     arange(
-    >>>         '2020-01-01T13:13:13',
-    >>>         '2020-02-12T13:13:13',
-    >>>         timedelta(hours=24),
-    >>>         dtype='datetime64[s]'
-    >>>     )
-    >>> )
-    >>> series_y = pd.Series(rng.standard_normal(size=42))
+    >>> series_x = ds.datatime_data()
+    >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
@@ -183,13 +173,7 @@ def plot_scatter_x_y(
     >>> plt.show()
 
     Example 2
-    >>> series_x = pd.Series(
-    >>>     rng.uniform(
-    >>>         low=13,
-    >>>         high=69,
-    >>>         size=42
-    >>>     )
-    >>> )
+    >>> series_x = ds.random_data(distribution='randint').sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
@@ -197,6 +181,22 @@ def plot_scatter_x_y(
     >>>     marker='o',
     >>>     markersize=8,
     >>>     colour='#cc3311'
+    >>> )
+    >>> plt.show()
+
+    # Example 3
+    >>> series_x = ds.random_data(distribution='uniform').sort_values()
+    >>> fig, ax = ds.plot_scatter_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y
+    >>> )
+    >>> plt.show()
+
+    # Example 4
+    >>> series_x = ds.random_data().sort_values()
+    >>> fig, ax = ds.plot_scatter_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y
     >>> )
     >>> plt.show()
     '''
