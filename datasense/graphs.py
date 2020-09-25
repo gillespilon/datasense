@@ -69,13 +69,10 @@ def plot_scatter_y(
     Examples
     --------
     Example 1
-    >>> from numpy.random import default_rng
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> import pandas as pd
     >>>
-    >>> rng = default_rng()
-    >>> series_y = pd.Series(rng.standard_normal(size=42))
+    >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_y(y=series_y)
     >>> plt.show()
 
