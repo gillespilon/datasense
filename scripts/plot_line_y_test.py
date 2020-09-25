@@ -19,6 +19,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
+    # Example 1
     series_y = ds.random_data()
     fig, ax = ds.plot_line_y(y=series_y)
     fig.savefig(
@@ -26,6 +27,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_line_y_test_1.svg')
+    # Example 2
     fig, ax = ds.plot_line_y(
         y=series_y,
         figuresize=(8, 4.5),
