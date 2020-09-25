@@ -285,7 +285,6 @@ def datetime_data(
     time_delta: Optional[int] = 24
 ) -> pd.Series:
     if start_year:
-        print('None')
         timestart = (
             start_year + '-' + start_month +
             '-' + start_day + 'T' + start_hour +
@@ -297,7 +296,6 @@ def datetime_data(
             ':' + end_minute + ':' + end_second
         )
     else:
-        print('Auto')
         date_time_start = datetime.now()
         date_time_end = date_time_start + timedelta(days=42)
         timestart = (
