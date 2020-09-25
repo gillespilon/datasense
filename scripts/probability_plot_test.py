@@ -20,9 +20,7 @@ def main():
         headerid=header_id
     )
     data = ds.random_data()
-    fig, ax = ds.probability_plot(
-        data=data
-    )
+    fig, ax = ds.probability_plot(data=data)
     fig.savefig(
         fname='probability_plot_test.svg',
         format='svg'
