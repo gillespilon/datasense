@@ -413,6 +413,14 @@ def plot_line_x_y(
     >>>     y=series_y
     >>> )
     >>> plt.show()
+
+    Example 4
+    >>> series_x = ds.random_data(distribution='norm').sort_values()
+    >>> fig, ax = ds.plot_line_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y
+    >>> )
+    >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
