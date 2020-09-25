@@ -283,9 +283,8 @@ def plot_line_y(
     Example 1
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> import pandas as pd
     >>>
-    >>> series_y = pd.Series(ds.random_data())
+    >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
     >>> plt.show()
 
