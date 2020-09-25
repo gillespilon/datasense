@@ -381,25 +381,16 @@ def plot_line_x_y(
     Examples
     --------
     Example 1
-    >>> from numpy.random import default_rng
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> import pandas as pd
     >>>
-    >>> rng = default_rng()
-    >>> series_x = pd.Series(
-    >>>     arange(
-    >>>         '2020-01-01T13:13:13',
-    >>>         '2020-02-12T13:13:13',
-    >>>         timedelta(hours=24),
-    >>>         dtype='datetime64[s]',
-    >>>     )
-    >>> )
-    >>> series_y = pd.Series(rng.standard_normal(size=42))
-    >>> fig, ax = ds.plot_line_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    series_x = ds.datetime_data()
+    series_y = pd.Series(ds.random_data())
+    fig, ax = ds.plot_line_x_y(
+        X=series_x,
+        y=series_y
+    )
     >>> plt.show()
 
     Example 2
