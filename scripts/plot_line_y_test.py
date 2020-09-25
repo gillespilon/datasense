@@ -23,7 +23,10 @@ def main():
     )
     series_y = pd.Series(ds.random_data())
     fig, ax = ds.plot_line_y(y=series_y)
-    fig.savefig('plot_line_y_test_1.svg', format='svg')
+    fig.savefig(
+        fname='plot_line_y_test_1.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_line_y_test_1.svg')
     fig, ax = ds.plot_line_y(
         y=series_y,
@@ -33,7 +36,10 @@ def main():
         linestyle=':',
         colour='#ee7733'
     )
-    fig.savefig('plot_line_y_test_2.svg', format='svg')
+    fig.savefig(
+        fname='plot_line_y_test_2.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_line_y_test_2.svg')
     ds.html_end(
         originalstdout=original_stdout,
