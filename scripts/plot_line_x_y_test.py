@@ -56,6 +56,16 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_line_x_y_uniformx_test.svg')
+    series_x = ds.random_data(distribution='norm').sort_values()
+    fig, ax = ds.plot_line_x_y(
+        X=series_x,
+        y=series_y
+    )
+    fig.savefig(
+        fname='plot_line_x_y_normx_test.svg',
+        format='svg'
+    )
+    ds.html_figure(filename='plot_line_x_y_normx_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
