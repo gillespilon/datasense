@@ -59,7 +59,7 @@ def main():
     )
     ds.html_figure(filename='plot_line_x_y_uniformx_test.svg')
     # Example 4
-    series_x = ds.random_data(distribution='norm').sort_values()
+    series_x = ds.random_data().sort_values()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y
