@@ -19,6 +19,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
+    # Example 1
     series_x = ds.datetime_data()
     series_y = ds.random_data()
     fig, ax = ds.plot_line_x_y(
@@ -30,6 +31,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_line_x_y_datex_test.svg')
+    # Example 2
     series_x = ds.random_data(distribution='randint').sort_values()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
@@ -45,6 +47,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_line_x_y_intx_test.svg')
+    # Example 3
     series_x = ds.random_data(distribution='uniform').sort_values()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
@@ -55,6 +58,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_line_x_y_uniformx_test.svg')
+    # Example 4
     series_x = ds.random_data(distribution='norm').sort_values()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
