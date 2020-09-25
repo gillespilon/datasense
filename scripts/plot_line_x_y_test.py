@@ -6,8 +6,8 @@ time -f '%e' ./plot_line_x_y_test.py
 ./plot_line_x_y_test.py
 '''
 
-from numpy.random import default_rng
 from datetime import timedelta
+from numpy.random import default_rng
 from numpy import arange
 import datasense as ds
 import pandas as pd
@@ -32,7 +32,7 @@ def main():
             dtype='datetime64[s]',
         )
     )
-    series_y = pd.Series(rng.standard_normal(size=42))
+    series_y = pd.Series(ds.random_data())
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y
