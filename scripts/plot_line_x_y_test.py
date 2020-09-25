@@ -7,7 +7,6 @@ time -f '%e' ./plot_line_x_y_test.py
 '''
 
 import datasense as ds
-import pandas as pd
 
 output_url = 'plot_line_x_y_test.html'
 header_title = 'plot_line_x_y_test'
@@ -21,7 +20,7 @@ def main():
         headerid=header_id
     )
     series_x = ds.datetime_data()
-    series_y = pd.Series(ds.random_data())
+    series_y = ds.random_data()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y
