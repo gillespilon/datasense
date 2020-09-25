@@ -6,9 +6,7 @@ time -f '%e' ./plot_scatter_y_test.py
 ./plot_scatter_y_test.py
 '''
 
-from numpy.random import default_rng
 import datasense as ds
-import pandas as pd
 
 output_url = 'plot_scatter_y_test.html'
 header_title = 'plot_scatter_y_test'
@@ -21,11 +19,15 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    rng = default_rng()
-    series_y = pd.Series(rng.standard_normal(size=42))
+    # Example 1
+    series_y = ds.random_data()
     fig, ax = ds.plot_scatter_y(y=series_y)
-    fig.savefig('plot_scatter_y_test_1.svg', format='svg')
+    fig.savefig(
+        'plot_scatter_y_test_1.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_scatter_y_test_1.svg')
+    # Example 2
     fig, ax = ds.plot_scatter_y(
         y=series_y,
         figuresize=(8, 4.5),
@@ -33,7 +35,10 @@ def main():
         markersize=4,
         colour='#ee7733'
     )
-    fig.savefig('plot_scatter_y_test_2.svg', format='svg')
+    fig.savefig(
+        'plot_scatter_y_test_2.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_scatter_y_test_2.svg')
     ds.html_end(
         originalstdout=original_stdout,
