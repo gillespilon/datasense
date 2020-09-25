@@ -394,6 +394,19 @@ def plot_line_x_y(
     >>> plt.show()
 
     Example 2
+    >>> series_x = ds.random_data(distribution='randint').sort_values()
+    >>> fig, ax = ds.plot_line_x_y(
+    >>>     X=series_x,
+    >>>     y=series_y,
+    >>>     figuresize=(8, 4.5),
+    >>>     marker='o',
+    >>>     markersize=8,
+    >>>     linestyle=':',
+    >>>     colour='#337733'
+    >>> )
+    >>> plt.show()
+
+    Example 3
     >>> series_x = pd.Series(
     >>>     rng.uniform(
     >>>         low=13,
