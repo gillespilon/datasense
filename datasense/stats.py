@@ -7,6 +7,7 @@ Statistical analysis
 - Piecewise natural cubic spline helper
 '''
 
+from datetime import datetime, timedelta
 from typing import List, Optional
 import sys
 
@@ -16,6 +17,7 @@ from scipy.stats.mstats import mquantiles as mq
 from scipy.interpolate import CubicSpline
 from scipy.stats import norm, uniform, randint
 from sklearn.pipeline import Pipeline
+from numpy import arange
 import pandas as pd
 import numpy as np
 
@@ -266,10 +268,70 @@ def random_data(
     return series
 
 
+def datetime_data(
+    *,
+    start_year: Optional[str] = None,
+    start_month: Optional[str] = None,
+    start_day: Optional[str] = None,
+    start_hour: Optional[str] = None,
+    start_minute: Optional[str] = None,
+    start_second: Optional[str] = None,
+    end_year: Optional[str] = None,
+    end_month: Optional[str] = None,
+    end_day: Optional[str] = None,
+    end_hour: Optional[str] = None,
+    end_minute: Optional[str] = None,
+    end_second: Optional[str] = None,
+    time_delta: Optional[int] = 24
+) -> pd.Series:
+    if start_year:
+        print('None')
+        timestart = (
+            start_year + '-' + start_month +
+            '-' + start_day + 'T' + start_hour +
+            ':' + start_minute + ':' + start_second
+        )
+        timeend = (
+            end_year + '-' + end_month +
+            '-' + end_day + 'T' + end_hour +
+            ':' + end_minute + ':' + end_second
+        )
+    else:
+        print('Auto')
+        date_time_start = datetime.now()
+        date_time_end = date_time_start + timedelta(days=42)
+        timestart = (
+            date_time_start.strftime('%Y') + '-' +
+            date_time_start.strftime('%m') + '-' +
+            date_time_start.strftime('%d') + 'T' +
+            date_time_start.strftime('%H') + ':' +
+            date_time_start.strftime('%M') + ':' +
+            date_time_start.strftime('%S')
+        )
+        timeend = (
+            date_time_end.strftime('%Y') + '-' +
+            date_time_end.strftime('%m') + '-' +
+            date_time_end.strftime('%d') + 'T' +
+            date_time_end.strftime('%H') + ':' +
+            date_time_end.strftime('%M') + ':' +
+            date_time_end.strftime('%S')
+        )
+    series = pd.Series(
+        arange(
+            start=timestart,
+            stop=timeend,
+            step=timedelta(hours=time_delta),
+            dtype='datetime64[s]'
+        )
+    )
+    return series
+
+
 __all__ = (
     'nonparametric_summary',
     'parametric_summary',
     'cubic_spline',
     'natural_cubic_spline',
     'random_data',
+    'datetime_data',
 )
