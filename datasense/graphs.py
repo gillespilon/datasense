@@ -1050,9 +1050,7 @@ def probability_plot(
     >>> import datasense as ds
     >>>
     >>> data = ds.random_data()
-    >>> fig, ax = ds.probability_plot(
-    >>>     data=data
-    >>> )
+    >>> fig, ax = ds.probability_plot(data=data)
     >>> plt.show()
     """
     fig = plt.figure(figsize=figuresize)
