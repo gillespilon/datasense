@@ -6,7 +6,6 @@ time -f '%e' ./plot_line_x_y_test.py
 ./plot_line_x_y_test.py
 '''
 
-from numpy.random import default_rng
 import datasense as ds
 import pandas as pd
 
@@ -21,14 +20,16 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    rng = default_rng()
     series_x = ds.datetime_data()
     series_y = pd.Series(ds.random_data())
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y
     )
-    fig.savefig('plot_line_x_y_datex_test.svg', format='svg')
+    fig.savefig(
+        fname='plot_line_x_y_datex_test.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_line_x_y_datex_test.svg')
     series_x = ds.random_data(distribution='randint').sort_values()
     fig, ax = ds.plot_line_x_y(
@@ -40,7 +41,10 @@ def main():
         linestyle=':',
         colour='#337733'
     )
-    fig.savefig('plot_line_x_y_intx_test.svg', format='svg')
+    fig.savefig(
+        fname='plot_line_x_y_intx_test.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_line_x_y_intx_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
