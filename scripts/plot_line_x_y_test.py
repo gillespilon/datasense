@@ -30,13 +30,7 @@ def main():
     )
     fig.savefig('plot_line_x_y_datex_test.svg', format='svg')
     ds.html_figure(filename='plot_line_x_y_datex_test.svg')
-    series_x = pd.Series(
-        rng.uniform(
-            low=13,
-            high=69,
-            size=42
-        )
-    ).sort_values()
+    series_x = ds.random_data(distribution='randint').sort_values()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y,
