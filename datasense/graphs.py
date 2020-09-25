@@ -1047,10 +1047,9 @@ def probability_plot(
     Example
     -------
     >>> import matplotlib.pyplot as plt
-    >>> from scipy.stats import norm
     >>> import datasense as ds
     >>>
-    >>> data = norm.rvs(size=42)
+    >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(
     >>>     data=data
     >>> )
