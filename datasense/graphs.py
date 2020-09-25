@@ -379,10 +379,9 @@ def plot_line_x_y(
     Example 1
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> import pandas as pd
     >>>
     series_x = ds.datetime_data()
-    series_y = pd.Series(ds.random_data())
+    series_y = ds.random_data()
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y
@@ -411,7 +410,7 @@ def plot_line_x_y(
     >>> plt.show()
 
     Example 4
-    >>> series_x = ds.random_data(distribution='norm').sort_values()
+    >>> series_x = ds.random_data().sort_values()
     >>> fig, ax = ds.plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y
