@@ -6,7 +6,6 @@ time -f '%e' ./plot_line_y_test.py
 ./plot_line_y_test.py
 '''
 
-from numpy.random import default_rng
 import datasense as ds
 import pandas as pd
 
@@ -22,8 +21,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    rng = default_rng()
-    series_y = pd.Series(rng.standard_normal(size=42))
+    series_y = pd.Series(ds.random_data())
     fig, ax = ds.plot_line_y(y=series_y)
     fig.savefig('plot_line_y_test_1.svg', format='svg')
     ds.html_figure(filename='plot_line_y_test_1.svg')
