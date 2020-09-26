@@ -148,10 +148,12 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>> print(columns_int_float)
     ['x', 'y']
    """
-    columns_int_float = sorted({
-        column_name for column_name in df.columns
-        if df[column_name].dtype in ('int64', 'float64')
-    })
+    columns_int_float = sorted(
+        {
+            column_name for column_name in df.columns
+            if df[column_name].dtype in ('int64', 'float64')
+        }
+    )
     return columns_int_float
 
 
