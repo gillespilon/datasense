@@ -144,8 +144,8 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>>         't': ds.datetime_data()
     >>>     }
     >>> )
-    >>> columns_int = ds.find_float_columns(df=df)
-    >>> print(columns_int)
+    >>> columns_float = ds.find_float_columns(df=df)
+    >>> print(columns_float)
     ['y']
     """
     columns_float = list(df.select_dtypes(include=['float64']).columns)
