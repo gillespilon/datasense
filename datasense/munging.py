@@ -118,6 +118,40 @@ def dataframe_info(
     return df
 
 
+def find_float_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all float columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_int : List[str]
+        A list of float column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_int = ds.find_float_columns(df=df)
+    >>> print(columns_int)
+    ['y']
+    """
+    columns_float = list(df.select_dtypes(include=['float64']).columns)
+    return columns_float
+
+
 def find_int_columns(df: pd.DataFrame) -> List[str]:
     """
     Find all integer columns in a dataframe.
@@ -269,10 +303,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_non_empty_count = columns_in_count - columns_empty_count
     df = df.drop(columns_empty_list, axis='columns')
     columns_non_empty_list = sorted(df.columns)
-    columns_float_list = sorted({
-        column_name for column_name in df.columns
-        if df[column_name].dtype == 'float'
-    })
+    columns_float_list = find_float_columns(df=df)
     columns_float_count = len(columns_float_list)
     columns_integer_list = find_int_columns(df=df)
     columns_integer_count = len(columns_integer_list)
@@ -610,6 +641,7 @@ def html_figure(
 
 __all__ = (
     'dataframe_info',
+    'find_float_columns',
     'find_int_columns',
     'find_int_float_columns',
     'number_empty_cells_in_columns',
