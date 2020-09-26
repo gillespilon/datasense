@@ -118,6 +118,39 @@ def dataframe_info(
     return df
 
 
+def find_int_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all integer columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_int : List[str]
+        A list of integer column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_int = ds.find_int_columns(df=df)
+    >>> print(columns_int)
+    """
+    columns_int = list(df.select_dtypes(include=['int64']).columns)
+    return columns_int
+
+
 def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     """
     Find all integer and float columns.
@@ -582,6 +615,7 @@ def html_figure(
 
 __all__ = (
     'dataframe_info',
+    'find_int_columns',
     'find_int_float_columns',
     'number_empty_cells_in_columns',
     'process_columns',
