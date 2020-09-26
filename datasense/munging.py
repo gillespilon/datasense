@@ -119,7 +119,7 @@ def dataframe_info(
 
 
 def find_int_float_columns(df: pd.DataFrame) -> List[str]:
-    '''
+    """
     Find all integer and float columns.
 
     Parameters
@@ -134,46 +134,24 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
 
     Example
     -------
-    >>> from datetime import timedelta
     >>> import datasense as ds
-    >>> from numpy import arange
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': pd.Series(
-    >>>             arange(
-    >>>                 '2020-01-01T13:13:13',
-    >>>                 '2020-02-12T13:13:13',
-    >>>                 timedelta(hours=24),
-    >>>                 dtype='datetime64[s]'
-    >>>             )
-    >>>         )
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
     >>>     }
     >>> )
-    >>> ds.save_file(
-    >>>     df=df,
-    >>>     filename='x_y.csv'
-    >>> )
-    >>> columns_int_float = ds.find_int_float_columns(
-    >>>     df=df
-    >>> )
+    >>> columns_int_float = ds.find_int_float_columns(df=df)
     >>> print(columns_int_float)
     ['x', 'y']
-    '''
-
+   """
     columns_int_float = sorted({
         column_name for column_name in df.columns
         if df[column_name].dtype in ('int64', 'float64')
     })
-    # print('There are',
-    #       len(columns_int_float),
-    #       'not-null integer & float columns in',
-    #       len(df.columns),
-    #       'total columns.')
-    # print(columns_int_float)
-    # print()
     return columns_int_float
 
 
