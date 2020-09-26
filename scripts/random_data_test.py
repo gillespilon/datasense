@@ -26,14 +26,26 @@ def main():
             't': ds.datetime_data()
         }
     )
-    print('df.head()', df.head())
-    print()
     print('df.shape', df.shape)
     print()
-    columns_int_float = ds.find_int_float_columns(
-        df=df
+    print('df.head()', df.head())
+    print()
+    print('df.dtypes', df.dtypes)
+    print()
+    print('df.columns', df.columns)
+    print()
+    print(help(ds.find_int_columns))
+    columns_int = ds.find_int_columns(df=df)
+    print('integer columns', columns_int)
+    print()
+    print(help(ds.find_int_float_columns))
+    columns_int_float = ds.find_int_float_columns(df=df)
+    print('integer, float columns', columns_int_float)
+    print()
+    df = ds.dataframe_info(
+        df=df,
+        filein='test'
     )
-    print('columns_int_float', columns_int_float)
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
