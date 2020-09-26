@@ -274,7 +274,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         if df[column_name].dtype == 'float'
     })
     columns_float_count = len(columns_float_list)
-    columns_integer_list = list(df.select_dtypes(include=['int64']).columns)
+    columns_integer_list = find_int_columns(df=df)
     columns_integer_count = len(columns_integer_list)
     columns_datetime_list = sorted({
         column_name for column_name in df.columns
