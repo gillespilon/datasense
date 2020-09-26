@@ -153,7 +153,7 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
 
 def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all integer and float columns.
+    Find all integer and float columns in a dataframe.
 
     Parameters
     ----------
@@ -179,13 +179,10 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>> )
     >>> columns_int_float = ds.find_int_float_columns(df=df)
     >>> print(columns_int_float)
-    ['x', 'y']
-   """
-    columns_int_float = sorted(
-        {
-            column_name for column_name in df.columns
-            if df[column_name].dtype in ('int64', 'float64')
-        }
+    ['x', 'y', 'z']
+    """
+    columns_int_float = list(
+        df.select_dtypes(include=['int64', 'float64']).columns
     )
     return columns_int_float
 
