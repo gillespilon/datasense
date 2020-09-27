@@ -29,6 +29,8 @@ def dataframe_info(
         for non-empty columns
     Display count and list of non-empty columns
         (columns_non_empty_count, columns_non_empty_list)
+    Display count and list of boolean columns
+        (columns_bool_count, columns_bool_list)
     Display count and list of float columns
         (columns_float_count, columns_float_list)
     Display count and list of integer columns
