@@ -9,6 +9,7 @@ Statistical analysis
 
 from datetime import datetime, timedelta
 from typing import List, Optional
+import random
 import sys
 
 from sklearn.linear_model import LinearRegression
@@ -182,10 +183,11 @@ def random_data(
     loc: Optional[float] = 0,
     scale: Optional[float] = 1,
     low: Optional[int] = 13,
-    high: Optional[int] = 69
+    high: Optional[int] = 69,
+    strings: Optional[List[str]] = ['female', 'male']
 ) -> pd.Series:
     """
-    Create a series of random numbers from a distribution.
+    Create a series of random items from a distribution.
 
     Parameters
     ----------
@@ -201,7 +203,7 @@ def random_data(
     Returns
     -------
     pd.Series
-        A pandas series of random numbers.
+        A pandas series of random items.
 
     Examples
     --------
@@ -245,6 +247,7 @@ def random_data(
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
+    distribution_list_strings = ['strings']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
@@ -257,6 +260,13 @@ def random_data(
             low=low,
             high=high,
             size=size
+            )
+        )
+    elif distribution in distribution_list_strings:
+        series = pd.Series(
+            random.choices(
+                population=strings,
+                k=size
             )
         )
     else:
