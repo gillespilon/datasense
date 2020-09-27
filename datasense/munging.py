@@ -118,6 +118,45 @@ def dataframe_info(
     return df
 
 
+def find_bool_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all boolean columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_bool : List[str]
+        A list of boolean column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(
+    >>>             distribution='randint',
+    >>>             low=0,
+    >>>             high=2
+    >>>         ).astype(dtype='bool'),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_bool = ds.find_bool_columns(df=df)
+    >>> print(columns_bool)
+    ['y']
+    """
+    columns_bool = list(df.select_dtypes(include=['bool']).columns)
+    return columns_bool
+
+
 def find_float_columns(df: pd.DataFrame) -> List[str]:
     """
     Find all float columns in a dataframe.
@@ -656,6 +695,7 @@ def html_figure(
 
 __all__ = (
     'dataframe_info',
+    'find_bool_columns',
     'find_float_columns',
     'find_int_columns',
     'find_int_float_columns',
