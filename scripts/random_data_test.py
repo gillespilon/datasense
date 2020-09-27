@@ -25,6 +25,7 @@ def main():
                 low=0,
                 high=2
             ).astype(dtype='bool'),
+            's': ds.random_data(distribution='strings'),
             'x': ds.random_data(distribution='norm'),
             'y': ds.random_data(distribution='randint'),
             'z': ds.random_data(distribution='uniform'),
@@ -66,6 +67,12 @@ def main():
     columns_int_float = ds.find_int_float_columns(df=df)
     print('integer, float columns')
     print(columns_int_float)
+    print()
+    print(help(ds.find_object_columns))
+    print()
+    columns_object = ds.find_object_columns(df=df)
+    print('object columns')
+    print(columns_object)
     print()
     df = ds.dataframe_info(
         df=df,
