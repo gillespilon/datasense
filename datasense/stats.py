@@ -259,6 +259,7 @@ def random_data(
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
     distribution_list_strings = ['strings']
+    distribution_list_bool = ['bool']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
@@ -272,6 +273,13 @@ def random_data(
             high=high,
             size=size
             )
+        )
+    elif distribution in distribution_list_bool:
+        series = pd.Series(eval('randint').rvs(
+            low=0,
+            high=2,
+            size=size
+            ).astype(dtype='bool')
         )
     elif distribution in distribution_list_strings:
         series = pd.Series(
