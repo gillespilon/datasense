@@ -149,6 +149,7 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>>             low=0,
     >>>             high=2
     >>>         ).astype(dtype='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
     >>>         'z': ds.random_data(distribution='uniform'),
@@ -188,6 +189,7 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>>             low=0,
     >>>             high=2
     >>>         ).astype(dtype='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
     >>>         'z': ds.random_data(distribution='uniform'),
@@ -227,6 +229,7 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>>             low=0,
     >>>             high=2
     >>>         ).astype(dtype='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
     >>>         'z': ds.random_data(distribution='uniform'),
@@ -266,6 +269,7 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>>             low=0,
     >>>             high=2
     >>>         ).astype(dtype='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
     >>>         'z': ds.random_data(distribution='uniform'),
@@ -280,6 +284,46 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
         df.select_dtypes(include=['int64', 'float64']).columns
     )
     return columns_int_float
+
+
+def find_object_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all object columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_object : List[str]
+        A list of object column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(
+    >>>             distribution='randint',
+    >>>             low=0,
+    >>>             high=2
+    >>>         ).astype(dtype='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_object = ds.find_object_columns(df=df)
+    >>> print(columns_object)
+    ['s']
+    """
+    columns_object = list(df.select_dtypes(include=['object']).columns)
+    return columns_object
 
 
 def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
@@ -378,10 +422,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         if df[column_name].dtype == 'datetime64[ns]'
     })
     columns_datetime_count = len(columns_datetime_list)
-    columns_object_list = sorted({
-        column_name for column_name in df.columns
-        if df[column_name].dtype == 'object'
-    })
+    columns_object_list = find_object_columns(df=df)
     columns_object_count = len(columns_object_list)
     return (
         df, columns_in_count, columns_non_empty_count,
@@ -712,6 +753,7 @@ __all__ = (
     'find_float_columns',
     'find_int_columns',
     'find_int_float_columns',
+    'find_object_columns',
     'number_empty_cells_in_columns',
     'process_columns',
     'process_rows',
