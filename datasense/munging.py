@@ -177,6 +177,11 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
+    >>>         'b': ds.random_data(
+    >>>             distribution='randint',
+    >>>             low=0,
+    >>>             high=2
+    >>>         ).astype(dtype='bool'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
     >>>         'z': ds.random_data(distribution='uniform'),
