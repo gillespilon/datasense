@@ -151,7 +151,7 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>> )
     >>> columns_bool = ds.find_bool_columns(df=df)
     >>> print(columns_bool)
-    ['y']
+    ['b']
     """
     columns_bool = list(df.select_dtypes(include=['bool']).columns)
     return columns_bool
@@ -168,7 +168,7 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
 
     Returns
     -------
-    columns_int : List[str]
+    columns_float : List[str]
         A list of float column names.
 
     Example
@@ -190,7 +190,7 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>> )
     >>> columns_float = ds.find_float_columns(df=df)
     >>> print(columns_float)
-    ['y']
+    ['x', 'z']
     """
     columns_float = list(df.select_dtypes(include=['float64']).columns)
     return columns_float
