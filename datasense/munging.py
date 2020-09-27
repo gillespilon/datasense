@@ -65,7 +65,8 @@ def dataframe_info(
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
         columns_empty_list, columns_non_empty_list, columns_bool_list,\
-        columns_bool_count, columns_float_list, columns_float_count,\
+        columns_bool_count,\
+        columns_float_list, columns_float_count,\
         columns_integer_list, columns_integer_count, columns_datetime_list,\
         columns_datetime_count, columns_object_list, columns_object_count\
         = process_columns(df)
@@ -146,11 +147,7 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(
-    >>>             distribution='randint',
-    >>>             low=0,
-    >>>             high=2
-    >>>         ).astype(dtype='bool'),
+    >>>         'b': ds.random_data(distribution='bool')
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -164,6 +161,42 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     """
     columns_bool = list(df.select_dtypes(include=['bool']).columns)
     return columns_bool
+
+
+def find_datetime_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all datetime columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_datetime : List[str]
+        A list of datetime column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(distribution='bool')
+    >>>         's': ds.random_data(distribution='strings'),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_datetime = ds.find_datetime_columns(df=df)
+    >>> print(columns_datetime)
+    ['t']
+    """
+    columns_datetime = list(df.select_dtypes(include=['datetime64']).columns)
+    return columns_datetime
 
 
 def find_float_columns(df: pd.DataFrame) -> List[str]:
@@ -186,11 +219,7 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(
-    >>>             distribution='randint',
-    >>>             low=0,
-    >>>             high=2
-    >>>         ).astype(dtype='bool'),
+    >>>         'b': ds.random_data(distribution='bool')
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -226,11 +255,7 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(
-    >>>             distribution='randint',
-    >>>             low=0,
-    >>>             high=2
-    >>>         ).astype(dtype='bool'),
+    >>>         'b': ds.random_data(distribution='bool')
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -266,11 +291,7 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(
-    >>>             distribution='randint',
-    >>>             low=0,
-    >>>             high=2
-    >>>         ).astype(dtype='bool'),
+    >>>         'b': ds.random_data(distribution='bool')
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -308,11 +329,7 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(
-    >>>             distribution='randint',
-    >>>             low=0,
-    >>>             high=2
-    >>>         ).astype(dtype='bool'),
+    >>>         'b': ds.random_data(distribution='bool')
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -380,6 +397,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     List[str],
     int,
     List[str],
+    int,
+    List[str],
     int
 ]:
     '''
@@ -415,15 +434,12 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_non_empty_list = sorted(df.columns)
     columns_bool_list = find_bool_columns(df=df)
     columns_bool_count = len(columns_bool_list)
+    columns_datetime_list = find_datetime_columns(df=df)
+    columns_datetime_count = len(columns_datetime_list)
     columns_float_list = find_float_columns(df=df)
     columns_float_count = len(columns_float_list)
     columns_integer_list = find_int_columns(df=df)
     columns_integer_count = len(columns_integer_list)
-    columns_datetime_list = sorted({
-        column_name for column_name in df.columns
-        if df[column_name].dtype == 'datetime64[ns]'
-    })
-    columns_datetime_count = len(columns_datetime_list)
     columns_object_list = find_object_columns(df=df)
     columns_object_count = len(columns_object_list)
     return (
@@ -752,6 +768,7 @@ def html_figure(
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
+    'find_datetime_columns',
     'find_float_columns',
     'find_int_columns',
     'find_int_float_columns',
