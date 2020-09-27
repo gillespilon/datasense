@@ -187,8 +187,8 @@ def random_data(
     strings: Optional[List[str]] = ['female', 'male']
 ) -> pd.Series:
     """
-    Create a series of random items from a distribution.
 
+    Create a series of random items from a distribution.
     Parameters
     ----------
     distribution : str = 'norm'
