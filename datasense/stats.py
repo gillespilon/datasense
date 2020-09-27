@@ -244,6 +244,17 @@ def random_data(
     >>>     loc=13,
     >>>     scale=69
     >>> )
+
+    Example 6
+    >>> # Create series of random strings from the default list
+    >>> series = ds.random_data(distribution='strings')
+
+    Example 7
+    >>> # Create series of random strings from a list of strings
+    >>> series = ds.random_data(
+    >>>     distribution='strings',
+    >>>     size=113,
+    >>>     strings=['tom', 'dick', 'harry']
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
