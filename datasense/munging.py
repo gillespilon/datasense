@@ -93,6 +93,12 @@ def dataframe_info(
     for element in new_list:
         print(element)
     print()
+    print(f'List of {columns_datetime_count} datetime columns:')
+    string_not_list = ", ".join(columns_datetime_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
+    print()
     print(f'List of {columns_float_count} float columns:')
     string_not_list = ", ".join(columns_float_list)
     new_list = wrapper.wrap(string_not_list)
@@ -101,12 +107,6 @@ def dataframe_info(
     print()
     print(f'List of {columns_integer_count} integer columns:')
     string_not_list = ", ".join(columns_integer_list)
-    new_list = wrapper.wrap(string_not_list)
-    for element in new_list:
-        print(element)
-    print()
-    print(f'List of {columns_datetime_count} datetime columns:')
-    string_not_list = ", ".join(columns_datetime_list)
     new_list = wrapper.wrap(string_not_list)
     for element in new_list:
         print(element)
