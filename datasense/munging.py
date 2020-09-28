@@ -157,11 +157,12 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_bool = ds.find_bool_columns(df=df)
@@ -194,11 +195,12 @@ def find_category_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_category = ds.find_category_columns(df=df)
@@ -231,11 +233,12 @@ def find_datetime_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_datetime = ds.find_datetime_columns(df=df)
@@ -268,11 +271,12 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_float = ds.find_float_columns(df=df)
@@ -305,11 +309,12 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_int = ds.find_int_columns(df=df)
@@ -342,11 +347,12 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_int_float = ds.find_int_float_columns(df=df)
@@ -381,11 +387,12 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> columns_object = ds.find_object_columns(df=df)
@@ -845,11 +852,12 @@ def byte_size(
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
     >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
     >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform'),
-    >>>         't': ds.datetime_data()
+    >>>         'z': ds.random_data(distribution='uniform')
     >>>     }
     >>> )
     >>> print(
