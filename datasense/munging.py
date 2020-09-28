@@ -69,7 +69,8 @@ def dataframe_info(
         columns_bool_count,\
         columns_float_list, columns_float_count,\
         columns_integer_list, columns_integer_count, columns_datetime_list,\
-        columns_datetime_count, columns_object_list, columns_object_count\
+        columns_datetime_count, columns_object_list, columns_object_count,\
+        columns_category_list, columns_category_count\
         = process_columns(df)
     wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
@@ -91,6 +92,12 @@ def dataframe_info(
     print()
     print(f'List of {columns_bool_count} bool columns:')
     string_not_list = ", ".join(columns_bool_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
+    print()
+    print(f'List of {columns_category_count} category columns:')
+    string_not_list = ", ".join(columns_category_list)
     new_list = wrapper.wrap(string_not_list)
     for element in new_list:
         print(element)
@@ -437,6 +444,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     List[str],
     int,
     List[str],
+    int,
+    List[str],
     int
 ]:
     '''
@@ -449,14 +458,16 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     Create count and list of non-empty columns
         (columns_non_empty_count, columns_non_empty_list)
     Delete empty columns
-    Create count and list of booleean columns
+    Create count and list of boolean columns
         (columns_bool_count, columns_bool_list)
+    Create count and list of category columns
+        (columns_category_count, columns_category_list)
+    Create count and list of datetime columns
+        (columns_datetime_count, columns_datetime_list)
     Create count and list of float columns
         (columns_float_count, columns_float_list)
     Create count and list of integer columns
         (columns_integer_count, columns_integer_list)
-    Create count and list of datetime columns
-        (columns_datetime_count, columns_datetime_list)
     Create count and list of string columns
         (columns_object_count, columns_object_list)
     '''
@@ -472,6 +483,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_non_empty_list = sorted(df.columns)
     columns_bool_list = find_bool_columns(df=df)
     columns_bool_count = len(columns_bool_list)
+    columns_category_list = find_category_columns(df=df)
+    columns_category_count = len(columns_category_list)
     columns_datetime_list = find_datetime_columns(df=df)
     columns_datetime_count = len(columns_datetime_list)
     columns_float_list = find_float_columns(df=df)
@@ -487,7 +500,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         columns_float_list, columns_float_count,
         columns_integer_list, columns_integer_count,
         columns_datetime_list, columns_datetime_count,
-        columns_object_list, columns_object_count
+        columns_object_list, columns_object_count,
+        columns_category_list, columns_category_count
     )
 
 
