@@ -1,11 +1,14 @@
-'''
+"""
 Statistical analysis
 
 - Non-parametric statistical summary
 - Parametric statistical summary
 - Cubic spline smoothing for Y vs X, can handle missing values
 - Piecewise natural cubic spline helper
-'''
+- Generate random data of various distributions
+- Generate datetime data
+- Generate timedelta data
+"""
 
 from datetime import datetime, timedelta
 from typing import List, Optional
