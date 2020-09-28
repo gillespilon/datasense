@@ -164,6 +164,43 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     return columns_bool
 
 
+def find_category_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all category columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_category : List[str]
+        A list of category column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
+    >>>         's': ds.random_data(distribution='strings'),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> columns_category = ds.find_category_columns(df=df)
+    >>> print(columns_category)
+    ['c']
+    """
+    columns_category = list(df.select_dtypes(include=['category']).columns)
+    return columns_category
+
+
 def find_datetime_columns(df: pd.DataFrame) -> List[str]:
     """
     Find all datetime columns in a dataframe.
@@ -812,6 +849,7 @@ def byte_size(
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
+    'find_category_columns',
     'find_datetime_columns',
     'find_float_columns',
     'find_int_columns',
