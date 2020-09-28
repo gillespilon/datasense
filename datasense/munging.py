@@ -40,6 +40,8 @@ def dataframe_info(
         (columns_datetime_count, columns_datetime_list)
     Display count and list of string columns
         (columns_object_count, columns_object_list)
+    Display count and list of timedelta columns
+        (columns_timedelta_count, columns_timedelta_list)
     Display count and list of empty columns
         (columns_empty_count, columns_empty_list)
 
@@ -70,7 +72,8 @@ def dataframe_info(
         columns_float_list, columns_float_count,\
         columns_integer_list, columns_integer_count, columns_datetime_list,\
         columns_datetime_count, columns_object_list, columns_object_count,\
-        columns_category_list, columns_category_count\
+        columns_category_list, columns_category_count,\
+        columns_timedelta_list, columns_timedelta_count\
         = process_columns(df)
     wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
@@ -122,6 +125,12 @@ def dataframe_info(
     print()
     print(f'List of {columns_object_count} string columns:')
     string_not_list = ", ".join(columns_object_list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
+    print()
+    print(f'List of {columns_timedelta_count} timedelta columns:')
+    string_not_list = ", ".join(columns_timedelta_list)
     new_list = wrapper.wrap(string_not_list)
     for element in new_list:
         print(element)
@@ -403,6 +412,44 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     return columns_object
 
 
+def find_timedelta_columns(df: pd.DataFrame) -> List[str]:
+    """
+    Find all timedelta columns in a dataframe.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    columns_timedelta : List[str]
+        A list of timedelta column names.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
+    >>>         'd': ds.timedelta_data(),
+    >>>         's': ds.random_data(distribution='strings'),
+    >>>         't': ds.datetime_data(),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform')
+    >>>     }
+    >>> )
+    >>> columns_timedelta = ds.find_timedelta_columns(df=df)
+    >>> print(columns_timedelta)
+    ['d']
+    """
+    columns_timedelta = list(df.select_dtypes(include=['timedelta']).columns)
+    return columns_timedelta
+
+
 def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     '''
     Create a table of data type, empty-cell count, and empty-all percentage
@@ -459,6 +506,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     List[str],
     int,
     List[str],
+    int,
+    List[str],
     int
 ]:
     '''
@@ -483,6 +532,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         (columns_integer_count, columns_integer_list)
     Create count and list of string columns
         (columns_object_count, columns_object_list)
+    Create count of timedelta columns
+        (columns_timedelta_count, columns_timedelta_list)
     '''
 
     columns_empty_list = sorted({
@@ -506,6 +557,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_integer_count = len(columns_integer_list)
     columns_object_list = find_object_columns(df=df)
     columns_object_count = len(columns_object_list)
+    columns_timedelta_list = find_timedelta_columns(df=df)
+    columns_timedelta_count = len(columns_timedelta_list)
     return (
         df, columns_in_count, columns_non_empty_count,
         columns_empty_count, columns_empty_list, columns_non_empty_list,
@@ -514,7 +567,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         columns_integer_list, columns_integer_count,
         columns_datetime_list, columns_datetime_count,
         columns_object_list, columns_object_count,
-        columns_category_list, columns_category_count
+        columns_category_list, columns_category_count,
+        columns_timedelta_list, columns_timedelta_count
     )
 
 
@@ -884,6 +938,7 @@ __all__ = (
     'find_int_columns',
     'find_int_float_columns',
     'find_object_columns',
+    'find_timedelta_columns',
     'number_empty_cells_in_columns',
     'process_columns',
     'process_rows',
