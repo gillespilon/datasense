@@ -15,8 +15,9 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.interpolate import CubicSpline
 from scipy.stats import norm, uniform, randint
+from pandas.api.types import CategoricalDtype
+from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
 from numpy import arange
 import pandas as pd
@@ -184,7 +185,8 @@ def random_data(
     scale: Optional[float] = 1,
     low: Optional[int] = 13,
     high: Optional[int] = 69,
-    strings: Optional[List[str]] = ['female', 'male']
+    strings: Optional[List[str]] = ['female', 'male'],
+    categories: Optional[List[str]] = ['small', 'medium', 'large']
 ) -> pd.Series:
     """
 
@@ -260,6 +262,7 @@ def random_data(
     distribution_list_discrete = ['randint']
     distribution_list_strings = ['strings']
     distribution_list_bool = ['bool']
+    distribution_list_categories = ['categories']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
@@ -286,6 +289,18 @@ def random_data(
             random.choices(
                 population=strings,
                 k=size
+            )
+        )
+    elif distribution in distribution_list_categories:
+        series = pd.Series(
+            random.choices(
+                population=categories,
+                k=size
+            )
+        ).astype(
+            CategoricalDtype(
+                categories=categories,
+                ordered=True
             )
         )
     else:
