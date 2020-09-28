@@ -155,7 +155,8 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -228,7 +229,8 @@ def find_datetime_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -264,7 +266,8 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -300,7 +303,8 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -336,7 +340,8 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -374,7 +379,8 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'b': ds.random_data(distribution='bool')
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
@@ -838,6 +844,7 @@ def byte_size(
     >>> df = pd.DataFrame(
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
+    >>>         'c': ds.random_data(distribution='categories'),
     >>>         's': ds.random_data(distribution='strings'),
     >>>         'x': ds.random_data(distribution='norm'),
     >>>         'y': ds.random_data(distribution='randint'),
