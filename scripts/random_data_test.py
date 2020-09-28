@@ -20,11 +20,8 @@ def main():
     print('<pre>')
     df = pd.DataFrame(
         {
-            'b': ds.random_data(
-                distribution='randint',
-                low=0,
-                high=2
-            ).astype(dtype='bool'),
+            'b': ds.random_data(distribution='bool'),
+            'c': ds.random_data(distribution='categories'),
             's': ds.random_data(distribution='strings'),
             'x': ds.random_data(distribution='norm'),
             'y': ds.random_data(distribution='randint'),
@@ -49,6 +46,12 @@ def main():
     columns_bool = ds.find_bool_columns(df=df)
     print('bool columns')
     print(columns_bool)
+    print()
+    print(help(ds.find_category_columns))
+    print()
+    columns_category = ds.find_category_columns(df=df)
+    print('category columns')
+    print(columns_category)
     print()
     print(help(ds.find_datetime_columns))
     print()
@@ -83,6 +86,13 @@ def main():
     df = ds.dataframe_info(
         df=df,
         filein='test'
+    )
+    print()
+    print('df memory usage: ')
+    print(
+        ds.byte_size(
+            num=df.memory_usage(index=True).sum()
+        )
     )
     print('</pre>')
     ds.html_end(
