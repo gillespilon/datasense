@@ -387,6 +387,11 @@ def datetime_data(
     return series
 
 
+def timedelta_data() -> pd.Series:
+    series = datetime_data() - datetime_data()
+    return series
+
+
 __all__ = (
     'nonparametric_summary',
     'parametric_summary',
@@ -394,4 +399,5 @@ __all__ = (
     'natural_cubic_spline',
     'random_data',
     'datetime_data',
+    'timedelta_data',
 )
