@@ -184,7 +184,7 @@ def random_data(
     loc: Optional[float] = 0,
     scale: Optional[float] = 1,
     low: Optional[int] = 13,
-    high: Optional[int] = 69,
+    high: Optional[int] = 70,
     strings: Optional[List[str]] = ['female', 'male'],
     categories: Optional[List[str]] = ['small', 'medium', 'large']
 ) -> pd.Series:
@@ -236,27 +236,45 @@ def random_data(
     >>>     distribution='uniform',
     >>>     size=113,
     >>>     loc=13,
-    >>>     scale=69
+    >>>     scale=70
     >>> )
 
     Example 5
+    >>> # Create series of the integer distribution
+    >>> series = ds.random_data(distribution='randint')
+
+    Example 6
+    >>> # Create series of the integer distribution, size = 113,
+    >>> # min = 0, max = 1
     >>> series = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
-    >>>     loc=13,
-    >>>     scale=69
+    >>>     loc=0,
+    >>>     scale=2
     >>> )
 
-    Example 6
+    Example 7
     >>> # Create series of random strings from the default list
     >>> series = ds.random_data(distribution='strings')
 
-    Example 7
+    Example 8
     >>> # Create series of random strings from a list of strings
     >>> series = ds.random_data(
     >>>     distribution='strings',
     >>>     size=113,
     >>>     strings=['tom', 'dick', 'harry']
+
+    Example 9
+    >>> # Create series of ordered categories
+    >>> series = ds.random_data(distribution='categories')
+
+    Example 10
+    >>> # Create series of ordered categories
+    >>> series = ds.random_data(
+    >>>     distribution='categories',
+    >>>     categories=['XS', 'S', 'M', 'L', 'XL'],
+    >>>     size=113
+    >>> )
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
