@@ -22,11 +22,12 @@ def main():
         {
             'b': ds.random_data(distribution='bool'),
             'c': ds.random_data(distribution='categories'),
+            'd': ds.timedelta_data(),
             's': ds.random_data(distribution='strings'),
+            't': ds.datetime_data(),
             'x': ds.random_data(distribution='norm'),
             'y': ds.random_data(distribution='randint'),
-            'z': ds.random_data(distribution='uniform'),
-            't': ds.datetime_data()
+            'z': ds.random_data(distribution='uniform')
         }
     )
     print('df.shape')
@@ -82,6 +83,12 @@ def main():
     columns_object = ds.find_object_columns(df=df)
     print('object columns')
     print(columns_object)
+    print()
+    print(help(ds.find_timedelta_columns))
+    print()
+    columns_timedelta = ds.find_timedelta_columns(df=df)
+    print('timedelta columns')
+    print(columns_timedelta)
     print()
     df = ds.dataframe_info(
         df=df,
