@@ -32,45 +32,75 @@ def nonparametric_summary(
     alphap: float = 1/3,
     betap: float = 1/3
 ) -> pd.Series:
-    '''
+    """
     Calculate empirical quantiles for a series.
 
-    scipy.stats.mstats.mquantiles
+    Parameters
+    ----------
+    series : pd.Series
+        The input series.
+    alphap : float = 1/3
+        Plotting positions.
+    betap : float = 1/3
+        Plotting positions.
 
-    R method 1, SAS method 3:
-    not implemented
+        scipy.stats.mstats.mquantiles plotting positions:
+        R method 1, SAS method 3:
+            not yet implemented in datasense
+        R method 2, SAS method 5:
+            not yet implemented in datasense
+        R method 3, SAS method 2:
+            not yet implemented in datasense
+        R method 4, SAS method 1:
+            alphap=0, betap=1
+        R method 5:
+            alphap=0.5, betap=0.5
+        R method 6, SAS method 4, Minitab, SPSS:
+            alphap=0, betap=0
+        R method 7:
+            alphap=1, betap=1
+        R method 8:
+            alphap=0.33, betap=0.33; is the recommended, default method
+        R method 9:
+            alphap=0.375, betap=0.375
+        Cunnane's method:
+            alphap=0.4, betap=0.4
+        APL method;
+            alphap=0.35, betap=0.35
 
-    R method 2, SAS method 5:
-    not implemented
+    Returns
+    -------
+    pd.Series containing:
+        lower outer fence : float
+        lower inner fence : float
+        lower quartile : float
+        median : float
+        upper quartile : float
+        upper inner fence : float
+        upper outer fence : float
+        interquartile range : float
+        inner outliers : List[float]
+        outer outliers : List[float]
+        minimum value : float
+        maximum value : float
+        count : int
 
-    R method 3, SAS method 2:
-    not implemented
+    Examples
+    --------
+    Example 1
+    >>> import datasense as ds
+    >>> series = ds.random_data()
+    >>> series = ds.nonparametric_summary(series=series)
+    >>> print(series)
 
-    R method 4, SAS method 1:
-    alphap=0, betap=1
-
-    R method 5:
-    alphap=0.5, betap=0.5
-
-    R method 6, SAS method 4, Minitab, SPSS:
-    alphap=0, betap=0
-
-    R method 7:
-    alphap=1, betap=1
-
-    R method 8:
-    alphap=0.33, betap=0.33; is the recommended, default method
-
-    R method 9:
-    alphap=0.375, betap=0.375
-
-    Cunnane's method:
-    alphap=0.4, betap=0.4
-
-    APL method;
-    alphap=0.35, betap=0.35
-    '''
-
+    Example 2
+    >>> series = ds.nonparametric_summary(
+    >>>     series=series,
+    >>>     alphap=0,
+    >>>     betap=0
+    >>> )
+    >>> print(series)
+    """
     xm = np.ma.masked_array(series, mask=np.isnan(series))
     q25 = mq(xm, prob=(0.25), alphap=alphap, betap=betap)
     q50 = mq(xm, prob=(0.50), alphap=alphap, betap=betap)
@@ -124,7 +154,6 @@ def parametric_summary(series: pd.Series) -> pd.Series:
     >>> series = ds.parametric_summary(series=series)
     >>> print(series)
     """
-
     return pd.Series({
         'n': series.count(),
         'min': series.min(),
