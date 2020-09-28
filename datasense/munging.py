@@ -10,6 +10,7 @@ import sys
 
 from beautifultable import BeautifulTable
 import pandas as pd
+import numpy as np
 
 
 def dataframe_info(
@@ -765,6 +766,49 @@ def html_figure(
     )
 
 
+def byte_size(
+    num: np.int64,
+    suffix: str = 'B'
+) -> str:
+    """
+    Convert bytes to requested units.
+
+    Parameters
+    ----------
+    num : np.int64
+    suffix : str = 'B'
+
+    Returns
+    -------
+    memory_usage : str
+
+    Example
+    -------
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'b': ds.random_data(distribution='bool'),
+    >>>         's': ds.random_data(distribution='strings'),
+    >>>         'x': ds.random_data(distribution='norm'),
+    >>>         'y': ds.random_data(distribution='randint'),
+    >>>         'z': ds.random_data(distribution='uniform'),
+    >>>         't': ds.datetime_data()
+    >>>     }
+    >>> )
+    >>> print(
+    >>>     byte_size(
+    >>>         num=df.memory_usage(index=True).sum()
+    >>>     )
+    >>> )
+    1.8 KiB
+    """
+    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f %s%s" % (num, unit, suffix)
+        num /= 1024.0
+    memory_usage = "%.1f %s%s" % (num, 'Yi', suffix)
+    return memory_usage
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -784,4 +828,5 @@ __all__ = (
     'html_begin',
     'html_end',
     'html_figure',
+    'byte_size',
 )
