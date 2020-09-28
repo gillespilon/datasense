@@ -31,7 +31,7 @@ def nonparametric_summary(
     series: pd.Series,
     alphap: float = 1/3,
     betap: float = 1/3
-) -> pd.DataFrame:
+) -> pd.Series:
     '''
     Calculate empirical quantiles for a series.
 
@@ -108,8 +108,8 @@ def parametric_summary(series: pd.Series) -> pd.Series:
 
     Returns
     -------
-    series : pd.Series
-        The output series containing columns:
+    pd.Series
+        The output series containing:
         n : sample size
         min : minimum value
         max : maximum value
