@@ -95,21 +95,32 @@ def nonparametric_summary(
 
 
 def parametric_summary(series: pd.Series) -> pd.Series:
-    '''
+    """
     Return parametric statistics.
+
+    Parameters
+    ----------
+    series : pd.Series
+        The input series.
 
     Returns
     -------
-    n              = sample size
-    min            = minimum value
-    max            = maximum value
-    average
-    confidence interval of the average
-    s              = sample standard deviation
-    confidence interval of the sample standard deviation
-    var            = sample variance
-    confidence interval of the sample variance
-    '''
+    series : pd.Series
+        The output series containing columns:
+        n : sample size
+        min : minimum value
+        max : maximum value
+        ave : average
+        s : sample standard deviation
+        var : sample variance
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> series = ds.random_data()
+    >>> series = ds.parametric_summary(series=series)
+    >>> print(series)
+    """
 
     return pd.Series({
         'n': series.count(),
