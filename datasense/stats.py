@@ -57,7 +57,7 @@ def nonparametric_summary(
             alphap=0.5, betap=0.5
         R method 6, SAS method 4, Minitab, SPSS:
             alphap=0, betap=0
-        R method 7:
+        R method 7, Splus 3.1:
             alphap=1, betap=1
         R method 8:
             alphap=0.33, betap=0.33; is the recommended, default method
@@ -169,13 +169,14 @@ def cubic_spline(
     abscissa: str,
     ordinate: str
 ) -> CubicSpline:
-    '''
+    """
     Estimates the spline object for abscissa, ordinate of a dataframe
-    Requires that abscissa, ordinate be integer or float
-    Removes rows where there are missing values in abscissa and ordinate
-    Removes duplicate rows
-    Sorts the dataframe by abscissa in increasing order
-    '''
+
+    - Requires that abscissa, ordinate be integer or float
+    - Removes rows where there are missing values in abscissa and ordinate
+    - Removes duplicate rows
+    - Sorts the dataframe by abscissa in increasing order
+    """
 
     df = df.dropna(subset=[abscissa, ordinate])
     df = df.sort_values(by=abscissa, axis='rows', ascending=True)
