@@ -170,14 +170,50 @@ def cubic_spline(
     ordinate: str
 ) -> CubicSpline:
     """
-    Estimates the spline object for abscissa, ordinate of a dataframe
+    Estimates the spline object for the abscissa and ordinate of a dataframe.
 
     - Requires that abscissa, ordinate be integer or float
     - Removes rows where there are missing values in abscissa and ordinate
     - Removes duplicate rows
     - Sorts the dataframe by abscissa in increasing order
-    """
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+    abscissa : str
+        The name of the abscissa column.
+    ordinate : str
+        The name of the ordinate column.
+
+    Returns
+    -------
+    CubicSpline
+        A cubic spline.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    >>>     {
+    >>>         'abscissa': ds.random_data(distribution='uniform'),
+    >>>         'ordinate': ds.random_data(distribution='norm')
+    >>>     }
+    >>> ).sort_values(by=['abscissa'])
+    >>> spline = ds.cubic_spline(
+    >>>     df=df,
+    >>>     abscissa='abscissa',
+    >>>     ordinate='ordinate'
+    >>> )
+    >>> df['predicted'] = spline(df['abscissa'])
+    >>> ds.plot_scatter_line_x_y1_y2(
+    >>>     X=df['abscissa'],
+    >>>     y1=df['ordinate'],
+    >>>     y2=df['predicted']
+    >>> )
+    >>> plt.show()
+    """
     df = df.dropna(subset=[abscissa, ordinate])
     df = df.sort_values(by=abscissa, axis='rows', ascending=True)
     df = df.drop_duplicates(subset=abscissa, keep='first')
