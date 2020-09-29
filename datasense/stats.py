@@ -454,8 +454,73 @@ def datetime_data(
     end_hour: Optional[str] = None,
     end_minute: Optional[str] = None,
     end_second: Optional[str] = None,
-    time_delta: Optional[int] = 24
+    time_delta_days: Optional[int] = 42,
+    time_delta_hours: Optional[int] = 24
 ) -> pd.Series:
+    """
+    Create a data series of datetime data.
+
+    Parameters
+    ----------
+    start_year : Optional[str] = None,
+        The start year of the series.
+    start_month : Optional[str] = None,
+        The start month of the series.
+    start_day : Optional[str] = None,
+        The start day of the series.
+    start_hour : Optional[str] = None,
+        The start hour of the series.
+    start_minute : Optional[str] = None,
+        The start minute of the series.
+    start_second : Optional[str] = None,
+        The start second of the series.
+    end_year : Optional[str] = None,
+        The end year of the series.
+    end_month : Optional[str] = None,
+        The end month of the series.
+    end_day : Optional[str] = None,
+        The end day of the series.
+    end_hour : Optional[str] = None,
+        The end hour of the series.
+    end_minute : Optional[str] = None,
+        The end minute of the series.
+    end_second : Optional[str] = None,
+        The end second of the series.
+    time_delta_days : Optional[int] = 42,
+        The daily increment for the series.
+    time_delta_hours : Optional[int] = 24
+        The hourly increment for the series.
+
+    Returns
+    -------
+    pd.Series
+        The datetime series.
+
+    Example
+    -------
+    Example 1
+    >>> # Create a default datetime series
+    >>> X = ds.datetime_data()
+
+    Example 2
+    >>> # Create a datetime series of one month in increments of six hours
+    >>> X = ds.datetime_data(
+    >>>     start_year='2020',
+    >>>     start_month='01',
+    >>>     start_day='01',
+    >>>     start_hour='00',
+    >>>     start_minute='00',
+    >>>     start_second='00',
+    >>>     end_year='2020',
+    >>>     end_month='02',
+    >>>     end_day='01',
+    >>>     end_hour='00',
+    >>>     end_minute='00',
+    >>>     end_second='00',
+    >>>     time_delta_hours=6
+    >>> )
+    """
+    # TODO: Complete this code for all possibilities of timedelta
     if start_year:
         timestart = (
             start_year + '-' + start_month +
@@ -469,7 +534,10 @@ def datetime_data(
         )
     else:
         date_time_start = datetime.now()
-        date_time_end = date_time_start + timedelta(days=42)
+        date_time_end = date_time_start + timedelta(
+            days=time_delta_days,
+            hours=time_delta_hours
+        )
         timestart = (
             date_time_start.strftime('%Y') + '-' +
             date_time_start.strftime('%m') + '-' +
@@ -490,7 +558,7 @@ def datetime_data(
         arange(
             start=timestart,
             stop=timeend,
-            step=timedelta(hours=time_delta),
+            step=timedelta(hours=time_delta_hours),
             dtype='datetime64[s]'
         )
     )
