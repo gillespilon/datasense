@@ -299,8 +299,8 @@ def random_data(
     categories: Optional[List[str]] = ['small', 'medium', 'large']
 ) -> pd.Series:
     """
-
     Create a series of random items from a distribution.
+
     Parameters
     ----------
     distribution : str = 'norm'
