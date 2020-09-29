@@ -224,8 +224,8 @@ def cubic_spline(
 def natural_cubic_spline(
     X: pd.Series,
     y: pd.Series,
+    numberknots: int,
     *,
-    numberknots: Optional[int] = None,
     listknots: Optional[List[int]] = None
 ) -> Pipeline:
     '''
