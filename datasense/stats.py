@@ -46,11 +46,11 @@ def nonparametric_summary(
 
         scipy.stats.mstats.mquantiles plotting positions:
         R method 1, SAS method 3:
-            not yet implemented in datasense
+            not yet implemented in scipy.stats.mstats.mquantiles
         R method 2, SAS method 5:
-            not yet implemented in datasense
+            not yet implemented in scipy.stats.mstats.mquantiles
         R method 3, SAS method 2:
-            not yet implemented in datasense
+            not yet implemented in scipy.stats.mstats.mquantiles
         R method 4, SAS method 1:
             alphap=0, betap=1
         R method 5:
