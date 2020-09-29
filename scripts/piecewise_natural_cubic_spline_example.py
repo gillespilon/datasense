@@ -183,7 +183,9 @@ def plot_scatter_line(
 ) -> None:
     X, y, file, target, feature, numknots, dates = t
     model = ds.natural_cubic_spline(
-        X, y, numberknots=numknots
+        X=X,
+        y=y,
+        numberknots=numknots
     )
     if dates:
         XX = X.astype('datetime64[ns]')
