@@ -228,20 +228,49 @@ def natural_cubic_spline(
     *,
     listknots: Optional[List[int]] = None
 ) -> Pipeline:
-    '''
+    """
     Piecewise natural cubic spline helper function
-
-    Provide numberknots or listknots
 
     If numberknots is given, the calculated knots are equally-spaced
     within minval and maxval. The endpoints are not included as knots.
 
-    min:          the minimum of the interval containing the knots
-    max:          the maximum of the interval containing the knots
-    numberknots:  the number of knots to create.
-    listknots:    the knots
-    spline:       the model object
-    '''
+    The X series must be in increasing order.
+    The y series must not contain missing values.
+
+    Parameters
+    ----------
+    X : pd.Series
+        The data series of the abscissa.
+    y : pd.Series
+        The data series of the ordinate.
+    numberknots : int
+        The number of knots for the spline.
+    listknots : Optional[List[int]] = None
+        A list of specific knots.
+
+    Returns
+    -------
+    p : sklearn.pipeline.Pipeline
+        The model object.
+
+    Example
+    -------
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> X = ds.random_data(distribution='uniform').sort_values()
+    >>> y = ds.random_data(distribution='norm')
+    >>> p = ds.natural_cubic_spline(
+    >>>     X=X,
+    >>>     y=y,
+    >>>     numberknots=10
+    >>> )
+    >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
+    >>>     X=X,
+    >>>     y1=y,
+    >>>     y2=p.predict(X)
+    >>> )
+    >>> plt.show()
+    """
 
     if listknots:
         spline = NaturalCubicSpline(knots=listknots)
