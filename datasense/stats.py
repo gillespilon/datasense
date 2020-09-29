@@ -193,6 +193,7 @@ def cubic_spline(
 
     Example
     -------
+    >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> import pandas as pd
     >>> df = pd.DataFrame(
