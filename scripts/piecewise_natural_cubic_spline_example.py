@@ -218,11 +218,17 @@ def plot_scatter_line(
 
 
 def despine(ax: axes.Axes) -> None:
-    '''
+    """
     Remove the top and right spines of a graph.
 
-    There is only one x axis, on the bottom, and one y axis, on the left.
-    '''
+    Parameters
+    ----------
+    ax : axes.Axes
+
+    Example
+    -------
+    >>> despine(ax)
+    """
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
 
