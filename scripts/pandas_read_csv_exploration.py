@@ -8,16 +8,35 @@ from typing import Optional, Union
 import datasense as ds
 import pandas as pd
 
+output_url = 'pandas_read_csv_exploration.html'
+header_title = 'pandas_read_csv_exploration'
+header_id = 'pandas-read-csv-exploration'
+
 
 def main():
-    pd.options.display.max_columns = 500
+    # pd.options.display.max_columns = 500
+    original_stdout = ds.html_begin(
+        outputurl=output_url,
+        headertitle=header_title,
+        headerid=header_id
+    )
+    print('<pre>')
     df = create_dataframe()
+    print('Create dataframe')
     print(df.head())
+    print()
     save_dataframe(df=df)
+    # Example 1
     data = read_file(
         file_name='myfile.csv'
     )
+    print('Example 1')
     print(data.head())
+    print('</pre>')
+    ds.html_end(
+        originalstdout=original_stdout,
+        outputurl=output_url
+    )
 
 
 def create_dataframe() -> pd.DataFrame:
