@@ -653,11 +653,17 @@ def read_file(
     Parameters
     ----------
     filename : str
+        The name of the file to read.
     sheetname : Optional[str] = None
+        The name of the worksheet of a workbook.
     indexcol : Optional[bool] = None
+        If False, do not use the first column.
     abscissa : Optional[str] = None
+        The column to use to parse dates.
     datetimeparser : Optional[str] = None
+        The datetimeparser string.
     columnnamessort : Optional[str] = False
+        The column on which to sort the dataframe.
 
     Returns
     -------
