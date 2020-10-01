@@ -23,7 +23,7 @@ def main():
     print('<pre>')
     df = create_dataframe()
     print('Create dataframe')
-    print(df.head())
+    print(df.tail())
     print()
     save_dataframe(df=df)
     # Example 1
@@ -31,7 +31,7 @@ def main():
         file_name='myfile.csv'
     )
     print('Example 1')
-    print(data.head())
+    print(data.tail())
     print()
     # Example 2
     data = read_file(
@@ -39,6 +39,14 @@ def main():
         index_col='t'
     )
     print('Example 2')
+    print(data.tail())
+    print()
+    # Example 3
+    data = read_file(
+        file_name='myfile.csv',
+        index_col='y'
+    )
+    print('Example 3')
     print(data.head())
     print('</pre>')
     ds.html_end(
@@ -73,11 +81,13 @@ def save_dataframe(df) -> None:
 def read_file(
     file_name: str,
     *,
-    index_col: Optional[Union[str, bool]] = None
+    index_col: Optional[Union[str, bool]] = None,
+    dtype: Optional[Union[str, dict]] = None
 ) -> pd.DataFrame:
     df = pd.read_csv(
         file_name,
-        index_col=index_col
+        index_col=index_col,
+        dtype=dtype
     )
     """
     Create a DataFrame from an external file.
