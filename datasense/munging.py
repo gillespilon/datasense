@@ -647,20 +647,26 @@ def read_file(
     datetimeparser: Optional[str] = None,
     columnnamessort: Optional[str] = False
 ) -> pd.DataFrame:
-    '''
+    """
     Create a DataFrame from an external file.
 
-    Reads an ods, csv, or xlsx file
-    Sorts on abscissa if datetimeparser is True
-    Sorts on columnnames if columnnamessort is True
+    Parameters
+    ----------
+    filename : str
+    sheetname : Optional[str] = None
+    indexcol : Optional[bool] = None
+    abscissa : Optional[str] = None
+    datetimeparser : Optional[str] = None
+    columnnamessort : Optional[str] = False
 
-    filename       :
-    sheetname      :
-    indexcol       :
-    abscissa       :
-    datetimeparser : str such as %Y-%m-%d %H:%M:%S
-    columnnamessort:
-    '''
+    Returns
+    -------
+    df : pd.DataFrame
+
+    Example
+    -------
+    >>> df = ds.read_file(filename='filename.csv')
+    """
 
     if '.ods' in filename and abscissa and datetimeparser:
         df = pd.read_excel(
