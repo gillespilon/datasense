@@ -32,6 +32,14 @@ def main():
     )
     print('Example 1')
     print(data.head())
+    print()
+    # Example 2
+    data = read_file(
+        file_name='myfile.csv',
+        index_col='t'
+    )
+    print('Example 2')
+    print(data.head())
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
@@ -68,7 +76,8 @@ def read_file(
     index_col: Optional[Union[str, bool]] = None
 ) -> pd.DataFrame:
     df = pd.read_csv(
-        file_name
+        file_name,
+        index_col=index_col
     )
     """
     Create a DataFrame from an external file.
