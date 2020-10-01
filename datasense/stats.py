@@ -330,7 +330,7 @@ def random_data(
     >>> # standard deviation = 13
     >>> series = ds.random_data(
     >>>     distribution='norm',
-    >>>     size=117,
+    >>>     size=113,
     >>>     loc=53,
     >>>     scale=11
     >>> )
@@ -454,7 +454,7 @@ def datetime_data(
     end_hour: Optional[str] = None,
     end_minute: Optional[str] = None,
     end_second: Optional[str] = None,
-    time_delta_days: Optional[int] = 42,
+    time_delta_days: Optional[int] = 41,
     time_delta_hours: Optional[int] = 24
 ) -> pd.Series:
     """
