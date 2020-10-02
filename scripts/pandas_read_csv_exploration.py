@@ -4,9 +4,11 @@ Pandas read_csv exploration
 """
 
 from typing import Optional, Union
+from math import trunc
 
 import datasense as ds
 import pandas as pd
+import numpy as np
 
 output_url = 'pandas_read_csv_exploration.html'
 header_title = 'pandas_read_csv_exploration'
@@ -23,7 +25,8 @@ def main():
     print('<pre>')
     df = create_dataframe()
     print('Create dataframe')
-    print(df.tail())
+    print(df.head())
+    print(df.dtypes)
     print()
     save_dataframe(df=df)
     # Example 1
@@ -31,7 +34,8 @@ def main():
         file_name='myfile.csv'
     )
     print('Example 1')
-    print(data.tail())
+    print(data.head())
+    print(data.dtypes)
     print()
     # Example 2
     data = read_file(
@@ -39,7 +43,8 @@ def main():
         index_col='t'
     )
     print('Example 2')
-    print(data.tail())
+    print(data.head())
+    print(data.dtypes)
     print()
     # Example 3
     data = read_file(
@@ -47,7 +52,19 @@ def main():
         index_col='y'
     )
     print('Example 3')
-    print(data.tail())
+    print(data.head())
+    print(data.dtypes)
+    print('index dtype:')
+    print(data.index.dtype)
+    # Example 4
+    converters = {'a': lambda x: trunc(float(x))}
+    data = read_file(
+        file_name='myfile.csv',
+        converters=converters
+    )
+    print('Example 4')
+    print(data.head())
+    print(data.dtypes)
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
@@ -58,6 +75,12 @@ def main():
 def create_dataframe() -> pd.DataFrame:
     df = pd.DataFrame(
         {
+            'a': ds.random_data(
+                distribution='uniform',
+                size=42,
+                loc=13,
+                scale=70
+            ),
             'b': ds.random_data(distribution='bool'),
             'c': ds.random_data(distribution='categories'),
             'd': ds.timedelta_data(),
@@ -82,12 +105,12 @@ def read_file(
     file_name: str,
     *,
     index_col: Optional[Union[str, bool]] = None,
-    dtype: Optional[Union[str, dict]] = None
+    converters: Optional[dict] = None
 ) -> pd.DataFrame:
     df = pd.read_csv(
         file_name,
         index_col=index_col,
-        dtype=dtype
+        converters=converters
     )
     """
     Create a DataFrame from an external file.
