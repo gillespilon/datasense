@@ -40,7 +40,7 @@ def main():
     print()
     # Example 2
     # Read a csv file. Ensure the dtypes of columns. Rename the columns.
-    column_names = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
+    column_names_list = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
     index_columns = ['Y']
     date_parser = '%Y-%m-%d %H:%M:%S'
     date_time_columns = ['T', 'U']
@@ -49,7 +49,7 @@ def main():
     converters = {'a': lambda x: trunc(float(x))}
     data = read_file(
         file_name='myfile.csv',
-        column_names=column_names,
+        column_names_list=column_names_list,
         index_columns=index_columns,
         date_time_columns=date_time_columns,
         date_parser=date_parser,
@@ -106,9 +106,8 @@ def save_dataframe(df) -> None:
 def read_file(
     file_name: str,
     *,
-    column_names: Optional[List[str]] = [],
+    column_names_list: Optional[List[str]] = [],
     index_columns: Optional[List[str]] = [],
-    dtype: Optional[dict] = None,
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = None,
     date_parser: Optional[str] = None,
@@ -123,6 +122,22 @@ def read_file(
     ----------
     file_name : str
         The name of the file to read.
+    column_names_list : Optional[List[str]]
+        The new column names to replace the old column names.
+    index_columns : Optional[List[str]]
+        The columns to use for the dataframe index.
+    converters : Optional[dict] = None,
+        Dictionary of functions for converting values in certain columns.
+    parse_dates : Optional[List[str]] = None,
+        The columns to use to parse date and time.
+    date_parser : Optional[str] = None,
+        The string to use for parsing date and time.
+    date_time_columns : Optional[List[str]] = [],
+        The columns to change to dtype datetime.
+    time_delta_columns : Optional[List[str]] = [],
+        The columns to change to dtype timedelta.
+    category_columns : Optional[List[str]] = []
+        The columns to change to dtype category.
 
     Returns
     -------
@@ -138,7 +153,7 @@ def read_file(
     Example 2
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
-    >>> column_names = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
+    >>> column_names_list = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
     >>> index_columns = ['Y']
     >>> date_parser = '%Y-%m-%d %H:%M:%S'
     >>> date_time_columns = ['T', 'U']
@@ -147,7 +162,7 @@ def read_file(
     >>> converters = {'a': lambda x: trunc(float(x))}
     >>> data = read_file(
     >>>     file_name='myfile.csv',
-    >>>     column_names=column_names,
+    >>>     column_names_list=column_names_list,
     >>>     index_columns=index_columns,
     >>>     date_time_columns=date_time_columns,
     >>>     date_parser=date_parser,
@@ -162,8 +177,8 @@ def read_file(
         parse_dates=parse_dates,
         date_parser=date_parser
     )
-    if column_names:
-        df.columns = column_names
+    if column_names_list:
+        df.columns = column_names_list
     for column in category_columns:
         df[column] = df[column].astype(CategoricalDtype())
     for column in date_time_columns:
