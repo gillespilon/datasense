@@ -47,7 +47,7 @@ def main():
         index_col='y'
     )
     print('Example 3')
-    print(data.head())
+    print(data.tail())
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
@@ -106,6 +106,13 @@ def read_file(
     --------
     Example 1
     >>> data = read_file(file_name='myfile.csv')
+
+    Example 2
+    Make a datetime column the dataframe index.
+    >>> data = read_file(
+    >>>     file_name='myfile.csv',
+    >>>     index_col='t'
+    >>> )
     """
     return df
 
