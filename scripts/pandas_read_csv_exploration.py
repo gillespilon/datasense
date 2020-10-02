@@ -3,12 +3,12 @@
 Pandas read_csv exploration
 """
 
-from typing import Optional, Union
+from typing import List, Optional
 from math import trunc
 
+from pandas.api.types import CategoricalDtype
 import datasense as ds
 import pandas as pd
-import numpy as np
 
 output_url = 'pandas_read_csv_exploration.html'
 header_title = 'pandas_read_csv_exploration'
@@ -23,6 +23,8 @@ def main():
         headerid=header_id
     )
     print('<pre>')
+    help(read_file)
+    print()
     df = create_dataframe()
     print('Create dataframe')
     print(df.head())
@@ -30,41 +32,40 @@ def main():
     print()
     save_dataframe(df=df)
     # Example 1
-    data = read_file(
-        file_name='myfile.csv'
-    )
-    print('Example 1')
+    # Read a csv file. There is no guarante thee column dtypes will be correct.
+    data = read_file(file_name='myfile.csv')
+    print('Example 1. The dtypes are not correct.')
     print(data.head())
     print(data.dtypes)
     print()
     # Example 2
-    data = read_file(
-        file_name='myfile.csv',
-        index_col='t'
-    )
-    print('Example 2')
-    print(data.head())
-    print(data.dtypes)
-    print()
-    # Example 3
-    data = read_file(
-        file_name='myfile.csv',
-        index_col='y'
-    )
-    print('Example 3')
-    print(data.head())
-    print(data.dtypes)
-    print('index dtype:')
-    print(data.index.dtype)
-    # Example 4
+    # Read a csv file. Ensure the dtypes of columns. Rename the columns.
+    column_names = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
+    index_columns = ['Y']
+    date_parser = '%Y-%m-%d %H:%M:%S'
+    date_time_columns = ['T', 'U']
+    time_delta_columns = ['D']
+    category_columns = ['C']
     converters = {'a': lambda x: trunc(float(x))}
     data = read_file(
         file_name='myfile.csv',
+        column_names=column_names,
+        index_columns=index_columns,
+        date_time_columns=date_time_columns,
+        date_parser=date_parser,
+        time_delta_columns=time_delta_columns,
+        category_columns=category_columns,
         converters=converters
     )
-    print('Example 4')
+    print(
+        'Example 2. Ensure the column dtypes are correct. Rename the columns.'
+    )
     print(data.head())
+    print()
+    print('column dtypes')
     print(data.dtypes)
+    print()
+    print('index', data.index.name, 'dtype:', data.index.dtype)
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
@@ -86,6 +87,7 @@ def create_dataframe() -> pd.DataFrame:
             'd': ds.timedelta_data(),
             's': ds.random_data(distribution='strings'),
             't': ds.datetime_data(),
+            'u': ds.datetime_data(),
             'x': ds.random_data(distribution='norm'),
             'y': ds.random_data(distribution='randint'),
             'z': ds.random_data(distribution='uniform')
@@ -104,14 +106,16 @@ def save_dataframe(df) -> None:
 def read_file(
     file_name: str,
     *,
-    index_col: Optional[Union[str, bool]] = None,
-    converters: Optional[dict] = None
+    column_names: Optional[List[str]] = [],
+    index_columns: Optional[List[str]] = [],
+    dtype: Optional[dict] = None,
+    converters: Optional[dict] = None,
+    parse_dates: Optional[List[str]] = None,
+    date_parser: Optional[str] = None,
+    date_time_columns: Optional[List[str]] = [],
+    time_delta_columns: Optional[List[str]] = [],
+    category_columns: Optional[List[str]] = []
 ) -> pd.DataFrame:
-    df = pd.read_csv(
-        file_name,
-        index_col=index_col,
-        converters=converters
-    )
     """
     Create a DataFrame from an external file.
 
@@ -128,22 +132,49 @@ def read_file(
     Examples
     --------
     Example 1
+    Read a csv file. There is no guarante thee column dtypes will be correct.
     >>> data = read_file(file_name='myfile.csv')
 
     Example 2
-    Make a datetime column the dataframe index.
+    Read a csv file. Ensure the dtypes of columns. Rename the columns.
+    Set index with another column. Convert float column to integer.
+    >>> column_names = ['A', 'B', 'C', 'D', 'S', 'T', 'U', 'Y', 'X', 'Z']
+    >>> index_columns = ['Y']
+    >>> date_parser = '%Y-%m-%d %H:%M:%S'
+    >>> date_time_columns = ['T', 'U']
+    >>> time_delta_columns = ['D']
+    >>> category_columns = ['C']
+    >>> converters = {'a': lambda x: trunc(float(x))}
     >>> data = read_file(
     >>>     file_name='myfile.csv',
-    >>>     index_col='t'
-    >>> )
-
-    Example 3
-    Make an integer column the dataframe index.
-    >>> data = read_file(
-    >>>     file_name='myfile.csv',
-    >>>     index_col='y'
+    >>>     column_names=column_names,
+    >>>     index_columns=index_columns,
+    >>>     date_time_columns=date_time_columns,
+    >>>     date_parser=date_parser,
+    >>>     time_delta_columns=time_delta_columns,
+    >>>     category_columns=category_columns,
+    >>>     converters=converters
     >>> )
     """
+    df = pd.read_csv(
+        file_name,
+        converters=converters,
+        parse_dates=parse_dates,
+        date_parser=date_parser
+    )
+    if column_names:
+        df.columns = column_names
+    for column in category_columns:
+        df[column] = df[column].astype(CategoricalDtype())
+    for column in date_time_columns:
+        df[column] = pd.to_datetime(
+            df[column],
+            format=date_parser
+        )
+    for column in time_delta_columns:
+        df[column] = df[column].apply(pd.Timedelta)
+    if index_columns:
+        df = df.set_index(index_columns)
     return df
 
 
