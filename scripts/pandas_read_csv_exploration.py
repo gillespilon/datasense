@@ -113,6 +113,13 @@ def read_file(
     >>>     file_name='myfile.csv',
     >>>     index_col='t'
     >>> )
+
+    Example 3
+    Make an integer column the dataframe index.
+    >>> data = read_file(
+    >>>     file_name='myfile.csv',
+    >>>     index_col='y'
+    >>> )
     """
     return df
 
