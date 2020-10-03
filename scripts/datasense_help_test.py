@@ -24,7 +24,7 @@ def main():
         headerid=header_id
     )
     print('<pre>')
-    print(help(input_value))
+    help(input_value)
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
