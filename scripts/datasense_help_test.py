@@ -4,6 +4,9 @@ Test help for datasense.
 
 time -f '%e' ./datasense_help_test.py
 ./datasense_help_test.py
+
+Typical input:
+ds.stats.random_data
 '''
 
 import datasense as ds
@@ -20,7 +23,9 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    help(input_value)
+    print('<pre>')
+    print(help(input_value))
+    print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
