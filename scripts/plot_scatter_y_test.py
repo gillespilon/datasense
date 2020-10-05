@@ -23,7 +23,7 @@ def main():
     series_y = ds.random_data()
     fig, ax = ds.plot_scatter_y(y=series_y)
     fig.savefig(
-        'plot_scatter_y_test_1.svg',
+        fname='plot_scatter_y_test_1.svg',
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_y_test_1.svg')
@@ -36,7 +36,7 @@ def main():
         colour='#ee7733'
     )
     fig.savefig(
-        'plot_scatter_y_test_2.svg',
+        fname='plot_scatter_y_test_2.svg',
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_y_test_2.svg')
