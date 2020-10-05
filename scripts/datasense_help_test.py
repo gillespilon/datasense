@@ -23,7 +23,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    print('<pre>')
+    print('<pre style="white-space: pre-wrap;">')
     help(input_value)
     print('</pre>')
     ds.html_end(
