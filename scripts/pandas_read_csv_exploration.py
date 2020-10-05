@@ -22,7 +22,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    print('<pre>')
+    print('<pre style="white-space: pre-wrap;">')
     help(read_file)
     print()
     df = create_dataframe()
