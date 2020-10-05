@@ -864,9 +864,6 @@ def html_end(
     '''
     html_footer()
     sys.stdout.close()
-new_list = wrapper.wrap(string_not_list)
-for element in new_list:
-    print(element)
     sys.stdout = originalstdout
     webbrowser.open_new_tab(
         url=outputurl
