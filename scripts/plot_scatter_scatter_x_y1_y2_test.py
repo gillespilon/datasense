@@ -39,7 +39,10 @@ def main():
         y1=series_y1,
         y2=series_y2
     )
-    fig.savefig('plot_scatter_scatter_x_y1_y2_datex_test.svg', format='svg')
+    fig.savefig(
+        fname='plot_scatter_scatter_x_y1_y2_datex_test.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_scatter_scatter_x_y1_y2_datex_test.svg')
     series_x = Series(
         rng.uniform(
@@ -63,7 +66,10 @@ def main():
         labellegendy2='y2'
     )
     ax.legend(frameon=False)
-    fig.savefig('plot_scatter_scatter_x_y1_y2_test.svg', format='svg')
+    fig.savefig(
+        fname='plot_scatter_scatter_x_y1_y2_test.svg',
+        format='svg'
+    )
     ds.html_figure(filename='plot_scatter_scatter_x_y1_y2_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
