@@ -16,7 +16,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    print('<pre>')
+    print('<pre style="white-space: pre-wrap;">')
     series = ds.datetime_data()
     print('datetime series')
     print(series)
