@@ -545,8 +545,8 @@ def plot_scatter_scatter_x_y1_y2(
     >>>         dtype='datetime64[s]'
     >>>     )
     >>> )
-    >>> series_y1 = pd.Series(rng.standard_normal(size=42))
-    >>> series_y2 = pd.Series(rng.standard_normal(size=42))
+    >>> series_y1 = ds.random_data()
+    >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
     >>>     X=series_x,
     >>>     y1=series_y1,
@@ -555,13 +555,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>> plt.show()
 
     Example 2
-    >>> series_x = Series(
-    >>>     rng.uniform(
-    >>>         low=13,
-    >>>         high=69,
-    >>>         size=42
-    >>>     )
-    >>> )
+    >>> series_x = ds.random_data(distribution='uniform')
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
     >>>     X=series_x,
     >>>     y1=series_y1,
