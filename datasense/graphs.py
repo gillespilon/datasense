@@ -745,6 +745,28 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     smoothing='natural_cubic_spline',
     >>>     numknots=7
     >>> )
+    >>> plt.show()
+
+    Example 3
+    >>> series_x1 = ds.random_data(distribution='uniform').sort_values()
+    >>> series_x2 = ds.random_data(distribution='uniform').sort_values()
+    >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
+    >>>     X1=series_x1,
+    >>>     X2=series_x2,
+    >>>     y1=series_y1,
+    >>>     y2=series_y2,
+    >>>     figuresize=(8, 5),
+    >>>     marker1='o',
+    >>>     marker2='+',
+    >>>     markersize1=8,
+    >>>     markersize2=12,
+    >>>     colour1='#cc3311',
+    >>>     colour2='#ee3377',
+    >>>     labellegendy1='y1',
+    >>>     labellegendy2='y2'
+    >>> )
+    >>> ax.legend(frameon=False)
+    >>> plt.show()
     '''
     fig = plt.figure(figsize=figuresize)
     ax = fig.add_subplot(111)
