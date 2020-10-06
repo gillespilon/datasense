@@ -922,10 +922,20 @@ def plot_scatter_line_x_y1_y2(
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
         ax.plot(
-            X, y1, marker='.', linestyle='', color=c[1], label=labellegendy1
+            X,
+            y1,
+            marker='.',
+            linestyle='',
+            color=c[1],
+            label=labellegendy1
         )
         ax.plot(
-            X, y2, marker=None, linestyle='-', color=c[5], label=labellegendy2
+            X,
+            y2,
+            marker=None,
+            linestyle='-',
+            color=c[5],
+            label=labellegendy2
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
@@ -943,8 +953,20 @@ def plot_scatter_line_x_y1_y2(
             y=y2,
             numberknots=numknots
         )
-        ax.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
-        ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[5])
+        ax.plot(
+            X,
+            model1.predict(XX),
+            marker='.',
+            linestyle='',
+            color=c[1]
+        )
+        ax.plot(
+            X,
+            model2.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[5]
+        )
     return (fig, ax)
 
 
@@ -1030,8 +1052,20 @@ def plot_line_line_x_y1_y2(
             y=y2,
             numberknots=numknots
         )
-        ax.plot(X, model1.predict(XX), marker=None, linestyle='-', color=c[1])
-        ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[5])
+        ax.plot(
+            X,
+            model1.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[1]
+        )
+        ax.plot(
+            X,
+            model2.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[5]
+            )
     return (fig, ax)
 
 
@@ -1076,13 +1110,28 @@ def plot_line_line_line_x_y1_y2_y3(
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
         ax.plot(
-            X, y1, marker=None, linestyle='-', color=c[0], label=labellegendy1
+            X,
+            y1,
+            marker=None,
+            linestyle='-',
+            color=c[0],
+            label=labellegendy1
         )
         ax.plot(
-            X, y2, marker=None, linestyle='-', color=c[1], label=labellegendy2
+            X,
+            y2,
+            marker=None,
+            linestyle='-',
+            color=c[1],
+            label=labellegendy2
         )
         ax.plot(
-            X, y3, marker=None, linestyle='-', color=c[2], label=labellegendy3
+            X,
+            y3,
+            marker=None,
+            linestyle='-',
+            color=c[2],
+            label=labellegendy3
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
@@ -1105,9 +1154,27 @@ def plot_line_line_line_x_y1_y2_y3(
             y=y3,
             numberknots=numknots
         )
-        ax.plot(X, model1.predict(XX), marker=None, linestyle='-', color=c[0])
-        ax.plot(X, model2.predict(XX), marker=None, linestyle='-', color=c[1])
-        ax.plot(X, model3.predict(XX), marker=None, linestyle='-', color=c[2])
+        ax.plot(
+            X,
+            model1.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[0]
+        )
+        ax.plot(
+            X,
+            model2.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[1]
+        )
+        ax.plot(
+            X,
+            model3.predict(XX),
+            marker=None,
+            linestyle='-',
+            color=c[2]
+        )
     return (fig, ax)
 
 
@@ -1147,8 +1214,20 @@ def plot_scatterleft_scatterright_x_y1_y2(
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax1)
-        ax1.plot(X, y1, marker='.', linestyle='', color=c[1])
-        ax2.plot(X, y2, marker='.', linestyle='', color=c[5])
+        ax1.plot(
+            X,
+            y1,
+            marker='.',
+            linestyle='',
+            color=c[1]
+        )
+        ax2.plot(
+            X,
+            y2,
+            marker='.',
+            linestyle='',
+            color=c[5]
+        )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
@@ -1165,8 +1244,20 @@ def plot_scatterleft_scatterright_x_y1_y2(
             y=y2,
             numberknots=numknots
         )
-        ax1.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
-        ax2.plot(X, model2.predict(XX), marker='.', linestyle='', color=c[5])
+        ax1.plot(
+            X,
+            model1.predict(XX),
+            marker='.',
+            linestyle='',
+            color=c[1]
+        )
+        ax2.plot(
+            X,
+            model2.predict(XX),
+            marker='.',
+            linestyle='',
+            color=c[5]
+        )
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
@@ -1210,8 +1301,16 @@ def plot_lineleft_lineright_x_y1_y2(
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax1)
-        ax1.plot(X, y1, color=c[1])
-        ax2.plot(X, y2, color=c[5])
+        ax1.plot(
+            X,
+            y1,
+            color=c[1]
+            )
+        ax2.plot(
+            X,
+            y2,
+            color=c[5]
+        )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
             XX = pd.to_numeric(X)
@@ -1228,8 +1327,16 @@ def plot_lineleft_lineright_x_y1_y2(
             y=y2,
             numberknots=numknots
         )
-        ax1.plot(X, model1.predict(XX), color=c[1])
-        ax2.plot(X, model2.predict(XX), color=c[5])
+        ax1.plot(
+            X,
+            model1.predict(XX),
+            color=c[1]
+        )
+        ax2.plot(
+            X,
+            model2.predict(XX),
+            color=c[5]
+        )
     for tl in ax1.get_yticklabels():
         tl.set_color(c[1])
     for tl in ax2.get_yticklabels():
