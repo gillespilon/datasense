@@ -632,8 +632,20 @@ def plot_scatter_scatter_x_y1_y2(
             linewidth=linewidth2,
             color=colour2
         )
-        ax.plot(X, model1.predict(XX), marker='.', linestyle='', color=c[1])
-        ax.plot(X, model2.predict(XX), marker='.', linestyle='', color=c[5])
+        ax.plot(
+            X,
+            model1.predict(XX),
+            marker='.',
+            linestyle='',
+            color=colour1
+        )
+        ax.plot(
+            X,
+            model2.predict(XX),
+            marker='.',
+            linestyle='',
+            color=colour2
+        )
     return (fig, ax)
 
 
