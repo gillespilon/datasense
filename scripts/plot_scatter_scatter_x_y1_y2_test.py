@@ -6,9 +6,6 @@ time -f '%e' ./plot_scatter_scatter_x_y1_y2_test.py
 ./plot_scatter_scatter_x_y1_y2_test.py
 '''
 
-from datetime import timedelta
-from pandas import Series
-from numpy import arange
 import datasense as ds
 
 output_url = 'plot_scatter_x_y1_y2_test.html'
@@ -22,14 +19,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    series_x = Series(
-        arange(
-            '2020-01-01T13:13:13',
-            '2020-02-12T13:13:13',
-            timedelta(hours=24),
-            dtype='datetime64[s]'
-        )
-    )
+    series_x = ds.datetime_data()
     series_y1 = ds.random_data()
     series_y2 = ds.random_data()
     fig, ax = ds.plot_scatter_scatter_x_y1_y2(
