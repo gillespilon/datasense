@@ -796,35 +796,53 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             XX1 = X1
             XX2 = X2
         model1 = natural_cubic_spline(
-            X1=XX1,
+            X=XX1,
             y=y1,
             numberknots=numknots
         )
         model2 = natural_cubic_spline(
-            X2=XX2,
+            X=XX2,
             y=y2,
             numberknots=numknots
         )
         ax.plot(
             X1,
-            model1.predict(X1),
+            y1,
             marker=marker1,
             markersize=markersize1,
-            linestyle='None',
+            linestyle=linestyle1,
+            linewidth=linewidth1,
+            color=colour1,
+            label=labellegendy1
+        )
+        ax.plot(
+            X2,
+            y2,
+            marker=marker2,
+            markersize=markersize2,
+            linestyle=linestyle2,
+            linewidth=linewidth2,
+            color=colour2,
+            label=labellegendy2
+        )
+        ax.plot(
+            X1,
+            model1.predict(XX1),
+            marker=marker1,
+            markersize=0,
+            linestyle='-',
             linewidth=linewidth1,
             color=colour1
         )
         ax.plot(
             X2,
-            model2.predict(X2),
+            model2.predict(XX2),
             marker=marker2,
-            markersize=markersize2,
-            linestyle='None',
+            markersize=0,
+            linestyle='-',
             linewidth=linewidth2,
             color=colour2
         )
-        ax.plot(X1, model1.predict(XX1), marker='.', linestyle='', color=c[1])
-        ax.plot(X2, model2.predict(XX2), marker='.', linestyle='', color=c[5])
     return (fig, ax)
 
 
