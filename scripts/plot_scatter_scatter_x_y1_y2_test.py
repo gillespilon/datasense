@@ -6,7 +6,6 @@ time -f '%e' ./plot_scatter_scatter_x_y1_y2_test.py
 ./plot_scatter_scatter_x_y1_y2_test.py
 '''
 
-from numpy.random import default_rng
 from datetime import timedelta
 from pandas import Series
 from numpy import arange
@@ -23,7 +22,6 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    rng = default_rng()
     series_x = Series(
         arange(
             '2020-01-01T13:13:13',
@@ -32,8 +30,8 @@ def main():
             dtype='datetime64[s]'
         )
     )
-    series_y1 = Series(rng.standard_normal(size=42))
-    series_y2 = Series(rng.standard_normal(size=42))
+    series_y1 = ds.random_data()
+    series_y2 = ds.random_data()
     fig, ax = ds.plot_scatter_scatter_x_y1_y2(
         X=series_x,
         y1=series_y1,
@@ -44,13 +42,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_scatter_x_y1_y2_datex_test.svg')
-    series_x = Series(
-        rng.uniform(
-            low=13,
-            high=69,
-            size=42
-        )
-    )
+    series_x = ds.random_data(distribution='uniform')
     fig, ax = ds.plot_scatter_scatter_x_y1_y2(
         X=series_x,
         y1=series_y1,
