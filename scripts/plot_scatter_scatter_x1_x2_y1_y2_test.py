@@ -34,6 +34,24 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_scatter_x1_x2_y1_y2_datex_test.svg')
+    fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
+        X1=series_x1,
+        X2=series_x2,
+        y1=series_y1,
+        y2=series_y2,
+        smoothing='natural_cubic_spline',
+        numknots=7
+    )
+    fig.savefig(
+            fname=
+                'plot_scatter_scatter_x1_x2_y1_y2_datex_\
+                 smoothing_y1_y2_test.svg',
+        format='svg'
+    )
+    ds.html_figure(
+        filename=
+            'plot_scatter_scatter_x1_x2_y1_y2_datex_smoothing_y1_y2_test.svg'
+    )
     series_x = ds.random_data(distribution='uniform')
     fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
         X1=series_x1,
