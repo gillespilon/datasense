@@ -19,6 +19,7 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
+    # Example 1
     series_x1 = ds.datetime_data()
     series_x2 = ds.datetime_data()
     series_y1 = ds.random_data()
@@ -34,6 +35,7 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_scatter_x1_x2_y1_y2_datex_test.svg')
+    # Example 2
     fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
         X1=series_x1,
         X2=series_x2,
@@ -43,16 +45,20 @@ def main():
         numknots=7
     )
     fig.savefig(
-            fname=
-                'plot_scatter_scatter_x1_x2_y1_y2_datex_\
-                 smoothing_y1_y2_test.svg',
-        format='svg'
+            fname=(
+                'plot_scatter_scatter_x1_x2_y1_y2_'
+                'datex_smoothing_y1_y2_test.svg'
+                ),
+            format='svg'
     )
     ds.html_figure(
-        filename=
+        filename=(
             'plot_scatter_scatter_x1_x2_y1_y2_datex_smoothing_y1_y2_test.svg'
+            )
     )
-    series_x = ds.random_data(distribution='uniform')
+    # Example 3
+    series_x1 = ds.random_data(distribution='uniform').sort_values()
+    series_x2 = ds.random_data(distribution='uniform').sort_values()
     fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
         X1=series_x1,
         X2=series_x2,
@@ -74,6 +80,32 @@ def main():
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_scatter_x1_x2_y1_y2_test.svg')
+    # Example 4
+    fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
+        X1=series_x1,
+        X2=series_x2,
+        y1=series_y1,
+        y2=series_y2,
+        figuresize=(8, 5),
+        marker1='o',
+        marker2='+',
+        markersize1=8,
+        markersize2=12,
+        colour1='#cc3311',
+        colour2='#ee3377',
+        labellegendy1='y1',
+        labellegendy2='y2',
+        smoothing='natural_cubic_spline',
+        numknots=7
+    )
+    ax.legend(frameon=False)
+    fig.savefig(
+        fname='plot_scatter_scatter_x1_x2_y1_y2_smoothing_y1_y2_test.svg',
+        format='svg'
+    )
+    ds.html_figure(
+        filename='plot_scatter_scatter_x1_x2_y1_y2_smoothing_y1_y2_test.svg'
+    )
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
