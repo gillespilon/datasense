@@ -22,22 +22,20 @@ from typing import List, Tuple
 import matplotlib.axes as axes
 import matplotlib.cm as cm
 import datasense as ds
-import webbrowser
-import time
-import sys
 
 
 def main():
-    start_time = time.time()
     global figure_width_height, c, date_time_parser
     file_names, graph_file_names, abscissa_names, ordinate_names,\
         ordinate_predicted_names, x_axis_label, y_axis_label, axis_title,\
         figure_width_height, column_names_sort, date_time_parser,\
         date_formatter, c, alpha_value, function, output_url,\
         header_title, header_id, parser = parameters()
-    original_stdout = sys.stdout
-    sys.stdout = open(output_url, 'w')
-    ds.html_header(header_title, header_id)
+    original_stdout = ds.html_begin(
+        outputurl=output_url,
+        headertitle=header_title,
+        headerid=header_id
+    )
     for (
         filename,
         abscissaname,
@@ -84,10 +82,10 @@ def main():
         despine(ax)
         ax.figure.savefig(f'{graphfilename}.svg', format='svg')
         print(f'<p><img src="{graphfilename}.svg"/></p>')
-    ds.html_footer()
-    sys.stdout.close()
-    sys.stdout = original_stdout
-    webbrowser.open_new_tab(output_url)
+        ds.html_end(
+            originalstdout=original_stdout,
+            outputurl=output_url
+        )
 
 
 def parameters() -> (
@@ -176,4 +174,3 @@ def despine(ax: axes.Axes) -> None:
 
 if __name__ == '__main__':
     main()
-
