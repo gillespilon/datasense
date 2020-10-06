@@ -27,7 +27,7 @@ def main():
         y=series_y
     )
     fig.savefig(
-        'plot_scatter_x_y_datex_test.svg',
+        fname='plot_scatter_x_y_datex_test.svg',
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_x_y_datex_test.svg')
@@ -42,7 +42,7 @@ def main():
         colour='#cc3311'
     )
     fig.savefig(
-        'plot_scatter_x_y_intx_test.svg',
+        fname='plot_scatter_x_y_intx_test.svg',
         format='svg'
     )
     ds.html_figure(filename='plot_scatter_x_y_intx_test.svg')
