@@ -35,12 +35,9 @@ from multiprocessing import Pool
 from typing import List, Tuple
 from shutil import rmtree
 from pathlib import Path
-import webbrowser
 import itertools
 import time
-import sys
 
-import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import matplotlib.cm as cm
 import datasense as ds
@@ -55,9 +52,11 @@ def main():
         figure_width_height, x_axis_label, y_axis_label, axis_title, c, \
         date_time_parser, output_url, header_title, header_id = parameters()
     set_up_graphics_directory(graphics_directory)
-    original_stdout = sys.stdout
-    sys.stdout = open('view_spline_graphs.html', 'w')
-    ds.html_header(header_title, header_id)
+    original_stdout = ds.html_begin(
+        outputurl=output_url,
+        headertitle=header_title,
+        headerid=header_id
+    )
     for file, target, feature in itertools.product(
         file_names, targets, features
     ):
@@ -90,10 +89,10 @@ def main():
         features=features,
         numknots=num_knots
     )
-    ds.html_footer()
-    sys.stdout.close()
-    sys.stdout = original_stdout
-    webbrowser.open_new_tab(output_url)
+    ds.html_end(
+        originalstdout=original_stdout,
+        outputurl=output_url
+    )
 
 
 def parameters(
@@ -121,7 +120,8 @@ def parameters(
     filenames = [x for x in parameters['File names'] if str(x) != 'nan']
     targets = [x for x in parameters['Targets'] if str(x) != 'nan']
     features = [x for x in parameters['Features'] if str(x) != 'nan']
-    numknots = [int(x) for x in parameters['Number of knots'] if str(x) != 'nan']
+    numknots = [int(x) for x in parameters['Number of knots']
+                if str(x) != 'nan']
     datetimeparser = parameters['Other parameter values'][0]
     graphicsdirectory = parameters['Other parameter values'][1]
     figurewidthheight = eval(parameters['Other parameter values'][2])
