@@ -42,7 +42,7 @@ def main():
         y1=series_y1,
         y2=series_y2,
         smoothing='natural_cubic_spline',
-        numknots=7
+        number_knots=7
     )
     fig.savefig(
             fname=(
@@ -96,7 +96,7 @@ def main():
         labellegendy1='y1',
         labellegendy2='y2',
         smoothing='natural_cubic_spline',
-        numknots=7
+        number_knots=7
     )
     ax.legend(frameon=False)
     fig.savefig(
