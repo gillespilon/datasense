@@ -1279,7 +1279,9 @@ def plot_lineleft_lineright_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None
+    numknots: Optional[int] = None,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee'
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
@@ -1311,12 +1313,12 @@ def plot_lineleft_lineright_x_y1_y2(
         ax1.plot(
             X,
             y1,
-            color=c[1]
-            )
+            color=colour1
+        )
         ax2.plot(
             X,
             y2,
-            color=c[5]
+            color=colour2
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
@@ -1337,17 +1339,17 @@ def plot_lineleft_lineright_x_y1_y2(
         ax1.plot(
             X,
             model1.predict(XX),
-            color=c[1]
+            color=colour1
         )
         ax2.plot(
             X,
             model2.predict(XX),
-            color=c[5]
+            color=colour2
         )
     for tl in ax1.get_yticklabels():
-        tl.set_color(c[1])
+        tl.set_color(colour1)
     for tl in ax2.get_yticklabels():
-        tl.set_color(c[5])
+        tl.set_color(colour2)
     return (fig, ax1, ax2)
 
 
