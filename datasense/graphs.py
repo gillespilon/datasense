@@ -1373,7 +1373,9 @@ def probability_plot(
     figuresize: Optional[Tuple[float, float]] = None,
     distribution: Optional[object] = norm,
     fit: Optional[bool] = True,
-    plot: Optional[object] = None
+    plot: Optional[object] = None,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee'
 ) -> Tuple[plt.figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
@@ -1414,6 +1416,9 @@ def probability_plot(
         fit=True,
         plot=ax
     )
+    ax.get_lines()[0].set_markerfacecolor(colour1)
+    ax.get_lines()[0].set_markeredgecolor(colour1)
+    ax.get_lines()[1].set_color(colour2)
     return (fig, ax)
 
 
