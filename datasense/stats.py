@@ -225,14 +225,14 @@ def cubic_spline(
 def natural_cubic_spline(
     X: pd.Series,
     y: pd.Series,
-    numberknots: int,
+    number_knots: int,
     *,
-    listknots: Optional[List[int]] = None
+    list_knots: Optional[List[int]] = None
 ) -> Pipeline:
     """
     Piecewise natural cubic spline helper function
 
-    If numberknots is given, the calculated knots are equally-spaced
+    If number_knots is given, the calculated knots are equally-spaced
     within minval and maxval. The endpoints are not included as knots.
 
     The X series must be in increasing order.
@@ -244,9 +244,9 @@ def natural_cubic_spline(
         The data series of the abscissa.
     y : pd.Series
         The data series of the ordinate.
-    numberknots : int
+    number_knots : int
         The number of knots for the spline.
-    listknots : Optional[List[int]] = None
+    list_knots : Optional[List[int]] = None
         A list of specific knots.
 
     Returns
@@ -263,7 +263,7 @@ def natural_cubic_spline(
     >>> p = ds.natural_cubic_spline(
     >>>     X=X,
     >>>     y=y,
-    >>>     numberknots=10
+    >>>     number_knots=10
     >>> )
     >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
     >>>     X=X,
@@ -273,11 +273,13 @@ def natural_cubic_spline(
     >>> plt.show()
     """
 
-    if listknots:
-        spline = NaturalCubicSpline(knots=listknots)
+    if list_knots:
+        spline = NaturalCubicSpline(knots=list_knots)
     else:
         spline = NaturalCubicSpline(
-            max=max(X), min=min(X), n_knots=numberknots
+            max=max(X),
+            min=min(X),
+            n_knots=number_knots
         )
     p = Pipeline([
         ('natural_cubic_spline', spline),
