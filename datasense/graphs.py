@@ -26,7 +26,7 @@ def plot_scatter_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
@@ -49,7 +49,7 @@ def plot_scatter_y(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -99,7 +99,7 @@ def plot_scatter_y(
         model = natural_cubic_spline(
             X=X,
             y=y,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -118,7 +118,7 @@ def plot_scatter_x_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
@@ -141,7 +141,7 @@ def plot_scatter_x_y(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -219,7 +219,7 @@ def plot_scatter_x_y(
         model = natural_cubic_spline(
             X=XX,
             y=y,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -237,7 +237,7 @@ def plot_line_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     linestyle: Optional[str] = '-',
@@ -261,7 +261,7 @@ def plot_line_y(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -312,7 +312,7 @@ def plot_line_y(
         model = natural_cubic_spline(
             X=X,
             y=y,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -331,7 +331,7 @@ def plot_line_x_y(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     linestyle: Optional[str] = '-',
@@ -355,7 +355,7 @@ def plot_line_x_y(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker : Optional[str] = '.'
         The type of plot point.
@@ -437,7 +437,7 @@ def plot_line_x_y(
         model = natural_cubic_spline(
             X=XX,
             y=y,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -455,7 +455,7 @@ def plot_scatter_scatter_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
     marker2: Optional[str] = '.',
     markersize1: Optional[int] = 8,
@@ -493,7 +493,7 @@ def plot_scatter_scatter_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker1 : Optional[str] = '.'
         The type of plot point for y1.
@@ -594,12 +594,12 @@ def plot_scatter_scatter_x_y1_y2(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -644,7 +644,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
     marker2: Optional[str] = '.',
     markersize1: Optional[int] = 8,
@@ -684,7 +684,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
-    numknots : Optional[int] = None
+    number_knots : Optional[int] = None
         The number of knots for natural cubic spline smoothing.
     marker1 : Optional[str] = '.'
         The type of plot point for y1.
@@ -742,7 +742,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     y1=series_y1,
     >>>     y2=series_y2,
     >>>     smoothing='natural_cubic_spline',
-    >>>     numknots=7
+    >>>     number_knots=7
     >>> )
     >>> plt.show()
 
@@ -783,7 +783,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     labellegendy1='y1',
     >>>     labellegendy2='y2',
     >>>     smoothing='natural_cubic_spline',
-    >>>     numknots=7
+    >>>     number_knots=7
     >>> )
     >>> ax.legend(frameon=False)
     >>> plt.show()
@@ -824,12 +824,12 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         model1 = natural_cubic_spline(
             X=XX1,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX2,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X1,
@@ -879,7 +879,7 @@ def plot_scatter_line_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
@@ -897,7 +897,7 @@ def plot_scatter_line_x_y1_y2(
     y2: series for y2 to plot on vertical axis
     smoothing: str
         Optional: natural_cubic_spline
-    numknots: positive integer
+    number_knots: positive integer
         The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -935,12 +935,12 @@ def plot_scatter_line_x_y1_y2(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -966,7 +966,7 @@ def plot_line_line_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
     marker2: Optional[str] = '.',
     markersize1: Optional[int] = 8,
@@ -992,7 +992,7 @@ def plot_line_line_x_y1_y2(
     y2: series for y2 to plot on vertical axis
     smoothing: str
         Optional: natural_cubic_spline
-    numknots: positive integer
+    number_knots: positive integer
         The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1034,12 +1034,12 @@ def plot_line_line_x_y1_y2(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -1066,7 +1066,7 @@ def plot_line_line_line_x_y1_y2_y3(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
     colour3: Optional[str] = '#009988',
@@ -1088,7 +1088,7 @@ def plot_line_line_line_x_y1_y2_y3(
     y3: series for y3 to plot on vertical axis
     smoothing: str
         Optional: natural_cubic_spline
-    numknots: positive integer
+    number_knots: positive integer
         The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1134,17 +1134,17 @@ def plot_line_line_line_x_y1_y2_y3(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model3 = natural_cubic_spline(
             X=XX,
             y=y3,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax.plot(
             X,
@@ -1177,7 +1177,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee'
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
@@ -1194,7 +1194,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     y2: series for y2 to plot using right vertical axis
     smoothing: str
         Optional: natural_cubic_spline
-    numknots: positive integer
+    number_knots: positive integer
         The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1231,12 +1231,12 @@ def plot_scatterleft_scatterright_x_y1_y2(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax1.plot(
             X,
@@ -1266,7 +1266,7 @@ def plot_lineleft_lineright_x_y1_y2(
     *,
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
-    numknots: Optional[int] = None,
+    number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee'
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
@@ -1283,7 +1283,7 @@ def plot_lineleft_lineright_x_y1_y2(
     y2: series for y2 to plot using right vertical axis
     smoothing: str
         Optional: natural_cubic_spline
-    numknots: positive integer
+    number_knots: positive integer
         The number of knots to create.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1316,12 +1316,12 @@ def plot_lineleft_lineright_x_y1_y2(
         model1 = natural_cubic_spline(
             X=XX,
             y=y1,
-            numberknots=numknots
+            number_knots=number_knots
         )
         model2 = natural_cubic_spline(
             X=XX,
             y=y2,
-            numberknots=numknots
+            number_knots=number_knots
         )
         ax1.plot(
             X,
