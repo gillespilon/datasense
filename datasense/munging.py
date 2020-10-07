@@ -692,29 +692,29 @@ def read_file(
             filename,
             engine='odf',
         )
-    # elif '.csv' in filename and abscissa and datetimeparser \
-    #         and indexcol is False:
-    #     df = pd.read_csv(
-    #         filename,
-    #         index_col=indexcol,
-    #         parse_dates=[abscissa],
-    #         date_parser=lambda s: datetime.strptime(s, datetimeparser),
-    #     )
-    # elif '.csv' in filename and abscissa and datetimeparser:
-    #     df = pd.read_csv(
-    #         filename,
-    #         parse_dates=[abscissa],
-    #         date_parser=lambda s: datetime.strptime(s, datetimeparser),
-    #     )
-    # elif '.csv' in filename and abscissa:
-    #     df = pd.read_csv(
-    #         filename,
-    #         parse_dates=[abscissa]
-    #     )
-    # elif '.csv' in filename:
-    #     df = pd.read_csv(
-    #         filename,
-    #     )
+    elif '.csv' in filename and abscissa and datetimeparser \
+            and indexcol is False:
+        df = pd.read_csv(
+            filename,
+            index_col=indexcol,
+            parse_dates=[abscissa],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
+        )
+    elif '.csv' in filename and abscissa and datetimeparser:
+        df = pd.read_csv(
+            filename,
+            parse_dates=[abscissa],
+            date_parser=lambda s: datetime.strptime(s, datetimeparser),
+        )
+    elif '.csv' in filename and abscissa:
+        df = pd.read_csv(
+            filename,
+            parse_dates=[abscissa]
+        )
+    elif '.csv' in filename:
+        df = pd.read_csv(
+            filename,
+        )
     elif '.xlsx' in filename and abscissa and datetimeparser:
         df = pd.read_excel(
             filename,
