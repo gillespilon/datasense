@@ -18,10 +18,7 @@ from scipy.stats import norm, probplot
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
-import matplotlib.cm as cm
 import pandas as pd
-
-c = cm.Paired.colors
 
 
 def plot_scatter_y(
@@ -1049,14 +1046,14 @@ def plot_line_line_x_y1_y2(
             model1.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[1]
+            color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[5]
+            color=colour2
             )
     return (fig, ax)
 
