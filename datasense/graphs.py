@@ -893,6 +893,8 @@ def plot_scatter_line_x_y1_y2(
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
 ) -> (plt.figure, axes.Axes):
@@ -926,7 +928,7 @@ def plot_scatter_line_x_y1_y2(
             y1,
             marker='.',
             linestyle='',
-            color=c[1],
+            color=colour1,
             label=labellegendy1
         )
         ax.plot(
@@ -934,7 +936,7 @@ def plot_scatter_line_x_y1_y2(
             y2,
             marker=None,
             linestyle='-',
-            color=c[5],
+            color=colour2,
             label=labellegendy2
         )
     elif smoothing == 'natural_cubic_spline':
@@ -958,14 +960,14 @@ def plot_scatter_line_x_y1_y2(
             model1.predict(XX),
             marker='.',
             linestyle='',
-            color=c[1]
+            color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[5]
+            color=colour2
         )
     return (fig, ax)
 
