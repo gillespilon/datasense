@@ -6,7 +6,7 @@ y = ds.random_data(distribution='norm')
 p = ds.natural_cubic_spline(
     X=X,
     y=y,
-    numberknots=10
+    number_knots=10
 )
 fig, ax = ds.plot_scatter_line_x_y1_y2(
     X=X,
