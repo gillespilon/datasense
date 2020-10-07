@@ -1080,6 +1080,9 @@ def plot_line_line_line_x_y1_y2_y3(
     figuresize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     numknots: Optional[int] = None,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
+    colour3: Optional[str] = '#009988',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None,
     labellegendy3: Optional[str] = None
@@ -1116,7 +1119,7 @@ def plot_line_line_line_x_y1_y2_y3(
             y1,
             marker=None,
             linestyle='-',
-            color=c[0],
+            color=colour1,
             label=labellegendy1
         )
         ax.plot(
@@ -1124,7 +1127,7 @@ def plot_line_line_line_x_y1_y2_y3(
             y2,
             marker=None,
             linestyle='-',
-            color=c[1],
+            color=colour2,
             label=labellegendy2
         )
         ax.plot(
@@ -1132,7 +1135,7 @@ def plot_line_line_line_x_y1_y2_y3(
             y3,
             marker=None,
             linestyle='-',
-            color=c[2],
+            color=colour3,
             label=labellegendy3
         )
     elif smoothing == 'natural_cubic_spline':
@@ -1161,21 +1164,21 @@ def plot_line_line_line_x_y1_y2_y3(
             model1.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[0]
+            color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[1]
+            color=colour2
         )
         ax.plot(
             X,
             model3.predict(XX),
             marker=None,
             linestyle='-',
-            color=c[2]
+            color=colour3
         )
     return (fig, ax)
 
