@@ -531,20 +531,10 @@ def plot_scatter_scatter_x_y1_y2(
     Examples
     --------
     Example 1
-    >>> from numpy.random import default_rng
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> import pandas as pd
     >>>
-    >>> rng = default_rng()
-    >>> series_x = Series(
-    >>>     arange(
-    >>>         '2020-01-01T13:13:13',
-    >>>         '2020-02-12T13:13:13',
-    >>>         timedelta(hours=24),
-    >>>         dtype='datetime64[s]'
-    >>>     )
-    >>> )
+    >>> series_x = ds.datetime_data()
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
