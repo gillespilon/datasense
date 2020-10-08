@@ -1,7 +1,5 @@
 #! /usr/bin/env python3
-
-
-'''
+"""
 A piecewise natural cubic spline (cubic curves in the interior segments, linear
 in the exterior segments) is used to interpolate points to fit the data while
 smoothing out the noise. A large number of data are fitted with low-degree
@@ -28,8 +26,7 @@ time -f '%e' ./piecewise_natural_cubic_spline.py
 ./piecewise_natural_cubic_spline.py
 
 The graphs can be viewed with the view_spline_graphs.html file created.
-'''
-
+"""
 
 from multiprocessing import Pool
 from typing import List, Tuple
@@ -39,17 +36,16 @@ import itertools
 import time
 
 import matplotlib.axes as axes
-import matplotlib.cm as cm
 import datasense as ds
 import pandas as pd
 
 
 def main():
     start_time = time.time()
-    global figure_width_height, c, axis_title, x_axis_label, y_axis_label,\
+    global figure_width_height, axis_title, x_axis_label, y_axis_label,\
         graphics_directory
-    file_names, targets, features, number_knots, graphics_directory, \
-        figure_width_height, x_axis_label, y_axis_label, axis_title, c, \
+    file_names, targets, features, number_knots, graphics_directory,\
+        figure_width_height, x_axis_label, y_axis_label, axis_title,\
         date_time_parser, output_url, header_title, header_id = parameters()
     set_up_graphics_directory(graphics_directory)
     original_stdout = ds.html_begin(
@@ -106,7 +102,8 @@ def parameters(
     str,
     str,
     str,
-    Tuple[Tuple[float]],
+    str,
+    str,
     str,
     str
 ):
@@ -131,10 +128,9 @@ def parameters(
     outputurl = parameters['Other parameter values'][6]
     headertitle = parameters['Other parameter values'][7]
     headerid = parameters['Other parameter values'][8]
-    c = cm.Paired.colors
     return (
         filenames, targets, features, number_knots, graphicsdirectory,
-        figurewidthheight, xaxislabel, yaxislabel, axistitle, c,
+        figurewidthheight, xaxislabel, yaxislabel, axistitle,
         datetimeparser, outputurl, headertitle, headerid
     )
 
