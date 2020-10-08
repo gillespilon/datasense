@@ -75,6 +75,7 @@ def main():
     integer_columns = ['A', 'I']
     float_columns = ['X']
     boolean_columns = ['R']
+    object_columns = ['Z']
     data = read_file(
         file_name='myfile.csv',
         column_names_dict=column_names_dict,
@@ -86,7 +87,8 @@ def main():
         # converters=converters,
         integer_columns=integer_columns,
         float_columns=float_columns,
-        boolean_columns=boolean_columns
+        boolean_columns=boolean_columns,
+        object_columns=object_columns
     )
     print(
         'Example 2. Ensure the column dtypes are correct. Rename the columns.'
@@ -157,7 +159,8 @@ def read_file(
     category_columns: Optional[List[str]] = [],
     integer_columns: Optional[List[str]] = [],
     float_columns: Optional[List[str]] = [],
-    boolean_columns: Optional[List[str]] = []
+    boolean_columns: Optional[List[str]] = [],
+    object_columns: Optional[List[str]] = []
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -188,6 +191,8 @@ def read_file(
         The columns to change to dtype float.
     boolean_columns : Optional[List[str]] = []
         The columns to change to dtype boolean.
+    object_columns : Optional[List[str]] = []
+        The columns to change to dtype object.
 
     Returns
     -------
@@ -225,6 +230,7 @@ def read_file(
     >>> integer_columns = ['A', 'I']
     >>> float_columns = ['X']
     >>> boolean_columns = ['R']
+    >>> object_columns = ['Z']
     >>> data = read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
@@ -261,6 +267,8 @@ def read_file(
         df[column] = df[column].astype('float64')
     for column in boolean_columns:
         df[column] = df[column].astype('bool')
+    for column in object_columns:
+        df[column] = df[column].astype('object')
     return df
 
 
