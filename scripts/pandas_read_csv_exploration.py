@@ -71,6 +71,7 @@ def main():
     category_columns = ['C']
     # converters = {'a': lambda x: trunc(float(x))}
     integer_columns = ['A', 'I']
+    float_columns = ['X']
     data = read_file(
         file_name='myfile.csv',
         column_names_dict=column_names_dict,
@@ -80,7 +81,8 @@ def main():
         time_delta_columns=time_delta_columns,
         category_columns=category_columns,
         # converters=converters,
-        integer_columns=integer_columns
+        integer_columns=integer_columns,
+        float_columns=float_columns
     )
     print(
         'Example 2. Ensure the column dtypes are correct. Rename the columns.'
@@ -145,7 +147,8 @@ def read_file(
     date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
-    integer_columns: Optional[List[str]] = []
+    integer_columns: Optional[List[str]] = [],
+    float_columns: Optional[List[str]] = []
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -172,6 +175,8 @@ def read_file(
         The columns to change to dtype category.
     integer_columns : Optional[List[str]] = []
         The columns to change to dtype integer.
+    float_columns : Optional[List[str]] = []
+        The columns to change to dtype float.
 
     Returns
     -------
@@ -206,6 +211,7 @@ def read_file(
     >>> time_delta_columns = ['D']
     >>> category_columns = ['C']
     >>> integer_columns = ['A', 'I']
+    >>> float_columns = ['X']
     >>> data = read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
@@ -238,6 +244,8 @@ def read_file(
         df[column] = df[column].apply(pd.Timedelta)
     for column in integer_columns:
         df[column] = df[column].astype('int64')
+    for column in float_columns:
+        df[column] = df[column].astype('float64')
     return df
 
 
