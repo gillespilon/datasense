@@ -260,7 +260,7 @@ def read_file(
             format=date_parser
         )
     for column in time_delta_columns:
-        df[column] = df[column].apply(pd.Timedelta)
+        df[column] = pd.to_timedelta(df[column])
     for column in integer_columns:
         df[column] = df[column].astype('int64')
     for column in float_columns:
