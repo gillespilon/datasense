@@ -76,6 +76,7 @@ def main():
     float_columns = ['X']
     boolean_columns = ['R']
     object_columns = ['Z']
+    sort_columns = ['T']
     data = read_file(
         file_name='myfile.csv',
         column_names_dict=column_names_dict,
@@ -88,12 +89,13 @@ def main():
         integer_columns=integer_columns,
         float_columns=float_columns,
         boolean_columns=boolean_columns,
-        object_columns=object_columns
+        object_columns=object_columns,
+        sort_columns=sort_columns
     )
     print(
         'Example 2. Ensure the column dtypes are correct. Rename the columns.'
     )
-    print(data.head())
+    print(data.head(5))
     print()
     print('column dtypes')
     print(data.dtypes)
@@ -160,7 +162,8 @@ def read_file(
     integer_columns: Optional[List[str]] = [],
     float_columns: Optional[List[str]] = [],
     boolean_columns: Optional[List[str]] = [],
-    object_columns: Optional[List[str]] = []
+    object_columns: Optional[List[str]] = [],
+    sort_columns: Optional[List[str]] = []
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -193,6 +196,8 @@ def read_file(
         The columns to change to dtype boolean.
     object_columns : Optional[List[str]] = []
         The columns to change to dtype object.
+    sort_columns : Optional[List[str]] = []
+        The columns on which to sort the dataframe.
 
     Returns
     -------
@@ -269,6 +274,9 @@ def read_file(
         df[column] = df[column].astype('bool')
     for column in object_columns:
         df[column] = df[column].astype('object')
+    # if sort_columns:
+    for column in sort_columns:
+        df = df.sort_values(by=column, axis='rows', ascending=True)
     return df
 
 
