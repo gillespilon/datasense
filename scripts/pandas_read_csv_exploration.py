@@ -57,6 +57,8 @@ def main():
         'c': 'C',
         'd': 'D',
         'i': 'I',
+        'r': 'R',
+        'r': 'R',
         's': 'S',
         't': 'T',
         'u': 'U',
@@ -72,6 +74,7 @@ def main():
     # converters = {'a': lambda x: trunc(float(x))}
     integer_columns = ['A', 'I']
     float_columns = ['X']
+    boolean_columns = ['R']
     data = read_file(
         file_name='myfile.csv',
         column_names_dict=column_names_dict,
@@ -82,7 +85,8 @@ def main():
         category_columns=category_columns,
         # converters=converters,
         integer_columns=integer_columns,
-        float_columns=float_columns
+        float_columns=float_columns,
+        boolean_columns=boolean_columns
     )
     print(
         'Example 2. Ensure the column dtypes are correct. Rename the columns.'
@@ -118,6 +122,10 @@ def create_dataframe() -> pd.DataFrame:
                 loc=13,
                 scale=70
             ),
+            'r': ds.random_data(
+                distribution='strings',
+                strings=['0', '1']
+            ),
             's': ds.random_data(distribution='strings'),
             't': ds.datetime_data(),
             'u': ds.datetime_data(),
@@ -148,7 +156,8 @@ def read_file(
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
     integer_columns: Optional[List[str]] = [],
-    float_columns: Optional[List[str]] = []
+    float_columns: Optional[List[str]] = [],
+    boolean_columns: Optional[List[str]] = []
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -177,6 +186,8 @@ def read_file(
         The columns to change to dtype integer.
     float_columns : Optional[List[str]] = []
         The columns to change to dtype float.
+    boolean_columns : Optional[List[str]] = []
+        The columns to change to dtype boolean.
 
     Returns
     -------
@@ -198,6 +209,7 @@ def read_file(
     >>>     'c': 'C',
     >>>     'd': 'D',
     >>>     'i': 'I',
+    >>>     'r': 'R',
     >>>     's': 'S',
     >>>     't': 'T',
     >>>     'u': 'U',
@@ -212,6 +224,7 @@ def read_file(
     >>> category_columns = ['C']
     >>> integer_columns = ['A', 'I']
     >>> float_columns = ['X']
+    >>> boolean_columns = ['R']
     >>> data = read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
@@ -246,6 +259,8 @@ def read_file(
         df[column] = df[column].astype('int64')
     for column in float_columns:
         df[column] = df[column].astype('float64')
+    for column in boolean_columns:
+        df[column] = df[column].astype('bool')
     return df
 
 
