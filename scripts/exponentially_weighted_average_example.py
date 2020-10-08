@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
-
-'''
+"""
 Exponentially weighted average plot
 
 This script has several functions:
@@ -14,22 +13,20 @@ This script has several functions:
 
 time -f '%e' ./exponentially_weighted_average.py
 ./exponentially_weighted_average.py
-'''
-
+"""
 
 from typing import List, Tuple
 
 import matplotlib.axes as axes
-import matplotlib.cm as cm
 import datasense as ds
 
 
 def main():
-    global figure_width_height, c, date_time_parser
+    global figure_width_height, date_time_parser
     file_names, graph_file_names, abscissa_names, ordinate_names,\
         ordinate_predicted_names, x_axis_label, y_axis_label, axis_title,\
         figure_width_height, column_names_sort, date_time_parser,\
-        date_formatter, c, alpha_value, function, output_url,\
+        date_formatter, alpha_value, function, output_url,\
         header_title, header_id, parser = parameters()
     original_stdout = ds.html_begin(
         outputurl=output_url,
@@ -80,12 +77,12 @@ def main():
         ax.set_xlabel(x_axis_label, fontweight='bold')
         ax.set_ylabel(y_axis_label, fontweight='bold')
         despine(ax)
-        ax.figure.savefig(f'{graphfilename}.svg', format='svg')
+        fig.savefig(f'{graphfilename}.svg', format='svg')
         print(f'<p><img src="{graphfilename}.svg"/></p>')
-        ds.html_end(
-            originalstdout=original_stdout,
-            outputurl=output_url
-        )
+    ds.html_end(
+        originalstdout=original_stdout,
+        outputurl=output_url
+    )
 
 
 def parameters() -> (
@@ -142,7 +139,6 @@ def parameters() -> (
                      if str(unsplit) != 'nan'
                      for split
                      in unsplit.split(',')]
-    c = cm.Paired.colors
     alphavalue = parameters['Other parameter values'][6]
     function = parameters['Other parameter values'][7]
     outputurl = parameters['Other parameter values'][8]
@@ -151,7 +147,7 @@ def parameters() -> (
     return (
         filenames, graphfilenames, abscissanames, ordinatenames,
         ordinatepredictednames, xaxislabel, yaxislabel, axistitle,
-        figurewidthheight, columnnamessort, datetimeparser, dateformatter, c,
+        figurewidthheight, columnnamessort, datetimeparser, dateformatter,
         alphavalue, function, outputurl, headertitle, headerid, parser
     )
 
