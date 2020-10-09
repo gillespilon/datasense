@@ -68,7 +68,7 @@ def main():
         graph_file_name
     ):
         data = ds.read_file(
-            filename=filename,
+            file_name=filename,
             abscissa=abscissaname,
             datetimeparser=datetimeparser,
             columnnamessort=columnnamessort
