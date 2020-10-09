@@ -26,6 +26,9 @@ from numpy import arange
 import pandas as pd
 import numpy as np
 
+pd.set_option('display.max_columns', 600)
+pd.set_option('display.max_rows', 600)
+
 
 def nonparametric_summary(
     series: pd.Series,
@@ -218,7 +221,12 @@ def cubic_spline(
     df = df.dropna(subset=[abscissa, ordinate])
     df = df.sort_values(by=abscissa, axis='rows', ascending=True)
     df = df.drop_duplicates(subset=abscissa, keep='first')
-    spline = CubicSpline(df[abscissa], df[ordinate])
+    print(df)
+    print(df.dtypes)
+    spline = CubicSpline(
+        x=df[abscissa],
+        y=df[ordinate]
+    )
     return spline
 
 
