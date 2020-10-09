@@ -41,7 +41,10 @@ def main():
     print(df.head())
     print(df.dtypes)
     print()
-    save_dataframe(df=df)
+    ds.save_file(
+        df=df,
+        filename='mysifle.csv'
+    )
     # Example 1
     # Read a csv file. There is no guarante thee column dtypes will be correct.
     data = ds.read_file(file_name='myfile.csv')
@@ -141,13 +144,6 @@ def create_dataframe() -> pd.DataFrame:
         }
     )
     return df
-
-
-def save_dataframe(df) -> None:
-    df.to_csv(
-        'myfile.csv',
-        index=False
-    )
 
 
 if __name__ == '__main__':
