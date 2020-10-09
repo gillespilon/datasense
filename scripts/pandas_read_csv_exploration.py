@@ -3,7 +3,8 @@
 Pandas read_csv exploration
 """
 
-from typing import Dict, List, Optional
+from typing import Callable, Dict, List, Optional
+from datetime import datetime
 from math import trunc
 
 from pandas.api.types import CategoricalDtype
@@ -70,7 +71,7 @@ def main():
         'z': 'Z'
     }
     index_columns = ['Y']
-    date_parser = '%Y-%m-%d %H:%M:%S'
+    parse_dates = ['t', 'u']
     date_time_columns = ['T', 'U']
     time_delta_columns = ['D']
     category_columns = ['C']
@@ -86,7 +87,8 @@ def main():
         column_names_dict=column_names_dict,
         index_columns=index_columns,
         date_time_columns=date_time_columns,
-        date_parser=date_parser,
+        parse_dates=parse_dates,
+        date_parser=date_parser(),
         time_delta_columns=time_delta_columns,
         category_columns=category_columns,
         # converters=converters,
@@ -144,6 +146,10 @@ def create_dataframe() -> pd.DataFrame:
         }
     )
     return df
+
+
+def date_parser() -> Callable:
+    return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
 
 
 if __name__ == '__main__':
