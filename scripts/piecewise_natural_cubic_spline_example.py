@@ -57,8 +57,9 @@ def main():
         file_names, targets, features
     ):
         data = ds.read_file(
-            filename=file,
-            abscissa=feature
+            file_name=file,
+            parse_dates=list(feature),
+            date_parser=date_time_parser
         )
         data[target] = data[target].fillna(data[target].mean())
         dates = True
@@ -112,7 +113,7 @@ def parameters(
     '''
 
     parameters = ds.read_file(
-        filename='piecewise_natural_cubic_spline_parameters.csv'
+        file_name='piecewise_natural_cubic_spline_parameters.csv'
     )
     filenames = [x for x in parameters['File names'] if str(x) != 'nan']
     targets = [x for x in parameters['Targets'] if str(x) != 'nan']
