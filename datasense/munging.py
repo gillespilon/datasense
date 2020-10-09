@@ -2,12 +2,13 @@
 Data munging
 '''
 
-from typing import IO, List, Optional, Tuple
+from typing import Dict, IO, List, Optional, Tuple
 from datetime import datetime
 import webbrowser
 import textwrap
 import sys
 
+from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 import pandas as pd
 import numpy as np
@@ -639,110 +640,249 @@ def save_file(
 
 
 def read_file(
-    filename: str,
+    file_name: str,
     *,
-    sheetname: Optional[str] = None,
-    indexcol: Optional[bool] = None,
-    abscissa: Optional[str] = None,
-    datetimeparser: Optional[str] = None,
-    columnnamessort: Optional[str] = False
+    column_names_dict: Optional[Dict[str, str]] = {},
+    index_columns: Optional[List[str]] = [],
+    converters: Optional[dict] = None,
+    parse_dates: Optional[List[str]] = None,
+    date_parser: Optional[str] = None,
+    date_time_columns: Optional[List[str]] = [],
+    time_delta_columns: Optional[List[str]] = [],
+    category_columns: Optional[List[str]] = [],
+    integer_columns: Optional[List[str]] = [],
+    float_columns: Optional[List[str]] = [],
+    boolean_columns: Optional[List[str]] = [],
+    object_columns: Optional[List[str]] = [],
+    sort_columns: Optional[List[str]] = [],
+    sort_columns_bool: Optional[List[bool]] = []
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
 
     Parameters
     ----------
-    filename : str
+    file_name : str
         The name of the file to read.
-    sheetname : Optional[str] = None
-        The name of the worksheet of a workbook.
-    indexcol : Optional[bool] = None
-        If False, do not use the first column.
-    abscissa : Optional[str] = None
-        The column to use to parse dates.
-    datetimeparser : Optional[str] = None
-        The datetimeparser string.
-    columnnamessort : Optional[str] = False
-        The column on which to sort the dataframe.
+    column_names_dict : Optional[List[str]]
+        The new column names to replace the old column names.
+    index_columns : Optional[List[str]]
+        The columns to use for the dataframe index.
+    converters : Optional[dict] = None,
+        Dictionary of functions for converting values in certain columns.
+    parse_dates : Optional[List[str]] = None,
+        The columns to use to parse date and time.
+    date_parser : Optional[str] = None,
+        The string to use for parsing date and time.
+    date_time_columns : Optional[List[str]] = [],
+        The columns to change to dtype datetime.
+    time_delta_columns : Optional[List[str]] = [],
+        The columns to change to dtype timedelta.
+    category_columns : Optional[List[str]] = []
+        The columns to change to dtype category.
+    integer_columns : Optional[List[str]] = []
+        The columns to change to dtype integer.
+    float_columns : Optional[List[str]] = []
+        The columns to change to dtype float.
+    boolean_columns : Optional[List[str]] = []
+        The columns to change to dtype boolean.
+    object_columns : Optional[List[str]] = []
+        The columns to change to dtype object.
+    sort_columns : Optional[List[str]] = []
+        The columns on which to sort the dataframe.
+    sort_columns_bool : Optional[List[bool]] = []
+        The booleans for sort_columns.
 
     Returns
     -------
     df : pd.DataFrame
+        The dataframe created from the external file.
 
-    Example
-    -------
-    >>> df = ds.read_file(filename='filename.csv')
+    Examples
+    --------
+    Example 1
+    Read a csv file. There is no guarante thee column dtypes will be correct.
+    >>> data = read_file(file_name='myfile.csv')
+
+    Example 2
+    Read a csv file. Ensure the dtypes of columns. Rename the columns.
+    Set index with another column. Convert float column to integer.
+    >>> column_names_dict = {
+    >>>     'a': 'A',
+    >>>     'b': 'B',
+    >>>     'c': 'C',
+    >>>     'd': 'D',
+    >>>     'i': 'I',
+    >>>     'r': 'R',
+    >>>     's': 'S',
+    >>>     't': 'T',
+    >>>     'u': 'U',
+    >>>     'y': 'Y',
+    >>>     'x': 'X',
+    >>>     'z': 'Z'
+    >>> }
+    >>> index_columns = ['Y']
+    >>> date_parser = '%Y-%m-%d %H:%M:%S'
+    >>> date_time_columns = ['T', 'U']
+    >>> time_delta_columns = ['D']
+    >>> category_columns = ['C']
+    >>> integer_columns = ['A', 'I']
+    >>> float_columns = ['X']
+    >>> boolean_columns = ['R']
+    >>> object_columns = ['Z']
+    >>> data = read_file(
+    >>>     file_name='myfile.csv',
+    >>>     column_names_dict=column_names_dict,
+    >>>     index_columns=index_columns,
+    >>>     date_time_columns=date_time_columns,
+    >>>     date_parser=date_parser,
+    >>>     time_delta_columns=time_delta_columns,
+    >>>     category_columns=category_columns,
+    >>>     integer_columns=integer_columns
+    >>> )
     """
-
-    if '.ods' in filename and abscissa and datetimeparser:
-        df = pd.read_excel(
-            filename,
-            engine='odf',
-            parse_dates=[abscissa],
-            date_parser=lambda s: datetime.strptime(s, datetimeparser),
+    df = pd.read_csv(
+        file_name,
+        converters=converters,
+        parse_dates=parse_dates,
+        date_parser=date_parser
+    )
+    if column_names_dict:
+        df = df.rename(columns=column_names_dict)
+    if index_columns:
+        df = df.set_index(index_columns)
+    for column in category_columns:
+        df[column] = df[column].astype(CategoricalDtype())
+    for column in date_time_columns:
+        df[column] = pd.to_datetime(
+            df[column],
+            format=date_parser
         )
-    elif '.ods' in filename and abscissa and not datetimeparser:
-        df = pd.read_excel(
-            filename,
-            engine='odf',
-            parse_dates=[abscissa]
-        )
-    elif '.ods' in filename and not abscissa and not datetimeparser:
-        df = pd.read_excel(
-            filename,
-            engine='odf',
-        )
-    elif '.csv' in filename and abscissa and datetimeparser \
-            and indexcol is False:
-        df = pd.read_csv(
-            filename,
-            index_col=indexcol,
-            parse_dates=[abscissa],
-            date_parser=lambda s: datetime.strptime(s, datetimeparser),
-        )
-    elif '.csv' in filename and abscissa and datetimeparser:
-        df = pd.read_csv(
-            filename,
-            parse_dates=[abscissa],
-            date_parser=lambda s: datetime.strptime(s, datetimeparser),
-        )
-    elif '.csv' in filename and abscissa:
-        df = pd.read_csv(
-            filename,
-            parse_dates=[abscissa]
-        )
-    elif '.csv' in filename:
-        df = pd.read_csv(
-            filename,
-        )
-    elif '.xlsx' in filename and abscissa and datetimeparser:
-        df = pd.read_excel(
-            filename,
-            parse_dates=[abscissa],
-            date_parser=lambda s: datetime.strptime(s, datetimeparser),
-        )
-    elif '.xlsx' in filename and sheetname and indexcol is False:
-        df = pd.read_excel(
-            filename,
-            sheet_name=sheetname,
-            index_col=indexcol
-        )
-    elif '.xlsx' in filename and not datetimeparser:
-        df = pd.read_excel(
-            filename,
-        )
-    if datetimeparser is not None:
+    for column in time_delta_columns:
+        df[column] = pd.to_timedelta(df[column])
+    for column in integer_columns:
+        df[column] = df[column].astype('int64')
+    for column in float_columns:
+        df[column] = df[column].astype('float64')
+    for column in boolean_columns:
+        df[column] = df[column].astype('bool')
+    for column in object_columns:
+        df[column] = df[column].astype('object')
+    if sort_columns and sort_columns_bool:
         df = df.sort_values(
-            by=abscissa,
-            axis='rows',
-            ascending=True
+            by=sort_columns,
+            axis='index',
+            ascending=sort_columns_bool,
+            kind='mergesort'
         )
-    if columnnamessort is True:
-        sortedcolumnnames = sorted(df.columns)
-        df = df[sortedcolumnnames]
     return df
 
 
+# def read_file(
+#     filename: str,
+#     *,
+#     sheetname: Optional[str] = None,
+#     indexcol: Optional[bool] = None,
+#     abscissa: Optional[str] = None,
+#     datetimeparser: Optional[str] = None,
+#     columnnamessort: Optional[str] = False
+# ) -> pd.DataFrame:
+#     """
+#     Create a DataFrame from an external file.
+#
+#     Parameters
+#     ----------
+#     filename : str
+#         The name of the file to read.
+#     sheetname : Optional[str] = None
+#         The name of the worksheet of a workbook.
+#     indexcol : Optional[bool] = None
+#         If False, do not use the first column.
+#     abscissa : Optional[str] = None
+#         The column to use to parse dates.
+#     datetimeparser : Optional[str] = None
+#         The datetimeparser string.
+#     columnnamessort : Optional[str] = False
+#         The column on which to sort the dataframe.
+#
+#     Returns
+#     -------
+#     df : pd.DataFrame
+#
+#     Example
+#     -------
+#     >>> df = ds.read_file(filename='filename.csv')
+#     """
+#
+#     if '.ods' in filename and abscissa and datetimeparser:
+#         df = pd.read_excel(
+#             filename,
+#             engine='odf',
+#             parse_dates=[abscissa],
+#             date_parser=lambda s: datetime.strptime(s, datetimeparser),
+#         )
+#     elif '.ods' in filename and abscissa and not datetimeparser:
+#         df = pd.read_excel(
+#             filename,
+#             engine='odf',
+#             parse_dates=[abscissa]
+#         )
+#     elif '.ods' in filename and not abscissa and not datetimeparser:
+#         df = pd.read_excel(
+#             filename,
+#             engine='odf',
+#         )
+#     elif '.csv' in filename and abscissa and datetimeparser \
+#             and indexcol is False:
+#         df = pd.read_csv(
+#             filename,
+#             index_col=indexcol,
+#             parse_dates=[abscissa],
+#             date_parser=lambda s: datetime.strptime(s, datetimeparser),
+#         )
+#     elif '.csv' in filename and abscissa and datetimeparser:
+#         df = pd.read_csv(
+#             filename,
+#             parse_dates=[abscissa],
+#             date_parser=lambda s: datetime.strptime(s, datetimeparser),
+#         )
+#     elif '.csv' in filename and abscissa:
+#         df = pd.read_csv(
+#             filename,
+#             parse_dates=[abscissa]
+#         )
+#     elif '.csv' in filename:
+#         df = pd.read_csv(
+#             filename,
+#         )
+#     elif '.xlsx' in filename and abscissa and datetimeparser:
+#         df = pd.read_excel(
+#             filename,
+#             parse_dates=[abscissa],
+#             date_parser=lambda s: datetime.strptime(s, datetimeparser),
+#         )
+#     elif '.xlsx' in filename and sheetname and indexcol is False:
+#         df = pd.read_excel(
+#             filename,
+#             sheet_name=sheetname,
+#             index_col=indexcol
+#         )
+#     elif '.xlsx' in filename and not datetimeparser:
+#         df = pd.read_excel(
+#             filename,
+#         )
+#     if datetimeparser is not None:
+#         df = df.sort_values(
+#             by=abscissa,
+#             axis='rows',
+#             ascending=True
+#         )
+#     if columnnamessort is True:
+#         sortedcolumnnames = sorted(df.columns)
+#         df = df[sortedcolumnnames]
+#     return df
+#
+#
 def html_header(
     headertitle: str = 'Report',
     headerid: str = 'report'
