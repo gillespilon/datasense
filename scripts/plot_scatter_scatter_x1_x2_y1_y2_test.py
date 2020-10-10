@@ -34,7 +34,7 @@ def main():
         fname='plot_scatter_scatter_x1_x2_y1_y2_datex_test.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_scatter_x1_x2_y1_y2_datex_test.svg')
+    ds.html_figure(file_name='plot_scatter_scatter_x1_x2_y1_y2_datex_test.svg')
     # Example 2
     fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
         X1=series_x1,
@@ -52,7 +52,7 @@ def main():
             format='svg'
     )
     ds.html_figure(
-        filename=(
+        file_name=(
             'plot_scatter_scatter_x1_x2_y1_y2_datex_smoothing_y1_y2_test.svg'
             )
     )
@@ -79,7 +79,7 @@ def main():
         fname='plot_scatter_scatter_x1_x2_y1_y2_test.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_scatter_x1_x2_y1_y2_test.svg')
+    ds.html_figure(file_name='plot_scatter_scatter_x1_x2_y1_y2_test.svg')
     # Example 4
     fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
         X1=series_x1,
@@ -104,7 +104,7 @@ def main():
         format='svg'
     )
     ds.html_figure(
-        filename='plot_scatter_scatter_x1_x2_y1_y2_smoothing_y1_y2_test.svg'
+        file_name='plot_scatter_scatter_x1_x2_y1_y2_smoothing_y1_y2_test.svg'
     )
     ds.html_end(
         originalstdout=original_stdout,
