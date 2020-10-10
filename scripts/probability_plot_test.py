@@ -25,7 +25,7 @@ def main():
         fname='probability_plot_test.svg',
         format='svg'
     )
-    ds.html_figure(filename='probability_plot_test.svg')
+    ds.html_figure(file_name='probability_plot_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
