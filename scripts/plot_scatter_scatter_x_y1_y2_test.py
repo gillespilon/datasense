@@ -8,9 +8,9 @@ time -f '%e' ./plot_scatter_scatter_x_y1_y2_test.py
 
 import datasense as ds
 
-output_url = 'plot_scatter_x_y1_y2_test.html'
-header_title = 'plot_scatter_x_y1_y2_test'
-header_id = 'plot-scatter-x-y1-y2-test'
+output_url = 'plot_scatter_scatter_x_y1_y2_test.html'
+header_title = 'plot_scatter_scatter_x_y1_y2_test'
+header_id = 'plot-scatter-scatter-x-y1-y2-test'
 
 
 def main():
@@ -31,7 +31,7 @@ def main():
         fname='plot_scatter_scatter_x_y1_y2_datex_test.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_scatter_x_y1_y2_datex_test.svg')
+    ds.html_figure(file_name='plot_scatter_scatter_x_y1_y2_datex_test.svg')
     series_x = ds.random_data(distribution='uniform')
     fig, ax = ds.plot_scatter_scatter_x_y1_y2(
         X=series_x,
@@ -52,7 +52,7 @@ def main():
         fname='plot_scatter_scatter_x_y1_y2_test.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_scatter_x_y1_y2_test.svg')
+    ds.html_figure(file_name='plot_scatter_scatter_x_y1_y2_test.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
