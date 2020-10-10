@@ -26,7 +26,7 @@ def main():
         fname='plot_line_y_test_1.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_line_y_test_1.svg')
+    ds.html_figure(file_name='plot_line_y_test_1.svg')
     # Example 2
     fig, ax = ds.plot_line_y(
         y=series_y,
@@ -40,7 +40,7 @@ def main():
         fname='plot_line_y_test_2.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_line_y_test_2.svg')
+    ds.html_figure(file_name='plot_line_y_test_2.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
