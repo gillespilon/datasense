@@ -26,7 +26,7 @@ def main():
         fname='plot_scatter_y_test_1.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_y_test_1.svg')
+    ds.html_figure(file_name='plot_scatter_y_test_1.svg')
     # Example 2
     fig, ax = ds.plot_scatter_y(
         y=series_y,
@@ -39,7 +39,7 @@ def main():
         fname='plot_scatter_y_test_2.svg',
         format='svg'
     )
-    ds.html_figure(filename='plot_scatter_y_test_2.svg')
+    ds.html_figure(file_name='plot_scatter_y_test_2.svg')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
