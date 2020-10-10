@@ -1033,17 +1033,17 @@ def html_figure(
 
     Parameters
     ----------
-    filename : str
+    file_name : str
         The file name of the image.
     caption : Optional[str]
         The figure caption.
     """
     if caption is None:
-        caption = filename
+        caption = file_name
     print(
         '<figure>'
-        f'<img src="{filename}" '
-        f'alt="{filename}"/>'
+        f'<img src="{file_name}" '
+        f'alt="{file_name}"/>'
         f'<figcaption>{caption}</figcaption>'
         '</figure>'
     )
