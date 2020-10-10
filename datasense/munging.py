@@ -2,8 +2,7 @@
 Data munging
 '''
 
-from typing import Dict, IO, List, Optional, Tuple
-from datetime import datetime
+from typing import Callable, Dict, IO, List, Optional, Tuple
 import webbrowser
 import textwrap
 import sys
@@ -646,7 +645,7 @@ def read_file(
     index_columns: Optional[List[str]] = [],
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = None,
-    date_parser: Optional[str] = None,
+    date_parser: Optional[Callable] = None,
     date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
@@ -655,7 +654,8 @@ def read_file(
     boolean_columns: Optional[List[str]] = [],
     object_columns: Optional[List[str]] = [],
     sort_columns: Optional[List[str]] = [],
-    sort_columns_bool: Optional[List[bool]] = []
+    sort_columns_bool: Optional[List[bool]] = [],
+    sheet_name: Optional[str] = None
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -730,50 +730,63 @@ def read_file(
     >>> float_columns = ['X']
     >>> boolean_columns = ['R']
     >>> object_columns = ['Z']
+    >>>
+    >>>
+    >>> def date_parser() -> Callable:
+    >>>     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
+    >>>
+    >>>
     >>> data = read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
     >>>     index_columns=index_columns,
     >>>     date_time_columns=date_time_columns,
     >>>     date_parser=date_parser,
+    >>>     parse_dates=date_time_columns,
     >>>     time_delta_columns=time_delta_columns,
     >>>     category_columns=category_columns,
     >>>     integer_columns=integer_columns
     >>> )
     """
-    df = pd.read_csv(
-        file_name,
-        converters=converters,
-        parse_dates=parse_dates,
-        date_parser=date_parser
-    )
-    if column_names_dict:
-        df = df.rename(columns=column_names_dict)
-    if index_columns:
-        df = df.set_index(index_columns)
-    for column in category_columns:
-        df[column] = df[column].astype(CategoricalDtype())
-    for column in date_time_columns:
-        df[column] = pd.to_datetime(
-            df[column],
-            format=date_parser
+    if '.csv' in file_name:
+        df = pd.read_csv(
+            file_name,
+            converters=converters,
+            parse_dates=parse_dates,
+            date_parser=date_parser
         )
-    for column in time_delta_columns:
-        df[column] = pd.to_timedelta(df[column])
-    for column in integer_columns:
-        df[column] = df[column].astype('int64')
-    for column in float_columns:
-        df[column] = df[column].astype('float64')
-    for column in boolean_columns:
-        df[column] = df[column].astype('bool')
-    for column in object_columns:
-        df[column] = df[column].astype('object')
-    if sort_columns and sort_columns_bool:
-        df = df.sort_values(
-            by=sort_columns,
-            axis='index',
-            ascending=sort_columns_bool,
-            kind='mergesort'
+        if column_names_dict:
+            df = df.rename(columns=column_names_dict)
+        if index_columns:
+            df = df.set_index(index_columns)
+        for column in category_columns:
+            df[column] = df[column].astype(CategoricalDtype())
+        for column in date_time_columns:
+            df[column] = pd.to_datetime(
+                df[column],
+                format=date_parser
+            )
+        for column in time_delta_columns:
+            df[column] = pd.to_timedelta(df[column])
+        for column in integer_columns:
+            df[column] = df[column].astype('int64')
+        for column in float_columns:
+            df[column] = df[column].astype('float64')
+        for column in boolean_columns:
+            df[column] = df[column].astype('bool')
+        for column in object_columns:
+            df[column] = df[column].astype('object')
+        if sort_columns and sort_columns_bool:
+            df = df.sort_values(
+                by=sort_columns,
+                axis='index',
+                ascending=sort_columns_bool,
+                kind='mergesort'
+            )
+    elif '.xlsx' in file_name and sheet_name:
+        df = pd.read_excel(
+            file_name,
+            sheet_name=sheet_name
         )
     return df
 
