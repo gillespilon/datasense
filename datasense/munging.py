@@ -1024,7 +1024,7 @@ def html_end(
 
 
 def html_figure(
-    filename: str,
+    file_name: str,
     *,
     caption: Optional[str] = None
 ) -> None:
