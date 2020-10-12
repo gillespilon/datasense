@@ -1,33 +1,22 @@
 #! /usr/bin/env python3
-
-
-'''
+"""
 Example of XmR control charts
 
 time -f '%e' ./x_mr_example.py
 ./x_mr_example.py
-'''
-
-
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-
+"""
 
 from datasense import control_charts as cc
-
+import matplotlib.pyplot as plt
+import pandas as pd
 
 data_file = 'x_mr_example'
-
-
 x_chart_title = 'Individuals Control Chart'
 x_chart_ylabel = 'Measurement X (units)'
 x_chart_xlabel = 'Sample'
-
-
 mr_chart_title = 'Moving Range Control Chart'
 mr_chart_ylabel = 'Measurement mR (units)'
-mr_chart_xlabel = 'Sample'
+colour1 = '#33bbee'
 
 
 def main():
@@ -94,13 +83,13 @@ def x_chart(df: pd.DataFrame) -> None:
     x = cc.X(df)
     ax = x.ax(fig)
     ax.axhline(y=x.sigmas[+1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=x.sigmas[-1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=x.sigmas[+2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=x.sigmas[-2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
 #     cc.draw_rule(x, ax, *cc.points_one(x), '1')
 #     cc.draw_rule(x, ax, *cc.points_four(x), '4')
 #     cc.draw_rule(x, ax, *cc.points_two(x), '2')
@@ -109,6 +98,7 @@ def x_chart(df: pd.DataFrame) -> None:
     ax.set_title(x_chart_title, fontweight='bold')
     ax.set_ylabel(x_chart_ylabel)
     ax.set_xlabel(x_chart_xlabel)
+    ax.figure.savefig(f'{data_file}_x.svg')
     print(
        f'X Report\n'
        f'============\n'
@@ -117,7 +107,6 @@ def x_chart(df: pd.DataFrame) -> None:
        f'LCL        : {x.lcl}\n'
        f'Sigma(Xbar): {x.sigma}\n'
     )
-    ax.figure.savefig(f'{data_file}_x.svg')
 
 
 def mr_chart(df: pd.DataFrame) -> None:
@@ -130,10 +119,6 @@ def mr_chart(df: pd.DataFrame) -> None:
     fig = plt.figure(figsize=(8, 6))
     mr = cc.mR(df)
     ax = mr.ax(fig)
-#     ax.axhline(y=mr.sigmas[+1], linestyle='--', dashes=(5, 5),
-#                c=cm.Paired.colors[0], alpha=0.5)
-#     ax.axhline(y=mr.sigmas[-1], linestyle='--', dashes=(5, 5),
-#                c=cm.Paired.colors[0], alpha=0.5)
     cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
     ax.set_title(mr_chart_title, fontweight='bold')
     ax.set_ylabel(mr_chart_ylabel)
