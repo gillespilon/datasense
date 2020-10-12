@@ -1,33 +1,23 @@
 #! /usr/bin/env python3
-
-
-'''
+"""
 Example of XbarR control charts
 
 time -f '%e' ./xbar_r_example.py
 ./xbar_r_example.py
-'''
-
-
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-
+"""
 
 from datasense import control_charts as cc
-
+import matplotlib.pyplot as plt
+import pandas as pd
 
 data_file = 'xbar_r_example'
-
-
 xbar_chart_title = 'Average Control Chart'
 xbar_chart_ylabel = 'Measurement Xbar (units)'
 xbar_chart_xlabel = 'Sample'
-
-
 r_chart_title = 'Range Control Chart'
 r_chart_ylabel = 'Measurement R (units)'
 r_chart_xlabel = 'Sample'
+colour1 = '#33bbee'
 
 
 def main():
@@ -126,13 +116,13 @@ def xbar_chart(df: pd.DataFrame) -> None:
     xbar = cc.Xbar(df)
     ax = xbar.ax(fig)
     ax.axhline(y=xbar.sigmas[+1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=xbar.sigmas[-1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=xbar.sigmas[+2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=xbar.sigmas[-2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
 #     cc.draw_rule(xbar, ax, *cc.points_one(xbar), '1')
 #     cc.draw_rule(xbar, ax, *cc.points_four(xbar), '4')
 #     cc.draw_rule(xbar, ax, *cc.points_two(xbar), '2')
@@ -162,13 +152,13 @@ def r_chart(df: pd.DataFrame) -> None:
     r = cc.R(df)
     ax = r.ax(fig)
     ax.axhline(y=r.sigmas[+1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=r.sigmas[-1], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=r.sigmas[+2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     ax.axhline(y=r.sigmas[-2], linestyle='--', dashes=(5, 5),
-               c=cm.Paired.colors[0], alpha=0.5)
+               color=colour1, alpha=0.5)
     cc.draw_rule(r, ax, *cc.points_one(r), '1')
     ax.set_title(r_chart_title, fontweight='bold')
     ax.set_ylabel(r_chart_ylabel)
