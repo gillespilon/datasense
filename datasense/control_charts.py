@@ -1,24 +1,27 @@
-'''
+"""
 Shewhart control charts
 
 Create X, mR, Xbar, R control charts
 Invoke Shewhart rules 1, 2, 3, 4
-'''
+"""
 
-
-from collections import defaultdict
-from itertools import tee
 from typing import Union, Optional, Tuple, Iterable, TypeVar
-from math import sqrt
+from collections import defaultdict
 from abc import ABC, abstractmethod
+from itertools import tee
+from math import sqrt
 
 from cached_property import cached_property
+import matplotlib.pyplot as plt
+import matplotlib.axes as axes
 import pandas as pd
 import numpy as np
-import matplotlib.cm as cm
-import matplotlib.axes as axes
-import matplotlib.pyplot as plt
 
+
+colour1 = '#0077bb'
+colour2 = '#33bbee'
+colour3 = '#009988'
+colour4 = '#cc3311'
 
 CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
     dict(
@@ -199,12 +202,6 @@ class ControlChart(ABC):
         ).mean()
 
 
-c = cm.Paired.colors
-# c[0] c[1] ... c[11]
-# See "paired" in "qualitative colormaps"
-# https://matplotlib.org/tutorials/colors/colormaps.html
-
-
 class X(ControlChart):
     '''
     X control chart
@@ -281,10 +278,10 @@ class X(ControlChart):
         ax = fig.add_subplot(111)
         _despine(ax)
         ax.plot(self.y.index, self.y,
-                marker='o', markersize=3, color=c[0])
-        ax.axhline(y=self.mean, color=c[2])
-        ax.axhline(y=self.ucl, color=c[1])
-        ax.axhline(y=self.lcl, color=c[1])
+                marker='o', markersize=3, color=colour1)
+        ax.axhline(y=self.mean, color=colour3)
+        ax.axhline(y=self.ucl, color=colour1)
+        ax.axhline(y=self.lcl, color=colour1)
 
         return ax
 
@@ -369,11 +366,11 @@ class mR(ControlChart):
         ax = fig.add_subplot(111)
         _despine(ax)
         ax.plot(self.y.index, self.y,
-                marker='o', markersize=3, color=c[0])
+                marker='o', markersize=3, color=colour2)
         # TODO? ax.set_xlim(0, len(self._df.columns))
-        ax.axhline(y=self.mean, color=c[2])
-        ax.axhline(y=self.ucl, color=c[1])
-        ax.axhline(y=self.lcl, color=c[1])
+        ax.axhline(y=self.mean, color=colour3)
+        ax.axhline(y=self.ucl, color=colour1)
+        ax.axhline(y=self.lcl, color=colour1)
 
         return ax
 
@@ -462,10 +459,10 @@ class Xbar(ControlChart):
         ax = fig.add_subplot(111)
         _despine(ax)
         ax.plot(self.y.index, self.y,
-                marker='o', markersize=3, color=c[0])
-        ax.axhline(y=self.mean, color=c[2])
-        ax.axhline(y=self.ucl, color=c[1])
-        ax.axhline(y=self.lcl, color=c[1])
+                marker='o', markersize=3, color=colour2)
+        ax.axhline(y=self.mean, color=colour3)
+        ax.axhline(y=self.ucl, color=colour1)
+        ax.axhline(y=self.lcl, color=colour1)
         return ax
 
     @cached_property
@@ -565,10 +562,10 @@ class R(ControlChart):
         ax = fig.add_subplot(111)
         _despine(ax)
         ax.plot(self.y.index, self.y,
-                marker='o', markersize=3, color=c[0])
-        ax.axhline(y=self.mean, color=c[2])
-        ax.axhline(y=self.ucl, color=c[1])
-        ax.axhline(y=self.lcl, color=c[1])
+                marker='o', markersize=3, color=colour2)
+        ax.axhline(y=self.mean, color=colour3)
+        ax.axhline(y=self.ucl, color=colour1)
+        ax.axhline(y=self.lcl, color=colour1)
         return ax
 
     @cached_property
@@ -593,11 +590,11 @@ def draw_rule(cc: ControlChart,
 
     for x, y in above.items():
         ax.annotate(rule_name, xy=(x, y), xytext=(x, y + y_percent * 5),
-                    color=c[5])
+                    color=colour4)
 
     for x, y in below.items():
         ax.annotate(rule_name, xy=(x, y), xytext=(x, y - y_percent * 5),
-                    color=c[5])
+                    color=colour4)
 
 
 # We can't use for group in series.rolling(5) because it's not implemened yet,
@@ -630,11 +627,11 @@ def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
 
     for (x, y), rule_names in aboves.items():
         ax.annotate(rule_names, xy=(x, y), xytext=(x, y + y_percent * 5),
-                    color=c[5])
+                    color=colour4)
 
     for (x, y), rule_names in belows.items():
         ax.annotate(rule_names, xy=(x, y), xytext=(x, y - y_percent * 5),
-                    color=c[5])
+                    color=colour4)
 
 
 T = TypeVar('T')
