@@ -655,7 +655,8 @@ def read_file(
     object_columns: Optional[List[str]] = [],
     sort_columns: Optional[List[str]] = [],
     sort_columns_bool: Optional[List[bool]] = [],
-    sheet_name: Optional[str] = None
+    sheet_name: Optional[str] = None,
+    nrows: Optional[int] = None
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -692,6 +693,8 @@ def read_file(
         The columns on which to sort the dataframe.
     sort_columns_bool : Optional[List[bool]] = []
         The booleans for sort_columns.
+    nrows : Optional[int] = None
+        The number of rows to read.
 
     Returns
     -------
@@ -753,7 +756,8 @@ def read_file(
             file_name,
             converters=converters,
             parse_dates=parse_dates,
-            date_parser=date_parser
+            date_parser=date_parser,
+            nrows=nrows
         )
         if column_names_dict:
             df = df.rename(columns=column_names_dict)
