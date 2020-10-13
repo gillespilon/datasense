@@ -1098,6 +1098,43 @@ def byte_size(
     return memory_usage
 
 
+def feature_percent_empty(
+    df: pd.DataFrame,
+    columns: List[str],
+    limit: float
+) -> List[str]:
+    """
+    Remove features that have NaN > limit
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+    columns : List[str]
+        The list of columns to evaluate.
+    limit : float
+        The percentage empty threshold value.
+
+    Returns
+    -------
+    List[str]
+        The list of columns below the threshold value.
+
+    Example
+    -------
+    >>> import datasense as ds
+
+    >>> features = ds.feature_percent_empty(
+    >>>     df=data,
+    >>>     columns=features,
+    >>>     limit=percent_empty_features
+    >>> )
+    """
+    num_rows = df.shape[0]
+    return [col for col in columns if
+            ((df[col].isna().sum() / num_rows * 100) <= limit)]
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1120,4 +1157,5 @@ __all__ = (
     'html_end',
     'html_figure',
     'byte_size',
+    'feature_percent_empty',
 )
