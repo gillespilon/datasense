@@ -1139,6 +1139,45 @@ def feature_percent_empty(
             ((df[col].isna().sum() / num_rows * 100) <= limit)]
 
 
+def report_summary(
+    start_time: float,
+    stop_time: float,
+    *,
+    read_file_names: Optional[List[str]] = None,
+    save_file_names: Optional[List[str]] = None
+) -> None:
+    """
+    Report summary
+
+    Parameters
+    ----------
+    start_time : float
+        The start time.
+    stop_time : float
+        The stop time.
+    read_file_names : List[str]
+        The list of file names read.
+    save_file_names : List[str]
+        Thee list of file names saved.
+
+    Example
+    -------
+    >>> import datasense as ds
+
+    >>> ds.report_summary(
+    >>>     start_time=start_time,
+    >>>     stop_time=stop_time
+    >>> )
+    """
+    elapsed_time = stop_time - start_time
+    print('<h1>Report summary</h1>')
+    print(f'Execution time : {round(elapsed_time, 3)} s')
+    if read_file_names:
+        print(f'Files read     : {read_file_names}')
+    if save_file_names:
+        print(f'Files saved    : {save_file_names}')
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1162,4 +1201,5 @@ __all__ = (
     'html_figure',
     'byte_size',
     'feature_percent_empty',
+    'report_summary',
 )
