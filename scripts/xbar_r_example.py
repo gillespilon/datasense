@@ -78,30 +78,30 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def read_csv(filename: str) -> pd.DataFrame:
+def read_csv(file_name: str) -> pd.DataFrame:
     '''
     Create a dataframe.
     This function reads a csv file.
     '''
-    df = pd.read_csv(filename, index_col='Sample')
+    df = pd.read_csv(file_name, index_col='Sample')
     return df
 
 
-def read_xlsx(filename: str) -> pd.DataFrame:
+def read_xlsx(file_name: str) -> pd.DataFrame:
     '''
     Create a dataframe.
     This function reads an xlsx file.
     '''
-    df = pd.read_excel(filename, index_col='Sample')
+    df = pd.read_excel(file_name, index_col='Sample')
     return df
 
 
-def read_ods(filename: str) -> pd.DataFrame:
+def read_ods(file_name: str) -> pd.DataFrame:
     '''
     Creates a dataframe.
     This function reads an ods file.
     '''
-    df = pd.read_excel(filename, index_col='Sample', engine='odf')
+    df = pd.read_excel(file_name, index_col='Sample', engine='odf')
     return df
 
 
