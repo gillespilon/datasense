@@ -53,9 +53,6 @@ def main():
         headertitle=header_title,
         headerid=header_id
     )
-    # for file_name, target, feature in itertools.product(
-    #     file_names, targets, features
-    # ):
     for file_name, target, feature in zip(file_names, targets, features):
         data = ds.read_file(
             file_name=file_name,
@@ -87,7 +84,7 @@ def main():
     print('<pre style="white-space: pre-wrap;">')
     summary(
         elapsedtime=elapsed_time,
-        filenames=file_names,
+        file_names=file_names,
         targets=targets,
         features=features,
         number_knots=number_knots
@@ -122,7 +119,7 @@ def parameters(
     parameters = ds.read_file(
         file_name='piecewise_natural_cubic_spline_parameters.csv'
     )
-    filenames = [x for x in parameters['File names'] if str(x) != 'nan']
+    file_names = [x for x in parameters['File names'] if str(x) != 'nan']
     targets = [x for x in parameters['Targets'] if str(x) != 'nan']
     features = [x for x in parameters['Features'] if str(x) != 'nan']
     number_knots = [int(x) for x in parameters['Number of knots']
@@ -137,7 +134,7 @@ def parameters(
     headertitle = parameters['Other parameter values'][7]
     headerid = parameters['Other parameter values'][8]
     return (
-        filenames, targets, features, number_knots, graphicsdirectory,
+        file_names, targets, features, number_knots, graphicsdirectory,
         figurewidthheight, xaxislabel, yaxislabel, axistitle,
         datetimeparser, outputurl, headertitle, headerid
     )
@@ -154,7 +151,7 @@ def page_break() -> None:
 
 def summary(
     elapsedtime: float,
-    filenames: List[str],
+    file_names: List[str],
     targets: List[str],
     features: List[str],
     number_knots: List[int]
@@ -165,7 +162,7 @@ def summary(
 
     print('<h1>Report summary</h1>')
     print(f'Execution time : {elapsedtime:.3f} s')
-    print(f'Files read     : {filenames}')
+    print(f'Files read     : {file_names}')
     print(f'Targets        : {targets}')
     print(f'Features       : {features}')
     print(f'Number of knots: {number_knots}')
