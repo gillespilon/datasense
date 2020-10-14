@@ -644,7 +644,7 @@ def read_file(
     column_names_dict: Optional[Dict[str, str]] = {},
     index_columns: Optional[List[str]] = [],
     converters: Optional[dict] = None,
-    parse_dates: Optional[List[str]] = None,
+    parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
     date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
@@ -673,7 +673,7 @@ def read_file(
         Dictionary of functions for converting values in certain columns.
     parse_dates : Optional[List[str]] = None,
         The columns to use to parse date and time.
-    date_parser : Optional[str] = None,
+    date_parser : Optional[Callable] = None,
         The string to use for parsing date and time.
     date_time_columns : Optional[List[str]] = [],
         The columns to change to dtype datetime.
@@ -787,6 +787,10 @@ def read_file(
                 ascending=sort_columns_bool,
                 kind='mergesort'
             )
+    elif '.ods' in file_name:
+        df = pd.read_excel(
+            file_name
+        )
     elif '.xlsx' in file_name and sheet_name:
         df = pd.read_excel(
             file_name,
