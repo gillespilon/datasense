@@ -24,7 +24,7 @@ import pandas as pd
 def plot_scatter_y(
     y: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
@@ -45,7 +45,7 @@ def plot_scatter_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -76,14 +76,14 @@ def plot_scatter_y(
     Example 2
     >>> fig, ax = ds.plot_scatter_y(
     >>>     y=series_y,
-    >>>     figuresize=(8, 4.5),
+    >>>     figsize=(8, 4.5),
     >>>     marker='o',
     >>>     markersize=4,
     >>>     colour='#ee7733'
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
@@ -116,7 +116,7 @@ def plot_scatter_x_y(
     X: pd.Series,
     y: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
@@ -137,7 +137,7 @@ def plot_scatter_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -174,7 +174,7 @@ def plot_scatter_x_y(
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
-    >>>     figuresize=(8, 4.5),
+    >>>     figsize=(8, 4.5),
     >>>     marker='o',
     >>>     markersize=8,
     >>>     colour='#cc3311'
@@ -197,7 +197,7 @@ def plot_scatter_x_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -235,7 +235,7 @@ def plot_scatter_x_y(
 def plot_line_y(
     y: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
@@ -257,7 +257,7 @@ def plot_line_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -288,7 +288,7 @@ def plot_line_y(
     Example 2
     >>> fig, ax = ds.plot_line_y(
     >>>     y=series_y,
-    >>>     figuresize=(8, 4.5),
+    >>>     figsize=(8, 4.5),
     >>>     marker='o',
     >>>     markersize=4,
     >>>     colour='#ee7733'
@@ -296,7 +296,7 @@ def plot_line_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
@@ -329,7 +329,7 @@ def plot_line_x_y(
     X: pd.Series,
     y: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker: Optional[str] = '.',
@@ -351,7 +351,7 @@ def plot_line_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -390,7 +390,7 @@ def plot_line_x_y(
     >>> fig, ax = ds.plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
-    >>>     figuresize=(8, 4.5),
+    >>>     figsize=(8, 4.5),
     >>>     marker='o',
     >>>     markersize=8,
     >>>     linestyle=':',
@@ -414,7 +414,7 @@ def plot_line_x_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -453,7 +453,7 @@ def plot_scatter_scatter_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
@@ -489,7 +489,7 @@ def plot_scatter_scatter_x_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -547,7 +547,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>>     X=series_x,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
-    >>>     figuresize=(8, 5),
+    >>>     figsize=(8, 5),
     >>>     marker1='o',
     >>>     marker2='+',
     >>>     markersize1=8,
@@ -560,7 +560,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>> ax.legend(frameon=False)
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -642,7 +642,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
@@ -680,7 +680,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -754,7 +754,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     X2=series_x2,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
-    >>>     figuresize=(8, 5),
+    >>>     figsize=(8, 5),
     >>>     marker1='o',
     >>>     marker2='+',
     >>>     markersize1=8,
@@ -773,7 +773,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     X2=series_x2,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
-    >>>     figuresize=(8, 5),
+    >>>     figsize=(8, 5),
     >>>     marker1='o',
     >>>     marker2='+',
     >>>     markersize1=8,
@@ -788,7 +788,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>> ax.legend(frameon=False)
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if (X1.dtype and X2.dtype) in ['datetime64[ns]']:
@@ -877,7 +877,7 @@ def plot_scatter_line_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
@@ -905,7 +905,7 @@ def plot_scatter_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -963,7 +963,7 @@ def plot_line_line_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
@@ -997,7 +997,7 @@ def plot_line_line_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figuresize : Optional[Tuple[float, float]] = None
+    figsize : Optional[Tuple[float, float]] = None
         The (width, height) of the figure (in, in).
     smoothing : Optional[str] = None
         The type of smoothing to apply.
@@ -1046,7 +1046,7 @@ def plot_line_line_y1_y2(
     >>> )
     >>> plt.show()
     """
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     X = pd.Series(range(1, y1.size + 1, 1))
     if smoothing is None:
@@ -1103,7 +1103,7 @@ def plot_line_line_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     marker1: Optional[str] = '.',
@@ -1139,7 +1139,7 @@ def plot_line_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -1203,7 +1203,7 @@ def plot_line_line_line_x_y1_y2_y3(
     y2: pd.Series,
     y3: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
@@ -1235,7 +1235,7 @@ def plot_line_line_line_x_y1_y2_y3(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -1314,7 +1314,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
@@ -1341,7 +1341,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
     if smoothing is None:
@@ -1403,7 +1403,7 @@ def plot_lineleft_lineright_x_y1_y2(
     y1: pd.Series,
     y2: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
@@ -1430,7 +1430,7 @@ def plot_lineleft_lineright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax1 = fig.add_subplot(111)
     ax2 = ax1.twinx()
     if smoothing is None:
@@ -1496,7 +1496,7 @@ def format_dates(
 def probability_plot(
     data: pd.Series,
     *,
-    figuresize: Optional[Tuple[float, float]] = None,
+    figsize: Optional[Tuple[float, float]] = None,
     distribution: Optional[object] = norm,
     fit: Optional[bool] = True,
     plot: Optional[object] = None,
@@ -1511,7 +1511,7 @@ def probability_plot(
     ----------
     data : pd.Series
         A pandas Series.
-    figuresize : Optional[Tuple[flot, float]]
+    figsize : Optional[Tuple[flot, float]]
         The (width, height) of the figure (in, in).
     distribution : Optional[object] = norm
         Fit a normal distribution by default.
@@ -1534,7 +1534,7 @@ def probability_plot(
     >>> fig, ax = ds.probability_plot(data=data)
     >>> plt.show()
     """
-    fig = plt.figure(figsize=figuresize)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     (osm, osr), (slope, intercept, r) = probplot(
         x=data,
