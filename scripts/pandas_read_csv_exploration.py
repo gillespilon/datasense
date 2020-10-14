@@ -6,6 +6,7 @@ Pandas read_csv exploration
 from typing import Callable, Dict, List, Optional
 from datetime import datetime
 from math import trunc
+import time
 
 from pandas.api.types import CategoricalDtype
 import datasense as ds
@@ -14,9 +15,11 @@ import pandas as pd
 output_url = 'pandas_read_csv_exploration.html'
 header_title = 'pandas_read_csv_exploration'
 header_id = 'pandas-read-csv-exploration'
+file_name='myfile.csv'
 
 
 def main():
+    start_time = time.time()
     pd.set_option(
         'display.width',
         120
@@ -44,11 +47,11 @@ def main():
     print()
     ds.save_file(
         df=df,
-        filename='mysifle.csv'
+        filename=file_name
     )
     # Example 1
     # Read a csv file. There is no guarante thee column dtypes will be correct.
-    data = ds.read_file(file_name='myfile.csv')
+    data = ds.read_file(file_name=file_name)
     print('Example 1. The dtypes are not correct.')
     print(data.head())
     print(data.dtypes)
@@ -83,7 +86,7 @@ def main():
     sort_columns = ['I', 'A']
     sort_columns_bool = [True, False]
     data = ds.read_file(
-        file_name='myfile.csv',
+        file_name=file_name,
         column_names_dict=column_names_dict,
         index_columns=index_columns,
         date_time_columns=date_time_columns,
@@ -108,6 +111,14 @@ def main():
     print(data.dtypes)
     print()
     print('index', data.index.name, 'dtype:', data.index.dtype)
+    stop_time = time.time()
+    ds.page_break()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time,
+        read_file_names=file_name,
+        save_file_names=file_name
+    )
     print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
