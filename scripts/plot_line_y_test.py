@@ -30,7 +30,7 @@ def main():
     # Example 2
     fig, ax = ds.plot_line_y(
         y=series_y,
-        figuresize=(8, 4.5),
+        figsize=(8, 4.5),
         marker='o',
         markersize=4,
         linestyle=':',
