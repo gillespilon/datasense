@@ -37,7 +37,7 @@ def main():
         X=series_x,
         y1=series_y1,
         y2=series_y2,
-        figuresize=(8, 5),
+        figsize=(8, 5),
         marker1='o',
         marker2='+',
         markersize1=8,
