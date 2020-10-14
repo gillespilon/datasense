@@ -1409,6 +1409,22 @@ def probability_plot(
     return (fig, ax)
 
 
+def despine(ax: axes.Axes) -> None:
+    """
+    Remove the top and right spines of a graph.
+
+    Parameters
+    ----------
+    ax : axes.Axes
+
+    Example
+    -------
+    >>> despine(ax)
+    """
+    for spine in 'right', 'top':
+        ax.spines[spine].set_visible(False)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1423,4 +1439,5 @@ __all__ = (
     'plot_lineleft_lineright_x_y1_y2',
     'format_dates',
     'probability_plot',
+    'despine',
 )
