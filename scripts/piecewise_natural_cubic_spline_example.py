@@ -42,30 +42,34 @@ import pandas as pd
 
 def main():
     start_time = time.time()
-    global figure_width_height, axis_title, x_axis_label, y_axis_label,\
+    global figsize, axis_title, x_axis_label, y_axis_label,\
         graphics_directory
     file_names, targets, features, number_knots, graphics_directory,\
-        figure_width_height, x_axis_label, y_axis_label, axis_title,\
-        date_time_parser, output_url, header_title, header_id = parameters()
+        figsize, x_axis_label, y_axis_label, axis_title,\
+        date_parser, output_url, header_title, header_id = parameters()
     set_up_graphics_directory(graphics_directory)
     original_stdout = ds.html_begin(
         outputurl=output_url,
         headertitle=header_title,
         headerid=header_id
     )
-    for file, target, feature in itertools.product(
-        file_names, targets, features
-    ):
+    # for file_name, target, feature in itertools.product(
+    #     file_names, targets, features
+    # ):
+    for file_name, target, feature in zip(file_names, targets, features):
         data = ds.read_file(
-            file_name=file,
-            parse_dates=list(feature),
-            date_parser=date_time_parser
+            file_name=file_name,
+            parse_dates=features
         )
+        # data = ds.read_file(
+        #     file_name=file_name,
+        #     parse_dates=feature,
+        # )
         data[target] = data[target].fillna(data[target].mean())
         dates = True
         X = pd.to_numeric(data[feature])
         y = data[target]
-        t = ((X, y, file, target, feature, knot, dates)
+        t = ((X, y, file_name, target, feature, knot, dates)
              for knot in number_knots)
         with Pool() as pool:
             for _ in pool.imap_unordered(plot_scatter_line, t):
@@ -73,12 +77,14 @@ def main():
         for knot in number_knots:
             print(
                 f'<p><img src="{graphics_directory}/'
-                f'spline_{file.strip(".csv")}_'
+                f'spline_{file_name.strip(".csv")}_'
                 f'{target}_{feature}_{knot}.svg"/></p>'
             )
     page_break()
     stop_time = time.time()
     elapsed_time = stop_time - start_time
+    ds.page_break()
+    print('<pre style="white-space: pre-wrap;">')
     summary(
         elapsedtime=elapsed_time,
         filenames=file_names,
@@ -86,6 +92,7 @@ def main():
         features=features,
         number_knots=number_knots
     )
+    print('</pre>')
     ds.html_end(
         originalstdout=original_stdout,
         outputurl=output_url
@@ -178,7 +185,7 @@ def set_up_graphics_directory(graphdir: str) -> None:
 def plot_scatter_line(
         t: Tuple[pd.Series, pd.Series, int, int, str, str, str, int, bool]
 ) -> None:
-    X, y, file, target, feature, number_knots, dates = t
+    X, y, file_name, target, feature, number_knots, dates = t
     model = ds.natural_cubic_spline(
         X=X,
         y=y,
@@ -192,13 +199,13 @@ def plot_scatter_line(
         X=XX,
         y1=y,
         y2=model.predict(X),
-        figuresize=figure_width_height,
+        figsize=figsize,
         labellegendy2=f'number knots = {number_knots}'
     )
     ax.legend(frameon=False, loc='best')
     ax.set_title(
         f'{axis_title}\n'
-        f'file: {file} '
+        f'file: {file_name} '
         f'column: {target}'
     )
     ax.set_xlabel(x_axis_label)
@@ -207,7 +214,7 @@ def plot_scatter_line(
     fig.savefig(
         f'{graphics_directory}'
         f'/spline_'
-        f'{file.strip(".csv")}_'
+        f'{file_name.strip(".csv")}_'
         f'{target}_{feature}_'
         f'{number_knots}.svg',
         format='svg'
