@@ -36,7 +36,7 @@ def main():
     fig, ax = ds.plot_line_x_y(
         X=series_x,
         y=series_y,
-        figuresize=(8, 4.5),
+        figsize=(8, 4.5),
         marker='o',
         markersize=8,
         linestyle=':',
