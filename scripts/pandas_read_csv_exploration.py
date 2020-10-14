@@ -47,7 +47,7 @@ def main():
     print()
     ds.save_file(
         df=df,
-        filename=file_name
+        file_name=file_name
     )
     # Example 1
     # Read a csv file. There is no guarante thee column dtypes will be correct.
