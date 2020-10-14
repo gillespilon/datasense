@@ -959,6 +959,145 @@ def plot_scatter_line_x_y1_y2(
     return (fig, ax)
 
 
+def plot_line_line_y1_y2(
+    y1: pd.Series,
+    y2: pd.Series,
+    *,
+    figuresize: Optional[Tuple[float, float]] = None,
+    smoothing: Optional[str] = None,
+    number_knots: Optional[int] = None,
+    marker1: Optional[str] = '.',
+    marker2: Optional[str] = '.',
+    markersize1: Optional[int] = 8,
+    markersize2: Optional[int] = 8,
+    linestyle1: Optional[str] = '-',
+    linestyle2: Optional[str] = '-',
+    linewidth1: Optional[float] = 1,
+    linewidth2: Optional[float] = 1,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
+    labellegendy1: Optional[str] = None,
+    labellegendy2: Optional[str] = None
+) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Line plot of y1 and y2.
+
+    Optional smoothing applied to y1 and y2.
+    y1 and y2 are of the same length.
+    y1 and y2 have the same units.
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    y1 : pd.Series
+        The data to plot on the ordinate.
+    y2 : pd.Series
+        The data to plot on the ordinate.
+    figuresize : Optional[Tuple[float, float]] = None
+        The (width, height) of the figure (in, in).
+    smoothing : Optional[str] = None
+        The type of smoothing to apply.
+    number_knots : Optional[int] = None
+        The number of knots for natural cubic spline smoothing.
+    marker1 : Optional[str] = '.'
+        The type of plot point for y1.
+    marker2 : Optional[str] = '.'
+        The type of plot point for y2.
+    markersize1 : Optional[int] = 8
+        The size of the plot point for y1.
+    markersize2 : Optional[int] = 8
+        The size of the plot point for y2.
+    linestyle1 : Optional[str] = 'None'
+        The style of the line for y1.
+    linestyle2 : Optional[str] = 'None'
+        The style of the line for y2.
+    linewidth1 : Optional[float] = 0
+        The width of the line for y1.
+    linewidth2 : Optional[float] = 0
+        The width of the line for y2.
+    colour1 : Optional[str] = '#0077bb'
+        The colour of the line for y1.
+    colour2 : Optional[str] = '#33bbee'
+        The colour of the line for y2.
+    labellegendy1 : Optional[str] = None
+        The legend label of the line y1.
+    labellegendy2 : Optional[str] = None
+        The legend label of the line y2.
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
+
+    Example
+    -------
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>>
+    >>> series_y1 = ds.random_data()
+    >>> series_y2 = ds.random_data()
+    >>> fig, ax = ds.plot_line_line_y1_y2(
+    >>>     y1=series_y1,
+    >>>     y2=series_y2
+    >>> )
+    >>> plt.show()
+    """
+    fig = plt.figure(figsize=figuresize)
+    ax = fig.add_subplot(111)
+    X = pd.Series(range(1, y1.size + 1, 1))
+    if smoothing is None:
+        ax.plot(
+            X,
+            y1,
+            marker=marker1,
+            markersize=markersize1,
+            linestyle=linestyle1,
+            linewidth=linewidth1,
+            color=colour1,
+            label=labellegendy1
+        )
+        ax.plot(
+            X,
+            y2,
+            marker=marker2,
+            markersize=markersize2,
+            linestyle=linestyle2,
+            linewidth=linewidth2,
+            color=colour2,
+            label=labellegendy2
+        )
+    elif smoothing == 'natural_cubic_spline':
+        model1 = natural_cubic_spline(
+            X=X,
+            y=y1,
+            number_knots=number_knots
+        )
+        model2 = natural_cubic_spline(
+            X=X,
+            y=y2,
+            number_knots=number_knots
+        )
+        ax.plot(
+            X,
+            model1.predict(X),
+            marker=None,
+            linestyle='-',
+            color=colour1
+        )
+        ax.plot(
+            X,
+            model2.predict(X),
+            marker=None,
+            linestyle='-',
+            color=colour2
+            )
+    return (fig, ax)
+
+
 def plot_line_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
@@ -1433,6 +1572,7 @@ __all__ = (
     'plot_scatter_scatter_x_y1_y2',
     'plot_scatter_scatter_x1_x2_y1_y2',
     'plot_scatter_line_x_y1_y2',
+    'plot_line_line_y1_y2',
     'plot_line_line_x_y1_y2',
     'plot_line_line_line_x_y1_y2_y3',
     'plot_scatterleft_scatterright_x_y1_y2',
