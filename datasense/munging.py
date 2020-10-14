@@ -591,7 +591,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def save_file(
     df: pd.DataFrame,
-    filename: str,
+    file_name: str,
     *,
     index: Optional[bool] = False
 ) -> None:
@@ -602,7 +602,7 @@ def save_file(
     ---------
     df : pd.DataFrame
         The dataframe to be saved to a file.
-    filename : str
+    file_name : str
         The name of the file to be saved.
     index : bool
         If True, creates an index.
@@ -621,19 +621,19 @@ def save_file(
     >>> )
     >>> ds.save_file(
     >>>     df=df,
-    >>>     filename='x_y.csv'
+    >>>     file_name='x_y.csv'
     >>> )
 
     Example 2
     ---------
     >>> ds.save_file(
     >>>     df=df,
-    >>>     filename='x_y.csv',
+    >>>     file_name='x_y.csv',
     >>>     index=True
     >>> )
     '''
     df.to_csv(
-        path_or_buf=filename,
+        path_or_buf=file_name,
         index=index
     )
 
@@ -800,7 +800,7 @@ def read_file(
 
 
 # def read_file(
-#     filename: str,
+#     file_name: str,
 #     *,
 #     sheetname: Optional[str] = None,
 #     indexcol: Optional[bool] = None,
@@ -813,7 +813,7 @@ def read_file(
 #
 #     Parameters
 #     ----------
-#     filename : str
+#     file_name : str
 #         The name of the file to read.
 #     sheetname : Optional[str] = None
 #         The name of the worksheet of a workbook.
@@ -832,65 +832,65 @@ def read_file(
 #
 #     Example
 #     -------
-#     >>> df = ds.read_file(filename='filename.csv')
+#     >>> df = ds.read_file(file_name='file_name.csv')
 #     """
 #
-#     if '.ods' in filename and abscissa and datetimeparser:
+#     if '.ods' in file_name and abscissa and datetimeparser:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #             engine='odf',
 #             parse_dates=[abscissa],
 #             date_parser=lambda s: datetime.strptime(s, datetimeparser),
 #         )
-#     elif '.ods' in filename and abscissa and not datetimeparser:
+#     elif '.ods' in file_name and abscissa and not datetimeparser:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #             engine='odf',
 #             parse_dates=[abscissa]
 #         )
-#     elif '.ods' in filename and not abscissa and not datetimeparser:
+#     elif '.ods' in file_name and not abscissa and not datetimeparser:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #             engine='odf',
 #         )
-#     elif '.csv' in filename and abscissa and datetimeparser \
+#     elif '.csv' in file_name and abscissa and datetimeparser \
 #             and indexcol is False:
 #         df = pd.read_csv(
-#             filename,
+#             file_name,
 #             index_col=indexcol,
 #             parse_dates=[abscissa],
 #             date_parser=lambda s: datetime.strptime(s, datetimeparser),
 #         )
-#     elif '.csv' in filename and abscissa and datetimeparser:
+#     elif '.csv' in file_name and abscissa and datetimeparser:
 #         df = pd.read_csv(
-#             filename,
+#             file_name,
 #             parse_dates=[abscissa],
 #             date_parser=lambda s: datetime.strptime(s, datetimeparser),
 #         )
-#     elif '.csv' in filename and abscissa:
+#     elif '.csv' in file_name and abscissa:
 #         df = pd.read_csv(
-#             filename,
+#             file_name,
 #             parse_dates=[abscissa]
 #         )
-#     elif '.csv' in filename:
+#     elif '.csv' in file_name:
 #         df = pd.read_csv(
-#             filename,
+#             file_name,
 #         )
-#     elif '.xlsx' in filename and abscissa and datetimeparser:
+#     elif '.xlsx' in file_name and abscissa and datetimeparser:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #             parse_dates=[abscissa],
 #             date_parser=lambda s: datetime.strptime(s, datetimeparser),
 #         )
-#     elif '.xlsx' in filename and sheetname and indexcol is False:
+#     elif '.xlsx' in file_name and sheetname and indexcol is False:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #             sheet_name=sheetname,
 #             index_col=indexcol
 #         )
-#     elif '.xlsx' in filename and not datetimeparser:
+#     elif '.xlsx' in file_name and not datetimeparser:
 #         df = pd.read_excel(
-#             filename,
+#             file_name,
 #         )
 #     if datetimeparser is not None:
 #         df = df.sort_values(
