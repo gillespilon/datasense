@@ -2,7 +2,7 @@
 Data munging
 '''
 
-from typing import Callable, Dict, IO, List, Optional, Tuple
+from typing import Callable, Dict, IO, List, Optional, Tuple, Union
 import webbrowser
 import textwrap
 import sys
@@ -590,13 +590,13 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 
 def save_file(
-    df: pd.DataFrame,
+    df: Union[pd.DataFrame, pd.Series],
     file_name: str,
     *,
     index: Optional[bool] = False
 ) -> None:
-    '''
-    Save a DataFrame to a csv file.
+    """
+    Save a DataFrame or Series to a file.
 
     Parameters
     ---------
@@ -631,11 +631,12 @@ def save_file(
     >>>     file_name='x_y.csv',
     >>>     index=True
     >>> )
-    '''
-    df.to_csv(
-        path_or_buf=file_name,
-        index=index
-    )
+    """
+    if '.csv' in file_name:
+        df.to_csv(
+            path_or_buf=file_name,
+            index=index
+        )
 
 
 def read_file(
