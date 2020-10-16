@@ -99,7 +99,7 @@ def x_chart(df: pd.DataFrame) -> None:
     ax.set_title(x_chart_title, fontweight='bold')
     ax.set_ylabel(x_chart_ylabel)
     ax.set_xlabel(x_chart_xlabel)
-    ax.figure.savefig(f'{data_file}_x.svg')
+    fig.savefig(f'{data_file}_x.svg')
     print(
        f'X Report\n'
        f'============\n'
@@ -124,7 +124,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     ax.set_title(mr_chart_title, fontweight='bold')
     ax.set_ylabel(mr_chart_ylabel)
     ax.set_xlabel(mr_chart_xlabel)
-    ax.figure.savefig(f'{data_file}_mr.svg')
+    fig.savefig(f'{data_file}_mr.svg')
 
 
 if __name__ == '__main__':
