@@ -271,7 +271,7 @@ class X(ControlChart):
             c    ax.set_title(x_chart_title, fontweight='bold')
             ax.set_ylabel(x_chart_ylabel)
             ax.set_xlabel(x_chart_xlabel)
-            ax.figure.savefig('<yourfile>_x.svg')c.draw_rules(x, ax)
+            fig.savefig('<yourfile>_x.svg')c.draw_rules(x, ax)
         '''
         if fig is None:
             fig = plt.figure()
@@ -359,7 +359,7 @@ class mR(ControlChart):
             ax.set_title(mr_chart_title, fontweight='bold')
             ax.set_ylabel(mr_chart_ylabel)
             ax.set_xlabel(mr_chart_xlabel)
-            ax.figure.savefig('<yourfile>_mr.svg')
+            fig.savefig('<yourfile>_mr.svg')
         '''
         if fig is None:
             fig = plt.figure()
@@ -452,7 +452,7 @@ class Xbar(ControlChart):
             ax.set_title(xbar_chart_title, fontweight='bold')
             ax.set_ylabel(xbar_chart_ylabel)
             ax.set_xlabel(xbar_chart_xlabel)
-            ax.figure.savefig('<yourfile>_xbar.svg')
+            fig.savefig('<yourfile>_xbar.svg')
         '''
         if fig is None:
             fig = plt.figure()
@@ -555,7 +555,7 @@ class R(ControlChart):
             ax.set_title(r_chart_title, fontweight='bold')
             ax.set_ylabel(r_chart_ylabel)
             ax.set_xlabel(r_chart_xlabel)
-            ax.figure.savefig('<yourfile>_r.svg')
+            fig.savefig('<yourfile>_r.svg')
         '''
         if fig is None:
             fig = plt.figure()
