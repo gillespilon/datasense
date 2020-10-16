@@ -24,7 +24,7 @@ import datasense as ds
 colour1 = '#0077bb'
 colour2 = '#33bbee'
 parser = '%Y-%m-%d %H:%M:%S'
-file_name = [
+file_names = [
     'raw_data_integer_float.csv',
     'raw_data_datetime_float.csv'
 ]
@@ -49,16 +49,16 @@ axis_title = 'Cubic Spline'
 
 def main():
     for (
-        filename,
+        file_name,
         abscissaname,
         ordinatename,
         ordinatepredictedname,
         datetimeparser,
         columnnamessort,
         dateformatter,
-        graphfilename
+        graphfile_name
     ) in zip(
-        file_name,
+        file_names,
         abscissa_name,
         ordinate_name,
         ordinate_predicted_name,
@@ -68,10 +68,8 @@ def main():
         graph_file_name
     ):
         data = ds.read_file(
-            file_name=filename,
-            abscissa=abscissaname,
-            datetimeparser=datetimeparser,
-            columnnamessort=columnnamessort
+            file_name=file_name,
+            parse_dates=abscissaname,
         )
         if datetimeparser is True:
             data[abscissaname] = pd.to_numeric(data[abscissaname])
@@ -88,7 +86,7 @@ def main():
             ordinatepredictedname,
             figure_width_height,
             dateformatter,
-            graphfilename,
+            graphfile_name,
             axis_title,
             x_axis_label,
             y_axis_label
@@ -148,7 +146,7 @@ def plot_graph(
     ax.set_xlabel(xaxislabel, fontweight='bold')
     ax.set_ylabel(yaxislabel, fontweight='bold')
     despine(ax)
-    ax.figure.savefig(f'{graphname}.svg', format='svg')
+    fig.savefig(f'{graphname}.svg', format='svg')
 
 
 if __name__ == '__main__':
