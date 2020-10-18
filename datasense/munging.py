@@ -1000,8 +1000,8 @@ def html_begin(
 
 
 def html_end(
-    originalstdout: IO[str],
-    outputurl: str
+    original_stdout: IO[str],
+    output_url: str
 ) -> None:
     '''
     Set footer, close html file, open html file in new tab in web browser.
