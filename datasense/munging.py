@@ -906,8 +906,8 @@ def read_file(
 #
 #
 def html_header(
-    headertitle: str = 'Report',
-    headerid: str = 'report'
+    header_title: str = 'Report',
+    header_id: str = 'report'
 ) -> None:
     '''
     Creates an html header.
@@ -922,13 +922,13 @@ def html_header(
         'user-scalable=yes" name="viewport"/>'
     )
     print('<style>@import url("support.css");</style>')
-    print(f'<title>{headertitle}</title>')
+    print(f'<title>{header_title}</title>')
     print('</head>')
     print('<body>')
     print(
         f'<h1 class="title"'
-        f' id="{headerid}">'
-        f'{headertitle}</h1>'
+        f' id="{header_id}">'
+        f'{header_title}</h1>'
     )
     # print('<pre style="white-space: pre-wrap;">')
 
@@ -963,12 +963,12 @@ def html_begin(
 
     Parameters
     ----------
-    outputurl : str
+    output_url : str
         The file name for the html output.
-    headertitle : Optional[str]
+    header_title : Optional[str]
         The file title.
-    headerid : Optional[str]
-        The id for the headertitle.
+    header_id : Optional[str]
+        The id for the header_title.
 
     Examples
     --------
@@ -976,27 +976,27 @@ def html_begin(
         >>> import datasense as ds
         >>>
         >>> output_url = 'my_html_file.html'
-        >>> original_stdout = ds.html_begin(outputurl=output_url)
+        >>> original_stdout = ds.html_begin(output_url=output_url)
 
     Example 2
         >>> header_title = 'My Report'
         >>> header_id = 'my-report'
         >>> original_stdout = ds.html_begin(
-        >>>     outputurl=output_url,
-        >>>     headertitle=header_title,
-        >>>     headerid=header_id
+        >>>     output_url=output_url,
+        >>>     header_title=header_title,
+        >>>     header_id=header_id
         >>> )
     '''
-    originalstdout = sys.stdout
+    original_stdout = sys.stdout
     sys.stdout = open(
-        file=outputurl,
+        file=output_url,
         mode='w'
     )
     html_header(
-        headertitle=headertitle,
-        headerid=headerid
+        header_title=header_title,
+        header_id=header_id
     )
-    return originalstdout
+    return original_stdout
 
 
 def html_end(
@@ -1008,9 +1008,9 @@ def html_end(
 
     Parameters
     ----------
-    originalstdout : IO[str]
+    original_stdout : IO[str]
         The original stdout.
-    outputurl : str
+    output_url : str
         The file name for the html output.
 
     Example
@@ -1020,15 +1020,15 @@ def html_end(
         >>> output_url = 'my_html_file.html'
         >>> # see original_stdout example in def html_begin()
         >>> ds.html_end(
-        >>>     originalstdout=original_stdout,
-        >>>     outputurl=output_url
+        >>>     original_stdout=original_stdout,
+        >>>     output_url=output_url
         >>> )
     '''
     html_footer()
     sys.stdout.close()
-    sys.stdout = originalstdout
+    sys.stdout = original_stdout
     webbrowser.open_new_tab(
-        url=outputurl
+        url=output_url
     )
 
 
