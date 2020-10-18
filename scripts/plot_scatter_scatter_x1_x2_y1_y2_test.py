@@ -15,9 +15,9 @@ header_id = 'plot-scatter-x1-x2-y1-y2-test'
 
 def main():
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     # Example 1
     series_x1 = ds.datetime_data()
@@ -107,8 +107,8 @@ def main():
         file_name='plot_scatter_scatter_x1_x2_y1_y2_smoothing_y1_y2_test.svg'
     )
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
