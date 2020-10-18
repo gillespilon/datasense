@@ -953,10 +953,10 @@ def page_break():
 
 
 def html_begin(
-    outputurl: str,
+    output_url: str,
     *,
-    headertitle: Optional[str] = 'Report',
-    headerid: Optional[str] = 'report',
+    header_title: Optional[str] = 'Report',
+    header_id: Optional[str] = 'report',
 ) -> IO[str]:
     '''
     Open file to write html and set header.
