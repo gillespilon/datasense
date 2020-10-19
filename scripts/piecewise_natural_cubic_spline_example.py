@@ -49,9 +49,9 @@ def main():
         date_parser, output_url, header_title, header_id = parameters()
     set_up_graphics_directory(graphics_directory)
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     for file_name, target, feature in zip(file_names, targets, features):
         data = ds.read_file(
@@ -91,8 +91,8 @@ def main():
     )
     print('</pre>')
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
@@ -130,13 +130,13 @@ def parameters(
     xaxislabel = parameters['Other parameter values'][3]
     yaxislabel = parameters['Other parameter values'][4]
     axistitle = parameters['Other parameter values'][5]
-    outputurl = parameters['Other parameter values'][6]
-    headertitle = parameters['Other parameter values'][7]
-    headerid = parameters['Other parameter values'][8]
+    output_url = parameters['Other parameter values'][6]
+    header_title = parameters['Other parameter values'][7]
+    header_id = parameters['Other parameter values'][8]
     return (
         file_names, targets, features, number_knots, graphicsdirectory,
         figurewidthheight, xaxislabel, yaxislabel, axistitle,
-        datetimeparser, outputurl, headertitle, headerid
+        datetimeparser, output_url, header_title, header_id
     )
 
 
