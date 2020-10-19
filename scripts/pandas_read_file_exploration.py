@@ -33,9 +33,9 @@ def main():
         100
     )
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     print('<pre style="white-space: pre-wrap;">')
     help(ds.read_file)
@@ -121,8 +121,8 @@ def main():
     )
     print('</pre>')
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
