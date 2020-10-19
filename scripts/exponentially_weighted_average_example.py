@@ -15,7 +15,7 @@ time -f '%e' ./exponentially_weighted_average.py
 ./exponentially_weighted_average.py
 """
 
-from typing import List, Tuple
+from typing import Callable, List, Tuple
 
 import matplotlib.axes as axes
 import datasense as ds
@@ -28,20 +28,22 @@ def main():
         figure_width_height, column_names_sort, date_time_parser,\
         date_formatter, alpha_value, function, output_url,\
         header_title, header_id, parser = parameters()
+    print('absicssa_names:')
+    print(abscissa_names)
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     for (
-        filename,
+        file_name,
         abscissaname,
         ordinatename,
         ordinatepredictedname,
         datetimeparser,
         columnnamessort,
         dateformatter,
-        graphfilename
+        graphfile_name
     ) in zip(
         file_names,
         abscissa_names,
@@ -54,34 +56,35 @@ def main():
     ):
         if datetimeparser == 'None':
             data = ds.read_file(
-                filename=filename,
-                abscissa=abscissaname,
-                columnnamessort=columnnamessort
+                file_name=file_name,
+                sort_columns=columnnamessort
             )
+            print(data.dtypes)
         else:
             data = ds.read_file(
-                filename=filename,
-                abscissa=abscissaname,
-                datetimeparser=parser,
-                columnnamessort=columnnamessort
+                file_name=file_name,
+                date_parser=date_parser(),
+                sort_columns=columnnamessort,
+                date_time_columns=column_names_sort
             )
+            print(data.dtypes)
         data[ordinatepredictedname] = data[ordinatename]\
             .ewm(alpha=alpha_value).mean()
         fig, ax = ds.plot_scatter_line_x_y1_y2(
             X=data[abscissaname],
             y1=data[ordinatename],
             y2=data[ordinatepredictedname],
-            figuresize=figure_width_height
+            figsize=figure_width_height
         )
         ax.set_title(axis_title, fontweight='bold')
         ax.set_xlabel(x_axis_label, fontweight='bold')
         ax.set_ylabel(y_axis_label, fontweight='bold')
         despine(ax)
-        fig.savefig(f'{graphfilename}.svg', format='svg')
-        print(f'<p><img src="{graphfilename}.svg"/></p>')
+        fig.savefig(f'{graphfile_name}.svg', format='svg')
+        print(f'<p><img src="{graphfile_name}.svg"/></p>')
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
@@ -111,10 +114,10 @@ def parameters() -> (
     '''
 
     parameters = ds.read_file(
-        filename='exponentially_weighted_average_parameters.ods'
+        file_name='exponentially_weighted_average_parameters.ods'
     )
-    filenames = [x for x in parameters['File names'] if str(x) != 'nan']
-    graphfilenames = [x for x in parameters['Graph file names']
+    file_names = [x for x in parameters['File names'] if str(x) != 'nan']
+    graphfile_names = [x for x in parameters['Graph file names']
                       if str(x) != 'nan']
     abscissanames = [x for x in parameters['Abscissa names']
                      if str(x) != 'nan']
@@ -141,14 +144,14 @@ def parameters() -> (
                      in unsplit.split(',')]
     alphavalue = parameters['Other parameter values'][6]
     function = parameters['Other parameter values'][7]
-    outputurl = parameters['Other parameter values'][8]
-    headertitle = parameters['Other parameter values'][9]
-    headerid = parameters['Other parameter values'][10]
+    output_url = parameters['Other parameter values'][8]
+    header_title = parameters['Other parameter values'][9]
+    header_id = parameters['Other parameter values'][10]
     return (
-        filenames, graphfilenames, abscissanames, ordinatenames,
+        file_names, graphfile_names, abscissanames, ordinatenames,
         ordinatepredictednames, xaxislabel, yaxislabel, axistitle,
         figurewidthheight, columnnamessort, datetimeparser, dateformatter,
-        alphavalue, function, outputurl, headertitle, headerid, parser
+        alphavalue, function, output_url, header_title, header_id, parser
     )
 
 
@@ -166,6 +169,10 @@ def despine(ax: axes.Axes) -> None:
     """
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
+
+
+def date_parser() -> Callable:
+    return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
 
 
 if __name__ == '__main__':
