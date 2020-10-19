@@ -15,9 +15,9 @@ header_id = 'probability-plot-test'
 
 def main():
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     data = ds.random_data()
     fig, ax = ds.probability_plot(data=data)
@@ -27,8 +27,8 @@ def main():
     )
     ds.html_figure(file_name='probability_plot_test.svg')
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
