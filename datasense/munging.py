@@ -647,6 +647,7 @@ def read_file(
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
+    format: Optional[str] = None,
     date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
@@ -676,6 +677,8 @@ def read_file(
         The columns to use to parse date and time.
     date_parser : Optional[Callable] = None,
         The function to use for parsing date and time.
+    format : Optional[str] = None,
+        The str to use for formatting date and time.
     date_time_columns : Optional[List[str]] = [],
         The columns to change to dtype datetime.
     time_delta_columns : Optional[List[str]] = [],
@@ -796,7 +799,7 @@ def read_file(
         for column in date_time_columns:
             df[column] = pd.to_datetime(
                 df[column],
-                format=date_parser
+                format=format
             )
     elif '.xlsx' in file_name and sheet_name:
         df = pd.read_excel(
