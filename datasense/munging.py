@@ -675,7 +675,7 @@ def read_file(
     parse_dates : Optional[List[str]] = None,
         The columns to use to parse date and time.
     date_parser : Optional[Callable] = None,
-        The string to use for parsing date and time.
+        The function to use for parsing date and time.
     date_time_columns : Optional[List[str]] = [],
         The columns to change to dtype datetime.
     time_delta_columns : Optional[List[str]] = [],
@@ -790,8 +790,14 @@ def read_file(
             )
     elif '.ods' in file_name:
         df = pd.read_excel(
-            file_name
+            file_name,
+            engine='odf',
         )
+        for column in date_time_columns:
+            df[column] = pd.to_datetime(
+                df[column],
+                format=date_parser
+            )
     elif '.xlsx' in file_name and sheet_name:
         df = pd.read_excel(
             file_name,
