@@ -15,9 +15,9 @@ header_id = 'plot-scatter-y-test'
 
 def main():
     original_stdout = ds.html_begin(
-        outputurl=output_url,
-        headertitle=header_title,
-        headerid=header_id
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
     )
     # Example 1
     series_y = ds.random_data()
@@ -41,8 +41,8 @@ def main():
     )
     ds.html_figure(file_name='plot_scatter_y_test_2.svg')
     ds.html_end(
-        originalstdout=original_stdout,
-        outputurl=output_url
+        original_stdout=original_stdout,
+        output_url=output_url
     )
 
 
