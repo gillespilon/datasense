@@ -754,6 +754,12 @@ def read_file(
     >>>     category_columns=category_columns,
     >>>     integer_columns=integer_columns
     >>> )
+    Example 3
+    Read an ods file.
+    >>> data = ds.read_file(
+    >>>     file_name='my_ods_file.ods',
+    >>>     date_time_columns=['Date']
+    >>> )
     """
     if '.csv' in file_name:
         df = pd.read_csv(
@@ -1154,7 +1160,10 @@ def report_summary(
     stop_time: float,
     *,
     read_file_names: Optional[List[str]] = None,
-    save_file_names: Optional[List[str]] = None
+    save_file_names: Optional[List[str]] = None,
+    targets: List[str] = None,
+    features: List[str] = None,
+    number_knots: List[int] = None
 ) -> None:
     """
     Report summary
@@ -1168,7 +1177,13 @@ def report_summary(
     read_file_names : List[str]
         The list of file names read.
     save_file_names : List[str]
-        Thee list of file names saved.
+        The list of file names saved.
+    targets : List[str]
+        The list of target variables.
+    features : List[str]
+        Thje list of feature variables.
+    number_knots : List[int]
+        The number of spline knots.
 
     Example
     -------
@@ -1186,6 +1201,12 @@ def report_summary(
         print(f'Files read     : {read_file_names}')
     if save_file_names:
         print(f'Files saved    : {save_file_names}')
+    if targets:
+        print(f'Targets        : {targets}')
+    if features:
+        print(f'Features       : {features}')
+    if number_knots:
+        print(f'Number of knots: {number_knots}')
 
 
 __all__ = (
