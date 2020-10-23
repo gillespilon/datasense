@@ -30,12 +30,8 @@ The graphs can be viewed with the view_spline_graphs.html file created.
 
 from multiprocessing import Pool
 from typing import List, Tuple
-from shutil import rmtree
-from pathlib import Path
-import itertools
 import time
 
-import matplotlib.axes as axes
 import datasense as ds
 import pandas as pd
 
@@ -47,21 +43,19 @@ def main():
     file_names, targets, features, number_knots, graphics_directory,\
         figsize, x_axis_label, y_axis_label, axis_title,\
         date_parser, output_url, header_title, header_id = parameters()
-    set_up_graphics_directory(graphics_directory)
+    ds.set_up_graphics_directory(graphics_directory)
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
         header_id=header_id
     )
+    ds.page_break()
+    print('<pre style="white-space: pre-wrap;">')
     for file_name, target, feature in zip(file_names, targets, features):
         data = ds.read_file(
             file_name=file_name,
             parse_dates=features
         )
-        # data = ds.read_file(
-        #     file_name=file_name,
-        #     parse_dates=feature,
-        # )
         data[target] = data[target].fillna(data[target].mean())
         dates = True
         X = pd.to_numeric(data[feature])
@@ -77,14 +71,12 @@ def main():
                 f'spline_{file_name.strip(".csv")}_'
                 f'{target}_{feature}_{knot}.svg"/></p>'
             )
-    page_break()
     stop_time = time.time()
-    elapsed_time = stop_time - start_time
     ds.page_break()
-    print('<pre style="white-space: pre-wrap;">')
-    summary(
-        elapsedtime=elapsed_time,
-        file_names=file_names,
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time,
+        read_file_names=file_names,
         targets=targets,
         features=features,
         number_knots=number_knots
@@ -112,9 +104,9 @@ def parameters(
     str,
     str
 ):
-    '''
+    """
     Set parameters.
-    '''
+    """
 
     parameters = ds.read_file(
         file_name='piecewise_natural_cubic_spline_parameters.csv'
@@ -123,7 +115,7 @@ def parameters(
     targets = [x for x in parameters['Targets'] if str(x) != 'nan']
     features = [x for x in parameters['Features'] if str(x) != 'nan']
     number_knots = [int(x) for x in parameters['Number of knots']
-                if str(x) != 'nan']
+                    if str(x) != 'nan']
     datetimeparser = parameters['Other parameter values'][0]
     graphicsdirectory = parameters['Other parameter values'][1]
     figurewidthheight = eval(parameters['Other parameter values'][2])
@@ -138,45 +130,6 @@ def parameters(
         figurewidthheight, xaxislabel, yaxislabel, axistitle,
         datetimeparser, output_url, header_title, header_id
     )
-
-
-def page_break() -> None:
-    '''
-    Creates a page break for html output.
-    '''
-
-    print('<p style="page-break-after: always">')
-    print('<p style="page-break-before: always">')
-
-
-def summary(
-    elapsedtime: float,
-    file_names: List[str],
-    targets: List[str],
-    features: List[str],
-    number_knots: List[int]
-) -> None:
-    '''
-    Print report summary.
-    '''
-
-    print('<h1>Report summary</h1>')
-    print(f'Execution time : {elapsedtime:.3f} s')
-    print(f'Files read     : {file_names}')
-    print(f'Targets        : {targets}')
-    print(f'Features       : {features}')
-    print(f'Number of knots: {number_knots}')
-
-
-def set_up_graphics_directory(graphdir: str) -> None:
-    '''
-    Create an empty directory
-    '''
-    try:
-        rmtree(graphdir)
-    except Exception:
-        pass
-    Path(graphdir).mkdir(parents=True, exist_ok=True)
 
 
 def plot_scatter_line(
@@ -207,7 +160,7 @@ def plot_scatter_line(
     )
     ax.set_xlabel(x_axis_label)
     ax.set_ylabel(y_axis_label)
-    despine(ax)
+    ds.despine(ax)
     fig.savefig(
         f'{graphics_directory}'
         f'/spline_'
@@ -216,22 +169,6 @@ def plot_scatter_line(
         f'{number_knots}.svg',
         format='svg'
     )
-
-
-def despine(ax: axes.Axes) -> None:
-    """
-    Remove the top and right spines of a graph.
-
-    Parameters
-    ----------
-    ax : axes.Axes
-
-    Example
-    -------
-    >>> despine(ax)
-    """
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
 
 
 if __name__ == '__main__':
