@@ -83,7 +83,7 @@ def main():
         ax.set_title(axis_title, fontweight='bold')
         ax.set_xlabel(x_axis_label, fontweight='bold')
         ax.set_ylabel(y_axis_label, fontweight='bold')
-        despine(ax)
+        ds.despine(ax)
         fig.savefig(
             fname=f'{graphfile_name}.svg',
             format='svg'
@@ -170,22 +170,6 @@ def parameters() -> (
         figurewidthheight, columnnamessort, datetimeparser, dateformatter,
         alphavalue, function, output_url, header_title, header_id, parser
     )
-
-
-def despine(ax: axes.Axes) -> None:
-    """
-    Remove the top and right spines of a graph.
-
-    Parameters
-    ----------
-    ax : axes.Axes
-
-    Example
-    -------
-    >>> despine(ax)
-    """
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
 
 
 def date_parser() -> Callable:
