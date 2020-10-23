@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 """
-Pandas read_csv exploration
+Pandas read file exploration
 """
 
 from typing import Callable, Dict, List, Optional
@@ -12,9 +12,9 @@ from pandas.api.types import CategoricalDtype
 import datasense as ds
 import pandas as pd
 
-output_url = 'pandas_read_csv_exploration.html'
-header_title = 'pandas_read_csv_exploration'
-header_id = 'pandas-read-csv-exploration'
+output_url = 'pandas_read_file_exploration.html'
+header_title = 'pandas_read_file_exploration'
+header_id = 'pandas-read-file-exploration'
 file_name='myfile.csv'
 
 
