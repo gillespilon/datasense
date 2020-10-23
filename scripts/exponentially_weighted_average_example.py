@@ -35,6 +35,7 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
+    print('<pre style="white-space: pre-wrap;">')
     for (
         file_name,
         abscissaname,
@@ -57,7 +58,8 @@ def main():
         if datetimeparser == 'None':
             data = ds.read_file(
                 file_name=file_name,
-                sort_columns=columnnamessort
+                sort_columns=columnnamessort,
+                sort_columns_bool=True
             )
             print(data.dtypes)
         else:
@@ -65,7 +67,8 @@ def main():
                 file_name=file_name,
                 date_parser=date_parser(),
                 sort_columns=columnnamessort,
-                date_time_columns=column_names_sort
+                sort_columns_bool=True
+                # date_time_columns=column_names_sort
             )
             print(data.dtypes)
         data[ordinatepredictedname] = data[ordinatename]\
@@ -85,6 +88,7 @@ def main():
             format='svg'
         )
         print(f'<p><img src="{graphfile_name}.svg"/></p>')
+    print('</pre>')
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
