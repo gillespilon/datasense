@@ -277,7 +277,10 @@ def test_X(column, expected, subgroup_size):
     # TODO: fix more rendering parameters so as to be less affected by
     # environment, such as matplotlib defaults in config file, etc.
     try:
-        X.ax().figure.savefig(fig, format='png')
+        X.ax().figure.savefig(
+            fname=fig,
+            format='png'
+        )
         fig.seek(0)
         same = fig.read() == (
             Path(__file__).parent
@@ -305,7 +308,10 @@ def test_mR(column, expected, subgroup_size):
     return  # below part broken
     fig = BytesIO()
     try:
-        mR.ax().figure.savefig(fig, format='png')
+        mR.ax().figure.savefig(
+            fname=fig,
+            format='png'
+        )
         fig.seek(0)
         same = fig.read() == (
             Path(__file__).parent
@@ -332,7 +338,10 @@ def test_Xbar(columns, expected):
     return  # below part broken
     fig = BytesIO()
     try:
-        xbar.ax().figure.savefig(fig, format='png')
+        xbar.ax().figure.savefig(
+            fname=fig,
+            format='png'
+        )
         fig.seek(0)
         # Workaround for slow pytest. Hangs here if not the same.
         same = fig.read() == (
@@ -361,7 +370,10 @@ def test_R(columns, expected):
     return  # below part broken
     fig = BytesIO()
     try:
-        R.ax().figure.savefig(fig, format='png')
+        R.ax().figure.savefig(
+            fname=fig,
+            format='png'
+        )
         fig.seek(0)
         same = fig.read() == (
             Path(__file__).parent
@@ -416,7 +428,10 @@ def test_draw_rules():
     try:
         ax = X.ax()
         cc.draw_rules(X, ax)
-        ax.figure.savefig(fig, format='png')
+        ax.figure.savefig(
+            fname=fig,
+            format='png'
+        )
         fig.seek(0)
         same = fig.read() == (
             Path(__file__).parent
