@@ -109,7 +109,7 @@ def parameters(
     """
 
     parameters = ds.read_file(
-        file_name='piecewise_natural_cubic_spline_parameters.csv'
+        file_name='piecewise_natural_cubic_spline_parameters.ods'
     )
     file_names = [x for x in parameters['File names'] if str(x) != 'nan']
     targets = [x for x in parameters['Targets'] if str(x) != 'nan']
