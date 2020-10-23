@@ -89,6 +89,7 @@ def main():
             format='svg'
         )
         print(f'<p><img src="{graphfile_name}.svg"/></p>')
+    ds.page_break()
     stop_time = time.time()
     ds.report_summary(
         start_time=start_time,
