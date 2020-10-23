@@ -80,7 +80,10 @@ def main():
         ax.set_xlabel(x_axis_label, fontweight='bold')
         ax.set_ylabel(y_axis_label, fontweight='bold')
         despine(ax)
-        fig.savefig(f'{graphfile_name}.svg', format='svg')
+        fig.savefig(
+            fname=f'{graphfile_name}.svg',
+            format='svg'
+        )
         print(f'<p><img src="{graphfile_name}.svg"/></p>')
     ds.html_end(
         original_stdout=original_stdout,
