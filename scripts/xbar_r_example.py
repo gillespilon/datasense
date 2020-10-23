@@ -130,7 +130,7 @@ def xbar_chart(df: pd.DataFrame) -> None:
     ax.set_title(xbar_chart_title, fontweight='bold')
     ax.set_ylabel(xbar_chart_ylabel)
     ax.set_xlabel(xbar_chart_xlabel)
-    fig.savefig(f'{data_file}_xbar.svg')
+    fig.savefig(fname=f'{data_file}_xbar.svg')
     print(
         f'Xbar Report\n'
         f'============\n'
@@ -163,7 +163,7 @@ def r_chart(df: pd.DataFrame) -> None:
     ax.set_title(r_chart_title, fontweight='bold')
     ax.set_ylabel(r_chart_ylabel)
     ax.set_xlabel(r_chart_xlabel)
-    fig.savefig(f'{data_file}_r.svg')
+    fig.savefig(fname=f'{data_file}_r.svg')
     print(
         f'R Report\n'
         f'============\n'
