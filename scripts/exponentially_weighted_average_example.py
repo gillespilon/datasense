@@ -16,12 +16,14 @@ time -f '%e' ./exponentially_weighted_average.py
 """
 
 from typing import Callable, List, Tuple
+import time
 
 import matplotlib.axes as axes
 import datasense as ds
 
 
 def main():
+    start_time = time.time()
     global figure_width_height, date_time_parser
     file_names, graph_file_names, abscissa_names, ordinate_names,\
         ordinate_predicted_names, x_axis_label, y_axis_label, axis_title,\
@@ -68,7 +70,6 @@ def main():
                 date_parser=date_parser(),
                 sort_columns=columnnamessort,
                 sort_columns_bool=True
-                # date_time_columns=column_names_sort
             )
             print(data.dtypes)
         data[ordinatepredictedname] = data[ordinatename]\
@@ -88,6 +89,14 @@ def main():
             format='svg'
         )
         print(f'<p><img src="{graphfile_name}.svg"/></p>')
+    stop_time = time.time()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time,
+        read_file_names=file_names,
+        targets=ordinate_names,
+        features=abscissa_names
+    )
     print('</pre>')
     ds.html_end(
         original_stdout=original_stdout,
