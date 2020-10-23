@@ -1209,6 +1209,17 @@ def report_summary(
         print(f'Number of knots: {number_knots}')
 
 
+def set_up_graphics_directory(graphdir: str) -> None:
+    """
+    Create an empty directory
+    """
+    try:
+        rmtree(graphdir)
+    except Exception:
+        pass
+    Path(graphdir).mkdir(parents=True, exist_ok=True)
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1233,4 +1244,5 @@ __all__ = (
     'byte_size',
     'feature_percent_empty',
     'report_summary',
+    'set_up_graphics_directory',
 )
