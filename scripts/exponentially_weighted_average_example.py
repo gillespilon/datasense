@@ -43,7 +43,7 @@ def main():
         ordinate_predicted_name,
         date_time_parser,
         column_names_sort,
-        dateformatter,
+        date_formatter,
         graphfile_name
     ) in zip(
         file_names,
@@ -149,7 +149,7 @@ def parameters() -> (
     date_time_parser = [x for x in parameters['Date time parser']
                       if str(x) != 'nan']
     parser = parameters['Other parameter values'][4]
-    dateformatter = [None
+    date_formatter = [None
                      if split.strip() == 'None' else
                      split.strip()
                      for unsplit
@@ -165,7 +165,7 @@ def parameters() -> (
     return (
         file_names, graphfile_names, abscissa_names, ordinate_names,
         ordinate_predicted_names, xaxislabel, yaxislabel, axistitle,
-        figurewidthheight, column_names_sort, date_time_parser, dateformatter,
+        figurewidthheight, column_names_sort, date_time_parser, date_formatter,
         alphavalue, function, output_url, header_title, header_id, parser
     )
 
