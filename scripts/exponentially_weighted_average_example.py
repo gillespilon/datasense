@@ -30,8 +30,6 @@ def main():
         figure_width_height, column_names_sort, date_time_parser,\
         date_formatter, alpha_value, function, output_url,\
         header_title, header_id, parser = parameters()
-    print('absicssa_names:')
-    print(abscissa_names)
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
@@ -40,7 +38,7 @@ def main():
     print('<pre style="white-space: pre-wrap;">')
     for (
         file_name,
-        abscissaname,
+        abscissa_name,
         ordinatename,
         ordinatepredictedname,
         datetimeparser,
@@ -75,7 +73,7 @@ def main():
         data[ordinatepredictedname] = data[ordinatename]\
             .ewm(alpha=alpha_value).mean()
         fig, ax = ds.plot_scatter_line_x_y1_y2(
-            X=data[abscissaname],
+            X=data[abscissa_name],
             y1=data[ordinatename],
             y2=data[ordinatepredictedname],
             figsize=figure_width_height
@@ -136,7 +134,7 @@ def parameters() -> (
     file_names = [x for x in parameters['File names'] if str(x) != 'nan']
     graphfile_names = [x for x in parameters['Graph file names']
                       if str(x) != 'nan']
-    abscissanames = [x for x in parameters['Abscissa names']
+    abscissa_names = [x for x in parameters['Abscissa names']
                      if str(x) != 'nan']
     ordinatenames = [x for x in parameters['Ordinate names']
                      if str(x) != 'nan']
@@ -165,7 +163,7 @@ def parameters() -> (
     header_title = parameters['Other parameter values'][9]
     header_id = parameters['Other parameter values'][10]
     return (
-        file_names, graphfile_names, abscissanames, ordinatenames,
+        file_names, graphfile_names, abscissa_names, ordinatenames,
         ordinatepredictednames, xaxislabel, yaxislabel, axistitle,
         figurewidthheight, columnnamessort, datetimeparser, dateformatter,
         alphavalue, function, output_url, header_title, header_id, parser
