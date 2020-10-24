@@ -24,10 +24,10 @@ import datasense as ds
 
 def main():
     start_time = time.time()
-    global figure_width_height, date_time_parser
+    global figsize, date_time_parser
     file_names, graph_file_names, abscissa_names, ordinate_names,\
         ordinate_predicted_names, x_axis_label, y_axis_label, axis_title,\
-        figure_width_height, column_names_sort, date_time_parser,\
+        figsize, column_names_sort, date_time_parser,\
         date_formatter, alpha_value, function, output_url,\
         header_title, header_id, parser = parameters()
     original_stdout = ds.html_begin(
@@ -76,7 +76,7 @@ def main():
             X=data[abscissa_name],
             y1=data[ordinate_name],
             y2=data[ordinate_predicted_name],
-            figsize=figure_width_height
+            figsize=figsize
         )
         ax.set_title(axis_title, fontweight='bold')
         ax.set_xlabel(x_axis_label, fontweight='bold')
