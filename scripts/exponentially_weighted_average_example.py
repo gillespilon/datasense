@@ -61,15 +61,13 @@ def main():
                 sort_columns=column_names_sort,
                 sort_columns_bool=True
             )
-            print(data.dtypes)
         else:
             data = ds.read_file(
                 file_name=file_name,
-                date_parser=date_parser(),
+                date_time_columns=[abscissa_name],
                 sort_columns=column_names_sort,
                 sort_columns_bool=True
             )
-            print(data.dtypes)
         data[ordinate_predicted_name] = data[ordinate_name]\
             .ewm(alpha=alpha_value).mean()
         fig, ax = ds.plot_scatter_line_x_y1_y2(
