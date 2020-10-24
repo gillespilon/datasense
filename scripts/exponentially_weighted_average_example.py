@@ -42,7 +42,7 @@ def main():
         ordinate_name,
         ordinate_predicted_name,
         date_time_parser,
-        columnnamessort,
+        column_names_sort,
         dateformatter,
         graphfile_name
     ) in zip(
@@ -58,7 +58,7 @@ def main():
         if date_time_parser == 'None':
             data = ds.read_file(
                 file_name=file_name,
-                sort_columns=columnnamessort,
+                sort_columns=column_names_sort,
                 sort_columns_bool=True
             )
             print(data.dtypes)
@@ -66,7 +66,7 @@ def main():
             data = ds.read_file(
                 file_name=file_name,
                 date_parser=date_parser(),
-                sort_columns=columnnamessort,
+                sort_columns=column_names_sort,
                 sort_columns_bool=True
             )
             print(data.dtypes)
@@ -144,7 +144,7 @@ def parameters() -> (
     yaxislabel = parameters['Other parameter values'][1]
     axistitle = parameters['Other parameter values'][2]
     figurewidthheight = eval(parameters['Other parameter values'][3])
-    columnnamessort = [x for x in parameters['Column names sort']
+    column_names_sort = [x for x in parameters['Column names sort']
                        if str(x) != 'nan']
     date_time_parser = [x for x in parameters['Date time parser']
                       if str(x) != 'nan']
@@ -165,7 +165,7 @@ def parameters() -> (
     return (
         file_names, graphfile_names, abscissa_names, ordinate_names,
         ordinate_predicted_names, xaxislabel, yaxislabel, axistitle,
-        figurewidthheight, columnnamessort, date_time_parser, dateformatter,
+        figurewidthheight, column_names_sort, date_time_parser, dateformatter,
         alphavalue, function, output_url, header_title, header_id, parser
     )
 
