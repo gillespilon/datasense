@@ -84,7 +84,8 @@ def main():
             fname=f'{graph_file_name}.svg',
             format='svg'
         )
-        print(f'<p><img src="{graph_file_name}.svg"/></p>')
+        ds.html_figure(file_name=f'{graph_file_name}.svg')
+        # print(f'<p><img src="{graph_file_name}.svg"/></p>')
     ds.page_break()
     stop_time = time.time()
     ds.report_summary(
