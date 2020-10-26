@@ -3,6 +3,7 @@ Data munging
 '''
 
 from typing import Callable, Dict, IO, List, Optional, Tuple, Union
+from shutil import rmtree
 from pathlib import Path
 import webbrowser
 import textwrap
