@@ -66,10 +66,10 @@ def main():
             for _ in pool.imap_unordered(plot_scatter_line, t):
                 pass
         for knot in number_knots:
-            print(
-                f'<p><img src="{graphics_directory}/'
-                f'spline_{file_name.strip(".csv")}_'
-                f'{target}_{feature}_{knot}.svg"/></p>'
+            ds.html_figure(
+                file_name=f'{graphics_directory}/'
+                          f'spline_{file_name.strip(".csv")}_'
+                          f'{target}_{feature}_{knot}.svg'
             )
     stop_time = time.time()
     ds.page_break()
