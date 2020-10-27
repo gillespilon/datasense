@@ -475,7 +475,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     for column_name in df:
         try:
             sum_nan = sum(pd.isnull(df[column_name]))
-            percent_nan = round(sum_nan / num_rows * 100, 3)
+            percent_nan = round(sum_nan / num_rows * 100, 1)
             table.rows.append(
                 [column_name,
                  df[column_name].dtype,
