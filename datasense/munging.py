@@ -19,7 +19,7 @@ def dataframe_info(
     df: pd.DataFrame,
     filein: str
 ) -> pd.DataFrame:
-    '''
+    """
     Describe a DataFrame.
 
     Display count of rows (rows_in_count)
@@ -66,7 +66,7 @@ def dataframe_info(
     >>>     df=df,
     >>>     filein='myfile.csv'
     >>> )
-    '''
+    """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
         columns_empty_list, columns_non_empty_list, columns_bool_list,\
@@ -453,10 +453,10 @@ def find_timedelta_columns(df: pd.DataFrame) -> List[str]:
 
 
 def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
-    '''
+    """
     Create a table of data type, empty-cell count, and empty-all percentage
     for non-empty columns.
-    '''
+    """
 
     print('Information about non-empty columns')
     table = BeautifulTable(maxwidth=90)
@@ -512,7 +512,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     List[str],
     int
 ]:
-    '''
+    """
     Create various counts of columns.
 
     Create count of columns
@@ -536,7 +536,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         (columns_object_count, columns_object_list)
     Create count of timedelta columns
         (columns_timedelta_count, columns_timedelta_list)
-    '''
+    """
 
     columns_empty_list = sorted({
         column_name for column_name in df.columns
@@ -575,14 +575,14 @@ def process_columns(df: pd.DataFrame) -> Tuple[
 
 
 def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
-    '''
+    """
     Create various counts of rows.
 
     Count number of rows (rows_in_count)
     Delete empty rows
     Count number of non-empty rows (rows_out_count)
     Count number of empty rows (rows_empty_count)
-    '''
+    """
 
     rows_in_count = df.shape[0]
     df = df.dropna(axis='rows', how='all')
@@ -942,9 +942,9 @@ def html_header(
     header_title: str = 'Report',
     header_id: str = 'report'
 ) -> None:
-    '''
+    """
     Creates an html header.
-    '''
+    """
 
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
@@ -967,9 +967,9 @@ def html_header(
 
 
 def html_footer() -> None:
-    '''
+    """
     Creates an html footer.
-    '''
+    """
 
     # print('</pre>')
     print('</body>')
@@ -977,9 +977,9 @@ def html_footer() -> None:
 
 
 def page_break():
-    '''
+    """
     Create a page break for html output.
-    '''
+    """
 
     print('<p style="page-break-after:always">')
     print('<p style="page-break-before:always">')
@@ -991,7 +991,7 @@ def html_begin(
     header_title: Optional[str] = 'Report',
     header_id: Optional[str] = 'report',
 ) -> IO[str]:
-    '''
+    """
     Open file to write html and set header.
 
     Parameters
@@ -1019,7 +1019,7 @@ def html_begin(
         >>>     header_title=header_title,
         >>>     header_id=header_id
         >>> )
-    '''
+    """
     original_stdout = sys.stdout
     sys.stdout = open(
         file=output_url,
@@ -1036,7 +1036,7 @@ def html_end(
     original_stdout: IO[str],
     output_url: str
 ) -> None:
-    '''
+    """
     Set footer, close html file, open html file in new tab in web browser.
 
     Parameters
@@ -1056,7 +1056,7 @@ def html_end(
         >>>     original_stdout=original_stdout,
         >>>     output_url=output_url
         >>> )
-    '''
+    """
     html_footer()
     sys.stdout.close()
     sys.stdout = original_stdout
