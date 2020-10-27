@@ -659,7 +659,7 @@ def read_file(
     object_columns: Optional[List[str]] = [],
     sort_columns: Optional[List[str]] = [],
     sort_columns_bool: Optional[List[bool]] = [],
-    sheet_name: Optional[str] = None,
+    sheet_name: Optional[str] = False,
     nrows: Optional[int] = None
 ) -> pd.DataFrame:
     """
