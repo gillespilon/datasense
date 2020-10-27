@@ -1,6 +1,6 @@
-'''
+"""
 Data munging
-'''
+"""
 
 from typing import Callable, Dict, IO, List, Optional, Tuple, Union
 from shutil import rmtree
@@ -650,7 +650,7 @@ def read_file(
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
     format: Optional[str] = None,
-    date_time_columns: Optional[List[str]] = [],
+    # date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
     integer_columns: Optional[List[str]] = [],
@@ -681,8 +681,8 @@ def read_file(
         The function to use for parsing date and time.
     format : Optional[str] = None,
         The str to use for formatting date and time.
-    date_time_columns : Optional[List[str]] = [],
-        The columns to change to dtype datetime.
+    # date_time_columns : Optional[List[str]] = [],
+    #     The columns to change to dtype datetime.
     time_delta_columns : Optional[List[str]] = [],
         The columns to change to dtype timedelta.
     category_columns : Optional[List[str]] = []
@@ -710,10 +710,18 @@ def read_file(
     Examples
     --------
     Example 1
-    Read a csv file. There is no guarante thee column dtypes will be correct.
+    Read a csv file. There is no guarante the column dtypes will be correct.
     >>> data = read_file(file_name='myfile.csv')
 
-    Example 2
+    # Example 2
+    # Read a csv file. Ensure the dtypes of datetime columns.
+    >>> parse_dates = ['t', 'u']
+    >>> data = ds.read_file(
+    >>>     file_name=file_name,
+    >>>     parse_dates=parse_dates
+    >>> )
+
+    Example 3
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
     >>> column_names_dict = {
@@ -756,11 +764,12 @@ def read_file(
     >>>     category_columns=category_columns,
     >>>     integer_columns=integer_columns
     >>> )
-    Example 3
+
+    Example 4
     Read an ods file.
-    >>> data = ds.read_file(
+    >>> data_ods = ds.read_file(
     >>>     file_name='my_ods_file.ods',
-    >>>     date_time_columns=['Date']
+    >>>     parse_dates=['T', 'U']
     >>> )
     """
     if '.csv' in file_name:
@@ -777,11 +786,11 @@ def read_file(
             df = df.set_index(index_columns)
         for column in category_columns:
             df[column] = df[column].astype(CategoricalDtype())
-        for column in date_time_columns:
-            df[column] = pd.to_datetime(
-                df[column],
-                format=date_parser
-            )
+        # for column in date_time_columns:
+        #     df[column] = pd.to_datetime(
+        #         df[column],
+        #         format=date_parser
+        #     )
         for column in time_delta_columns:
             df[column] = pd.to_timedelta(df[column])
         for column in integer_columns:
@@ -804,11 +813,11 @@ def read_file(
             file_name,
             engine='odf',
         )
-        for column in date_time_columns:
-            df[column] = pd.to_datetime(
-                df[column],
-                format=format
-            )
+        # for column in date_time_columns:
+        #     df[column] = pd.to_datetime(
+        #         df[column],
+        #         format=format
+        #     )
     elif '.xlsx' in file_name and sheet_name:
         df = pd.read_excel(
             file_name,
@@ -920,8 +929,8 @@ def read_file(
 #         sortedcolumnnames = sorted(df.columns)
 #         df = df[sortedcolumnnames]
 #     return df
-#
-#
+
+
 def html_header(
     header_title: str = 'Report',
     header_id: str = 'report'
