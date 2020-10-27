@@ -64,7 +64,7 @@ def main():
         else:
             data = ds.read_file(
                 file_name=file_name,
-                date_time_columns=[abscissa_name],
+                parse_dates=[abscissa_name],
                 sort_columns=column_names_sort,
                 sort_columns_bool=True
             )
