@@ -812,6 +812,8 @@ def read_file(
         df = pd.read_excel(
             file_name,
             engine='odf',
+            parse_dates=parse_dates,
+            date_parser=date_parser
         )
         # for column in date_time_columns:
         #     df[column] = pd.to_datetime(
