@@ -675,7 +675,7 @@ def read_file(
         The columns to use for the dataframe index.
     converters : Optional[dict] = None,
         Dictionary of functions for converting values in certain columns.
-    parse_dates : Optional[List[str]] = None,
+    parse_dates : Optional[List[str]] = False,
         The columns to use to parse date and time.
     date_parser : Optional[Callable] = None,
         The function to use for parsing date and time.
