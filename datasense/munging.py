@@ -824,7 +824,9 @@ def read_file(
         df = pd.read_excel(
             file_name,
             engine='openpyxl',
-            sheet_name=sheet_name
+            sheet_name=sheet_name,
+            parse_dates=parse_dates,
+            date_parser=date_parser
         )
     return df
 
