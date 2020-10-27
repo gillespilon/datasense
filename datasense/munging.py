@@ -678,7 +678,8 @@ def read_file(
     parse_dates : Optional[List[str]] = False,
         The columns to use to parse date and time.
     date_parser : Optional[Callable] = None,
-        The function to use for parsing date and time.
+        The function to use for parsing date and time, when pandas needs
+        extra help.
     format : Optional[str] = None,
         The str to use for formatting date and time.
     # date_time_columns : Optional[List[str]] = [],
