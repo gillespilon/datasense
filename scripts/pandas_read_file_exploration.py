@@ -57,6 +57,21 @@ def main():
     print(data.dtypes)
     print()
     # Example 2
+    # Read a csv file. Ensure the dtypes of datetime columns.
+    parse_dates = ['t', 'u']
+    data = ds.read_file(
+        file_name=file_name,
+        parse_dates=parse_dates
+    )
+    print(
+        'Example 2. Ensure the dtypes of datetime columns.'
+    )
+    print(data.head(10))
+    print()
+    print('column dtypes')
+    print(data.dtypes)
+    print()
+    # Example 3
     # Read a csv file. Ensure the dtypes of columns. Rename the columns.
     column_names_dict = {
         'a': 'A',
@@ -75,7 +90,7 @@ def main():
     }
     index_columns = ['Y']
     parse_dates = ['t', 'u']
-    date_time_columns = ['T', 'U']
+    # date_time_columns = ['T', 'U']
     time_delta_columns = ['D']
     category_columns = ['C']
     # converters = {'a': lambda x: trunc(float(x))}
@@ -89,7 +104,7 @@ def main():
         file_name=file_name,
         column_names_dict=column_names_dict,
         index_columns=index_columns,
-        date_time_columns=date_time_columns,
+        # date_time_columns=date_time_columns,
         parse_dates=parse_dates,
         date_parser=date_parser(),
         time_delta_columns=time_delta_columns,
@@ -103,7 +118,7 @@ def main():
         sort_columns_bool=sort_columns_bool
     )
     print(
-        'Example 2. Ensure the column dtypes are correct. Rename the columns.'
+        'Example 3. Ensure the column dtypes are correct. Rename the columns.'
     )
     print(data.head(10))
     print()
@@ -111,6 +126,22 @@ def main():
     print(data.dtypes)
     print()
     print('index', data.index.name, 'dtype:', data.index.dtype)
+    print()
+    # Example 4
+    # Read an ods file.
+    data = ds.read_file(
+        file_name='test_file.ods',
+        parse_dates=['dates', 'dateandtimes']
+    )
+    print(
+        'Example 4. Read an ods file.'
+    )
+    print(data.head(10))
+    print()
+    print('column dtypes')
+    print(data.dtypes)
+    print()
+    print('</pre>')
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
@@ -119,7 +150,6 @@ def main():
         read_file_names=file_name,
         save_file_names=file_name
     )
-    print('</pre>')
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
