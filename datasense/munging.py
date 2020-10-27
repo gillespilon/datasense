@@ -465,7 +465,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
         'Column': BeautifulTable.ALIGN_LEFT,
         'Data type': BeautifulTable.ALIGN_LEFT,
         'Empty cell count': BeautifulTable.ALIGN_RIGHT,
-        'Empty cell percentage': BeautifulTable.ALIGN_RIGHT,
+        'Empty cell %': BeautifulTable.ALIGN_RIGHT,
     }
     table.columns.header = list(column_alignments.keys())
     for item, (_column_name, alignment) in\
