@@ -823,6 +823,7 @@ def read_file(
     elif '.xlsx' in file_name and sheet_name:
         df = pd.read_excel(
             file_name,
+            engine='openpyxl',
             sheet_name=sheet_name
         )
     return df
