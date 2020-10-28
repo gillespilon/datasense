@@ -92,7 +92,7 @@ def main():
     print()
     df = ds.dataframe_info(
         df=df,
-        filein='test'
+        file_in='test'
     )
     print()
     print('df memory usage: ')
