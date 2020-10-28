@@ -93,22 +93,6 @@ def main():
         )
 
 
-def despine(ax: axes.Axes) -> None:
-    """
-    Remove the top and right spines of a graph.
-
-    Parameters
-    ----------
-    ax : axes.Axes
-
-    Example
-    -------
-    >>> despine(ax)
-    """
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
-
-
 def plot_graph(
     df: pd.DataFrame,
     columnx: str,
@@ -145,7 +129,7 @@ def plot_graph(
     ax.set_title(graphtitle, fontweight='bold')
     ax.set_xlabel(xaxislabel, fontweight='bold')
     ax.set_ylabel(yaxislabel, fontweight='bold')
-    despine(ax)
+    ds.despine(ax)
     fig.savefig(f'{graphname}.svg', format='svg')
 
 
