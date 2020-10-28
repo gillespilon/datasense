@@ -17,7 +17,7 @@ import numpy as np
 
 def dataframe_info(
     df: pd.DataFrame,
-    filein: str
+    file_in: str
 ) -> pd.DataFrame:
     """
     Describe a DataFrame.
@@ -51,7 +51,7 @@ def dataframe_info(
     ----------
     df : pd.DataFrame
         The input dataframe.
-    filein : str
+    file_in : str
         The name of the file from which df was created.
 
     Returns
@@ -64,7 +64,7 @@ def dataframe_info(
     >>> import datasense as ds
     >>> df = ds.dataframe_info(
     >>>     df=df,
-    >>>     filein='myfile.csv'
+    >>>     file_in='myfile.csv'
     >>> )
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
@@ -79,7 +79,7 @@ def dataframe_info(
         = process_columns(df)
     wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
-    print(f'DataFrame information for: {filein}')
+    print(f'DataFrame information for: {file_in}')
     print()
     print(f'Rows total        : {rows_in_count}')
     print(f'Rows empty        : {rows_empty_count} (deleted)')
