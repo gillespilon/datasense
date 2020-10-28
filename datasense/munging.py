@@ -1227,15 +1227,15 @@ def report_summary(
         print(f'Number of knots: {number_knots}')
 
 
-def set_up_graphics_directory(graphdir: str) -> None:
+def set_up_graphics_directory(graphics_directory: str) -> None:
     """
     Create an empty directory
     """
     try:
-        rmtree(graphdir)
+        rmtree(graphics_directory)
     except Exception:
         pass
-    Path(graphdir).mkdir(parents=True, exist_ok=True)
+    Path(graphics_directory).mkdir(parents=True, exist_ok=True)
 
 
 __all__ = (
