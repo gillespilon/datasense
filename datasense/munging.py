@@ -1139,10 +1139,10 @@ def byte_size(
 def feature_percent_empty(
     df: pd.DataFrame,
     columns: List[str],
-    limit: float
+    threshold: float
 ) -> List[str]:
     """
-    Remove features that have NaN > limit
+    Remove features that have NaN > threshold
 
     Parameters
     ----------
@@ -1150,7 +1150,7 @@ def feature_percent_empty(
         The input dataframe.
     columns : List[str]
         The list of columns to evaluate.
-    limit : float
+    threshold : float
         The percentage empty threshold value.
 
     Returns
@@ -1165,12 +1165,12 @@ def feature_percent_empty(
     >>> features = ds.feature_percent_empty(
     >>>     df=data,
     >>>     columns=features,
-    >>>     limit=percent_empty_features
+    >>>     threshold=percent_empty_features
     >>> )
     """
     num_rows = df.shape[0]
     return [col for col in columns if
-            ((df[col].isna().sum() / num_rows * 100) <= limit)]
+            ((df[col].isna().sum() / num_rows * 100) <= threshold)]
 
 
 def report_summary(
