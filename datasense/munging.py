@@ -822,7 +822,7 @@ def read_file(
         #         df[column],
         #         format=format
         #     )
-    elif '.xlsx' in file_name and sheet_name:
+    elif '.xlsx' in file_name:
         df = pd.read_excel(
             file_name,
             engine='openpyxl',
@@ -1029,6 +1029,7 @@ def html_begin(
         header_title=header_title,
         header_id=header_id
     )
+    print('<pre style="white-space: pre-wrap;">')
     return original_stdout
 
 
@@ -1057,6 +1058,7 @@ def html_end(
         >>>     output_url=output_url
         >>> )
     """
+    print('</pre>')
     html_footer()
     sys.stdout.close()
     sys.stdout = original_stdout
