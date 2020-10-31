@@ -369,8 +369,8 @@ def random_data(
     >>> series = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
-    >>>     loc=0,
-    >>>     scale=2
+    >>>     low=0,
+    >>>     high=2
     >>> )
 
     Example 7
