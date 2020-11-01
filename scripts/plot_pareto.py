@@ -24,13 +24,10 @@ def main():
     # Example 1
     data = pd.DataFrame(
         {
-            'ordinate': ['tom', 'dick', 'harry', 'mo', 'larry'],
+            'ordinate': ['Mo', 'Larry', 'Curly', 'Shemp', 'Joe'],
             'abscissa': [21, 2, 10, 4, 16]
         }
     )
-    print(data)
-    print()
-    print(data.dtypes)
     fig, ax1, ax2 = ds.plot_pareto(
         X=data['ordinate'],
         y=data['abscissa']
