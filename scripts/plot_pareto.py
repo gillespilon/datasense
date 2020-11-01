@@ -1,9 +1,9 @@
 #! /usr/bin/env python3
 '''
-Test def plot_line_x_y() of graphs.py
+Test def plot_pareto() of graphs.py
 
-time -f '%e' ./plot_line_x_y_test.py
-./plot_line_x_y_test.py
+time -f '%e' ./plot_pareto.py
+./plot_pareto.py
 '''
 
 import datasense as ds
