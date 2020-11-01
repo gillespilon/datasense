@@ -1479,6 +1479,92 @@ def plot_lineleft_lineright_x_y1_y2(
     return (fig, ax1, ax2)
 
 
+def plot_pareto(
+    X: pd.Series,
+    y: pd.Series,
+    *,
+    figsize: Optional[Tuple[float, float]] = None,
+    width: Optional[float] = 0.8,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
+    marker: Optional[str] = '.',
+    markersize: Optional[float] = 8,
+    linestyle: Optional[str] = '-',
+) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
+    """
+    X : pd.Series
+        The data to plot on the ordinate.
+    y : pd.Series
+        The data to plot on the abscissa.
+    figsize : Optional[Tuple[float, float]] = None
+        The (width, height) of the figure (in, in).
+    width : Optional[float] = 0.8
+        The width of the bars (in).
+    colour1 : Optional[str] = '#0077bb'
+        The colour of the line for y1.
+    colour2 : Optional[str] = '#33bbee'
+        The colour of the line for y2.
+    marker : Optional[str] = '.'
+        The type of plot point.
+    markersize : Optional[float] = 8
+        The size of the plot point (pt).
+    linestyle : Optional[str] = '-'
+        The style of the line joining the points.
+
+    Returns
+    -------
+    Tuple[plt.figure, axes.Axes, axes.Axes]
+        A matplotlib figure and Axes tuple.
+
+    Examples
+    --------
+    Example 1
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> data = pd.DataFrame(
+    >>>     {
+    >>>         'ordinate': ['Mo', 'Larry', 'Curly', 'Shemp', 'Joe'],
+    >>>         'abscissa': [21, 2, 10, 4, 16]
+    >>>     }
+    >>> )
+    >>> fig, ax1, ax2 = ds.plot_pareto(
+    >>>     X=data['ordinate'],
+    >>>     y=data['abscissa']
+    >>> )
+    >>> plt.show()
+    """
+    df = pd.concat(
+        [X, y],
+        axis=1
+    ).sort_values(
+        by=y.name,
+        axis=0,
+        ascending=False,
+        kind='mergesort'
+    )
+    total_y = df[y.name].sum()
+    df['percentage'] = df[y.name] / total_y * 100
+    df['cumulative_percentage'] = df['percentage'].cumsum(skipna=True)
+    fig = plt.figure(figsize=figsize)
+    ax1 = fig.add_subplot(111)
+    ax2 = ax1.twinx()
+    ax1.bar(
+        x=df[X.name],
+        height=df[y.name],
+        width=width,
+        color=colour1
+    )
+    ax2.plot(
+        df[X.name],
+        df['cumulative_percentage'],
+        marker=marker,
+        markersize=markersize,
+        linestyle=linestyle,
+        color=colour2
+    )
+    return (fig, ax1, ax2)
+
+
 def format_dates(
     fig: plt.figure,
     ax: axes.Axes
@@ -1577,6 +1663,7 @@ __all__ = (
     'plot_line_line_line_x_y1_y2_y3',
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_lineleft_lineright_x_y1_y2',
+    'plot_pareto',
     'format_dates',
     'probability_plot',
     'despine',
