@@ -1414,7 +1414,7 @@ def plot_lineleft_lineright_x_y1_y2(
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
-    linestyle1; Optional[str] = '-',
+    linestyle1: Optional[str] = '-',
     linestyle2: Optional[str] = '-'
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
     '''
