@@ -1413,7 +1413,9 @@ def plot_lineleft_lineright_x_y1_y2(
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
     colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee'
+    colour2: Optional[str] = '#33bbee',
+    linestyle1; Optional[str] = '-',
+    linestyle2: Optional[str] = '-'
 ) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
@@ -1430,6 +1432,10 @@ def plot_lineleft_lineright_x_y1_y2(
         Optional: natural_cubic_spline
     number_knots: positive integer
         The number of knots to create.
+    linestyle1: Optional[str] = '-'
+        The style of the line joining the points.
+    linestyle2: Optional[str] = '-'
+        The style of the line joining the points.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
@@ -1471,12 +1477,14 @@ def plot_lineleft_lineright_x_y1_y2(
         ax1.plot(
             X,
             model1.predict(XX),
-            color=colour1
+            color=colour1,
+            linestyle=linestyle1
         )
         ax2.plot(
             X,
             model2.predict(XX),
-            color=colour2
+            color=colour2,
+            linestyle=linestyle2
         )
     for tl in ax1.get_yticklabels():
         tl.set_color(colour1)
