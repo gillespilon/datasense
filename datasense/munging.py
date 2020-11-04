@@ -644,6 +644,7 @@ def save_file(
 def read_file(
     file_name: str,
     *,
+    skiprows: Optional[List[int]] = None,
     column_names_dict: Optional[Dict[str, str]] = {},
     index_columns: Optional[List[str]] = [],
     converters: Optional[dict] = None,
@@ -669,6 +670,8 @@ def read_file(
     ----------
     file_name : str
         The name of the file to read.
+    skiprows : Optional[List[int]]
+        The specific row indices to skip.
     column_names_dict : Optional[List[str]]
         The new column names to replace the old column names.
     index_columns : Optional[List[str]]
@@ -776,6 +779,7 @@ def read_file(
     if '.csv' in file_name:
         df = pd.read_csv(
             file_name,
+            skiprows=skiprows,
             converters=converters,
             parse_dates=parse_dates,
             date_parser=date_parser,
@@ -812,6 +816,7 @@ def read_file(
     elif '.ods' in file_name:
         df = pd.read_excel(
             file_name,
+            skiprows=skiprows,
             engine='odf',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
@@ -825,6 +830,7 @@ def read_file(
     elif '.xlsx' in file_name:
         df = pd.read_excel(
             file_name,
+            skiprows=skiprows,
             engine='openpyxl',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
@@ -1241,6 +1247,55 @@ def set_up_graphics_directory(graphics_directory: List[str]) -> None:
         Path(directory).mkdir(parents=True, exist_ok=True)
 
 
+def replace_text_numbers(
+    df: pd.DataFrame,
+    columns: List[str],
+    text: List[str],
+    numbers: List[int]
+) -> pd.DataFrame:
+    """
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+    columns : List[str]
+        The list of columns for replacement.
+    text : List[str]
+        The list of strings to replace.
+    numbers : List[int]
+        The list of replacement numbers.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    -------
+    >>> list_y_1_n_5 = [
+    >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
+    >>>     'Q19', 'Q20', 'Q21', 'Q23', 'Q24', 'Q25'
+    >>> ]
+    >>> list_y_5_n_1 = [
+    >>>     'Q07', 'Q11', 'Q12', 'Q13', 'Q15', 'Q16'
+    >>> ]
+    >>> data = replace_text_numbers(
+    >>>     df=data,
+    >>>     columns=list_y_1_n_5,
+    >>>     text=['Yes', 'No'],
+    >>>     numbers=[1, 5]
+    >>> )
+    >>> data = replace_text_numbers(
+    >>>     df=data,
+    >>>     columns=list_y_5_n_1,
+    >>>     text=['Yes', 'No'],
+    >>>     numbers=[5, 1]
+    >>> )
+    """
+    df[columns] = df[columns].replace(text, numbers)
+    return df
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1266,4 +1321,5 @@ __all__ = (
     'feature_percent_empty',
     'report_summary',
     'set_up_graphics_directory',
+    'replace_text_numbers',
 )
