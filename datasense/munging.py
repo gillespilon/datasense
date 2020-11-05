@@ -1372,4 +1372,5 @@ __all__ = (
     'report_summary',
     'set_up_graphics_directory',
     'replace_text_numbers',
+    'replace_text_text',
 )
