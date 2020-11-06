@@ -127,7 +127,10 @@ def plot_graph(
         ax.xaxis.set_major_formatter(DateFormatter(dateformat))
         ax.xaxis.set_minor_formatter(NullFormatter())
     ax.set_title(graphtitle, fontweight='bold')
-    ax.set_xlabel(xaxislabel, fontweight='bold')
+    ax.set_xlabel(
+        xlabel=xaxislabel,
+        fontweight='bold'
+    )
     ax.set_ylabel(yaxislabel, fontweight='bold')
     ds.despine(ax)
     fig.savefig(f'{graphname}.svg', format='svg')
