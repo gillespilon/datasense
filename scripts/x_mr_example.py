@@ -98,7 +98,7 @@ def x_chart(df: pd.DataFrame) -> None:
     cc.draw_rules(x, ax)
     ax.set_title(x_chart_title, fontweight='bold')
     ax.set_ylabel(x_chart_ylabel)
-    ax.set_xlabel(x_chart_xlabel)
+    ax.set_xlabel(xlabel=x_chart_xlabel)
     fig.savefig(f'{data_file}_x.svg')
     print(
        f'X Report\n'
@@ -123,7 +123,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
     ax.set_title(mr_chart_title, fontweight='bold')
     ax.set_ylabel(mr_chart_ylabel)
-    ax.set_xlabel(mr_chart_xlabel)
+    ax.set_xlabel(xlabel=mr_chart_xlabel)
     fig.savefig(f'{data_file}_mr.svg')
 
 
