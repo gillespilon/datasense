@@ -1321,25 +1321,21 @@ def replace_text_text(
 
     Example
     -------
-    This example needs to be fixed.
-    >>> list_y_1_n_5 = [
-    >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
-    >>>     'Q19', 'Q20', 'Q21', 'Q23', 'Q24', 'Q25'
-    >>> ]
-    >>> list_y_5_n_1 = [
-    >>>     'Q07', 'Q11', 'Q12', 'Q13', 'Q15', 'Q16'
-    >>> ]
-    >>> data = replace_text_numbers(
+    >>> data = ds.replace_text_text(
     >>>     df=data,
-    >>>     columns=list_y_1_n_5,
-    >>>     text=['Yes', 'No'],
-    >>>     numbers=[1, 5]
-    >>> )
-    >>> data = replace_text_numbers(
-    >>>     df=data,
-    >>>     columns=list_y_5_n_1,
-    >>>     text=['Yes', 'No'],
-    >>>     numbers=[5, 1]
+    >>>     columns=['address_country'],
+    >>>     text_find=[
+    >>>         'AD', 'AE', 'AF', 'AG',
+    >>>         'AI', 'AL', 'AM', 'AN',
+    >>>         'AO', 'AQ', 'AR', 'AS',
+    >>>         'AT', 'AU', 'AW', 'AZ',
+    >>>     ]
+    >>>     text_replace=[
+    >>>         'Andorra', 'Unit.Arab Emir.', 'Afghanistan', 'Antigua/Barbuda',
+    >>>         'Anguilla', 'Albania', 'Armenia', 'Niederl.Antill.',
+    >>>         'Angola', 'Antarctica', 'Argentina', 'Samoa,American',
+    >>>         'Austria', 'Australia', 'Aruba', 'Azerbaijan',
+    >>>     ]
     >>> )
     """
     df[columns] = df[columns].replace(text_find, text_replace)
