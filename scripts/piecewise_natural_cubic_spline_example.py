@@ -158,7 +158,7 @@ def plot_scatter_line(
         f'file: {file_name} '
         f'column: {target}'
     )
-    ax.set_xlabel(x_axis_label)
+    ax.set_xlabel(xlabel=x_axis_label)
     ax.set_ylabel(y_axis_label)
     ds.despine(ax)
     fig.savefig(
