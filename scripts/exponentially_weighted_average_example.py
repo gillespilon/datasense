@@ -76,7 +76,10 @@ def main():
             y2=data[ordinate_predicted_name],
             figsize=figsize
         )
-        ax.set_title(axis_title, fontweight='bold')
+        ax.set_title(
+            label=axis_title,
+            fontweight='bold'
+        )
         ax.set_xlabel(
             xlabel=x_axis_label,
             fontweight='bold'
