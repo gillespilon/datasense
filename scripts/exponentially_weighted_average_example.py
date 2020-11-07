@@ -81,7 +81,10 @@ def main():
             xlabel=x_axis_label,
             fontweight='bold'
         )
-        ax.set_ylabel(y_axis_label, fontweight='bold')
+        ax.set_ylabel(
+            ylabel=y_axis_label,
+            fontweight='bold'
+        )
         ds.despine(ax)
         fig.savefig(
             fname=f'{graph_file_name}.svg',
