@@ -126,7 +126,10 @@ def plot_graph(
         ax.xaxis.set_minor_locator(NullLocator())
         ax.xaxis.set_major_formatter(DateFormatter(dateformat))
         ax.xaxis.set_minor_formatter(NullFormatter())
-    ax.set_title(graphtitle, fontweight='bold')
+    ax.set_title(
+        label=graphtitle,
+        fontweight='bold'
+    )
     ax.set_xlabel(
         xlabel=xaxislabel,
         fontweight='bold'
