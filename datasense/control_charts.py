@@ -269,7 +269,7 @@ class X(ControlChart):
             ax.axhline(y=x.sigmas[-2], linestyle='--', dashes=(5, 5),
                        c=cm.Paired.colors[0], alpha=0.5)
             c    ax.set_title(x_chart_title, fontweight='bold')
-            ax.set_ylabel(x_chart_ylabel)
+            ax.set_ylabel(ylabel=x_chart_ylabel)
             ax.set_xlabel(xlabel=x_chart_xlabel)
             fig.savefig('<yourfile>_x.svg')c.draw_rules(x, ax)
         '''
@@ -357,7 +357,7 @@ class mR(ControlChart):
             mr = cc.mR(df)  # default subgroup size = 2
             cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
             ax.set_title(mr_chart_title, fontweight='bold')
-            ax.set_ylabel(mr_chart_ylabel)
+            ax.set_ylabel(ylabel=mr_chart_ylabel)
             ax.set_xlabel(xlabel=mr_chart_xlabel)
             fig.savefig('<yourfile>_mr.svg')
         '''
@@ -450,7 +450,7 @@ class Xbar(ControlChart):
                        c=cm.Paired.colors[0], alpha=0.5)
             cc.draw_rules(xbar, ax)
             ax.set_title(xbar_chart_title, fontweight='bold')
-            ax.set_ylabel(xbar_chart_ylabel)
+            ax.set_ylabel(ylabel=xbar_chart_ylabel)
             ax.set_xlabel(xlabel=xbar_chart_xlabel)
             fig.savefig('<yourfile>_xbar.svg')
         '''
@@ -553,7 +553,7 @@ class R(ControlChart):
                        c=cm.Paired.colors[0], alpha=0.5)
             cc.draw_rule(r, ax, *cc.points_one(r), '1')
             ax.set_title(r_chart_title, fontweight='bold')
-            ax.set_ylabel(r_chart_ylabel)
+            ax.set_ylabel(ylabel=r_chart_ylabel)
             ax.set_xlabel(xlabel=r_chart_xlabel)
             fig.savefig('<yourfile>_r.svg')
         '''
