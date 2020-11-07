@@ -127,7 +127,10 @@ def xbar_chart(df: pd.DataFrame) -> None:
 #     cc.draw_rule(xbar, ax, *cc.points_four(xbar), '4')
 #     cc.draw_rule(xbar, ax, *cc.points_two(xbar), '2')
     cc.draw_rules(xbar, ax)
-    ax.set_title(xbar_chart_title, fontweight='bold')
+    ax.set_title(
+        label=xbar_chart_title,
+        fontweight='bold'
+    )
     ax.set_ylabel(ylabel=xbar_chart_ylabel)
     ax.set_xlabel(xlabel=xbar_chart_xlabel)
     fig.savefig(fname=f'{data_file}_xbar.svg')
@@ -160,7 +163,10 @@ def r_chart(df: pd.DataFrame) -> None:
     ax.axhline(y=r.sigmas[-2], linestyle='--', dashes=(5, 5),
                color=colour1, alpha=0.5)
     cc.draw_rule(r, ax, *cc.points_one(r), '1')
-    ax.set_title(r_chart_title, fontweight='bold')
+    ax.set_title(
+        label=r_chart_title,
+        fontweight='bold'
+    )
     ax.set_ylabel(ylabel=r_chart_ylabel)
     ax.set_xlabel(xlabel=r_chart_xlabel)
     fig.savefig(fname=f'{data_file}_r.svg')
