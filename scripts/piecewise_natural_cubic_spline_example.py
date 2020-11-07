@@ -50,7 +50,6 @@ def main():
         header_id=header_id
     )
     ds.page_break()
-    print('<pre style="white-space: pre-wrap;">')
     for file_name, target, feature in zip(file_names, targets, features):
         data = ds.read_file(
             file_name=file_name,
@@ -81,7 +80,6 @@ def main():
         features=features,
         number_knots=number_knots
     )
-    print('</pre>')
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
