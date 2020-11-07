@@ -154,9 +154,9 @@ def plot_scatter_line(
     )
     ax.legend(frameon=False, loc='best')
     ax.set_title(
-        f'{axis_title}\n'
-        f'file: {file_name} '
-        f'column: {target}'
+        label=f'{axis_title}\n'
+              f'file: {file_name} '
+              f'column: {target}'
     )
     ax.set_xlabel(xlabel=x_axis_label)
     ax.set_ylabel(ylabel=y_axis_label)
