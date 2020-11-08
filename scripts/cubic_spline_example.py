@@ -14,7 +14,6 @@ time -f '%e' ./cubic_spline_example.py
 """
 
 from typing import Tuple
-import matplotlib.axes as axes
 from matplotlib.ticker import NullFormatter, NullLocator
 from matplotlib.dates import DateFormatter, DayLocator
 import matplotlib.pyplot as plt
@@ -139,7 +138,10 @@ def plot_graph(
         fontweight='bold'
     )
     ds.despine(ax)
-    fig.savefig(f'{graphname}.svg', format='svg')
+    fig.savefig(
+        fname=f'{graphname}.svg',
+        format='svg'
+    )
 
 
 if __name__ == '__main__':
