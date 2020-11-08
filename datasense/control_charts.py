@@ -274,7 +274,8 @@ class X(ControlChart):
             )
             ax.set_ylabel(ylabel=x_chart_ylabel)
             ax.set_xlabel(xlabel=x_chart_xlabel)
-            fig.savefig('<yourfile>_x.svg')c.draw_rules(x, ax)
+            fig.savefig('<yourfile>_x.svg')
+            cc.draw_rules(x, ax)
         '''
         if fig is None:
             fig = plt.figure()
