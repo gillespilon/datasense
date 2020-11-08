@@ -595,7 +595,8 @@ def save_file(
     df: Union[pd.DataFrame, pd.Series],
     file_name: str,
     *,
-    index: Optional[bool] = False
+    index: Optional[bool] = False,
+    sheet_name: Optional[str] = False,
 ) -> None:
     """
     Save a DataFrame or Series to a file.
@@ -639,6 +640,15 @@ def save_file(
             path_or_buf=file_name,
             index=index
         )
+    elif 'xlsx' in file_name:
+        excel_writer = pd.ExcelWriter(file_name)
+        df.to_excel(
+            excel_writer=excel_writer,
+            sheet_name=sheet_name,
+            engine='openpyxl',
+            index=False
+        )
+        excel_writer.save()
 
 
 def read_file(
