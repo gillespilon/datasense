@@ -45,11 +45,11 @@ def main():
         number_knots=7
     )
     fig.savefig(
-            fname=(
-                'plot_scatter_scatter_x1_x2_y1_y2_'
-                'datex_smoothing_y1_y2_test.svg'
-                ),
-            format='svg'
+        fname=(
+            'plot_scatter_scatter_x1_x2_y1_y2_'
+            'datex_smoothing_y1_y2_test.svg'
+        ),
+        format='svg'
     )
     ds.html_figure(
         file_name=(
