@@ -457,6 +457,11 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     Create a table of data type, empty-cell count, and empty-all percentage
     for non-empty columns.
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
     Example
     -------
     >>> import datasense as ds
