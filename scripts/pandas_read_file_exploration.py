@@ -193,6 +193,16 @@ def create_dataframe() -> pd.DataFrame:
 
 
 def date_parser() -> Callable:
+    """
+    Date parser callable function
+
+    Returns
+    -------
+    Parsed date and time.
+
+    Example
+    >>> date_parser=date_parser()
+    """
     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
 
 
