@@ -693,6 +693,8 @@ def save_file(
         The name of the file to be saved.
     index : bool
         If True, creates an index.
+    sheet_name : str
+        The name of the worksheet in the workbook.
 
     Examples
     --------
