@@ -647,14 +647,24 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     """
     Create various counts of rows.
 
-    Count number of rows (rows_in_count)
-    Delete empty rows
-    Count number of non-empty rows (rows_out_count)
-    Count number of empty rows (rows_empty_count)
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+    rows_in_count : int
+        The count of rows of the input dataframe.
+    rows_out_count : int
+        The count of rows of the output dataframe.
+    rows_emnpty_count : int
+        The count of empty rows of the input dataframe.
 
     Example
     -------
-
     >>> df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     """
 
@@ -676,7 +686,7 @@ def save_file(
     Save a DataFrame or Series to a file.
 
     Parameters
-    ---------
+    ----------
     df : pd.DataFrame
         The dataframe to be saved to a file.
     file_name : str
