@@ -28,7 +28,6 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
-    print('<pre style="white-space: pre-wrap;">')
     help(ds.read_file)
     print()
     df = create_dataframe()
@@ -132,7 +131,6 @@ def main():
     print('column dtypes')
     print(data.dtypes)
     print()
-    print('</pre>')
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
