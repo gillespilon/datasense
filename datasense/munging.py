@@ -859,7 +859,7 @@ def read_file(
     >>>     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
     >>>
     >>>
-    >>> data = read_file(
+    >>> data = ds.read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
     >>>     index_columns=index_columns,
