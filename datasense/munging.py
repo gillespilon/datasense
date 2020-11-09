@@ -547,6 +547,54 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     Create count of timedelta columns
         (columns_timedelta_count, columns_timedelta_list)
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input dataframe.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+    columns_in_count : int
+        The count of columns.
+    columns_non_empty_count : int
+        The count of non-empty columns.
+    columns_empty_count: int
+        The count of empty columns.
+    columns_empty_list : List[str]
+        The list of empty columns.
+    columns_non_empty_list : List[str]
+        The list of non-empty columns.
+    columns_bool_list : List[str]
+        The list of boolean columns.
+    columns_bool_count : int
+        The count of boolean columns.
+    columns_float_list : List[str]
+        The list of float columns.
+    columns_float_count : int
+        The count of float columns.
+    columns_integer_list : List[str]
+        The list of integer columns.
+    columns_integer_count : int
+        The count of integer columns
+    columns_datetime_list : List[str]
+        The list of datetime columns.
+    columns_datetime_count : int
+        The count of datetime columns.
+    columns_object_list : List[str]
+        The list of object columns.
+    columns_object_count : int
+        The count of object columns.
+    columns_category_list : List[str]
+        The list of category columns.
+    columns_category_count : int
+        The coiunt of category columns.
+    columns_timedelta_list : List[str]
+        The list of timedelta columns.
+    columns_timedelta_count : int
+        The count of timedelta columns.
+
     Example
     -------
     >>> df, columns_in_count, columns_non_empty_count, columns_empty_count,\
