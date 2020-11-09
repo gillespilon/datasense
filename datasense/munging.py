@@ -943,6 +943,21 @@ def html_header(
 ) -> None:
     """
     Creates an html header.
+
+    Parameters
+    ----------
+    header_title : str
+        The header title.
+    header_id : str
+        The header ID.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.html_header(
+    >>>     header_title=header_title,
+    >>>     header_id=header_id
+    >>> )
     """
 
     print('<!DOCTYPE html>')
