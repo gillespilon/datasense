@@ -3,19 +3,17 @@
 Pandas read file exploration
 """
 
-from typing import Callable, Dict, List, Optional
+from typing import Callable
 from datetime import datetime
-from math import trunc
 import time
 
-from pandas.api.types import CategoricalDtype
 import datasense as ds
 import pandas as pd
 
 output_url = 'pandas_read_file_exploration.html'
 header_title = 'pandas_read_file_exploration'
 header_id = 'pandas-read-file-exploration'
-file_name='myfile.csv'
+file_name = 'myfile.csv'
 
 
 def main():
@@ -82,10 +80,8 @@ def main():
     }
     index_columns = ['Y']
     parse_dates = ['t', 'u']
-    # date_time_columns = ['T', 'U']
     time_delta_columns = ['D']
     category_columns = ['C']
-    # converters = {'a': lambda x: trunc(float(x))}
     integer_columns = ['A', 'I']
     float_columns = ['X']
     boolean_columns = ['R']
@@ -96,12 +92,10 @@ def main():
         file_name=file_name,
         column_names_dict=column_names_dict,
         index_columns=index_columns,
-        # date_time_columns=date_time_columns,
         parse_dates=parse_dates,
         date_parser=date_parser(),
         time_delta_columns=time_delta_columns,
         category_columns=category_columns,
-        # converters=converters,
         integer_columns=integer_columns,
         float_columns=float_columns,
         boolean_columns=boolean_columns,
