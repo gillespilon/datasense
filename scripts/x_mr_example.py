@@ -83,14 +83,34 @@ def x_chart(df: pd.DataFrame) -> None:
     fig = plt.figure(figsize=(8, 6))
     x = cc.X(df)
     ax = x.ax(fig)
-    ax.axhline(y=x.sigmas[+1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=x.sigmas[-1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=x.sigmas[+2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=x.sigmas[-2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
+    ax.axhline(
+        y=x.sigmas[+1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=x.sigmas[-1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=x.sigmas[+2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=x.sigmas[-2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
 #     cc.draw_rule(x, ax, *cc.points_one(x), '1')
 #     cc.draw_rule(x, ax, *cc.points_four(x), '4')
 #     cc.draw_rule(x, ax, *cc.points_two(x), '2')
