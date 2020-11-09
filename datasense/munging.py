@@ -666,7 +666,9 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
     Example
     -------
-    >>> df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
+    >>> import datasense as ds
+    >>> df, rows_in_count, rows_out_count, rows_empty_count =\
+    >>>     ds.process_rows(df)
     """
 
     rows_in_count = df.shape[0]
