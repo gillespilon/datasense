@@ -1100,6 +1100,22 @@ def html_figure(
         The file name of the image.
     caption : Optional[str]
         The figure caption.
+
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> graph_file = 'my_graph_file.svg'
+    >>> fig.savefig(graph_file)
+    >>> ds.html_figure(file_name=graph_file)
+
+    Example 2
+    ---------
+    >>> ds.html_figure(
+    >>>     file_name=graph_file,
+    >>>     caption='my graph file caption'
+    >>> )
     """
     if caption is None:
         caption = file_name
