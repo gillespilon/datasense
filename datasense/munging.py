@@ -977,7 +977,6 @@ def html_header(
         f' id="{header_id}">'
         f'{header_title}</h1>'
     )
-    # print('<pre style="white-space: pre-wrap;">')
 
 
 def html_footer() -> None:
@@ -989,7 +988,6 @@ def html_footer() -> None:
     >>> import datasense as ds
     >>> ds.html_footer()
     """
-    # print('</pre>')
     print('</body>')
     print('</html>')
 
