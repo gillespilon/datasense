@@ -88,7 +88,7 @@ def dataframe_info(
     print(f'Columns empty     : {columns_empty_count} (deleted)')
     print(f'Columns not empty : {columns_non_empty_count}')
     print()
-    number_empty_cells_in_columns(df)
+    number_empty_cells_in_columns(df=df)
     print(f'List of {columns_non_empty_count} non-empty columns:')
     string_not_list = ", ".join(columns_non_empty_list)
     new_list = wrapper.wrap(string_not_list)
@@ -456,6 +456,11 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     """
     Create a table of data type, empty-cell count, and empty-all percentage
     for non-empty columns.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> number_empty_cells_in_columns(df=df)
     """
 
     print('Information about non-empty columns')
