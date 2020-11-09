@@ -1313,6 +1313,7 @@ def replace_text_numbers(
 
     Example
     -------
+    >>> import datasense as ds
     >>> list_y_1_n_5 = [
     >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
     >>>     'Q19', 'Q20', 'Q21', 'Q23', 'Q24', 'Q25'
@@ -1320,13 +1321,13 @@ def replace_text_numbers(
     >>> list_y_5_n_1 = [
     >>>     'Q07', 'Q11', 'Q12', 'Q13', 'Q15', 'Q16'
     >>> ]
-    >>> data = replace_text_numbers(
+    >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_1_n_5,
     >>>     text=['Yes', 'No'],
     >>>     numbers=[1, 5]
     >>> )
-    >>> data = replace_text_numbers(
+    >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_5_n_1,
     >>>     text=['Yes', 'No'],
