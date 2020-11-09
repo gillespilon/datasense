@@ -35,6 +35,8 @@ def main():
     print(df.head())
     print(df.dtypes)
     print()
+    help(ds.save_file)
+    print()
     ds.save_file(
         df=df,
         file_name=file_name
@@ -146,6 +148,18 @@ def main():
 
 
 def create_dataframe() -> pd.DataFrame:
+    """
+    Create a Pandas dataframe.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    -------
+    >>> df = create_datafrmae()
+    """
     df = pd.DataFrame(
         {
             'a': ds.random_data(
