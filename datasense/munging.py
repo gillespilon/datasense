@@ -799,6 +799,8 @@ def read_file(
         The columns on which to sort the dataframe.
     sort_columns_bool : Optional[List[bool]] = []
         The booleans for sort_columns.
+    sheet_name : str
+        The name of the worksheet in the workbook.
     nrows : Optional[int] = None
         The number of rows to read.
 
