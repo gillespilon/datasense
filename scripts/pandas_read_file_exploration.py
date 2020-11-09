@@ -20,10 +20,7 @@ file_name='myfile.csv'
 
 def main():
     start_time = time.time()
-    pd.set_option(
-        'display.width',
-        120
-    )
+    pd.options.display.width = 120
     pd.set_option(
         'display.max_columns',
         100
