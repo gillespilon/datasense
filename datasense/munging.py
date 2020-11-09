@@ -76,7 +76,7 @@ def dataframe_info(
         columns_datetime_count, columns_object_list, columns_object_count,\
         columns_category_list, columns_category_count,\
         columns_timedelta_list, columns_timedelta_count\
-        = process_columns(df)
+        = process_columns(df=df)
     wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
     print(f'DataFrame information for: {file_in}')
@@ -541,6 +541,17 @@ def process_columns(df: pd.DataFrame) -> Tuple[
         (columns_object_count, columns_object_list)
     Create count of timedelta columns
         (columns_timedelta_count, columns_timedelta_list)
+
+    Example
+    -------
+    >>> df, columns_in_count, columns_non_empty_count, columns_empty_count,\
+    >>>     columns_empty_list, columns_non_empty_list, columns_bool_list,\
+    >>>     columns_bool_count, columns_float_list, columns_float_count,\
+    >>>     columns_integer_list, columns_integer_count,\
+    >>>     columns_datetime_list, columns_datetime_count,\
+    >>>     columns_object_list, columns_object_count, columns_category_list,\
+    >>>     columns_category_count, columns_timedelta_list,\
+    >>>     columns_timedelta_count = process_columns(df=df)
     """
 
     columns_empty_list = sorted({
