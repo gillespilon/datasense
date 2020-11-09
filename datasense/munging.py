@@ -816,7 +816,8 @@ def read_file(
     --------
     Example 1
     Read a csv file. There is no guarante the column dtypes will be correct.
-    >>> data = read_file(file_name='myfile.csv')
+    >>> import datasense as ds
+    >>> data = ds.read_file(file_name='myfile.csv')
 
     # Example 2
     # Read a csv file. Ensure the dtypes of datetime columns.
