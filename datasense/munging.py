@@ -1268,6 +1268,17 @@ def report_summary(
 def set_up_graphics_directory(graphics_directory: List[str]) -> None:
     """
     Create empty directories.
+
+    Parameters
+    ----------
+    graphics_directory : List[str]
+        The list of graphics directories.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> directory_list = ['directory_one', 'directory_two']
+    >>> ds.set_up_graphics_directory(graphics_directory=directory_list)
     """
     for directory in graphics_directory:
         try:
