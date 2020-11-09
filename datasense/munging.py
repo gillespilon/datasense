@@ -983,6 +983,11 @@ def html_header(
 def html_footer() -> None:
     """
     Creates an html footer.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.html_footer()
     """
     # print('</pre>')
     print('</body>')
