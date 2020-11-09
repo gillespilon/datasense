@@ -1146,6 +1146,7 @@ def byte_size(
 
     Example
     -------
+    >>> import datasense as ds
     >>> df = pd.DataFrame(
     >>>     {
     >>>         'b': ds.random_data(distribution='bool'),
@@ -1159,7 +1160,7 @@ def byte_size(
     >>>     }
     >>> )
     >>> print(
-    >>>     byte_size(
+    >>>     ds.byte_size(
     >>>         num=df.memory_usage(index=True).sum()
     >>>     )
     >>> )
