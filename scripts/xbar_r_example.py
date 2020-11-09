@@ -115,14 +115,34 @@ def xbar_chart(df: pd.DataFrame) -> None:
     fig = plt.figure(figsize=(8, 6))
     xbar = cc.Xbar(df)
     ax = xbar.ax(fig)
-    ax.axhline(y=xbar.sigmas[+1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=xbar.sigmas[-1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=xbar.sigmas[+2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=xbar.sigmas[-2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
+    ax.axhline(
+        y=xbar.sigmas[+1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=xbar.sigmas[-1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=xbar.sigmas[+2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=xbar.sigmas[-2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
 #     cc.draw_rule(xbar, ax, *cc.points_one(xbar), '1')
 #     cc.draw_rule(xbar, ax, *cc.points_four(xbar), '4')
 #     cc.draw_rule(xbar, ax, *cc.points_two(xbar), '2')
@@ -154,14 +174,34 @@ def r_chart(df: pd.DataFrame) -> None:
     fig = plt.figure(figsize=(8, 6))
     r = cc.R(df)
     ax = r.ax(fig)
-    ax.axhline(y=r.sigmas[+1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=r.sigmas[-1], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=r.sigmas[+2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
-    ax.axhline(y=r.sigmas[-2], linestyle='--', dashes=(5, 5),
-               color=colour1, alpha=0.5)
+    ax.axhline(
+        y=r.sigmas[+1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=r.sigmas[-1],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=r.sigmas[+2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
+    ax.axhline(
+        y=r.sigmas[-2],
+        linestyle='--',
+        dashes=(5, 5),
+        color=colour1,
+        alpha=0.5
+    )
     cc.draw_rule(r, ax, *cc.points_one(r), '1')
     ax.set_title(
         label=r_chart_title,
