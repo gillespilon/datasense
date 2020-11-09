@@ -467,7 +467,6 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     >>> import datasense as ds
     >>> number_empty_cells_in_columns(df=df)
     """
-
     print('Information about non-empty columns')
     table = BeautifulTable(maxwidth=90)
     table.set_style(BeautifulTable.STYLE_COMPACT)
@@ -607,7 +606,6 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     >>>     columns_category_count, columns_timedelta_list,\
     >>>     columns_timedelta_count = ds.process_columns(df=df)
     """
-
     columns_empty_list = sorted({
         column_name for column_name in df.columns
         if df[column_name].isnull().all()
@@ -670,7 +668,6 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     >>> df, rows_in_count, rows_out_count, rows_empty_count =\
     >>>     ds.process_rows(df)
     """
-
     rows_in_count = df.shape[0]
     df = df.dropna(axis='rows', how='all')
     rows_out_count = df.shape[0]
@@ -963,7 +960,6 @@ def html_header(
     >>>     header_id=header_id
     >>> )
     """
-
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
     print('<head>')
@@ -988,7 +984,6 @@ def html_footer() -> None:
     """
     Creates an html footer.
     """
-
     # print('</pre>')
     print('</body>')
     print('</html>')
@@ -998,7 +993,6 @@ def page_break():
     """
     Create a page break for html output.
     """
-
     print('<p style="page-break-after:always">')
     print('<p style="page-break-before:always">')
 
