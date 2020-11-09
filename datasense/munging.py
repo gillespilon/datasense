@@ -598,6 +598,11 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     Delete empty rows
     Count number of non-empty rows (rows_out_count)
     Count number of empty rows (rows_empty_count)
+
+    Example
+    -------
+
+    >>> df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     """
 
     rows_in_count = df.shape[0]
