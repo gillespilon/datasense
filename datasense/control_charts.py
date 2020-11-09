@@ -260,14 +260,34 @@ class X(ControlChart):
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
             x = cc.X(df)  # default subgroup size = 2
-            ax.axhline(y=x.sigmas[+1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=x.sigmas[-1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=x.sigmas[+2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=x.sigmas[-2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(
+                y=x.sigmas[+1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=x.sigmas[-1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=x.sigmas[+2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=x.sigmas[-2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
             ax.set_title(
                 label=x_chart_title,
                 fontweight='bold'
@@ -283,9 +303,18 @@ class X(ControlChart):
         _despine(ax)
         ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=colour1)
-        ax.axhline(y=self.mean, color=colour3)
-        ax.axhline(y=self.ucl, color=colour1)
-        ax.axhline(y=self.lcl, color=colour1)
+        ax.axhline(
+            y=self.mean,
+            color=colour3
+        )
+        ax.axhline(
+            y=self.ucl,
+            color=colour1
+        )
+        ax.axhline(
+            y=self.lcl,
+            color=colour1
+        )
 
         return ax
 
@@ -375,9 +404,18 @@ class mR(ControlChart):
         ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=colour2)
         # TODO? ax.set_xlim(0, len(self._df.columns))
-        ax.axhline(y=self.mean, color=colour3)
-        ax.axhline(y=self.ucl, color=colour1)
-        ax.axhline(y=self.lcl, color=colour1)
+        ax.axhline(
+            y=self.mean,
+            color=colour3
+        )
+        ax.axhline(
+            y=self.ucl,
+            color=colour1
+        )
+        ax.axhline(
+            y=self.lcl,
+            color=colour1
+        )
 
         return ax
 
@@ -447,14 +485,34 @@ class Xbar(ControlChart):
             fig = plt.figure(figsize=(8, 6))
             xbar = cc.Xbar(df)
             ax = xbar.ax(fig)
-            ax.axhline(y=xbar.sigmas[+1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=xbar.sigmas[-1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=xbar.sigmas[+2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=xbar.sigmas[-2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(
+                y=xbar.sigmas[+1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=xbar.sigmas[-1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=xbar.sigmas[+2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=xbar.sigmas[-2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
             cc.draw_rules(xbar, ax)
             ax.set_title(
                 label=xbar_chart_title,
@@ -470,9 +528,18 @@ class Xbar(ControlChart):
         _despine(ax)
         ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=colour2)
-        ax.axhline(y=self.mean, color=colour3)
-        ax.axhline(y=self.ucl, color=colour1)
-        ax.axhline(y=self.lcl, color=colour1)
+        ax.axhline(
+            y=self.mean,
+            color=colour3
+        )
+        ax.axhline(
+            y=self.ucl,
+            color=colour1
+        )
+        ax.axhline(
+            y=self.lcl,
+            color=colour1
+        )
         return ax
 
     @cached_property
@@ -553,14 +620,34 @@ class R(ControlChart):
             fig = plt.figure(figsize=(8, 6))
             r = cc.R(df)
             ax = r.ax(fig)
-            ax.axhline(y=r.sigmas[+1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=r.sigmas[-1], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=r.sigmas[+2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
-            ax.axhline(y=r.sigmas[-2], linestyle='--', dashes=(5, 5),
-                       c=cm.Paired.colors[0], alpha=0.5)
+            ax.axhline(
+                y=r.sigmas[+1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=r.sigmas[-1],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=r.sigmas[+2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
+            ax.axhline(
+                y=r.sigmas[-2],
+                linestyle='--',
+                dashes=(5, 5),
+                c=cm.Paired.colors[0],
+                alpha=0.5
+            )
             cc.draw_rule(r, ax, *cc.points_one(r), '1')
             ax.set_title(
                 label=r_chart_title,
@@ -576,9 +663,18 @@ class R(ControlChart):
         _despine(ax)
         ax.plot(self.y.index, self.y,
                 marker='o', markersize=3, color=colour2)
-        ax.axhline(y=self.mean, color=colour3)
-        ax.axhline(y=self.ucl, color=colour1)
-        ax.axhline(y=self.lcl, color=colour1)
+        ax.axhline(
+            y=self.mean,
+            color=colour3
+        )
+        ax.axhline(
+            y=self.ucl,
+            color=colour1
+        )
+        ax.axhline(
+            y=self.lcl,
+            color=colour1
+        )
         return ax
 
     @cached_property
