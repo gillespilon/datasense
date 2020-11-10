@@ -65,13 +65,20 @@ def dataframe_info(
     Example 1
     ---------
     >>> import datasense as ds
+    >>> my_file = 'myfile.csv'
+    >>> df = ds.read_file(my_file)
     >>> df = ds.dataframe_info(
     >>>     df=df,
-    >>>     file_in='myfile.csv'
+    >>>     file_in=my_file
     >>> )
 
     Example 2
     ---------
+    >>> df = ds.create_dataframe()
+    >>> df = ds.dataframe_info(
+    >>>     df=df,
+    >>>     file_in='df'
+    >>> )
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
@@ -1401,7 +1408,7 @@ def create_dataframe() -> pd.DataFrame:
 
     Example
     -------
-    >>> df = create_datafrmae()
+    >>> df = create_dataframe()
     """
     df = pd.DataFrame(
         {
