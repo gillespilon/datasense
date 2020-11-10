@@ -228,22 +228,10 @@ def find_datetime_columns(df: pd.DataFrame) -> List[str]:
     Example
     -------
     >>> import datasense as ds
-    >>> import pandas as pd
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'b': ds.random_data(distribution='bool'),
-    >>>         'c': ds.random_data(distribution='categories'),
-    >>>         'd': ds.timedelta_data(),
-    >>>         's': ds.random_data(distribution='strings'),
-    >>>         't': ds.datetime_data(),
-    >>>         'x': ds.random_data(distribution='norm'),
-    >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform')
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> columns_datetime = ds.find_datetime_columns(df=df)
     >>> print(columns_datetime)
-    ['t']
+    ['t', 'u']
     """
     columns_datetime = list(df.select_dtypes(include=['datetime64']).columns)
     return columns_datetime
