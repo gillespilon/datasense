@@ -41,6 +41,11 @@ def main():
         df=df,
         file_in='df'
     )
+    print('test find_bool_columns')
+    print('test example')
+    df = ds.create_dataframe()
+    columns_bool = ds.find_bool_columns(df=df)
+    print(columns_bool)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
