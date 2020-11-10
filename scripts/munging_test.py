@@ -34,6 +34,13 @@ def main():
         df=df,
         file_in=my_file
     )
+    print('test dataframe_info')
+    print('test example 2')
+    df = ds.create_dataframe()
+    df = ds.dataframe_info(
+        df=df,
+        file_in='df'
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
