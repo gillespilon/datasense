@@ -55,6 +55,12 @@ def main():
     df = ds.create_dataframe()
     columns_category = ds.find_category_columns(df=df)
     print(columns_category)
+    print('--------------------------')
+    print('test find_datetime_columns')
+    print('test example')
+    df = ds.create_dataframe()
+    columns_datetime = ds.find_datetime_columns(df=df)
+    print(columns_datetime)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
