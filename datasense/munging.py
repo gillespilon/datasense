@@ -202,19 +202,7 @@ def find_category_columns(df: pd.DataFrame) -> List[str]:
     Example
     -------
     >>> import datasense as ds
-    >>> import pandas as pd
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'b': ds.random_data(distribution='bool'),
-    >>>         'c': ds.random_data(distribution='categories'),
-    >>>         'd': ds.timedelta_data(),
-    >>>         's': ds.random_data(distribution='strings'),
-    >>>         't': ds.datetime_data(),
-    >>>         'x': ds.random_data(distribution='norm'),
-    >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform')
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> columns_category = ds.find_category_columns(df=df)
     >>> print(columns_category)
     ['c']
