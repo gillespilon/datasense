@@ -50,6 +50,10 @@ def main():
     print(data.head())
     print(data.dtypes)
     print()
+    ds.dataframe_info(
+        df=data,
+        file_in=file_name
+    )
     # Example 2
     # Read a csv file. Ensure the dtypes of datetime columns.
     parse_dates = ['t', 'u']
@@ -65,6 +69,10 @@ def main():
     print('column dtypes')
     print(data.dtypes)
     print()
+    ds.dataframe_info(
+        df=data,
+        file_in=file_name
+    )
     # Example 3
     # Read a csv file. Ensure the dtypes of columns. Rename the columns.
     column_names_dict = {
@@ -117,6 +125,10 @@ def main():
     print()
     print('index', data.index.name, 'dtype:', data.index.dtype)
     print()
+    ds.dataframe_info(
+        df=data,
+        file_in=file_name
+    )
     # Example 4
     # Read an ods file.
     data = ds.read_file(
@@ -131,6 +143,10 @@ def main():
     print('column dtypes')
     print(data.dtypes)
     print()
+    ds.dataframe_info(
+        df=data,
+        file_in=file_name
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
