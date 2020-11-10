@@ -61,6 +61,12 @@ def main():
     df = ds.create_dataframe()
     columns_datetime = ds.find_datetime_columns(df=df)
     print(columns_datetime)
+    print('--------------------------')
+    print('test find_float_columns')
+    print('test example')
+    df = ds.create_dataframe()
+    columns_float = ds.find_float_columns(df=df)
+    print(columns_float)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
