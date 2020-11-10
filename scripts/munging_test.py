@@ -67,6 +67,11 @@ def main():
     df = ds.create_dataframe()
     columns_float = ds.find_float_columns(df=df)
     print(columns_float)
+    print('--------------------------')
+    print('test find_int_columns')
+    print('test example')
+    columns_int = ds.find_int_columns(df=df)
+    print(columns_int)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
