@@ -26,6 +26,7 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
+    print('--------------------------')
     print('test dataframe_info')
     print('test example 1')
     my_file = 'myfile.csv'
@@ -34,6 +35,7 @@ def main():
         df=df,
         file_in=my_file
     )
+    print('--------------------------')
     print('test dataframe_info')
     print('test example 2')
     df = ds.create_dataframe()
@@ -41,11 +43,18 @@ def main():
         df=df,
         file_in='df'
     )
+    print('--------------------------')
     print('test find_bool_columns')
     print('test example')
     df = ds.create_dataframe()
     columns_bool = ds.find_bool_columns(df=df)
     print(columns_bool)
+    print('--------------------------')
+    print('test find_category_columns')
+    print('test example')
+    df = ds.create_dataframe()
+    columns_category = ds.find_category_columns(df=df)
+    print(columns_category)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
