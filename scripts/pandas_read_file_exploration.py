@@ -28,11 +28,15 @@ def main():
     )
     help(ds.read_file)
     print()
-    df = create_dataframe()
+    df = ds.create_dataframe()
     print('Create dataframe')
     print(df.head())
     print(df.dtypes)
     print()
+    ds.dataframe_info(
+        df=df,
+        file_in=file_name
+    )
     help(ds.save_file)
     print()
     ds.save_file(
@@ -139,51 +143,6 @@ def main():
         original_stdout=original_stdout,
         output_url=output_url
     )
-
-
-def create_dataframe() -> pd.DataFrame:
-    """
-    Create a Pandas dataframe.
-
-    Returns
-    -------
-    df : pd.DataFrame
-        The output dataframe.
-
-    Example
-    -------
-    >>> df = create_datafrmae()
-    """
-    df = pd.DataFrame(
-        {
-            'a': ds.random_data(
-                distribution='uniform',
-                size=42,
-                loc=13,
-                scale=70
-            ),
-            'b': ds.random_data(distribution='bool'),
-            'c': ds.random_data(distribution='categories'),
-            'd': ds.timedelta_data(),
-            'i': ds.random_data(
-                distribution='uniform',
-                size=42,
-                loc=13,
-                scale=70
-            ),
-            'r': ds.random_data(
-                distribution='strings',
-                strings=['0', '1']
-            ),
-            's': ds.random_data(distribution='strings'),
-            't': ds.datetime_data(),
-            'u': ds.datetime_data(),
-            'x': ds.random_data(distribution='norm'),
-            'y': ds.random_data(distribution='randint'),
-            'z': ds.random_data(distribution='uniform')
-        }
-    )
-    return df
 
 
 def date_parser() -> Callable:
