@@ -254,22 +254,10 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
     Example
     -------
     >>> import datasense as ds
-    >>> import pandas as pd
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'b': ds.random_data(distribution='bool'),
-    >>>         'c': ds.random_data(distribution='categories'),
-    >>>         'd': ds.timedelta_data(),
-    >>>         's': ds.random_data(distribution='strings'),
-    >>>         't': ds.datetime_data(),
-    >>>         'x': ds.random_data(distribution='norm'),
-    >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform')
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> columns_float = ds.find_float_columns(df=df)
     >>> print(columns_float)
-    ['x', 'z']
+    ['a', 'i', 'x', 'z']
     """
     columns_float = list(df.select_dtypes(include=['float64']).columns)
     return columns_float
