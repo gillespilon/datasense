@@ -9,6 +9,7 @@ import webbrowser
 import textwrap
 import sys
 
+from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 import pandas as pd
@@ -59,13 +60,18 @@ def dataframe_info(
     df : pd.DataFrame
         The output dataframe.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
     >>> df = ds.dataframe_info(
     >>>     df=df,
     >>>     file_in='myfile.csv'
     >>> )
+
+    Example 2
+    ---------
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
@@ -1384,6 +1390,51 @@ def replace_text_text(
     return df
 
 
+def create_dataframe() -> pd.DataFrame:
+    """
+    Create a Pandas dataframe.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    -------
+    >>> df = create_datafrmae()
+    """
+    df = pd.DataFrame(
+        {
+            'a': random_data(
+                distribution='uniform',
+                size=42,
+                loc=13,
+                scale=70
+            ),
+            'b': random_data(distribution='bool'),
+            'c': random_data(distribution='categories'),
+            'd': timedelta_data(),
+            'i': random_data(
+                distribution='uniform',
+                size=42,
+                loc=13,
+                scale=70
+            ),
+            'r': random_data(
+                distribution='strings',
+                strings=['0', '1']
+            ),
+            's': random_data(distribution='strings'),
+            't': datetime_data(),
+            'u': datetime_data(),
+            'x': random_data(distribution='norm'),
+            'y': random_data(distribution='randint'),
+            'z': random_data(distribution='uniform')
+        }
+    )
+    return df
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1411,4 +1462,5 @@ __all__ = (
     'set_up_graphics_directory',
     'replace_text_numbers',
     'replace_text_text',
+    'create_dataframe',
 )
