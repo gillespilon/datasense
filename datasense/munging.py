@@ -527,6 +527,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     Example
     -------
     >>> import datasense as ds
+    >>> df = ds.create_dataframe()
     >>> df, columns_in_count, columns_non_empty_count, columns_empty_count,\
     >>>     columns_empty_list, columns_non_empty_list, columns_bool_list,\
     >>>     columns_bool_count, columns_float_list, columns_float_count,\
@@ -535,6 +536,26 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     >>>     columns_object_list, columns_object_count, columns_category_list,\
     >>>     columns_category_count, columns_timedelta_list,\
     >>>     columns_timedelta_count = ds.process_columns(df=df)
+    columns_in_count       : 12
+    columns_non_empty_count: 12
+    columns_empty_count    : 0
+    columns_empty_list     : []
+    columns_non_empty_list :
+        ['a', 'b', 'c', 'd', 'i', 'r', 's', 't', 'u', 'x', 'y', 'z']
+    columns_bool_list      : ['b']
+    columns_bool_count     : 1
+    columns_float_list     : ['a', 'i', 'x', 'z']
+    columns_float_count    : 4
+    columns_integer_list   : ['y']
+    columns_integer_count  : 1
+    columns_datetime_list  : ['t', 'u']
+    columns_datetime_count : 2
+    columns_object_list    : ['r', 's']
+    columns_object_count   : 2
+    columns_category_list  : ['c']
+    columns_category_count : 1
+    columns_timedelta_list : ['d']
+    columns_timedelta_count: 1
     """
     columns_empty_list = sorted({
         column_name for column_name in df.columns
