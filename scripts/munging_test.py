@@ -77,6 +77,11 @@ def main():
     print('test example')
     columns_int_float = ds.find_int_float_columns(df=df)
     print(columns_int_float)
+    print('--------------------------')
+    print('test find_object_columns')
+    print('test example')
+    columns_object = ds.find_object_columns(df=df)
+    print(columns_object)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
