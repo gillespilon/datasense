@@ -1115,24 +1115,13 @@ def byte_size(
     Example
     -------
     >>> import datasense as ds
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'b': ds.random_data(distribution='bool'),
-    >>>         'c': ds.random_data(distribution='categories'),
-    >>>         'd': ds.timedelta_data(),
-    >>>         's': ds.random_data(distribution='strings'),
-    >>>         't': ds.datetime_data(),
-    >>>         'x': ds.random_data(distribution='norm'),
-    >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform')
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> print(
     >>>     ds.byte_size(
     >>>         num=df.memory_usage(index=True).sum()
     >>>     )
     >>> )
-    1.8 KiB
+    3.6 KiB
     """
     for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
         if abs(num) < 1024.0:
