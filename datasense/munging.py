@@ -635,7 +635,7 @@ def save_file(
     file_name: str,
     *,
     index: Optional[bool] = False,
-    sheet_name: Optional[str] = False,
+    sheet_name: Optional[str] = 'sheet_001',
 ) -> None:
     """
     Save a DataFrame or Series to a file.
@@ -656,13 +656,7 @@ def save_file(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> import pandas as pd
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'x': ds.random_data(),
-    >>>         'y': ds.random_data()
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.csv'
