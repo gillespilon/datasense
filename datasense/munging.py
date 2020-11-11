@@ -749,8 +749,6 @@ def read_file(
         extra help.
     format : Optional[str] = None,
         The str to use for formatting date and time.
-    # date_time_columns : Optional[List[str]] = [],
-    #     The columns to change to dtype datetime.
     time_delta_columns : Optional[List[str]] = [],
         The columns to change to dtype timedelta.
     category_columns : Optional[List[str]] = []
@@ -795,6 +793,12 @@ def read_file(
     Example 3
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
+    >>> file_name = 'myfile.csv'
+    >>> df = ds.create_dataframe()
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name=file_name
+    >>> )
     >>> column_names_dict = {
     >>>     'a': 'A',
     >>>     'b': 'B',
@@ -810,14 +814,23 @@ def read_file(
     >>>     'z': 'Z'
     >>> }
     >>> index_columns = ['Y']
-    >>> date_parser = '%Y-%m-%d %H:%M:%S'
-    >>> date_time_columns = ['T', 'U']
+    >>> parse_dates = ['t', 'u']
     >>> time_delta_columns = ['D']
     >>> category_columns = ['C']
     >>> integer_columns = ['A', 'I']
     >>> float_columns = ['X']
     >>> boolean_columns = ['R']
     >>> object_columns = ['Z']
+    >>> df = ds.read_file(
+    >>>     file_name='myfile.csv',
+    >>>     column_names_dict=column_names_dict,
+    >>>     index_columns=index_columns,
+    >>>     date_parser=date_parser(),
+    >>>     parse_dates=parse_dates,
+    >>>     time_delta_columns=time_delta_columns,
+    >>>     category_columns=category_columns,
+    >>>     integer_columns=integer_columns
+    >>> )
     >>>
     >>>
     >>> def date_parser() -> Callable:
@@ -825,7 +838,7 @@ def read_file(
     >>>
     >>>
     >>> data = ds.read_file(
-    >>>     file_name='myfile.csv',
+    >>>     file_name=file_name,
     >>>     column_names_dict=column_names_dict,
     >>>     index_columns=index_columns,
     >>>     date_time_columns=date_time_columns,
@@ -858,11 +871,6 @@ def read_file(
             df = df.set_index(index_columns)
         for column in category_columns:
             df[column] = df[column].astype(CategoricalDtype())
-        # for column in date_time_columns:
-        #     df[column] = pd.to_datetime(
-        #         df[column],
-        #         format=date_parser
-        #     )
         for column in time_delta_columns:
             df[column] = pd.to_timedelta(df[column])
         for column in integer_columns:
@@ -889,11 +897,6 @@ def read_file(
             parse_dates=parse_dates,
             date_parser=date_parser
         )
-        # for column in date_time_columns:
-        #     df[column] = pd.to_datetime(
-        #         df[column],
-        #         format=format
-        #     )
     elif '.xlsx' in file_name:
         df = pd.read_excel(
             file_name,
