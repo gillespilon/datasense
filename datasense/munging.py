@@ -616,8 +616,12 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     Example
     -------
     >>> import datasense as ds
+    >>> df = ds.create_dataframe()
     >>> df, rows_in_count, rows_out_count, rows_empty_count =\
     >>>     ds.process_rows(df)
+    rows_in_count   : 42
+    rows_out_count  : 42
+    rows_empty_count: 0
     """
     rows_in_count = df.shape[0]
     df = df.dropna(axis='rows', how='all')
