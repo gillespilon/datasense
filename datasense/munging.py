@@ -635,6 +635,7 @@ def save_file(
     file_name: str,
     *,
     index: Optional[bool] = False,
+    index_label: Optional[str] = None,
     sheet_name: Optional[str] = 'sheet_001',
 ) -> None:
     """
@@ -676,11 +677,21 @@ def save_file(
     >>>     df=df,
     >>>     file_name='x_y.xlsx'
     >>> )
+
+    Example 4
+    ---------
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name='x_y.xlsx',
+    >>>     index=True,
+    >>>     sheet_name='sheet_one'
+    >>> )
     """
     if '.csv' in file_name:
         df.to_csv(
             path_or_buf=file_name,
-            index=index
+            index=index,
+            index_label=index_label
         )
     elif 'xlsx' in file_name:
         excel_writer = pd.ExcelWriter(file_name)
@@ -688,7 +699,8 @@ def save_file(
             excel_writer=excel_writer,
             sheet_name=sheet_name,
             engine='openpyxl',
-            index=False
+            index=index,
+            index_label=index_label
         )
         excel_writer.save()
 
