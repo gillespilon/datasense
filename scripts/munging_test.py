@@ -82,6 +82,11 @@ def main():
     print('test example')
     columns_object = ds.find_object_columns(df=df)
     print(columns_object)
+    print('--------------------------')
+    print('test find_timedelta_columns')
+    print('test example')
+    columns_timedelta = ds.find_timedelta_columns(df=df)
+    print(columns_timedelta)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
