@@ -142,12 +142,21 @@ def main():
     print('rows_out_count  :', rows_out_count)
     print('rows_empty_count:', rows_empty_count)
     print('--------------------------')
-    print('test save_file')
+    print('test save_file example 1')
     print('test example')
     df = ds.create_dataframe()
     ds.save_file(
         df=df,
         file_name='x_y.csv'
+    )
+    print('--------------------------')
+    print('test save_file example 2')
+    print('test example')
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name='x_y.csv',
+        index=True
     )
     stop_time = time.time()
     ds.page_break()
