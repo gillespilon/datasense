@@ -11,7 +11,7 @@ import datasense as ds
 import pandas as pd
 import numpy as np
 
-output_url = 'test munging.html'
+output_url = 'test_munging.html'
 header_title = 'test_munging'
 header_id = 'test-munging'
 file_name = 'test_munging.csv'
@@ -156,7 +156,26 @@ def main():
     ds.save_file(
         df=df,
         file_name='x_y.csv',
-        index=True
+        index=True,
+        index_label='myindex'
+    )
+    print('--------------------------')
+    print('test save_file example 3')
+    print('test example')
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name='x_y.xlsx'
+    )
+    print('--------------------------')
+    print('test save_file example 4')
+    print('test example')
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name='x_y.xlsx',
+        index=True,
+        index_label='myindex'
     )
     stop_time = time.time()
     ds.page_break()
