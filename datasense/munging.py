@@ -334,22 +334,10 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     Example
     -------
     >>> import datasense as ds
-    >>> import pandas as pd
-    >>> df = pd.DataFrame(
-    >>>     {
-    >>>         'b': ds.random_data(distribution='bool'),
-    >>>         'c': ds.random_data(distribution='categories'),
-    >>>         'd': ds.timedelta_data(),
-    >>>         's': ds.random_data(distribution='strings'),
-    >>>         't': ds.datetime_data(),
-    >>>         'x': ds.random_data(distribution='norm'),
-    >>>         'y': ds.random_data(distribution='randint'),
-    >>>         'z': ds.random_data(distribution='uniform')
-    >>>     }
-    >>> )
+    >>> df = ds.create_dataframe()
     >>> columns_object = ds.find_object_columns(df=df)
     >>> print(columns_object)
-    ['s']
+    ['r', 's']
     """
     columns_object = list(df.select_dtypes(include=['object']).columns)
     return columns_object
