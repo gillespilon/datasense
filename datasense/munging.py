@@ -669,6 +669,13 @@ def save_file(
     >>>     file_name='x_y.csv',
     >>>     index=True
     >>> )
+
+    Example 3
+    ---------
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name='x_y.xlsx'
+    >>> )
     """
     if '.csv' in file_name:
         df.to_csv(
