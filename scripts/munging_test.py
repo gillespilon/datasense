@@ -98,6 +98,37 @@ def main():
     })
     empty_cells = ds.number_empty_cells_in_columns(df=df)
     print(empty_cells)
+    print('--------------------------')
+    print('test process_columns')
+    print('test example')
+    df = ds.create_dataframe()
+    df, columns_in_count, columns_non_empty_count, columns_empty_count,\
+        columns_empty_list, columns_non_empty_list, columns_bool_list,\
+        columns_bool_count, columns_float_list, columns_float_count,\
+        columns_integer_list, columns_integer_count,\
+        columns_datetime_list, columns_datetime_count,\
+        columns_object_list, columns_object_count, columns_category_list,\
+        columns_category_count, columns_timedelta_list,\
+        columns_timedelta_count = ds.process_columns(df=df)
+    print('columns_in_count       :', columns_in_count)
+    print('columns_non_empty_count:', columns_non_empty_count)
+    print('columns_empty_count    :', columns_empty_count)
+    print('columns_empty_list     :', columns_empty_list)
+    print('columns_non_empty_list :', columns_non_empty_list)
+    print('columns_bool_list      :', columns_bool_list)
+    print('columns_bool_count     :', columns_bool_count)
+    print('columns_float_list     :', columns_float_list)
+    print('columns_float_count    :', columns_float_count)
+    print('columns_integer_list   :', columns_integer_list)
+    print('columns_integer_count  :', columns_integer_count)
+    print('columns_datetime_list  :', columns_datetime_list)
+    print('columns_datetime_count :', columns_datetime_count)
+    print('columns_object_list    :', columns_object_list)
+    print('columns_object_count   :', columns_object_count)
+    print('columns_category_list  :', columns_category_list)
+    print('columns_category_count :', columns_category_count)
+    print('columns_timedelta_list :', columns_timedelta_list)
+    print('columns_timedelta_count:', columns_timedelta_count)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
