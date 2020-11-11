@@ -177,6 +177,15 @@ def main():
         index=True,
         index_label='myindex'
     )
+    print('--------------------------')
+    print('test byte_size')
+    print('test example')
+    df = ds.create_dataframe()
+    print(
+        ds.byte_size(
+            num=df.memory_usage(index=True).sum()
+        )
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
