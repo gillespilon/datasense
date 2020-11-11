@@ -141,6 +141,14 @@ def main():
     print('rows_in_count   :', rows_in_count)
     print('rows_out_count  :', rows_out_count)
     print('rows_empty_count:', rows_empty_count)
+    print('--------------------------')
+    print('test save_file')
+    print('test example')
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name='x_y.csv'
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
