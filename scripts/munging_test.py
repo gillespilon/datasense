@@ -216,7 +216,53 @@ def main():
     )
     ds.dataframe_info(
         df=df,
-        file_in=my_file)
+        file_in=my_file
+    )
+    print('--------------------------')
+    print('test read_file')
+    print('test example 3')
+    file_name = 'myfile.csv'
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name=file_name
+    )
+    column_names_dict = {
+        'a': 'A',
+        'b': 'B',
+        'c': 'C',
+        'd': 'D',
+        'i': 'I',
+        'r': 'R',
+        's': 'S',
+        't': 'T',
+        'u': 'U',
+        'y': 'Y',
+        'x': 'X',
+        'z': 'Z'
+    }
+    index_columns = ['Y']
+    parse_dates = ['t', 'u']
+    time_delta_columns = ['D']
+    category_columns = ['C']
+    integer_columns = ['A', 'I']
+    float_columns = ['X']
+    boolean_columns = ['R']
+    object_columns = ['Z']
+    df = ds.read_file(
+        file_name=file_name,
+        column_names_dict=column_names_dict,
+        index_columns=index_columns,
+        date_parser=date_parser(),
+        parse_dates=parse_dates,
+        time_delta_columns=time_delta_columns,
+        category_columns=category_columns,
+        integer_columns=integer_columns
+    )
+    ds.dataframe_info(
+        df=df,
+        file_in=my_file
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
