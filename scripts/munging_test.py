@@ -186,6 +186,19 @@ def main():
             num=df.memory_usage(index=True).sum()
         )
     )
+    print('--------------------------')
+    print('test read_file')
+    print('test example 1')
+    my_file = 'myfile.csv'
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name=my_file
+    )
+    df = ds.read_file(file_name=my_file)
+    ds.dataframe_info(
+        df=df,
+        file_in=my_file)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
