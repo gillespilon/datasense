@@ -9,6 +9,7 @@ import time
 
 import datasense as ds
 import pandas as pd
+import numpy as np
 
 output_url = 'test munging.html'
 header_title = 'test_munging'
@@ -87,6 +88,16 @@ def main():
     print('test example')
     columns_timedelta = ds.find_timedelta_columns(df=df)
     print(columns_timedelta)
+    print('--------------------------')
+    print('test number_empty_cells_in_columns')
+    print('test example')
+    df = pd.DataFrame({
+        'X': [25.0, 24.0, 35.5, np.nan, 23.1],
+        'Y': [27, 24, np.nan, 23, np.nan],
+        'Z': ['a', 'b', np.nan, 'd', 'e']
+    })
+    empty_cells = ds.number_empty_cells_in_columns(df=df)
+    print(empty_cells)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
