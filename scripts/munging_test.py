@@ -261,7 +261,25 @@ def main():
     )
     ds.dataframe_info(
         df=df,
-        file_in=my_file
+        file_in=file_name
+    )
+    print('--------------------------')
+    print('test read_file')
+    print('test example 4')
+    file_name = 'myfile.ods'
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name=file_name
+    )
+    parse_dates = ['t', 'u']
+    df = ds.read_file(
+        file_name=file_name,
+        parse_dates=parse_dates
+    )
+    ds.dataframe_info(
+        df=df,
+        file_in=file_name
     )
     stop_time = time.time()
     ds.page_break()
