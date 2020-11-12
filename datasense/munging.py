@@ -693,6 +693,16 @@ def save_file(
             index=index,
             index_label=index_label
         )
+    elif 'ods' in file_name:
+        excel_writer = pd.ExcelWriter(file_name)
+        df.to_excel(
+            excel_writer=excel_writer,
+            sheet_name=sheet_name,
+            engine='odf',
+            index=index,
+            index_label=index_label
+        )
+        excel_writer.save()
     elif 'xlsx' in file_name:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
