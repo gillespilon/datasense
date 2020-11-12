@@ -861,9 +861,20 @@ def read_file(
 
     Example 4
     Read an ods file.
-    >>> data_ods = ds.read_file(
-    >>>     file_name='my_ods_file.ods',
-    >>>     parse_dates=['T', 'U']
+    >>> file_name = 'myfile.ods'
+    >>> df = ds.create_dataframe()
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name=file_name
+    >>> )
+    >>> parse_dates = ['t', 'u']
+    >>> df = ds.read_file(
+    >>>     file_name=file_name,
+    >>>     parse_dates=parse_dates
+    >>> )
+    >>> ds.dataframe_info(
+    >>>     df=df,
+    >>>     file_in=file_name
     >>> )
     """
     if '.csv' in file_name:
