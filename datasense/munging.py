@@ -885,6 +885,10 @@ def read_file(
     >>>     file_name=file_name,
     >>>     sheet_name=sheet_name
     >>> )
+    >>> ds.dataframe_info(
+    >>>     df=df,
+    >>>     file_in=file_name
+    >>> )
     """
     if '.csv' in file_name:
         df = pd.read_csv(
