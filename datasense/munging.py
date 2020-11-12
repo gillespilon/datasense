@@ -876,6 +876,15 @@ def read_file(
     >>>     df=df,
     >>>     file_in=file_name
     >>> )
+
+    Example 5
+    >>> Read an xlsx file.
+    >>> file_name = 'mfile.xlsx'
+    >>> sheet_name = 'raw_data'
+    >>> df = ds.read_file(
+    >>>     file_name=file_name,
+    >>>     sheet_name=sheet_name
+    >>> )
     """
     if '.csv' in file_name:
         df = pd.read_csv(
