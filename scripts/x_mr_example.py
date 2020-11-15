@@ -19,9 +19,18 @@ mr_chart_title = 'Moving Range Control Chart'
 mr_chart_ylabel = 'Measurement mR (units)'
 mr_chart_xlabel = 'Sample'
 colour1 = '#33bbee'
+figsize = (8, 6)
+output_url = 'x_mr_example.html'
+header_title = 'x_mr_example'
+header_id = 'x-mr-example'
 
 
 def main():
+    original_stdout = ds.html_begin(
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
+    )
     data = create_data()  # use the data in this notebook
 #     data = ds.read_file(
 #         file_name=f'{data_file}.csv',
@@ -39,6 +48,10 @@ def main():
     mr_chart(df=data)
 #     help(cc.X)
 #     help(cc.mR)
+    ds.html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
 
 
 def create_data() -> pd.DataFrame:
@@ -115,6 +128,7 @@ def x_chart(df: pd.DataFrame) -> None:
        f'LCL        : {x.lcl}\n'
        f'Sigma(Xbar): {x.sigma}\n'
     )
+    ds.html_figure(file_name=f'{data_file}_x.svg')
 
 
 def mr_chart(df: pd.DataFrame) -> None:
@@ -135,6 +149,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(ylabel=mr_chart_ylabel)
     ax.set_xlabel(xlabel=mr_chart_xlabel)
     fig.savefig(fname=f'{data_file}_mr.svg')
+    ds.html_figure(file_name=f'{data_file}_x.svg')
 
 
 if __name__ == '__main__':
