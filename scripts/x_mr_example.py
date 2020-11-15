@@ -22,9 +22,9 @@ colour1 = '#33bbee'
 
 def main():
     data = create_data()  # use the data in this notebook
-#     data = read_csv(f'{data_file}.csv')  # read a csv file
-#     data = read_xlsx(f'{data_file}.xlsx')  # read an xlsx file
-#     data = read_ods(f'{data_file}.ods')  # read an ods file
+#     data = ds.read_file(file_name=f'{data_file}.csv')  # read a csv file
+#     data = ds.read_file(file_name=f'{data_file}.xlsx')  # read an xlsx file
+#     data = ds.read_file(file_name=f'{data_file}.ods')  # read an ods file
     x_chart(data)
     mr_chart(data)
 #     help(cc.X)
@@ -36,22 +36,19 @@ def create_data() -> pd.DataFrame:
     Creates a dataframe.
     This function is for demonstration purposes.
     '''
+    # df = {
+    #     'Sample':  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    #     'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
+    #                 10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
+    # }
+    # df = pd.DataFrame(df)
+    # df = df.set_index('Sample')
     df = {
-        'Sample':  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
         'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
                     10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
     }
     df = pd.DataFrame(df)
-    df = df.set_index('Sample')
-    return df
-
-
-def read_csv(file_name: str) -> pd.DataFrame:
-    '''
-    Creates a dataframe.
-    This function reads a csv file.
-    '''
-    df = pd.read_csv(file_name, index_col='Sample')
+    # df = df.set_index('Sample')
     return df
 
 
