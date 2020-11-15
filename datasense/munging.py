@@ -899,29 +899,6 @@ def read_file(
             date_parser=date_parser,
             nrows=nrows
         )
-        if column_names_dict:
-            df = df.rename(columns=column_names_dict)
-        if index_columns:
-            df = df.set_index(index_columns)
-        for column in category_columns:
-            df[column] = df[column].astype(CategoricalDtype())
-        for column in time_delta_columns:
-            df[column] = pd.to_timedelta(df[column])
-        for column in integer_columns:
-            df[column] = df[column].astype('int64')
-        for column in float_columns:
-            df[column] = df[column].astype('float64')
-        for column in boolean_columns:
-            df[column] = df[column].astype('bool')
-        for column in object_columns:
-            df[column] = df[column].astype('object')
-        if sort_columns and sort_columns_bool:
-            df = df.sort_values(
-                by=sort_columns,
-                axis='index',
-                ascending=sort_columns_bool,
-                kind='mergesort'
-            )
     elif '.ods' in file_name:
         df = pd.read_excel(
             file_name,
@@ -939,6 +916,29 @@ def read_file(
             sheet_name=sheet_name,
             parse_dates=parse_dates,
             date_parser=date_parser
+        )
+    if column_names_dict:
+        df = df.rename(columns=column_names_dict)
+    if index_columns:
+        df = df.set_index(index_columns)
+    for column in category_columns:
+        df[column] = df[column].astype(CategoricalDtype())
+    for column in time_delta_columns:
+        df[column] = pd.to_timedelta(df[column])
+    for column in integer_columns:
+        df[column] = df[column].astype('int64')
+    for column in float_columns:
+        df[column] = df[column].astype('float64')
+    for column in boolean_columns:
+        df[column] = df[column].astype('bool')
+    for column in object_columns:
+        df[column] = df[column].astype('object')
+    if sort_columns and sort_columns_bool:
+        df = df.sort_values(
+            by=sort_columns,
+            axis='index',
+            ascending=sort_columns_bool,
+            kind='mergesort'
         )
     return df
 
