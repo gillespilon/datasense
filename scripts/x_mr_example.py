@@ -69,7 +69,7 @@ def x_chart(df: pd.DataFrame) -> None:
     Saves the figure in svg format.
     '''
     fig = plt.figure(figsize=(8, 6))
-    x = cc.X(df)
+    x = cc.X(data=df)
     ax = x.ax(fig)
     ax.axhline(
         y=x.sigmas[+1],
