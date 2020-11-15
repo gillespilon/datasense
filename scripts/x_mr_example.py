@@ -149,7 +149,15 @@ def mr_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(ylabel=mr_chart_ylabel)
     ax.set_xlabel(xlabel=mr_chart_xlabel)
     fig.savefig(fname=f'{data_file}_mr.svg')
-    ds.html_figure(file_name=f'{data_file}_x.svg')
+    print(
+       f'mR Report\n'
+       f'============\n'
+       f'UCL        : {mr.ucl}\n'
+       f'Xbarbar    : {mr.mean}\n'
+       f'LCL        : {mr.lcl}\n'
+       f'Sigma(Xbar): {mr.sigma}\n'
+    )
+    ds.html_figure(file_name=f'{data_file}_mr.svg')
 
 
 if __name__ == '__main__':
