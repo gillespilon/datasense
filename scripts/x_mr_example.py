@@ -27,14 +27,14 @@ def main():
 #         file_name=f'{data_file}.csv',
 #         index_columns=['Sample']
 #     )
-    data = ds.read_file(
-        file_name=f'{data_file}.xlsx',
-        index_columns=['Sample']
-    )
 #     data = ds.read_file(
-#         file_name=f'{data_file}.ods',
+#         file_name=f'{data_file}.xlsx',
 #         index_columns=['Sample']
 #     )
+    data = ds.read_file(
+        file_name=f'{data_file}.ods',
+        index_columns=['Sample']
+    )
     x_chart(df=data)
     mr_chart(df=data)
 #     help(cc.X)
