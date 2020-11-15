@@ -8,6 +8,7 @@ time -f '%e' ./x_mr_example.py
 
 from datasense import control_charts as cc
 import matplotlib.pyplot as plt
+import datasense as ds
 import pandas as pd
 
 data_file = 'x_mr_example'
@@ -21,11 +22,11 @@ colour1 = '#33bbee'
 
 
 def main():
-    data = create_data()  # use the data in this notebook
-#     data = ds.read_file(
-#         file_name=f'{data_file}.csv',
-#         index_columns=['Sample']
-#     )
+#     data = create_data()  # use the data in this notebook
+    data = ds.read_file(
+        file_name=f'{data_file}.csv',
+        index_columns=['Sample']
+    )
 #     data = ds.read_file(
 #         file_name=f'{data_file}.xlsx',
 #         index_columns=['Sample']
