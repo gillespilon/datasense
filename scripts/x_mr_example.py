@@ -129,7 +129,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     Saves the figure in svg format.
     '''
     fig = plt.figure(figsize=(8, 6))
-    mr = cc.mR(df)
+    mr = cc.mR(data=df)
     ax = mr.ax(fig)
     cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
     ax.set_title(
