@@ -23,20 +23,20 @@ colour1 = '#33bbee'
 
 def main():
 #     data = create_data()  # use the data in this notebook
-    data = ds.read_file(
-        file_name=f'{data_file}.csv',
-        index_columns=['Sample']
-    )
 #     data = ds.read_file(
-#         file_name=f'{data_file}.xlsx',
+#         file_name=f'{data_file}.csv',
 #         index_columns=['Sample']
 #     )
+    data = ds.read_file(
+        file_name=f'{data_file}.xlsx',
+        index_columns=['Sample']
+    )
 #     data = ds.read_file(
 #         file_name=f'{data_file}.ods',
 #         index_columns=['Sample']
 #     )
-    x_chart(data)
-    mr_chart(data)
+    x_chart(df=data)
+    mr_chart(df=data)
 #     help(cc.X)
 #     help(cc.mR)
 
