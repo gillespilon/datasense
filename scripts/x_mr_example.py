@@ -99,10 +99,6 @@ def x_chart(df: pd.DataFrame) -> None:
         color=colour1,
         alpha=0.5
     )
-#     cc.draw_rule(x, ax, *cc.points_one(x), '1')
-#     cc.draw_rule(x, ax, *cc.points_four(x), '4')
-#     cc.draw_rule(x, ax, *cc.points_two(x), '2')
-#     cc.draw_rule(x, ax, *cc.points_three(x), '3')
     cc.draw_rules(x, ax)
     ax.set_title(
         label=x_chart_title,
