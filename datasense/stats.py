@@ -341,8 +341,8 @@ def random_data(
     >>> series = ds.random_data(
     >>>     distribution='norm',
     >>>     size=113,
-    >>>     loc=53,
-    >>>     scale=11
+    >>>     loc=69,
+    >>>     scale=13
     >>> )
 
     Example 3
