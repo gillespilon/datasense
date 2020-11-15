@@ -52,24 +52,6 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def read_xlsx(file_name: str) -> pd.DataFrame:
-    '''
-    Creates a dataframe.
-    This function reads an xlsx file.
-    '''
-    df = pd.read_excel(file_name, index_col='Sample')
-    return df
-
-
-def read_ods(file_name: str) -> pd.DataFrame:
-    '''
-    Creates a dataframe.
-    This function reads an ods file.
-    '''
-    df = pd.read_excel(file_name, index_col='Sample', engine='odf')
-    return df
-
-
 def x_chart(df: pd.DataFrame) -> None:
     '''
     Creates an X control chart.
