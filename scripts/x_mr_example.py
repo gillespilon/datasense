@@ -44,7 +44,9 @@ def main():
 #         file_name=f'{data_file}.ods',
 #         index_columns=['Sample']
 #     )
+    ds.page_break()
     x_chart(df=data)
+    ds.page_break()
     mr_chart(df=data)
 #     help(cc.X)
 #     help(cc.mR)
