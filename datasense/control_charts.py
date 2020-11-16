@@ -493,10 +493,10 @@ class mR(ControlChart):
         ax.axhline(
             y=self.lcl,
             color=colour1
+        )
 
         return ax
 
-        )
 
 class Xbar(ControlChart):
     '''
