@@ -20,7 +20,7 @@ x_chart_xlabel = 'Sample'
 mr_chart_title = 'Moving Range Control Chart'
 mr_chart_ylabel = 'Measurement mR (units)'
 mr_chart_xlabel = 'Sample'
-colour1 = '#33bbee'
+colour = '#33bbee'
 figsize = (8, 6)
 output_url = 'x_mr_example.html'
 header_title = 'x_mr_example'
@@ -54,6 +54,7 @@ def main():
 #     help(cc.X)
 #     help(cc.mR)
     stop_time = time.time()
+    ds.page_break()
     ds.report_summary(
         start_time=start_time,
         stop_time=stop_time
@@ -98,28 +99,28 @@ def x_chart(df: pd.DataFrame) -> None:
         y=x.sigmas[+1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=x.sigmas[-1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=x.sigmas[+2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=x.sigmas[-2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     cc.draw_rules(x, ax)
