@@ -1,10 +1,12 @@
 #! /usr/bin/env python3
 '''
-Test X() of control_charts.py
+Test X and mR of control_charts.py
 
 time -f '%e' ./control_charts.py
 ./control_charts.py
 '''
+
+import time
 
 from datasense import control_charts as cc
 import matplotlib.pyplot as plt
@@ -16,10 +18,11 @@ header_title = 'plot_x_mr_test'
 header_id = 'plot-x-mr-test'
 graph_x_file_name = 'plot_x_test.svg'
 graph_mr_file_name = 'plot_mr_test.svg'
+figsize = (8, 6)
 
 
 def main():
-    figsize = (8, 6)
+    start_time = time.time()
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
@@ -38,13 +41,26 @@ def main():
     print(data.describe())
     print('dtype:', type(data).__name__)
     print(data.head())
-    # Create x control chart
+    # Create X control chart
     fig = plt.figure(figsize=figsize)
     x = cc.X(data=data)
     print('class:', type(x).__name__)
     ax = x.ax(fig)
     fig.savefig(fname=graph_x_file_name)
     ds.html_figure(file_name=graph_x_file_name)
+    # Create mr chart
+    fig = plt.figure(figsize=figsize)
+    mr = cc.mR(data=data)
+    print('class:', type(x).__name__)
+    ax = mr.ax(fig)
+    fig.savefig(fname=graph_mr_file_name)
+    ds.html_figure(file_name=graph_mr_file_name)
+    stop_time = time.time()
+    ds.page_break()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time
+    )
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
