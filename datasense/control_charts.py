@@ -259,33 +259,34 @@ class X(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            colour='33bbee'
             x = cc.X(df)  # default subgroup size = 2
             ax.axhline(
                 y=x.sigmas[+1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=x.sigmas[-1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=x.sigmas[+2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=x.sigmas[-2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.set_title(
@@ -387,6 +388,7 @@ class mR(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            colour='33bbee'
             mr = cc.mR(df)  # default subgroup size = 2
             cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
             ax.set_title(
@@ -482,6 +484,7 @@ class Xbar(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            colour='33bbee'
             fig = plt.figure(figsize=(8, 6))
             xbar = cc.Xbar(df)
             ax = xbar.ax(fig)
@@ -489,28 +492,28 @@ class Xbar(ControlChart):
                 y=xbar.sigmas[+1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=xbar.sigmas[-1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=xbar.sigmas[+2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=xbar.sigmas[-2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             cc.draw_rules(xbar, ax)
@@ -617,6 +620,7 @@ class R(ControlChart):
 
             import matplotlib.pyplot as plt
             from datasense import control_charts as cc
+            colour='33bbee'
             fig = plt.figure(figsize=(8, 6))
             r = cc.R(df)
             ax = r.ax(fig)
@@ -624,28 +628,28 @@ class R(ControlChart):
                 y=r.sigmas[+1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=r.sigmas[-1],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=r.sigmas[+2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             ax.axhline(
                 y=r.sigmas[-2],
                 linestyle='--',
                 dashes=(5, 5),
-                c=cm.Paired.colors[0],
+                color=colour,
                 alpha=0.5
             )
             cc.draw_rule(r, ax, *cc.points_one(r), '1')
