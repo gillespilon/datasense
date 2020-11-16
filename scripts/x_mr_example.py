@@ -92,7 +92,7 @@ def x_chart(df: pd.DataFrame) -> None:
     Adds chart and axis titles.
     Saves the figure in svg format.
     '''
-    fig = plt.figure(figsize=(8, 6))
+    fig = plt.figure(figsize=figsize)
     x = cc.X(data=df)
     ax = x.ax(fig)
     ax.axhline(
@@ -149,7 +149,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     Adds chart and axis titles.
     Saves the figure in svg format.
     '''
-    fig = plt.figure(figsize=(8, 6))
+    fig = plt.figure(figsize=figsize)
     mr = cc.mR(data=df)
     ax = mr.ax(fig)
     cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
