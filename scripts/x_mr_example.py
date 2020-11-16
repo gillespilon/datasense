@@ -6,6 +6,8 @@ time -f '%e' ./x_mr_example.py
 ./x_mr_example.py
 """
 
+import time
+
 from datasense import control_charts as cc
 import matplotlib.pyplot as plt
 import datasense as ds
@@ -26,6 +28,7 @@ header_id = 'x-mr-example'
 
 
 def main():
+    start_time = time.time()
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
@@ -50,6 +53,11 @@ def main():
     mr_chart(df=data)
 #     help(cc.X)
 #     help(cc.mR)
+    stop_time = time.time()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time
+    )
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
