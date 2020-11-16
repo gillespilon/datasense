@@ -257,46 +257,85 @@ class X(ControlChart):
         Plots individual values of the column of the dataframe (y axis) versus
         the index of the dataframe (x axis)
 
-            import matplotlib.pyplot as plt
-            from datasense import control_charts as cc
-            colour='33bbee'
-            x = cc.X(df)  # default subgroup size = 2
-            ax.axhline(
-                y=x.sigmas[+1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=x.sigmas[-1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=x.sigmas[+2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=x.sigmas[-2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.set_title(
-                label=x_chart_title,
-                fontweight='bold'
-            )
-            ax.set_ylabel(ylabel=x_chart_ylabel)
-            ax.set_xlabel(xlabel=x_chart_xlabel)
-            fig.savefig('<yourfile>_x.svg')
-            cc.draw_rules(x, ax)
+        Examples
+        --------
+        Example 1, minimal X control chart
+        ----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_x.svg'
+        >>> data = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=42,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data=data,
+        >>>     columns=['X']
+        >>> )
+        >>> fig = plt.figure(figsize=figsize)
+        >>> x = cc.X(data=data)
+        >>> ax = x.ax(fig)
+        >>> fig.savefig(fname=graph_name)
+
+        Example 2, complete X control chart
+        -----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_x.svg'
+        >>> colour='33bbee'
+        >>> data = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=42,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data=data,
+        >>>     columns=['X']
+        >>> )
+        >>> fig = plt.figure(figsize=figsize)
+        >>> x = cc.X(data=data)
+        >>> ax = x.ax(fig)
+        >>> ax.axhline(
+        >>>     y=x.sigmas[+1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=x.sigmas[-1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=x.sigmas[+2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=x.sigmas[-2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> cc.draw_rules(x, ax)
+        >>> ax.set_title(
+        >>>     label=x_chart_title,
+        >>>     fontweight='bold'
+        >>> )
+        >>> ax.set_ylabel(ylabel=x_chart_ylabel)
+        >>> ax.set_xlabel(xlabel=x_chart_xlabel)
+        >>> fig.savefig(fname=graph_name)
         '''
         if fig is None:
             fig = plt.figure()
@@ -386,18 +425,55 @@ class mR(ControlChart):
         Plots calculated moving ranges (y axis) versus
         the index of the dataframe (x axis)
 
-            import matplotlib.pyplot as plt
-            from datasense import control_charts as cc
-            colour='33bbee'
-            mr = cc.mR(df)  # default subgroup size = 2
-            cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
-            ax.set_title(
-                label=mr_chart_title,
-                fontweight='bold'
-            )
-            ax.set_ylabel(ylabel=mr_chart_ylabel)
-            ax.set_xlabel(xlabel=mr_chart_xlabel)
-            fig.savefig('<yourfile>_mr.svg')
+        Examples
+        --------
+        Example 1, minimal mR control chart
+        ----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_mr.svg'
+        >>> data = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=42,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data=data,
+        >>>     columns=['X']
+        >>> )
+        >>> fig = plt.figure(figsize=figsize)
+        >>> mr = cc.mR(data=data)
+        >>> ax = mr.ax(fig)
+        >>> fig.savefig(fname=graph_name)
+
+        Example 2, complete mR control chart
+        -----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_mr.svg'
+        >>> data = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=42,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data=data,
+        >>>     columns=['X']
+        >>> )
+        >>> mr = cc.mR(data=data)
+        >>> ax = mr.ax(fig)
+        >>> cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
+        >>> ax.set_title(
+        >>>     label=mr_chart_title,
+        >>>     fontweight='bold'
+        >>> )
+        >>> ax.set_ylabel(ylabel=mr_chart_ylabel)
+        >>> ax.set_xlabel(xlabel=mr_chart_xlabel)
+        >>> fig.savefig(fname=graph_name)
         '''
         if fig is None:
             fig = plt.figure()
@@ -417,10 +493,10 @@ class mR(ControlChart):
         ax.axhline(
             y=self.lcl,
             color=colour1
-        )
 
         return ax
 
+        )
 
 class Xbar(ControlChart):
     '''
