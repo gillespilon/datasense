@@ -38,23 +38,38 @@ def main():
         data=data,
         columns=['X']
     )
-    print(data.describe())
-    print('dtype:', type(data).__name__)
-    print(data.head())
+    # print('dtype:', type(data).__name__)
+    # print(data.head())
     # Create X control chart
     fig = plt.figure(figsize=figsize)
     x = cc.X(data=data)
-    print('class:', type(x).__name__)
+    # print('class:', type(x).__name__)
     ax = x.ax(fig)
     fig.savefig(fname=graph_x_file_name)
     ds.html_figure(file_name=graph_x_file_name)
+    print(
+       f'X Report\n'
+       f'============\n'
+       f'UCL        : {x.ucl}\n'
+       f'Xbarbar    : {x.mean}\n'
+       f'LCL        : {x.lcl}\n'
+       f'Sigma(Xbar): {x.sigma}\n'
+    )
     # Create mr chart
     fig = plt.figure(figsize=figsize)
     mr = cc.mR(data=data)
-    print('class:', type(x).__name__)
+    # print('class:', type(x).__name__)
     ax = mr.ax(fig)
     fig.savefig(fname=graph_mr_file_name)
     ds.html_figure(file_name=graph_mr_file_name)
+    print(
+       f'mR Report\n'
+       f'============\n'
+       f'UCL        : {mr.ucl}\n'
+       f'Xbarbar    : {mr.mean}\n'
+       f'LCL        : {mr.lcl}\n'
+       f'Sigma(Xbar): {mr.sigma}\n'
+    )
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
