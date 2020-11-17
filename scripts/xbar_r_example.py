@@ -6,8 +6,11 @@ time -f '%e' ./xbar_r_example.py
 ./xbar_r_example.py
 """
 
+import time
+
 from datasense import control_charts as cc
 import matplotlib.pyplot as plt
+import datasense as ds
 import pandas as pd
 
 data_file = 'xbar_r_example'
@@ -18,9 +21,19 @@ r_chart_title = 'Range Control Chart'
 r_chart_ylabel = 'Measurement R (units)'
 r_chart_xlabel = 'Sample'
 colour1 = '#33bbee'
+figsize = (8, 6)
+output_url = 'xbar_r_example.html'
+header_title = 'xbar_r_example'
+header_id = 'xbar-r-example'
 
 
 def main():
+    start_time = time.time()
+    original_stdout = ds.html_begin(
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
+    )
     data = create_data()  # use the data in this notebook
 #     data = read_csv(f'{data_file}.csv')  # read a csv file
 #     data = read_xlsx(f'{data_file}.xlsx')  # read an xlsx file
@@ -29,6 +42,16 @@ def main():
     r_chart(data)
 #     help(cc.Xbar)
 #     help(cc.R)
+    stop_time = time.time()
+    ds.page_break()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time
+    )
+    ds.html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
 
 
 def create_data() -> pd.DataFrame:
