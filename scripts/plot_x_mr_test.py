@@ -41,6 +41,7 @@ def main():
     # print('dtype:', type(data).__name__)
     # print(data.head())
     # Create X control chart
+    ds.page_break()
     fig = plt.figure(figsize=figsize)
     x = cc.X(data=data)
     # print('class:', type(x).__name__)
