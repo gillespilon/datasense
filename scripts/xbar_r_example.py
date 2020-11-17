@@ -35,9 +35,18 @@ def main():
         header_id=header_id
     )
     data = create_data()  # use the data in this notebook
-#     data = read_csv(f'{data_file}.csv')  # read a csv file
-#     data = read_xlsx(f'{data_file}.xlsx')  # read an xlsx file
-#     data = read_ods(f'{data_file}.ods')  # read an ods file
+    # data = ds.read_file(
+    #     file_name=f'{data_file}.csv',
+    #     index_columns=['Sample']
+    # )
+    # data = ds.read_file(
+    #     file_name=f'{data_file}.xlsx',
+    #     index_columns=['Sample']
+    # )
+    # data = ds.read_file(
+    #     file_name=f'{data_file}.ods',
+    #     index_columns=['Sample']
+    # )
     xbar_chart(data)
     r_chart(data)
 #     help(cc.Xbar)
