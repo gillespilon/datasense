@@ -50,10 +50,10 @@ def main():
     print(
        f'X Report\n'
        f'============\n'
-       f'UCL        : {x.ucl}\n'
-       f'Xbarbar    : {x.mean}\n'
-       f'LCL        : {x.lcl}\n'
-       f'Sigma(Xbar): {x.sigma}\n'
+       f'UCL        : {x.ucl.round(3)}\n'
+       f'Xbarbar    : {x.mean.round(3)}\n'
+       f'LCL        : {x.lcl.round(3)}\n'
+       f'Sigma(Xbar): {x.sigma.round(3)}\n'
     )
     # Create mr chart
     fig = plt.figure(figsize=figsize)
@@ -65,10 +65,10 @@ def main():
     print(
        f'mR Report\n'
        f'============\n'
-       f'UCL        : {mr.ucl}\n'
-       f'Xbarbar    : {mr.mean}\n'
+       f'UCL        : {mr.ucl.round(3)}\n'
+       f'Xbarbar    : {mr.mean.round(3)}\n'
        f'LCL        : {mr.lcl}\n'
-       f'Sigma(Xbar): {mr.sigma}\n'
+       f'Sigma(Xbar): {mr.sigma.round(3)}\n'
     )
     stop_time = time.time()
     ds.page_break()
