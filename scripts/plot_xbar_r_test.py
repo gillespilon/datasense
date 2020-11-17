@@ -63,6 +63,7 @@ def main():
     # print('dtype:', type(data).__name__)
     # print(data.head())
     # Create Xbar control chart
+    ds.page_break()
     fig = plt.figure(figsize=figsize)
     xbar = cc.Xbar(data=data)
     # print('class:', type(x).__name__)
