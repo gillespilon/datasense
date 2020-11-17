@@ -166,7 +166,7 @@ def mr_chart(df: pd.DataFrame) -> None:
        f'============\n'
        f'UCL        : {mr.ucl.round(3)}\n'
        f'mRbar      : {mr.mean.round(3)}\n'
-       f'LCL        : {mr.lcl}\n'
+       f'LCL        : {round(mr.lcl, 3)}\n'
        f'Sigma(mR)  : {mr.sigma.round(3)}\n'
     )
 
