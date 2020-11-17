@@ -776,48 +776,129 @@ class R(ControlChart):
         Plots calculated ranges (y axis) versus
         the index of the dataframe (x axis)
 
-            import matplotlib.pyplot as plt
-            from datasense import control_charts as cc
-            colour='33bbee'
-            fig = plt.figure(figsize=(8, 6))
-            r = cc.R(df)
-            ax = r.ax(fig)
-            ax.axhline(
-                y=r.sigmas[+1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=r.sigmas[-1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=r.sigmas[+2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=r.sigmas[-2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            cc.draw_rule(r, ax, *cc.points_one(r), '1')
-            ax.set_title(
-                label=r_chart_title,
-                fontweight='bold'
-            )
-            ax.set_ylabel(ylabel=r_chart_ylabel)
-            ax.set_xlabel(xlabel=r_chart_xlabel)
-            fig.savefig('<yourfile>_r.svg')
+        Examples
+        --------
+        Example 1, minimal R control chart
+        ----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_r.svg'
+        >>> X1 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X2 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X3 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X4 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data={
+        >>>         'X1': X1,
+        >>>         'X2': X2,
+        >>>         'X3': X3,
+        >>>         'X4': X4,
+        >>>     }
+        >>> )
+        >>> fig = plt.figure(figsize=(8, 6))
+        >>> r = cc.R(data=data)
+        >>> ax = r.ax(fig)
+        >>> fig.savefig(fname=graph_r_file_name)
+
+        Example 2, complete R control chart
+        -----------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_r.svg'
+        >>> colour='33bbee'
+        >>> X1 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X2 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X3 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X4 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data={
+        >>>         'X1': X1,
+        >>>         'X2': X2,
+        >>>         'X3': X3,
+        >>>         'X4': X4,
+        >>>     }
+        >>> )
+        >>> fig = plt.figure(figsize=(8, 6))
+        >>> r = cc.R(data=data)
+        >>> ax = r.ax(fig)
+        >>> ax.axhline(
+        >>>     y=r.sigmas[+1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=r.sigmas[-1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=r.sigmas[+2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=r.sigmas[-2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> cc.draw_rule(r, ax, *cc.points_one(r), '1')
+        >>> ax.set_title(
+        >>>     label=r_chart_title,
+        >>>     fontweight='bold'
+        >>> )
+        >>> ax.set_ylabel(ylabel=r_chart_ylabel)
+        >>> ax.set_xlabel(xlabel=r_chart_xlabel)
+        >>> fig.savefig(fname=graph_r_file_name)
         '''
         if fig is None:
             fig = plt.figure()
