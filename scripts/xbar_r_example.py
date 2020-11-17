@@ -165,10 +165,10 @@ def xbar_chart(df: pd.DataFrame) -> None:
     print(
         f'Xbar Report\n'
         f'============\n'
-        f'UCL        : {xbar.ucl}\n'
-        f'Xbarbar    : {xbar.mean}\n'
-        f'LCL        : {xbar.lcl}\n'
-        f'Sigma(Xbar): {xbar.sigma}\n'
+        f'UCL        : {xbar.ucl.round(3)}\n'
+        f'Xbarbar    : {xbar.mean.round(3)}\n'
+        f'LCL        : {xbar.lcl.round(3)}\n'
+        f'Sigma(Xbar): {xbar.sigma.round(3)}\n'
     )
 
 
@@ -222,10 +222,10 @@ def r_chart(df: pd.DataFrame) -> None:
     print(
         f'R Report\n'
         f'============\n'
-        f'UCL        : {r.ucl}\n'
-        f'Rbar       : {r.mean}\n'
-        f'LCL        : {r.lcl}\n'
-        f'Sigma(Xbar): {r.sigma}\n'
+        f'UCL        : {r.ucl.round(3)}\n'
+        f'Rbar       : {r.mean.round(3)}\n'
+        f'LCL        : {round(r.lcl, 3)}\n'
+        f'Sigma(Xbar): {r.sigma.round(3)}\n'
     )
 
 if __name__ == '__main__':
