@@ -558,48 +558,130 @@ class Xbar(ControlChart):
         Plots calculated averages (y axis) versus
         the index of the dataframe (x axis)
 
-            import matplotlib.pyplot as plt
-            from datasense import control_charts as cc
-            colour='33bbee'
-            fig = plt.figure(figsize=(8, 6))
-            xbar = cc.Xbar(df)
-            ax = xbar.ax(fig)
-            ax.axhline(
-                y=xbar.sigmas[+1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=xbar.sigmas[-1],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=xbar.sigmas[+2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            ax.axhline(
-                y=xbar.sigmas[-2],
-                linestyle='--',
-                dashes=(5, 5),
-                color=colour,
-                alpha=0.5
-            )
-            cc.draw_rules(xbar, ax)
-            ax.set_title(
-                label=xbar_chart_title,
-                fontweight='bold'
-            )
-            ax.set_ylabel(ylabel=xbar_chart_ylabel)
-            ax.set_xlabel(xlabel=xbar_chart_xlabel)
-            fig.savefig('<yourfile>_xbar.svg')
+        Examples
+        --------
+        Example 1, minimal Xbar control chart
+        -------------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_xbar.svg'
+        >>> colour='33bbee'
+        >>> X1 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X2 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X3 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X4 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data={
+        >>>         'X1': X1,
+        >>>         'X2': X2,
+        >>>         'X3': X3,
+        >>>         'X4': X4,
+        >>>     }
+        >>> )
+        >>> fig = plt.figure(figsize=figsize)
+        >>> xbar = cc.Xbar(data=data)
+        >>> ax = xbar.ax(fig)
+        >>> fig.savefig(fname=graph_name)
+
+        Example 2, complete Xbar control chart
+        --------------------------------------
+        >>> import matplotlib.pyplot as plt
+        >>> from datasense import control_charts as cc
+        >>> figsize = (8, 6)
+        >>> graph_name = 'graph_xbar.svg'
+        >>> colour='33bbee'
+        >>> X1 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X2 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X3 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> X4 = ds.random_data(
+        >>>     distribution='norm',
+        >>>     size=25,
+        >>>     loc=69,
+        >>>     scale=13
+        >>> )
+        >>> data = pd.DataFrame(
+        >>>     data={
+        >>>         'X1': X1,
+        >>>         'X2': X2,
+        >>>         'X3': X3,
+        >>>         'X4': X4,
+        >>>     }
+        >>> )
+        >>> fig = plt.figure(figsize=figsize)
+        >>> xbar = cc.Xbar(data=data)
+        >>> ax = xbar.ax(fig)
+        >>> ax.axhline(
+        >>>     y=xbar.sigmas[+1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=xbar.sigmas[-1],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=xbar.sigmas[+2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> ax.axhline(
+        >>>     y=xbar.sigmas[-2],
+        >>>     linestyle='--',
+        >>>     dashes=(5, 5),
+        >>>     color=colour,
+        >>>     alpha=0.5
+        >>> )
+        >>> cc.draw_rules(xbar, ax)
+        >>> ax.set_title(
+        >>>     label=xbar_chart_title,
+        >>>     fontweight='bold'
+        >>> )
+        >>> ax.set_ylabel(ylabel=xbar_chart_ylabel)
+        >>> ax.set_xlabel(xlabel=xbar_chart_xlabel)
+        >>> fig.savefig(fname=graph_name)
         '''
         if fig is None:
             fig = plt.figure()
