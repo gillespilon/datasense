@@ -70,18 +70,19 @@ def create_data() -> pd.DataFrame:
     Creates a dataframe.
     This function is for demonstration purposes.
     '''
-    df = {
-        'Sample':  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-        'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
-                    10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
-    }
-    df = pd.DataFrame(df)
-    df = df.set_index('Sample')
-    # df = {
-    #     'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
-    #                 10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
-    # }
-    # df = pd.DataFrame(df)
+    df = pd.DataFrame(
+        {
+            'Sample':  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+            'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
+                        10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
+        }
+    ).set_index('Sample')
+    # df = pd.DataFrame(
+    #     {
+    #         'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
+    #                     10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
+    #     }
+    # )
     return df
 
 
