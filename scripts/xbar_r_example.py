@@ -20,7 +20,7 @@ xbar_chart_xlabel = 'Sample'
 r_chart_title = 'Range Control Chart'
 r_chart_ylabel = 'Measurement R (units)'
 r_chart_xlabel = 'Sample'
-colour1 = '#33bbee'
+colour = '#33bbee'
 figsize = (8, 6)
 output_url = 'xbar_r_example.html'
 header_title = 'xbar_r_example'
@@ -47,8 +47,10 @@ def main():
     #     file_name=f'{data_file}.ods',
     #     index_columns=['Sample']
     # )
-    xbar_chart(data)
-    r_chart(data)
+    ds.page_break()
+    xbar_chart(df=data)
+    ds.page_break()
+    r_chart(df=data)
 #     help(cc.Xbar)
 #     help(cc.R)
     stop_time = time.time()
@@ -110,33 +112,6 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def read_csv(file_name: str) -> pd.DataFrame:
-    '''
-    Create a dataframe.
-    This function reads a csv file.
-    '''
-    df = pd.read_csv(file_name, index_col='Sample')
-    return df
-
-
-def read_xlsx(file_name: str) -> pd.DataFrame:
-    '''
-    Create a dataframe.
-    This function reads an xlsx file.
-    '''
-    df = pd.read_excel(file_name, index_col='Sample')
-    return df
-
-
-def read_ods(file_name: str) -> pd.DataFrame:
-    '''
-    Creates a dataframe.
-    This function reads an ods file.
-    '''
-    df = pd.read_excel(file_name, index_col='Sample', engine='odf')
-    return df
-
-
 def xbar_chart(df: pd.DataFrame) -> None:
     '''
     Creates an Xbar control chart.
@@ -151,28 +126,28 @@ def xbar_chart(df: pd.DataFrame) -> None:
         y=xbar.sigmas[+1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=xbar.sigmas[-1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=xbar.sigmas[+2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=xbar.sigmas[-2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
 #     cc.draw_rule(xbar, ax, *cc.points_one(xbar), '1')
@@ -186,6 +161,7 @@ def xbar_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(ylabel=xbar_chart_ylabel)
     ax.set_xlabel(xlabel=xbar_chart_xlabel)
     fig.savefig(fname=f'{data_file}_xbar.svg')
+    ds.html_figure(file_name=f'{data_file}_xbar.svg')
     print(
         f'Xbar Report\n'
         f'============\n'
@@ -210,28 +186,28 @@ def r_chart(df: pd.DataFrame) -> None:
         y=r.sigmas[+1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=r.sigmas[-1],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=r.sigmas[+2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     ax.axhline(
         y=r.sigmas[-2],
         linestyle='--',
         dashes=(5, 5),
-        color=colour1,
+        color=colour,
         alpha=0.5
     )
     cc.draw_rule(r, ax, *cc.points_one(r), '1')
@@ -242,6 +218,7 @@ def r_chart(df: pd.DataFrame) -> None:
     ax.set_ylabel(ylabel=r_chart_ylabel)
     ax.set_xlabel(xlabel=r_chart_xlabel)
     fig.savefig(fname=f'{data_file}_r.svg')
+    ds.html_figure(file_name=f'{data_file}_r.svg')
     print(
         f'R Report\n'
         f'============\n'
