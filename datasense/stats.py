@@ -26,8 +26,8 @@ from numpy import arange
 import pandas as pd
 import numpy as np
 
-pd.set_option('display.max_columns', 600)
-pd.set_option('display.max_rows', 600)
+pd.options.display.max_columns = 600
+pd.options.display.max_rows = 600
 
 
 def nonparametric_summary(
