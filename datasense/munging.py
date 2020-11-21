@@ -1423,6 +1423,34 @@ def create_dataframe() -> pd.DataFrame:
     return df
 
 
+def delete_rows(
+    df: pd.DataFrame,
+    delete_row_criteria: Tuple[str, int]
+) -> pd.DataFrame:
+    '''
+    Delete rows based on value in one column
+
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    delete_row_criteria : Tuple[str, int]
+        A tuple of the column name containing an integer for deletion code.
+
+    Example
+    =======
+    >>> import datasense as ds
+    >>> df = ds.delete_rows(
+    >>>     df=df,
+    >>>     delete_row_criteria=['Batch Acceptance', 1]
+    >>> )
+    '''
+
+    if delete_row_criteria:
+        df = df.loc[~(df[delete_row_criteria[0]] == delete_row_criteria[1])]
+    return df
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1451,4 +1479,5 @@ __all__ = (
     'replace_text_numbers',
     'replace_text_text',
     'create_dataframe',
+    'delete_rows',
 )
