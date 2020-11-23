@@ -1525,6 +1525,39 @@ def sort_rows(
     return df
 
 
+def rename_all_columns(
+    df: pd.DataFrame,
+    labels: List[str]
+) -> pd.DataFrame:
+    """
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    labels : List[str]
+        The list of all column names.
+
+    Returns
+    =======
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    =======
+    >>> import datasense as ds
+    >>> df = ds.rename_all_columns(
+    >>>     df=df,
+    >>>     labels=labels
+    >>> )
+    """
+
+    df = df.set_axis(
+        labels=labels,
+        axis='columns'
+    )
+    return df
+
+
 def rename_some_columns(
     df: pd.DataFrame,
     column_names_dict: Dict[str, str]
@@ -1554,6 +1587,40 @@ def rename_some_columns(
     """
 
     return df.rename(columns=column_names_dict)
+
+
+def replace_column_values(
+    df: pd.DataFrame,
+    column: str,
+    replace_dict: Union[Dict[str, str], Dict[int, int], Dict[float, float]]
+) -> pd.DataFrame:
+    """
+    Replace values in a column using a dictionary.
+
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    column: str
+        The column in which to replace values
+    replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
+        The dictionary of values to replace.
+
+    Returns:
+    df : pd.DataFrame
+        The output dataframe.
+
+    Examples
+    ========
+    import datasense as ds
+    df = ds.replace_column_values(
+        df=df,
+        column=column,
+        replace_dict=replace_dict
+    )
+    """
+    df[column] = df[column].replace(to_replace=replace_dict)
+    return df
 
 
 __all__ = (
@@ -1587,5 +1654,7 @@ __all__ = (
     'delete_rows',
     'delete_columns',
     'sort_rows',
+    'rename_all_columns',
     'rename_some_columns',
+    'replace_column_values',
 )
