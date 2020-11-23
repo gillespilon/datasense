@@ -1427,7 +1427,7 @@ def delete_rows(
     df: pd.DataFrame,
     delete_row_criteria: Tuple[str, int]
 ) -> pd.DataFrame:
-    '''
+    """
     Delete rows based on value in one column
 
     Parameters
@@ -1444,10 +1444,37 @@ def delete_rows(
     >>>     df=df,
     >>>     delete_row_criteria=['Batch Acceptance', 1]
     >>> )
-    '''
+    """
 
     if delete_row_criteria:
         df = df.loc[~(df[delete_row_criteria[0]] == delete_row_criteria[1])]
+    return df
+
+
+def delete_columns(
+    df: pd.DataFrame,
+    columns: List[str]
+) -> pd.DataFrame:
+    """
+    Delete columns using a list
+
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    columns : List[str]
+        A list of column names.
+
+    Example
+    =======
+    >>> import datasense as ds
+    >>> df = ds.delete_columns(
+    >>>     df=df,
+    >>>     columns=columns
+    >>> )
+    """
+
+    df = df.drop(columns=columns)
     return df
 
 
@@ -1480,4 +1507,5 @@ __all__ = (
     'replace_text_text',
     'create_dataframe',
     'delete_rows',
+    'delete_columns',
 )
