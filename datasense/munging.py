@@ -934,10 +934,10 @@ def read_file(
     for column in object_columns:
         df[column] = df[column].astype('object')
     if sort_columns and sort_columns_bool:
-        df = df.sort_values(
-            by=sort_columns,
-            axis='index',
-            ascending=sort_columns_bool,
+        df = sort_rows(
+            df=df,
+            sort_columns=sort_columns,
+            sort_columns_bool=sort_columns_bool,
             kind='mergesort'
         )
     return df
@@ -1478,6 +1478,50 @@ def delete_columns(
     return df
 
 
+def sort_rows(
+    df: pd.DataFrame,
+    sort_columns: List[str],
+    sort_columns_bool: List[bool],
+    kind: str = 'mergesort'
+) -> pd.DataFrame:
+    """
+    Sort a dataframe in time ascending order on one column
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    sort_columns : List[str]
+        The sort columns.
+    sort_columns_bool : List[bool]
+        The booleans for sort_columns, True = ascending, False = descending
+    kind: str = 'mergesort'
+        The sort algorithm.
+
+    Returns
+    =======
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    =======
+    >>> import datasense as ds
+    >>> df = ds.sort_rows(
+    >>>     df=df,
+    >>>     sort_columns=sort_columns,
+    >>>     sort_columns_bool=sort_columns_bool,
+    >>>     kind='mergesort'
+    >>> )
+    """
+
+    df = df.sort_values(
+        by=sort_columns,
+        axis='index',
+        ascending=sort_columns_bool,
+        kind=kind
+    )
+    return df
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1508,4 +1552,5 @@ __all__ = (
     'create_dataframe',
     'delete_rows',
     'delete_columns',
+    'sort_rows',
 )
