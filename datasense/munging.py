@@ -918,7 +918,10 @@ def read_file(
             date_parser=date_parser
         )
     if column_names_dict:
-        df = df.rename(columns=column_names_dict)
+        df = rename_some_columns(
+            df=df,
+            column_names_dict=column_names_dict
+        )
     if index_columns:
         df = df.set_index(index_columns)
     for column in category_columns:
@@ -1502,8 +1505,8 @@ def sort_rows(
     df : pd.DataFrame
         The output dataframe.
 
-    Example
     =======
+    Example
     >>> import datasense as ds
     >>> df = ds.sort_rows(
     >>>     df=df,
@@ -1520,6 +1523,37 @@ def sort_rows(
         kind=kind
     )
     return df
+
+
+def rename_some_columns(
+    df: pd.DataFrame,
+    column_names_dict: Dict[str, str]
+) -> pd.DataFrame:
+    """
+    Rename some columns with a dictionary.
+
+    Parameters
+    ==========
+    df : pd.DataFrame
+        The input dataframe.
+    column_names_dict : Dict[str, str]
+        The dictionary of old:new column names.
+
+    Returns
+    =======
+    df : pd.DataFrame
+        The output dataframe.
+
+    Example
+    =======
+    >>> import datasense as ds
+    >>> df = ds.rename_some_columns(
+    >>>     df=df,
+    >>>     column_names_dict=column_names_dict
+    >>> )
+    """
+
+    return df.rename(columns=column_names_dict)
 
 
 __all__ = (
@@ -1553,4 +1587,5 @@ __all__ = (
     'delete_rows',
     'delete_columns',
     'sort_rows',
+    'rename_some_columns',
 )
