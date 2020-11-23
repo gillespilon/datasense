@@ -1612,12 +1612,12 @@ def replace_column_values(
 
     Examples
     ========
-    import datasense as ds
-    df = ds.replace_column_values(
-        df=df,
-        column=column,
-        replace_dict=replace_dict
-    )
+    >>> import datasense as ds
+    >>> df = ds.replace_column_values(
+    >>>     df=df,
+    >>>     column=column,
+    >>>     replace_dict=replace_dict
+    >>> )
     """
     df[column] = df[column].replace(to_replace=replace_dict)
     return df
