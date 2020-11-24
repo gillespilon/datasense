@@ -1590,25 +1590,24 @@ def rename_some_columns(
 
 
 def replace_column_values(
-    df: pd.DataFrame,
-    column: str,
-    replace_dict: Union[Dict[str, str], Dict[int, int], Dict[float, float]]
-) -> pd.DataFrame:
+    s: pd.Series,
+    replace_dict: Dict[str, str]
+) -> pd.Series:
     """
-    Replace values in a column using a dictionary.
+    Replace values in a series using a dictionary.
 
     Parameters
     ==========
-    df : pd.DataFrame
-        The input dataframe.
+    s : pd.Series
+        The input series.
     column: str
         The column in which to replace values
     replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
         The dictionary of values to replace.
 
     Returns:
-    df : pd.DataFrame
-        The output dataframe.
+    s : pd.Series
+        The output series.
 
     Examples
     ========
@@ -1619,8 +1618,12 @@ def replace_column_values(
     >>>     replace_dict=replace_dict
     >>> )
     """
-    df[column] = df[column].replace(to_replace=replace_dict)
-    return df
+    s = s.replace(
+        to_replace=replace_dict,
+        regex=True,
+        value=None
+    )
+    return s
 
 
 __all__ = (
