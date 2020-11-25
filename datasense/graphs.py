@@ -1670,20 +1670,26 @@ def despine(ax: axes.Axes) -> None:
 def histogram(
     s: pd.Series,
     *,
+    bins: Optional[int] = None,
+    range: Tuple[int, int] = None,
     figsize: Optional[Tuple[int, int]] = (8, 6),
-    bin_width: Optional[int],
+    bin_width: Optional[int] = None,
     edgecolor: str = '#ffffff',
     linewidth=1,
     bin_label_bool=False
 ) -> Tuple[plt.figure, axes.Axes]:
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
-    if bin_width:
+    if bin_width and not range:
         x = (s.max() - s.min()) / bin_width
         bins = math.ceil(x)
+    elif bin_width and range:
+        bins=int((range[1] - range[0]) / bin_width)
+        range=range
     counts, bins, patches = ax.hist(
         x=s,
         bins=bins,
+        range=range,
         edgecolor=edgecolor,
         linewidth=linewidth
     )
