@@ -12,13 +12,16 @@ Colours used are colour-blind friendly.
 '''
 
 from typing import Optional, Tuple
+import math
 
+from matplotlib.ticker import FormatStrFormatter
 from datasense import natural_cubic_spline
 from scipy.stats import norm, probplot
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import pandas as pd
+import numpy as np
 
 
 def plot_scatter_y(
@@ -1664,6 +1667,59 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_visible(False)
 
 
+def histogram(
+    s: pd.Series,
+    *,
+    figsize: Optional[Tuple[int, int]] = (8, 6),
+    bin_width: Optional[int],
+    edgecolor: str = '#ffffff',
+    linewidth=1,
+    bin_label_bool=False
+) -> Tuple[plt.figure, axes.Axes]:
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111)
+    if bin_width:
+        x = (s.max() - s.min()) / bin_width
+        bins = math.ceil(x)
+    counts, bins, patches = ax.hist(
+        x=s,
+        bins=bins,
+        edgecolor=edgecolor,
+        linewidth=linewidth
+    )
+    if bin_label_bool:
+        ax.set_xticks(bins)
+        ax.xaxis.set_major_formatter(FormatStrFormatter('%0.0f'))
+        bin_centers = 0.5 * np.diff(bins) + bins[:-1]
+        for count, x in zip(counts, bin_centers):
+            ax.annotate(
+                text=str(count),
+                xy=(x, 0),
+                xytext=(0, -18),
+                xycoords=(
+                    'data',
+                    'axes fraction'
+                ),
+                textcoords='offset points',
+                va='top',
+                ha='center'
+            )
+            percent = '%0.0f %%' % (100 * float(count) / counts.sum())
+            ax.annotate(
+                text=percent,
+                xy=(x, 0),
+                xytext=(0, -32),
+                xycoords=(
+                    'data',
+                    'axes fraction'
+                ),
+                textcoords='offset points',
+                va='top',
+                ha='center'
+            )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1681,4 +1737,5 @@ __all__ = (
     'format_dates',
     'probability_plot',
     'despine',
+    'histogram',
 )
