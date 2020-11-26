@@ -398,7 +398,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
      Z        object                     1           20.0
     """
     print('Information about non-empty columns')
-    table = BeautifulTable(maxwidth=90)
+    table = BeautifulTable(max_width=90)
     table.set_style(BeautifulTable.STYLE_COMPACT)
     column_alignments = {
         'Column': BeautifulTable.ALIGN_LEFT,
