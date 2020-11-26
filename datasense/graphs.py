@@ -11,7 +11,7 @@ Colours used are colour-blind friendly.
     grey    '#bbbbbb'
 '''
 
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 import math
 
 from matplotlib.ticker import FormatStrFormatter
@@ -1671,7 +1671,7 @@ def histogram(
     s: pd.Series,
     *,
     number_bins: Optional[int] = None,
-    range: Tuple[int, int] = None,
+    range: Union[Tuple[int, int],Tuple[int, int]] = None,
     figsize: Optional[Tuple[int, int]] = (8, 6),
     bin_width: Optional[int] = None,
     edgecolor: Optional[str] = '#ffffff',
@@ -1683,7 +1683,6 @@ def histogram(
     if bin_width and not range:
         x = (s.max() - s.min()) / bin_width
         number_bins = math.ceil(x)
-        print('number_bins:', number_bins)
     elif bin_width and range:
         number_bins = int((range[1] - range[0]) / bin_width)
         range = range
