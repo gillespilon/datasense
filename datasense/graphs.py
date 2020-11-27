@@ -1710,6 +1710,17 @@ def histogram(
     >>> import datasense as ds
     >>> s = ds.random_data()
     >>> fig, ax = ds.histogram(s=s)
+
+    Example 2
+    =========
+    >>> import datasense as ds
+    >>> s = ds.random_data(
+    >>>     distribution='randint',
+    >>>     size=113,
+    >>>     low=0,
+    >>>     high=13
+    >>> )
+    >>> fig, ax = ds.histogram(s=s)
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
