@@ -1671,25 +1671,46 @@ def histogram(
     s: pd.Series,
     *,
     number_bins: Optional[int] = None,
-    range: Union[Tuple[int, int],Tuple[int, int]] = None,
+    bin_range: Union[Tuple[int, int],Tuple[int, int]] = None,
     figsize: Optional[Tuple[int, int]] = (8, 6),
     bin_width: Optional[int] = None,
     edgecolor: Optional[str] = '#ffffff',
     linewidth: Optional[int] = 1,
     bin_label_bool: Optional[bool] = False
 ) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Parameters
+    ==========
+    s : pd.Series
+        The input series.
+    number_bins : Optional[int] = None
+        The number of equal-width bins in the range s.max() - s.min().
+    bin_range : Union[Tuple[int, int],Tuple[int, int]] = None,
+        The lower and upper range of the bins. If not provided, range is
+        (s.min(), s.max()).
+    figsize : Optional[Tuple[int, int]] = (8, 6),
+        The figure size width, height (inch).
+    bin_width : Optional[int] = None,
+        The width of the bin in same units as the series s.
+    edgecolor : Optional[str] = '#ffffff',
+        The hexadecimal color value for the bar edges.
+    linewidth : Optional[int] = 1,
+        The bar edges line width (point).
+    bin_label_bool : Optional[bool] = False
+        If True, label the bars with count and percentage of total.
+    """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
-    if bin_width and not range:
+    if bin_width and not bin_range:
         x = (s.max() - s.min()) / bin_width
         number_bins = math.ceil(x)
-    elif bin_width and range:
-        number_bins = int((range[1] - range[0]) / bin_width)
-        range = range
+    elif bin_width and bin_range:
+        number_bins = int((bin_range[1] - bin_range[0]) / bin_width)
+        bin_range = bin_range
     counts, bins, patches = ax.hist(
         x=s,
         bins=number_bins,
-        range=range,
+        range=bin_range,
         edgecolor=edgecolor,
         linewidth=linewidth
     )
