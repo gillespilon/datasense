@@ -1698,6 +1698,10 @@ def histogram(
         The bar edges line width (point).
     bin_label_bool : Optional[bool] = False
         If True, label the bars with count and percentage of total.
+
+    Returns
+    =======
+    fig, ax : Tuple[plt.figure, axes.Axes]
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
