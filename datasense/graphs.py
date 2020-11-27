@@ -1714,6 +1714,7 @@ def histogram(
 
     Example 2
     =========
+    # Generate a series of random integer numbers with custom parameters.
     >>> import datasense as ds
     >>> s = ds.random_data(
     >>>     distribution='randint',
@@ -1722,6 +1723,20 @@ def histogram(
     >>>     high=13
     >>> )
     >>> fig, ax = ds.histogram(s=s)
+
+    # Example 3
+    # Generate a series of random integer numbers with custom parameters.
+    # Set histogram parameters to control bin width.
+    >>> s = ds.random_data(
+    >>>     distribution='randint',
+    >>>     size=113,
+    >>>     low=0,
+    >>>     high=13
+    >>> )
+    >>> fig, ax = ds.histogram(
+    >>>     s=s,
+    >>>     bin_width=1
+)
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
