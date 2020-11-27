@@ -1707,6 +1707,7 @@ def histogram(
     ========
     Example 1
     =========
+    # Generate a series of random float numbers with the default parameters.
     >>> import datasense as ds
     >>> s = ds.random_data()
     >>> fig, ax = ds.histogram(s=s)
