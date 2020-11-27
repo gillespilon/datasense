@@ -887,7 +887,7 @@ def plot_scatter_line_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-    ) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.figure, axes.Axes]:
     '''
     Scatter plot of y1 versus X.
     Line plot of y2 versus X.
@@ -1671,7 +1671,7 @@ def histogram(
     s: pd.Series,
     *,
     number_bins: Optional[int] = None,
-    bin_range: Union[Tuple[int, int],Tuple[int, int]] = None,
+    bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
     figsize: Optional[Tuple[int, int]] = (8, 6),
     bin_width: Optional[int] = None,
     edgecolor: Optional[str] = '#ffffff',
@@ -1743,7 +1743,7 @@ def histogram(
         bin_centers = 0.5 * np.diff(bins) + bins[:-1]
         for count, x in zip(counts, bin_centers):
             ax.annotate(
-                text=str(count),
+                text=f'{str(int(count))}',
                 xy=(x, 0),
                 xytext=(0, -18),
                 xycoords=(
@@ -1754,7 +1754,7 @@ def histogram(
                 va='top',
                 ha='center'
             )
-            percent = '%0.0f %%' % (100 * float(count) / counts.sum())
+            percent = f'{(100 * float(count) / counts.sum()):0.0f} %'
             ax.annotate(
                 text=percent,
                 xy=(x, 0),
