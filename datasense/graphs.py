@@ -1752,6 +1752,21 @@ def histogram(
     >>>     bin_width=1,
     >>>     bin_range=(0, 10)
     >>> )
+
+    # Example 5
+    # Generate a series of random float numbers with custom parameters.
+    # Set histogram parameters to control bin width and plotting range.
+    >>> s = ds.random_data(
+    >>>     distribution='norm',
+    >>>     size=113,
+    >>>     loc=69,
+    >>>     scale=13
+    >>> )
+    >>> fig, ax = ds.histogram(
+    >>>     s=s,
+    >>>     bin_width=5,
+    >>>     bin_range=(30, 110)
+    >>> )
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
