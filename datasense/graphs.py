@@ -1676,7 +1676,8 @@ def histogram(
     bin_width: Optional[int] = None,
     edgecolor: Optional[str] = '#ffffff',
     linewidth: Optional[int] = 1,
-    bin_label_bool: Optional[bool] = False
+    bin_label_bool: Optional[bool] = False,
+    color: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
     """
     Parameters
@@ -1698,6 +1699,7 @@ def histogram(
         The bar edges line width (point).
     bin_label_bool : Optional[bool] = False
         If True, label the bars with count and percentage of total.
+    color : Optional[str] = '#0077bb'
 
     Returns
     =======
@@ -1782,7 +1784,8 @@ def histogram(
     >>>     bin_width=5,
     >>>     bin_range=(30, 110),
     >>>     figsize=(10,8),
-    >>>     bin_label_bool=True
+    >>>     bin_label_bool=True,
+    >>>     color='#33bbee'
     >>> )
     """
     fig = plt.figure(figsize=figsize)
@@ -1798,7 +1801,8 @@ def histogram(
         bins=number_bins,
         range=bin_range,
         edgecolor=edgecolor,
-        linewidth=linewidth
+        linewidth=linewidth,
+        color=color
     )
     if bin_label_bool:
         ax.set_xticks(bins)
