@@ -1702,6 +1702,14 @@ def histogram(
     Returns
     =======
     fig, ax : Tuple[plt.figure, axes.Axes]
+
+    Examples
+    ========
+    Example 1
+    =========
+    >>> import datasense as ds
+    >>> s = ds.random_data()
+    >>> fig, ax = ds.histogram(s=s)
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
