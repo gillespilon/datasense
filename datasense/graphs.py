@@ -1737,6 +1737,21 @@ def histogram(
     >>>     s=s,
     >>>     bin_width=1
 )
+
+    # Example 4
+    # Generate a series of random integer numbers with custom parameters.
+    # Set histogram parameters to control bin width and plotting range.
+    >>> s = ds.random_data(
+    >>>     distribution='randint',
+    >>>     size=113,
+    >>>     low=0,
+    >>>     high=13
+    >>> )
+    >>> fig, ax = ds.histogram(
+    >>>     s=s,
+    >>>     bin_width=1,
+    >>>     bin_range=(0, 10)
+    >>> )
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
