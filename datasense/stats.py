@@ -306,7 +306,8 @@ def random_data(
     low: Optional[int] = 13,
     high: Optional[int] = 70,
     strings: Optional[List[str]] = ['female', 'male'],
-    categories: Optional[List[str]] = ['small', 'medium', 'large']
+    categories: Optional[List[str]] = ['small', 'medium', 'large'],
+    random_state: Optional[int] = None
 ) -> pd.Series:
     """
     Create a series of random items from a distribution.
@@ -405,7 +406,8 @@ def random_data(
         series = pd.Series(eval(distribution).rvs(
             size=size,
             loc=loc,
-            scale=scale
+            scale=scale,
+            random_state=random_state
             )
         )
     elif distribution in distribution_list_discrete:
