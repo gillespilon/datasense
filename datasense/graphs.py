@@ -1709,31 +1709,35 @@ def histogram(
     ========
     Example 1
     =========
-    # Generate a series of random float numbers with the default parameters.
+    # Example 1
+    # Create a series of random floats, normal distribution,
+    # with the default parameters.
     >>> import datasense as ds
     >>> s = ds.random_data()
     >>> fig, ax = ds.histogram(s=s)
 
     Example 2
     =========
-    # Generate a series of random integer numbers with custom parameters.
+    # Create a series of random integers, integer distribution, size = 113,
+    # min = 0, max = 13.
     >>> import datasense as ds
     >>> s = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
     >>>     low=0,
-    >>>     high=13
+    >>>     high=14
     >>> )
     >>> fig, ax = ds.histogram(s=s)
 
     # Example 3
-    # Generate a series of random integer numbers with custom parameters.
+    # Create a series of random integers, integer distribution, size = 113,
+    # min = 0, max = 13.
     # Set histogram parameters to control bin width.
     >>> s = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
     >>>     low=0,
-    >>>     high=13
+    >>>     high=14
     >>> )
     >>> fig, ax = ds.histogram(
     >>>     s=s,
@@ -1741,7 +1745,8 @@ def histogram(
 )
 
     # Example 4
-    # Generate a series of random integer numbers with custom parameters.
+    # Create a series of random integers, integer distribution, size = 113,
+    # min = 0, hight = 14,
     # Set histogram parameters to control bin width and plotting range.
     >>> s = ds.random_data(
     >>>     distribution='randint',
@@ -1756,7 +1761,8 @@ def histogram(
     >>> )
 
     # Example 5
-    # Generate a series of random float numbers with custom parameters.
+    # Create a series of random floats, size = 113,
+    # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width and plotting range.
     >>> s = ds.random_data(
     >>>     distribution='norm',
@@ -1771,8 +1777,10 @@ def histogram(
     >>> )
 
     # Example 6
-    # Generate a series of random float numbers with custom parameters.
+    # Create a series of random floats, size = 113,
+    # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width, plotting range, labels.
+    # Set colour of the bars.
     >>> s = ds.random_data(
     >>>     distribution='norm',
     >>>     size=113,
