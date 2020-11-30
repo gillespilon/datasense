@@ -394,6 +394,7 @@ def random_data(
     Example 9
     # Create series of random integers, integer distribution, size = 113,
     # min = 0, max = 1.
+    # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
