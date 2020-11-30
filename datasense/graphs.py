@@ -1853,12 +1853,27 @@ def plot_horizontal_bars(
     figsize: Optional[Tuple[int, int]] = (8, 6),
     color: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Parameters
+    ==========
+    y : Union[List[int], List[float], List[str]],
+        The y coordinates of the bars.
+    width : Union[List[int], List[float]],
+        The width(s) of the bars.
+    height : Optional[float] = 0.8,
+        The height of the bars.
+    figsize : Optional[Tuple[int, int]] = (8, 6),
+        The figure size width, height (inch).
+    color : Optional[str] = '#0077bb'
+        The color of the bar faces.
+    """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     ax.barh(
         y=y,
         width=width,
-        height=height
+        height=height,
+        color=color
     )
     return (fig, ax)
 
