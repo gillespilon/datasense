@@ -331,23 +331,21 @@ def random_data(
     Examples
     --------
     Example 1
+    # Generate a series of random floats, normal distribution,
+    # with the default parameters.
     >>> import datasense as ds
-    >>> from scipy.stats import norm, uniform
-    >>> # Create series of the standard normal distribution, size = 42
-    >>> series = ds.random_data()
+    >>> s = ds.random_data()
 
     # Example 2
-    # Generate a series of random float numbers with the default parameters.
-    # Set random_date seed for repeatable sample.
+    # Generate a series of random floats, normal distribution,
+    # with the default parameters.
+    # Set random_state seed for repeatable sample.
     >>> s = ds.random_data(random_state=42)
-    >>> fig, ax = ds.histogram(
-    >>>     s=s
-    >>> )
 
     Example 3
-    >>> # Create series of the normal distribution, size = 113, mean = 69,
-    >>> # standard deviation = 13
-    >>> series = ds.random_data(
+    # Create a series of random float, normal distribution,
+    # with sample size = 113, mean = 69, standard deviation = 13.
+    >>> s = ds.random_data(
     >>>     distribution='norm',
     >>>     size=113,
     >>>     loc=69,
@@ -355,24 +353,34 @@ def random_data(
     >>> )
 
     Example 4
-    >>> # Create series of the standard uniform distribution, size = 42
-    >>> series = ds.random_data(distribution='uniform')
+    # Create series of random floats, standard uniform distribution,
+    # with the default parameters.
+    >>> s = ds.random_data(distribution='uniform')
 
     Example 5
-    >>> # Create series of the uniform distribution, size = 113,
-    >>> # min = 13, max = 69
-    >>> series = ds.random_data(
+    # Create series of random floats, standard uniform distribution,
+    # with the default parameters.
+    # Set random_state seed for repeatable sample
+    >>> s = ds.random_data(
+    >>>     distribution='uniform',
+    >>>     random_state=42
+    >>> )
+
+    Example 6
+    # Create series of random floats, uniform distribution, size = 113,
+    # min = 13, max = 69.
+    >>> s = ds.random_data(
     >>>     distribution='uniform',
     >>>     size=113,
     >>>     loc=13,
     >>>     scale=70
     >>> )
 
-    Example 6
+    Example 7
     >>> # Create series of the integer distribution
     >>> series = ds.random_data(distribution='randint')
 
-    Example 7
+    Example 8
     >>> # Create series of the integer distribution, size = 113,
     >>> # min = 0, max = 1
     >>> series = ds.random_data(
@@ -382,22 +390,22 @@ def random_data(
     >>>     high=2
     >>> )
 
-    Example 8
+    Example 9
     >>> # Create series of random strings from the default list
     >>> series = ds.random_data(distribution='strings')
 
-    Example 9
+    Example 10
     >>> # Create series of random strings from a list of strings
     >>> series = ds.random_data(
     >>>     distribution='strings',
     >>>     size=113,
     >>>     strings=['tom', 'dick', 'harry']
 
-    Example 10
+    Example 11
     >>> # Create series of ordered categories
     >>> series = ds.random_data(distribution='categories')
 
-    Example 11
+    Example 12
     >>> # Create series of ordered categories
     >>> series = ds.random_data(
     >>>     distribution='categories',
