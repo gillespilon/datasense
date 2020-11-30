@@ -392,21 +392,32 @@ def random_data(
     >>> )
 
     Example 9
+    # Create series of random integers, integer distribution, size = 113,
+    # min = 0, max = 1.
+    >>> s = ds.random_data(
+    >>>     distribution='randint',
+    >>>     size=113,
+    >>>     low=0,
+    >>>     high=2,
+    >>>     random_state=42
+    >>> )
+
+    Example 10
     # Create series of random strings from the default list.
     >>> s = ds.random_data(distribution='strings')
 
-    Example 10
+    Example 11
     # Create series of random strings from a list of strings.
     >>> s = ds.random_data(
     >>>     distribution='strings',
     >>>     size=113,
     >>>     strings=['tom', 'dick', 'harry']
 
-    Example 11
+    Example 12
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 12
+    Example 13
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
@@ -431,7 +442,8 @@ def random_data(
         series = pd.Series(eval(distribution).rvs(
             low=low,
             high=high,
-            size=size
+            size=size,
+            random_state=random_state
             )
         )
     elif distribution in distribution_list_bool:
