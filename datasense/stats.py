@@ -467,6 +467,7 @@ def random_data(
             ).astype(dtype='bool')
         )
     elif distribution in distribution_list_strings:
+        random.seed(a=random_state)
         series = pd.Series(
             random.choices(
                 population=strings,
