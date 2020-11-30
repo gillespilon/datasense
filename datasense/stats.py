@@ -377,13 +377,14 @@ def random_data(
     >>> )
 
     Example 7
-    >>> # Create series of the integer distribution
-    >>> series = ds.random_data(distribution='randint')
+    # Create series of random integers, integer distribution,
+    # with the default parameters.
+    >>> s = ds.random_data(distribution='randint')
 
     Example 8
-    >>> # Create series of the integer distribution, size = 113,
-    >>> # min = 0, max = 1
-    >>> series = ds.random_data(
+    # Create series of random integers, integer distribution, size = 113,
+    # min = 0, max = 1.
+    >>> s = ds.random_data(
     >>>     distribution='randint',
     >>>     size=113,
     >>>     low=0,
@@ -391,23 +392,23 @@ def random_data(
     >>> )
 
     Example 9
-    >>> # Create series of random strings from the default list
-    >>> series = ds.random_data(distribution='strings')
+    # Create series of random strings from the default list.
+    >>> s = ds.random_data(distribution='strings')
 
     Example 10
-    >>> # Create series of random strings from a list of strings
-    >>> series = ds.random_data(
+    # Create series of random strings from a list of strings.
+    >>> s = ds.random_data(
     >>>     distribution='strings',
     >>>     size=113,
     >>>     strings=['tom', 'dick', 'harry']
 
     Example 11
-    >>> # Create series of ordered categories
-    >>> series = ds.random_data(distribution='categories')
+    # Create series of ordered categories.
+    >>> s = ds.random_data(distribution='categories')
 
     Example 12
-    >>> # Create series of ordered categories
-    >>> series = ds.random_data(
+    # Create series of ordered categories.
+    >>> s = ds.random_data(
     >>>     distribution='categories',
     >>>     categories=['XS', 'S', 'M', 'L', 'XL'],
     >>>     size=113
