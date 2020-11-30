@@ -157,8 +157,8 @@ def plot_scatter_x_y(
     -------
     Tuple[plt.figure, axes.Axes]
         A matplotlib figure and Axes tuple.
-    Examples
 
+    Examples
     --------
     Example 1
     >>> import matplotlib.pyplot as plt
@@ -184,7 +184,7 @@ def plot_scatter_x_y(
     >>> )
     >>> plt.show()
 
-    # Example 3
+    Example 3
     >>> series_x = ds.random_data(distribution='uniform').sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
@@ -192,7 +192,7 @@ def plot_scatter_x_y(
     >>> )
     >>> plt.show()
 
-    # Example 4
+    Example 4
     >>> series_x = ds.random_data().sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
@@ -1681,7 +1681,7 @@ def plot_histogram(
 ) -> Tuple[plt.figure, axes.Axes]:
     """
     Parameters
-    ==========
+    ----------
     s : pd.Series
         The input series.
     number_bins : Optional[int] = None
@@ -1703,14 +1703,12 @@ def plot_histogram(
         The color of the bar faces.
 
     Returns
-    =======
+    -------
     fig, ax : Tuple[plt.figure, axes.Axes]
 
     Examples
-    ========
+    --------
     Example 1
-    =========
-    # Example 1
     # Create a series of random floats, normal distribution,
     # with the default parameters.
     >>> import datasense as ds
@@ -1718,7 +1716,6 @@ def plot_histogram(
     >>> fig, ax = ds.plot_histogram(s=s)
 
     Example 2
-    =========
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, max = 13.
     >>> import datasense as ds
@@ -1730,7 +1727,7 @@ def plot_histogram(
     >>> )
     >>> fig, ax = ds.plot_histogram(s=s)
 
-    # Example 3
+    Example 3
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, max = 13.
     # Set histogram parameters to control bin width.
@@ -1745,7 +1742,7 @@ def plot_histogram(
     >>>     bin_width=1
 )
 
-    # Example 4
+    Example 4
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, hight = 14,
     # Set histogram parameters to control bin width and plotting range.
@@ -1761,7 +1758,7 @@ def plot_histogram(
     >>>     bin_range=(0, 10)
     >>> )
 
-    # Example 5
+    Example 5
     # Create a series of random floats, size = 113,
     # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width and plotting range.
@@ -1777,7 +1774,7 @@ def plot_histogram(
     >>>     bin_range=(30, 110)
     >>> )
 
-    # Example 6
+    Example 6
     # Create a series of random floats, size = 113,
     # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width, plotting range, labels.
@@ -1858,7 +1855,7 @@ def plot_horizontal_bars(
 ) -> Tuple[plt.figure, axes.Axes]:
     """
     Parameters
-    ==========
+    ----------
     y : Union[List[int], List[float], List[str]],
         The y coordinates of the bars.
     width : Union[List[int], List[float]],
@@ -1875,7 +1872,7 @@ def plot_horizontal_bars(
         The color of the bar faces.
 
     Returns
-    =======
+    -------
     fig, ax : Tuple[plt.figure, axes.Axes]
     """
     fig = plt.figure(figsize=figsize)
