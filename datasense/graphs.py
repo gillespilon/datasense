@@ -1885,6 +1885,15 @@ def plot_horizontal_bars(
     >>>     y=y,
     >>>     width=width
     >>> )
+
+    Example 2
+    >>> y = ['Yes', 'No']
+    >>> width = [69, 31]
+    >>> fig, ax = ds.plot_horizontal_bars(
+    >>>     y=y,
+    >>>     width=width,
+    >>>>    height=0.4
+    >>> )
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
