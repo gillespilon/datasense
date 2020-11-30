@@ -426,10 +426,19 @@ def random_data(
     >>> )
 
     Example 14
+    # Create series of random booleans, size = 113.
+    # Set random_state seed for repeatable sample
+    >>> s = ds.random_data(
+    >>> distribution='bool',
+    >>> size=113,
+    >>> random_state=42
+    >>> )
+
+    Example 15
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 15
+    Example 16
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
