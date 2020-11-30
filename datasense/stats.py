@@ -415,10 +415,14 @@ def random_data(
     >>>     strings=['tom', 'dick', 'harry']
 
     Example 12
+    # Create series of random booleans with the default parameters.
+    >>> s = ds.random_data(distribution='bool')
+
+    Example 13
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 13
+    Example 14
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
@@ -451,7 +455,8 @@ def random_data(
         series = pd.Series(eval('randint').rvs(
             low=0,
             high=2,
-            size=size
+            size=size,
+            random_state=random_state
             ).astype(dtype='bool')
         )
     elif distribution in distribution_list_strings:
