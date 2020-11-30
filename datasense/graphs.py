@@ -1845,6 +1845,24 @@ def plot_histogram(
     return (fig, ax)
 
 
+def plot_horizontal_bars(
+    y: Union[List[int], List[float], List[str]],
+    width: Union[List[int], List[float]],
+    *,
+    height: Optional[float] = 0.8,
+    figsize: Optional[Tuple[int, int]] = (8, 6),
+    color: Optional[str] = '#0077bb'
+) -> Tuple[plt.figure, axes.Axes]:
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111)
+    ax.barh(
+        y=y,
+        width=width,
+        height=height
+    )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1863,4 +1881,5 @@ __all__ = (
     'probability_plot',
     'despine',
     'plot_histogram',
+    'plot_horizontal_bars',
 )
