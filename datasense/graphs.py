@@ -1874,6 +1874,17 @@ def plot_horizontal_bars(
     Returns
     -------
     fig, ax : Tuple[plt.figure, axes.Axes]
+
+    Examples
+    --------
+    Example 1
+    >>> import datasense as ds
+    >>> y = ['Yes', 'No']
+    >>> width = [69, 31]
+    >>> fig, ax = ds.plot_horizontal_bars(
+    >>>     y=y,
+    >>>     width=width
+    >>> )
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
