@@ -413,19 +413,30 @@ def random_data(
     >>>     distribution='strings',
     >>>     size=113,
     >>>     strings=['tom', 'dick', 'harry']
+    >>> )
 
     Example 12
+    # Create series of random strings from a list of strings.
+    # Set random_state seed for repeatable sample
+    >>> s = ds.random_data(
+    >>>     distribution='strings',
+    >>>     size=113,
+    >>>     strings=['tom', 'dick', 'harry'],
+    >>>     random_state=42
+    >>> )
+
+    Example 13
     # Create series of random booleans with the default parameters.
     >>> s = ds.random_data(distribution='bool')
 
-    Example 13
+    Example 14
     # Create series of random booleans, size = 113.
     >>> s = ds.random_data(
     >>> distribution='bool',
     >>> size=113
     >>> )
 
-    Example 14
+    Example 15
     # Create series of random booleans, size = 113.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -434,11 +445,11 @@ def random_data(
     >>> random_state=42
     >>> )
 
-    Example 15
+    Example 16
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 16
+    Example 17
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
