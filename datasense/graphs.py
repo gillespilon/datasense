@@ -11,7 +11,7 @@ Colours used are colour-blind friendly.
     grey    '#bbbbbb'
 '''
 
-from typing import Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union
 import math
 
 from matplotlib.ticker import FormatStrFormatter
@@ -1667,7 +1667,7 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_visible(False)
 
 
-def histogram(
+def plot_histogram(
     s: pd.Series,
     *,
     number_bins: Optional[int] = None,
@@ -1714,7 +1714,7 @@ def histogram(
     # with the default parameters.
     >>> import datasense as ds
     >>> s = ds.random_data()
-    >>> fig, ax = ds.histogram(s=s)
+    >>> fig, ax = ds.plot_histogram(s=s)
 
     Example 2
     =========
@@ -1727,7 +1727,7 @@ def histogram(
     >>>     low=0,
     >>>     high=14
     >>> )
-    >>> fig, ax = ds.histogram(s=s)
+    >>> fig, ax = ds.plot_histogram(s=s)
 
     # Example 3
     # Create a series of random integers, integer distribution, size = 113,
@@ -1739,7 +1739,7 @@ def histogram(
     >>>     low=0,
     >>>     high=14
     >>> )
-    >>> fig, ax = ds.histogram(
+    >>> fig, ax = ds.plot_histogram(
     >>>     s=s,
     >>>     bin_width=1
 )
@@ -1754,7 +1754,7 @@ def histogram(
     >>>     low=0,
     >>>     high=13
     >>> )
-    >>> fig, ax = ds.histogram(
+    >>> fig, ax = ds.plot_histogram(
     >>>     s=s,
     >>>     bin_width=1,
     >>>     bin_range=(0, 10)
@@ -1770,7 +1770,7 @@ def histogram(
     >>>     loc=69,
     >>>     scale=13
     >>> )
-    >>> fig, ax = ds.histogram(
+    >>> fig, ax = ds.plot_histogram(
     >>>     s=s,
     >>>     bin_width=5,
     >>>     bin_range=(30, 110)
@@ -1787,7 +1787,7 @@ def histogram(
     >>>     loc=69,
     >>>     scale=13
     >>> )
-    >>> fig, ax = ds.histogram(
+    >>> fig, ax = ds.plot_histogram(
     >>>     s=s,
     >>>     bin_width=5,
     >>>     bin_range=(30, 110),
@@ -1862,5 +1862,5 @@ __all__ = (
     'format_dates',
     'probability_plot',
     'despine',
-    'histogram',
+    'plot_histogram',
 )
