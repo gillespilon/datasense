@@ -1700,6 +1700,7 @@ def plot_histogram(
     bin_label_bool : Optional[bool] = False
         If True, label the bars with count and percentage of total.
     color : Optional[str] = '#0077bb'
+        The color of the bar faces.
 
     Returns
     =======
