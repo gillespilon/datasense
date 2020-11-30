@@ -1873,6 +1873,10 @@ def plot_horizontal_bars(
         The bar edges line width (point).
     color : Optional[str] = '#0077bb'
         The color of the bar faces.
+
+    Returns
+    =======
+    fig, ax : Tuple[plt.figure, axes.Axes]
     """
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
