@@ -456,6 +456,16 @@ def random_data(
     >>>     categories=['XS', 'S', 'M', 'L', 'XL'],
     >>>     size=113
     >>> )
+
+    Example 18
+    # Create series of ordered categories.
+    # Set random_state seed for repeatable sample
+    >>> s = ds.random_data(
+    >>>     distribution='categories',
+    >>>     categories=['XS', 'S', 'M', 'L', 'XL'],
+    >>>     size=113,
+    >>>     random_state=42
+    >>> )
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
@@ -495,6 +505,7 @@ def random_data(
             )
         )
     elif distribution in distribution_list_categories:
+        random.seed(a=random_state)
         series = pd.Series(
             random.choices(
                 population=categories,
