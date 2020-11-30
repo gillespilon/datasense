@@ -1851,6 +1851,8 @@ def plot_horizontal_bars(
     *,
     height: Optional[float] = 0.8,
     figsize: Optional[Tuple[int, int]] = (8, 6),
+    edgecolor: Optional[str] = '#ffffff',
+    linewidth: Optional[int] = 1,
     color: Optional[str] = '#0077bb'
 ) -> Tuple[plt.figure, axes.Axes]:
     """
@@ -1864,6 +1866,10 @@ def plot_horizontal_bars(
         The height of the bars.
     figsize : Optional[Tuple[int, int]] = (8, 6),
         The figure size width, height (inch).
+    edgecolor : Optional[str] = '#ffffff',
+        The hexadecimal color value for the bar edges.
+    linewidth : Optional[int] = 1,
+        The bar edges line width (point).
     color : Optional[str] = '#0077bb'
         The color of the bar faces.
     """
@@ -1873,6 +1879,8 @@ def plot_horizontal_bars(
         y=y,
         width=width,
         height=height,
+        edgecolor=edgecolor,
+        linewidth=linewidth,
         color=color
     )
     return (fig, ax)
