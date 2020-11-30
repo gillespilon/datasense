@@ -419,10 +419,17 @@ def random_data(
     >>> s = ds.random_data(distribution='bool')
 
     Example 13
+    # Create series of random booleans, size = 113.
+    >>> s = ds.random_data(
+    >>> distribution='bool',
+    >>> size=113
+    >>> )
+
+    Example 14
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 14
+    Example 15
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
