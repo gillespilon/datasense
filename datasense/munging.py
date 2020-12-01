@@ -1381,52 +1381,6 @@ def replace_text_numbers(
     return dfnew
 
 
-def replace_text_text(
-    df: pd.DataFrame,
-    columns: List[str],
-    text_find: List[str],
-    text_replace: List[str]
-) -> pd.DataFrame:
-    """
-    Parameters
-    ----------
-    df : pd.DataFrame
-        The input dataframe.
-    columns : List[str]
-        The list of columns for replacement.
-    text_find : List[str]
-        The list of strings to replace.
-    text_replace : List[str]
-        The list of strings for replacement.
-
-    Returns
-    -------
-    df : pd.DataFrame
-        The output dataframe.
-
-    Example
-    -------
-    >>> data = ds.replace_text_text(
-    >>>     df=data,
-    >>>     columns=['address_country'],
-    >>>     text_find=[
-    >>>         'AD', 'AE', 'AF', 'AG',
-    >>>         'AI', 'AL', 'AM', 'AN',
-    >>>         'AO', 'AQ', 'AR', 'AS',
-    >>>         'AT', 'AU', 'AW', 'AZ',
-    >>>     ]
-    >>>     text_replace=[
-    >>>         'Andorra', 'Unit.Arab Emir.', 'Afghanistan', 'Antigua/Barbuda',
-    >>>         'Anguilla', 'Albania', 'Armenia', 'Niederl.Antill.',
-    >>>         'Angola', 'Antarctica', 'Argentina', 'Samoa,American',
-    >>>         'Austria', 'Australia', 'Aruba', 'Azerbaijan',
-    >>>     ]
-    >>> )
-    """
-    df[columns] = df[columns].replace(text_find, text_replace)
-    return df
-
-
 def create_dataframe() -> pd.DataFrame:
     """
     Create a Pandas dataframe.
@@ -1698,7 +1652,6 @@ __all__ = (
     'report_summary',
     'set_up_graphics_directory',
     'replace_text_numbers',
-    'replace_text_text',
     'create_dataframe',
     'delete_rows',
     'delete_columns',
