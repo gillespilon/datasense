@@ -1342,6 +1342,15 @@ def replace_text_numbers(
     >>>     new=[5, 1],
     >>>     regex=False
     >>> )
+
+    Example 2
+    >>> data = ds.replace_text_numbers(
+    >>>     df=data,
+    >>>     columns=['Q23'],
+    >>>     old=[r'\xa0'],
+    >>>     new=[r' '],
+    >>>     regex=True
+    >>> )
     """
     df[columns] = df[columns].replace(text_find, text_replace)
     """
