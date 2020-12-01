@@ -1351,8 +1351,25 @@ def replace_text_numbers(
     >>>     new=[r' '],
     >>>     regex=True
     >>> )
-    """
-    df[columns] = df[columns].replace(text_find, text_replace)
+
+    Example 3
+    >>> data = ds.replace_text_numbers(
+    >>>     df=data,
+    >>>     columns=['address_country'],
+    >>>     old=[
+    >>>         'AD', 'AE', 'AF', 'AG',
+    >>>         'AI', 'AL', 'AM', 'AN',
+    >>>         'AO', 'AQ', 'AR', 'AS',
+    >>>         'AT', 'AU', 'AW', 'AZ',
+    >>>     ]
+    >>>     new=[
+    >>>         'Andorra', 'Unit.Arab Emir.', 'Afghanistan', 'Antigua/Barbuda',
+    >>>         'Anguilla', 'Albania', 'Armenia', 'Niederl.Antill.',
+    >>>         'Angola', 'Antarctica', 'Argentina', 'Samoa,American',
+    >>>         'Austria', 'Australia', 'Aruba', 'Azerbaijan',
+    >>>     ],
+    >>>     regex=False
+    >>> )
     """
     dfnew = df.copy(deep=True)
     for column in columns:
