@@ -2,7 +2,8 @@
 Data munging
 """
 
-from typing import Callable, Dict, IO, List, Optional, Tuple, Union
+from typing import Callable, Dict, IO, List, Optional, Tuple, Union,\
+    Pattern
 from shutil import rmtree
 from pathlib import Path
 import webbrowser
@@ -1008,8 +1009,10 @@ def page_break():
     >>> import datasense as ds
     >>> ds.page_break()
     """
-    print('<p style="page-break-after:always">')
-    print('<p style="page-break-before:always">')
+    print('</pre>')
+    print('<p style="page-break-after:always"></p>')
+    print('<p style="page-break-before:always"></p>')
+    print('<pre style="white-space: pre-wrap;">')
 
 
 def html_begin(
@@ -1128,11 +1131,13 @@ def html_figure(
     if caption is None:
         caption = file_name
     print(
+        '</pre>'
         '<figure>'
         f'<img src="{file_name}" '
         f'alt="{file_name}"/>'
         f'<figcaption>{caption}</figcaption>'
         '</figure>'
+        '<pre style="white-space: pre-wrap;">'
     )
 
 
@@ -1248,7 +1253,9 @@ def report_summary(
     >>> )
     """
     elapsed_time = stop_time - start_time
+    print('</pre>')
     print('<h1>Report summary</h1>')
+    print('<pre style="white-space: pre-wrap;">')
     print(f'Execution time : {round(elapsed_time, 3)} s')
     if read_file_names:
         print(f'Files read     : {read_file_names}')
@@ -1287,21 +1294,23 @@ def set_up_graphics_directory(graphics_directory: List[str]) -> None:
 
 def replace_text_numbers(
     df: pd.DataFrame,
-    columns: List[str],
-    text: List[str],
-    numbers: List[int]
+    columns: Union[List[str], List[int], List[float], List[Pattern[str]]],
+    old: Union[List[str], List[int], List[float], List[Pattern[str]]],
+    new: List[int],
+    *,
+    regex: Optional[bool] = True
 ) -> pd.DataFrame:
     """
     Parameters
     ----------
     df : pd.DataFrame
         The input dataframe.
-    columns : List[str]
+    columns: Union[List[str], List[int], List[float]],
         The list of columns for replacement.
-    text : List[str]
-        The list of strings to replace.
-    numbers : List[int]
-        The list of replacement numbers.
+    old: Union[List[str], List[int], List[float]],
+        The list of item to replace.
+    new : List[int]
+        The list of replacement items.
 
     Returns
     -------
@@ -1321,18 +1330,24 @@ def replace_text_numbers(
     >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_1_n_5,
-    >>>     text=['Yes', 'No'],
-    >>>     numbers=[1, 5]
+    >>>     old=['Yes', 'No'],
+    >>>     new=[1, 5]
     >>> )
     >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_5_n_1,
-    >>>     text=['Yes', 'No'],
-    >>>     numbers=[5, 1]
+    >>>     old=['Yes', 'No'],
+    >>>     new=[5, 1]
     >>> )
     """
-    df[columns] = df[columns].replace(text, numbers)
-    return df
+    dfnew = df.copy(deep=True)
+    for column in columns:
+        dfnew[column] = dfnew[column].replace(
+            to_replace=old,
+            value=new,
+            regex=regex
+        )
+    return dfnew
 
 
 def replace_text_text(
