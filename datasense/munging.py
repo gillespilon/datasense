@@ -1317,8 +1317,9 @@ def replace_text_numbers(
     df : pd.DataFrame
         The output dataframe.
 
-    Example
+    Examples
     -------
+    Example 1
     >>> import datasense as ds
     >>> list_y_1_n_5 = [
     >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
@@ -1331,14 +1332,18 @@ def replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_1_n_5,
     >>>     old=['Yes', 'No'],
-    >>>     new=[1, 5]
+    >>>     new=[1, 5],
+    >>>     regex=False
     >>> )
     >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=list_y_5_n_1,
     >>>     old=['Yes', 'No'],
-    >>>     new=[5, 1]
+    >>>     new=[5, 1],
+    >>>     regex=False
     >>> )
+    """
+    df[columns] = df[columns].replace(text_find, text_replace)
     """
     dfnew = df.copy(deep=True)
     for column in columns:
