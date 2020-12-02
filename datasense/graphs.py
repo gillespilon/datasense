@@ -1979,7 +1979,8 @@ def plot_pie(
     *,
     figsize: Optional[Tuple[int, int]] = (8, 6),
     startangle: Optional[float] = 0,
-    colors: Optional[List[str]] = None
+    colors: Optional[List[str]] = None,
+    autopct: Optional[str] = '%1.1f%%'
 ) -> Tuple[plt.figure, axes.Axes]:
     """
     Parameters
@@ -1988,12 +1989,12 @@ def plot_pie(
         The wedge sizes.
     labels : Union[List[int], List[float], List[str]],
         The labels of the wedges.
-    figsize : Optional[Tuple[int, int]] = (8, 6),
-        The figure size width, height (inch).
     startangle : Optional[float] = 0,
         The start angle of the pie, counterclockwise from the x axis.
-    colors: Optional[List[str]] = None
+    colors : Optional[List[str]] = None
         The color of the wedges.
+    autopct : str
+        Label the wedges with their numeric value. If None, no label.
 
     Returns
     -------
@@ -2029,7 +2030,8 @@ def plot_pie(
         x=x,
         labels=labels,
         startangle=startangle,
-        colors=colors
+        colors=colors,
+        autopct=autopct
     )
     return (fig, ax)
 
