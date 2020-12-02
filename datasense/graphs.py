@@ -1908,6 +1908,71 @@ def plot_horizontal_bars(
     return (fig, ax)
 
 
+def plot_vertical_bars(
+    x: Union[List[int], List[float], List[str]],
+    height: Union[List[int], List[float]],
+    *,
+    width: Optional[float] = 0.8,
+    figsize: Optional[Tuple[int, int]] = (8, 6),
+    edgecolor: Optional[str] = '#ffffff',
+    linewidth: Optional[int] = 1,
+    color: Optional[str] = '#0077bb'
+) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Parameters
+    ----------
+    x : Union[List[int], List[float], List[str]],
+        The x coordinates of the bars.
+    height : Union[List[int], List[float]],
+        The height(s) of the bars.
+    width : Optional[float] = 0.8,
+        The width of the bars.
+    figsize : Optional[Tuple[int, int]] = (8, 6),
+        The figure size width, height (inch).
+    edgecolor : Optional[str] = '#ffffff',
+        The hexadecimal color value for the bar edges.
+    linewidth : Optional[int] = 1,
+        The bar edges line width (point).
+    color : Optional[str] = '#0077bb'
+        The color of the bar faces.
+
+    Returns
+    -------
+    fig, ax : Tuple[plt.figure, axes.Axes]
+
+    Examples
+    --------
+    Example 1
+    >>> import datasense as ds
+    >>> x = ['Yes', 'No']
+    >>> height = [69, 31]
+    >>> fig, ax = ds.plot_vertical_bars(
+    >>>     x=x,
+    >>>     height=height
+    >>> )
+
+    Example 2
+    >>> x = ['Yes', 'No']
+    >>> height = [69, 31]
+    >>> fig, ax = ds.plot_vertical_bars(
+    >>>     x=x,
+    >>>     height=height,
+    >>>>    width=0.4
+    >>> )
+    """
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111)
+    ax.bar(
+        x=x,
+        height=height,
+        width=width,
+        edgecolor=edgecolor,
+        linewidth=linewidth,
+        color=color
+    )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1927,4 +1992,5 @@ __all__ = (
     'despine',
     'plot_histogram',
     'plot_horizontal_bars',
+    'plot_vertical_bars',
 )
