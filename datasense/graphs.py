@@ -1973,6 +1973,67 @@ def plot_vertical_bars(
     return (fig, ax)
 
 
+def plot_pie(
+    x: Union[List[int], List[float]],
+    labels: Union[List[int], List[float], List[str]],
+    *,
+    figsize: Optional[Tuple[int, int]] = (8, 6),
+    startangle: Optional[float] = 0,
+    colors: Optional[List[str]] = None
+) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Parameters
+    ----------
+    x : Union[List[int], List[float]],
+        The wedge sizes.
+    labels : Union[List[int], List[float], List[str]],
+        The labels of the wedges.
+    figsize : Optional[Tuple[int, int]] = (8, 6),
+        The figure size width, height (inch).
+    startangle : Optional[float] = 0,
+        The start angle of the pie, counterclockwise from the x axis.
+    colors: Optional[List[str]] = None
+        The color of the wedges.
+
+    Returns
+    -------
+    fig, ax : Tuple[plt.figure, axes.Axes]
+
+    Examples
+    --------
+    Example 1
+    >>> import datasense as ds
+    >>> x = [69, 31]
+    >>> labels = ['Yes', 'No']
+    >>> fig, ax = ds.plot_pie(
+    >>>     x=x,
+    >>>     labels=labels
+    >>> )
+
+    Example 2
+    >>> x = [69, 31]
+    >>> labels = ['Yes', 'No']
+    >>> fig, ax = ds.plot_pie(
+    >>>     x=x,
+    >>>     labels=labels,
+    >>>     startangle=90,
+    >>>     colors=[
+    >>>         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
+    >>>         '#ee3377', '#bbbbbb'
+    >>>     ]
+    >>> )
+    """
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111)
+    ax.pie(
+        x=x,
+        labels=labels,
+        startangle=startangle,
+        colors=colors
+    )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -1993,4 +2054,5 @@ __all__ = (
     'plot_histogram',
     'plot_horizontal_bars',
     'plot_vertical_bars',
+    'plot_pie',
 )
