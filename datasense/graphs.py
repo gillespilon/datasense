@@ -2036,6 +2036,216 @@ def plot_pie(
     return (fig, ax)
 
 
+def plot_stacked_bars(
+    x: Union[List[int], List[float], List[str]],
+    height1: Union[List[int], List[float]],
+    label1: Optional[str] = None,
+    *,
+    height2: Union[List[int], List[float]] = None,
+    label2: Optional[str] = None,
+    height3: Union[List[int], List[float]] = None,
+    label3: Optional[str] = None,
+    height4: Union[List[int], List[float]] = None,
+    label4: Optional[str] = None,
+    height5: Union[List[int], List[float]] = None,
+    label5: Optional[str] = None,
+    height6: Union[List[int], List[float]] = None,
+    label6: Optional[str] = None,
+    height7: Union[List[int], List[float]] = None,
+    label7: Optional[str] = None,
+    width: Optional[float] = 0.8,
+    figsize: Optional[Tuple[int, int]] = (8, 6),
+    color: Union[List[str]] = [
+        '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
+        '#ee3377', '#bbbbbb'
+    ]
+) -> Tuple[plt.figure, axes.Axes]:
+    """
+    Stacked vertical bar plot of up to seven levels per bar.
+
+    Parameters
+    ----------
+    x : Union[List[int], List[float], List[str]],
+        The x coordinates of the bars.
+    height1 : Union[List[int], List[float]],
+        The height of the level 1 bars.
+    label1: Optional[str] = None,
+        The label of the level 1 bars.
+    height2 : Union[List[int], List[float]],
+        The height of the level 2 bars.
+    label2: Optional[str] = None,
+        The label of the level 2 bars.
+    height3 : Union[List[int], List[float]],
+        The height of the level 3 bars.
+    label3: Optional[str] = None,
+        The label of the level 3 bars.
+    height4 : Union[List[int], List[float]],
+        The height of the level 4 bars.
+    label4: Optional[str] = None,
+        The label of the level 4 bars.
+    height5 : Union[List[int], List[float]],
+        The height of the level 5 bars.
+    label5: Optional[str] = None,
+        The label of the level 5 bars.
+    height6 : Union[List[int], List[float]],
+        The height of the level 6 bars.
+    label6: Optional[str] = None,
+        The label of the level 6 bars.
+    height7 : Union[List[int], List[float]],
+        The height of the level 7 bars.
+    label7: Optional[str] = None,
+        The label of the level 7 bars.
+    width : Optional[float] = 0.8,
+        The width of the bars.
+    figsize : Optional[Tuple[int, int]] = (8, 6),
+        The figure size width, height (inch).
+    color: Optional[str] = [
+        '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
+        '#ee3377', '#bbbbbb'
+    ]
+        The color of the bar faces, up to seven levels.
+
+    Returns
+    -------
+    fig, ax : Tuple[plt.figure, axes.Axes]
+
+    Examples
+    --------
+    Example 1
+    >>> x = ['G1', 'G2', 'G3', 'G4', 'G5']
+    >>> height1 = [20, 35, 30, 35, 27]
+    >>> label1 = 'A'
+    >>> width = 0.35
+    >>> height2 = [25, 32, 34, 20, 25]
+    >>> label2 = 'B'
+    >>> fig, ax = ds.plot_stacked_bars(
+    >>>     x=x,
+    >>>     height1=height1,
+    >>>     label1=label1,
+    >>>     height2=height2,
+    >>>     label2=label2
+    >>> )
+    >>> fig.legend(frameon=False, loc='upper right')
+
+    Example 2
+    >>> x = ['G1', 'G2', 'G3', 'G4', 'G5']
+    >>> height1 = [20, 35, 30, 35, 27]
+    >>> label1 = 'A'
+    >>> width = 0.35
+    >>> height2 = [25, 32, 34, 20, 25]
+    >>> label2 = 'B'
+    >>> height3 = [30, 34, 23, 27, 32]
+    >>> label3 = 'C'
+    >>> height4 = [30, 34, 23, 27, 32]
+    >>> label4 = 'D'
+    >>> height5 = [30, 34, 23, 27, 32]
+    >>> label5 = 'E'
+    >>> height6 = [30, 34, 23, 27, 32]
+    >>> label6 = 'F'
+    >>> height7 = [30, 34, 23, 27, 32]
+    >>> label7 = 'G'
+    >>> fig, ax = ds.plot_stacked_bars(
+    >>>     x=x,
+    >>>     height1=height1,
+    >>>     label1=label1,
+    >>>     width=width,
+    >>>     figsize=(9, 6),
+    >>>     height2=height2,
+    >>>     label2=label2,
+    >>>     height3=height3,
+    >>>     label3=label3,
+    >>>     height4=height4,
+    >>>     label4=label4,
+    >>>     height5=height5,
+    >>>     label5=label5,
+    >>>     height6=height6,
+    >>>     label6=label6,
+    >>>     height7=height7,
+    >>>     label7=label7,
+    >>> )
+    >>> fig.legend(frameon=False, loc='upper right')
+    """
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_subplot(111)
+    ax.bar(
+        x=x,
+        height=height1,
+        label=label1,
+        width=width,
+        color=color[0]
+    )
+    if label2:
+        ax.bar(
+            x=x,
+            height=height2,
+            label=label2,
+            width=width,
+            bottom=height1,
+            color=color[1]
+        )
+    if label3:
+        bottom = np.add(
+                height1, height2
+        ).tolist()
+        ax.bar(
+            x=x,
+            height=height3,
+            label=label3,
+            width=width,
+            bottom=bottom,
+            color=color[2]
+        )
+    if label4:
+        bottom = np.add(
+            bottom, height3
+        ).tolist()
+        ax.bar(
+            x=x,
+            height=height4,
+            label=label4,
+            width=width,
+            bottom=bottom,
+            color=color[3]
+        )
+    if label5:
+        bottom = np.add(
+            bottom, height4
+        ).tolist()
+        ax.bar(
+            x=x,
+            height=height5,
+            label=label5,
+            width=width,
+            bottom=bottom,
+            color=color[4]
+        )
+    if label6:
+        bottom = np.add(
+            bottom, height5
+        ).tolist()
+        ax.bar(
+            x=x,
+            height=height6,
+            label=label6,
+            width=width,
+            bottom=bottom,
+            color=color[5]
+        )
+    if label7:
+        bottom = np.add(
+            bottom, height6
+        ).tolist()
+        ax.bar(
+            x=x,
+            height=height7,
+            label=label7,
+            width=width,
+            bottom=bottom,
+            color=color[6]
+        )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -2057,4 +2267,5 @@ __all__ = (
     'plot_horizontal_bars',
     'plot_vertical_bars',
     'plot_pie',
+    'plot_stacked_bars',
 )
