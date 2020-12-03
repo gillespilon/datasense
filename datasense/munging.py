@@ -264,7 +264,7 @@ def find_float_columns(df: pd.DataFrame) -> List[str]:
 
 def find_int_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all integer columns in a dataframe.
+    Find all integer columns of a dataframe.
 
     Parameters
     ----------
@@ -290,7 +290,7 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
 
 def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all integer and float columns in a dataframe.
+    Find all integer and float columns of a dataframe.
 
     Parameters
     ----------
