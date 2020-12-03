@@ -720,7 +720,6 @@ def read_file(
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
     format: Optional[str] = None,
-    # date_time_columns: Optional[List[str]] = [],
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
     integer_columns: Optional[List[str]] = [],
@@ -733,7 +732,7 @@ def read_file(
     nrows: Optional[int] = None
 ) -> pd.DataFrame:
     """
-    Create a DataFrame from an external file.
+    Create a dataframe from an external file.
 
     Parameters
     ----------
@@ -770,7 +769,7 @@ def read_file(
         The columns on which to sort the dataframe.
     sort_columns_bool : Optional[List[bool]] = []
         The booleans for sort_columns.
-    sheet_name : str
+    sheet_name : Optional[str] = False
         The name of the worksheet in the workbook.
     nrows : Optional[int] = None
         The number of rows to read.
