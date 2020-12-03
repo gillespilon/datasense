@@ -447,11 +447,9 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     int,
     List[str],
     int,
-    List[str],
-    int
 ]:
     """
-    Create various counts of columns.
+    Create various counts of columns of a dataframe.
 
     Create count of columns
         (columns_in_count)
@@ -517,7 +515,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_category_list : List[str]
         The list of category columns.
     columns_category_count : int
-        The coiunt of category columns.
+        The count of category columns.
     columns_timedelta_list : List[str]
         The list of timedelta columns.
     columns_timedelta_count : int
