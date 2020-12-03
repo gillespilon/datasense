@@ -640,19 +640,20 @@ def save_file(
 
     Parameters
     ----------
-    df : pd.DataFrame
-        The dataframe to be saved to a file.
+    df : Union[pd.DataFrame, pd.Series]
+        The dataframe or series to be saved to a file.
     file_name : str
         The name of the file to be saved.
-    index : bool
+    index : Optional[bool]
         If True, creates an index.
-    sheet_name : str
+    index_label : Optional[str]
+        The index label.
+    sheet_name : Optional[str]
         The name of the worksheet in the workbook.
 
     Examples
     --------
     Example 1
-    ---------
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> ds.save_file(
@@ -661,7 +662,6 @@ def save_file(
     >>> )
 
     Example 2
-    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.csv',
@@ -669,14 +669,12 @@ def save_file(
     >>> )
 
     Example 3
-    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.xlsx'
     >>> )
 
     Example 4
-    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.xlsx',
