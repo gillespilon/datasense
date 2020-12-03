@@ -592,7 +592,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
 
 def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     """
-    Create various counts of rows.
+    Create various counts of rows of a dataframe.
 
     Parameters
     ----------
@@ -607,7 +607,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
         The count of rows of the input dataframe.
     rows_out_count : int
         The count of rows of the output dataframe.
-    rows_emnpty_count : int
+    rows_empty_count : int
         The count of empty rows of the input dataframe.
 
     Example
