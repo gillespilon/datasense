@@ -22,7 +22,7 @@ def dataframe_info(
     file_in: str
 ) -> pd.DataFrame:
     """
-    Describe a DataFrame.
+    Describe a dataframe.
 
     Display count of rows (rows_in_count)
     Display count of empty rows (rows_empty_count)
@@ -64,7 +64,6 @@ def dataframe_info(
     Examples
     --------
     Example 1
-    ---------
     >>> import datasense as ds
     >>> my_file = 'myfile.csv'
     >>> df = ds.read_file(my_file)
@@ -74,7 +73,6 @@ def dataframe_info(
     >>> )
 
     Example 2
-    ---------
     >>> df = ds.create_dataframe()
     >>> df = ds.dataframe_info(
     >>>     df=df,
