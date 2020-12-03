@@ -160,7 +160,7 @@ def dataframe_info(
 
 def find_bool_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all boolean columns in a dataframe.
+    Find all boolean columns of a dataframe.
 
     Parameters
     ----------
@@ -186,7 +186,7 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
 
 def find_category_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all category columns in a dataframe.
+    Find all category columns of a dataframe.
 
     Parameters
     ----------
