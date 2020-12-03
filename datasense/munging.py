@@ -212,7 +212,7 @@ def find_category_columns(df: pd.DataFrame) -> List[str]:
 
 def find_datetime_columns(df: pd.DataFrame) -> List[str]:
     """
-    Find all datetime columns in a dataframe.
+    Find all datetime columns of a dataframe.
 
     Parameters
     ----------
