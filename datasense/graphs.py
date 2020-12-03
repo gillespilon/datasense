@@ -33,7 +33,7 @@ def plot_scatter_y(
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y. Optional smoothing applied to y.
 
@@ -63,7 +63,7 @@ def plot_scatter_y(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -125,7 +125,7 @@ def plot_scatter_x_y(
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     colour: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y versus X.  Optional smoothing applied to y.
 
@@ -155,7 +155,7 @@ def plot_scatter_x_y(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -245,7 +245,7 @@ def plot_line_y(
     markersize: Optional[float] = 8,
     linestyle: Optional[str] = '-',
     colour: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Line plot of y. Optional smoothing applied to y.
 
@@ -275,7 +275,7 @@ def plot_line_y(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -339,7 +339,7 @@ def plot_line_x_y(
     markersize: Optional[float] = 8,
     linestyle: Optional[str] = '-',
     colour: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y versus X. Optional smoothing applied to y.
 
@@ -371,7 +371,7 @@ def plot_line_x_y(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -471,7 +471,7 @@ def plot_scatter_scatter_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y1 versus X.
     Scatter plot of y2 versus X.
@@ -525,7 +525,7 @@ def plot_scatter_scatter_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -660,7 +660,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y1 versus X1.
     Scatter plot of y2 versus X2.
@@ -716,7 +716,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -887,7 +887,7 @@ def plot_scatter_line_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y1 versus X.
     Line plot of y2 versus X.
@@ -981,7 +981,7 @@ def plot_line_line_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 and y2.
 
@@ -1033,7 +1033,7 @@ def plot_line_line_y1_y2(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -1121,7 +1121,7 @@ def plot_line_line_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -1215,7 +1215,7 @@ def plot_line_line_line_x_y1_y2_y3(
     labellegendy1: Optional[str] = None,
     labellegendy2: Optional[str] = None,
     labellegendy3: Optional[str] = None
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -1324,7 +1324,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     linestyle1: Optional[str] = 'None',
     linestyle2: Optional[str] = 'None'
-) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Scatter plot of y1 left vertical axis versus X.
     Scatter plot of y2 right vertical axis versus X.
@@ -1419,7 +1419,7 @@ def plot_lineleft_lineright_x_y1_y2(
     colour2: Optional[str] = '#33bbee',
     linestyle1: Optional[str] = '-',
     linestyle2: Optional[str] = '-'
-) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
@@ -1507,7 +1507,7 @@ def plot_pareto(
     marker: Optional[str] = '.',
     markersize: Optional[float] = 8,
     linestyle: Optional[str] = '-',
-) -> Tuple[plt.figure, axes.Axes, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     X : pd.Series
         The data to plot on the ordinate.
@@ -1530,7 +1530,7 @@ def plot_pareto(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes, axes.Axes]
+    Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -1605,7 +1605,7 @@ def probability_plot(
     plot: Optional[object] = None,
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
     theoretical distribution.
@@ -1625,7 +1625,7 @@ def probability_plot(
 
     Returns
     -------
-    Tuple[plt.figure, axes.Axes]
+    Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -1678,7 +1678,7 @@ def plot_histogram(
     linewidth: Optional[int] = 1,
     bin_label_bool: Optional[bool] = False,
     color: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
@@ -1704,7 +1704,7 @@ def plot_histogram(
 
     Returns
     -------
-    fig, ax : Tuple[plt.figure, axes.Axes]
+    fig, ax : Tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -1852,7 +1852,7 @@ def plot_horizontal_bars(
     edgecolor: Optional[str] = '#ffffff',
     linewidth: Optional[int] = 1,
     color: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
@@ -1873,7 +1873,7 @@ def plot_horizontal_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.figure, axes.Axes]
+    fig, ax : Tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -1917,7 +1917,7 @@ def plot_vertical_bars(
     edgecolor: Optional[str] = '#ffffff',
     linewidth: Optional[int] = 1,
     color: Optional[str] = '#0077bb'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
@@ -1938,7 +1938,7 @@ def plot_vertical_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.figure, axes.Axes]
+    fig, ax : Tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -1981,7 +1981,7 @@ def plot_pie(
     startangle: Optional[float] = 0,
     colors: Optional[List[str]] = None,
     autopct: Optional[str] = '%1.1f%%'
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
@@ -1998,7 +1998,7 @@ def plot_pie(
 
     Returns
     -------
-    fig, ax : Tuple[plt.figure, axes.Axes]
+    fig, ax : Tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2059,7 +2059,7 @@ def plot_stacked_bars(
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
         '#ee3377', '#bbbbbb'
     ]
-) -> Tuple[plt.figure, axes.Axes]:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Stacked vertical bar plot of up to seven levels per bar.
 
@@ -2107,7 +2107,7 @@ def plot_stacked_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.figure, axes.Axes]
+    fig, ax : Tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
