@@ -984,7 +984,7 @@ def html_header(
 
 def html_footer() -> None:
     """
-    Creates an html footer.
+    Create an html footer.
 
     Example
     -------
