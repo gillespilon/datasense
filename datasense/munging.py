@@ -1465,24 +1465,28 @@ def delete_columns(
     columns: List[str]
 ) -> pd.DataFrame:
     """
-    Delete columns using a list
+    Delete columns of a dataframe using a list.
 
     Parameters
-    ==========
+    ----------
     df : pd.DataFrame
         The input dataframe.
     columns : List[str]
         A list of column names.
 
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
     Example
-    =======
+    -------
     >>> import datasense as ds
     >>> df = ds.delete_columns(
     >>>     df=df,
     >>>     columns=columns
     >>> )
     """
-
     df = df.drop(columns=columns)
     return df
 
