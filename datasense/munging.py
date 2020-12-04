@@ -1000,6 +1000,7 @@ def page_break() -> None:
     Create an html page break.
 
     Example
+    -------
     >>> import datasense as ds
     >>> ds.page_break()
     """
