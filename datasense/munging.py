@@ -1578,27 +1578,27 @@ def rename_some_columns(
     Rename some columns with a dictionary.
 
     Parameters
-    ==========
+    ----------
     df : pd.DataFrame
         The input dataframe.
     column_names_dict : Dict[str, str]
         The dictionary of old:new column names.
 
     Returns
-    =======
+    -------
     df : pd.DataFrame
         The output dataframe.
 
     Example
-    =======
+    -------
     >>> import datasense as ds
     >>> df = ds.rename_some_columns(
     >>>     df=df,
     >>>     column_names_dict=column_names_dict
     >>> )
     """
-
-    return df.rename(columns=column_names_dict)
+    df = df.rename(columns=column_names_dict)
+    return df
 
 
 def replace_column_values(
