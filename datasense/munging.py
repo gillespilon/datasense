@@ -1218,12 +1218,12 @@ def report_summary(
     *,
     read_file_names: Optional[List[str]] = None,
     save_file_names: Optional[List[str]] = None,
-    targets: List[str] = None,
-    features: List[str] = None,
-    number_knots: List[int] = None
+    targets: Optional[List[str]] = None,
+    features: Optional[List[str]] = None,
+    number_knots: Optional[List[int]] = None
 ) -> None:
     """
-    Report summary
+    Create a report summary.
 
     Parameters
     ----------
@@ -1231,15 +1231,15 @@ def report_summary(
         The start time.
     stop_time : float
         The stop time.
-    read_file_names : List[str]
+    read_file_names : Optional[List[str]] = None
         The list of file names read.
-    save_file_names : List[str]
+    save_file_names : Optional[List[str]] = None
         The list of file names saved.
-    targets : List[str]
+    targets : Optional[List[str]] = None
         The list of target variables.
-    features : List[str]
+    features : Optional[List[str]] = None
         Thje list of feature variables.
-    number_knots : List[int]
+    number_knots : Optional[List[str]] = None
         The number of spline knots.
 
     Example
