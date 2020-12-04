@@ -995,9 +995,9 @@ def html_footer() -> None:
     print('</html>')
 
 
-def page_break():
+def page_break() -> None:
     """
-    Create a page break for html output.
+    Create an html page break.
 
     Example
     >>> import datasense as ds
