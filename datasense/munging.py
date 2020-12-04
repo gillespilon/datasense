@@ -1270,7 +1270,7 @@ def report_summary(
 
 def set_up_graphics_directory(graphics_directory: List[str]) -> None:
     """
-    Create empty directories.
+    Create empty directories for a path.
 
     Parameters
     ----------
