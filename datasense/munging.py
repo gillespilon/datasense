@@ -1067,7 +1067,8 @@ def html_end(
     output_url: str
 ) -> None:
     """
-    Set footer, close html file, open html file in new tab in web browser.
+    Create an html footer, close an html file, and open an html file in
+    a new tab in a web browser.
 
     Parameters
     ----------
