@@ -1432,17 +1432,22 @@ def delete_rows(
     delete_row_criteria: Tuple[str, int]
 ) -> pd.DataFrame:
     """
-    Delete rows based on value in one column
+    Delete rows of a dataframe based on a value in one column.
 
     Parameters
-    ==========
+    ----------
     df : pd.DataFrame
         The input dataframe.
     delete_row_criteria : Tuple[str, int]
         A tuple of the column name containing an integer for deletion code.
 
+    Returns
+    -------
+    df : pd.DataFrame
+        The output dataframe.
+
     Example
-    =======
+    -------
     >>> import datasense as ds
     >>> df = ds.delete_rows(
     >>>     df=df,
