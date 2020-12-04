@@ -1498,25 +1498,26 @@ def sort_rows(
     kind: str = 'mergesort'
 ) -> pd.DataFrame:
     """
-    Sort a dataframe in time ascending order on one column
+    Sort a dataframe in time-ascending order for one column.
+
     Parameters
-    ==========
+    ----------
     df : pd.DataFrame
         The input dataframe.
     sort_columns : List[str]
         The sort columns.
     sort_columns_bool : List[bool]
-        The booleans for sort_columns, True = ascending, False = descending
+        The booleans for sort_columns: True = ascending, False = descending.
     kind: str = 'mergesort'
         The sort algorithm.
 
     Returns
-    =======
+    -------
     df : pd.DataFrame
         The output dataframe.
 
-    =======
     Example
+    -------
     >>> import datasense as ds
     >>> df = ds.sort_rows(
     >>>     df=df,
