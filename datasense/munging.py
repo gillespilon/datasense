@@ -1017,17 +1017,21 @@ def html_begin(
     header_id: Optional[str] = 'report',
 ) -> IO[str]:
     """
-    Open file to write html and set header.
+    Open a file to write html and set an hmtl header.
 
     Parameters
     ----------
     output_url : str
         The file name for the html output.
-    header_title : Optional[str]
+    header_title : Optional[str] = 'Report'
         The file title.
-    header_id : Optional[str]
+    header_id : Optional[str] = 'report'
         The id for the header_title.
 
+    Returns
+    -------
+    original_stdout : IO[str]
+        A file object for the output of print().
     Examples
     --------
     Example 1
