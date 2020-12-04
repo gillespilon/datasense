@@ -1180,7 +1180,7 @@ def feature_percent_empty(
     threshold: float
 ) -> List[str]:
     """
-    Remove features that have NaN > threshold
+    Remove features that have NaN > threshold.
 
     Parameters
     ----------
@@ -1193,7 +1193,7 @@ def feature_percent_empty(
 
     Returns
     -------
-    List[str]
+    list_columns : List[str]
         The list of columns below the threshold value.
 
     Example
@@ -1207,8 +1207,9 @@ def feature_percent_empty(
     >>> )
     """
     num_rows = df.shape[0]
-    return [col for col in columns if
-            ((df[col].isna().sum() / num_rows * 100) <= threshold)]
+    list_columns = [col for col in columns if
+                    ((df[col].isna().sum() / num_rows * 100) <= threshold)]
+    return list_columns
 
 
 def report_summary(
