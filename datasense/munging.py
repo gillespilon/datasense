@@ -1103,7 +1103,7 @@ def html_figure(
     caption: Optional[str] = None
 ) -> None:
     """
-    Print html tag for a figure.
+    Print an html tag for a figure.
 
     Parameters
     ----------
@@ -1115,14 +1115,12 @@ def html_figure(
     Examples
     --------
     Example 1
-    ---------
     >>> import datasense as ds
     >>> graph_file = 'my_graph_file.svg'
     >>> fig.savefig(graph_file)
     >>> ds.html_figure(file_name=graph_file)
 
     Example 2
-    ---------
     >>> ds.html_figure(
     >>>     file_name=graph_file,
     >>>     caption='my graph file caption'
