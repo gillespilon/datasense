@@ -941,17 +941,18 @@ def read_file(
 
 
 def html_header(
-    header_title: str = 'Report',
+    *,
+    header_title: Optional[str] = 'Report',
     header_id: str = 'report'
 ) -> None:
     """
-    Creates an html header.
+    Create an html header.
 
     Parameters
     ----------
-    header_title : str
+    header_title : str = 'Report'
         The header title.
-    header_id : str
+    header_id : str = 'report'
         The header ID.
 
     Example
