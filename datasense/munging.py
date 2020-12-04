@@ -1609,11 +1609,9 @@ def replace_column_values(
     Replace values in a series using a dictionary.
 
     Parameters
-    ==========
+    ----------
     s : pd.Series
         The input series.
-    column: str
-        The column in which to replace values
     replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
         The dictionary of values to replace.
 
@@ -1622,7 +1620,7 @@ def replace_column_values(
         The output series.
 
     Examples
-    ========
+    -------=
     >>> import datasense as ds
     >>> df = ds.replace_column_values(
     >>>     df=df,
