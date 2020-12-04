@@ -1300,13 +1300,15 @@ def replace_text_numbers(
     regex: Optional[bool] = True
 ) -> pd.DataFrame:
     """
+    Replace text or numbers with text or numbers.
+
     Parameters
     ----------
     df : pd.DataFrame
         The input dataframe.
-    columns: Union[List[str], List[int], List[float]],
+    columns: Union[List[str], List[int], List[float], List[Pattern[str]]]
         The list of columns for replacement.
-    old: Union[List[str], List[int], List[float]],
+    old: Union[List[str], List[int], List[float], List[Pattern[str]]]
         The list of item to replace.
     new : List[int]
         The list of replacement items.
