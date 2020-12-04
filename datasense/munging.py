@@ -1541,27 +1541,28 @@ def rename_all_columns(
     labels: List[str]
 ) -> pd.DataFrame:
     """
+    Rename all dataframe columns.
+
     Parameters
-    ==========
+    ----------
     df : pd.DataFrame
         The input dataframe.
     labels : List[str]
         The list of all column names.
 
     Returns
-    =======
+    -------
     df : pd.DataFrame
         The output dataframe.
 
     Example
-    =======
+    -------
     >>> import datasense as ds
     >>> df = ds.rename_all_columns(
     >>>     df=df,
     >>>     labels=labels
     >>> )
     """
-
     df = df.set_axis(
         labels=labels,
         axis='columns'
