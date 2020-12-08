@@ -46,7 +46,6 @@ def main():
     print('my_dict_4:')
     print(my_dict_4)
     print()
-    my_index = [1, 2, 3, 4, 5]
     convert_dict = {'A': 'Int64', 'B': 'float64', 'C': 'str'}
     df1 = pd.DataFrame(
         data={
@@ -91,7 +90,6 @@ def main():
     print()
     df5 = pd.DataFrame(
         data=my_dict_4,
-        index=my_index
     ).astype(dtype=convert_dict)
     print('df5:')
     print(df5)
