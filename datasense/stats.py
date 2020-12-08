@@ -494,8 +494,8 @@ def random_data(
             high=2,
             size=size,
             random_state=random_state
-            ).astype(dtype='bool')
-        )
+            )
+        ).astype(dtype='boolean')
     elif distribution in distribution_list_strings:
         random.seed(a=random_state)
         series = pd.Series(
