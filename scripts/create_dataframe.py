@@ -67,6 +67,7 @@ def main():
     print(df2)
     print(df2.dtypes)
     print()
+    # This is my preferred way.
     df3 = pd.DataFrame(
         data={
             'A': [1, 2, np.nan, 4, 5],
