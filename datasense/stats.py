@@ -328,6 +328,12 @@ def random_data(
     pd.Series
         A pandas series of random items.
 
+    Notes
+    -----
+    distribution dtypes returned:
+    'norm' float64
+    'bool' boolean (nullable)
+
     Examples
     --------
     Example 1
