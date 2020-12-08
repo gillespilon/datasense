@@ -31,7 +31,6 @@ def main():
     print(my_list_3)
     print()
     my_list_1 = [1, 2, np.nan, 4, 5]
-    my_index = [1, 2, 3, 4, 5]
     s1 = pd.Series(
         data=my_list_1,
         name='A'
@@ -41,7 +40,6 @@ def main():
     print()
     s2 = pd.Series(
         data=my_list_2,
-        index=my_index,
         dtype='float64',
         name='B'
     ).astype(dtype='float64')
