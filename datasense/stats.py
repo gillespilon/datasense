@@ -331,8 +331,11 @@ def random_data(
     Notes
     -----
     distribution dtypes returned:
-    'norm' float64
-    'bool' boolean (nullable)
+    'uniform'  float64
+    'bool'     boolean (nullable)
+    'strings'  str
+    'norm'     float64
+    'randint'  Int64
 
     Examples
     --------
