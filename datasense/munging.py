@@ -593,6 +593,7 @@ def process_columns(df: pd.DataFrame) -> Tuple[
 def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     """
     Create various counts of rows of a dataframe.
+    Drop duplicate rows.
 
     Parameters
     ----------
@@ -621,7 +622,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
     rows_empty_count: 0
     """
     rows_in_count = df.shape[0]
-    df = df.dropna(axis='rows', how='all')
+    df = df.dropna(axis='rows', how='all').drop_duplicates()
     rows_out_count = df.shape[0]
     rows_empty_count = rows_in_count - rows_out_count
     return (df, rows_in_count, rows_out_count, rows_empty_count)
