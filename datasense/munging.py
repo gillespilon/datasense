@@ -717,6 +717,7 @@ def read_file(
     skiprows: Optional[List[int]] = None,
     column_names_dict: Optional[Dict[str, str]] = {},
     index_columns: Optional[List[str]] = [],
+    usecols: Optional[List[str]] = [],
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
@@ -745,6 +746,8 @@ def read_file(
         The new column names to replace the old column names.
     index_columns : Optional[List[str]]
         The columns to use for the dataframe index.
+    usecols : Optional[List[str]] = [],
+        The columns to read.
     converters : Optional[dict] = None,
         Dictionary of functions for converting values in certain columns.
     parse_dates : Optional[List[str]] = False,
@@ -889,6 +892,7 @@ def read_file(
         df = pd.read_csv(
             file_name,
             skiprows=skiprows,
+            usecols=usecols,
             converters=converters,
             parse_dates=parse_dates,
             date_parser=date_parser,
@@ -898,6 +902,7 @@ def read_file(
         df = pd.read_excel(
             file_name,
             skiprows=skiprows,
+            usecols=usecols,
             engine='odf',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
@@ -907,6 +912,7 @@ def read_file(
         df = pd.read_excel(
             file_name,
             skiprows=skiprows,
+            usecols=usecols,
             engine='openpyxl',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
