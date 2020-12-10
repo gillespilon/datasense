@@ -496,7 +496,7 @@ def random_data(
             size=size,
             random_state=random_state
             )
-        )
+        ).astype(dtype='Int64')
     elif distribution in distribution_list_bool:
         series = pd.Series(eval('randint').rvs(
             low=0,
