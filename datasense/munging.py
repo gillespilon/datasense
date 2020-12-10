@@ -785,10 +785,12 @@ def read_file(
 
     Examples
     --------
+    Create a data file for the examples.
     >>> import datsense as ds
     >>> file_name='myfile.csv'
     >>> df = ds.create_dataframe()
     >>> print(df.columns)
+    >>> print(df.dtypes)
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name=file_name
@@ -797,11 +799,38 @@ def read_file(
         ['a', 'b', 'c', 'd', 'i', 'r', 's', 't', 'u', 'x', 'y', 'z'],
         dtype='object'
     )
+    a            float64
+    b            boolean
+    c           category
+    d    timedelta64[ns]
+    i            float64
+    r             object
+    s             object
+    t     datetime64[ns]
+    u     datetime64[ns]
+    x            float64
+    y              Int64
+    z            float64
+    dtype: object
 
-    Example 1
-    Read a csv file. There is no guarante the column dtypes will be correct.
-    >>> import datasense as ds
-    >>> data = ds.read_file(file_name='myfile.csv')
+    # Example 1
+    # Read a csv file. There is no guarantee the column dtypes will be correct.
+    # Only [a, i, s, x, y, z] have the correct dtypes.
+    >>> df = ds.read_file(file_name=file_name)
+    >>> print(df.dtypes)
+    a    float64
+    b       bool
+    c     object
+    d     object
+    i    float64
+    r      int64
+    s     object
+    t     object
+    u     object
+    x    float64
+    y      Int64
+    z    float64
+    dtype: object
 
     # Example 2
     # Read a csv file. Ensure the dtypes of datetime columns.
