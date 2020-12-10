@@ -718,6 +718,7 @@ def read_file(
     column_names_dict: Optional[Dict[str, str]] = {},
     index_columns: Optional[List[str]] = [],
     usecols: Optional[List[str]] = None,
+    dtype: Optional[dict] = None,
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
@@ -748,6 +749,8 @@ def read_file(
         The columns to use for the dataframe index.
     usecols : Optional[List[str]] = None,
         The columns to read.
+    dtype: Optional[dict] = None
+        A dictionary of column names and dtypes.
     converters : Optional[dict] = None,
         Dictionary of functions for converting values in certain columns.
     parse_dates : Optional[List[str]] = False,
@@ -815,7 +818,7 @@ def read_file(
 
     # Example 1
     # Read a csv file. There is no guarantee the column dtypes will be correct.
-    # Only [a, i, s, x, y, z] have the correct dtypes.
+    # Only [a, i, s, x, z] have the correct dtypes.
     >>> df = ds.read_file(file_name=file_name)
     >>> print(df.dtypes)
     a    float64
@@ -835,12 +838,58 @@ def read_file(
     # Example 2
     # Read a csv file. Ensure the dtypes of datetime columns.
     >>> parse_dates = ['t', 'u']
-    >>> data = ds.read_file(
+    >>> df = ds.read_file(
     >>>     file_name=file_name,
     >>>     parse_dates=parse_dates
     >>> )
+    >>> print(df.dtypes)
+    a           float64
+    b              bool
+    c            object
+    d            object
+    i           float64
+    r             int64
+    s            object
+    t    datetime64[ns]
+    u    datetime64[ns]
+    x           float64
+    y             int64
+    z           float64
+    dtype: object
 
-    Example 3
+    # Example 3
+    # Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
+    >>> convert_dict = {
+    >>>     'a': 'float64',
+    >>>     'b': 'boolean',
+    >>>     'c': 'category',
+    >>>     'i': 'float64',
+    >>>     'r': 'str',
+    >>>     's': 'str',
+    >>>     'x': 'float64',
+    >>>     'y': 'Int64',
+    >>>     'z': 'float64'
+    >>> }
+    >>> df = ds.read_file(
+    >>>     file_name=file_name,
+    >>>     dtype=convert_dict
+    >>> )
+    >>> print(df.dtypes)
+    a     float64
+    b     boolean
+    c    category
+    d      object
+    i     float64
+    r      object
+    s      object
+    t      object
+    u      object
+    x     float64
+    y       Int64
+    z     float64
+    dtype: object
+
+    Example 4
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
     >>> file_name = 'myfile.csv'
@@ -899,7 +948,7 @@ def read_file(
     >>>     integer_columns=integer_columns
     >>> )
 
-    Example 4
+    Example 5
     Read an ods file.
     >>> file_name = 'myfile.ods'
     >>> df = ds.create_dataframe()
@@ -917,7 +966,7 @@ def read_file(
     >>>     file_in=file_name
     >>> )
 
-    Example 5
+    Example 6
     >>> Read an xlsx file.
     >>> file_name = 'mfile.xlsx'
     >>> sheet_name = 'raw_data'
@@ -935,6 +984,7 @@ def read_file(
             file_name,
             skiprows=skiprows,
             usecols=usecols,
+            dtype=dtype,
             converters=converters,
             parse_dates=parse_dates,
             date_parser=date_parser,
@@ -945,6 +995,7 @@ def read_file(
             file_name,
             skiprows=skiprows,
             usecols=usecols,
+            dtype=dtype,
             engine='odf',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
@@ -955,6 +1006,7 @@ def read_file(
             file_name,
             skiprows=skiprows,
             usecols=usecols,
+            dtype=dtype,
             engine='openpyxl',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
