@@ -785,6 +785,19 @@ def read_file(
 
     Examples
     --------
+    >>> import datsense as ds
+    >>> file_name='myfile.csv'
+    >>> df = ds.create_dataframe()
+    >>> print(df.columns)
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name=file_name
+    >>> )
+    Index(
+        ['a', 'b', 'c', 'd', 'i', 'r', 's', 't', 'u', 'x', 'y', 'z'],
+        dtype='object'
+    )
+
     Example 1
     Read a csv file. There is no guarante the column dtypes will be correct.
     >>> import datasense as ds
