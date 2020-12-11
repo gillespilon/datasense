@@ -61,18 +61,8 @@ def dataframe_info(
     df : pd.DataFrame
         The output dataframe.
 
-    Examples
-    --------
-    Example 1
-    >>> import datasense as ds
-    >>> my_file = 'myfile.csv'
-    >>> df = ds.read_file(my_file)
-    >>> df = ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in=my_file
-    >>> )
-
-    Example 2
+    Example
+    -------
     >>> df = ds.create_dataframe()
     >>> df = ds.dataframe_info(
     >>>     df=df,
