@@ -1473,9 +1473,17 @@ def replace_text_numbers(
     return dfnew
 
 
-def create_dataframe() -> pd.DataFrame:
+def create_dataframe(
+    *,
+    size: Optional[int] = 42
+) -> pd.DataFrame:
     """
     Create a Pandas dataframe.
+
+    Parameters
+    ----------
+    size : Optional[int] = 42
+        The number of rows to create.
 
     Returns
     -------
