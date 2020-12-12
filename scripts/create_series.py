@@ -38,7 +38,7 @@ def main():
     # series_b = ds.random_data(
     #     distribution='bool',
     #     size=7
-    # )
+    # ).rename('B')
     list_b = [False, True, np.nan, False, True, True, False]
     print(list_b)
     series_b = pd.Series(
@@ -47,13 +47,14 @@ def main():
     ).astype(dtype='boolean')
     print(series_b)
     print()
-    print('category, dtype: category, list_c:')
+    print('category distribution, dtype: category, list_c:')
     # series_c = ds.random_data(
     #     distribution='categories,
     #     size=7'
-    # )
+    # ).rename('C')
     # print(series_c.head())
     list_c = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
+    print(list_c)
     series_c = pd.Series(
         data=list_c,
         name='C'
@@ -65,7 +66,7 @@ def main():
     #     distribution='timedelta',
     #     size=7
     # ).rename('D')
-    list_d = [0, 0, 0, 0, 0, 0, 0 ]
+    list_d = [0, 0, pd.NaT, 0, 0, 0, 0 ]
     print(list_d)
     series_d = pd.Series(
         data=list_d,
@@ -73,7 +74,7 @@ def main():
     ).astype(dtype='timedelta64[ns]')
     print(series_d)
     print()
-    print('strings, str, list_s:')
+    print('strings distribution, dtype:str, list_s:')
     # series_s = ds.random_data(
     #     distribution='strings',
     #     size=7
@@ -94,7 +95,7 @@ def main():
     #     size=7
     # ).rename('T')
     list_t = [
-        '2020-12-12 16:33:48', '2020-12-13 16:33:48', '2020-12-14 16:33:48',
+        '2020-12-12 16:33:48', '2020-12-13 16:33:48', pd.NaT,
         '2020-12-15 16:33:48', '2020-12-16 16:33:48', '2020-12-17 16:33:48',
         '2020-12-18 16:33:48'
     ]
@@ -105,13 +106,13 @@ def main():
     ).astype(dtype='datetime64[ns]')
     print(series_t)
     print()
-    print('normal distribution, float64, series_x:')
+    print('normal distribution, dtype: float64, series_x:')
     # series_x = ds.random_data(
     #     distribution='norm',
     #     size=7,
     #     loc=69,
     #     scale=13
-    # )
+    # ).rename('X')
     list_x = [42.195, 82.630, np.nan, 86.738, 85.656, 79.281, 50.015]
     print(list_x)
     series_x = pd.Series(
@@ -121,13 +122,13 @@ def main():
     ).astype(dtype='float64')
     print(series_x)
     print()
-    print('integer distribution, Int64 (nullable), series_y:')
+    print('integer distribution, dtype: Int64 (nullable), series_y:')
     # series_y = ds.random_data(
     #     distribution='randint',
     #     size=7,
     #     low=0,
     #     high=2
-    # ).astype(dtype='Int64')
+    # ).rename('Y')
     list_y = [1, 0, 1, np.nan, 1, 0, 0]
     print(list_y)
     series_y = pd.Series(
