@@ -484,6 +484,14 @@ def random_data(
     >>>     size=7
     >>> )
     >>> s
+
+    Example 20
+    # Create series of datetime64[ns].
+    >>> s = ds.random_data(
+    >>>     distribution='datetime',
+    >>>     size=7
+    >>> )
+    >>> s
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
