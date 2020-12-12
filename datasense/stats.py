@@ -482,7 +482,7 @@ def random_data(
     distribution_list_strings = ['strings']
     distribution_list_bool = ['bool']
     distribution_list_categories = ['categories']
-    distribution_list_time = ['timedelta']
+    distribution_list_time = ['timedelta', 'datetime']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
@@ -528,8 +528,10 @@ def random_data(
                 ordered=True
             )
         )
-    elif distribution in distribution_list_time:
+    elif distribution == 'timedelta':
         series = timedelta_data(time_delta_days=size-1)
+    elif distribution == 'datetime':
+        series = datetime_data(time_delta_days=size-1)
     else:
         return print(
             f'Distribution instance {distribution} is not implemented '
