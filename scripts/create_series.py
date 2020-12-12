@@ -19,7 +19,7 @@ import datasense as ds
 def main():
     print('Create Pandas series')
     print()
-    print('uniform distribution, float, series_a')
+    print('uniform distribution, dtype: float, series_a')
     # series_a = ds.random_data(
     #     distribution='uniform',
     #     size=7,
@@ -34,7 +34,7 @@ def main():
     ).astype(dtype='float64')
     print(series_a)
     print()
-    print('boolean distribution, boolean (nullable), list_b:')
+    print('boolean distribution, dtype: boolean (nullable), list_b:')
     # series_b = ds.random_data(
     #     distribution='bool',
     #     size=7
@@ -49,7 +49,7 @@ def main():
     print('dtypes of series_b')
     print(series_b.dtypes)
     print()
-    print('boolean distribution without np.nan, boolean (nullable), list_b:')
+    print('boolean distribution np.nan, dtype: boolean (nullable), list_b:')
     series_b = ds.random_data(
         distribution='bool',
         size=7
@@ -65,7 +65,7 @@ def main():
     print(series_b.dtypes)
     print()
     print('category, dtype: category, list_c:')
-    # series_c = ds.random_data(distribution='categories')
+    # series_c = ds.random_data(distribution='categories, size=7')
     # print(series_c.head())
     list_c = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
     series_c = pd.Series(
