@@ -46,26 +46,12 @@ def main():
         name='B'
     ).astype(dtype='boolean')
     print(series_b)
-    print('dtypes of series_b')
-    print(series_b.dtypes)
-    print()
-    print('boolean distribution np.nan, dtype: boolean (nullable), list_b:')
-    series_b = ds.random_data(
-        distribution='bool',
-        size=7
-    )
-    # list_b = [False, True, np.nan, False, True, True, False]
-    # print(list_b)
-    # series_b = pd.Series(
-    #     data=list_b,
-    #     name='B'
-    # ).astype(dtype='boolean')
-    print(series_b)
-    print('dtypes of series_b')
-    print(series_b.dtypes)
     print()
     print('category, dtype: category, list_c:')
-    # series_c = ds.random_data(distribution='categories, size=7')
+    # series_c = ds.random_data(
+    #     distribution='categories,
+    #     size=7'
+    # )
     # print(series_c.head())
     list_c = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
     series_c = pd.Series(
@@ -73,6 +59,13 @@ def main():
         name='C'
     ).astype(dtype='category')
     print(series_c)
+    print()
+    print('timedelta distribution, dtype: timedelta64[ns], series_d')
+    series_d = ds.random_data(
+        distribution='timedelta',
+        size=7
+    ).rename('D')
+    print(series_d)
     print()
     print('strings, str, list_s:')
     # series_s = ds.random_data(
