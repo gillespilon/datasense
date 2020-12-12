@@ -330,12 +330,13 @@ def random_data(
 
     Notes
     -----
-    distribution dtypes returned:
-    'uniform'  float64
-    'bool'     boolean (nullable)
-    'strings'  str
-    'norm'     float64
-    'randint'  Int64
+    distribution dtypes returned for distribution options:
+    'uniform'    float64
+    'bool'       boolean (nullable)
+    'strings'    str
+    'norm'       float64
+    'randint'    Int64
+    'categories' category
 
     Examples
     --------
