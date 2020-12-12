@@ -61,10 +61,16 @@ def main():
     print(series_c)
     print()
     print('timedelta distribution, dtype: timedelta64[ns], series_d')
-    series_d = ds.random_data(
-        distribution='timedelta',
-        size=7
-    ).rename('D')
+    # series_d = ds.random_data(
+    #     distribution='timedelta',
+    #     size=7
+    # ).rename('D')
+    list_d = [0, 0, 0, 0, 0, 0, 0 ]
+    print(list_d)
+    series_d = pd.Series(
+        data=list_d,
+        name='D'
+    ).astype(dtype='timedelta64[ns]')
     print(series_d)
     print()
     print('strings, str, list_s:')
@@ -81,6 +87,23 @@ def main():
     ).astype(dtype='str')
     print('series_s:')
     print(series_s)
+    print()
+    print('datetime distribution, dtype: datetime64[ns], series_t')
+    # series_t = ds.random_data(
+    #     distribution='datetime',
+    #     size=7
+    # ).rename('T')
+    list_t = [
+        '2020-12-12 16:33:48', '2020-12-13 16:33:48', '2020-12-14 16:33:48',
+        '2020-12-15 16:33:48', '2020-12-16 16:33:48', '2020-12-17 16:33:48',
+        '2020-12-18 16:33:48'
+    ]
+    print(list_t)
+    series_t = pd.Series(
+        data=list_t,
+        name='T'
+    ).astype(dtype='datetime64[ns]')
+    print(series_t)
     print()
     print('normal distribution, float64, series_x:')
     # series_x = ds.random_data(
