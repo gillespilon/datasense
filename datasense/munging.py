@@ -1490,6 +1490,21 @@ def create_dataframe(
     df : pd.DataFrame
         The output dataframe.
 
+    Notes
+    -----
+    a : float64
+    b : boolean (nullable)
+    c : category
+    d : timedelta64[ns]
+    i : float64
+    r : object
+    s : object
+    t : datetime64[ns]
+    u : datetime64[ns]
+    x : float64
+    y : Int64
+    z : float64
+
     Example
     -------
     >>> df = create_dataframe()
@@ -1498,29 +1513,48 @@ def create_dataframe(
         {
             'a': random_data(
                 distribution='uniform',
-                size=42,
+                size=size,
                 loc=13,
                 scale=70
             ),
-            'b': random_data(distribution='bool'),
-            'c': random_data(distribution='categories'),
-            'd': timedelta_data(),
+            'b': random_data(
+                distribution='bool',
+                size=size
+            ),
+            'c': random_data(
+                distribution='categories',
+                size=size
+            ),
+            'd': timedelta_data(time_delta_days=size-1),
             'i': random_data(
-                distribution='uniform',
-                size=42,
-                loc=13,
-                scale=70
-            ),
+                 distribution='uniform',
+                 size=size,
+                 loc=13,
+                 scale=70
+             ),
             'r': random_data(
                 distribution='strings',
-                strings=['0', '1']
+                strings=['0', '1'],
+                size=size
             ),
-            's': random_data(distribution='strings'),
-            't': datetime_data(),
-            'u': datetime_data(),
-            'x': random_data(distribution='norm'),
-            'y': random_data(distribution='randint'),
-            'z': random_data(distribution='uniform')
+            's': random_data(
+                distribution='strings',
+                size=size
+                ),
+            't': datetime_data(time_delta_days=size-1),
+            'u': datetime_data(time_delta_days=size-1),
+            'x': random_data(
+                distribution='norm',
+                size=size
+            ),
+            'y': random_data(
+                distribution='randint',
+                size=size
+            ),
+            'z': random_data(
+                distribution='uniform',
+                size=size
+            )
         }
     )
     return df
