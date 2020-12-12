@@ -74,6 +74,24 @@ def main():
     ).astype(dtype='timedelta64[ns]')
     print(series_d)
     print()
+    print('uniform distribution, dtype: float64, series_i')
+    # series_i = ds.random_data(
+    #     distribution='uniform',
+    #     size=7,
+    #     loc=13,
+    #     scale=70
+    # ).rename('I')
+    list_i = [
+        6.554271, 23.958127, np.nan, 58.231292,
+        67.349036, 75.083105, 30.503073
+    ]
+    print(list_i)
+    series_i = pd.Series(
+        data=list_i,
+        name='I'
+    ).astype(dtype='float64')
+    print(series_i)
+    print()
     print('strings distribution, dtype:str, list_s:')
     # series_s = ds.random_data(
     #     distribution='strings',
