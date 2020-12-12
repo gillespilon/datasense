@@ -476,6 +476,14 @@ def random_data(
     >>>     size=113,
     >>>     random_state=42
     >>> )
+
+    Example 19
+    # Create series of timedelta64[ns].
+    >>> s = ds.random_data(
+    >>>     distribution='timedelta',
+    >>>     size=7
+    >>> )
+    >>> s
     """
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint']
