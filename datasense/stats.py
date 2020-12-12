@@ -553,7 +553,7 @@ def datetime_data(
     time_delta_hours: Optional[int] = 24
 ) -> pd.Series:
     """
-    Create a data series of datetime data.
+    Create a series of datetime data.
 
     Parameters
     ----------
@@ -660,8 +660,26 @@ def datetime_data(
     return series
 
 
-def timedelta_data() -> pd.Series:
-    series = datetime_data() - datetime_data()
+def timedelta_data(
+    *,
+    time_delta_days: Optional[int] = 41
+) -> pd.Series:
+    #TODO: Add other parameters beyond time_delta_days
+    """
+    Create a series of timedelta data.
+
+    Parameters
+    ----------
+    time_delta_days : Optional[int] = 41
+        The number of rows to create.
+
+    Returns
+    -------
+    series : pd.Series
+        The output series.
+    """
+    series = datetime_data(time_delta_days=time_delta_days) -\
+        datetime_data(time_delta_days=time_delta_days)
     return series
 
 
