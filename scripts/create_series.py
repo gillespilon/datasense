@@ -19,7 +19,7 @@ import datasense as ds
 def main():
     print('Create Pandas series')
     print()
-    print('uniform distribution, dtype: float, series_a')
+    print('uniform distribution, dtype: float, list_a, series_a')
     # series_a = ds.random_data(
     #     distribution='uniform',
     #     size=7,
@@ -34,7 +34,7 @@ def main():
     ).astype(dtype='float64')
     print(series_a)
     print()
-    print('boolean distribution, dtype: boolean (nullable), list_b:')
+    print('boolean distribution, dtype: boolean (nullable), list_b, series_b')
     # series_b = ds.random_data(
     #     distribution='bool',
     #     size=7
@@ -47,7 +47,7 @@ def main():
     ).astype(dtype='boolean')
     print(series_b)
     print()
-    print('category distribution, dtype: category, list_c:')
+    print('category distribution, dtype: category, list_c, series_c')
     # series_c = ds.random_data(
     #     distribution='categories,
     #     size=7'
@@ -61,7 +61,7 @@ def main():
     ).astype(dtype='category')
     print(series_c)
     print()
-    print('timedelta distribution, dtype: timedelta64[ns], series_d')
+    print('timedelta distribution, dtype: timedelta64[ns], list_d, series_d')
     # series_d = ds.random_data(
     #     distribution='timedelta',
     #     size=7
@@ -74,7 +74,7 @@ def main():
     ).astype(dtype='timedelta64[ns]')
     print(series_d)
     print()
-    print('uniform distribution, dtype: float64, series_i')
+    print('uniform distribution, dtype: float64, list_i, series_i')
     # series_i = ds.random_data(
     #     distribution='uniform',
     #     size=7,
@@ -82,8 +82,7 @@ def main():
     #     scale=70
     # ).rename('I')
     list_i = [
-        6.554271, 23.958127, np.nan, 58.231292,
-        67.349036, 75.083105, 30.503073
+        6.554271, 23.958127, np.nan, 58.231292, 67.349036, 75.083105, 30.503073
     ]
     print(list_i)
     series_i = pd.Series(
@@ -92,7 +91,23 @@ def main():
     ).astype(dtype='float64')
     print(series_i)
     print()
-    print('strings distribution, dtype:str, list_s:')
+    print('strings distribution, dtype:str, list_r, series_r')
+    # series_r = ds.random_data(
+    #     distribution='strings',
+    #     strings=['0', '1'],
+    #     size=7
+    # ).rename('R')
+    list_r = ['1', '1', '', '0', '0', '1']
+    print(list_r)
+    series_r = pd.Series(
+        data=list_r,
+        dtype='str',
+        name='R'
+    ).astype(dtype='str')
+    print('series_r:')
+    print(series_r)
+    print()
+    print('strings distribution, dtype:str, list_s, series_3')
     # series_s = ds.random_data(
     #     distribution='strings',
     #     size=7
@@ -107,7 +122,7 @@ def main():
     print('series_s:')
     print(series_s)
     print()
-    print('datetime distribution, dtype: datetime64[ns], series_t')
+    print('datetime distribution, dtype: datetime64[ns], list_t, series_t')
     # series_t = ds.random_data(
     #     distribution='datetime',
     #     size=7
@@ -124,7 +139,7 @@ def main():
     ).astype(dtype='datetime64[ns]')
     print(series_t)
     print()
-    print('normal distribution, dtype: float64, series_x:')
+    print('normal distribution, dtype: float64, list_x, series_x')
     # series_x = ds.random_data(
     #     distribution='norm',
     #     size=7,
@@ -140,7 +155,7 @@ def main():
     ).astype(dtype='float64')
     print(series_x)
     print()
-    print('integer distribution, dtype: Int64 (nullable), series_y:')
+    print('integer distribution, dtype: Int64 (nullable), list_y, series_y')
     # series_y = ds.random_data(
     #     distribution='randint',
     #     size=7,
