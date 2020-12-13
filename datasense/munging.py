@@ -1477,6 +1477,7 @@ def create_dataframe(
     *,
     size: Optional[int] = 42
 ) -> pd.DataFrame:
+    #TODO: why did I create distribution "u"?
     """
     Create a Pandas dataframe.
 
