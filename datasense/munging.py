@@ -982,7 +982,7 @@ def read_file(
         )
     elif '.ods' in file_name:
         df = pd.read_excel(
-            file_name,
+            io=file_name,
             skiprows=skiprows,
             usecols=usecols,
             dtype=dtype,
@@ -993,7 +993,7 @@ def read_file(
         )
     elif '.xlsx' in file_name:
         df = pd.read_excel(
-            file_name,
+            io=file_name,
             skiprows=skiprows,
             usecols=usecols,
             dtype=dtype,
@@ -1477,7 +1477,7 @@ def create_dataframe(
     *,
     size: Optional[int] = 42
 ) -> pd.DataFrame:
-    #TODO: why did I create distribution "u"?
+    # TODO: why did I create distribution "u"?
     """
     Create a Pandas dataframe.
 
