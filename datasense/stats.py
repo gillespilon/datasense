@@ -322,6 +322,16 @@ def random_data(
         The center of a distribution.
     scale : float = 1
         The spread of a distribution.
+    low : Optional[int] = 13,
+        The low value (inclusive) for the integer distribution.
+    high : Optional[int] = 70,
+        The high value (exclusive) for the integer distribution.
+    strings : Optional[List[str]] = ['female', 'male'],
+        The list of strings for the distribution of strings.
+    categories : Optional[List[str]] = ['small', 'medium', 'large'],
+        The list of strings for the distribution of categories.
+    random_state : Optional[int] = None
+        The random number seed.
 
     Returns
     -------
