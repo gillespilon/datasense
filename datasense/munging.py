@@ -13,6 +13,7 @@ import sys
 from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
+from scipy.stats import norm
 import pandas as pd
 import numpy as np
 
@@ -1561,6 +1562,65 @@ def create_dataframe(
     return df
 
 
+def create_dataframe_norm(
+    *,
+    row_count: Optional[int] = 42,
+    column_count: Optional[int] = 13,
+    loc: Optional[float] = 69,
+    scale: Optional[float] = 13,
+    random_state: Optional[int] = None,
+    column_names: Optional[List[str]] = None
+):
+    """
+    Create dataframe of random normal data.
+
+    Parameters
+    ----------
+    row_count : Optional[int] = 42,
+        The number of rows to create.
+    column_count : Optional[int] = 13,
+        The number of columns to create.
+    loc : Optional[float] = 69,
+        The mean of the data.
+    scale : Optional[float] = 13
+        The standard deviation of the data.
+    random_state: Optional[int] = None
+        The random number seed.
+    column_names: Optional[List[str]]
+        The column names.
+
+    Examples
+    --------
+    Example 1
+    >>> df = ds.create_dataframe_norm()
+
+    Example 2
+    >>> column_names = [f'col{item}' for item in range(column_count)]
+    >>> row_count = 1000
+    >>> column_count = 100
+    >>> df = ds.create_dataframe_norm(
+    >>>     row_count=row_count,
+    >>>     column_count=column_count,
+    >>>     loc=69,
+    >>>     scale=13,
+    >>>     random_state=42,
+    >>>     column_names=column_names
+    >>> )
+    """
+    if not column_names:
+        column_names = [f'col{item}' for item in range(column_count)]
+    df = pd.DataFrame(
+        norm.rvs(
+            size=(row_count, column_count),
+            loc=loc,
+            scale=scale,
+            random_state=random_state
+        ),
+        columns=column_names
+    )
+    return df
+
+
 def delete_rows(
     df: pd.DataFrame,
     delete_row_criteria: Tuple[str, int]
@@ -1797,6 +1857,7 @@ __all__ = (
     'set_up_graphics_directory',
     'replace_text_numbers',
     'create_dataframe',
+    'create_dataframe_norm',
     'delete_rows',
     'delete_columns',
     'sort_rows',
