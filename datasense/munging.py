@@ -1835,9 +1835,10 @@ def sync_directories(
     sourcedir: str,
     targetdir: str,
     action: str = 'sync',
-    twoway: bool = False,
-    purge: bool = False,
-    verbose: bool = True
+    *,
+    twoway: Optional[bool] = False,
+    purge: Optional[bool] = False,
+    verbose: Optional[bool] = True
 ) -> None:
     """
     Parameters
