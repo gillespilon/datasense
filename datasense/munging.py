@@ -1573,6 +1573,27 @@ def replace_column_values(
     return s
 
 
+def list_files_all(directory: str) -> List[str]:
+    """
+    List all files, sorted by extension, for given directory.
+
+    Parameters
+    ----------
+    directory : str
+        The source directory.
+
+    Example
+    -------
+    >>> from pathlib import Path
+    >>> directory = (Path.cwd() / 'directoryname')
+    >>> files = list_files_with_patterns(
+    >>>     directory=directory
+    >>> )
+    """
+    files = [file.name for file in directory.glob('*.*')]
+    return files
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1600,4 +1621,5 @@ __all__ = (
     'rename_all_columns',
     'rename_some_columns',
     'replace_column_values',
+    'list_files_all',
 )
