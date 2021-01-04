@@ -1582,6 +1582,11 @@ def list_files_all(directory: str) -> List[str]:
     directory : str
         The source directory.
 
+    Returns
+    -------
+    files : List[str]
+        A list of files.
+
     Example
     -------
     >>> from pathlib import Path
