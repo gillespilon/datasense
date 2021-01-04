@@ -101,6 +101,7 @@ def html_begin(
     -------
     original_stdout : IO[str]
         A file object for the output of print().
+
     Examples
     --------
     Example 1
