@@ -1611,6 +1611,11 @@ def list_files_with_patterns(
     patterns : List[str]
         The pattern of file extensions.
 
+    Returns
+    -------
+    files : List[str]
+        A list of files.
+
     Example
     -------
     >>> from pathlib import Path
