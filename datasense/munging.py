@@ -1594,6 +1594,35 @@ def list_files_all(directory: str) -> List[str]:
     return files
 
 
+def list_files_with_patterns(
+    directory: str,
+    patterns: List[str]
+) -> List[str]:
+    """
+    List files with extension pattern, sorted by extension, for directory.
+
+    Parameters
+    ----------
+    directory : str
+        The source directory.
+    patterns : List[str]
+        The pattern of file extensions.
+
+    Example
+    -------
+    >>> from pathlib import Path
+    >>> directory = (Path.cwd() / 'directoryname')
+    >>> files = list_files_with_patterns(
+    >>>     directory=directory,
+    >>>     patterns=patterns
+    >>> )
+    """
+    files = [
+        file.name for file in directory.iterdir() if file.suffix in patterns
+    ]
+    return files
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1622,4 +1651,5 @@ __all__ = (
     'rename_some_columns',
     'replace_column_values',
     'list_files_all',
+    'list_files_with_patterns',
 )
