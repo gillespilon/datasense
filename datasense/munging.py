@@ -14,6 +14,7 @@ from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 from scipy.stats import norm
+from dirsync import sync
 import pandas as pd
 import numpy as np
 
@@ -1830,6 +1831,53 @@ def replace_column_values(
     return s
 
 
+def sync_directories(
+    sourcedir: str,
+    targetdir: str,
+    action: str = 'sync',
+    twoway: bool = False,
+    purge: bool = False,
+    verbose: bool = True
+) -> None:
+    """
+    Parameters
+    ----------
+    sourcedir : str
+        The source directory for syncing.
+    targetdir : str
+        The target directory for syncing.
+    action : str = 'sync'
+        The syncing action. Options: diff, sync, update.
+    twoway : bool = False
+        Update files from sourcedir to targetdir (False) or both (True).
+    purge : bool = False
+        Delete files from targetdir.
+    verbose : bool = True
+        Provide verbose output.
+
+    Example
+    -------
+    >>> local_docs = 'string_to_directory'
+    >>> sharepoint_docs = 'string_to_mapped_drive_of_sharepoint'
+    >>> ds.sync_directories(
+    >>>     sourcedir=local_docs,
+    >>>     targetdir=sharepoint_docs,
+    >>>     action='sync',
+    >>>     twoway=False,
+    >>>     purge=False,
+    >>>     verbose=True
+    >>> )
+    """
+    sync(
+        sourcedir,
+        targetdir,
+        action,
+        twoway,
+        purge,
+        verbose
+    )
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1864,4 +1912,5 @@ __all__ = (
     'rename_all_columns',
     'rename_some_columns',
     'replace_column_values',
+    'sync_directories',
 )
