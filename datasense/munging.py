@@ -1834,8 +1834,8 @@ def replace_column_values(
 def sync_directories(
     sourcedir: str,
     targetdir: str,
+    action: str = 'sync',
     *,
-    action: Optional[str] = 'sync',
     twoway: Optional[bool] = False,
     purge: Optional[bool] = False,
     verbose: Optional[bool] = True
@@ -1870,12 +1870,12 @@ def sync_directories(
     >>> )
     """
     sync(
-        sourcedir,
-        targetdir,
-        action,
-        twoway,
-        purge,
-        verbose
+        sourcedir=sourcedir,
+        targetdir=targetdir,
+        action=action,
+        twoway=twoway,
+        purge=purge,
+        verbose=verbose
     )
 
 
