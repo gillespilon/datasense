@@ -1575,7 +1575,7 @@ def replace_column_values(
 
 def list_files_all(directory: str) -> List[str]:
     """
-    List all files, sorted by extension, for given directory.
+    List all files for given directory.
 
     Parameters
     ----------
@@ -1599,7 +1599,7 @@ def list_files_with_patterns(
     patterns: List[str]
 ) -> List[str]:
     """
-    List files with extension pattern, sorted by extension, for directory.
+    List files with extension pattern for directory.
 
     Parameters
     ----------
