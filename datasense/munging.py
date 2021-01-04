@@ -2,19 +2,16 @@
 Data munging
 """
 
-from typing import Callable, Dict, IO, List, Optional, Tuple, Union,\
+from typing import Callable, Dict, List, Optional, Tuple, Union,\
     Pattern
 from shutil import rmtree
 from pathlib import Path
-import webbrowser
 import textwrap
-import sys
 
 from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 from scipy.stats import norm
-from dirsync import sync
 import pandas as pd
 import numpy as np
 
@@ -1033,205 +1030,6 @@ def read_file(
     return df
 
 
-def html_header(
-    *,
-    header_title: Optional[str] = 'Report',
-    header_id: str = 'report'
-) -> None:
-    """
-    Create an html header.
-
-    Parameters
-    ----------
-    header_title : str = 'Report'
-        The header title.
-    header_id : str = 'report'
-        The header ID.
-
-    Example
-    -------
-    >>> import datasense as ds
-    >>> ds.html_header(
-    >>>     header_title=header_title,
-    >>>     header_id=header_id
-    >>> )
-    """
-    print('<!DOCTYPE html>')
-    print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
-    print('<head>')
-    print('<meta charset="utf-8"/>')
-    print(
-        '<meta content="width=device-width, initial-scale=1.0, '
-        'user-scalable=yes" name="viewport"/>'
-    )
-    print('<style>@import url("support.css");</style>')
-    print(f'<title>{header_title}</title>')
-    print('</head>')
-    print('<body>')
-    print(
-        f'<h1 class="title"'
-        f' id="{header_id}">'
-        f'{header_title}</h1>'
-    )
-
-
-def html_footer() -> None:
-    """
-    Create an html footer.
-
-    Example
-    -------
-    >>> import datasense as ds
-    >>> ds.html_footer()
-    """
-    print('</body>')
-    print('</html>')
-
-
-def page_break() -> None:
-    """
-    Create an html page break.
-
-    Example
-    -------
-    >>> import datasense as ds
-    >>> ds.page_break()
-    """
-    print('</pre>')
-    print('<p style="page-break-after:always"></p>')
-    print('<p style="page-break-before:always"></p>')
-    print('<pre style="white-space: pre-wrap;">')
-
-
-def html_begin(
-    output_url: str,
-    *,
-    header_title: Optional[str] = 'Report',
-    header_id: Optional[str] = 'report',
-) -> IO[str]:
-    """
-    Open a file to write html and set an hmtl header.
-
-    Parameters
-    ----------
-    output_url : str
-        The file name for the html output.
-    header_title : Optional[str] = 'Report'
-        The file title.
-    header_id : Optional[str] = 'report'
-        The id for the header_title.
-
-    Returns
-    -------
-    original_stdout : IO[str]
-        A file object for the output of print().
-    Examples
-    --------
-    Example 1
-        >>> import datasense as ds
-        >>>
-        >>> output_url = 'my_html_file.html'
-        >>> original_stdout = ds.html_begin(output_url=output_url)
-
-    Example 2
-        >>> header_title = 'My Report'
-        >>> header_id = 'my-report'
-        >>> original_stdout = ds.html_begin(
-        >>>     output_url=output_url,
-        >>>     header_title=header_title,
-        >>>     header_id=header_id
-        >>> )
-    """
-    original_stdout = sys.stdout
-    sys.stdout = open(
-        file=output_url,
-        mode='w'
-    )
-    html_header(
-        header_title=header_title,
-        header_id=header_id
-    )
-    print('<pre style="white-space: pre-wrap;">')
-    return original_stdout
-
-
-def html_end(
-    original_stdout: IO[str],
-    output_url: str
-) -> None:
-    """
-    Create an html footer, close an html file, and open an html file in
-    a new tab in a web browser.
-
-    Parameters
-    ----------
-    original_stdout : IO[str]
-        The original stdout.
-    output_url : str
-        The file name for the html output.
-
-    Example
-    -------
-        >>> import datasense as ds
-        >>>
-        >>> output_url = 'my_html_file.html'
-        >>> # see original_stdout example in def html_begin()
-        >>> ds.html_end(
-        >>>     original_stdout=original_stdout,
-        >>>     output_url=output_url
-        >>> )
-    """
-    print('</pre>')
-    html_footer()
-    sys.stdout.close()
-    sys.stdout = original_stdout
-    webbrowser.open_new_tab(
-        url=output_url
-    )
-
-
-def html_figure(
-    file_name: str,
-    *,
-    caption: Optional[str] = None
-) -> None:
-    """
-    Print an html tag for a figure.
-
-    Parameters
-    ----------
-    file_name : str
-        The file name of the image.
-    caption : Optional[str]
-        The figure caption.
-
-    Examples
-    --------
-    Example 1
-    >>> import datasense as ds
-    >>> graph_file = 'my_graph_file.svg'
-    >>> fig.savefig(graph_file)
-    >>> ds.html_figure(file_name=graph_file)
-
-    Example 2
-    >>> ds.html_figure(
-    >>>     file_name=graph_file,
-    >>>     caption='my graph file caption'
-    >>> )
-    """
-    if caption is None:
-        caption = file_name
-    print(
-        '</pre>'
-        '<figure>'
-        f'<img src="{file_name}" '
-        f'alt="{file_name}"/>'
-        f'<figcaption>{caption}</figcaption>'
-        '</figure>'
-        '<pre style="white-space: pre-wrap;">'
-    )
-
-
 def byte_size(
     num: np.int64,
     suffix: str = 'B'
@@ -1303,62 +1101,6 @@ def feature_percent_empty(
     list_columns = [col for col in columns if
                     ((df[col].isna().sum() / num_rows * 100) <= threshold)]
     return list_columns
-
-
-def report_summary(
-    start_time: float,
-    stop_time: float,
-    *,
-    read_file_names: Optional[List[str]] = None,
-    save_file_names: Optional[List[str]] = None,
-    targets: Optional[List[str]] = None,
-    features: Optional[List[str]] = None,
-    number_knots: Optional[List[int]] = None
-) -> None:
-    """
-    Create a report summary.
-
-    Parameters
-    ----------
-    start_time : float
-        The start time.
-    stop_time : float
-        The stop time.
-    read_file_names : Optional[List[str]] = None
-        The list of file names read.
-    save_file_names : Optional[List[str]] = None
-        The list of file names saved.
-    targets : Optional[List[str]] = None
-        The list of target variables.
-    features : Optional[List[str]] = None
-        Thje list of feature variables.
-    number_knots : Optional[List[str]] = None
-        The number of spline knots.
-
-    Example
-    -------
-    >>> import datasense as ds
-
-    >>> ds.report_summary(
-    >>>     start_time=start_time,
-    >>>     stop_time=stop_time
-    >>> )
-    """
-    elapsed_time = stop_time - start_time
-    print('</pre>')
-    print('<h1>Report summary</h1>')
-    print('<pre style="white-space: pre-wrap;">')
-    print(f'Execution time : {round(elapsed_time, 3)} s')
-    if read_file_names:
-        print(f'Files read     : {read_file_names}')
-    if save_file_names:
-        print(f'Files saved    : {save_file_names}')
-    if targets:
-        print(f'Targets        : {targets}')
-    if features:
-        print(f'Features       : {features}')
-    if number_knots:
-        print(f'Number of knots: {number_knots}')
 
 
 def set_up_graphics_directory(graphics_directory: List[str]) -> None:
@@ -1831,54 +1573,6 @@ def replace_column_values(
     return s
 
 
-def sync_directories(
-    sourcedir: str,
-    targetdir: str,
-    action: str = 'sync',
-    *,
-    twoway: Optional[bool] = False,
-    purge: Optional[bool] = False,
-    verbose: Optional[bool] = True
-) -> None:
-    """
-    Parameters
-    ----------
-    sourcedir : str
-        The source directory for syncing.
-    targetdir : str
-        The target directory for syncing.
-    action : str = 'sync'
-        The syncing action. Options: diff, sync, update.
-    twoway : bool = False
-        Update files from sourcedir to targetdir (False) or both (True).
-    purge : bool = False
-        Delete files from targetdir.
-    verbose : bool = True
-        Provide verbose output.
-
-    Example
-    -------
-    >>> local_docs = 'string_to_directory'
-    >>> sharepoint_docs = 'string_to_mapped_drive_of_sharepoint'
-    >>> ds.sync_directories(
-    >>>     sourcedir=local_docs,
-    >>>     targetdir=sharepoint_docs,
-    >>>     action='sync',
-    >>>     twoway=False,
-    >>>     purge=False,
-    >>>     verbose=True
-    >>> )
-    """
-    sync(
-        sourcedir=sourcedir,
-        targetdir=targetdir,
-        action=action,
-        twoway=twoway,
-        purge=purge,
-        verbose=verbose
-    )
-
-
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1894,15 +1588,8 @@ __all__ = (
     'process_rows',
     'read_file',
     'save_file',
-    'html_header',
-    'html_footer',
-    'page_break',
-    'html_begin',
-    'html_end',
-    'html_figure',
     'byte_size',
     'feature_percent_empty',
-    'report_summary',
     'set_up_graphics_directory',
     'replace_text_numbers',
     'create_dataframe',
@@ -1913,5 +1600,4 @@ __all__ = (
     'rename_all_columns',
     'rename_some_columns',
     'replace_column_values',
-    'sync_directories',
 )
