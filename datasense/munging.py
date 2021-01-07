@@ -393,6 +393,7 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
         'Data type': BeautifulTable.ALIGN_LEFT,
         'Empty cell count': BeautifulTable.ALIGN_RIGHT,
         'Empty cell %': BeautifulTable.ALIGN_RIGHT,
+        'Unique': BeautifulTable.ALIGN_RIGHT,
     }
     table.columns.header = list(column_alignments.keys())
     for item, (_column_name, alignment) in\
@@ -407,7 +408,8 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
                 [column_name,
                  df[column_name].dtype,
                  sum_nan,
-                 percent_nan]
+                 percent_nan,
+                 df[column_name].nunique()]
             )
         except KeyError:
             print('Error on column:', column_name)
