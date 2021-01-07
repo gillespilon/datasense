@@ -370,7 +370,8 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     Example
     -------
     >>> import datasense as ds
-    >>> number_empty_cells_in_columns(df=df)
+    >>> import pandas as pd
+    >>> import numpy as np
     >>> df = pd.DataFrame({
     >>>     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
     >>>     'Y': [27, 24, np.nan, 23, np.nan],
@@ -379,11 +380,11 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     >>> empty_cells = ds.number_empty_cells_in_columns(df=df)
     >>> print(empty_cells)
     Information about non-empty columns
-     Column   Data type   Empty cell count   Empty cell %
-    -------- ----------- ------------------ -------------
-     X        float64                    1           20.0
-     Y        float64                    2           40.0
-     Z        object                     1           20.0
+     Column   Data type   Empty cell count   Empty cell %   Unique
+    -------- ----------- ------------------ -------------- --------
+     X        float64                    1           20.0        4
+     Y        float64                    2           40.0        3
+     Z        object                     1           20.0        4
     """
     print('Information about non-empty columns')
     table = BeautifulTable(maxwidth=90)
