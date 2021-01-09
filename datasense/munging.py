@@ -1654,6 +1654,11 @@ def directory_remove_file(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> file_names = ds.directory_remove_file(
+    >>>     path=path,
+    >>>     file_names=file_names
+    >>> )
     """
     for file in file_names:
         if path.name in file:
