@@ -1640,6 +1640,26 @@ def directory_file_list(
     path: str,
     extension: str
 ) -> List[str]:
+    """
+    Parameters
+    ----------
+    path : str
+        The path of the directory.
+    extension : str
+        The file extension to use for finding files in the path.
+    Returns
+    -------
+    file_names : List[str]
+        The list of files contained in the path.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> file_names = ds.directory_file_list(
+    >>>     path=path,
+    >>>     extension=extension
+    >>> )
+    """
     file_names = [file for file in glob((path / f'*.{extension}').__str__())]
     return file_names
 
