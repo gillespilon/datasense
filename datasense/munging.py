@@ -1638,9 +1638,9 @@ def list_files_with_patterns(
 
 def directory_file_list(
     path: str,
-    extensions: str
+    extension: str
 ) -> List[str]:
-    file_names = [file for file in glob(path / f'*.{extension}').__str__())]
+    file_names = [file for file in glob(path / f'*.{extension}').__str__()]
     return file_names
 
 
