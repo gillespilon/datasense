@@ -7,6 +7,7 @@ from typing import Callable, Dict, List, Optional, Tuple, Union,\
 from shutil import rmtree
 from pathlib import Path
 import textwrap
+import os
 
 from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
@@ -1634,6 +1635,33 @@ def list_files_with_patterns(
     return files
 
 
+def directory_remove_file(
+    path: Path,
+    file_names: List[str]
+) -> List[str]:
+    """
+    Parameters
+    ----------
+    path : Path
+        The path of the file to remove.
+    file_names : List[str]
+        The list of files from which to remove the path.
+
+    Returns
+    -------
+    file_names : {list[str]
+        The list of files without the removed path.
+
+    Example
+    -------
+    """
+    for file in file_names:
+        if path.name in file:
+            os.remove(file)
+            file_names.remove(file)
+    return file_names
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1663,4 +1691,5 @@ __all__ = (
     'replace_column_values',
     'list_files_all',
     'list_files_with_patterns',
+    'directory_remove_file',
 )
