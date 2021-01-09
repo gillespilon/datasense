@@ -1667,6 +1667,18 @@ def directory_remove_file(
     return file_names
 
 
+def print_list_by_item(
+    list: List[str],
+    *,
+    width: Optional[int] = 80
+) -> None:
+    wrapper = textwrap.TextWrapper(width=width)
+    string_not_list = ", ".join(list)
+    new_list = wrapper.wrap(string_not_list)
+    for element in new_list:
+        print(element)
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1697,4 +1709,5 @@ __all__ = (
     'list_files_all',
     'list_files_with_patterns',
     'directory_remove_file',
+    'print_list_by_item',
 )
