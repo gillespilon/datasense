@@ -1635,6 +1635,14 @@ def list_files_with_patterns(
     return files
 
 
+def directory_file_list(
+    path: str,
+    extensions: str
+) -> List[str]:
+    file_names = [file for file in glob(path / f'*.{extension}').__str__())]
+    return file_names
+
+
 def directory_remove_file(
     path: Path,
     file_names: List[str]
@@ -1708,6 +1716,7 @@ __all__ = (
     'replace_column_values',
     'list_files_all',
     'list_files_with_patterns',
+    'directory_file_list',
     'directory_remove_file',
     'print_list_by_item',
 )
