@@ -80,7 +80,6 @@ def dataframe_info(
         columns_category_list, columns_category_count,\
         columns_timedelta_list, columns_timedelta_count\
         = process_columns(df=df)
-    wrapper = textwrap.TextWrapper(width=70)
     print('--------------------------')
     print(f'DataFrame information for: {file_in}')
     print()
@@ -93,10 +92,7 @@ def dataframe_info(
     print()
     number_empty_cells_in_columns(df=df)
     print(f'List of {columns_non_empty_count} non-empty columns:')
-    string_not_list = ", ".join(columns_non_empty_list)
-    new_list = wrapper.wrap(string_not_list)
-    for element in new_list:
-        print(element)
+    print_list_by_item(list=columns_non_empty_list)
     print()
     print(f'List of {columns_bool_count} bool columns:')
     string_not_list = ", ".join(columns_bool_list)
