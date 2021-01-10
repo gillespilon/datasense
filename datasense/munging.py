@@ -1709,7 +1709,7 @@ def ask_directory_path(title: str) -> Path:
         title=title
     )
     path = Path(path)
-    rootwindow.destory()
+    rootwindow.destroy()
     return path
 
 
