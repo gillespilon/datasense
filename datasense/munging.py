@@ -2,10 +2,11 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, Optional, Tuple, Union,\
-    Pattern
+from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
+from tkinter import filedialog
 from shutil import rmtree
 from pathlib import Path
+from tkinter import Tk
 from glob import glob
 import textwrap
 import os
@@ -1680,6 +1681,38 @@ def print_list_by_item(
         print(element)
 
 
+def ask_directory_path(title: str) -> Path:
+    """
+    Ask user for directory.
+
+    Parameters
+    ----------
+    title : str
+        The title of the dialog window.
+
+    Returns
+    -------
+    path: Path
+        The path of the directory.
+
+    Example
+    -------
+    >>> from tkinter import filedialog
+    >>> from pathlib import Path
+    >>> from tkinter import Tk
+    >>> import datasense as ds
+    >>> path = ds.ask_directory_path(title='your message')
+    """
+    rootwindow = Tk()
+    path = filedialog.askdirectory(
+        parent=rootwindow,
+        title=title
+    )
+    path = Path(path)
+    rootwindow.destory()
+    return path
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1712,4 +1745,5 @@ __all__ = (
     'directory_file_list',
     'directory_remove_file',
     'print_list_by_item',
+    'ask_directory_path',
 )
