@@ -1713,6 +1713,38 @@ def ask_directory_path(title: str) -> Path:
     return path
 
 
+def ask_file_path(title: str) -> Path:
+    """
+    Ask user for file to open.
+
+    Parameters
+    ----------
+    title : str
+        The title of the dialog window.
+
+    Returns
+    -------
+    path: Path
+        The path of the file.
+
+    Example
+    -------
+    >>> from tkinter import filedialog
+    >>> from pathlib import Path
+    >>> from tkinter import Tk
+    >>> import datasense as ds
+    >>> path = ds.ask_directory_path(title='your message')
+    """
+    rootwindow = Tk()
+    path = filedialog.askopenfilename(
+        parent=rootwindow,
+        title=title
+    )
+    path = Path(path)
+    rootwindow.destroy()
+    return path
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1746,4 +1778,5 @@ __all__ = (
     'directory_remove_file',
     'print_list_by_item',
     'ask_directory_path',
+    'ask_file_path',
 )
