@@ -1745,6 +1745,38 @@ def ask_open_file_name_path(title: str) -> Path:
     return path
 
 
+def ask_save_as_file_name_path(title: str) -> Path:
+    """
+    Ask user for the path of the file to save as.
+
+    Parameters
+    ----------
+    title : str
+        The title of the dialog window.
+
+    Returns
+    -------
+    path: Path
+        The path of the file to save as.
+
+    Example
+    -------
+    >>> from tkinter import filedialog
+    >>> from pathlib import Path
+    >>> from tkinter import Tk
+    >>> import datasense as ds
+    >>> path = ds.ask_save_as_file_name_path(title='your message')
+    """
+    rootwindow = Tk()
+    path = filedialog.asksaveasfilename(
+        parent=rootwindow,
+        title=title
+    )
+    path = Path(path)
+    rootwindow.destroy()
+    return path
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1779,4 +1811,5 @@ __all__ = (
     'print_list_by_item',
     'ask_directory_path',
     'ask_open_file_name_path',
+    'ask_save_as_file_name_path',
 )
