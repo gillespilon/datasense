@@ -1775,13 +1775,20 @@ def ask_save_as_file_name_path(
     path: Path
         The path of the file to save as.
 
-    Example
-    -------
+    Example2
+    --------
+    Example 1
     >>> from tkinter import filedialog
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
     >>> path = ds.ask_save_as_file_name_path(title='your message')
+
+    Example 2
+    >>> path = ds.ask_save_as_file_name_path(
+    >>>     title='your message',
+    >>>     filetypes=[('csv files', '.csv .CSV')]
+    >>> )
     """
     rootwindow = Tk()
     path = filedialog.asksaveasfilename(
