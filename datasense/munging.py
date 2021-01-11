@@ -1715,7 +1715,7 @@ def ask_directory_path(title: str) -> Path:
 
 def ask_file_path(title: str) -> Path:
     """
-    Ask user for file to open.
+    Ask user for the path of the file to open.
 
     Parameters
     ----------
@@ -1725,7 +1725,7 @@ def ask_file_path(title: str) -> Path:
     Returns
     -------
     path: Path
-        The path of the file.
+        The path of the file to open.
 
     Example
     -------
@@ -1733,7 +1733,7 @@ def ask_file_path(title: str) -> Path:
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
-    >>> path = ds.ask_directory_path(title='your message')
+    >>> path = ds.ask_file_path(title='your message')
     """
     rootwindow = Tk()
     path = filedialog.askopenfilename(
