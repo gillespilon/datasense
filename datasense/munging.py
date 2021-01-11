@@ -1748,7 +1748,7 @@ def ask_open_file_name_path(title: str) -> Path:
 def ask_save_as_file_name_path(
     title: str,
     *,
-    filetypes: Optional[List[Tuple(str)]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
 ) -> Path:
     """
     Ask user for the path of the file to save as.
