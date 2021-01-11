@@ -1770,7 +1770,8 @@ def ask_save_as_file_name_path(title: str) -> Path:
     rootwindow = Tk()
     path = filedialog.asksaveasfilename(
         parent=rootwindow,
-        title=title
+        title=title,
+        filetypes=[('xlsx files', '.xlsx XLSX')]
     )
     path = Path(path)
     rootwindow.destroy()
