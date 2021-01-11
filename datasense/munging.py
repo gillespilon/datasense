@@ -1713,7 +1713,7 @@ def ask_directory_path(title: str) -> Path:
     return path
 
 
-def ask_open_file_name(title: str) -> Path:
+def ask_open_file_name_path(title: str) -> Path:
     """
     Ask user for the path of the file to open.
 
@@ -1778,5 +1778,5 @@ __all__ = (
     'directory_remove_file',
     'print_list_by_item',
     'ask_directory_path',
-    'ask_open_file_name',
+    'ask_open_file_name_path',
 )
