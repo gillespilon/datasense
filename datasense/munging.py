@@ -1745,7 +1745,11 @@ def ask_open_file_name_path(title: str) -> Path:
     return path
 
 
-def ask_save_as_file_name_path(title: str) -> Path:
+def ask_save_as_file_name_path(
+    title: str,
+    *,
+    filetypes: Optional[List[Tuple(str)]] = [('xlsx files', '.xlsx .XLSX')]
+) -> Path:
     """
     Ask user for the path of the file to save as.
 
@@ -1771,7 +1775,7 @@ def ask_save_as_file_name_path(title: str) -> Path:
     path = filedialog.asksaveasfilename(
         parent=rootwindow,
         title=title,
-        filetypes=[('xlsx files', '.xlsx XLSX')]
+        filetypes=filetypes
     )
     path = Path(path)
     rootwindow.destroy()
