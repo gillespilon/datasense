@@ -1633,7 +1633,7 @@ def directory_file_list(
     >>>     extension=extension
     >>> )
     """
-    file_names = [file for file in glob((path / f'*.{extension}').__str__())]
+    file_names = [file for file in glob((path / f'*{extension}').__str__())]
     return file_names
 
 
