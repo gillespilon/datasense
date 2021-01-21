@@ -1801,6 +1801,44 @@ def ask_save_as_file_name_path(
     return path
 
 
+def series_replace_string(
+    series: pd.Series,
+    find: str,
+    replace: str
+) -> pd.Series:
+    """
+    Find and replace a string in a series.
+
+    Parameters
+    ----------
+    series : pd.Series
+        The input series of data.
+    find : str
+        The string to find.
+    replace : str
+        The replacement string.
+
+    Returns
+    -------
+    series : pd.Series
+        The output series of data.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> df[column] = series_replace_string(
+    >>>     series=df[column],
+    >>>     find='find this text',
+    >>>     replace='replace with this text'
+    >>> )
+    """
+    series = series.str.replace(
+        pat=find,
+        repl=replace
+    )
+    return series
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -1836,4 +1874,5 @@ __all__ = (
     'ask_directory_path',
     'ask_open_file_name_path',
     'ask_save_as_file_name_path',
+    'series_replace_string',
 )
