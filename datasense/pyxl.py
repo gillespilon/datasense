@@ -14,7 +14,7 @@ def style_header(
     align_vertical: Optional[str] = 'center',
     fill_type: Optional[str] = 'solid',
     color_foreground: Optional[str] = 'd9d9d9'
-) -> None:
+):
     """
     Define a style typically used to style the first row of a worksheet.
 
