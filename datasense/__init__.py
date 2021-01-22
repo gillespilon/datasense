@@ -25,3 +25,4 @@ from .msa import *
 from .munging import *
 from .graphs import *
 from .html import *
+from .pyxl import *
