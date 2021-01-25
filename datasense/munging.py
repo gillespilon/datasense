@@ -1614,12 +1614,15 @@ def directory_file_list(
     extension: str
 ) -> List[str]:
     """
+    Return a list of files of a specific extension contained in a directory.
+
     Parameters
     ----------
     path : str
         The path of the directory.
     extension : str
         The file extension to use for finding files in the path.
+
     Returns
     -------
     file_names : List[str]
