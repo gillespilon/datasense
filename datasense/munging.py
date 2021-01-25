@@ -1640,6 +1640,38 @@ def directory_file_list(
     return file_names
 
 
+def directory_file_print(
+    path: Path,
+    *,
+    text: Optional[str]
+):
+    """
+    Print the files in a path.
+
+    Parameters
+    ----------
+    path : Path
+        The path of the files to print.
+    text : Optional[str]
+        The text to print.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> path = <path to a directory>
+    >>> text = 'your text'
+    >>> ds.directory_file_print(
+    >>>     path=path,
+    >>>     text=text
+    >>> )
+    """
+    if text:
+        print(text)
+    for file in path.iterdir():
+        print(file.name)
+    print()
+
+
 def directory_remove_file(
     path: Path,
     file_names: List[str]
@@ -1872,6 +1904,7 @@ __all__ = (
     'list_files_all',
     'list_files_with_patterns',
     'directory_file_list',
+    'directory_file_print',
     'directory_remove_file',
     'print_list_by_item',
     'ask_directory_path',
