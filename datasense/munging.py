@@ -679,7 +679,7 @@ def save_file(
 
 
 def read_file(
-    file_name: str,
+    file_name: Union[str, Path],
     *,
     skiprows: Optional[List[int]] = None,
     column_names_dict: Optional[Dict[str, str]] = {},
