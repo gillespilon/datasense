@@ -348,7 +348,8 @@ def random_data(
     'norm'       float64
     'randint'    int64
     'randInt'    Int64 (nullable)
-    'categories' category
+    'category'   category
+    'categories' category of type CategoricalDtype(ordered=True)
 
     Examples
     --------
@@ -477,10 +478,14 @@ def random_data(
     >>> )
 
     Example 18
+    # Create series of unordered categories.
+    >>> s = ds.random_data(distribution='category')
+
+    Example 19
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 19
+    Example 20
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
@@ -488,7 +493,7 @@ def random_data(
     >>>     size=113
     >>> )
 
-    Example 20
+    Example 21
     # Create series of ordered categories.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -498,7 +503,7 @@ def random_data(
     >>>     random_state=42
     >>> )
 
-    Example 21
+    Example 22
     # Create series of timedelta64[ns].
     >>> s = ds.random_data(
     >>>     distribution='timedelta',
@@ -506,7 +511,7 @@ def random_data(
     >>> )
     >>> s
 
-    Example 22
+    Example 23
     # Create series of datetime64[ns].
     >>> s = ds.random_data(
     >>>     distribution='datetime',
@@ -518,7 +523,7 @@ def random_data(
     distribution_list_discrete = ['randint', 'randInt']
     distribution_list_strings = ['strings']
     distribution_list_bool = ['bool', 'boolean']
-    distribution_list_categories = ['categories']
+    distribution_list_categories = ['category', 'categories']
     distribution_list_time = ['timedelta', 'datetime']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
@@ -571,18 +576,27 @@ def random_data(
             )
         )
     elif distribution in distribution_list_categories:
-        random.seed(a=random_state)
-        series = pd.Series(
-            random.choices(
-                population=categories,
-                k=size
+        if distribution == 'categories':
+            random.seed(a=random_state)
+            series = pd.Series(
+                random.choices(
+                    population=categories,
+                    k=size
+                )
+            ).astype(
+                CategoricalDtype(
+                    categories=categories,
+                    ordered=True
+                )
             )
-        ).astype(
-            CategoricalDtype(
-                categories=categories,
-                ordered=True
-            )
-        )
+        elif distribution == 'category':
+            random.seed(a=random_state)
+            series = pd.Series(
+                random.choices(
+                    population=categories,
+                    k=size
+                )
+            ).astype('category')
     elif distribution == 'timedelta':
         series = timedelta_data(time_delta_days=size-1)
     elif distribution == 'datetime':
@@ -725,7 +739,7 @@ def timedelta_data(
     *,
     time_delta_days: Optional[int] = 41
 ) -> pd.Series:
-    #TODO: Add other parameters beyond time_delta_days
+    # TODO: Add other parameters beyond time_delta_days
     """
     Create a series of timedelta data.
 
