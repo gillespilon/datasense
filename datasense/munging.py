@@ -248,7 +248,7 @@ def find_int_columns(df: pd.DataFrame) -> List[str]:
     >>> print(columns_int)
     ['y']
     """
-    columns_int = list(df.select_dtypes(include=['int64']).columns)
+    columns_int = list(df.select_dtypes(include=['int64', 'Int64']).columns)
     return columns_int
 
 
