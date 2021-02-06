@@ -18,7 +18,6 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import norm, uniform, randint
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
@@ -524,7 +523,6 @@ def random_data(
     distribution_list_strings = ['strings']
     distribution_list_bool = ['bool', 'boolean']
     distribution_list_categories = ['category', 'categories']
-    distribution_list_time = ['timedelta', 'datetime']
     if distribution in distribution_list_continuous:
         series = pd.Series(eval(distribution).rvs(
             size=size,
