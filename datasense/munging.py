@@ -144,7 +144,7 @@ def find_bool_columns(df: pd.DataFrame) -> List[str]:
     >>> print(columns_bool)
     ['b']
     """
-    columns_bool = list(df.select_dtypes(include=['bool']).columns)
+    columns_bool = list(df.select_dtypes(include=['bool', 'boolean']).columns)
     return columns_bool
 
 
