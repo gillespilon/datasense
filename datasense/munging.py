@@ -1215,18 +1215,21 @@ def create_dataframe(
 
     Notes
     -----
-    a : float64
-    b : boolean (nullable)
-    c : category
-    d : timedelta64[ns]
-    i : float64
-    r : object
-    s : object
-    t : datetime64[ns]
-    u : datetime64[ns]
-    x : float64
-    y : Int64
-    z : float64
+    a  : float64
+    b  : bool
+    bn : boolean (nullable)
+    c  : category
+    cs : CategoricalDtype category
+    d  : timedelta64[ns]
+    i  : float64
+    r  : object
+    s  : object
+    t  : datetime64[ns]
+    u  : datetime64[ns]
+    x  : float64
+    y  : int64
+    yn : Int64
+    z  : float64
 
     Example
     -------
@@ -1249,6 +1252,10 @@ def create_dataframe(
                 size=size
             ),
             'c': random_data(
+                distribution='category',
+                size=size
+            ),
+            'cs': random_data(
                 distribution='categories',
                 size=size
             ),
