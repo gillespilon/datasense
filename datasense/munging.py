@@ -1244,6 +1244,10 @@ def create_dataframe(
                 distribution='bool',
                 size=size
             ),
+            'bn': random_data(
+                distribution='boolean',
+                size=size
+            ),
             'c': random_data(
                 distribution='categories',
                 size=size
