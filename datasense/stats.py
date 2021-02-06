@@ -345,7 +345,8 @@ def random_data(
     'bool'       boolean (nullable)
     'strings'    str
     'norm'       float64
-    'randint'    Int64
+    'randint'    int64
+    'randInt'    Int64
     'categories' category
 
     Examples
@@ -402,6 +403,11 @@ def random_data(
     >>> s = ds.random_data(distribution='randint')
 
     Example 8
+    # Create series of random nullable integers, integer distribution,
+    # with the default parameters.
+    >>> s = ds.random_data(distribution='randInt')
+
+    Example 9
     # Create series of random integers, integer distribution, size = 113,
     # min = 0, max = 1.
     >>> s = ds.random_data(
@@ -411,7 +417,7 @@ def random_data(
     >>>     high=2
     >>> )
 
-    Example 9
+    Example 10
     # Create series of random integers, integer distribution, size = 113,
     # min = 0, max = 1.
     # Set random_state seed for repeatable sample
@@ -423,11 +429,11 @@ def random_data(
     >>>     random_state=42
     >>> )
 
-    Example 10
+    Example 11
     # Create series of random strings from the default list.
     >>> s = ds.random_data(distribution='strings')
 
-    Example 11
+    Example 12
     # Create series of random strings from a list of strings.
     >>> s = ds.random_data(
     >>>     distribution='strings',
@@ -435,7 +441,7 @@ def random_data(
     >>>     strings=['tom', 'dick', 'harry']
     >>> )
 
-    Example 12
+    Example 13
     # Create series of random strings from a list of strings.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -445,18 +451,18 @@ def random_data(
     >>>     random_state=42
     >>> )
 
-    Example 13
+    Example 14
     # Create series of random booleans with the default parameters.
     >>> s = ds.random_data(distribution='bool')
 
-    Example 14
+    Example 15
     # Create series of random booleans, size = 113.
     >>> s = ds.random_data(
     >>> distribution='bool',
     >>> size=113
     >>> )
 
-    Example 15
+    Example 16
     # Create series of random booleans, size = 113.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -465,11 +471,11 @@ def random_data(
     >>> random_state=42
     >>> )
 
-    Example 16
+    Example 17
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 17
+    Example 18
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
@@ -477,7 +483,7 @@ def random_data(
     >>>     size=113
     >>> )
 
-    Example 18
+    Example 19
     # Create series of ordered categories.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -487,7 +493,7 @@ def random_data(
     >>>     random_state=42
     >>> )
 
-    Example 19
+    Example 20
     # Create series of timedelta64[ns].
     >>> s = ds.random_data(
     >>>     distribution='timedelta',
@@ -495,7 +501,7 @@ def random_data(
     >>> )
     >>> s
 
-    Example 20
+    Example 21
     # Create series of datetime64[ns].
     >>> s = ds.random_data(
     >>>     distribution='datetime',
@@ -504,7 +510,7 @@ def random_data(
     >>> s
     """
     distribution_list_continuous = ['norm', 'uniform']
-    distribution_list_discrete = ['randint']
+    distribution_list_discrete = ['randint', 'randInt']
     distribution_list_strings = ['strings']
     distribution_list_bool = ['bool']
     distribution_list_categories = ['categories']
@@ -518,13 +524,22 @@ def random_data(
             )
         )
     elif distribution in distribution_list_discrete:
-        series = pd.Series(eval(distribution).rvs(
-            low=low,
-            high=high,
-            size=size,
-            random_state=random_state
-            )
-        ).astype(dtype='Int64')
+        if distribution == 'randInt':
+            series = pd.Series(eval(distribution.lower()).rvs(
+                low=low,
+                high=high,
+                size=size,
+                random_state=random_state
+                )
+            ).astype(dtype='Int64')
+        elif distribution == 'randint':
+            series = pd.Series(eval(distribution).rvs(
+                low=low,
+                high=high,
+                size=size,
+                random_state=random_state
+                )
+            ).astype(dtype='int64')
     elif distribution in distribution_list_bool:
         series = pd.Series(eval('randint').rvs(
             low=0,
