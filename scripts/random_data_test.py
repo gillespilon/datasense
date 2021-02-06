@@ -21,6 +21,7 @@ def main():
     df = pd.DataFrame(
         {
             'b': ds.random_data(distribution='bool'),
+            'bn': ds.random_data(distribution='boolean'),
             'c': ds.random_data(distribution='categories'),
             'd': ds.timedelta_data(),
             's': ds.random_data(distribution='strings'),
