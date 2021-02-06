@@ -1221,7 +1221,6 @@ def create_dataframe(
     c  : category
     cs : CategoricalDtype category
     d  : timedelta64[ns]
-    i  : float64
     r  : object
     s  : object
     t  : datetime64[ns]
@@ -1260,12 +1259,6 @@ def create_dataframe(
                 size=size
             ),
             'd': timedelta_data(time_delta_days=size-1),
-            'i': random_data(
-                 distribution='uniform',
-                 size=size,
-                 loc=13,
-                 scale=70
-             ),
             'r': random_data(
                 distribution='strings',
                 strings=['0', '1'],
