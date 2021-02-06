@@ -1278,6 +1278,10 @@ def create_dataframe(
                 distribution='randint',
                 size=size
             ),
+            'yn': random_data(
+                distribution='randInt',
+                size=size
+            ),
             'z': random_data(
                 distribution='uniform',
                 size=size
