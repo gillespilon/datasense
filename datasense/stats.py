@@ -342,11 +342,12 @@ def random_data(
     -----
     distribution dtypes returned for distribution options:
     'uniform'    float64
-    'bool'       boolean (nullable)
+    'bool'       boolean
+    'boolean'    boolean (nullable)
     'strings'    str
     'norm'       float64
     'randint'    int64
-    'randInt'    Int64
+    'randInt'    Int64 (nullable)
     'categories' category
 
     Examples
@@ -456,13 +457,17 @@ def random_data(
     >>> s = ds.random_data(distribution='bool')
 
     Example 15
+    # Create series of random nullable booleans with the default parameters.
+    >>> s = ds.random_data(distribution='boolean')
+
+    Example 16
     # Create series of random booleans, size = 113.
     >>> s = ds.random_data(
     >>> distribution='bool',
     >>> size=113
     >>> )
 
-    Example 16
+    Example 17
     # Create series of random booleans, size = 113.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -471,11 +476,11 @@ def random_data(
     >>> random_state=42
     >>> )
 
-    Example 17
+    Example 18
     # Create series of ordered categories.
     >>> s = ds.random_data(distribution='categories')
 
-    Example 18
+    Example 19
     # Create series of ordered categories.
     >>> s = ds.random_data(
     >>>     distribution='categories',
@@ -483,7 +488,7 @@ def random_data(
     >>>     size=113
     >>> )
 
-    Example 19
+    Example 20
     # Create series of ordered categories.
     # Set random_state seed for repeatable sample
     >>> s = ds.random_data(
@@ -493,7 +498,7 @@ def random_data(
     >>>     random_state=42
     >>> )
 
-    Example 20
+    Example 21
     # Create series of timedelta64[ns].
     >>> s = ds.random_data(
     >>>     distribution='timedelta',
@@ -501,7 +506,7 @@ def random_data(
     >>> )
     >>> s
 
-    Example 21
+    Example 22
     # Create series of datetime64[ns].
     >>> s = ds.random_data(
     >>>     distribution='datetime',
@@ -512,7 +517,7 @@ def random_data(
     distribution_list_continuous = ['norm', 'uniform']
     distribution_list_discrete = ['randint', 'randInt']
     distribution_list_strings = ['strings']
-    distribution_list_bool = ['bool']
+    distribution_list_bool = ['bool', 'boolean']
     distribution_list_categories = ['categories']
     distribution_list_time = ['timedelta', 'datetime']
     if distribution in distribution_list_continuous:
@@ -541,13 +546,22 @@ def random_data(
                 )
             ).astype(dtype='int64')
     elif distribution in distribution_list_bool:
-        series = pd.Series(eval('randint').rvs(
-            low=0,
-            high=2,
-            size=size,
-            random_state=random_state
-            )
-        ).astype(dtype='boolean')
+        if distribution == 'boolean':
+            series = pd.Series(eval('randint').rvs(
+                low=0,
+                high=2,
+                size=size,
+                random_state=random_state
+                )
+            ).astype(dtype='boolean')
+        elif distribution == 'bool':
+            series = pd.Series(eval('randint').rvs(
+                low=0,
+                high=2,
+                size=size,
+                random_state=random_state
+                )
+            ).astype(dtype='bool')
     elif distribution in distribution_list_strings:
         random.seed(a=random_state)
         series = pd.Series(
