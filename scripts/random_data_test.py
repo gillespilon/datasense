@@ -18,20 +18,7 @@ def main():
         header_id=header_id
     )
     print('<pre style="white-space: pre-wrap;">')
-    df = pd.DataFrame(
-        {
-            'b': ds.random_data(distribution='bool'),
-            'bn': ds.random_data(distribution='boolean'),
-            'c': ds.random_data(distribution='categories'),
-            'd': ds.timedelta_data(),
-            's': ds.random_data(distribution='strings'),
-            't': ds.datetime_data(),
-            'x': ds.random_data(distribution='norm'),
-            'y': ds.random_data(distribution='randint'),
-            'yn': ds.random_data(distribution='randInt'),
-            'z': ds.random_data(distribution='uniform')
-        }
-    )
+    df = ds.create_dataframe()
     print('df.shape')
     print(df.shape)
     print()
