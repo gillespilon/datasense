@@ -28,6 +28,7 @@ def main():
             't': ds.datetime_data(),
             'x': ds.random_data(distribution='norm'),
             'y': ds.random_data(distribution='randint'),
+            'yn': ds.random_data(distribution='randInt'),
             'z': ds.random_data(distribution='uniform')
         }
     )
