@@ -119,8 +119,21 @@ def remove_empty_worksheet_rows(
     return ws
 
 
+def remove_duplicate_worksheet_rows(
+    ws,
+    duplicate_rows: List[int]
+):
+    for row in duplicate_rows:
+        ws.delete_rows(
+            idx=row,
+            amount=1
+        )
+    return ws
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
     'remove_empty_worksheet_rows',
+    'remove_duplicate_worksheet_rows',
 )
