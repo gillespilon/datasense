@@ -131,9 +131,24 @@ def remove_duplicate_worksheet_rows(
     return ws
 
 
+def find_duplicate_worksheet_rows(ws) -> List[int]:
+    duplicate_rows = []
+    unique_rows = []
+    for row in ws.rows:
+        working_list = []
+        for cell in row:
+            working_list.append(cell.value)
+        if working_list not in unique_rows:
+            unique_rows.append(working_list)
+        else:
+            duplicate_rows.append(cell.row)
+    return duplicate_rows
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
     'remove_empty_worksheet_rows',
     'remove_duplicate_worksheet_rows',
+    'find_duplicate_worksheet_rows',
 )
