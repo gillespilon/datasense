@@ -85,7 +85,42 @@ def list_empty_worksheet_rows(
     return empty_rows
 
 
+def remove_empty_worksheet_rows(
+    ws,
+    empty_rows: List[int]
+):
+    """
+    Delete empty worksheet rows
+
+    Parameters
+    ----------
+    ws : openpyxl worksheet
+    empty_rows : List[int]
+        List of row numbers
+
+    Returns
+    -------
+    ws : openpyxl worksheet
+
+    Example
+    -------
+    Remove empty rows found
+    >>> import datasense as ds
+    >>> ws = ds.remove_empty_worksheet_rows(
+    >>>     ws=ws,
+    >>>     empty_rows=empty_rows
+    >>> )
+    """
+    for row_idx in reversed(empty_rows):
+        ws.delete_rows(
+            idx=row_idx,
+            amount=1
+        )
+    return ws
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
+    'remove_empty_worksheet_rows',
 )
