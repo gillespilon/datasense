@@ -147,10 +147,28 @@ def find_duplicate_worksheet_rows(ws) -> List[int]:
     return duplicate_rows
 
 
+def read_workbook(
+    filename: Union[Path, str],
+    *,
+    data_only: bool = True
+):
+    wb = load_workbook(
+        filename=filename,
+        data_only=data_only
+    )
+    print('File:')
+    print(filename)
+    print('Sheet names found:')
+    sheet_names = wb.sheetnames
+    print(wb.sheetnames)
+    return (wb, sheet_names)
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
     'remove_empty_worksheet_rows',
     'remove_worksheet_rows',
     'find_duplicate_worksheet_rows',
+    'read_workbook',
 )
