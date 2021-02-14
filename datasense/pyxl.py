@@ -4,10 +4,11 @@ openpyxl functions
 
 from typing import List, Optional, Tuple, Union
 from pathlib import Path
-import time
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
+from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl import load_workbook
+import pandas as pd
 import openpyxl
 
 
@@ -242,6 +243,28 @@ def read_workbook(
     return (wb, sheet_names)
 
 
+def change_case_worksheet_columns(
+    ws: openpyxl.worksheet.worksheet.Worksheet,
+    min_col: int,
+    max_col: int,
+    min_row: int,
+    max_row: int,
+    case: str = 'upper'
+) -> openpyxl.worksheet.worksheet.Worksheet:
+    for col in ws.iter_cols(
+        min_col=min_col,
+        max_col=max_col,
+        min_row=min_row,
+        max_row=max_row
+    ):
+        for cell in col:
+            if case == 'upper':
+                cell.value = str(cell.value).upper()
+            elif case == 'lower':
+                cell.value = str(cell.value).lower()
+    return ws
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
@@ -249,4 +272,5 @@ __all__ = (
     'remove_worksheet_rows',
     'find_duplicate_worksheet_rows',
     'read_workbook',
+    'change_case_worksheet_columns',
 )
