@@ -2,11 +2,12 @@
 openpyxl functions
 """
 
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 from pathlib import Path
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl import load_workbook, Workbook
+import openpyxl
 
 
 def style_header(
@@ -150,8 +151,8 @@ def find_duplicate_worksheet_rows(ws) -> List[int]:
 def read_workbook(
     filename: Union[Path, str],
     *,
-    data_only: bool = True
-):
+    data_only: Optional[bool] = True
+) -> Tuple[openpyxl.workbook.Workbook, List[str]]:
     wb = load_workbook(
         filename=filename,
         data_only=data_only
