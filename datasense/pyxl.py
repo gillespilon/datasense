@@ -126,6 +126,29 @@ def remove_worksheet_rows(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     duplicate_rows: List[int]
 ) -> openpyxl.worksheet.worksheet.Worksheet:
+    """
+    Remove worksheet rows.
+
+    Parameters
+    ----------
+    ws: openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
+    duplicate_rows: List[int]
+        The list of row numbers to remove.
+
+    Returns
+    -------
+    ws: openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ws = ds.remove_worksheet_rows(
+    >>>     ws=ws,
+    >>>     duplicate_rows=duplicate_rows
+    >>> )
+    """
     for row in duplicate_rows:
         ws.delete_rows(
             idx=row,
