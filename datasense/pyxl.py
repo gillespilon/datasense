@@ -251,6 +251,30 @@ def change_case_worksheet_columns(
     max_row: int,
     case: str = 'upper'
 ) -> openpyxl.worksheet.worksheet.Worksheet:
+    """
+    Change case for one or more worksheet columns.
+
+    Parameters
+    ----------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        The worksheet in which to change the case of column(s).
+    min_col : int
+        The first column in the range to change.
+    max_col : int
+        The last column in the range to change.
+    min_row : int
+        The first row in the range to change.
+    max_row : int
+        The last row in the range to change.
+    case: str = 'upper'
+        The case to change. Currently only upper or lower.
+
+    Returns
+    -------
+
+    Example
+    -------
+    """
     for col in ws.iter_cols(
         min_col=min_col,
         max_col=max_col,
