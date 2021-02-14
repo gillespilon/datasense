@@ -123,9 +123,9 @@ def remove_empty_worksheet_rows(
 
 
 def remove_worksheet_rows(
-    ws,
+    ws: openpyxl.worksheet.worksheet.Worksheet,
     duplicate_rows: List[int]
-):
+) -> openpyxl.worksheet.worksheet.Worksheet:
     for row in duplicate_rows:
         ws.delete_rows(
             idx=row,
