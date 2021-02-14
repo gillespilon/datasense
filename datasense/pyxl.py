@@ -160,7 +160,31 @@ def remove_worksheet_rows(
     return ws
 
 
-def find_duplicate_worksheet_rows(ws) -> List[int]:
+def find_duplicate_worksheet_rows(
+    ws: openpyxl.worksheet.worksheet.Worksheet
+) -> List[int]:
+    """
+    Find duplicate rows in a worksheet.
+
+    Parameters
+    ----------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
+
+    Returns
+    -------
+    duplicate_rows : List[int]
+        A list of duplicate row numbers.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> duplicate_rows = ds.find_duplicate_worksheet_rows(ws=ws)
+    >>> ws = ds.remove_worksheet_rows(
+    >>>     ws=ws,
+    >>>     duplicate_rows=duplicate_rows
+    >>> )
+    """
     duplicate_rows = []
     unique_rows = []
     for row in ws.rows:
