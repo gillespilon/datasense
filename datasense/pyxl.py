@@ -6,7 +6,7 @@ from typing import List, Optional, Tuple, Union
 from pathlib import Path
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
-from openpyxl import load_workbook, Workbook
+from openpyxl import load_workbook
 import openpyxl
 
 
@@ -52,26 +52,27 @@ def style_header(
 
 
 def list_empty_worksheet_rows(
-    ws,
+    ws: openpyxl.worksheet.worksheet.Worksheet,
     min_row: int
 ) -> List[int]:
     """
-    Create list of row numbers of empty worksheet rows
+    Create list of row numbers of empty worksheet rows.
 
     Parameters
     ----------
-    ws : openpyxl worksheet
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
     min_row : int
-        Start row for iteration
+        Start row for iteration.
 
     Returns
     -------
-    ws : List[int]
-        List of row numbers
+    List[int]
+        List of row numbers.
 
     Example
     -------
-    Remove empty rows starting from row 2
+    Remove empty rows starting from row 2.
     >>> import datasense as ds
     >>> ws = wb[sheet_name]
     >>> empty_rows = ds.list_empty_worksheet_rows(
@@ -89,25 +90,27 @@ def list_empty_worksheet_rows(
 
 
 def remove_empty_worksheet_rows(
-    ws,
+    ws: openpyxl.worksheet.worksheet.Worksheet,
     empty_rows: List[int]
-):
+) -> openpyxl.worksheet.worksheet.Worksheet:
     """
-    Delete empty worksheet rows
+    Delete empty worksheet rows.
 
     Parameters
     ----------
-    ws : openpyxl worksheet
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
     empty_rows : List[int]
-        List of row numbers
+        List of row numbers.
 
     Returns
     -------
-    ws : openpyxl worksheet
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
 
     Example
     -------
-    Remove empty rows found
+    Remove empty rows found.
     >>> import datasense as ds
     >>> ws = ds.remove_empty_worksheet_rows(
     >>>     ws=ws,
@@ -131,14 +134,14 @@ def remove_worksheet_rows(
 
     Parameters
     ----------
-    ws: openpyxl.worksheet.worksheet.Worksheet
+    ws : openpyxl.worksheet.worksheet.Worksheet
         A worksheet from a workbook.
     duplicate_rows: List[int]
         The list of row numbers to remove.
 
     Returns
     -------
-    ws: openpyxl.worksheet.worksheet.Worksheet
+    ws : openpyxl.worksheet.worksheet.Worksheet
         A worksheet from a workbook.
 
     Example
@@ -190,7 +193,7 @@ def read_workbook(
     Returns
     -------
     wb : openpyxl.workbook.Workbook
-        An openpyxl workbook.
+        A workbook.
     sheet_names : List[str]
         The sheet names in the workbook.
 
