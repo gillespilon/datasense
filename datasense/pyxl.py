@@ -265,6 +265,49 @@ def change_case_worksheet_columns(
     return ws
 
 
+def write_dataframe_to_worksheet(
+    ws: openpyxl.worksheet.worksheet.Worksheet,
+    df: pd.DataFrame,
+    index: bool = False,
+    header: bool = True
+) -> openpyxl.worksheet.worksheet.Worksheet:
+    """
+    Write a dataframe to a worksheet.
+
+    Parameters
+    ----------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        The worksheet to which the dataframe will be written.
+    df : pd.DataFrame
+        The dataframe of data.
+    index : bool = False
+        Boolean to determine if dataframe index is written to worksheet.
+    header : bool = True
+        Boolean to determine if dataframe header is written to worksheet.
+
+    Returns
+    -------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        The worksheet created.
+
+    Example
+    >>> import datasense as ds
+    >>> ws = ds.write_dataframe_to_worksheet(
+    >>>     ws=ws,
+    >>>     df=df,
+    >>>     index=False,
+    >>>     header=True
+    >>> )
+    """
+    for row in dataframe_to_rows(
+        df=df,
+        index=index,
+        header=header
+    ):
+        ws.append(row)
+    return ws
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
@@ -273,4 +316,5 @@ __all__ = (
     'find_duplicate_worksheet_rows',
     'read_workbook',
     'change_case_worksheet_columns',
+    'write_dataframe_to_worksheet',
 )
