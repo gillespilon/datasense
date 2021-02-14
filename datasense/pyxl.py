@@ -176,6 +176,32 @@ def read_workbook(
     *,
     data_only: Optional[bool] = True
 ) -> Tuple[openpyxl.workbook.Workbook, List[str]]:
+    """
+    Read a workbook, print the Path, and print the sheet names.
+
+    Parameters
+    ----------
+    filename : Union[Path, str]
+        The file containing the workbook.
+    data_only : Optional[bool]
+        If True, read values stored in the cells. If False, read formulae
+        stored in the cells.
+
+    Returns
+    -------
+    wb : openpyxl.workbook.Workbook
+        An openpyxl workbook.
+    sheet_names : List[str]
+        The sheet names in the workbook.
+
+    Examples
+    --------
+    >>> import datasense as ds
+    >>> wb, sheet_names = ds.read_workbook(
+    >>>     filename=file,
+    >>>     data_only=True
+    >>> )
+    """
     wb = load_workbook(
         filename=filename,
         data_only=data_only
