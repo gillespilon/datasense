@@ -4,6 +4,7 @@ openpyxl functions
 
 from typing import List, Optional, Tuple, Union
 from pathlib import Path
+import time
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl import load_workbook
@@ -127,7 +128,7 @@ def remove_empty_worksheet_rows(
 
 def remove_worksheet_rows(
     ws: openpyxl.worksheet.worksheet.Worksheet,
-    duplicate_rows: List[int]
+    rows_to_remove: List[int]
 ) -> openpyxl.worksheet.worksheet.Worksheet:
     """
     Remove worksheet rows.
@@ -149,10 +150,10 @@ def remove_worksheet_rows(
     >>> import datasense as ds
     >>> ws = ds.remove_worksheet_rows(
     >>>     ws=ws,
-    >>>     duplicate_rows=duplicate_rows
+    >>>     rows_to_remove=rows_to_remove
     >>> )
     """
-    for row in duplicate_rows:
+    for row in rows_to_remove:
         ws.delete_rows(
             idx=row,
             amount=1
