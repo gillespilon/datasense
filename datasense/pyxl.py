@@ -2,9 +2,11 @@
 openpyxl functions
 """
 
-from typing import List, Optional
+from typing import List, Optional, Union
+from pathlib import Path
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
+from openpyxl import load_workbook, Workbook
 
 
 def style_header(
@@ -119,7 +121,7 @@ def remove_empty_worksheet_rows(
     return ws
 
 
-def remove_duplicate_worksheet_rows(
+def remove_worksheet_rows(
     ws,
     duplicate_rows: List[int]
 ):
@@ -149,6 +151,6 @@ __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
     'remove_empty_worksheet_rows',
-    'remove_duplicate_worksheet_rows',
+    'remove_worksheet_rows',
     'find_duplicate_worksheet_rows',
 )
