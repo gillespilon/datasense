@@ -38,7 +38,7 @@ def style_header(
 
     Example
     -------
-    >>> import datasense as ds.
+    >>> import datasense as ds
     >>> ds.style_header()
     """
     header_style = NamedStyle(name='header_style')
@@ -69,7 +69,7 @@ def list_empty_worksheet_rows(
 
     Returns
     -------
-    List[int]
+    empty_rows : List[int]
         List of row numbers.
 
     Example
@@ -138,7 +138,7 @@ def remove_worksheet_rows(
     ----------
     ws : openpyxl.worksheet.worksheet.Worksheet
         A worksheet from a workbook.
-    duplicate_rows: List[int]
+    rows_to_remove: List[int]
         The list of row numbers to remove.
 
     Returns
@@ -212,7 +212,7 @@ def read_workbook(
     ----------
     filename : Union[Path, str]
         The file containing the workbook.
-    data_only : Optional[bool]
+    data_only : Optional[bool] = True
         If True, read values stored in the cells. If False, read formulae
         stored in the cells.
 
@@ -271,9 +271,20 @@ def change_case_worksheet_columns(
 
     Returns
     -------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
 
     Example
     -------
+    >>> import datasense as ds
+    >>> ws = ds.change_case_worksheet_columns(
+    >>>     ws=ws,
+    >>>     min_col=4,
+    >>>     max_col=6,
+    >>>     min_row=2,
+    >>>     max_row=ws.max_row,
+    >>>     case='upper'
+    >>> )
     """
     for col in ws.iter_cols(
         min_col=min_col,
