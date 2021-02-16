@@ -281,7 +281,7 @@ def change_case_worksheet_columns(
     >>>     ws=ws,
     >>>     min_col=4,
     >>>     max_col=6,
-    >>>     min_row=2,
+    >>>     min_row=1,
     >>>     max_row=ws.max_row,
     >>>     case='upper'
     >>> )
@@ -343,6 +343,20 @@ def write_dataframe_to_worksheet(
     return ws
 
 
+def list_blank_worksheet_rows(
+    ws: openpyxl.worksheet.worksheet.Worksheet,
+    min_row: int
+):
+    blank_rows = []
+    for row in ws.iter_rows(
+        min_row=min_row
+    ):
+        onerow = [cell.value for cell in row]
+        if all(item in [None, 'NONE', '', 'None'] for item in onerow):
+            blank_rows.append(row[0].row)
+    return blank_rows
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
@@ -352,4 +366,5 @@ __all__ = (
     'read_workbook',
     'change_case_worksheet_columns',
     'write_dataframe_to_worksheet',
+    'list_blank_worksheet_rows',
 )
