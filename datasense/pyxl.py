@@ -4,11 +4,13 @@ openpyxl functions
 
 from typing import List, Optional, Tuple, Union
 from pathlib import Path
+import io
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl import load_workbook
 import pandas as pd
+import numpy as np
 import openpyxl
 
 
@@ -352,9 +354,84 @@ def list_blank_worksheet_rows(
         min_row=min_row
     ):
         onerow = [cell.value for cell in row]
-        if all(item in [None, 'NONE', '', 'None'] for item in onerow):
+        if all(item in [None, 'NONE', '', 'None', np.nan] for item in onerow):
             blank_rows.append(row[0].row)
     return blank_rows
+
+
+def validate_sheet_names(
+    wb: openpyxl.workbook.Workbook,
+    file: Union[Path, str],
+    sheet_name: str,
+    sheet_names: List[str],
+    start_time: float,
+    original_stdout: io.TextIOWrapper,
+    output_url: str
+) -> openpyxl.workbook.Workbook:
+    """
+    Parameters
+    ----------
+    wb : openpyxl.workbook.Workbook,
+        A workbook.
+    file : Union[Path, str],
+        The file containing the workbook.
+    sheet_name : str,
+        A sheet name in the workbook.
+    sheet_names : List[str],
+        The sheet names in the workbook.
+    start_time : float,
+        The start time of the script.
+    original_stdout : io.TextIOWrapper,
+        The buffered text stream for the html output.
+    output_url : str
+        The html file name.
+
+    Returns
+    -------
+    wb : openpyxl.workbook.Workbook
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> wb = validate_sheet_names(
+    >>>     wb=wb,
+    >>>     file=file,
+    >>>     sheet_name=sheet_name,
+    >>>     sheet_names=sheet_names,
+    >>>     start_time=start_time,
+    >>>     original_stdout=original_stdout,
+    >>>     output_url=output_url
+    >>> )
+    """
+    if sheet_name not in sheet_names and len(sheet_names) != 1:
+        print('Manually rename one of these sheets:')
+        print(wb.sheetnames)
+        print('Then re-run script')
+        print('XXX File NOT OK XXX')
+        stop_time = time.time()
+        ds.report_summary(
+            start_time=start_time,
+            stop_time=stop_time
+        )
+        exit_script(
+            original_stdout=original_stdout,
+            output_url=output_url
+        )
+    elif sheet_name in sheet_names and len(sheet_names) == 1:
+        print('Sheet name is OK.')
+    elif sheet_name not in sheet_names and len(sheet_names) == 1:
+        print('One sheet found and it was re-named.')
+        ws = wb.active
+        ws.title = sheet_name
+        wb.save(filename=file)
+    elif sheet_name in sheet_names and len(sheet_names) != 1:
+        sheet_names_removed = [x for x in sheet_names if x != sheet_name]
+        for sheet in sheet_names_removed:
+            wb.remove(worksheet=wb[sheet])
+        print('Sheet names removed:')
+        print(sheet_names_removed)
+        wb.save(filename=file)
+    return wb
 
 
 __all__ = (
@@ -367,4 +444,5 @@ __all__ = (
     'change_case_worksheet_columns',
     'write_dataframe_to_worksheet',
     'list_blank_worksheet_rows',
+    'validate_sheet_names',
 )
