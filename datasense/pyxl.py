@@ -4,10 +4,13 @@ openpyxl functions
 
 from typing import List, Optional, Tuple, Union
 from pathlib import Path
+import time
+import sys
 import io
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
+from datasense import report_summary, html_end
 from openpyxl import load_workbook
 import pandas as pd
 import numpy as np
@@ -433,7 +436,7 @@ def validate_sheet_names(
         print('Then re-run script')
         print('XXX File NOT OK XXX')
         stop_time = time.time()
-        ds.report_summary(
+        report_summary(
             start_time=start_time,
             stop_time=stop_time
         )
@@ -458,6 +461,17 @@ def validate_sheet_names(
     return wb
 
 
+def exit_script(
+    original_stdout,
+    output_url
+):
+    html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
+    sys.exit()
+
+
 __all__ = (
     'style_header',
     'list_empty_worksheet_rows',
@@ -469,4 +483,5 @@ __all__ = (
     'write_dataframe_to_worksheet',
     'list_blank_worksheet_rows',
     'validate_sheet_names',
+    'exit_script',
 )
