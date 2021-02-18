@@ -377,11 +377,10 @@ def list_blank_worksheet_rows(
     >>> )
     """
     blank_rows = []
-    for row in ws.iter_rows(
-        min_row=min_row
-    ):
+    for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
-        if all(item in [None, 'NONE', '', 'None', np.nan] for item in onerow):
+        if all(item != item for item in onerow):
+        # if all(item in [None, 'NONE', '', 'None', np.nan] for item in onerow):
             blank_rows.append(row[0].row)
     return blank_rows
 
