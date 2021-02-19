@@ -349,7 +349,7 @@ def write_dataframe_to_worksheet(
     return ws
 
 
-def list_blank_worksheet_rows(
+def list_nan_worksheet_rows(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     min_row: int
 ) -> List[int]:
@@ -372,7 +372,7 @@ def list_blank_worksheet_rows(
     -------
     >>> import datasense as ds
     >>> ws = wb[sheetname]
-    >>> blank_rows = ds.list_blank_worksheet_rows(
+    >>> blank_rows = ds.list_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
@@ -408,7 +408,7 @@ def list_empty_and_nan_worksheet_rows(
     -------
     >>> import datasense as ds
     >>> ws = wb[sheetname]
-    >>> blank_rows = ds.list_blank_worksheet_rows(
+    >>> blank_rows = ds.list_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
@@ -518,7 +518,7 @@ __all__ = (
     'read_workbook',
     'change_case_worksheet_columns',
     'write_dataframe_to_worksheet',
-    'list_blank_worksheet_rows',
+    'list_nan_worksheet_rows',
     'validate_sheet_names',
     'exit_script',
     'list_empty_and_nan_worksheet_rows',
