@@ -63,7 +63,8 @@ def list_empty_except_nan_worksheet_rows(
     min_row: int
 ) -> List[int]:
     """
-    Create list of row numbers of empty worksheet rows.
+    Create list of row numbers of empty worksheet rows, except those
+    with np.nan.
 
     Parameters
     ----------
