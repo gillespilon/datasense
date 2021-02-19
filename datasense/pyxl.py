@@ -385,7 +385,7 @@ def list_blank_worksheet_rows(
     return blank_rows
 
 
-def list_blank_empty_worksheet_rows(
+def list_empty_and_nan_worksheet_rows(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     min_row: int
 ) -> List[int]:
@@ -417,7 +417,7 @@ def list_blank_empty_worksheet_rows(
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
         if all(item in [
-            None, 'None', 'NONE', 'none', '', np.nan
+            None, 'None', 'NONE', '', np.nan
         ] for item in onerow):
             blank_rows.append(row[0].row)
     return blank_rows
@@ -521,5 +521,5 @@ __all__ = (
     'list_blank_worksheet_rows',
     'validate_sheet_names',
     'exit_script',
-    'list_blank_empty_worksheet_rows',
+    'list_empty_and_nan_worksheet_rows',
 )
