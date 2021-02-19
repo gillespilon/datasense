@@ -58,7 +58,7 @@ def style_header(
     )
 
 
-def list_empty_worksheet_rows(
+def list_empty_except_nan_worksheet_rows(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     min_row: int
 ) -> List[int]:
@@ -82,7 +82,7 @@ def list_empty_worksheet_rows(
     Remove empty rows starting from row 2.
     >>> import datasense as ds
     >>> ws = wb[sheet_name]
-    >>> empty_rows = ds.list_empty_worksheet_rows(
+    >>> empty_rows = ds.list_empty_except_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
@@ -380,7 +380,6 @@ def list_blank_worksheet_rows(
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
         if all(item != item for item in onerow):
-        # if all(item in [None, 'NONE', '', 'None', np.nan] for item in onerow):
             blank_rows.append(row[0].row)
     return blank_rows
 
@@ -511,7 +510,7 @@ def exit_script(
 
 __all__ = (
     'style_header',
-    'list_empty_worksheet_rows',
+    'list_empty_except_nan_worksheet_rows',
     'remove_empty_worksheet_rows',
     'remove_worksheet_rows',
     'list_duplicate_worksheet_rows',
