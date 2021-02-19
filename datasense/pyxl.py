@@ -385,6 +385,44 @@ def list_blank_worksheet_rows(
     return blank_rows
 
 
+def list_blank_empty_worksheet_rows(
+    ws: openpyxl.worksheet.worksheet.Worksheet,
+    min_row: int
+) -> List[int]:
+    """
+    Create list of row numbers of blank worksheet rows.
+
+    Parameters
+    ----------
+    ws : openpyxl.worksheet.worksheet.Worksheet
+        A worksheet from a workbook.
+    min_row : int
+        Start row for iteration.
+
+    Returns
+    -------
+    blank_rows : List[int]
+        List of row numbers.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ws = wb[sheetname]
+    >>> blank_rows = ds.list_blank_worksheet_rows(
+    >>>     ws=ws,
+    >>>     min_row=2
+    >>> )
+    """
+    blank_rows = []
+    for row in ws.iter_rows(min_row=min_row):
+        onerow = [cell.value for cell in row]
+        if all(item in [
+            None, 'None', 'NONE', 'none', '', np.nan
+        ] for item in onerow):
+            blank_rows.append(row[0].row)
+    return blank_rows
+
+
 def validate_sheet_names(
     wb: openpyxl.workbook.Workbook,
     file: Union[Path, str],
@@ -483,4 +521,5 @@ __all__ = (
     'list_blank_worksheet_rows',
     'validate_sheet_names',
     'exit_script',
+    'list_blank_empty_worksheet_rows',
 )
