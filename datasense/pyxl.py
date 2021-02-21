@@ -106,14 +106,14 @@ def exit_script(
 
 
 def list_duplicate_worksheet_rows(
-    ws: openpyxl.worksheet.worksheet.Worksheet
+    ws: Worksheet
 ) -> List[int]:
     """
     Find duplicate rows in a worksheet.
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
 
     Returns
