@@ -487,17 +487,17 @@ def validate_sheet_names(
 
 
 def write_dataframe_to_worksheet(
-    ws: openpyxl.worksheet.worksheet.Worksheet,
+    ws: Worksheet,
     df: pd.DataFrame,
     index: bool = False,
     header: bool = True
-) -> openpyxl.worksheet.worksheet.Worksheet:
+) -> Worksheet:
     """
     Write a dataframe to a worksheet.
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         The worksheet to which the dataframe will be written.
     df : pd.DataFrame
         The dataframe of data.
@@ -508,7 +508,7 @@ def write_dataframe_to_worksheet(
 
     Returns
     -------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         The worksheet created.
 
     Example
