@@ -31,7 +31,7 @@ def cell_fill_down(
     ):
         for cell in col:
             if cell.value in [
-                None, 'None', 'NONE', np.nan
+                None, 'None', 'NONE', '', np.nan
             ]:
                 cell.value = ws[cell.row - 1][0].value
     return ws
