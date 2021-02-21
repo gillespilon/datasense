@@ -10,11 +10,31 @@ import io
 
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.worksheet.worksheet import Worksheet
 from datasense import report_summary, html_end
 from openpyxl import load_workbook
 import pandas as pd
 import numpy as np
 import openpyxl
+
+
+def cell_fill_down(
+    ws: Worksheet,
+    min_col: int,
+    max_col: int,
+    min_row: int
+) -> Worksheet:
+    for col in ws.iter_cols(
+        min_col=min_col,
+        max_col=max_col,
+        min_row=min_row
+    ):
+        for cell in col:
+            if cell.value in [
+                None, 'None', 'NONE', np.nan
+            ]:
+                cell.value = ws[cell.row - 1][0].value
+    return ws
 
 
 def change_case_worksheet_columns(
@@ -510,6 +530,7 @@ def write_dataframe_to_worksheet(
 
 
 __all__ = (
+    'cell_fill_down',
     'change_case_worksheet_columns',
     'exit_script',
     'list_duplicate_worksheet_rows',
