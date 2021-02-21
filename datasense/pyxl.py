@@ -38,19 +38,19 @@ def cell_fill_down(
 
 
 def change_case_worksheet_columns(
-    ws: openpyxl.worksheet.worksheet.Worksheet,
+    ws: Worksheet,
     min_col: int,
     max_col: int,
     min_row: int,
     max_row: int,
     case: str = 'upper'
-) -> openpyxl.worksheet.worksheet.Worksheet:
+) -> Worksheet:
     """
     Change case for one or more worksheet columns.
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         The worksheet in which to change the case of column(s).
     min_col : int
         The first column in the range to change.
@@ -65,7 +65,7 @@ def change_case_worksheet_columns(
 
     Returns
     -------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
 
     Example
