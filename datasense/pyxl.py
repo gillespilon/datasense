@@ -182,7 +182,7 @@ def list_empty_and_nan_worksheet_rows(
 
 
 def list_empty_except_nan_worksheet_rows(
-    ws: openpyxl.worksheet.worksheet.Worksheet,
+    ws: Worksheet,
     min_row: int
 ) -> List[int]:
     """
@@ -191,7 +191,7 @@ def list_empty_except_nan_worksheet_rows(
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
     min_row : int
         Start row for iteration.
