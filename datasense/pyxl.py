@@ -300,22 +300,22 @@ def read_workbook(
 
 
 def remove_empty_worksheet_rows(
-    ws: openpyxl.worksheet.worksheet.Worksheet,
+    ws: Worksheet,
     empty_rows: List[int]
-) -> openpyxl.worksheet.worksheet.Worksheet:
+) -> Worksheet:
     """
     Delete empty worksheet rows.
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
     empty_rows : List[int]
         List of row numbers.
 
     Returns
     -------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
 
     Example
