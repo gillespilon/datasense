@@ -336,22 +336,22 @@ def remove_empty_worksheet_rows(
 
 
 def remove_worksheet_rows(
-    ws: openpyxl.worksheet.worksheet.Worksheet,
+    ws: Worksheet,
     rows_to_remove: List[int]
-) -> openpyxl.worksheet.worksheet.Worksheet:
+) -> Worksheet:
     """
     Remove worksheet rows.
 
     Parameters
     ----------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
     rows_to_remove: List[int]
         The list of row numbers to remove.
 
     Returns
     -------
-    ws : openpyxl.worksheet.worksheet.Worksheet
+    ws : Worksheet
         A worksheet from a workbook.
 
     Example
