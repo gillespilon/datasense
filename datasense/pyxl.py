@@ -20,20 +20,22 @@ import openpyxl
 
 def cell_fill_down(
     ws: Worksheet,
+    min_row: int,
+    max_row: int,
     min_col: int,
-    max_col: int,
-    min_row: int
+    max_col: int
 ) -> Worksheet:
-    for col in ws.iter_cols(
+    for row in ws.iter_rows(
+        min_row=min_row,
+        max_row=max_row,
         min_col=min_col,
-        max_col=max_col,
-        min_row=min_row
+        max_col=max_col
     ):
-        for cell in col:
+        for cell in row:
             if cell.value in [
-                None, 'None', 'NONE', '', np.nan
+                None, 'None', 'NONE', '', np.nan, 'NaN'
             ]:
-                cell.value = ws[cell.row - 1][0].value
+                cell.value = ws[cell.row - 1][min_col - 1].value
     return ws
 
 
