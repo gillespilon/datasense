@@ -1781,10 +1781,10 @@ def ask_open_file_name_path(
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
-    >>> path = ds.ask_open_file_name(title='your message')
+    >>> path = ds.ask_open_file_name_path(title='your message')
 
     Example 2
-    >>> path = ds.ask_open_file_name(
+    >>> path = ds.ask_open_file_name_path(
     >>>     title='your message',
     >>>     filetypes=[('csv files', '.csv .CSV')]
     >>> )
