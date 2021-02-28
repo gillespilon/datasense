@@ -365,7 +365,7 @@ def remove_worksheet_rows(
     >>>     rows_to_remove=rows_to_remove
     >>> )
     """
-    for row in rows_to_remove:
+    for row in reversed(rows_to_remove):
         ws.delete_rows(
             idx=row,
             amount=1
