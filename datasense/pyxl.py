@@ -25,6 +25,37 @@ def cell_fill_down(
     min_col: int,
     max_col: int
 ) -> Worksheet:
+    """
+    Fill empty cells with the value from the cell above
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet in which to change the case of column(s).
+    min_row : int
+        The first row in the range to change.
+    max_row : int
+        The last row in the range to change.
+    min_col : int
+        The first column in the range to change.
+    max_col : int
+        The last column in the range to change.
+
+    Returns
+    -------
+    ws : Worksheet
+
+    Example
+    -------
+    >>> for column in fill_down_columns:
+    >>>     ws = ds.cell_fill_down(
+    >>>         ws=ws,
+    >>>         min_row=row_below_labels,
+    >>>         max_row=ws.max_row,
+    >>>         min_col=column_names_numbers[column],
+    >>>         max_col=column_names_numbers[column]
+    >>>     )
+    """
     for row in ws.iter_rows(
         min_row=min_row,
         max_row=max_row,
