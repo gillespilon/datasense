@@ -63,10 +63,7 @@ def cell_fill_down(
         max_col=max_col
     ):
         for cell in row:
-            # if cell.value in [
-            #     None, 'None', 'NONE', '', np.nan, 'NaN'
-            # ]:
-            if cell.value is None:
+            if not cell.value:
                 cell.value = ws[cell.row - 1][min_col - 1].value
     return ws
 
