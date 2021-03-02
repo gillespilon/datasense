@@ -390,11 +390,7 @@ def read_workbook(
         filename=filename,
         data_only=data_only
     )
-    print('File:')
-    print(filename)
-    print('Sheet names found:')
     sheet_names = wb.sheetnames
-    print(wb.sheetnames)
     return (wb, sheet_names)
 
 
