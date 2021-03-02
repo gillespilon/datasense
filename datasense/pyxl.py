@@ -648,8 +648,6 @@ def validate_sheet_names(
             original_stdout=original_stdout,
             output_url=output_url
         )
-    elif sheet_name in sheet_names and len(sheet_names) == 1:
-        print('Sheet name is OK.')
     elif sheet_name not in sheet_names and len(sheet_names) == 1:
         print('One sheet found and it was re-named.')
         ws = wb.active
