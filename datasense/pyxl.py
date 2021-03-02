@@ -2,7 +2,7 @@
 openpyxl functions
 """
 
-from typing import List, Optional, Tuple, Union
+from typing import IO, List, Optional, Tuple, Union
 from pathlib import Path
 import time
 import sys
@@ -94,7 +94,7 @@ def cell_fill_down(
     max_col: int
 ) -> Worksheet:
     """
-    Fill empty cells with the value from the cell above
+    Fill empty cell with the value from the cell above
 
     Parameters
     ----------
@@ -510,6 +510,90 @@ def style_header(
     )
 
 
+def validate_column_labels(
+    ws: Worksheet,
+    column_labels: List[str],
+    first_column: int,
+    last_column: int,
+    row_of_labels: int,
+    *,
+    start_time: Optional[float] = None,
+    stop_time: Optional[float] = None,
+    original_stdout: Optional[IO[str]] = None,
+    output_url: Optional[str] = None
+
+) -> Worksheet:
+    """
+    Validate the labels of a worksheet with a desired list of labels
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet to analyze.
+    column_labels : List[str]
+        The list of desired column labels.
+    first_column : int
+        The first column of the label range in the worksheet.
+    last_column : int
+        The last column of the label range in the worksheet.
+    row_of_labels : int
+        The row number of the labels in the worksheet.
+    start_time : Optional[float] = None
+        The start time of the script.
+    stop_time : Optional[float] = None
+        The stop time of the script.
+    original_stdout : Optional[IO[str]] = None
+        The original stdout.
+    output_url : Optional[str] = None
+        The output url.
+
+    Returns
+    -------
+    ws : Worksheet,
+        The worksheet to analyze.
+
+    Example
+    -------
+    >>> ws = ds.validate_column_labels(
+    >>>     ws=ws,
+    >>>     column_labels=column_labels,
+    >>>     first_column=first_column,
+    >>>     last_column=last_column,
+    >>>     row_of_labels=row_of_labels,
+    >>>     start_time=start_time,
+    >>>     stop_time=time.time(),
+    >>>     original_stdout=original_stdout,
+    >>>     output_url=output_url
+    >>> )
+    """
+    labels_found = []
+    for col in range(first_column, last_column + 1):
+        labels_found.append(ws.cell(row=row_of_labels, column=col).value)
+    if len(labels_found) == len(column_labels) and \
+            labels_found[-1] == column_labels[-1]:
+        for col, label in zip(
+            range(first_column, last_column + 1),
+            column_labels
+        ):
+            ws.cell(
+                row=1,
+                column=col
+            ).value = label
+    elif stop_time:
+        print('Column labels incorrect. Fix. Re-run script.')
+        print('XXX File NOT OK XXX')
+        stop_time = stop_time
+        report_summary(
+            start_time=start_time,
+            stop_time=stop_time
+        )
+        exit_script(
+            original_stdout=original_stdout,
+            output_url=output_url
+        )
+    return ws
+
+
 def validate_sheet_names(
     wb: openpyxl.workbook.Workbook,
     file: Union[Path, str],
@@ -651,5 +735,6 @@ __all__ = (
     'remove_worksheet_rows',
     'style_header',
     'validate_sheet_names',
+    'validate_column_labels',
     'write_dataframe_to_worksheet',
 )
