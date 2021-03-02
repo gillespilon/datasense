@@ -18,6 +18,74 @@ import numpy as np
 import openpyxl
 
 
+def apply_style_to_row(
+    ws: Worksheet,
+    row_list: List[int],
+    *,
+    font_name: str = 'Calibri',
+    font_size: int = 11,
+    font_bold: bool = True,
+    horizontal_alignment: str = 'center',
+    vertical_alignment: str = 'center',
+    fill_type: str = 'solid',
+    foreground_colour: str = 'd9d9d9'
+) -> Worksheet:
+    """
+    Apply a style to a worksheet row
+
+    Parameters
+    ----------
+    ws : Worksheet,
+        The worksheet in which to apply the style.
+    row_list : List[int],
+        The list of row numbers on which to apply the style.
+    font_name : str = 'Calibri',
+        The font name for the style.
+    font_size : int = 11,
+        The font size for the style.
+    font_bold : bool = True,
+        A boolean to apply bold style.
+    horizontal_alignment : str = 'center',
+        The string for horizontal alignment.
+    vertical_alignment : str = 'center',
+        The string for vertical alignment.
+    fill_type : str = 'solid',
+        The string for the fill type.
+    foreground_colour : str = 'd9d9d9'
+        The string for the foreground colour.
+
+    Returns
+    -------
+    ws : Worksheet,
+        The worksheet in which to apply the style.
+
+    Example
+    -------
+    >>> ws = ds.apply_style_to_row(
+    >>>     ws=ws,
+    >>>     row_list=[1]
+    >>> )
+    """
+    header_style = NamedStyle(name='header_style')
+    header_style.font = Font(
+        name=font_name,
+        size=font_size,
+        bold=font_bold
+    )
+    header_style.alignment = Alignment(
+        horizontal=horizontal_alignment,
+        vertical=vertical_alignment
+    )
+    header_style.fill = PatternFill(
+        fill_type=fill_type,
+        fgColor=foreground_colour
+    )
+    for row in row_list:
+        for cell in ws[row]:
+            cell.style = header_style
+    return ws
+
+
 def cell_fill_down(
     ws: Worksheet,
     min_row: int,
@@ -559,8 +627,18 @@ def write_dataframe_to_worksheet(
         ws.append(row)
     return ws
 
+    # TODO:
+    # Read comments into list
+    # for col in ws_out.iter_cols(
+    #     min_col=column_names_numbers['Molex PN'],
+    #     max_col=column_names_numbers['Molex PN']
+    # ):
+    #     comments = [c.comment.text for c in col]
+    # print(comments)
+
 
 __all__ = (
+    'apply_style_to_row',
     'cell_fill_down',
     'change_case_worksheet_columns',
     'exit_script',
