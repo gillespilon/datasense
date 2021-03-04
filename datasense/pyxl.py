@@ -18,74 +18,6 @@ import numpy as np
 import openpyxl
 
 
-def apply_style_to_row(
-    ws: Worksheet,
-    row_list: List[int],
-    *,
-    font_name: str = 'Calibri',
-    font_size: int = 11,
-    font_bold: bool = True,
-    horizontal_alignment: str = 'center',
-    vertical_alignment: str = 'center',
-    fill_type: str = 'solid',
-    foreground_colour: str = 'd9d9d9'
-) -> Worksheet:
-    """
-    Apply a style to a worksheet row
-
-    Parameters
-    ----------
-    ws : Worksheet,
-        The worksheet in which to apply the style.
-    row_list : List[int],
-        The list of row numbers on which to apply the style.
-    font_name : str = 'Calibri',
-        The font name for the style.
-    font_size : int = 11,
-        The font size for the style.
-    font_bold : bool = True,
-        A boolean to apply bold style.
-    horizontal_alignment : str = 'center',
-        The string for horizontal alignment.
-    vertical_alignment : str = 'center',
-        The string for vertical alignment.
-    fill_type : str = 'solid',
-        The string for the fill type.
-    foreground_colour : str = 'd9d9d9'
-        The string for the foreground colour.
-
-    Returns
-    -------
-    ws : Worksheet,
-        The worksheet in which to apply the style.
-
-    Example
-    -------
-    >>> ws = ds.apply_style_to_row(
-    >>>     ws=ws,
-    >>>     row_list=[1]
-    >>> )
-    """
-    header_style = NamedStyle(name='header_style')
-    header_style.font = Font(
-        name=font_name,
-        size=font_size,
-        bold=font_bold
-    )
-    header_style.alignment = Alignment(
-        horizontal=horizontal_alignment,
-        vertical=vertical_alignment
-    )
-    header_style.fill = PatternFill(
-        fill_type=fill_type,
-        fgColor=foreground_colour
-    )
-    for row in row_list:
-        for cell in ws[row]:
-            cell.style = header_style
-    return ws
-
-
 def cell_fill_down(
     ws: Worksheet,
     min_row: int,
@@ -134,6 +66,74 @@ def cell_fill_down(
             if not cell.value:
                 cell.value = ws[cell.row - 1][min_col - 1].value
     return ws
+
+
+def cell_style(
+    style_name: str = 'cell_style',
+    *,
+    font_name: Optional[str] = 'Calibri',
+    font_size: Optional[int] = 11,
+    font_bold: Optional[bool] = True,
+    font_colour: Optional[str] = '000000',
+    horizontal_alignment: Optional[str] = 'center',
+    vertical_alignment: Optional[str] = 'center',
+    fill_type: Optional[str] = 'solid',
+    foreground_colour: Optional[str] = 'd9d9d9'
+) -> NamedStyle:
+    """
+    Define a cell style
+    ----------
+    style_name : str = 'cell_style'
+        The name for the cell style.
+    font_name : Optional[str] = 'Calibri'
+        The font name for the style.
+    font_size : Optional[int] = 11
+        The font size for the style.
+    font_bold : Optional[bool] = True
+        A boolean to apply bold style.
+    font_colour : Optional[str] = 'ffffff'
+        The string for the font colour.
+    horizontal_alignment : Optional[str] = 'center'
+        The string for horizontal alignment.
+    vertical_alignment : Optional[str] = 'center'
+        The string for vertical alignment.
+    fill_type : Optional[str] = 'solid'
+        The string for the fill type.
+    foreground_colour : Optional[str] = 'd9d9d9'
+        The string for the foreground colour.
+
+    Returns
+    -------
+    row_style : NamedStyle
+        The named style.
+
+    Example
+    -------
+    >>> red_cell_style = ds.cell_style(
+    >>>     style_name='red_cell_style',
+    >>>     font_colour='ffffff',
+    >>>     foreground_colour='c00000'
+    >>> )
+    >>> wb.add_named_style(red_cell_style)
+    >>> for cell in ['C1', 'D1', 'E1']:
+    >>>     ws[cell].style = red_cell_style
+    """
+    cell_style = NamedStyle(name=style_name)
+    cell_style.font = Font(
+        name=font_name,
+        size=font_size,
+        bold=font_bold,
+        color=font_colour
+    )
+    cell_style.alignment = Alignment(
+        horizontal=horizontal_alignment,
+        vertical=vertical_alignment
+    )
+    cell_style.fill = PatternFill(
+        fill_type=fill_type,
+        fgColor=foreground_colour
+    )
+    return cell_style
 
 
 def change_case_worksheet_columns(
@@ -470,45 +470,72 @@ def remove_worksheet_rows(
     return ws
 
 
-def style_header(
+def row_style(
+    style_name: str = 'row_style',
     *,
+    font_name: Optional[str] = 'Calibri',
+    font_size: Optional[int] = 11,
     font_bold: Optional[bool] = True,
-    align_horizontal: Optional[str] = 'center',
-    align_vertical: Optional[str] = 'center',
+    font_colour: Optional[str] = '000000',
+    horizontal_alignment: Optional[str] = 'center',
+    vertical_alignment: Optional[str] = 'center',
     fill_type: Optional[str] = 'solid',
-    color_foreground: Optional[str] = 'd9d9d9'
-):
+    foreground_colour: Optional[str] = 'd9d9d9'
+) -> NamedStyle:
     """
-    Define a style typically used to style the first row of a worksheet.
+    Define a row style
 
     Parameters
     ----------
+    style_name : str = 'row_style'
+        The name for the row style.
+    font_name : Optional[str] = 'Calibri'
+        The font name for the style.
+    font_size : Optional[int] = 11
+        The font size for the style.
     font_bold : Optional[bool] = True
-        The boolean for making a font bold.
-    align_horizontal : Optional[str] = 'center'
-        The string for horizontal alignment of a cell.
-    align_vertical : Optional[str] = 'center'
-        The string for vertical alignment of a cell.
+        A boolean to apply bold style.
+    font_colour : Optional[Optional[str]] = '000000'
+        The string for the font colour.
+    horizontal_alignment : Optional[str] = 'center'
+        The string for horizontal alignment.
+    vertical_alignment : Optional[str] = 'center'
+        The string for vertical alignment.
     fill_type : Optional[str] = 'solid'
-        The string for the type of fill of a cell.
-    color_foreground : Optional[str] = 'd9d9d9'
-        The string for the foreground color of a cell.
+        The string for the fill type.
+    foreground_colour : Optional[str] = 'd9d9d9'
+        The string for the foreground colour.
+
+    Returns
+    -------
+    row_style : NamedStyle,
+        The named style.
 
     Example
     -------
-    >>> import datasense as ds
-    >>> ds.style_header()
+    >>> header_row_style = ds.row_style(
+    >>>     style_name='header_row_style'
+    >>> )
+    >>> wb.add_named_style(header_row_style)
+    >>> for row in label_row_numbers:
+    >>>     for cell in ws[row]:
+    >>>         cell.style = header_row_style
     """
-    header_style = NamedStyle(name='header_style')
-    header_style.font = Font(bold=font_bold)
-    header_style.alignment = Alignment(
-        horizontal=align_horizontal,
-        vertical=align_vertical
+    row_style = NamedStyle(name=style_name)
+    row_style.font = Font(
+        name=font_name,
+        size=font_size,
+        bold=font_bold
     )
-    header_style.fill = PatternFill(
+    row_style.alignment = Alignment(
+        horizontal=horizontal_alignment,
+        vertical=vertical_alignment
+    )
+    row_style.fill = PatternFill(
         fill_type=fill_type,
-        fgColor=color_foreground
+        fgColor=foreground_colour
     )
+    return row_style
 
 
 def validate_column_labels(
@@ -721,8 +748,8 @@ def write_dataframe_to_worksheet(
 
 
 __all__ = (
-    'apply_style_to_row',
     'cell_fill_down',
+    'cell_style',
     'change_case_worksheet_columns',
     'exit_script',
     'list_duplicate_worksheet_rows',
@@ -732,7 +759,7 @@ __all__ = (
     'read_workbook',
     'remove_empty_worksheet_rows',
     'remove_worksheet_rows',
-    'style_header',
+    'row_style',
     'validate_sheet_names',
     'validate_column_labels',
     'write_dataframe_to_worksheet',
