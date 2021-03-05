@@ -1081,22 +1081,22 @@ def feature_percent_empty(
     return list_columns
 
 
-def create_directory(graphics_directory: List[str]) -> None:
+def create_directory(directories: List[str]) -> None:
     """
     Create empty directories for a path.
 
     Parameters
     ----------
-    graphics_directory : List[str]
-        The list of graphics directories.
+    directories : List[str]
+        The list of directories.
 
     Example
     -------
     >>> import datasense as ds
     >>> directory_list = ['directory_one', 'directory_two']
-    >>> ds.create_directory(graphics_directory=directory_list)
+    >>> ds.create_directory(directories=directory_list)
     """
-    for directory in graphics_directory:
+    for directory in directories:
         try:
             rmtree(directory)
         except Exception:
