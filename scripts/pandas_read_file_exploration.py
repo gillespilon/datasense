@@ -3,10 +3,11 @@
 Pandas read file exploration
 """
 
-from typing import Callable
 from datetime import datetime
+from typing import Callable
 import time
 
+from pandas.api.types import CategoricalDtype
 import datasense as ds
 import pandas as pd
 
@@ -28,11 +29,11 @@ def main():
     )
     help(ds.read_file)
     print()
-    df = ds.create_dataframe()
     print('Create dataframe')
+    df = ds.create_dataframe()
     print(df.head())
+    print(df.columns)
     print(df.dtypes)
-    print()
     ds.dataframe_info(
         df=df,
         file_in=file_name
@@ -44,36 +45,42 @@ def main():
         file_name=file_name
     )
     # Example 1
-    # Read a csv file. There is no guarante thee column dtypes will be correct.
-    data = ds.read_file(file_name=file_name)
-    print('Example 1. The dtypes are not correct.')
-    print(data.head())
-    print(data.dtypes)
+    # Read a csv file. There is no guarantee the column dtypes will be correct.
+    print('Example 1. Only [a, i, s, x, z] have the correct dtypes.')
+    df = ds.read_file(file_name=file_name)
+    print(df.dtypes)
     print()
-    ds.dataframe_info(
-        df=data,
-        file_in=file_name
-    )
     # Example 2
     # Read a csv file. Ensure the dtypes of datetime columns.
+    print('Example 2. Ensure the dtypes of datetime columns.')
     parse_dates = ['t', 'u']
-    data = ds.read_file(
+    df = ds.read_file(
         file_name=file_name,
         parse_dates=parse_dates
     )
-    print(
-        'Example 2. Ensure the dtypes of datetime columns.'
-    )
-    print(data.head(10))
+    print(df.dtypes)
     print()
-    print('column dtypes')
-    print(data.dtypes)
-    print()
-    ds.dataframe_info(
-        df=data,
-        file_in=file_name
-    )
     # Example 3
+    # Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
+    print('Example 3. Ensure the dtypes of cols; not timedelta, datetime.')
+    convert_dict = {
+        'a': 'float64',
+        'b': 'boolean',
+        'c': 'category',
+        'i': 'float64',
+        'r': 'str',
+        's': 'str',
+        'x': 'float64',
+        'y': 'Int64',
+        'z': 'float64'
+    }
+    df = ds.read_file(
+        file_name=file_name,
+        dtype=convert_dict
+    )
+    print(df.dtypes)
+    print()
+    # Example 333333
     # Read a csv file. Ensure the dtypes of columns. Rename the columns.
     column_names_dict = {
         'a': 'A',
@@ -86,8 +93,8 @@ def main():
         's': 'S',
         't': 'T',
         'u': 'U',
-        'y': 'Y',
         'x': 'X',
+        'y': 'Y',
         'z': 'Z'
     }
     index_columns = ['Y']
@@ -122,6 +129,7 @@ def main():
     print()
     print('column dtypes')
     print(data.dtypes)
+    print(data.info(verbose=True))
     print()
     print('index', data.index.name, 'dtype:', data.index.dtype)
     print()
@@ -142,6 +150,7 @@ def main():
     print()
     print('column dtypes')
     print(data.dtypes)
+    print(data.info(verbose=True))
     print()
     ds.dataframe_info(
         df=data,
