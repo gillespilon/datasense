@@ -43,7 +43,7 @@ def main():
     file_names, targets, features, number_knots, graphics_directory,\
         figsize, x_axis_label, y_axis_label, axis_title,\
         date_parser, output_url, header_title, header_id = parameters()
-    ds.set_up_graphics_directory(graphics_directory=graphics_directory)
+    ds.create_directory(directories=graphics_directory)
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
