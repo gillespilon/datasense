@@ -77,7 +77,8 @@ def cell_style(
     font_colour: Optional[str] = '000000',
     horizontal_alignment: Optional[str] = 'center',
     vertical_alignment: Optional[str] = 'center',
-    fill_type: Optional[str] = 'solid',
+    wrap_text: Union[str, bool] = None,
+    fill_type: Union[str, bool] = 'solid',
     foreground_colour: Optional[str] = 'd9d9d9'
 ) -> NamedStyle:
     """
@@ -127,7 +128,8 @@ def cell_style(
     )
     cell_style.alignment = Alignment(
         horizontal=horizontal_alignment,
-        vertical=vertical_alignment
+        vertical=vertical_alignment,
+        wrap_text=wrap_text
     )
     cell_style.fill = PatternFill(
         fill_type=fill_type,
@@ -194,9 +196,26 @@ def change_case_worksheet_columns(
 
 
 def exit_script(
-    original_stdout,
-    output_url
+    original_stdout: IO[str],
+    output_url: str
 ):
+    """
+    Exit from a script and complete the html file.
+
+    Parameters
+    ----------
+    original_stdout : IO[str]
+        The original stdout.
+    output_url : str
+        The output url.
+
+    Example
+    -------
+    exit_script(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
+    """
     html_end(
         original_stdout=original_stdout,
         output_url=output_url
