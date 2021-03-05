@@ -1081,7 +1081,7 @@ def feature_percent_empty(
     return list_columns
 
 
-def set_up_graphics_directory(graphics_directory: List[str]) -> None:
+def create_directory(graphics_directory: List[str]) -> None:
     """
     Create empty directories for a path.
 
@@ -1094,7 +1094,7 @@ def set_up_graphics_directory(graphics_directory: List[str]) -> None:
     -------
     >>> import datasense as ds
     >>> directory_list = ['directory_one', 'directory_two']
-    >>> ds.set_up_graphics_directory(graphics_directory=directory_list)
+    >>> ds.create_directory(graphics_directory=directory_list)
     """
     for directory in graphics_directory:
         try:
@@ -1899,7 +1899,7 @@ __all__ = (
     'save_file',
     'byte_size',
     'feature_percent_empty',
-    'set_up_graphics_directory',
+    'create_directory',
     'replace_text_numbers',
     'create_dataframe',
     'create_dataframe_norm',
