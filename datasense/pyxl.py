@@ -11,6 +11,7 @@ import io
 from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.worksheet import Worksheet
+from openpyxl.workbook.workbook import Workbook
 from datasense import report_summary, html_end
 from openpyxl import load_workbook
 import pandas as pd
@@ -69,6 +70,7 @@ def cell_fill_down(
 
 
 def cell_style(
+    wb: Workbook,
     style_name: str = 'cell_style',
     *,
     font_name: Optional[str] = 'Calibri',
@@ -135,7 +137,8 @@ def cell_style(
         fill_type=fill_type,
         fgColor=foreground_colour
     )
-    return cell_style
+    wb.add_named_style(cell_style)
+    return (wb, cell_style)
 
 
 def change_case_worksheet_columns(
@@ -397,7 +400,7 @@ def read_workbook(
 
     Returns
     -------
-    wb : openpyxl.workbook.Workbook
+    wb : Workbook
         A workbook.
     sheet_names : List[str]
         The sheet names in the workbook.
@@ -653,7 +656,7 @@ def validate_sheet_names(
     """
     Parameters
     ----------
-    wb : openpyxl.workbook.Workbook,
+    wb : Workbook,
         A workbook.
     file : Union[Path, str],
         The file containing the workbook.
@@ -670,7 +673,7 @@ def validate_sheet_names(
 
     Returns
     -------
-    wb : openpyxl.workbook.Workbook
+    wb : Workbook
 
     Example
     -------
