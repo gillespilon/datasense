@@ -493,6 +493,7 @@ def remove_worksheet_rows(
 
 
 def row_style(
+    wb: Workbook,
     style_name: str = 'row_style',
     *,
     font_name: Optional[str] = 'Calibri',
@@ -557,7 +558,8 @@ def row_style(
         fill_type=fill_type,
         fgColor=foreground_colour
     )
-    return row_style
+    wb.add_named_style(row_style)
+    return (wb, row_style)
 
 
 def validate_column_labels(
