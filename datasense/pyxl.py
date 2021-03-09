@@ -8,7 +8,8 @@ import time
 import sys
 import io
 
-from openpyxl.styles import Alignment, Font, NamedStyle, PatternFill
+from openpyxl.styles import Alignment, Border, Font, NamedStyle, PatternFill,\
+    Side
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.workbook.workbook import Workbook
@@ -81,7 +82,9 @@ def cell_style(
     vertical_alignment: Optional[str] = 'center',
     wrap_text: Union[str, bool] = None,
     fill_type: Union[str, bool] = 'solid',
-    foreground_colour: Optional[str] = 'd9d9d9'
+    foreground_colour: Union[str, bool] = 'd9d9d9',
+    border_style: Union[str, bool] = None,
+    border_colour: Union[str, bool] = None,
 ) -> NamedStyle:
     """
     Define a cell style
@@ -136,6 +139,12 @@ def cell_style(
     cell_style.fill = PatternFill(
         fill_type=fill_type,
         fgColor=foreground_colour
+    )
+    cell_style.border = Border(
+        bottom=Side(
+            border_style=border_style,
+            color=border_colour
+        )
     )
     wb.add_named_style(cell_style)
     return (wb, cell_style)
@@ -380,6 +389,24 @@ def list_nan_worksheet_rows(
         if all(item != item for item in onerow):
             blank_rows.append(row[0].row)
     return blank_rows
+
+
+def list_rows_with_content(
+    ws: Worksheet,
+    min_row: int,
+    column: int,
+    text: str
+) -> List[int]:
+    list_rows = []
+    for row in ws.iter_rows(
+        min_row=min_row,
+        min_col=column,
+        max_col=column
+    ):
+        for cell in row:
+            if cell.value == text:
+                list_rows.append(row[0].row)
+    return list_rows
 
 
 def read_workbook(
@@ -780,6 +807,7 @@ __all__ = (
     'list_empty_and_nan_worksheet_rows',
     'list_empty_except_nan_worksheet_rows',
     'list_nan_worksheet_rows',
+    'list_rows_with_content',
     'read_workbook',
     'remove_empty_worksheet_rows',
     'remove_worksheet_rows',
