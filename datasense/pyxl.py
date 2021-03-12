@@ -58,15 +58,24 @@ def cell_fill_down(
     >>>         max_col=column_names_numbers[column]
     >>>     )
     """
+    row_count = 0
     for row in ws.iter_rows(
-        min_row=min_row,
-        max_row=max_row,
         min_col=min_col,
         max_col=max_col
     ):
         for cell in row:
-            if not cell.value:
-                cell.value = ws[cell.row - 1][min_col - 1].value
+            if cell.value:
+                row_count += 1
+    if row_count > 0:
+        for row in ws.iter_rows(
+            min_row=min_row + 1,  # start one row below the 'start' row
+            max_row=max_row,
+            min_col=min_col,
+            max_col=max_col
+        ):
+            for cell in row:
+                if not cell.value:
+                    cell.value = ws[cell.row - 1][min_col - 1].value
     return ws
 
 
@@ -397,7 +406,35 @@ def list_rows_with_content(
     column: int,
     text: str
 ) -> List[int]:
-    list_rows = []
+    '''
+    List rows that contain specific text in a specified column.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        A worksheet from a workbook.
+    min_row : int
+        Start row for iteration.
+    column : int
+        The column to search.
+    text : str
+        The text to search.
+
+    Returns
+    -------
+    List[int]
+        A list of row numbers.
+
+    Example
+    -------
+    >>> rows_with_text = ds.list_rows_with_content(
+    >>>     ws=ws,
+    >>>     min_row=2,
+    >>>     column=11,
+    >>>     text='ETA'
+    >>> )
+    '''
+    rows_with_text = []
     for row in ws.iter_rows(
         min_row=min_row,
         min_col=column,
@@ -405,8 +442,8 @@ def list_rows_with_content(
     ):
         for cell in row:
             if cell.value == text:
-                list_rows.append(row[0].row)
-    return list_rows
+                rows_with_text.append(row[0].row)
+    return rows_with_text
 
 
 def read_workbook(
