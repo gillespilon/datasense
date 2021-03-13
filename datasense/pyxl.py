@@ -556,6 +556,21 @@ def remove_worksheet_rows(
     return ws
 
 
+def replace_text(
+    ws: Worksheet,
+    column: int,
+    text: Tuple[Tuple[str, str]]
+) -> Worksheet:
+    for row in ws.iter_rows(
+        min_col=column,
+        max_col=column
+    ):
+        for item in text:
+            for cell in row:
+                cell.value = str(cell.value).replace(*item)
+    return ws
+
+
 def row_style(
     wb: Workbook,
     style_name: str = 'row_style',
@@ -848,6 +863,7 @@ __all__ = (
     'read_workbook',
     'remove_empty_worksheet_rows',
     'remove_worksheet_rows',
+    'replace_text',
     'row_style',
     'validate_sheet_names',
     'validate_column_labels',
