@@ -521,6 +521,43 @@ def remove_empty_worksheet_rows(
     return ws
 
 
+def remove_worksheet_columns(
+    ws: Worksheet,
+    starting_column: int,
+    number_of_columns: int
+) -> Worksheet:
+    """
+    Remove worksheet columns.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        A worksheet from a workbook.
+    starting_column: int
+        The first column to remove.
+    number_of_columns
+        The number of columns to remove.
+
+    Returns
+    -------
+    ws : Worksheet
+        A worksheet from a workbook.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ws = ds.remove_worksheet_columns(
+    >>>     ws=ws,
+    >>>     number_of_columns=number_of_columns
+    >>> )
+    """
+    ws.delete_cols(
+        idx=starting_column,
+        amount=number_of_columns
+    )
+    return ws
+
+
 def remove_worksheet_rows(
     ws: Worksheet,
     rows_to_remove: List[int]
@@ -862,6 +899,7 @@ __all__ = (
     'list_rows_with_content',
     'read_workbook',
     'remove_empty_worksheet_rows',
+    'remove_worksheet_columns',
     'remove_worksheet_rows',
     'replace_text',
     'row_style',
