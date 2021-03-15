@@ -14,10 +14,29 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.workbook.workbook import Workbook
 from datasense import report_summary, html_end
+from openpyxl.utils import get_column_letter
 from openpyxl import load_workbook
 import pandas as pd
 import numpy as np
 import openpyxl
+
+
+def autofit_column_width(
+    ws: Worksheet,
+    extra_width: int
+) -> Worksheet:
+    for column in ws.columns:
+        max_width = 0
+        column_letter = get_column_letter(column[0].column)
+        for cell in column:
+            try:  # Necessary to avoid error on empty cells
+                if len(str(cell.value)) > max_width:
+                    max_width = len(cell.value)
+            except Exception:
+                pass
+        adjusted_width = (max_width + extra_width)
+        ws.column_dimensions[column_letter].width = adjusted_width
+    return ws
 
 
 def cell_fill_down(
@@ -888,6 +907,7 @@ def write_dataframe_to_worksheet(
 
 
 __all__ = (
+    'autofit_column_width',
     'cell_fill_down',
     'cell_style',
     'change_case_worksheet_columns',
