@@ -25,6 +25,29 @@ def autofit_column_width(
     ws: Worksheet,
     extra_width: int
 ) -> Worksheet:
+    '''
+    Autofit all columns in a worksheet.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet in which to autofit all columns.
+    extra_width : int
+        An integer to add extra width so that the column edges are not flush.
+
+    Returns
+    -------
+    ws : Worksheet
+        The worksheet in which to autofit all columns.
+
+    Example
+    -------
+    >>> extra_column_width = 7
+    >>> ws = ds.autofit_column_width(
+    >>>     ws=ws,
+    >>>     extra_width=extra_column_width
+    >>> )
+    '''
     for column in ws.columns:
         max_width = 0
         column_letter = get_column_letter(column[0].column)
@@ -113,6 +136,7 @@ def cell_style(
     foreground_colour: Union[str, bool] = 'd9d9d9',
     border_style: Union[str, bool] = None,
     border_colour: Union[str, bool] = None,
+    number_format: Union[str, bool] = None
 ) -> NamedStyle:
     """
     Define a cell style
@@ -174,6 +198,7 @@ def cell_style(
             color=border_colour
         )
     )
+    cell_style.number_format = number_format
     wb.add_named_style(cell_style)
     return (wb, cell_style)
 
