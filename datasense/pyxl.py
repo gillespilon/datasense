@@ -708,6 +708,8 @@ def row_style(
 
     Parameters
     ----------
+    wb : Workbook
+        The workbook in which to define the row style.
     style_name : str = 'row_style'
         The name for the row style.
     font_name : Optional[str] = 'Lucida Sans'
