@@ -1,6 +1,6 @@
-"""
+'''
 openpyxl functions
-"""
+'''
 
 from typing import IO, List, Optional, Tuple, Union
 from pathlib import Path
@@ -224,7 +224,7 @@ def change_case_worksheet_columns(
     max_row: int,
     case: str = 'upper'
 ) -> Worksheet:
-    """
+    '''
     Change case for one or more worksheet columns.
 
     Parameters
@@ -258,7 +258,7 @@ def change_case_worksheet_columns(
     >>>     max_row=ws.max_row,
     >>>     case='upper'
     >>> )
-    """
+    '''
     for col in ws.iter_cols(
         min_col=min_col,
         max_col=max_col,
@@ -277,7 +277,7 @@ def exit_script(
     original_stdout: IO[str],
     output_url: str
 ):
-    """
+    '''
     Exit from a script and complete the html file.
 
     Parameters
@@ -293,7 +293,7 @@ def exit_script(
         original_stdout=original_stdout,
         output_url=output_url
     )
-    """
+    '''
     html_end(
         original_stdout=original_stdout,
         output_url=output_url
@@ -306,7 +306,7 @@ def list_duplicate_worksheet_rows(
     *,
     columns_to_ignore: Optional[List[int]] = []
 ) -> List[int]:
-    """
+    '''
     Find duplicate rows in a worksheet.
 
     Parameters
@@ -329,7 +329,7 @@ def list_duplicate_worksheet_rows(
     >>>     ws=ws,
     >>>     duplicate_rows=duplicate_rows
     >>> )
-    """
+    '''
     duplicate_rows = []
     unique_rows = []
     for row in ws.rows:
@@ -348,7 +348,7 @@ def list_empty_and_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    """
+    '''
     Create list of row numbers of blank worksheet rows.
 
     Parameters
@@ -371,7 +371,7 @@ def list_empty_and_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
-    """
+    '''
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -386,7 +386,7 @@ def list_empty_except_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    """
+    '''
     Create list of row numbers of empty worksheet rows, except those
     with np.nan.
 
@@ -412,7 +412,7 @@ def list_empty_except_nan_worksheet_rows(
     >>>     min_row=2
     >>> )
 
-    """
+    '''
     empty_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -425,7 +425,7 @@ def list_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    """
+    '''
     Create list of row numbers of blank worksheet rows.
 
     Parameters
@@ -448,7 +448,7 @@ def list_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
-    """
+    '''
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -508,7 +508,7 @@ def read_workbook(
     *,
     data_only: Optional[bool] = True
 ) -> Tuple[openpyxl.workbook.Workbook, List[str]]:
-    """
+    '''
     Read a workbook, print the Path, and print the sheet names.
 
     Parameters
@@ -533,7 +533,7 @@ def read_workbook(
     >>>     filename=file,
     >>>     data_only=True
     >>> )
-    """
+    '''
     wb = load_workbook(
         filename=filename,
         data_only=data_only
@@ -546,7 +546,7 @@ def remove_empty_worksheet_rows(
     ws: Worksheet,
     empty_rows: List[int]
 ) -> Worksheet:
-    """
+    '''
     Delete empty worksheet rows.
 
     Parameters
@@ -569,7 +569,7 @@ def remove_empty_worksheet_rows(
     >>>     ws=ws,
     >>>     empty_rows=empty_rows
     >>> )
-    """
+    '''
     for row_idx in reversed(empty_rows):
         ws.delete_rows(
             idx=row_idx,
@@ -583,7 +583,7 @@ def remove_worksheet_columns(
     starting_column: int,
     number_of_columns: int
 ) -> Worksheet:
-    """
+    '''
     Remove worksheet columns.
 
     Parameters
@@ -607,7 +607,7 @@ def remove_worksheet_columns(
     >>>     ws=ws,
     >>>     number_of_columns=number_of_columns
     >>> )
-    """
+    '''
     ws.delete_cols(
         idx=starting_column,
         amount=number_of_columns
@@ -619,7 +619,7 @@ def remove_worksheet_rows(
     ws: Worksheet,
     rows_to_remove: List[int]
 ) -> Worksheet:
-    """
+    '''
     Remove worksheet rows.
 
     Parameters
@@ -641,7 +641,7 @@ def remove_worksheet_rows(
     >>>     ws=ws,
     >>>     rows_to_remove=rows_to_remove
     >>> )
-    """
+    '''
     for row in reversed(rows_to_remove):
         ws.delete_rows(
             idx=row,
@@ -678,7 +678,7 @@ def row_style(
     fill_type: Optional[str] = 'solid',
     foreground_colour: Optional[str] = 'd9d9d9'
 ) -> NamedStyle:
-    """
+    '''
     Define a row style
 
     Parameters
@@ -716,7 +716,7 @@ def row_style(
     >>> for row in label_row_numbers:
     >>>     for cell in ws[row]:
     >>>         cell.style = header_row_style
-    """
+    '''
     row_style = NamedStyle(name=style_name)
     row_style.font = Font(
         name=font_name,
@@ -748,7 +748,7 @@ def validate_column_labels(
     output_url: Optional[str] = None
 
 ) -> Worksheet:
-    """
+    '''
     Validate the labels of a worksheet with a desired list of labels
 
     Parameters
@@ -790,7 +790,7 @@ def validate_column_labels(
     >>>     original_stdout=original_stdout,
     >>>     output_url=output_url
     >>> )
-    """
+    '''
     labels_found = []
     for col in range(first_column, last_column + 1):
         labels_found.append(ws.cell(row=row_of_labels, column=col).value)
@@ -828,7 +828,7 @@ def validate_sheet_names(
     original_stdout: io.TextIOWrapper,
     output_url: str
 ) -> openpyxl.workbook.Workbook:
-    """
+    '''
     Parameters
     ----------
     wb : Workbook,
@@ -862,7 +862,7 @@ def validate_sheet_names(
     >>>     original_stdout=original_stdout,
     >>>     output_url=output_url
     >>> )
-    """
+    '''
     if sheet_name not in sheet_names and len(sheet_names) != 1:
         print('Manually rename one of these sheets:')
         print(wb.sheetnames)
@@ -898,7 +898,7 @@ def write_dataframe_to_worksheet(
     index: bool = False,
     header: bool = True
 ) -> Worksheet:
-    """
+    '''
     Write a dataframe to a worksheet.
 
     Parameters
@@ -925,7 +925,7 @@ def write_dataframe_to_worksheet(
     >>>     index=False,
     >>>     header=True
     >>> )
-    """
+    '''
     for row in dataframe_to_rows(
         df=df,
         index=index,
