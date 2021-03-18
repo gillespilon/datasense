@@ -876,6 +876,7 @@ def validate_sheet_names(
     Returns
     -------
     wb : Workbook
+        The workbook with a revised sheetname.
 
     Example
     -------
