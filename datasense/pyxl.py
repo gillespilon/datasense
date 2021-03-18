@@ -69,7 +69,7 @@ def cell_fill_down(
     min_col: int,
     max_col: int
 ) -> Worksheet:
-    """
+    '''
     Fill empty cell with the value from the cell above
 
     Parameters
@@ -88,6 +88,7 @@ def cell_fill_down(
     Returns
     -------
     ws : Worksheet
+        The worksheet in which cells were modified.
 
     Example
     -------
@@ -99,7 +100,7 @@ def cell_fill_down(
     >>>         min_col=column_names_numbers[column],
     >>>         max_col=column_names_numbers[column]
     >>>     )
-    """
+    '''
     row_count = 0
     for row in ws.iter_rows(
         min_col=min_col,
