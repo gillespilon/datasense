@@ -38,7 +38,7 @@ def autofit_column_width(
     Returns
     -------
     ws : Worksheet
-        The worksheet in which to autofit all columns.
+        The worksheet in which autofit was applied to all columns
 
     Example
     -------
