@@ -690,78 +690,6 @@ def replace_text(
     return ws
 
 
-def row_style(
-    wb: Workbook,
-    style_name: str = 'row_style',
-    *,
-    font_name: Optional[str] = 'Lucida Sans',
-    font_size: Optional[int] = 11,
-    font_bold: Optional[bool] = True,
-    font_colour: Optional[str] = '000000',
-    horizontal_alignment: Optional[str] = 'center',
-    vertical_alignment: Optional[str] = 'center',
-    fill_type: Optional[str] = 'solid',
-    foreground_colour: Optional[str] = 'd9d9d9'
-) -> NamedStyle:
-    '''
-    Define a row style
-
-    Parameters
-    ----------
-    wb : Workbook
-        The workbook in which to define the row style.
-    style_name : str = 'row_style'
-        The name for the row style.
-    font_name : Optional[str] = 'Lucida Sans'
-        The font name for the style.
-    font_size : Optional[int] = 11
-        The font size for the style.
-    font_bold : Optional[bool] = True
-        A boolean to apply bold style.
-    font_colour : Optional[Optional[str]] = '000000'
-        The string for the font colour.
-    horizontal_alignment : Optional[str] = 'center'
-        The string for horizontal alignment.
-    vertical_alignment : Optional[str] = 'center'
-        The string for vertical alignment.
-    fill_type : Optional[str] = 'solid'
-        The string for the fill type.
-    foreground_colour : Optional[str] = 'd9d9d9'
-        The string for the foreground colour.
-
-    Returns
-    -------
-    row_style : NamedStyle,
-        The named style.
-
-    Example
-    -------
-    >>> header_row_style = ds.row_style(
-    >>>     style_name='header_row_style'
-    >>> )
-    >>> wb.add_named_style(header_row_style)
-    >>> for row in label_row_numbers:
-    >>>     for cell in ws[row]:
-    >>>         cell.style = header_row_style
-    '''
-    row_style = NamedStyle(name=style_name)
-    row_style.font = Font(
-        name=font_name,
-        size=font_size,
-        bold=font_bold
-    )
-    row_style.alignment = Alignment(
-        horizontal=horizontal_alignment,
-        vertical=vertical_alignment
-    )
-    row_style.fill = PatternFill(
-        fill_type=fill_type,
-        fgColor=foreground_colour
-    )
-    wb.add_named_style(row_style)
-    return (wb, row_style)
-
-
 def validate_column_labels(
     ws: Worksheet,
     column_labels: List[str],
@@ -970,6 +898,8 @@ def write_dataframe_to_worksheet(
     # ):
     #     comments = [c.comment.text for c in col]
     # print(comments)
+    # TODO
+    # Read notes into list
 
 
 __all__ = (
@@ -988,7 +918,6 @@ __all__ = (
     'remove_worksheet_columns',
     'remove_worksheet_rows',
     'replace_text',
-    'row_style',
     'validate_sheet_names',
     'validate_column_labels',
     'write_dataframe_to_worksheet',
