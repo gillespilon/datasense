@@ -139,9 +139,13 @@ def cell_style(
     border_colour: Union[str, bool] = None,
     number_format: Union[str, bool] = None
 ) -> NamedStyle:
-    """
+    '''
     Define a cell style
+
+    Parameters
     ----------
+    wb : Workbook
+        The workbook in which to define the cell style.
     style_name : str = 'cell_style'
         The name for the cell style.
     font_name : Optional[str] = 'Lucida Sans'
@@ -149,17 +153,25 @@ def cell_style(
     font_size : Optional[int] = 11
         The font size for the style.
     font_bold : Optional[bool] = True
-        A boolean to apply bold style.
+        A boolean or string to apply bold style.
     font_colour : Optional[str] = 'ffffff'
         The string for the font colour.
     horizontal_alignment : Optional[str] = 'center'
         The string for horizontal alignment.
     vertical_alignment : Optional[str] = 'center'
         The string for vertical alignment.
+    wrap_text : Union[str, bool] = None
+        A boolean or string to wrap text.
     fill_type : Optional[str] = 'solid'
         The string for the fill type.
     foreground_colour : Optional[str] = 'd9d9d9'
         The string for the foreground colour.
+    border_style : Union[str, bool] = None
+        A boolean or string to apply a border.
+    border_colour : Union[str, bool] = None
+        A boolean or string to apply a border colour.
+    number_format : Union[str, bool] = None
+        A boolean or string to apply a number format.
 
     Returns
     -------
@@ -176,7 +188,7 @@ def cell_style(
     >>> wb.add_named_style(red_cell_style)
     >>> for cell in ['C1', 'D1', 'E1']:
     >>>     ws[cell].style = red_cell_style
-    """
+    '''
     cell_style = NamedStyle(name=style_name)
     cell_style.font = Font(
         name=font_name,
