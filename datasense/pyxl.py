@@ -655,6 +655,31 @@ def replace_text(
     column: int,
     text: Tuple[Tuple[str, str]]
 ) -> Worksheet:
+    '''
+    Search and replace text in a cell.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet in which to search and replace text.
+    column : int
+        The column number in which to search and replace text.
+    text ; Tuple[Tuple[str, str]]
+        The search and replace text.
+
+    Returns
+    -------
+    ws : Worksheet
+        The worksheet in which text was replaced.
+
+    Example
+    -------
+    >>> ws = ds.replace_text(
+    >>>     ws=ws,
+    >>>     column=column_names_numbers[column],
+    >>>     text=text_replacement
+    >>> )
+    '''
     for row in ws.iter_rows(
         min_col=column,
         max_col=column
