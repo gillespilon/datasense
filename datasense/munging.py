@@ -597,7 +597,7 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 def save_file(
     df: Union[pd.DataFrame, pd.Series],
-    file_name: str,
+    file_name: Union[str, Path],
     *,
     index: Optional[bool] = False,
     index_label: Optional[str] = None,
@@ -650,13 +650,15 @@ def save_file(
     >>>     sheet_name='sheet_one'
     >>> )
     """
-    if '.csv' in file_name:
+    if type(file_name).__name__ == 'str':
+        file_name = Path(file_name)
+    if file_name.suffix in ['.csv', '.CSV']:
         df.to_csv(
             path_or_buf=file_name,
             index=index,
             index_label=index_label
         )
-    elif 'ods' in file_name:
+    elif file_name.suffix in ['.ods', '.ODS']:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
             excel_writer=excel_writer,
@@ -666,7 +668,7 @@ def save_file(
             index_label=index_label
         )
         excel_writer.save()
-    elif 'xlsx' in file_name:
+    elif file_name.suffix in ['xlsx', 'XLSX']:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
             excel_writer=excel_writer,
@@ -689,7 +691,7 @@ def read_file(
     converters: Optional[dict] = None,
     parse_dates: Optional[List[str]] = False,
     date_parser: Optional[Callable] = None,
-    format: Optional[str] = None,
+    datetime_format: Optional[str] = None,
     time_delta_columns: Optional[List[str]] = [],
     category_columns: Optional[List[str]] = [],
     integer_columns: Optional[List[str]] = [],
@@ -725,7 +727,7 @@ def read_file(
     date_parser : Optional[Callable] = None,
         The function to use for parsing date and time, when pandas needs
         extra help.
-    format : Optional[str] = None,
+    datetime_format : Optional[str] = None,
         The str to use for formatting date and time.
     time_delta_columns : Optional[List[str]] = [],
         The columns to change to dtype timedelta.
