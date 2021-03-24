@@ -948,7 +948,9 @@ def read_file(
     >>>     file_in=file_name
     >>> )
     """
-    if '.csv' in file_name:
+    if type(file_name).__name__ == 'str':
+        file_name = Path(file_name)
+    if file_name.suffix in ['.csv', '.CSV']:
         df = pd.read_csv(
             file_name,
             skiprows=skiprows,
@@ -959,7 +961,7 @@ def read_file(
             date_parser=date_parser,
             nrows=nrows
         )
-    elif '.ods' in file_name:
+    elif file_name in ['.ods', '.ODS']:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
@@ -970,7 +972,7 @@ def read_file(
             parse_dates=parse_dates,
             date_parser=date_parser
         )
-    elif '.xlsx' in file_name:
+    elif file_name in ['.xlsx', '.XLSX']:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
