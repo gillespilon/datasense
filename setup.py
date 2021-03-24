@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='datasense',
-    description='functions for data sense',
+    description='functions for datasense',
     url='https://github.com/gillespilon/datasense',
     version='0.1',
     install_requires=[
