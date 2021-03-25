@@ -756,11 +756,14 @@ def validate_column_labels(
             column_labels
         ):
             ws.cell(
-                row=1,
+                row=row_of_labels,
                 column=col
             ).value = label
     elif stop_time:
-        print('Column labels incorrect. Fix. Re-run script.')
+        print(
+            'Column labels or number of columns are incorrect. '
+            'Fix. Re-run script.'
+        )
         print('XXX File NOT OK XXX')
         stop_time = stop_time
         report_summary(
