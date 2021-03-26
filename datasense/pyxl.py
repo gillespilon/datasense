@@ -778,14 +778,14 @@ def validate_column_labels(
 
 
 def validate_sheet_names(
-    wb: openpyxl.workbook.Workbook,
+    wb: Workbook,
     file: Union[Path, str],
     sheet_name: str,
     sheet_names: List[str],
     start_time: float,
     original_stdout: io.TextIOWrapper,
     output_url: str
-) -> openpyxl.workbook.Workbook:
+
     '''
     Parameters
     ----------
