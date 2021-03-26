@@ -507,7 +507,7 @@ def read_workbook(
     filename: Union[Path, str],
     *,
     data_only: Optional[bool] = True
-) -> Tuple[openpyxl.workbook.Workbook, List[str]]:
+) -> Tuple[Workbook, List[str]]:
     '''
     Read a workbook, print the Path, and print the sheet names.
 
