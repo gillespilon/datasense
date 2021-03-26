@@ -1303,7 +1303,7 @@ def create_dataframe_norm(
     scale: Optional[float] = 13,
     random_state: Optional[int] = None,
     column_names: Optional[List[str]] = None
-):
+) -> pd.DataFrame:
     """
     Create dataframe of random normal data.
 
