@@ -1721,6 +1721,21 @@ def print_list_by_item(
     *,
     width: Optional[int] = 80
 ) -> None:
+    '''
+    Print each item of a list.
+
+    Parameters
+    ----------
+    list : List[str]
+        The list of strings to print.
+    width : Optional[int] = 80
+        The width of the output in characters.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.print_list_by_item(list=my_list_to_print)
+    '''
     wrapper = textwrap.TextWrapper(width=width)
     string_not_list = ", ".join(list)
     new_list = wrapper.wrap(string_not_list)
