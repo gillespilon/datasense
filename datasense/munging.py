@@ -1656,7 +1656,7 @@ def directory_file_print(
     path: Path,
     *,
     text: Optional[str]
-):
+) -> None:
     """
     Print the files in a path.
 
