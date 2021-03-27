@@ -18,7 +18,6 @@ from openpyxl.utils import get_column_letter
 from openpyxl import load_workbook
 import pandas as pd
 import numpy as np
-import openpyxl
 
 
 def autofit_column_width(
@@ -785,7 +784,7 @@ def validate_sheet_names(
     start_time: float,
     original_stdout: io.TextIOWrapper,
     output_url: str
-
+) -> Workbook:
     '''
     Parameters
     ----------
