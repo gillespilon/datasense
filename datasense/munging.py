@@ -1881,6 +1881,8 @@ def series_replace_string(
         The string to find.
     replace : str
         The replacement string.
+    regex : Optional[bool] = True
+        Determines if the passed-in pattern is a regular expression.
 
     Returns
     -------
