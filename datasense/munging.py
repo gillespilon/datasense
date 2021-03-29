@@ -1866,7 +1866,9 @@ def ask_save_as_file_name_path(
 def series_replace_string(
     series: pd.Series,
     find: str,
-    replace: str
+    replace: str,
+    *,
+    regex: Optional[bool] = True
 ) -> pd.Series:
     """
     Find and replace a string in a series.
@@ -1896,7 +1898,8 @@ def series_replace_string(
     """
     series = series.str.replace(
         pat=find,
-        repl=replace
+        repl=replace,
+        regex=regex
     )
     return series
 
