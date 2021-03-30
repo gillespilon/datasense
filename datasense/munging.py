@@ -21,7 +21,7 @@ import numpy as np
 
 def dataframe_info(
     df: pd.DataFrame,
-    file_in: str
+    file_in: Union[Path, str]
 ) -> pd.DataFrame:
     """
     Describe a dataframe.
@@ -55,7 +55,7 @@ def dataframe_info(
     ----------
     df : pd.DataFrame
         The input dataframe.
-    file_in : str
+    file_in : Union[Path, str]
         The name of the file from which df was created.
 
     Returns
