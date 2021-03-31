@@ -668,7 +668,7 @@ def save_file(
             index_label=index_label
         )
         excel_writer.save()
-    elif file_name.suffix in ['xlsx', 'XLSX']:
+    elif file_name.suffix in ['.xlsx', '.XLSX']:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
             excel_writer=excel_writer,
