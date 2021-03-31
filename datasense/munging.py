@@ -961,7 +961,7 @@ def read_file(
             date_parser=date_parser,
             nrows=nrows
         )
-    elif file_name in ['.ods', '.ODS']:
+    elif file_name.suffix in ['.ods', '.ODS']:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
@@ -972,7 +972,7 @@ def read_file(
             parse_dates=parse_dates,
             date_parser=date_parser
         )
-    elif file_name in ['.xlsx', '.XLSX']:
+    elif file_name.suffix in ['.xlsx', '.XLSX']:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
