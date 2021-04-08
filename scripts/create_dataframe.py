@@ -52,19 +52,19 @@ def main():
     print('dict_of_lists:')
     print(dict_of_lists)
     print()
-    convert_dict = {'A': 'Int64', 'B': 'float64', 'C': 'str'}
+    dict_types = {'A': 'Int64', 'B': 'float64', 'C': 'str'}
     df1 = pd.DataFrame(
         data={
             **{'A': list_1},
             **{'B': list_2},
             **{'C': list_3},
         }
-    ).astype(dtype=convert_dict)
+    ).astype(dtype=dict_types)
     print('df1:')
     print(df1)
     print(df1.dtypes)
     print()
-    df2 = pd.DataFrame(data=dict_of_lists).astype(dtype=convert_dict)
+    df2 = pd.DataFrame(data=dict_of_lists).astype(dtype=dict_types)
     print('df2:')
     print(df2)
     print(df2.dtypes)
@@ -79,7 +79,7 @@ def main():
             'B': [6.0, np.nan, 8.0, 9.0, 10.0],
             'C': ['a', 'b', 'c', '', 'e']
         }
-    ).astype(dtype=convert_dict)
+    ).astype(dtype=dict_types)
     print('df3:')
     print(df3)
     print(df3.dtypes)
@@ -89,17 +89,29 @@ def main():
             'B': [6.0, np.nan, 8.0, 9.0, 10.0],
             'C': ['a', 'b', 'c', '', 'e']
     }
-    df4 = pd.DataFrame(data=dict_of_lists).astype(dtype=convert_dict)
+    df4 = pd.DataFrame(data=dict_of_lists).astype(dtype=dict_types)
     print('df4:')
     print(df4)
     print(df4.dtypes)
     print()
     df5 = pd.DataFrame(
         data=dict_of_lists,
-    ).astype(dtype=convert_dict)
+    ).astype(dtype=dict_types)
     print('df5:')
     print(df5)
     print(df5.dtypes)
+    print()
+    # Method six
+    dict_of_lists = {
+        'A': list_1,
+        'B': list_2,
+        'C': list_3
+    }
+    df6 = pd.DataFrame(data=dict_of_lists).astype(dtype=dict_types)
+    print('Method six')
+    print(df6)
+    print(df6.dtypes)
+    print()
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
