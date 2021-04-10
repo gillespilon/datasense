@@ -17,6 +17,14 @@ import datasense as ds
 
 
 def main():
+    header_title = 'Create series'
+    header_id = 'create-series'
+    output_url = 'create_series.html'
+    original_stdout = ds.html_begin(
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
+    )
     print('Create Pandas series')
     print()
     print('uniform distribution, dtype: float, list_a, series_a')
@@ -170,6 +178,10 @@ def main():
     ).astype(dtype='Int64')
     print(series_y)
     print()
+    ds.html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
 
 
 if __name__ == '__main__':
