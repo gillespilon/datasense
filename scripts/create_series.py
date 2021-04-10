@@ -10,6 +10,7 @@ It's too early to switch to pd.NA for missing values.
 ./create_series.py > create_series.txt
 """
 
+from pandas.api.types import CategoricalDtype
 import pandas as pd
 import numpy as np
 
@@ -57,7 +58,7 @@ def main():
     print()
     print('category distribution, dtype: category, list_c, series_c')
     # series_c = ds.random_data(
-    #     distribution='categories,
+    #     distribution='category,
     #     size=7'
     # ).rename('C')
     # print(series_c.head())
@@ -67,6 +68,25 @@ def main():
         data=list_c,
         name='C'
     ).astype(dtype='category')
+    print(series_c)
+    print()
+    print('category distribution, dtype: category, list_c, series_c')
+    # series_c = ds.random_data(
+    #     distribution='categories,
+    #     size=7'
+    # ).rename('C')
+    # print(series_c.head())
+    list_c = ['small', 'medium', 'large']
+    print(list_c)
+    series_c = pd.Series(
+        data=list_c,
+        name='C'
+    ).astype(
+        CategoricalDtype(
+            categories=list_c,
+            ordered=True
+        )
+    )
     print(series_c)
     print()
     print('timedelta distribution, dtype: timedelta64[ns], list_d, series_d')
