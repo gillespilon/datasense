@@ -8,7 +8,14 @@ not int64.
 It's too early to switch to pd.NA for missing values.
 
 ./create_series.py > create_series.txt
+
+TODO:
+- Ensure each example has:
+    1. pd.Series example
+    2. ds.random_data example
 """
+
+import random
 
 from pandas.api.types import CategoricalDtype
 import pandas as pd
@@ -76,14 +83,20 @@ def main():
     #     size=7'
     # ).rename('C')
     # print(series_c.head())
-    list_c = ['small', 'medium', 'large']
+    list_c = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
+    categories = ['small', 'medium', 'large']
     print(list_c)
+    size = 13
+    random_state = 42
+    random.seed(a=random_state)
     series_c = pd.Series(
-        data=list_c,
-        name='C'
+        random.choices(
+            population=list_c,
+            k=size
+        )
     ).astype(
         CategoricalDtype(
-            categories=list_c,
+            categories=categories,
             ordered=True
         )
     )
