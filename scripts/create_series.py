@@ -90,10 +90,11 @@ def main():
     random_state = 42
     random.seed(a=random_state)
     series_c = pd.Series(
-        random.choices(
+        data=random.choices(
             population=list_c,
             k=size
-        )
+        ),
+        name='CS'
     ).astype(
         CategoricalDtype(
             categories=categories,
