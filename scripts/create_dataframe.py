@@ -56,6 +56,14 @@ def main():
     print(dict_of_lists)
     print()
     dict_types = {'A': 'Int64', 'B': 'float64', 'C': 'str'}
+    # Method zero
+    print('Method zero. Use ds.create_dataframe()')
+    df0 = ds.create_dataframe()
+    print(df0.head(10))
+    print(df0.dtypes)
+    print()
+    print('dtype of column cs:', df0['cs'].dtype)
+    print()
     # Method one
     df1 = pd.DataFrame(
         data={
