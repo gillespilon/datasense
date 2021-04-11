@@ -77,21 +77,26 @@ def main():
     ).astype(dtype='category')
     print(series_c)
     print()
+    print('C dtype:', series_c.dtype)
+    print()
+    print('C dtype:', type(series_c.dtype).__name__)
+    print()
     print('category distribution, dtype: category, list_c, series_c')
     # series_c = ds.random_data(
     #     distribution='categories,
     #     size=7'
     # ).rename('C')
     # print(series_c.head())
-    list_c = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
+    list_cs = ['small', 'medium', '', 'medium', 'large', 'large', 'small']
     categories = ['small', 'medium', 'large']
-    print(list_c)
+    print(list_cs)
+    print()
     size = 13
     random_state = 42
     random.seed(a=random_state)
-    series_c = pd.Series(
+    series_cs = pd.Series(
         data=random.choices(
-            population=list_c,
+            population=list_cs,
             k=size
         ),
         name='CS'
@@ -101,7 +106,11 @@ def main():
             ordered=True
         )
     )
-    print(series_c)
+    print(series_cs)
+    print()
+    print('CS dtype:', series_cs.dtype)
+    print()
+    print('CS dtype:', type(series_cs.dtype).__name__)
     print()
     print('timedelta distribution, dtype: timedelta64[ns], list_d, series_d')
     # series_d = ds.random_data(
