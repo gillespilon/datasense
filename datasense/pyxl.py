@@ -904,6 +904,50 @@ def write_dataframe_to_worksheet(
     # Read notes into list
 
 
+def number_non_empty_rows(
+    ws: Worksheet,
+    column_number: int,
+    start_row: int,
+) -> int:
+    '''
+    Determine the number of non-empty rows for a single column.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet to analyze.
+    column_number : int
+        The desired column number.
+    start_row : int
+        The row at which to start evaluating cells.
+
+    Returns
+    -------
+    row_count : int,
+        The number of non-empty rows.
+
+    Example
+    -------
+    >>> start_row = 2
+    >>> column_number = 1
+    >>> row_count = ds.number_non_empty_rows(
+    >>>     ws=ws,
+    >>>     column_number=column_number,
+    >>>     start_row=start_row,
+    >>> )
+    '''
+    row_count = 0
+    for row in ws.iter_rows(
+        min_row=start_row,
+        min_col=column_number,
+        max_col=column_number
+    ):
+        for cell in row:
+            if cell.value:
+                row_count += 1
+    return row_count
+
+
 __all__ = (
     'autofit_column_width',
     'cell_fill_down',
@@ -923,4 +967,5 @@ __all__ = (
     'validate_sheet_names',
     'validate_column_labels',
     'write_dataframe_to_worksheet',
+    'number_non_empty_rows',
 )
