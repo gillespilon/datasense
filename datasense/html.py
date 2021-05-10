@@ -3,6 +3,8 @@ HTML and report functions
 """
 
 from typing import IO, List, Optional
+from datetime import datetime
+from pathlib import Path
 import webbrowser
 import sys
 
@@ -265,6 +267,27 @@ def report_summary(
         print(f'Number of knots: {number_knots}')
 
 
+def script_summary(script_path: Path):
+    '''
+    Print script name and time of execution.
+
+    Parameters
+    ----------
+    script_path : Path
+        The path of the script file.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.script_summary(script_path=Path(__file__))
+    '''
+    print(
+        'Script',
+        script_path,
+        f'run at {datetime.now().strftimee("%Y-%m-%d %H:%M:%S")}.'
+    )
+
+
 def sync_directories(
     sourcedir: str,
     targetdir: str,
@@ -321,5 +344,6 @@ __all__ = (
     'html_end',
     'html_figure',
     'report_summary',
+    'script_summary',
     'sync_directories',
 )
