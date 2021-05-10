@@ -286,6 +286,7 @@ def script_summary(script_path: Path):
         script_path,
         f'run at {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.'
     )
+    print()
 
 
 def sync_directories(
