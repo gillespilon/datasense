@@ -1656,7 +1656,7 @@ def directory_file_list(
 def directory_file_print(
     path: Path,
     *,
-    text: Optional[str]
+    text: Optional[str] = 'List of files in directory'
 ) -> None:
     """
     Print the files in a path.
@@ -1744,14 +1744,20 @@ def print_list_by_item(
         print(element)
 
 
-def ask_directory_path(title: str) -> Path:
+def ask_directory_path(
+    *,
+    title: Optional[str] = 'Select directory',
+    print_bool: Optional[bool] = True
+) -> Path:
     """
     Ask user for directory.
 
     Parameters
     ----------
-    title : str
+    title : Optional[str] = 'Select directory'
         The title of the dialog window.
+    print_bool : Optional[bool] = True
+        A boolean. Print message if True.
 
     Returns
     -------
@@ -1773,6 +1779,10 @@ def ask_directory_path(title: str) -> Path:
     )
     path = Path(path)
     rootwindow.destroy()
+    if print_bool:
+        print(title)
+        print(path)
+        print()
     return path
 
 
@@ -1823,15 +1833,18 @@ def ask_open_file_name_path(
 def ask_save_as_file_name_path(
     title: str,
     *,
-    filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')],
+    print_bool: Optional[bool] = True
 ) -> Path:
     """
     Ask user for the path of the file to save as.
 
     Parameters
     ----------
-    title : str
+    title : Optional[str] = 'Select file'
         The title of the dialog window.
+    print_bool : Optional[bool] = True
+        A boolean. Print message if True.
 
     Returns
     -------
@@ -1861,6 +1874,10 @@ def ask_save_as_file_name_path(
     )
     path = Path(path)
     rootwindow.destroy()
+    if print_bool:
+        print(title)
+        print(path)
+        print()
     return path
 
 
