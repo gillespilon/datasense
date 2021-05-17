@@ -1972,6 +1972,34 @@ def unique_list_items(
     return (varname, column_numbers)
 
 
+def list_directories_within_directory(
+    path: Union[str, Path]
+) -> List[str]:
+    '''
+    Create a list of directories within a path.
+
+    Parameters
+    ----------
+    path : Union[str, Path]
+        The path of the enclosing directory.
+
+    Returns
+    -------
+    directory_list : List[str]
+        A list of directories.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> directory_list = ds.list_directories_within_directory(
+    >>>     path='directory_companies'
+    >>> )
+    '''
+    path = Path(path)
+    directory_list = [item.name for item in path.iterdir() if item.is_dir()]
+    return directory_list
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2010,4 +2038,5 @@ __all__ = (
     'ask_save_as_file_name_path',
     'series_replace_string',
     'unique_list_items',
+    'list_directories_within_directory',
 )
