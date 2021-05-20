@@ -215,6 +215,7 @@ def report_summary(
     start_time: float,
     stop_time: float,
     *,
+    print_heading: Optional[bool] = True,
     read_file_names: Optional[List[str]] = None,
     save_file_names: Optional[List[str]] = None,
     targets: Optional[List[str]] = None,
@@ -230,6 +231,8 @@ def report_summary(
         The start time.
     stop_time : float
         The stop time.
+    print_heading : Optional[bool] = True
+        The heading for the report summary.
     read_file_names : Optional[List[str]] = None
         The list of file names read.
     save_file_names : Optional[List[str]] = None
@@ -251,9 +254,10 @@ def report_summary(
     >>> )
     """
     elapsed_time = stop_time - start_time
-    print('</pre>')
-    print('<h1>Report summary</h1>')
-    print('<pre style="white-space: pre-wrap;">')
+    if print_heading:
+        print('</pre>')
+        print('<h1>Report summary</h1>')
+        print('<pre style="white-space: pre-wrap;">')
     print(f'Execution time : {round(elapsed_time, 3)} s')
     if read_file_names:
         print(f'Files read     : {read_file_names}')
