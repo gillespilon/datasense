@@ -1624,7 +1624,7 @@ def list_files_with_patterns(
 
 def directory_file_list(
     path: str,
-    extension: str
+    extension: List[str]
 ) -> List[str]:
     """
     Return a list of files of a specific extension contained in a directory.
@@ -1633,7 +1633,7 @@ def directory_file_list(
     ----------
     path : str
         The path of the directory.
-    extension : str
+    extension : List[str]
         The file extension to use for finding files in the path.
 
     Returns
@@ -1641,8 +1641,38 @@ def directory_file_list(
     file_names : List[str]
         The list of files contained in the path.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> extension = 'pdf'
+    >>> import datasense as ds
+    >>> file_names = ds.directory_file_list(
+    >>>     path=path,
+    >>>     extension=extension
+    >>> )
+
+    Example 2
+    ---------
+    >>> extension = 'PDF'
+    >>> import datasense as ds
+    >>> file_names = ds.directory_file_list(
+    >>>     path=path,
+    >>>     extension=extension
+    >>> )
+
+    Example 3
+    ---------
+    >>> extension = ['pdf', 'PDF']
+    >>> import datasense as ds
+    >>> file_names = ds.directory_file_list(
+    >>>     path=path,
+    >>>     extension=extension
+    >>> )
+
+    Example 4
+    ---------
+    >>> extension = '*'
     >>> import datasense as ds
     >>> file_names = ds.directory_file_list(
     >>>     path=path,
@@ -1720,6 +1750,7 @@ def directory_remove_file(
 def print_list_by_item(
     list: List[str],
     *,
+    title: Optional[str] = None,
     width: Optional[int] = 80
 ) -> None:
     '''
@@ -1740,6 +1771,8 @@ def print_list_by_item(
     wrapper = textwrap.TextWrapper(width=width)
     string_not_list = ", ".join(list)
     new_list = wrapper.wrap(string_not_list)
+    if title:
+        print(title)
     for element in new_list:
         print(element)
 
