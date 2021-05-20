@@ -1780,6 +1780,7 @@ def print_list_by_item(
 def ask_directory_path(
     *,
     title: Optional[str] = 'Select directory',
+    initialdir: Optional[Path]= None,
     print_bool: Optional[bool] = True
 ) -> Path:
     """
@@ -1789,6 +1790,8 @@ def ask_directory_path(
     ----------
     title : Optional[str] = 'Select directory'
         The title of the dialog window.
+    initialdir : Optional[Path]
+        The directory in which the dialogue starts.
     print_bool : Optional[bool] = True
         A boolean. Print message if True.
 
@@ -1808,6 +1811,7 @@ def ask_directory_path(
     rootwindow = Tk()
     path = filedialog.askdirectory(
         parent=rootwindow,
+        initialdir=initialdir,
         title=title
     )
     path = Path(path)
