@@ -1780,7 +1780,7 @@ def print_list_by_item(
 def ask_directory_path(
     *,
     title: Optional[str] = 'Select directory',
-    initialdir: Optional[Path]= None,
+    initialdir: Optional[Path] = None,
     print_bool: Optional[bool] = True
 ) -> Path:
     """
