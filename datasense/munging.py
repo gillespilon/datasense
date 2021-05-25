@@ -1623,7 +1623,7 @@ def list_files_with_patterns(
 
 
 def directory_file_list(
-    path: str,
+    path: Union[str, Path],
     extension: List[str]
 ) -> List[str]:
     """
