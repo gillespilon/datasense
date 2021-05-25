@@ -1582,7 +1582,7 @@ def list_files_all(directory: str) -> List[str]:
     -------
     >>> from pathlib import Path
     >>> directory = (Path.cwd() / 'directoryname')
-    >>> files = list_files_with_patterns(directory=directory)
+    >>> files = list_files_all(directory=directory)
     """
     files = [file.name for file in directory.glob('*.*')]
     return files
