@@ -2067,6 +2067,44 @@ def remove_punctuation(list_dirty: List[str]) -> List[str]:
     return list_clean
 
 
+def list_change_case(
+    list_dirty: List[str],
+    case: str
+) -> List[str]:
+    '''
+    Change the case of items in a list.
+
+    Parameters
+    ----------
+    list_dirty : List[str]
+        The list of strings.
+    case : str
+        The type of case to apply.
+
+    Returns
+    -------
+    list_clean : List[str]
+        The list of strings with case applied.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> list_clean = ds.list_change_case(
+    >>>     list_dirty=list_dirty,
+    >>>     case='upper'
+    >>> )
+    '''
+    if case == 'upper':
+        list_clean = [x.upper() for x in list_dirty]
+    elif case == 'lower':
+        list_clean = [x.lower() for x in list_dirty]
+    elif case == 'title':
+        list_clean = [x.title() for x in list_dirty]
+    elif case == 'capitalize':
+        list_clean = [x.capitalize() for x in list_dirty]
+    return list_clean
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2106,5 +2144,6 @@ __all__ = (
     'series_replace_string',
     'unique_list_items',
     'list_directories_within_directory',
-    'remove_punctuation'
+    'remove_punctuation',
+    'list_change_case',
 )
