@@ -9,6 +9,7 @@ from pathlib import Path
 from tkinter import Tk
 from glob import glob
 import textwrap
+import string
 import os
 
 from datasense import random_data, timedelta_data, datetime_data
@@ -2013,7 +2014,7 @@ def list_directories_within_directory(
     path: Union[str, Path]
 ) -> List[str]:
     '''
-    Create a list of directories within a path.
+    Return a list of directories found within a path.
 
     Parameters
     ----------
@@ -2035,6 +2036,35 @@ def list_directories_within_directory(
     path = Path(path)
     directory_list = [item.name for item in path.iterdir() if item.is_dir()]
     return directory_list
+
+
+def remove_punctuation(list_dirty: List[str]) -> List[str]:
+    '''
+    Remove punctuation from list items.
+
+    Parameters
+    ----------
+    list_dirty : List[str]
+        The list of items containing punctuation.
+
+    Returns
+    -------
+    list_clean : List[str]
+        The list of items without punctuation.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> list_clean = ds.remove_punctuation(list_dirty=list_dirty)
+    '''
+    list_clean = [
+        ''.join(
+            character for character in item
+            if character not in string.punctuation
+        )
+        for item in list_dirty
+    ]
+    return list_clean
 
 
 __all__ = (
@@ -2076,4 +2106,5 @@ __all__ = (
     'series_replace_string',
     'unique_list_items',
     'list_directories_within_directory',
+    'remove_punctuation'
 )
