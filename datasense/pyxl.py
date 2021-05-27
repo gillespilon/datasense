@@ -529,7 +529,7 @@ def read_workbook(
     --------
     >>> import datasense as ds
     >>> wb, sheet_names = ds.read_workbook(
-    >>>     filename=file,
+    >>>     filename=filename,
     >>>     data_only=True
     >>> )
     '''
@@ -778,7 +778,7 @@ def validate_column_labels(
 
 def validate_sheet_names(
     wb: Workbook,
-    file: Union[Path, str],
+    filename: Union[Path, str],
     sheet_name: str,
     sheet_names: List[str],
     start_time: float,
@@ -790,7 +790,7 @@ def validate_sheet_names(
     ----------
     wb : Workbook,
         A workbook.
-    file : Union[Path, str],
+    filename : Union[Path, str],
         The file containing the workbook.
     sheet_name : str,
         A sheet name in the workbook.
@@ -801,7 +801,7 @@ def validate_sheet_names(
     original_stdout : io.TextIOWrapper,
         The buffered text stream for the html output.
     output_url : str
-        The html file name.
+        The html filename.
 
     Returns
     -------
@@ -813,7 +813,7 @@ def validate_sheet_names(
     >>> import datasense as ds
     >>> wb = validate_sheet_names(
     >>>     wb=wb,
-    >>>     file=file,
+    >>>     filename=filename,
     >>>     sheet_name=sheet_name,
     >>>     sheet_names=sheet_names,
     >>>     start_time=start_time,
@@ -839,14 +839,14 @@ def validate_sheet_names(
         print('One sheet found and it was re-named.')
         ws = wb.active
         ws.title = sheet_name
-        wb.save(filename=file)
+        wb.save(filename=filename)
     elif sheet_name in sheet_names and len(sheet_names) != 1:
         sheet_names_removed = [x for x in sheet_names if x != sheet_name]
         for sheet in sheet_names_removed:
             wb.remove(worksheet=wb[sheet])
         print('Sheet names removed:')
         print(sheet_names_removed)
-        wb.save(filename=file)
+        wb.save(filename=filename)
     return wb
 
 
