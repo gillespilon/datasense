@@ -983,7 +983,8 @@ def read_file(
             engine='openpyxl',
             sheet_name=sheet_name,
             parse_dates=parse_dates,
-            date_parser=date_parser
+            date_parser=date_parser,
+            nrows=nrows
         )
     if column_names_dict:
         df = rename_some_columns(
