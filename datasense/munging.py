@@ -2106,6 +2106,41 @@ def list_change_case(
     return list_clean
 
 
+def listone_contains_all_listtwo_substrings(
+    listone: List[str],
+    listtwo: List[str]
+) -> List[str]:
+    '''
+    Return a list of items from one list that contain substrings of items
+    from another list.
+
+    Parameters
+    ----------
+    listone : List[str]
+        The list of items in which there are substrings to match from listtwo.
+    listwo : List[str]
+        The list of items that are substrings of the items in listone.
+
+    Returns
+    -------
+    matches : List[str]
+        The list of items from listone that contain substrings of the items
+        from listtwo.
+
+    Example
+    -------
+    >>> listone = ['prefix-2020-21-CMJG-suffix', 'bobs your uncle']
+    >>> listwo = [ 'CMJG', '2020-21']
+    >>> matches = ds.listone_contains_all_listwo_substrings(
+    >>>     listone=listone,
+    >>>     listtwo=listtow
+    >>> )
+    >>> ['prefix-2020-21-CMJG-suffix']
+    '''
+    matches = [x for x in listone if all(y in x for y in listtwo)]
+    return matches
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2147,4 +2182,5 @@ __all__ = (
     'list_directories_within_directory',
     'remove_punctuation',
     'list_change_case',
+    'listone_contains_all_listtwo_substrings',
 )
