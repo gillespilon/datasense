@@ -1828,6 +1828,7 @@ def ask_directory_path(
 def ask_open_file_name_path(
     title: str,
     *,
+    initialdir: Optional[Path] = None,
     filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
 ) -> Path:
     """
@@ -1837,6 +1838,10 @@ def ask_open_file_name_path(
     ----------
     title : str
         The title of the dialog window.
+    initialdir : Optional[Path]
+        The directory in which the dialogue starts.
+    filetypes : Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+        The file types to make visible.
 
     Returns
     -------
@@ -1862,6 +1867,7 @@ def ask_open_file_name_path(
     path = filedialog.askopenfilename(
         parent=rootwindow,
         title=title,
+        initialdir=initialdir,
         filetypes=filetypes
     )
     path = Path(path)
