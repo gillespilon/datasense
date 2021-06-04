@@ -1783,7 +1783,7 @@ def ask_directory_path(
     *,
     title: Optional[str] = 'Select directory',
     initialdir: Optional[Path] = None,
-    print_bool: Optional[bool] = True
+    print_bool: Optional[bool] = False
 ) -> Path:
     """
     Ask user for directory.
