@@ -2169,8 +2169,9 @@ def list_one_list_two_unique(
     list_unique : Union[List[str], List[int], List[float]]
         The list of unique items.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
     >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
@@ -2180,6 +2181,16 @@ def list_one_list_two_unique(
     >>>     unique='list_one'
     >>> )
     >>> [1, 2, 3]
+
+    Example 2
+    >>> list_one = [1, 2, 3, 4, 5, 6]
+    >>> list_two = [4, 5, 6, 7, 8, 9]
+    >>> list_one_unique = ds.list_one_unique_list_two(
+    >>>     list_one=list_one,
+    >>>     list_two=list_two,
+    >>>     unique='list_two'
+    >>> )
+    >>> [7, 8, 9]
     '''
     if unique == 'list_one':
         list_unique = list(set(list_one).difference(list_two))
