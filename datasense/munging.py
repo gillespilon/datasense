@@ -2147,13 +2147,16 @@ def listone_contains_all_listtwo_substrings(
     return matches
 
 
-def list_one_list_two_unique(
+def list_one_list_two_ops(
     list_one: Union[List[str], List[int], List[float]],
     list_two: Union[List[str], List[int], List[float]],
-    unique: str
+    action: str
 ) -> Union[List[str], List[int], List[float]]:
     '''
-    Create list of items unique to either list_one or list_two.
+    Create list of items comparing two lists:
+    - Items unique to list_one
+    - Items unique to list_two
+    - Items common to both lists
 
     Parameters
     ----------
@@ -2161,12 +2164,12 @@ def list_one_list_two_unique(
         A list of items.
     list_two : Union[List[str], List[int], List[float]]
         A list of items.
-    unique : str
-        A string of either "list_one" or "list_two"
+    action : str
+        A string of either "list_one", "list_two", or "intersection"
 
     Returns
     -------
-    list_unique : Union[List[str], List[int], List[float]]
+    list_result : Union[List[str], List[int], List[float]]
         The list of unique items.
 
     Examples
@@ -2178,7 +2181,7 @@ def list_one_list_two_unique(
     >>> list_one_unique = ds.list_one_unique_list_two(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
-    >>>     unique='list_one'
+    >>>     action='list_one'
     >>> )
     >>> [1, 2, 3]
 
@@ -2188,17 +2191,29 @@ def list_one_list_two_unique(
     >>> list_one_unique = ds.list_one_unique_list_two(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
-    >>>     unique='list_two'
+    >>>     action='list_two'
     >>> )
     >>> [7, 8, 9]
+
+    Example 3
+    >>> list_one = [1, 2, 3, 4, 5, 6]
+    >>> list_two = [4, 5, 6, 7, 8, 9]
+    >>> list_one_unique = ds.list_one_unique_list_two(
+    >>>     list_one=list_one,
+    >>>     list_two=list_two,
+    >>>     action='intersection'
+    >>> )
+    >>> [4, 5, 6]
     '''
-    if unique == 'list_one':
-        list_unique = list(set(list_one).difference(list_two))
-    elif unique == 'list_two':
-        list_unique = list(set(list_two).difference(list_one))
+    if action == 'list_one':
+        list_result = list(set(list_one).difference(list_two))
+    elif action == 'list_two':
+        list_result = list(set(list_two).difference(list_one))
+    elif action == 'intersection':
+        list_result = list(set(list_one).intersection(list_two))
     else:
         print('Error. Enter "list_one" or "list_two" for parameter "unique"')
-    return list_unique
+    return list_result
 
 
 __all__ = (
@@ -2243,5 +2258,5 @@ __all__ = (
     'remove_punctuation',
     'list_change_case',
     'listone_contains_all_listtwo_substrings',
-    'list_one_list_two_unique',
+    'list_one_list_two_ops',
 )
