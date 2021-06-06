@@ -2147,21 +2147,26 @@ def listone_contains_all_listtwo_substrings(
     return matches
 
 
-def list_one_unique_list_two(
+def list_one_list_two_unique(
     list_one: Union[List[str], List[int], List[float]],
-    list_two: Union[List[str], List[int], List[float]]
+    list_two: Union[List[str], List[int], List[float]],
+    unique: str
 ) -> Union[List[str], List[int], List[float]]:
     '''
-    Create list of items unique to list_one when compared to list_two.
+    Create list of items unique to either list_one or list_two.
 
     Parameters
     ----------
     list_one : Union[List[str], List[int], List[float]]
+        A list of items.
     list_two : Union[List[str], List[int], List[float]]
+        A list of items.
+    unique : str
+        A string of either "list_one" or "list_two"
 
     Returns
     -------
-    list_one_unique : Union[List[str], List[int], List[float]]
+    list_unique : Union[List[str], List[int], List[float]]
         The list of unique items.
 
     Example
@@ -2171,12 +2176,18 @@ def list_one_unique_list_two(
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_unique_list_two(
     >>>     list_one=list_one,
-    >>>     list_two=list_two
+    >>>     list_two=list_two,
+    >>>     unique='list_one'
     >>> )
     >>> [1, 2, 3]
     '''
-    list_one_unique = list(set(list_one).difference(list_two))
-    return list_one_unique
+    if unique == 'list_one':
+        list_unique = list(set(list_one).difference(list_two))
+    elif unique == 'list_two':
+        list_unique = list(set(list_two).difference(list_one))
+    else:
+        print('Error. Enter "list_one" or "list_two" for parameter "unique"')
+    return list_unique
 
 
 __all__ = (
@@ -2221,5 +2232,5 @@ __all__ = (
     'remove_punctuation',
     'list_change_case',
     'listone_contains_all_listtwo_substrings',
-    'list_one_unique_list_two',
+    'list_one_list_two_unique',
 )
