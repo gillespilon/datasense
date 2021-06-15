@@ -1878,6 +1878,7 @@ def ask_open_file_name_path(
 def ask_save_as_file_name_path(
     title: str,
     *,
+    initialdir: Optional[Path] = None,
     filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')],
     print_bool: Optional[bool] = True
 ) -> Path:
@@ -1888,6 +1889,8 @@ def ask_save_as_file_name_path(
     ----------
     title : Optional[str] = 'Select file'
         The title of the dialog window.
+    initialdir : Optional[Path]
+        The directory in which the dialogue starts.
     print_bool : Optional[bool] = True
         A boolean. Print message if True.
 
