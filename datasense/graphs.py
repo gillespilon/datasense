@@ -1418,7 +1418,11 @@ def plot_lineleft_lineright_x_y1_y2(
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
     linestyle1: Optional[str] = '-',
-    linestyle2: Optional[str] = '-'
+    linestyle2: Optional[str] = '-',
+    marker1: Optional[str] = '.',
+    marker1size: Optional[float] = 8,
+    marker2: Optional[str] = '.',
+    marker2size: Optional[float] = 8,
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
@@ -1454,12 +1458,16 @@ def plot_lineleft_lineright_x_y1_y2(
         ax1.plot(
             X,
             y1,
-            color=colour1
+            color=colour1,
+            marker=marker1,
+            markersize=marker1size
         )
         ax2.plot(
             X,
             y2,
-            color=colour2
+            color=colour2,
+            marker=marker2,
+            markersize=marker2size
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
