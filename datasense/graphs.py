@@ -1508,7 +1508,8 @@ def plot_barleft_lineright_x_y1_y2(
     colour1: Optional[str] = '#0077bb',
     colour2: Optional[str] = '#33bbee',
     linestyle1: Optional[str] = '-',
-    linestyle2: Optional[str] = '-'
+    linestyle2: Optional[str] = '-',
+    marker2: Optional[str] = 'o'
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Bar plot of y1 left vertical axis versus X.
@@ -1550,7 +1551,8 @@ def plot_barleft_lineright_x_y1_y2(
         ax2.plot(
             X,
             y2,
-            color=colour2
+            color=colour2,
+            marker=marker2
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
