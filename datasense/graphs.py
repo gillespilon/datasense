@@ -1496,6 +1496,97 @@ def plot_lineleft_lineright_x_y1_y2(
     return (fig, ax1, ax2)
 
 
+def plot_barleft_lineright_x_y1_y2(
+    X: pd.Series,
+    y1: pd.Series,
+    y2: pd.Series,
+    *,
+    figsize: Optional[Tuple[float, float]] = None,
+    smoothing: Optional[str] = None,
+    number_knots: Optional[int] = None,
+    barwidth: Optional[float] = 10,
+    colour1: Optional[str] = '#0077bb',
+    colour2: Optional[str] = '#33bbee',
+    linestyle1: Optional[str] = '-',
+    linestyle2: Optional[str] = '-'
+) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
+    '''
+    Bar plot of y1 left vertical axis versus X.
+    Line plot of y2 right vertical axis versus X.
+    Optional smoothing applied to y1, y2.
+
+    This graph is useful if y1 and y2 have different units or scales,
+    and you wish to see if they are correlated.
+
+    X:  series for horizontal axis
+    y1: series for y1 to plot using left vertical axis
+    y2: series for y2 to plot using right vertical axis
+    smoothing: str
+        Optional: natural_cubic_spline
+    number_knots: positive integer
+        The number of knots to create.
+    linestyle1: Optional[str] = '-'
+        The style of the line joining the points.
+    linestyle2: Optional[str] = '-'
+        The style of the line joining the points.
+
+    If smoothing is applied, the series must not contain NaN, inf, or -inf.
+    Fit a piecewise cubic function the the constraint that the fitted curve is
+    linear outside the range of the knots. The fitter curve is continuously
+    differentiable to the second order at all of the knots.
+    '''
+    fig = plt.figure(figsize=figsize)
+    ax1 = fig.add_subplot(111)
+    ax2 = ax1.twinx()
+    if smoothing is None:
+        if X.dtype in ['datetime64[ns]']:
+            format_dates(fig, ax1)
+        ax1.bar(
+            X,
+            y1,
+            barwidth,
+            color=colour1
+        )
+        ax2.plot(
+            X,
+            y2,
+            color=colour2
+        )
+    elif smoothing == 'natural_cubic_spline':
+        if X.dtype in ['datetime64[ns]']:
+            XX = pd.to_numeric(X)
+            fig.autofmt_xdate()
+        else:
+            XX = X
+        model1 = natural_cubic_spline(
+            X=XX,
+            y=y1,
+            number_knots=number_knots
+        )
+        model2 = natural_cubic_spline(
+            X=XX,
+            y=y2,
+            number_knots=number_knots
+        )
+        ax1.plot(
+            X,
+            model1.predict(XX),
+            color=colour1,
+            linestyle=linestyle1
+        )
+        ax2.plot(
+            X,
+            model2.predict(XX),
+            color=colour2,
+            linestyle=linestyle2
+        )
+    for tl in ax1.get_yticklabels():
+        tl.set_color(colour1)
+    for tl in ax2.get_yticklabels():
+        tl.set_color(colour2)
+    return (fig, ax1, ax2)
+
+
 def plot_pareto(
     X: pd.Series,
     y: pd.Series,
@@ -2259,6 +2350,7 @@ __all__ = (
     'plot_line_line_line_x_y1_y2_y3',
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_lineleft_lineright_x_y1_y2',
+    'plot_barleft_lineright_x_y1_y2',
     'plot_pareto',
     'format_dates',
     'probability_plot',
