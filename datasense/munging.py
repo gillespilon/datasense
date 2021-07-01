@@ -1111,6 +1111,28 @@ def create_directory(directories: List[str]) -> None:
         Path(directory).mkdir(parents=True, exist_ok=True)
 
 
+def delete_directory(directories: List[str]) -> None:
+    """
+    Delete a list of directories.
+
+    Parameters
+    ----------
+    directories : List[str]
+        The list of directories.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> directory_list = ['directory_one', 'directory_two']
+    >>> ds.delete_directory(directories=directory_list)
+    """
+    for directory in directories:
+        try:
+            rmtree(directory)
+        except Exception:
+            pass
+
+
 def replace_text_numbers(
     df: pd.DataFrame,
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]],
@@ -1124,7 +1146,7 @@ def replace_text_numbers(
 
     Parameters
     ----------
-    df : pd.DataFrame
+    ef : pd.DataFrame
         The input dataframe.
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]]
         The list of columns for replacement.
@@ -2237,6 +2259,7 @@ __all__ = (
     'byte_size',
     'feature_percent_empty',
     'create_directory',
+    'delete_directory',
     'replace_text_numbers',
     'create_dataframe',
     'create_dataframe_norm',
