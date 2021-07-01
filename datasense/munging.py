@@ -3,8 +3,8 @@ Data munging
 """
 
 from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
+from shutil import move, rmtree
 from tkinter import filedialog
-from shutil import rmtree
 from pathlib import Path
 from tkinter import Tk
 from glob import glob
@@ -1131,6 +1131,41 @@ def delete_directory(directories: List[str]) -> None:
             rmtree(directory)
         except Exception:
             pass
+
+
+def rename_directory(
+    source: str,
+    destination: str
+) -> None:
+    """
+    Delete a destination directory and rename a source directory to the
+    destination directory.
+
+    Parameters
+    ----------
+    source : str
+        The old directory name.
+    destination : str
+        The new directory name.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> source = 'old_directory'
+    >>> destination = 'new_directory'
+    >>> ds.rename_directory(
+    >>>     source=source,
+    >>>     destination=destination
+    >>> )
+    """
+    try:
+        rmtree(destination)
+    except Exception:
+        pass
+    move(
+        src=source,
+        dst=destination
+    )
 
 
 def replace_text_numbers(
@@ -2260,6 +2295,7 @@ __all__ = (
     'feature_percent_empty',
     'create_directory',
     'delete_directory',
+    'rename_directory',
     'replace_text_numbers',
     'create_dataframe',
     'create_dataframe_norm',
