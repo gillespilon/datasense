@@ -3,7 +3,7 @@ Data munging
 """
 
 from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
-from shutil import move, rmtree
+from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
 from tkinter import Tk
@@ -1134,38 +1134,76 @@ def delete_directory(directories: List[str]) -> None:
 
 
 def rename_directory(
-    source: str,
-    destination: str
+    sources: List[str],
+    destinations: List[str]
 ) -> None:
     """
-    Delete a destination directory and rename a source directory to the
+    Delete destination directories (if present) and rename source directories
+    to the destination directories.
     destination directory.
 
     Parameters
     ----------
-    source : str
-        The old directory name.
-    destination : str
-        The new directory name.
+    sources : List[str]
+        The old directories.
+    destinations : List[str]
+        The new directories.
 
     Example
     -------
     >>> import datasense as ds
-    >>> source = 'old_directory'
-    >>> destination = 'new_directory'
+    >>> sources = ['old_directory']
+    >>> destinations = ['new_directory']
     >>> ds.rename_directory(
-    >>>     source=source,
-    >>>     destination=destination
+    >>>     sources=sources,
+    >>>     destinations=destinations
     >>> )
     """
-    try:
-        rmtree(destination)
-    except Exception:
-        pass
-    move(
-        src=source,
-        dst=destination
-    )
+    for source, destination in zip(sources, destinations):
+        try:
+            rmtree(destination)
+        except Exception:
+            pass
+        move(
+            src=source,
+            dst=destination
+        )
+
+
+def copy_directory(
+    sources: List[str],
+    destinations: List[str]
+) -> None:
+    """
+    Delte destination directories (if present) and copy source directories
+    to destination directories.
+
+    Parameters
+    ----------
+    sources : str
+        The source directory name.
+    destinations : str
+        The destination directory name.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> sources = ['source_directory']
+    >>> destinations = ['destination_directory']
+    >>> ds.rename_directory(
+    >>>     sources=sources,
+    >>>     destinations=destinations
+    >>> )
+    """
+    for source, destination in zip(sources, destinations):
+        try:
+            rmtree(destination)
+        except Exception:
+            pass
+        copytree(
+            src=source,
+            dst=destination
+        )
 
 
 def replace_text_numbers(
@@ -2296,6 +2334,7 @@ __all__ = (
     'create_directory',
     'delete_directory',
     'rename_directory',
+    'copy_directory',
     'replace_text_numbers',
     'create_dataframe',
     'create_dataframe_norm',
