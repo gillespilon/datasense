@@ -1219,7 +1219,7 @@ def replace_text_numbers(
 
     Parameters
     ----------
-    ef : pd.DataFrame
+    df : pd.DataFrame
         The input dataframe.
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]]
         The list of columns for replacement.
