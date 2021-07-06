@@ -1454,7 +1454,8 @@ def create_dataframe_norm(
 
 def delete_rows(
     df: pd.DataFrame,
-    delete_row_criteria: Tuple[str, int]
+    delete_row_criteria:
+        Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
 ) -> pd.DataFrame:
     """
     Delete rows of a dataframe based on a value in one column.
@@ -1464,7 +1465,7 @@ def delete_rows(
     df : pd.DataFrame
         The input dataframe.
     delete_row_criteria : Tuple[str, int]
-        A tuple of the column name containing an integer for deletion code.
+        A tuple of column name and criteria for the entire cell.
 
     Returns
     -------
