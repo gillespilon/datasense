@@ -1524,7 +1524,7 @@ def sort_rows(
     kind: str = 'mergesort'
 ) -> pd.DataFrame:
     """
-    Sort a dataframe in time-ascending order for one column.
+    Sort a dataframe for one or more columns.
 
     Parameters
     ----------
