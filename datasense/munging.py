@@ -1687,7 +1687,7 @@ def list_files_all(directory: Union[Path, str]) -> List[str]:
 
 
 def list_files_with_patterns(
-    directory: str,
+    directory: Union[Path, str],
     patterns: List[str]
 ) -> List[str]:
     """
@@ -1695,7 +1695,7 @@ def list_files_with_patterns(
 
     Parameters
     ----------
-    directory : str
+    directory : Union[Path, str]
         The source directory.
     patterns : List[str]
         The pattern of file extensions.
