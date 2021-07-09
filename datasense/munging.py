@@ -1662,13 +1662,13 @@ def replace_column_values(
     return s
 
 
-def list_files_all(directory: str) -> List[str]:
+def list_files_all(directory: Union[Path, str]) -> List[str]:
     """
     List all files for given directory.
 
     Parameters
     ----------
-    directory : str
+    directory : Union[Path, str]
         The source directory.
 
     Returns
