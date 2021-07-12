@@ -1691,7 +1691,7 @@ def list_files_all(directory: Union[Path, str]) -> List[Path]:
 def list_files_with_patterns(
     directory: Union[Path, str],
     patterns: List[str]
-) -> List[str]:
+) -> List[Path]:
     """
     List files with extension pattern for directory.
 
@@ -1704,20 +1704,22 @@ def list_files_with_patterns(
 
     Returns
     -------
-    files : List[str]
-        A list of files.
+    files : List[Path]
+        A list of paths.
 
     Example
     -------
     >>> from pathlib import Path
+    >>> patterns = ['.xlsx', '.XLSX']
     >>> directory = (Path.cwd() / 'directoryname')
     >>> files = list_files_with_patterns(
     >>>     directory=directory,
     >>>     patterns=patterns
     >>> )
     """
+    directory = Path(directory)
     files = [
-        file.name for file in directory.iterdir() if file.suffix in patterns
+        x for x in directory.iterdir() if x.suffix in patterns
     ]
     return files
 
