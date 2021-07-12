@@ -1662,7 +1662,7 @@ def replace_column_values(
     return s
 
 
-def list_files_all(directory: Union[Path, str]) -> List[str]:
+def list_files_all(directory: Union[Path, str]) -> List[Path]:
     """
     List all files for given directory.
 
@@ -1673,8 +1673,8 @@ def list_files_all(directory: Union[Path, str]) -> List[str]:
 
     Returns
     -------
-    files : List[str]
-        A list of files.
+    files : List[Path]
+        A list of paths.
 
     Example
     -------
@@ -1682,7 +1682,9 @@ def list_files_all(directory: Union[Path, str]) -> List[str]:
     >>> directory = (Path.cwd() / 'directoryname')
     >>> files = list_files_all(directory=directory)
     """
-    files = [file.name for file in directory.glob('*.*')]
+    directory = Path(directory)
+    if directory.is_dir():
+        files = [x for x in directory.iterdir()]
     return files
 
 
