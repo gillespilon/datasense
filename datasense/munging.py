@@ -5,6 +5,7 @@ Data munging
 from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
+from warnings import warn
 from pathlib import Path
 from tkinter import Tk
 from glob import glob
@@ -1682,6 +1683,14 @@ def list_files_all(directory: Union[Path, str]) -> List[Path]:
     >>> directory = (Path.cwd() / 'directoryname')
     >>> files = list_files_all(directory=directory)
     """
+    warn(
+        message='''
+        "list_file_all()" will be deprecated after 2021-07-31.
+        Use directory_file_list() instead.
+        ''',
+        category=DeprecationWarning,
+        stacklevel=2
+    )
     directory = Path(directory)
     if directory.is_dir():
         files = [x for x in directory.iterdir()]
@@ -1690,10 +1699,10 @@ def list_files_all(directory: Union[Path, str]) -> List[Path]:
 
 def list_files_with_patterns(
     directory: Union[Path, str],
-    patterns: List[str]
+    patterns: List[str] = None
 ) -> List[Path]:
     """
-    List files with extension pattern for directory.
+    List files within a directory.
 
     Parameters
     ----------
@@ -1725,64 +1734,72 @@ def list_files_with_patterns(
 
 
 def directory_file_list(
-    path: Union[str, Path],
-    extension: List[str]
-) -> List[str]:
+    directory: Union[str, Path],
+    *,
+    patterns: Optional[List[str]] = None
+) -> List[Path]:
     """
-    Return a list of files of a specific extension contained in a directory.
+    Return a list of files within a directory.
 
     Parameters
     ----------
-    path : str
+    path : Union[str, Path]
         The path of the directory.
     extension : List[str]
-        The file extension to use for finding files in the path.
+        The file extensions to use for finding files in the path.
 
     Returns
     -------
-    file_names : List[str]
-        The list of files contained in the path.
+    files : List[Path]
+        A list of paths.
 
     Examples
     --------
     Example 1
     ---------
-    >>> extension = 'pdf'
+    >>> patterns = ['.pdf']
     >>> import datasense as ds
-    >>> file_names = ds.directory_file_list(
-    >>>     path=path,
-    >>>     extension=extension
+    >>> files = ds.directory_file_list(
+    >>>     directory=path,
+    >>>     patterns=patterns
     >>> )
 
     Example 2
     ---------
-    >>> extension = 'PDF'
+    >>> patterns = ['.PDF']
     >>> import datasense as ds
-    >>> file_names = ds.directory_file_list(
-    >>>     path=path,
-    >>>     extension=extension
+    >>> files = ds.directory_file_list(
+    >>>     directory=path,
+    >>>     patterns=patterns
     >>> )
 
     Example 3
     ---------
-    >>> extension = ['pdf', 'PDF']
+    >>> patterns = ['.pdf', '.PDF']
     >>> import datasense as ds
-    >>> file_names = ds.directory_file_list(
-    >>>     path=path,
-    >>>     extension=extension
+    >>> files = ds.directory_file_list(
+    >>>     directory=path,
+    >>>     patterns=patterns
     >>> )
 
     Example 4
     ---------
-    >>> extension = '*'
+    >>> # Return all files within a directory
     >>> import datasense as ds
-    >>> file_names = ds.directory_file_list(
-    >>>     path=path,
-    >>>     extension=extension
+    >>> files = ds.directory_file_list(
+    >>>     directory=path
     >>> )
     """
-    file_names = [file for file in glob((path / f'*{extension}').__str__())]
-    return file_names
+    directory = Path(directory)
+    if not patterns:
+        files = [
+            x for x in directory.iterdir()
+        ]
+    else:
+        files = [
+            x for x in directory.iterdir() if x.suffix in patterns
+        ]
+    return files
 
 
 def directory_file_print(
