@@ -1697,50 +1697,6 @@ def list_files_all(directory: Union[Path, str]) -> List[Path]:
     return files
 
 
-def list_files_with_patterns(
-    directory: Union[Path, str],
-    patterns: List[str] = None
-) -> List[Path]:
-    """
-    List files within a directory.
-
-    Parameters
-    ----------
-    directory : Union[Path, str]
-        The source directory.
-    patterns : List[str]
-        The pattern of file extensions.
-
-    Returns
-    -------
-    files : List[Path]
-        A list of paths.
-
-    Example
-    -------
-    >>> from pathlib import Path
-    >>> patterns = ['.xlsx', '.XLSX']
-    >>> directory = (Path.cwd() / 'directoryname')
-    >>> files = list_files_with_patterns(
-    >>>     directory=directory,
-    >>>     patterns=patterns
-    >>> )
-    """
-    warn(
-        message='''
-        "list_files_with_patterns()" will be deprecated after 2021-07-31.
-        Use directory_file_list() instead.
-        ''',
-        category=DeprecationWarning,
-        stacklevel=2
-    )
-    directory = Path(directory)
-    files = [
-        x for x in directory.iterdir() if x.suffix in patterns
-    ]
-    return files
-
-
 def directory_file_list(
     directory: Union[str, Path],
     *,
@@ -2375,7 +2331,6 @@ __all__ = (
     'rename_some_columns',
     'replace_column_values',
     'list_files_all',
-    'list_files_with_patterns',
     'directory_file_list',
     'directory_file_print',
     'directory_remove_file',
