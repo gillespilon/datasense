@@ -1767,9 +1767,9 @@ def directory_file_list(
 
 
 def directory_file_print(
-    path: Path,
+    directory: Union[str, Path],
     *,
-    text: Optional[str] = 'List of files in directory'
+    text: Optional[str] = 'Files in directory'
 ) -> None:
     """
     Print the files in a path.
@@ -1791,10 +1791,11 @@ def directory_file_print(
     >>>     text=text
     >>> )
     """
+    directory = Path(directory)
     if text:
-        print(text)
-    for file in path.iterdir():
-        print(file.name)
+        print(f'{text}', directory)
+    for x in path.iterdir():
+        print(x.name)
     print()
 
 
