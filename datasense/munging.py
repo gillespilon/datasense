@@ -1726,6 +1726,14 @@ def list_files_with_patterns(
     >>>     patterns=patterns
     >>> )
     """
+    warn(
+        message='''
+        "list_files_with_patterns()" will be deprecated after 2021-07-31.
+        Use directory_file_list() instead.
+        ''',
+        category=DeprecationWarning,
+        stacklevel=2
+    )
     directory = Path(directory)
     files = [
         x for x in directory.iterdir() if x.suffix in patterns
