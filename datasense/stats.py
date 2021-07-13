@@ -595,7 +595,7 @@ def random_data(
                     population=categories,
                     k=size
                 )
-            ).astype('category')
+            ).astype(dtype='category')
     elif distribution == 'timedelta':
         series = timedelta_data(time_delta_days=size-1)
     elif distribution == 'datetime':
