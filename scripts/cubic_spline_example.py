@@ -74,7 +74,8 @@ def main():
             data[abscissaname] = pd.to_numeric(data[abscissaname])
             spline = ds.cubic_spline(data, abscissaname, ordinatename)
             data[ordinatepredictedname] = spline(data[abscissaname])
-            data[abscissaname] = data[abscissaname].astype('datetime64[ns]')
+            data[abscissaname] = data[abscissaname]\
+                .astype(dtype='datetime64[ns]')
         else:
             spline = ds.cubic_spline(data, abscissaname, ordinatename)
             data[ordinatepredictedname] = spline(data[abscissaname])
