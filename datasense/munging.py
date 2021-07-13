@@ -995,17 +995,17 @@ def read_file(
     if index_columns:
         df = df.set_index(index_columns)
     for column in category_columns:
-        df[column] = df[column].astype(CategoricalDtype())
+        df[column] = df[column].astype(dtype=CategoricalDtype())
     for column in time_delta_columns:
         df[column] = pd.to_timedelta(df[column])
     for column in integer_columns:
-        df[column] = df[column].astype('int64')
+        df[column] = df[column].astype(dtype='int64')
     for column in float_columns:
-        df[column] = df[column].astype('float64')
+        df[column] = df[column].astype(dtype='float64')
     for column in boolean_columns:
-        df[column] = df[column].astype('bool')
+        df[column] = df[column].astype(dtype='bool')
     for column in object_columns:
-        df[column] = df[column].astype('object')
+        df[column] = df[column].astype(dtype='object')
     if sort_columns and sort_columns_bool:
         df = sort_rows(
             df=df,
