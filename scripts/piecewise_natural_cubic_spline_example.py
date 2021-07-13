@@ -140,7 +140,7 @@ def plot_scatter_line(
         number_knots=number_knots
     )
     if dates:
-        XX = X.astype('datetime64[ns]')
+        XX = X.astype(dtype='datetime64[ns]')
     else:
         XX = X
     fig, ax = ds.plot_scatter_line_x_y1_y2(
