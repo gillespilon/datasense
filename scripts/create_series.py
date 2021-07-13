@@ -101,7 +101,7 @@ def main():
         ),
         name='CS'
     ).astype(
-        CategoricalDtype(
+        dtype=CategoricalDtype(
             categories=categories,
             ordered=True
         )
