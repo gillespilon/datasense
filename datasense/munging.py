@@ -1760,7 +1760,7 @@ def directory_file_print(
     directory = Path(directory)
     if text:
         print(f'{text}', directory)
-    for x in path.iterdir():
+    for x in directory.iterdir():
         print(x.name)
     print()
 
