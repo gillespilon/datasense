@@ -711,28 +711,28 @@ def read_file(
 
     Parameters
     ----------
-    file_name : str
+    file_name : Union[str, Path],
         The name of the file to read.
-    skiprows : Optional[List[int]]
+    skiprows : Optional[List[int]] = None
         The specific row indices to skip.
-    column_names_dict : Optional[List[str]]
+    column_names_dict : Optional[List[str]] = {}
         The new column names to replace the old column names.
-    index_columns : Optional[List[str]]
+    index_columns : Optional[List[str]] = []
         The columns to use for the dataframe index.
-    usecols : Optional[List[str]] = None,
+    usecols : Optional[List[str]] = None
         The columns to read.
     dtype: Optional[dict] = None
         A dictionary of column names and dtypes.
-    converters : Optional[dict] = None,
+    converters : Optional[dict] = None
         Dictionary of functions for converting values in certain columns.
-    parse_dates : Optional[List[str]] = False,
+    parse_dates : Optional[List[str]] = False
         The columns to use to parse date and time.
-    date_parser : Optional[Callable] = None,
+    date_parser : Optional[Callable] = None
         The function to use for parsing date and time, when pandas needs
         extra help.
-    datetime_format : Optional[str] = None,
+    datetime_format : Optional[str] = None
         The str to use for formatting date and time.
-    time_delta_columns : Optional[List[str]] = [],
+    time_delta_columns : Optional[List[str]] = []
         The columns to change to dtype timedelta.
     category_columns : Optional[List[str]] = []
         The columns to change to dtype category.
