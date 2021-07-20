@@ -7,7 +7,6 @@ from datetime import datetime
 from typing import Callable
 import time
 
-from pandas.api.types import CategoricalDtype
 import datasense as ds
 import pandas as pd
 
@@ -19,9 +18,10 @@ file_name = 'myfile.csv'
 
 def main():
     start_time = time.time()
-    pd.options.display.width = 120
     pd.options.display.max_columns = 100
     pd.options.display.max_rows = 100
+    pd.options.display.width = 120
+    file_name = 'myfile.csv'
     original_stdout = ds.html_begin(
         output_url=output_url,
         header_title=header_title,
@@ -80,8 +80,11 @@ def main():
     )
     print(df.dtypes)
     print()
-    # Example 333333
+    # Example 4
     # Read a csv file. Ensure the dtypes of columns. Rename the columns.
+    print(
+        'Example 4. Ensure the column dtypes are correct. Rename the columns.'
+    )
     column_names_dict = {
         'a': 'A',
         'b': 'B',
@@ -122,9 +125,6 @@ def main():
         sort_columns=sort_columns,
         sort_columns_bool=sort_columns_bool
     )
-    print(
-        'Example 3. Ensure the column dtypes are correct. Rename the columns.'
-    )
     print(data.head(10))
     print()
     print('column dtypes')
@@ -137,14 +137,21 @@ def main():
         df=data,
         file_in=file_name
     )
-    # Example 4
+    # Example 5
     # Read an ods file.
-    data = ds.read_file(
-        file_name='test_file.ods',
-        parse_dates=['dates', 'dateandtimes']
+    file_name = 'myfile.ods'
+    df = ds.create_dataframe()
+    ds.save_file(
+        df=df,
+        file_name=file_name
+    )
+    parse_dates = ['t', 'u']
+    df = ds.read_file(
+        file_name=file_name,
+        parse_dates=parse_dates
     )
     print(
-        'Example 4. Read an ods file.'
+        'Example 5. Read an ods file.'
     )
     print(data.head(10))
     print()
@@ -154,6 +161,24 @@ def main():
     print()
     ds.dataframe_info(
         df=data,
+        file_in=file_name
+    )
+    # Example 6
+    # Read an xlsx file.
+    df = ds.read_file(file_name=file_name)
+    file_name = 'myfile.xlsx'
+    sheet_name = 'raw_data'
+    ds.save_file(
+        df=df,
+        file_name=file_name,
+        sheet_name=sheet_name
+    )
+    df = ds.read_file(
+        file_name=file_name,
+        sheet_name=sheet_name
+    )
+    ds.dataframe_info(
+        df=df,
         file_in=file_name
     )
     stop_time = time.time()
