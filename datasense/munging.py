@@ -662,11 +662,13 @@ def save_file(
             index_label=index_label
         )
     elif file_name.suffix in ['.ods', '.ODS']:
-        excel_writer = pd.ExcelWriter(file_name)
+        excel_writer = pd.ExcelWriter(
+            path=file_name,
+            engine='odf',
+        )
         df.to_excel(
             excel_writer=excel_writer,
             sheet_name=sheet_name,
-            engine='odf',
             index=index,
             index_label=index_label
         )
@@ -864,12 +866,6 @@ def read_file(
     Example 4
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
-    >>> file_name = 'myfile.csv'
-    >>> df = ds.create_dataframe()
-    >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name=file_name
-    >>> )
     >>> column_names_dict = {
     >>>     'a': 'A',
     >>>     'b': 'B',
@@ -892,15 +888,22 @@ def read_file(
     >>> float_columns = ['X']
     >>> boolean_columns = ['R']
     >>> object_columns = ['Z']
+    >>> sort_columns = ['I', 'A']
+    >>> sort_columns_bool = [True, False]
     >>> df = ds.read_file(
     >>>     file_name='myfile.csv',
     >>>     column_names_dict=column_names_dict,
     >>>     index_columns=index_columns,
-    >>>     date_parser=date_parser(),
     >>>     parse_dates=parse_dates,
+    >>>     date_parser=date_parser(),
     >>>     time_delta_columns=time_delta_columns,
     >>>     category_columns=category_columns,
     >>>     integer_columns=integer_columns
+    >>>     float_columns=float_columns,
+    >>>     boolean_columns=boolean_columns,
+    >>>     object_columns=object_columns,
+    >>>     sort_columns=sort_columns,
+    >>>     sort_columns_bool=sort_columns_bool
     >>> )
     >>>
     >>>
@@ -940,7 +943,7 @@ def read_file(
 
     Example 6
     >>> Read an xlsx file.
-    >>> file_name = 'mfile.xlsx'
+    >>> file_name = 'myfile.xlsx'
     >>> sheet_name = 'raw_data'
     >>> df = ds.read_file(
     >>>     file_name=file_name,
@@ -1362,6 +1365,10 @@ def create_dataframe(
                 size=size
             ),
             'd': timedelta_data(time_delta_days=size-1),
+            'i': random_data(
+                distribution='randint',
+                size=size
+            ),
             'r': random_data(
                 distribution='strings',
                 strings=['0', '1'],
