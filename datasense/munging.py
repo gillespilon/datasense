@@ -2211,10 +2211,10 @@ def list_one_list_two_ops(
     action: str
 ) -> Union[List[str], List[int], List[float]]:
     '''
-    Create list of items comparing two lists:
+    Create a list of items comparing two lists:
     - Items unique to list_one
     - Items unique to list_two
-    - Items common to both lists
+    - Items common to both lists (intersection)
 
     Parameters
     ----------
