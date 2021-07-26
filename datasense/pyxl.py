@@ -776,6 +776,54 @@ def validate_column_labels(
     return ws
 
 
+def unique_list_items(
+    ws: Worksheet,
+    row_of_labels: int,
+    row_below_labels: int,
+    column_name_varname: str,
+    text_to_replace: List[str],
+    text_to_remove: List[str]
+) -> Tuple[List[int], List[int]]:
+    '''
+    Determine list of unique items in varname.
+    Replace text.
+
+    TODO:
+    This function does too many things. Break it up.
+    Add detail to docstring.
+    '''
+    column_numbers = [
+        col for col in range(ws.min_column, ws.max_column + 1)
+    ]
+    column_labels = []
+    for row in ws.iter_rows(
+        min_row=row_of_labels,
+        max_row=row_of_labels,
+        min_col=column_numbers[0],
+        max_col=column_numbers[-1]
+    ):
+        for cell in row:
+            column_labels.append(cell.value)
+    column_names_numbers = dict(zip(column_labels, column_numbers))
+    varname_replace = []
+    for row in ws.iter_rows(
+        min_row=row_below_labels,
+        min_col=column_names_numbers[column_name_varname],
+        max_col=column_names_numbers[column_name_varname]
+    ):
+        for cell in row:
+            if cell.value:
+                varname_replace.append(cell.value)
+    varname_remove = []
+    for item in varname_replace:
+        for thing in text_to_replace:
+            item = str(item).replace(thing, '')
+        varname_remove.append(item)
+    varname = [x for x in varname_remove if x not in text_to_remove]
+    varname = (list(set(varname)))
+    return (varname, column_numbers)
+
+
 def validate_sheet_names(
     wb: Workbook,
     filename: Union[Path, str],
@@ -964,6 +1012,7 @@ __all__ = (
     'remove_worksheet_columns',
     'remove_worksheet_rows',
     'replace_text',
+    'unique_list_items',
     'validate_sheet_names',
     'validate_column_labels',
     'write_dataframe_to_worksheet',
