@@ -232,7 +232,7 @@ def report_summary(
     stop_time : float
         The stop time.
     print_heading : Optional[bool] = True
-        The heading for the report summary.
+        The boolean to print the heading for the report summary.
     read_file_names : Optional[List[str]] = None
         The list of file names read.
     save_file_names : Optional[List[str]] = None
