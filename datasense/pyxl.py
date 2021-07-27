@@ -940,17 +940,6 @@ def write_dataframe_to_worksheet(
         ws.append(row)
     return ws
 
-    # TODO:
-    # Read comments into list
-    # for col in ws_out.iter_cols(
-    #     min_col=column_names_numbers['Molex PN'],
-    #     max_col=column_names_numbers['Molex PN']
-    # ):
-    #     comments = [c.comment.text for c in col]
-    # print(comments)
-    # TODO
-    # Read notes into list
-
 
 def number_non_empty_rows(
     ws: Worksheet,
