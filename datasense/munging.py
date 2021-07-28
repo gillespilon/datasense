@@ -688,6 +688,7 @@ def save_file(
 def read_file(
     file_name: Union[str, Path],
     *,
+    header: Union[int, List[int]] = 0,
     skiprows: Optional[List[int]] = None,
     column_names_dict: Optional[Dict[str, str]] = {},
     index_columns: Optional[List[str]] = [],
@@ -981,14 +982,15 @@ def read_file(
     elif file_name.suffix in ['.xlsx', '.XLSX', '.xlsm', '.XLSM']:
         df = pd.read_excel(
             io=file_name,
-            skiprows=skiprows,
+            sheet_name=sheet_name,
+            header=header,
             usecols=usecols,
             dtype=dtype,
             engine='openpyxl',
-            sheet_name=sheet_name,
+            skiprows=skiprows,
+            nrows=nrows,
             parse_dates=parse_dates,
             date_parser=date_parser,
-            nrows=nrows
         )
     if column_names_dict:
         df = rename_some_columns(
