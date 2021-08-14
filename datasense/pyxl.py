@@ -763,6 +763,12 @@ def validate_column_labels(
             'Column labels or number of columns are incorrect. '
             'Fix. Re-run script.'
         )
+        print('Labels found:')
+        print(labels_found)
+        print('Length of labels found:', len(labels_found))
+        print('Labels should be:')
+        print(column_labels)
+        print('Length of labels should be:', len(column_labels))
         print('XXX File NOT OK XXX')
         stop_time = stop_time
         report_summary(
