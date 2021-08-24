@@ -288,7 +288,7 @@ def script_summary(script_path: Path):
     print(
         'Script',
         script_path,
-        f'started at {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.'
+        f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.'
     )
     print()
 
