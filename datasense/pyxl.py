@@ -460,7 +460,7 @@ def list_rows_with_content(
     ws: Worksheet,
     min_row: int,
     column: int,
-    text: Union[str, int]
+    text: str
 ) -> List[int]:
     '''
     List rows that contain specific text in a specified column.
@@ -497,7 +497,7 @@ def list_rows_with_content(
         max_col=column
     ):
         for cell in row:
-            if cell.value in text:
+            if cell.value == text:
                 rows_with_text.append(row[0].row)
     return rows_with_text
 
