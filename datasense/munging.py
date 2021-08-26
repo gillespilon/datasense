@@ -1660,7 +1660,6 @@ def replace_column_values(
     >>> import datasense as ds
     >>> df = ds.replace_column_values(
     >>>     df=df,
-    >>>     column=column,
     >>>     replace_dict=replace_dict
     >>> )
     """
