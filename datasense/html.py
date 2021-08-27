@@ -271,7 +271,11 @@ def report_summary(
         print(f'Number of knots: {number_knots}')
 
 
-def script_summary(script_path: Path):
+def script_summary(
+    script_path: Path,
+    *,
+    action: Optional[str] = 'run'
+):
     '''
     Print script name and time of execution.
 
@@ -279,15 +283,36 @@ def script_summary(script_path: Path):
     ----------
     script_path : Path
         The path of the script file.
+    action : Optional[str] = 'run'
+        An action message: run, started, finished, etc.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
     >>> ds.script_summary(script_path=Path(__file__))
+
+    Example 2
+    ---------
+    >>> import datasense as ds
+    >>> ds.script_summary(
+    >>>     script_path=Path(__file__),
+    >>>     action='started at'
+    >>> )
+
+    Example 3
+    ---------
+    >>> import datasense as ds
+    >>> ds.script_summary(
+    >>>     script_path=Path(__file__),
+    >>>     action='finished at'
+    >>> )
     '''
     print(
         'Script',
         script_path,
+        f'{action} '
         f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.'
     )
     print()
