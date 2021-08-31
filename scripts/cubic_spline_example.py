@@ -68,7 +68,7 @@ def main():
     ):
         data = ds.read_file(
             file_name=file_name,
-            parse_dates=abscissaname,
+            parse_dates=[abscissaname],
         )
         if datetimeparser is True:
             data[abscissaname] = pd.to_numeric(data[abscissaname])
