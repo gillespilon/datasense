@@ -2,7 +2,7 @@
 """
 Test def probability_plot() of graphs.py.
 
-tim e-f '%e' ./probability_plot_test.py
+time -f '%e' ./probability_plot_test.py
 ./probability_plot_test.py
 """
 
