@@ -930,11 +930,13 @@ class R(ControlChart):
         return self.mean * self._d3 / self._d2
 
 
-def draw_rule(cc: ControlChart,
-              ax: axes.Axes,
-              above: pd.Series,
-              below: pd.Series,
-              rule_name: str) -> None:
+def draw_rule(
+    cc: ControlChart,
+    ax: axes.Axes,
+    above: pd.Series,
+    below: pd.Series,
+    rule_name: str
+) -> None:
     '''
     Invokes one of the points_* rules to identify out-of-control points
     '''
