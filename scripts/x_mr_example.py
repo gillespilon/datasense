@@ -34,25 +34,11 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
-    data = create_data()  # use the data in this notebook
-#     data = ds.read_file(
-#         file_name=f'{data_file}.csv',
-#         index_columns=['Sample']
-#     )
-#     data = ds.read_file(
-#         file_name=f'{data_file}.xlsx',
-#         index_columns=['Sample']
-#     )
-#     data = ds.read_file(
-#         file_name=f'{data_file}.ods',
-#         index_columns=['Sample']
-#     )
+    data = create_data()
     ds.page_break()
     x_chart(df=data)
     ds.page_break()
     mr_chart(df=data)
-#     help(cc.X)
-#     help(cc.mR)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
@@ -68,7 +54,6 @@ def main():
 def create_data() -> pd.DataFrame:
     '''
     Creates a dataframe.
-    This function is for demonstration purposes.
     '''
     df = pd.DataFrame(
         {
@@ -77,12 +62,6 @@ def create_data() -> pd.DataFrame:
                         10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
         }
     ).set_index('Sample')
-    # df = pd.DataFrame(
-    #     {
-    #         'X':       [25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9,
-    #                     10.0, 13.3, 10.0, 16.0, 16.0, 16.0]
-    #     }
-    # )
     return df
 
 
@@ -135,7 +114,7 @@ def x_chart(df: pd.DataFrame) -> None:
     ds.html_figure(file_name=f'{data_file}_x.svg')
     print(
        f'X Report\n'
-       f'============\n'
+       f'===================\n'
        f'UCL        : {x.ucl.round(3)}\n'
        f'Xbar       : {x.mean.round(3)}\n'
        f'LCL        : {x.lcl.round(3)}\n'
@@ -164,7 +143,7 @@ def mr_chart(df: pd.DataFrame) -> None:
     ds.html_figure(file_name=f'{data_file}_mr.svg')
     print(
        f'mR Report\n'
-       f'============\n'
+       f'===================\n'
        f'UCL        : {mr.ucl.round(3)}\n'
        f'mRbar      : {mr.mean.round(3)}\n'
        f'LCL        : {round(mr.lcl, 3)}\n'
