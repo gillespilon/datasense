@@ -34,25 +34,11 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
-    data = create_data()  # use the data in this notebook
-    # data = ds.read_file(
-    #     file_name=f'{data_file}.csv',
-    #     index_columns=['Sample']
-    # )
-    # data = ds.read_file(
-    #     file_name=f'{data_file}.xlsx',
-    #     index_columns=['Sample']
-    # )
-    # data = ds.read_file(
-    #     file_name=f'{data_file}.ods',
-    #     index_columns=['Sample']
-    # )
+    data = create_data()
     ds.page_break()
     xbar_chart(df=data)
     ds.page_break()
     r_chart(df=data)
-#     help(cc.Xbar)
-#     help(cc.R)
     stop_time = time.time()
     ds.page_break()
     ds.report_summary(
@@ -150,9 +136,9 @@ def xbar_chart(df: pd.DataFrame) -> None:
         color=colour,
         alpha=0.5
     )
-#     cc.draw_rule(xbar, ax, *cc.points_one(xbar), '1')
-#     cc.draw_rule(xbar, ax, *cc.points_four(xbar), '4')
-#     cc.draw_rule(xbar, ax, *cc.points_two(xbar), '2')
+    cc.draw_rule(xbar, ax, *cc.points_one(xbar), '1')
+    cc.draw_rule(xbar, ax, *cc.points_four(xbar), '4')
+    cc.draw_rule(xbar, ax, *cc.points_two(xbar), '2')
     cc.draw_rules(xbar, ax)
     ax.set_title(
         label=xbar_chart_title,
@@ -164,7 +150,7 @@ def xbar_chart(df: pd.DataFrame) -> None:
     ds.html_figure(file_name=f'{data_file}_xbar.svg')
     print(
         f'Xbar Report\n'
-        f'============\n'
+        f'===================\n'
         f'UCL        : {xbar.ucl.round(3)}\n'
         f'Xbarbar    : {xbar.mean.round(3)}\n'
         f'LCL        : {xbar.lcl.round(3)}\n'
@@ -221,12 +207,13 @@ def r_chart(df: pd.DataFrame) -> None:
     ds.html_figure(file_name=f'{data_file}_r.svg')
     print(
         f'R Report\n'
-        f'============\n'
+        f'===================\n'
         f'UCL        : {r.ucl.round(3)}\n'
         f'Rbar       : {r.mean.round(3)}\n'
         f'LCL        : {round(r.lcl, 3)}\n'
         f'Sigma(Xbar): {r.sigma.round(3)}\n'
     )
+
 
 if __name__ == '__main__':
     main()
