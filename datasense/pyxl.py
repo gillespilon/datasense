@@ -288,7 +288,8 @@ def exit_script(
 
     Example
     -------
-    exit_script(
+    import datasense as ds
+    ds.exit_script(
         original_stdout=original_stdout,
         output_url=output_url
     )
