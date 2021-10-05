@@ -5,16 +5,13 @@ Data munging
 from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
-from warnings import warn
 from pathlib import Path
 from tkinter import Tk
-from glob import glob
 import textwrap
 import string
 import os
 
 from datasense import random_data, timedelta_data, datetime_data
-from openpyxl.worksheet.worksheet import Worksheet
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
 from scipy.stats import norm
@@ -2230,6 +2227,48 @@ def list_one_list_two_ops(
     return list_result
 
 
+def parameters_text_replacement(
+    file_name: Path,
+    sheet_name: str,
+    usecols: List[str]
+) -> Tuple[Tuple[str, str]]:
+    '''
+    Read Excel worksheet.
+    Create tuple of text replacement tuples.
+
+    Parameters
+    ----------
+    file_name : Path
+        The path of the Excel file.
+    sheet_name : str
+        The Excel worksheet.
+    usecols : List[str]
+        The column names to read.
+
+    Returns
+    -------
+    text_replacement : Tuple[Tuple[str, str]]
+
+    Example
+    -------
+    >>> path_parameters = Path('bcp_parameters.xlsx')
+    >>> usecols = ['old_text', 'new_text']
+    >>> sheet_name = 'text_replacement'
+    >>> text_replacement = parameters(
+    >>>     file_name=path_parameters,
+    >>>     sheet_name=sheet_name,
+    >>>     usecols=usecols
+    >>> )
+    '''
+    df = read_file(
+        file_name=file_name,
+        sheet_name=sheet_name,
+        usecols=usecols
+    )
+    tuples = tuple(zip(df[usecols[0]], df[usecols[1]]))
+    return tuples
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2273,4 +2312,5 @@ __all__ = (
     'list_change_case',
     'listone_contains_all_listtwo_substrings',
     'list_one_list_two_ops',
+    'parameters_text_replacement',
 )
