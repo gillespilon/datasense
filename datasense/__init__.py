@@ -7,13 +7,14 @@ Statistical and graphical functions for:
 - Data science
 - Supervised machine learning
 - Six Sigma methodology
+- Excel file edits
 
 Why this?
 - Functions to support process control charts.
 - Functions to support measurement system analysis.
 - Functions to simplify statistics, graphs, etc.
 - Develop a free open-source package.
-- Equivalent Python functions that are available in R and SAS.
+- Equivalent Python functions that are available in R, SAS, JMP, Minitab
 - Other packages have limited process control analysis features.
 - Other packages are abandoned or inadequately supported.
 '''
