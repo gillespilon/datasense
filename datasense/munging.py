@@ -1636,7 +1636,9 @@ def rename_some_columns(
 
 def replace_column_values(
     s: pd.Series,
-    replace_dict: Dict[str, str]
+    replace_dict: Dict[str, str],
+    *,
+    regex: Optional[bool] = False
 ) -> pd.Series:
     """
     Replace values in a series using a dictionary.
@@ -1647,6 +1649,8 @@ def replace_column_values(
         The input series.
     replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
         The dictionary of values to replace.
+    regex : Optional[bool] = True
+        Determines if the passed-in pattern is a regular expression.
 
     Returns:
     s : pd.Series
@@ -1662,7 +1666,7 @@ def replace_column_values(
     """
     s = s.replace(
         to_replace=replace_dict,
-        regex=True,
+        regex=regex,
         value=None
     )
     return s
@@ -2269,6 +2273,48 @@ def parameters_text_replacement(
     return tuples
 
 
+def parameters_dict_replacement(
+    file_name: Path,
+    sheet_name: str,
+    usecols: List[str]
+) -> Dict[str, str]:
+    '''
+    Read Excel worksheet.
+    Create dictionary of text replacement key, value paits.
+
+    Parameters
+    ----------
+    file_name : Path
+        The path of the Excel file.
+    sheet_name : str
+        The Excel worksheet.
+    usecols : List[str]
+        The column names to read.
+
+    Returns
+    -------
+    text_replacement : Dict[str, str]
+
+    Example
+    -------
+    >>> path_intelex_parameters = Path('intelex_parameters.xlsx')
+    >>> usecols = ['old_text', 'new_text']
+    >>> sheet_name = 'text_replacement'
+    >>> replacement_dict = ds.parameters_dict_replacement(
+    >>>     file_name=path_intelex_parameters,
+    >>>     sheet_name=sheet_name,
+    >>>     usecols=usecols
+    >>> )
+    '''
+    df = read_file(
+        file_name=file_name,
+        sheet_name=sheet_name,
+        usecols=usecols
+    )
+    dictionary = dict(zip(df[usecols[0]], df[usecols[1]]))
+    return dictionary
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2313,4 +2359,5 @@ __all__ = (
     'listone_contains_all_listtwo_substrings',
     'list_one_list_two_ops',
     'parameters_text_replacement',
+    'parameters_dict_replacement',
 )
