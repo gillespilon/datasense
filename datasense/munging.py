@@ -1230,6 +1230,8 @@ def replace_text_numbers(
         The list of item to replace.
     new : List[int]
         The list of replacement items.
+    regex : Optional[bool] = True
+        Determines if the passed-in pattern is a regular expression.
 
     Returns
     -------
@@ -2297,11 +2299,11 @@ def parameters_dict_replacement(
 
     Example
     -------
-    >>> path_intelex_parameters = Path('intelex_parameters.xlsx')
+    >>> path_parameters = Path('parameters.xlsx')
     >>> usecols = ['old_text', 'new_text']
     >>> sheet_name = 'text_replacement'
     >>> replacement_dict = ds.parameters_dict_replacement(
-    >>>     file_name=path_intelex_parameters,
+    >>>     file_name=path_parameters,
     >>>     sheet_name=sheet_name,
     >>>     usecols=usecols
     >>> )
