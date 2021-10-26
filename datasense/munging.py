@@ -1661,15 +1661,15 @@ def replace_column_values(
     Examples
     -------=
     >>> import datasense as ds
-    >>> df = ds.replace_column_values(
-    >>>     df=df,
+    >>> s = ds.replace_column_values(
+    >>>     s=s
     >>>     replace_dict=replace_dict
     >>> )
     """
     s = s.replace(
         to_replace=replace_dict,
-        regex=regex,
-        value=None
+        value=None,
+        regex=regex
     )
     return s
 
