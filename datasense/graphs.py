@@ -12,6 +12,7 @@ Colours used are colour-blind friendly.
 '''
 
 from typing import List, Optional, Tuple, Union
+from datetime import datetime
 import math
 
 from matplotlib.ticker import FormatStrFormatter
@@ -1952,9 +1953,10 @@ def plot_horizontal_bars(
     figsize: Optional[Tuple[int, int]] = (8, 6),
     edgecolor: Optional[str] = '#ffffff',
     linewidth: Optional[int] = 1,
-    color: Optional[str] = '#0077bb'
+    color: Optional[str] = '#0077bb',
+    left: Union[datetime, int, float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    """
+    '''
     Parameters
     ----------
     y : Union[List[int], List[float], List[str]],
@@ -1971,6 +1973,8 @@ def plot_horizontal_bars(
         The bar edges line width (point).
     color : Optional[str] = '#0077bb'
         The color of the bar faces.
+    left : Union[datetime, int, float] = None
+        The x coordinates of the left sides of the bars.
 
     Returns
     -------
@@ -1979,6 +1983,7 @@ def plot_horizontal_bars(
     Examples
     --------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> y = ['Yes', 'No']
     >>> width = [69, 31]
@@ -1988,6 +1993,7 @@ def plot_horizontal_bars(
     >>> )
 
     Example 2
+    ---------
     >>> y = ['Yes', 'No']
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
@@ -1995,7 +2001,46 @@ def plot_horizontal_bars(
     >>>     width=width,
     >>>>    height=0.4
     >>> )
-    """
+
+    Example 3
+    ---------
+    Create Gantt chart
+    >>> data = {
+    >>>     'start': ['2021-11-01', '2021-11-03', '2021-11-04', '2021-11-08'],
+    >>>     'end': ['2021-11-08', '2021-11-16', '2021-11-11', '2021-11-13'],
+    >>>     'task': ['task 1', 'task 2', 'task 3', 'task 4']
+    >>> }
+    >>> columns = ['task', 'start', 'end', 'duration', 'start_relative']
+    >>> data_types = {
+    >>>     'start': 'datetime64[ns]',
+    >>>     'end': 'datetime64[ns]',
+    >>>     'task': 'str'
+    >>> }
+    >>> df = (pd.DataFrame(data=data)).astype(dtype=data_types)
+    >>> df[columns[3]] = (df[columns[2]] - df[columns[1]]).dt.days + 1
+    >>> df = df.sort_values(
+    >>>     by=[columns[1]],
+    >>>     axis=0,
+    >>>     ascending=[True]
+    >>> )
+    >>> start = df[columns[1]].min()
+    >>> x_ticks = [x for x in range(duration + 1)]
+    >>> x_labels = [
+    >>>     (start + datetime.timedelta(days=x)).strftime('%Y-%m-%d')
+    >>>     for x in x_ticks
+    >>> ]
+    >>> df[columns[4]] = (df[columns[1]] - start).dt.days
+    >>> fig, ax = ds.plot_horizontal_bars(
+    >>>     y=df[columns[0]],
+    >>>     width=df[columns[3]],
+    >>>     left=df[columns[4]]
+    >>> )
+    >>> ax.invert_yaxis()
+    >>> ax.set_xticks(
+    >>>     ticks=x_ticks
+    >>> )
+    >>> ax.set_xticklabels(labels=x_labels, rotation=45)
+    '''
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     ax.barh(
@@ -2004,7 +2049,8 @@ def plot_horizontal_bars(
         height=height,
         edgecolor=edgecolor,
         linewidth=linewidth,
-        color=color
+        color=color,
+        left=left
     )
     return (fig, ax)
 
