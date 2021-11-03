@@ -723,6 +723,8 @@ def read_file(
         The columns to read.
     dtype: Optional[dict] = None
         A dictionary of column names and dtypes.
+        NOTE: Nullable Boolean data type is experimental and does not work;
+        use .astype() on df after created.
     converters : Optional[dict] = None
         Dictionary of functions for converting values in certain columns.
     parse_dates : Optional[List[str]] = False
