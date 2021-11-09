@@ -8,6 +8,7 @@ from tkinter import filedialog
 from pathlib import Path
 from tkinter import Tk
 import textwrap
+import psutil
 import string
 import os
 
