@@ -2319,6 +2319,14 @@ def parameters_dict_replacement(
     return dictionary
 
 
+def quit_sap_excel():
+    for proc in psutil.process_iter():
+        if proc.name().lower() == "excel.exe":
+            proc.kill()
+        if proc.name().lower() == "saplogon.exe":
+            proc.kill()
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2364,4 +2372,5 @@ __all__ = (
     'list_one_list_two_ops',
     'parameters_text_replacement',
     'parameters_dict_replacement',
+    'quit_sap_excel',
 )
