@@ -66,12 +66,21 @@ def dataframe_info(
     df : pd.DataFrame
         The output dataframe.
 
-    Example
-    -------
-    >>> df = ds.create_dataframe()
+    Examples
+    --------
+    Example1
+    --------
     >>> df = ds.dataframe_info(
     >>>     df=df,
     >>>     file_in='df'
+    >>> )
+
+    Example2
+    --------
+    >>> df = ds.dataframe_info(
+    >>>     df=df,
+    >>>     file_in='df',
+    >>>     unique_bool=True
     >>> )
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
