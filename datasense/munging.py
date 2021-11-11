@@ -22,7 +22,9 @@ import numpy as np
 
 def dataframe_info(
     df: pd.DataFrame,
-    file_in: Union[Path, str]
+    file_in: Union[Path, str],
+    *,
+    unique_bool: bool = False
 ) -> pd.DataFrame:
     """
     Describe a dataframe.
@@ -120,6 +122,11 @@ def dataframe_info(
     print(f'List of {columns_empty_count} empty columns:')
     print_list_by_item(list=columns_empty_list)
     print()
+    if unique_bool:
+        for column in columns_non_empty_list:
+            print('column:', column)
+            print(df[column].unique())
+            print()
     return df
 
 
