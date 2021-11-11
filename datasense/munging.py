@@ -68,15 +68,15 @@ def dataframe_info(
 
     Examples
     --------
-    Example1
-    --------
+    Example 1
+    ---------
     >>> df = ds.dataframe_info(
     >>>     df=df,
     >>>     file_in='df'
     >>> )
 
-    Example2
-    --------
+    Example 2
+    ---------
     >>> df = ds.dataframe_info(
     >>>     df=df,
     >>>     file_in='df',
@@ -639,6 +639,7 @@ def save_file(
     Examples
     --------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> ds.save_file(
@@ -647,6 +648,7 @@ def save_file(
     >>> )
 
     Example 2
+    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.csv',
@@ -654,12 +656,14 @@ def save_file(
     >>> )
 
     Example 3
+    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.xlsx'
     >>> )
 
     Example 4
+    ---------
     >>> ds.save_file(
     >>>     df=df,
     >>>     file_name='x_y.xlsx',
@@ -807,9 +811,10 @@ def read_file(
     z            float64
     dtype: object
 
-    # Example 1
-    # Read a csv file. There is no guarantee the column dtypes will be correct.
-    # Only [a, i, s, x, z] have the correct dtypes.
+    Example 1
+    ---------
+    Read a csv file. There is no guarantee the column dtypes will be correct.
+    Only [a, i, s, x, z] have the correct dtypes.
     >>> df = ds.read_file(file_name=file_name)
     >>> print(df.dtypes)
     a    float64
@@ -826,8 +831,9 @@ def read_file(
     z    float64
     dtype: object
 
-    # Example 2
-    # Read a csv file. Ensure the dtypes of datetime columns.
+    Example 2
+    ---------
+    Read a csv file. Ensure the dtypes of datetime columns.
     >>> parse_dates = ['t', 'u']
     >>> df = ds.read_file(
     >>>     file_name=file_name,
@@ -848,8 +854,9 @@ def read_file(
     z           float64
     dtype: object
 
-    # Example 3
-    # Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
+    Example 3
+    ---------
+    Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
     >>> convert_dict = {
     >>>     'a': 'float64',
     >>>     'b': 'boolean',
@@ -881,6 +888,7 @@ def read_file(
     dtype: object
 
     Example 4
+    ---------
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
     >>> column_names_dict = {
@@ -941,6 +949,7 @@ def read_file(
     >>> )
 
     Example 5
+    ---------
     Read an ods file.
     >>> file_name = 'myfile.ods'
     >>> df = ds.create_dataframe()
@@ -959,6 +968,7 @@ def read_file(
     >>> )
 
     Example 6
+    ---------
     >>> Read an xlsx file.
     >>> file_name = 'myfile.xlsx'
     >>> sheet_name = 'raw_data'
@@ -1260,6 +1270,7 @@ def replace_text_numbers(
     Examples
     -------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> list_y_1_n_5 = [
     >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
@@ -1284,6 +1295,7 @@ def replace_text_numbers(
     >>> )
 
     Example 2
+    ---------
     >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=['Q23'],
@@ -1293,6 +1305,7 @@ def replace_text_numbers(
     >>> )
 
     Example 3
+    ---------
     >>> data = ds.replace_text_numbers(
     >>>     df=data,
     >>>     columns=['address_country'],
@@ -1451,9 +1464,11 @@ def create_dataframe_norm(
     Examples
     --------
     Example 1
+    ---------
     >>> df = ds.create_dataframe_norm()
 
     Example 2
+    ---------
     >>> column_names = [f'col{item}' for item in range(column_count)]
     >>> row_count = 1000
     >>> column_count = 100
@@ -1678,7 +1693,7 @@ def replace_column_values(
         The output series.
 
     Examples
-    -------=
+    --------
     >>> import datasense as ds
     >>> s = ds.replace_column_values(
     >>>     s=s
@@ -1929,6 +1944,7 @@ def ask_open_file_name_path(
     Examples
     --------
     Example 1
+    ---------
     >>> from tkinter import filedialog
     >>> from pathlib import Path
     >>> from tkinter import Tk
@@ -1936,6 +1952,7 @@ def ask_open_file_name_path(
     >>> path = ds.ask_open_file_name_path(title='your message')
 
     Example 2
+    ---------
     >>> path = ds.ask_open_file_name_path(
     >>>     title='your message',
     >>>     filetypes=[('csv files', '.csv .CSV')]
@@ -1982,6 +1999,7 @@ def ask_save_as_file_name_path(
     Example2
     --------
     Example 1
+    ---------
     >>> from tkinter import filedialog
     >>> from pathlib import Path
     >>> from tkinter import Tk
@@ -1989,6 +2007,7 @@ def ask_save_as_file_name_path(
     >>> path = ds.ask_save_as_file_name_path(title='your message')
 
     Example 2
+    ---------
     >>> path = ds.ask_save_as_file_name_path(
     >>>     title='your message',
     >>>     filetypes=[('csv files', '.csv .CSV')]
@@ -2211,6 +2230,7 @@ def list_one_list_two_ops(
     Examples
     --------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
@@ -2222,6 +2242,7 @@ def list_one_list_two_ops(
     >>> [1, 2, 3]
 
     Example 2
+    ---------
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_unique_list_two(
@@ -2232,6 +2253,7 @@ def list_one_list_two_ops(
     >>> [7, 8, 9]
 
     Example 3
+    ---------
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_unique_list_two(
