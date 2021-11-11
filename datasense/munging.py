@@ -1391,11 +1391,13 @@ def create_dataframe(
             ),
             'c': random_data(
                 distribution='category',
-                size=size
+                size=size,
+                categories=['blue', 'white', 'red']
             ),
             'cs': random_data(
                 distribution='categories',
-                size=size
+                size=size,
+                categories=['small', 'medium', 'large']
             ),
             'd': timedelta_data(time_delta_days=size-1),
             'i': random_data(
