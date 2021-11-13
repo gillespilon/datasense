@@ -969,8 +969,22 @@ def read_file(
 
     Example 6
     ---------
-    >>> Read an xlsx file.
+    Read an xlsx file.
     >>> file_name = 'myfile.xlsx'
+    >>> sheet_name = 'raw_data'
+    >>> df = ds.read_file(
+    >>>     file_name=file_name,
+    >>>     sheet_name=sheet_name
+    >>> )
+    >>> ds.dataframe_info(
+    >>>     df=df,
+    >>>     file_in=file_name
+    >>> )
+
+    Example 7
+    ---------
+    Read an xlsb file.
+    >>> file_name = 'myfile.xlsb'
     >>> sheet_name = 'raw_data'
     >>> df = ds.read_file(
     >>>     file_name=file_name,
@@ -1013,6 +1027,19 @@ def read_file(
             usecols=usecols,
             dtype=dtype,
             engine='openpyxl',
+            skiprows=skiprows,
+            nrows=nrows,
+            parse_dates=parse_dates,
+            date_parser=date_parser,
+        )
+    elif file_name.suffix in ['.xlsb', '.XLSB']:
+        df = pd.read_excel(
+            io=file_name,
+            sheet_name=sheet_name,
+            header=header,
+            usecols=usecols,
+            dtype=dtype,
+            engine='pyxlsb',
             skiprows=skiprows,
             nrows=nrows,
             parse_dates=parse_dates,
