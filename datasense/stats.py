@@ -307,7 +307,8 @@ def random_data(
     high: Optional[int] = 70,
     strings: Optional[List[str]] = ['female', 'male'],
     categories: Optional[List[str]] = ['small', 'medium', 'large'],
-    random_state: Optional[int] = None
+    random_state: Optional[int] = None,
+    fraction_nan: Optional[float] = 0.13
 ) -> pd.Series:
     """
     Create a series of random items from a distribution.
@@ -332,6 +333,8 @@ def random_data(
         The list of strings for the distribution of categories.
     random_state : Optional[int] = None
         The random number seed.
+    fraction_nan : Option[float] = 0.13
+        The fraction of cells to be made np.NaN.
 
     Returns
     -------
@@ -540,7 +543,9 @@ def random_data(
                 size=size,
                 random_state=random_state
                 )
-            ).astype(dtype='Int64')
+            )
+            series[series.sample(frac=fraction_nan).index] = np.NaN
+            series = series.astype(dtype='Int64')
         elif distribution == 'randint':
             series = pd.Series(eval(distribution).rvs(
                 low=low,
