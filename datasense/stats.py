@@ -562,7 +562,9 @@ def random_data(
                 size=size,
                 random_state=random_state
                 )
-            ).astype(dtype='boolean')
+            )
+            series[series.sample(frac=fraction_nan).index] = np.NaN
+            series = series.astype(dtype='boolean')
         elif distribution == 'bool':
             series = pd.Series(eval('randint').rvs(
                 low=0,
