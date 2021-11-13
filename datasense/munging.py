@@ -1363,7 +1363,8 @@ def replace_text_numbers(
 
 def create_dataframe(
     *,
-    size: Optional[int] = 42
+    size: Optional[int] = 42,
+    fraction_nan: Optional[float] = 0.13
 ) -> pd.DataFrame:
     # TODO: why did I create distribution "u"?
     """
@@ -1452,7 +1453,8 @@ def create_dataframe(
             ),
             'yn': random_data(
                 distribution='randInt',
-                size=size
+                size=size,
+                fraction_nan=fraction_nan
             ),
             'z': random_data(
                 distribution='uniform',
