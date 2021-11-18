@@ -700,6 +700,15 @@ def save_file(
             index=index,
             index_label=index_label
         )
+    elif file_name.suffix in ['.xlsb', '.XLSB']:
+        excel_writer = pd.ExcelWriter(file_name)
+        df.to_excel(
+            excel_writer=excel_writer,
+            sheet_name=sheet_name,
+            engine='pyxlsb',
+            index=index,
+            index_label=index_label
+        )
         excel_writer.save()
 
 
