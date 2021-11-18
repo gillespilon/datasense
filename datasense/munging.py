@@ -700,6 +700,7 @@ def save_file(
             index=index,
             index_label=index_label
         )
+    # this works in Linux but not in Windows
     elif file_name.suffix in ['.xlsb', '.XLSB']:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
@@ -2026,7 +2027,7 @@ def ask_save_as_file_name_path(
         The title of the dialog window.
     initialdir : Optional[Path]
         The directory in which the dialogue starts.
-    filetypes : Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+ e   filetypes : Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
         The list of file types to show in the dialog.
     print_bool : Optional[bool] = True
         A boolean. Print message if True.
