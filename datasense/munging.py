@@ -700,6 +700,7 @@ def save_file(
             index=index,
             index_label=index_label
         )
+        excel_writer.save()
     # this works in Linux but not in Windows
     elif file_name.suffix in ['.xlsb', '.XLSB']:
         excel_writer = pd.ExcelWriter(file_name)
