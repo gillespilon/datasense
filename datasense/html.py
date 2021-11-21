@@ -311,7 +311,7 @@ def script_summary(
     '''
     print(
         'Script',
-        script_path,
+        Path(Path().resolve(), script_path),
         f'{action} '
         f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}.'
     )
