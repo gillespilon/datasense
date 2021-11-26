@@ -258,7 +258,7 @@ def report_summary(
         print('</pre>')
         print('<h1>Report summary</h1>')
         print('<pre style="white-space: pre-wrap;">')
-    print(f'Execution time : {round(elapsed_time, 3)} s')
+    print(f'Execution time : {elapsed_time:.3f} s')
     if read_file_names:
         print(f'Files read     : {read_file_names}')
     if save_file_names:
