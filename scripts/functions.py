@@ -1,10 +1,12 @@
 #! /usr/bin/env python3
 '''
 Syntax for functions
+
+- Parameters without a default argument must explicitly called
 '''
 
 from inspect import signature
-from typing import Optional
+from typing import List, Tuple, Union
 
 
 def function_name_syntax(
@@ -21,10 +23,15 @@ def function_name(
     a: float,
     /,
     b: float,
-    c: Optional[float] = 6,
+    c: float = 6,
+    d: Union[float, None] = None,
+    e: Union[float, int, None] = None,
     *,
-    d: float,
-    e: Optional[float] = 4
+    f: float,
+    g: float = 4,
+    h: Union[float, None] = None,
+    i: Union[float, int, None] = None,
+    j: Union[List[str], Tuple[float, int], float, int, None] = None,
 ):
     pass
 
@@ -33,10 +40,10 @@ def main():
     print(signature(function_name))
     for param in signature(function_name).parameters.values():
         print(param, param.kind.description)
-    function_name(1, 2, d=3)
-    function_name(1, b=2, d=3)
-    function_name(1, 2, 13, d=3)
-    function_name(1, 2, c=13, d=3)
+    function_name(1, 2, f=3)
+    function_name(1, b=2, f=3)
+    function_name(1, 2, 13, f=3)
+    function_name(1, 2, c=13, f=3)
 
 
 if __name__ == '__main__':
