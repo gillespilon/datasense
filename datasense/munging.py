@@ -93,7 +93,8 @@ def dataframe_info(
         columns_category_list, columns_category_count,\
         columns_timedelta_list, columns_timedelta_count\
         = process_columns(df=df)
-    print('--------------------------')
+    print('=======================================', end='')
+    print('=======================================')
     print(f'DataFrame information for: {file_in}')
     print()
     print(f'Rows total        : {rows_in_count}')
