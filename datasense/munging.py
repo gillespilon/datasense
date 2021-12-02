@@ -546,6 +546,8 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     columns_empty_count = len(columns_empty_list)
     columns_non_empty_count = columns_in_count - columns_empty_count
     df = df.drop(columns_empty_list, axis='columns')
+    # ensure all column labels are strings
+    df.columns = [str(column) for column in df.columns]
     columns_non_empty_list = sorted(df.columns)
     columns_bool_list = find_bool_columns(df=df)
     columns_bool_count = len(columns_bool_list)
