@@ -87,8 +87,11 @@ def plot_scatter_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -201,8 +204,11 @@ def plot_scatter_x_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -300,8 +306,11 @@ def plot_line_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -418,8 +427,11 @@ def plot_line_x_y(
     >>> )
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -564,8 +576,11 @@ def plot_scatter_scatter_x_y1_y2(
     >>> ax.legend(frameon=False)
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -912,8 +927,11 @@ def plot_scatter_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -1053,8 +1071,11 @@ def plot_line_line_y1_y2(
     >>> )
     >>> plt.show()
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     X = pd.Series(range(1, y1.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -1146,8 +1167,11 @@ def plot_line_line_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -1242,8 +1266,11 @@ def plot_line_line_line_x_y1_y2_y3(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
             format_dates(fig, ax)
@@ -1742,8 +1769,11 @@ def probability_plot(
     >>> fig, ax = ds.probability_plot(data=data)
     >>> plt.show()
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     (osm, osr), (slope, intercept, r) = probplot(
         x=data,
         dist=distribution,
@@ -1899,8 +1929,11 @@ def plot_histogram(
     >>>     color='#33bbee'
     >>> )
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if bin_width and not bin_range:
         x = (s.max() - s.min()) / bin_width
         number_bins = math.ceil(x)
@@ -2044,8 +2077,11 @@ def plot_horizontal_bars(
     >>> )
     >>> ax.set_xticklabels(labels=x_labels, rotation=45)
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.barh(
         y=y,
         width=width,
@@ -2110,8 +2146,11 @@ def plot_vertical_bars(
     >>>>    width=0.4
     >>> )
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.bar(
         x=x,
         height=height,
@@ -2174,8 +2213,11 @@ def plot_pie(
     >>>     ]
     >>> )
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.pie(
         x=x,
         labels=labels,
@@ -2315,8 +2357,11 @@ def plot_stacked_bars(
     >>> )
     >>> fig.legend(frameon=False, loc='upper right')
     """
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.bar(
         x=x,
         height=height1,
