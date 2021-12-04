@@ -792,8 +792,11 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>> ax.legend(frameon=False)
     >>> plt.show()
     '''
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if (X1.dtype and X2.dtype) in ['datetime64[ns]']:
             format_dates(fig, ax)
