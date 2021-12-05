@@ -1381,8 +1381,11 @@ def plot_scatterleft_scatterright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax1 = fig.add_subplot(111)
+    fig, ax1 = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -1480,8 +1483,11 @@ def plot_lineleft_lineright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax1 = fig.add_subplot(111)
+    fig, ax1 = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -1575,8 +1581,11 @@ def plot_barleft_lineright_x_y1_y2(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
     '''
-    fig = plt.figure(figsize=figsize)
-    ax1 = fig.add_subplot(111)
+    fig, ax1 = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
@@ -1694,8 +1703,11 @@ def plot_pareto(
     total_y = df[y.name].sum()
     df['percentage'] = df[y.name] / total_y * 100
     df['cumulative_percentage'] = df['percentage'].cumsum(skipna=True)
-    fig = plt.figure(figsize=figsize)
-    ax1 = fig.add_subplot(111)
+    fig, ax1 = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax2 = ax1.twinx()
     ax1.bar(
         x=df[X.name],
