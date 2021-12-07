@@ -82,10 +82,10 @@ def page_break() -> None:
 
 
 def html_begin(
-    output_url: str,
     *,
-    header_title: Optional[str] = 'Report',
-    header_id: Optional[str] = 'report',
+    output_url: str = 'html_report.html',
+    header_title: str = 'Report',
+    header_id: str = 'report',
 ) -> IO[str]:
     """
     Open a file to write html and set an hmtl header.
