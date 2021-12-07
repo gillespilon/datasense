@@ -718,28 +718,28 @@ def save_file(
 
 
 def read_file(
-    file_name: Union[str, Path],
     *,
+    file_name: Union[str, Path],
     header: Union[int, List[int]] = 0,
-    skiprows: Optional[List[int]] = None,
-    column_names_dict: Optional[Dict[str, str]] = {},
-    index_columns: Optional[List[str]] = [],
-    usecols: Optional[List[str]] = None,
-    dtype: Optional[dict] = None,
-    converters: Optional[dict] = None,
-    parse_dates: Optional[List[str]] = False,
-    date_parser: Optional[Callable] = None,
-    datetime_format: Optional[str] = None,
-    time_delta_columns: Optional[List[str]] = [],
-    category_columns: Optional[List[str]] = [],
-    integer_columns: Optional[List[str]] = [],
-    float_columns: Optional[List[str]] = [],
-    boolean_columns: Optional[List[str]] = [],
-    object_columns: Optional[List[str]] = [],
-    sort_columns: Optional[List[str]] = [],
-    sort_columns_bool: Optional[List[bool]] = [],
-    sheet_name: Optional[str] = False,
-    nrows: Optional[int] = None
+    skiprows: Union[List[int], None] = None,
+    column_names_dict: Dict[str, str] = {},
+    index_columns: List[str] = [],
+    usecols: Union[List[str], None] = None,
+    dtype: Union[dict, None] = None,
+    converters: Union[dict, None] = None,
+    parse_dates: List[str] = False,
+    date_parser: Union[Callable, None] = None,
+    datetime_format: Union[str, None] = None,
+    time_delta_columns: List[str] = [],
+    category_columns: List[str] = [],
+    integer_columns: List[str] = [],
+    float_columns: List[str] = [],
+    boolean_columns: List[str] = [],
+    object_columns: List[str] = [],
+    sort_columns: List[str] = [],
+    sort_columns_bool: List[bool] = [],
+    sheet_name: str = False,
+    nrows: Union[int, None] = None
 ) -> pd.DataFrame:
     """
     Create a dataframe from an external file.
