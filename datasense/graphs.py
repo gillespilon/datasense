@@ -120,9 +120,9 @@ def plot_scatter_y(
 
 
 def plot_scatter_x_y(
+    *,
     X: pd.Series,
     y: pd.Series,
-    *,
     figsize: Optional[Tuple[float, float]] = None,
     smoothing: Optional[str] = None,
     number_knots: Optional[int] = None,
