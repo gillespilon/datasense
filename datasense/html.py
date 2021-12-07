@@ -2,7 +2,7 @@
 HTML and report functions
 """
 
-from typing import IO, List, Optional
+from typing import IO, List, NoReturn, Optional
 from datetime import datetime
 from pathlib import Path
 import webbrowser
@@ -15,7 +15,7 @@ def html_header(
     *,
     header_title: Optional[str] = 'Report',
     header_id: str = 'report'
-) -> None:
+) -> NoReturn:
     """
     Create an html header.
 
@@ -53,7 +53,7 @@ def html_header(
     )
 
 
-def html_footer() -> None:
+def html_footer() -> NoReturn:
     """
     Create an html footer.
 
@@ -66,7 +66,7 @@ def html_footer() -> None:
     print('</html>')
 
 
-def page_break() -> None:
+def page_break() -> NoReturn:
     """
     Create an html page break.
 
@@ -94,9 +94,9 @@ def html_begin(
     ----------
     output_url : str
         The file name for the html output.
-    header_title : Optional[str] = 'Report'
+    header_title : str = 'Report'
         The file title.
-    header_id : Optional[str] = 'report'
+    header_id : str = 'report'
         The id for the header_title.
 
     Returns
@@ -137,7 +137,7 @@ def html_begin(
 def html_end(
     original_stdout: IO[str],
     output_url: str
-) -> None:
+) -> NoReturn:
     """
     Create an html footer, close an html file, and open an html file in
     a new tab in a web browser.
@@ -173,7 +173,7 @@ def html_figure(
     file_name: str,
     *,
     caption: Optional[str] = None
-) -> None:
+) -> NoReturn:
     """
     Print an html tag for a figure.
 
@@ -221,7 +221,7 @@ def report_summary(
     targets: Optional[List[str]] = None,
     features: Optional[List[str]] = None,
     number_knots: Optional[List[int]] = None
-) -> None:
+) -> NoReturn:
     """
     Create a report summary.
 
@@ -275,7 +275,7 @@ def script_summary(
     *,
     script_path: Path,
     action: str = 'run'
-):
+) -> NoReturn:
     '''
     Print script name and time of execution.
 
@@ -283,7 +283,7 @@ def script_summary(
     ----------
     script_path : Path
         The path of the script file.
-    action : Optional[str] = 'run'
+    action : str = 'run'
         An action message: run, started, finished, etc.
 
     Examples
@@ -326,7 +326,7 @@ def sync_directories(
     twoway: Optional[bool] = False,
     purge: Optional[bool] = False,
     verbose: Optional[bool] = True
-) -> None:
+) -> NoReturn:
     """
     Parameters
     ----------
