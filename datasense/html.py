@@ -272,9 +272,9 @@ def report_summary(
 
 
 def script_summary(
-    script_path: Path,
     *,
-    action: Optional[str] = 'run'
+    script_path: Path,
+    action: str = 'run'
 ):
     '''
     Print script name and time of execution.
