@@ -2,7 +2,7 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, Optional, Tuple, Union, Pattern
+from typing import Callable, Dict, List, NoReturn, Optional, Tuple, Union, Pattern
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
@@ -1964,10 +1964,10 @@ def ask_directory_path(
 
 
 def ask_open_file_name_path(
-    title: str,
     *,
-    initialdir: Optional[Path] = None,
-    filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+    title: str,
+    initialdir: Union[Path, None] = None,
+    filetypes: Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
 ) -> Path:
     """
     Ask user for the path of the file to open.
@@ -2016,11 +2016,11 @@ def ask_open_file_name_path(
 
 
 def ask_save_as_file_name_path(
-    title: str,
     *,
-    initialdir: Optional[Path] = None,
-    filetypes: Optional[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')],
-    print_bool: Optional[bool] = True
+    title: str,
+    initialdir: Union[Path, None] = None,
+    filetypes: Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')],
+    print_bool: bool = True
 ) -> Path:
     """
     Ask user for the path of the file to save as.
