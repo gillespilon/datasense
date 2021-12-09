@@ -135,6 +135,7 @@ def html_begin(
 
 
 def html_end(
+    *,
     original_stdout: IO[str],
     output_url: str
 ) -> NoReturn:
