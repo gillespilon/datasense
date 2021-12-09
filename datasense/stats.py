@@ -11,7 +11,7 @@ Statistical analysis
 """
 
 from datetime import datetime, timedelta
-from typing import List, Optional
+from typing import List
 import random
 import sys
 
@@ -31,6 +31,7 @@ pd.options.display.max_rows = 600
 
 
 def nonparametric_summary(
+    *,
     series: pd.Series,
     alphap: float = 1/3,
     betap: float = 1/3
@@ -130,7 +131,10 @@ def nonparametric_summary(
     })
 
 
-def parametric_summary(series: pd.Series) -> pd.Series:
+def parametric_summary(
+    *,
+    series: pd.Series
+) -> pd.Series:
     """
     Return parametric statistics.
 
@@ -168,6 +172,7 @@ def parametric_summary(series: pd.Series) -> pd.Series:
 
 
 def cubic_spline(
+    *,
     df: pd.DataFrame,
     abscissa: str,
     ordinate: str
@@ -231,11 +236,11 @@ def cubic_spline(
 
 
 def natural_cubic_spline(
+    *,
     X: pd.Series,
     y: pd.Series,
     number_knots: int,
-    *,
-    list_knots: Optional[List[int]] = None
+    list_knots: List[int] = None
 ) -> Pipeline:
     """
     Piecewise natural cubic spline helper function
@@ -254,7 +259,7 @@ def natural_cubic_spline(
         The data series of the ordinate.
     number_knots : int
         The number of knots for the spline.
-    list_knots : Optional[List[int]] = None
+    list_knots : List[int] = None
         A list of specific knots.
 
     Returns
@@ -299,16 +304,16 @@ def natural_cubic_spline(
 
 def random_data(
     *,
-    distribution: Optional[str] = 'norm',
-    size: Optional[int] = 42,
-    loc: Optional[float] = 0,
-    scale: Optional[float] = 1,
-    low: Optional[int] = 13,
-    high: Optional[int] = 70,
-    strings: Optional[List[str]] = ['female', 'male'],
-    categories: Optional[List[str]] = ['small', 'medium', 'large'],
-    random_state: Optional[int] = None,
-    fraction_nan: Optional[float] = 0.13
+    distribution: str = 'norm',
+    size: int = 42,
+    loc: float = 0,
+    scale: float = 1,
+    low: int = 13,
+    high: int = 70,
+    strings: List[str] = ['female', 'male'],
+    categories: List[str] = ['small', 'medium', 'large'],
+    random_state: int = None,
+    fraction_nan: float = 0.13
 ) -> pd.Series:
     """
     Create a series of random items from a distribution.
@@ -323,15 +328,15 @@ def random_data(
         The center of a distribution.
     scale : float = 1
         The spread of a distribution.
-    low : Optional[int] = 13,
+    low : int = 13,
         The low value (inclusive) for the integer distribution.
-    high : Optional[int] = 70,
+    high : int = 70,
         The high value (exclusive) for the integer distribution.
-    strings : Optional[List[str]] = ['female', 'male'],
+    strings : List[str] = ['female', 'male'],
         The list of strings for the distribution of strings.
-    categories : Optional[List[str]] = ['small', 'medium', 'large'],
+    categories : List[str] = ['small', 'medium', 'large'],
         The list of strings for the distribution of categories.
-    random_state : Optional[int] = None
+    random_state : int = None
         The random number seed.
     fraction_nan : Option[float] = 0.13
         The fraction of cells to be made np.NaN.
@@ -618,53 +623,53 @@ def random_data(
 
 def datetime_data(
     *,
-    start_year: Optional[str] = None,
-    start_month: Optional[str] = None,
-    start_day: Optional[str] = None,
-    start_hour: Optional[str] = None,
-    start_minute: Optional[str] = None,
-    start_second: Optional[str] = None,
-    end_year: Optional[str] = None,
-    end_month: Optional[str] = None,
-    end_day: Optional[str] = None,
-    end_hour: Optional[str] = None,
-    end_minute: Optional[str] = None,
-    end_second: Optional[str] = None,
-    time_delta_days: Optional[int] = 41,
-    time_delta_hours: Optional[int] = 24
+    start_year: str = None,
+    start_month: str = None,
+    start_day: str = None,
+    start_hour: str = None,
+    start_minute: str = None,
+    start_second: str = None,
+    end_year: str = None,
+    end_month: str = None,
+    end_day: str = None,
+    end_hour: str = None,
+    end_minute: str = None,
+    end_second: str = None,
+    time_delta_days: int = 41,
+    time_delta_hours: int = 24
 ) -> pd.Series:
     """
     Create a series of datetime data.
 
     Parameters
     ----------
-    start_year : Optional[str] = None,
+    start_year : str = None,
         The start year of the series.
-    start_month : Optional[str] = None,
+    start_month : str = None,
         The start month of the series.
-    start_day : Optional[str] = None,
+    start_day : str = None,
         The start day of the series.
-    start_hour : Optional[str] = None,
+    start_hour : str = None,
         The start hour of the series.
-    start_minute : Optional[str] = None,
+    start_minute : str = None,
         The start minute of the series.
-    start_second : Optional[str] = None,
+    start_second : str = None,
         The start second of the series.
-    end_year : Optional[str] = None,
+    end_year : str = None,
         The end year of the series.
-    end_month : Optional[str] = None,
+    end_month : str = None,
         The end month of the series.
-    end_day : Optional[str] = None,
+    end_day : str = None,
         The end day of the series.
-    end_hour : Optional[str] = None,
+    end_hour : str = None,
         The end hour of the series.
-    end_minute : Optional[str] = None,
+    end_minute : str = None,
         The end minute of the series.
-    end_second : Optional[str] = None,
+    end_second : str = None,
         The end second of the series.
-    time_delta_days : Optional[int] = 42,
+    time_delta_days : int = 42,
         The daily increment for the series.
-    time_delta_hours : Optional[int] = 24
+    time_delta_hours : int = 24
         The hourly increment for the series.
 
     Returns
