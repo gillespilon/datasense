@@ -2,7 +2,7 @@
 HTML and report functions
 """
 
-from typing import IO, List, NoReturn, Optional
+from typing import IO, List, NoReturn
 from datetime import datetime
 from pathlib import Path
 import webbrowser
