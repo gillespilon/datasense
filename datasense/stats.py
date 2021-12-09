@@ -743,7 +743,7 @@ def datetime_data(
 
 def timedelta_data(
     *,
-    time_delta_days: Optional[int] = 41
+    time_delta_days: int = 41
 ) -> pd.Series:
     # TODO: Add other parameters beyond time_delta_days
     """
@@ -751,7 +751,7 @@ def timedelta_data(
 
     Parameters
     ----------
-    time_delta_days : Optional[int] = 41
+    time_delta_days : int = 41
         The number of rows to create.
 
     Returns
