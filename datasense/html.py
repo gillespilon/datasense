@@ -212,15 +212,15 @@ def html_figure(
 
 
 def report_summary(
+    *,
     start_time: float,
     stop_time: float,
-    *,
-    print_heading: Optional[bool] = True,
-    read_file_names: Optional[List[str]] = None,
-    save_file_names: Optional[List[str]] = None,
-    targets: Optional[List[str]] = None,
-    features: Optional[List[str]] = None,
-    number_knots: Optional[List[int]] = None
+    print_heading: bool = True,
+    read_file_names: List[str] = None,
+    save_file_names: List[str] = None,
+    targets: List[str] = None,
+    features: List[str] = None,
+    number_knots: List[int] = None
 ) -> NoReturn:
     """
     Create a report summary.
@@ -231,17 +231,17 @@ def report_summary(
         The start time.
     stop_time : float
         The stop time.
-    print_heading : Optional[bool] = True
+    print_heading : bool = True
         The boolean to print the heading for the report summary.
-    read_file_names : Optional[List[str]] = None
+    read_file_names : List[str] = None
         The list of file names read.
-    save_file_names : Optional[List[str]] = None
+    save_file_names : List[str] = None
         The list of file names saved.
-    targets : Optional[List[str]] = None
+    targets : List[str] = None
         The list of target variables.
-    features : Optional[List[str]] = None
+    features : List[str] = None
         Thje list of feature variables.
-    number_knots : Optional[List[str]] = None
+    number_knots : List[str] = None
         The number of spline knots.
 
     Example
