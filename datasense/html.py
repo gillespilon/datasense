@@ -319,13 +319,13 @@ def script_summary(
 
 
 def sync_directories(
+    *,
     sourcedir: str,
     targetdir: str,
     action: str = 'sync',
-    *,
-    twoway: Optional[bool] = False,
-    purge: Optional[bool] = False,
-    verbose: Optional[bool] = True
+    twoway: bool = False,
+    purge: bool = False,
+    verbose: bool = True
 ) -> NoReturn:
     """
     Parameters
