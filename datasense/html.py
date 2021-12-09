@@ -13,7 +13,7 @@ from dirsync import sync
 
 def html_header(
     *,
-    header_title: Optional[str] = 'Report',
+    header_title: str = 'Report',
     header_id: str = 'report'
 ) -> NoReturn:
     """
