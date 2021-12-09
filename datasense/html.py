@@ -170,9 +170,9 @@ def html_end(
 
 
 def html_figure(
-    file_name: str,
     *,
-    caption: Optional[str] = None
+    file_name: str,
+    caption: str = None
 ) -> NoReturn:
     """
     Print an html tag for a figure.
@@ -181,7 +181,7 @@ def html_figure(
     ----------
     file_name : str
         The file name of the image.
-    caption : Optional[str]
+    caption : str
         The figure caption.
 
     Examples
