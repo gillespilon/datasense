@@ -1727,6 +1727,7 @@ def plot_pareto(
 
 
 def format_dates(
+    *,
     fig: plt.figure,
     ax: axes.Axes
 ) -> None:
