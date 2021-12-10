@@ -1815,16 +1815,16 @@ def despine(ax: axes.Axes) -> None:
 
 
 def plot_histogram(
-    s: pd.Series,
     *,
-    number_bins: Optional[int] = None,
+    s: pd.Series,
+    number_bins: int = None,
     bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
-    figsize: Optional[Tuple[int, int]] = (8, 6),
-    bin_width: Optional[int] = None,
-    edgecolor: Optional[str] = '#ffffff',
-    linewidth: Optional[int] = 1,
-    bin_label_bool: Optional[bool] = False,
-    color: Optional[str] = '#0077bb'
+    figsize: Tuple[int, int] = (8, 6),
+    bin_width: int = None,
+    edgecolor: str = '#ffffff',
+    linewidth: int = 1,
+    bin_label_bool: bool = False,
+    color: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
