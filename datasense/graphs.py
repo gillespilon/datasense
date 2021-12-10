@@ -1542,19 +1542,19 @@ def plot_lineleft_lineright_x_y1_y2(
 
 
 def plot_barleft_lineright_x_y1_y2(
+    *,
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    *,
-    figsize: Optional[Tuple[float, float]] = None,
-    smoothing: Optional[str] = None,
-    number_knots: Optional[int] = None,
-    barwidth: Optional[float] = 10,
-    colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee',
-    linestyle1: Optional[str] = '-',
-    linestyle2: Optional[str] = '-',
-    marker2: Optional[str] = 'o'
+    figsize: Tuple[float, float] = None,
+    smoothing: str = None,
+    number_knots: int = None,
+    barwidth: float = 10,
+    colour1: str = '#0077bb',
+    colour2: str = '#33bbee',
+    linestyle1: str = '-',
+    linestyle2: str = '-',
+    marker2: str = 'o'
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Bar plot of y1 left vertical axis versus X.
