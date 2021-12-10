@@ -2175,13 +2175,13 @@ def plot_vertical_bars(
 
 
 def plot_pie(
+    *,
     x: Union[List[int], List[float]],
     labels: Union[List[int], List[float], List[str]],
-    *,
-    figsize: Optional[Tuple[int, int]] = (8, 6),
-    startangle: Optional[float] = 0,
-    colors: Optional[List[str]] = None,
-    autopct: Optional[str] = '%1.1f%%'
+    figsize: Tuple[int, int] = (8, 6),
+    startangle: float = 0,
+    colors: List[str] = None,
+    autopct: str = '%1.1f%%'
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
