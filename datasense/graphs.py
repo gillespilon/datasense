@@ -2107,14 +2107,14 @@ def plot_horizontal_bars(
 
 
 def plot_vertical_bars(
+    *,
     x: Union[List[int], List[float], List[str]],
     height: Union[List[int], List[float]],
-    *,
-    width: Optional[float] = 0.8,
-    figsize: Optional[Tuple[int, int]] = (8, 6),
-    edgecolor: Optional[str] = '#ffffff',
-    linewidth: Optional[int] = 1,
-    color: Optional[str] = '#0077bb'
+    width: float = 0.8,
+    figsize: Tuple[int, int] = (8, 6),
+    edgecolor: str = '#ffffff',
+    linewidth: int = 1,
+    color: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
