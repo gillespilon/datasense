@@ -1638,16 +1638,16 @@ def plot_barleft_lineright_x_y1_y2(
 
 
 def plot_pareto(
+    *,
     X: pd.Series,
     y: pd.Series,
-    *,
-    figsize: Optional[Tuple[float, float]] = None,
-    width: Optional[float] = 0.8,
-    colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee',
-    marker: Optional[str] = '.',
-    markersize: Optional[float] = 8,
-    linestyle: Optional[str] = '-',
+    figsize: Tuple[float, float] = None,
+    width: float = 0.8,
+    colour1: str = '#0077bb',
+    colour2: str = '#33bbee',
+    marker: str = '.',
+    markersize: float = 8,
+    linestyle: str = '-',
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     X : pd.Series
