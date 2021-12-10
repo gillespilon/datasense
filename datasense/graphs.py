@@ -1127,25 +1127,25 @@ def plot_line_line_y1_y2(
 
 
 def plot_line_line_x_y1_y2(
+    *,
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    *,
-    figsize: Optional[Tuple[float, float]] = None,
-    smoothing: Optional[str] = None,
-    number_knots: Optional[int] = None,
-    marker1: Optional[str] = '.',
-    marker2: Optional[str] = '.',
-    markersize1: Optional[int] = 8,
-    markersize2: Optional[int] = 8,
-    linestyle1: Optional[str] = '-',
-    linestyle2: Optional[str] = '-',
-    linewidth1: Optional[float] = 1,
-    linewidth2: Optional[float] = 1,
-    colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee',
-    labellegendy1: Optional[str] = None,
-    labellegendy2: Optional[str] = None
+    figsize: Tuple[float, float] = None,
+    smoothing: str = None,
+    number_knots: int = None,
+    marker1: str = '.',
+    marker2: str = '.',
+    markersize1: int = 8,
+    markersize2: int = 8,
+    linestyle1: str = '-',
+    linestyle2: str = '-',
+    linewidth1: float = 1,
+    linewidth2: float = 1,
+    colour1: str = '#0077bb',
+    colour2: str = '#33bbee',
+    labellegendy1: str = None,
+    labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Line plot of y1 versus X.
