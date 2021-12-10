@@ -1442,21 +1442,21 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
 
 def plot_lineleft_lineright_x_y1_y2(
+    *,
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    *,
-    figsize: Optional[Tuple[float, float]] = None,
-    smoothing: Optional[str] = None,
-    number_knots: Optional[int] = None,
-    colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee',
-    linestyle1: Optional[str] = '-',
-    linestyle2: Optional[str] = '-',
-    marker1: Optional[str] = '.',
-    marker1size: Optional[float] = 8,
-    marker2: Optional[str] = '.',
-    marker2size: Optional[float] = 8,
+    figsize: Tuple[float, float] = None,
+    smoothing: str = None,
+    number_knots: int = None,
+    colour1: str = '#0077bb',
+    colour2: str = '#33bbee',
+    linestyle1: str = '-',
+    linestyle2: str = '-',
+    marker1: str = '.',
+    marker1size: float = 8,
+    marker2: str = '.',
+    marker2size: float = 8,
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     '''
     Line plot of y1 left vertical axis versus X.
