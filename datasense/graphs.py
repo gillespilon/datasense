@@ -1994,14 +1994,14 @@ def plot_histogram(
 
 
 def plot_horizontal_bars(
+    *,
     y: Union[List[int], List[float], List[str]],
     width: Union[List[int], List[float]],
-    *,
-    height: Optional[float] = 0.8,
-    figsize: Optional[Tuple[int, int]] = (8, 6),
-    edgecolor: Optional[str] = '#ffffff',
-    linewidth: Optional[int] = 1,
-    color: Optional[str] = '#0077bb',
+    height: float = 0.8,
+    figsize: Tuple[int, int] = (8, 6),
+    edgecolor: str = '#ffffff',
+    linewidth: int = 1,
+    color: str = '#0077bb',
     left: Union[datetime, int, float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     '''
