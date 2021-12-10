@@ -1741,14 +1741,14 @@ def format_dates(
 
 
 def probability_plot(
-    data: pd.Series,
     *,
-    figsize: Optional[Tuple[float, float]] = None,
-    distribution: Optional[object] = norm,
-    fit: Optional[bool] = True,
-    plot: Optional[object] = None,
-    colour1: Optional[str] = '#0077bb',
-    colour2: Optional[str] = '#33bbee'
+    data: pd.Series,
+    figsize: Tuple[float, float] = None,
+    distribution: object = norm,
+    fit: bool = True,
+    plot: object = None,
+    colour1: str = '#0077bb',
+    colour2: str = '#33bbee'
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
