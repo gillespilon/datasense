@@ -2176,6 +2176,7 @@ def remove_punctuation(list_dirty: List[str]) -> List[str]:
 
 
 def list_change_case(
+    *,
     list_dirty: List[str],
     case: str
 ) -> List[str]:
