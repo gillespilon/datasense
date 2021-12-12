@@ -2076,11 +2076,11 @@ def ask_save_as_file_name_path(
 
 
 def series_replace_string(
+    *,
     series: pd.Series,
     find: str,
     replace: str,
-    *,
-    regex: Optional[bool] = True
+    regex: bool = True
 ) -> pd.Series:
     """
     Find and replace a string in a series.
@@ -2093,7 +2093,7 @@ def series_replace_string(
         The string to find.
     replace : str
         The replacement string.
-    regex : Optional[bool] = True
+    regex : bool = True
         Determines if the passed-in pattern is a regular expression.
 
     Returns
