@@ -2321,6 +2321,7 @@ def list_one_list_two_ops(
 
 
 def parameters_text_replacement(
+    *,
     file_name: Path,
     sheet_name: str,
     usecols: List[str]
