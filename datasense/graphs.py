@@ -479,7 +479,7 @@ def plot_scatter_scatter_x_y1_y2(
     linestyle1: str = 'None',
     linestyle2: str = 'None',
     linewidth1: float = 1,
-    linewidth2: Optional[float] = 1,
+    linewidth2: float = 1,
     colour1: str = '#0077bb',
     colour2: str = '#33bbee',
     labellegendy1: str = None,
