@@ -264,7 +264,7 @@ def natural_cubic_spline(
 
     Returns
     -------
-    p : sklearn.pipeline.Pipeline
+    p : Pipeline
         The model object.
 
     Example
