@@ -243,15 +243,15 @@ def plot_scatter_x_y(
 
 
 def plot_line_y(
-    y: pd.Series,
     *,
-    figsize: Optional[Tuple[float, float]] = None,
-    smoothing: Optional[str] = None,
-    number_knots: Optional[int] = None,
-    marker: Optional[str] = '.',
-    markersize: Optional[float] = 8,
-    linestyle: Optional[str] = '-',
-    colour: Optional[str] = '#0077bb'
+    y: pd.Series,
+    figsize: Tuple[float, float] = None,
+    smoothing: str = None,
+    number_knots: int = None,
+    marker: str = '.',
+    markersize: float = 8,
+    linestyle: str = '-',
+    colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Line plot of y. Optional smoothing applied to y.
