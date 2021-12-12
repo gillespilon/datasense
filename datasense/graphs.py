@@ -26,14 +26,14 @@ import numpy as np
 
 
 def plot_scatter_y(
-    y: pd.Series,
     *,
-    figsize: Optional[Tuple[float, float]] = None,
-    smoothing: Optional[str] = None,
-    number_knots: Optional[int] = None,
-    marker: Optional[str] = '.',
-    markersize: Optional[float] = 8,
-    colour: Optional[str] = '#0077bb'
+    y: pd.Series,
+    figsize: Tuple[float, float] = None,
+    smoothing: str = None,
+    number_knots: int = None,
+    marker: str = '.',
+    markersize: float = 8,
+    colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
     '''
     Scatter plot of y. Optional smoothing applied to y.
