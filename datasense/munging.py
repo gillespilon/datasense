@@ -2146,7 +2146,10 @@ def list_directories_within_directory(
     return directory_list
 
 
-def remove_punctuation(list_dirty: List[str]) -> List[str]:
+def remove_punctuation(
+    *,
+    list_dirty: List[str]
+) -> List[str]:
     '''
     Remove punctuation from list items.
 
