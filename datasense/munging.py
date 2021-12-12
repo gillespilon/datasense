@@ -2119,6 +2119,7 @@ def series_replace_string(
 
 
 def list_directories_within_directory(
+    *,
     path: Union[str, Path]
 ) -> List[str]:
     '''
