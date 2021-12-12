@@ -338,7 +338,7 @@ def random_data(
         The list of strings for the distribution of categories.
     random_state : int = None
         The random number seed.
-    fraction_nan : Option[float] = 0.13
+    fraction_nan : float = 0.13
         The fraction of cells to be made np.NaN.
 
     Returns
@@ -667,7 +667,7 @@ def datetime_data(
         The end minute of the series.
     end_second : str = None,
         The end second of the series.
-    time_delta_days : int = 42,
+    time_delta_days : int = 41,
         The daily increment for the series.
     time_delta_hours : int = 24
         The hourly increment for the series.
