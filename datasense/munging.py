@@ -1920,20 +1920,20 @@ def print_list_by_item(
 
 def ask_directory_path(
     *,
-    title: Optional[str] = 'Select directory',
-    initialdir: Optional[Path] = None,
-    print_bool: Optional[bool] = False
+    title: str = 'Select directory',
+    initialdir: Path = None,
+    print_bool: bool = False
 ) -> Path:
     """
     Ask user for directory.
 
     Parameters
     ----------
-    title : Optional[str] = 'Select directory'
+    title : str = 'Select directory'
         The title of the dialog window.
-    initialdir : Optional[Path]
+    initialdir : Path
         The directory in which the dialogue starts.
-    print_bool : Optional[bool] = True
+    print_bool : bool = True
         A boolean. Print message if True.
 
     Returns
