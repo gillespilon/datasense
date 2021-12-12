@@ -11,7 +11,7 @@ Colours used are colour-blind friendly.
     grey    '#bbbbbb'
 '''
 
-from typing import List, NoReturn, Optional, Tuple, Union
+from typing import List, NoReturn, Tuple, Union
 from datetime import datetime
 import math
 
