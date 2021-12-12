@@ -2,7 +2,8 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, NoReturn, Optional, Tuple, Union, Pattern
+from typing import Callable, Dict, List, NoReturn, Optional, Tuple, Union,\
+    Pattern
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
@@ -2403,7 +2404,11 @@ def parameters_dict_replacement(
     return dictionary
 
 
-def quit_sap_excel():
+def quit_sap_excel() -> NoReturn:
+    '''
+    Several applications, Excel in particular, need to be closed otherwise
+    they may cause a function to crash.
+    '''
     for proc in psutil.process_iter():
         if proc.name().lower() == "excel.exe":
             proc.kill()
