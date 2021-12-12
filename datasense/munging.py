@@ -2249,6 +2249,7 @@ def listone_contains_all_listtwo_substrings(
 
 
 def list_one_list_two_ops(
+    *,
     list_one: Union[List[str], List[int], List[float]],
     list_two: Union[List[str], List[int], List[float]],
     action: str
