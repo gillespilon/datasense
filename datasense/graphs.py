@@ -49,17 +49,17 @@ def plot_scatter_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : Optional[str] = '.'
+    marker : str = '.'
         The type of plot point.
-    markersize : Optional[float] = 8
+    markersize : float = 8
         The size of the plot point (pt).
-    colour : Optional[str] = '#0077bb'
+    colour : str = '#0077bb'
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -144,17 +144,17 @@ def plot_scatter_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : Optional[str] = '.'
+    marker : str = '.'
         The type of plot point.
-    markersize : Optional[float] = 8
+    markersize : float = 8
         The size of the plot point (pt).
-    colour : Optional[str] = '#0077bb'
+    colour : str = '#0077bb'
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -267,17 +267,17 @@ def plot_line_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : Optional[str] = '.'
+    marker : str = '.'
         The type of plot point.
-    markersize : Optional[float] = 8
+    markersize : float = 8
         The size of the plot point (pt).
-    colour : Optional[str] = '#0077bb'
+    colour : str = '#0077bb'
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -364,19 +364,19 @@ def plot_line_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : Optional[str] = '.'
+    marker : str = '.'
         The type of plot point.
-    markersize : Optional[float] = 8
+    markersize : float = 8
         The size of the plot point (pt).
-    linestyle : Optional[str] = '-'
+    linestyle : str = '-'
         The style of the line joining the points.
-    colour : Optional[str] = '#0077bb'
+    colour : str = '#0077bb'
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -505,35 +505,35 @@ def plot_scatter_scatter_x_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : Optional[str] = '.'
+    marker1 : str = '.'
         The type of plot point for y1.
-    marker2 : Optional[str] = '.'
+    marker2 : str = '.'
         The type of plot point for y2.
-    markersize1 : Optional[int] = 8
+    markersize1 : int = 8
         The size of the plot point for y1.
-    markersize2 : Optional[int] = 8
+    markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : Optional[str] = 'None'
+    linestyle1 : str = 'None'
         The style of the line for y1.
-    linestyle2 : Optional[str] = 'None'
+    linestyle2 : str = 'None'
         The style of the line for y2.
-    linewidth1 : Optional[float] = 0
+    linewidth1 : float = 0
         The width of the line for y1.
-    linewidth2 : Optional[float] = 0
+    linewidth2 : float = 0
         The width of the line for y2.
-    colour1 : Optional[str] = '#0077bb'
+    colour1 : str = '#0077bb'
         The colour of the line for y1.
-    colour2 : Optional[str] = '#33bbee'
+    colour2 : str = '#33bbee'
         The colour of the line for y2.
-    labellegendy1 : Optional[str] = None
+    labellegendy1 : str = None
         The legend label of the line y1.
-    labellegendy2 : Optional[str] = None
+    labellegendy2 : str = None
         The legend label of the line y2.
 
     Returns
@@ -699,35 +699,35 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : Optional[str] = '.'
+    marker1 : str = '.'
         The type of plot point for y1.
-    marker2 : Optional[str] = '.'
+    marker2 : str = '.'
         The type of plot point for y2.
-    markersize1 : Optional[int] = 8
+    markersize1 : int = 8
         The size of the plot point for y1.
-    markersize2 : Optional[int] = 8
+    markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : Optional[str] = 'None'
+    linestyle1 : str = 'None'
         The style of the line for y1.
-    linestyle2 : Optional[str] = 'None'
+    linestyle2 : str = 'None'
         The style of the line for y2.
-    linewidth1 : Optional[float] = 0
+    linewidth1 : float = 0
         The width of the line for y1.
-    linewidth2 : Optional[float] = 0
+    linewidth2 : float = 0
         The width of the line for y2.
-    colour1 : Optional[str] = '#0077bb'
+    colour1 : str = '#0077bb'
         The colour of the line for y1.
-    colour2 : Optional[str] = '#33bbee'
+    colour2 : str = '#33bbee'
         The colour of the line for y2.
-    labellegendy1 : Optional[str] = None
+    labellegendy1 : str = None
         The legend label of the line y1.
-    labellegendy2 : Optional[str] = None
+    labellegendy2 : str = None
         The legend label of the line y2.
 
     Returns
@@ -1022,35 +1022,35 @@ def plot_line_line_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : Optional[str] = None
+    smoothing : str = None
         The type of smoothing to apply.
-    number_knots : Optional[int] = None
+    number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : Optional[str] = '.'
+    marker1 : str = '.'
         The type of plot point for y1.
-    marker2 : Optional[str] = '.'
+    marker2 : str = '.'
         The type of plot point for y2.
-    markersize1 : Optional[int] = 8
+    markersize1 : int = 8
         The size of the plot point for y1.
-    markersize2 : Optional[int] = 8
+    markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : Optional[str] = 'None'
+    linestyle1 : str = 'None'
         The style of the line for y1.
-    linestyle2 : Optional[str] = 'None'
+    linestyle2 : str = 'None'
         The style of the line for y2.
-    linewidth1 : Optional[float] = 0
+    linewidth1 : float = 0
         The width of the line for y1.
-    linewidth2 : Optional[float] = 0
+    linewidth2 : float = 0
         The width of the line for y2.
-    colour1 : Optional[str] = '#0077bb'
+    colour1 : str = '#0077bb'
         The colour of the line for y1.
-    colour2 : Optional[str] = '#33bbee'
+    colour2 : str = '#33bbee'
         The colour of the line for y2.
-    labellegendy1 : Optional[str] = None
+    labellegendy1 : str = None
         The legend label of the line y1.
-    labellegendy2 : Optional[str] = None
+    labellegendy2 : str = None
         The legend label of the line y2.
 
     Returns
@@ -1371,9 +1371,9 @@ def plot_scatterleft_scatterright_x_y1_y2(
         Optional: natural_cubic_spline
     number_knots: positive integer
         The number of knots to create.
-    linestyle1 : Optional[str] = 'None'
+    linestyle1 : str = 'None'
         The style of the line joining the points.
-    linestyle2 : Optional[str] = 'None'
+    linestyle2 : str = 'None'
         The style of the line joining the points.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1473,9 +1473,9 @@ def plot_lineleft_lineright_x_y1_y2(
         Optional: natural_cubic_spline
     number_knots: positive integer
         The number of knots to create.
-    linestyle1: Optional[str] = '-'
+    linestyle1: str = '-'
         The style of the line joining the points.
-    linestyle2: Optional[str] = '-'
+    linestyle2: str = '-'
         The style of the line joining the points.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1571,9 +1571,9 @@ def plot_barleft_lineright_x_y1_y2(
         Optional: natural_cubic_spline
     number_knots: positive integer
         The number of knots to create.
-    linestyle1: Optional[str] = '-'
+    linestyle1: str = '-'
         The style of the line joining the points.
-    linestyle2: Optional[str] = '-'
+    linestyle2: str = '-'
         The style of the line joining the points.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -1654,19 +1654,19 @@ def plot_pareto(
         The data to plot on the ordinate.
     y : pd.Series
         The data to plot on the abscissa.
-    figsize : Optional[Tuple[float, float]] = None
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    width : Optional[float] = 0.8
+    width : float = 0.8
         The width of the bars (in).
-    colour1 : Optional[str] = '#0077bb'
+    colour1 : str = '#0077bb'
         The colour of the line for y1.
-    colour2 : Optional[str] = '#33bbee'
+    colour2 : str = '#33bbee'
         The colour of the line for y2.
-    marker : Optional[str] = '.'
+    marker : str = '.'
         The type of plot point.
-    markersize : Optional[float] = 8
+    markersize : float = 8
         The size of the plot point (pt).
-    linestyle : Optional[str] = '-'
+    linestyle : str = '-'
         The style of the line joining the points.
 
     Returns
@@ -1759,13 +1759,13 @@ def probability_plot(
     ----------
     data : pd.Series
         A pandas Series.
-    figsize : Optional[Tuple[flot, float]]
+    figsize : Tuple[float, float]
         The (width, height) of the figure (in, in).
-    distribution : Optional[object] = norm
+    distribution : object = norm
         Fit a normal distribution by default.
-    fit : Optional[bool] = True
+    fit : bool = True
         Fit a least-squares regression line to the data if True.
-    plot : Optional[object] = None
+    plot : object = None
         If given, plot the quantiles and least-squares fit.
 
     Returns
@@ -1832,22 +1832,22 @@ def plot_histogram(
     ----------
     s : pd.Series
         The input series.
-    number_bins : Optional[int] = None
+    number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
     bin_range : Union[Tuple[int, int],Tuple[int, int]] = None,
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
-    figsize : Optional[Tuple[int, int]] = (8, 6),
+    figsize : Tuple[int, int] = (8, 6),
         The figure size width, height (inch).
-    bin_width : Optional[int] = None,
+    bin_width : int = None,
         The width of the bin in same units as the series s.
-    edgecolor : Optional[str] = '#ffffff',
+    edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
-    linewidth : Optional[int] = 1,
+    linewidth : int = 1,
         The bar edges line width (point).
-    bin_label_bool : Optional[bool] = False
+    bin_label_bool : bool = False
         If True, label the bars with count and percentage of total.
-    color : Optional[str] = '#0077bb'
+    color : str = '#0077bb'
         The color of the bar faces.
 
     Returns
@@ -2012,15 +2012,15 @@ def plot_horizontal_bars(
         The y coordinates of the bars.
     width : Union[List[int], List[float]],
         The width(s) of the bars.
-    height : Optional[float] = 0.8,
+    height : float = 0.8,
         The height of the bars.
-    figsize : Optional[Tuple[int, int]] = (8, 6),
+    figsize : Tuple[int, int] = (8, 6),
         The figure size width, height (inch).
-    edgecolor : Optional[str] = '#ffffff',
+    edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
-    linewidth : Optional[int] = 1,
+    linewidth : int = 1,
         The bar edges line width (point).
-    color : Optional[str] = '#0077bb'
+    color : str = '#0077bb'
         The color of the bar faces.
     left : Union[datetime, int, float] = None
         The x coordinates of the left sides of the bars.
@@ -2124,15 +2124,15 @@ def plot_vertical_bars(
         The x coordinates of the bars.
     height : Union[List[int], List[float]],
         The height(s) of the bars.
-    width : Optional[float] = 0.8,
+    width : float = 0.8,
         The width of the bars.
-    figsize : Optional[Tuple[int, int]] = (8, 6),
+    figsize : Tuple[int, int] = (8, 6),
         The figure size width, height (inch).
-    edgecolor : Optional[str] = '#ffffff',
+    edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
-    linewidth : Optional[int] = 1,
+    linewidth : int = 1,
         The bar edges line width (point).
-    color : Optional[str] = '#0077bb'
+    color : str = '#0077bb'
         The color of the bar faces.
 
     Returns
@@ -2191,9 +2191,9 @@ def plot_pie(
         The wedge sizes.
     labels : Union[List[int], List[float], List[str]],
         The labels of the wedges.
-    startangle : Optional[float] = 0,
+    startangle : float = 0,
         The start angle of the pie, counterclockwise from the x axis.
-    colors : Optional[List[str]] = None
+    colors : List[str] = None
         The color of the wedges.
     autopct : str
         Label the wedges with their numeric value. If None, no label.
@@ -2274,37 +2274,37 @@ def plot_stacked_bars(
         The x coordinates of the bars.
     height1 : Union[List[int], List[float]],
         The height of the level 1 bars.
-    label1: Optional[str] = None,
+    label1: str = None,
         The label of the level 1 bars.
     height2 : Union[List[int], List[float]],
         The height of the level 2 bars.
-    label2: Optional[str] = None,
+    label2: str = None,
         The label of the level 2 bars.
     height3 : Union[List[int], List[float]],
         The height of the level 3 bars.
-    label3: Optional[str] = None,
+    label3: str = None,
         The label of the level 3 bars.
     height4 : Union[List[int], List[float]],
         The height of the level 4 bars.
-    label4: Optional[str] = None,
+    label4: str = None,
         The label of the level 4 bars.
     height5 : Union[List[int], List[float]],
         The height of the level 5 bars.
-    label5: Optional[str] = None,
+    label5: str = None,
         The label of the level 5 bars.
     height6 : Union[List[int], List[float]],
         The height of the level 6 bars.
-    label6: Optional[str] = None,
+    label6: str = None,
         The label of the level 6 bars.
     height7 : Union[List[int], List[float]],
         The height of the level 7 bars.
-    label7: Optional[str] = None,
+    label7: str = None,
         The label of the level 7 bars.
-    width : Optional[float] = 0.8,
+    width : float = 0.8,
         The width of the bars.
-    figsize : Optional[Tuple[int, int]] = (8, 6),
+    figsize : Tuple[int, int] = (8, 6),
         The figure size width, height (inch).
-    color: Optional[str] = [
+    color: str = [
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
         '#ee3377', '#bbbbbb'
     ]
