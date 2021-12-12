@@ -2214,6 +2214,7 @@ def list_change_case(
 
 
 def listone_contains_all_listtwo_substrings(
+    *,
     listone: List[str],
     listtwo: List[str]
 ) -> List[str]:
