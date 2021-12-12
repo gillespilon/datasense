@@ -196,7 +196,7 @@ def cubic_spline(
 
     Returns
     -------
-    CubicSpline
+    spline: CubicSpline
         A cubic spline.
 
     Example
@@ -264,7 +264,7 @@ def natural_cubic_spline(
 
     Returns
     -------
-    p : Pipeline
+    p: Pipeline
         The model object.
 
     Example
@@ -343,7 +343,7 @@ def random_data(
 
     Returns
     -------
-    pd.Series
+    series: pd.Series
         A pandas series of random items.
 
     Notes
@@ -674,7 +674,7 @@ def datetime_data(
 
     Returns
     -------
-    pd.Series
+    series: pd.Series
         The datetime series.
 
     Example
