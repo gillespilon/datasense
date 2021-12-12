@@ -11,7 +11,7 @@ Colours used are colour-blind friendly.
     grey    '#bbbbbb'
 '''
 
-from typing import List, Optional, Tuple, Union
+from typing import List, NoReturn, Optional, Tuple, Union
 from datetime import datetime
 import math
 
@@ -1730,7 +1730,7 @@ def format_dates(
     *,
     fig: plt.figure,
     ax: axes.Axes
-) -> None:
+) -> NoReturn:
     '''
     Format dates and ticks for plotting.
     '''
@@ -1799,7 +1799,7 @@ def probability_plot(
     return (fig, ax)
 
 
-def despine(ax: axes.Axes) -> None:
+def despine(ax: axes.Axes) -> NoReturn:
     """
     Remove the top and right spines of a graph.
 
