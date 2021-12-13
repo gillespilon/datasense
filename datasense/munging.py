@@ -325,7 +325,10 @@ def find_object_columns(df: pd.DataFrame) -> List[str]:
     return columns_object
 
 
-def find_timedelta_columns(df: pd.DataFrame) -> List[str]:
+def find_timedelta_columns(
+    *,
+    df: pd.DataFrame
+) -> List[str]:
     """
     Find all timedelta columns of a dataframe.
 
