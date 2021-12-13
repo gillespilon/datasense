@@ -412,7 +412,10 @@ def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
     print()
 
 
-def process_columns(df: pd.DataFrame) -> Tuple[
+def process_columns(
+    *,
+    df: pd.DataFrame
+) -> Tuple[
     pd.DataFrame,
     int,
     int,
