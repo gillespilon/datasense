@@ -299,7 +299,10 @@ def find_int_float_columns(df: pd.DataFrame) -> List[str]:
     return columns_int_float
 
 
-def find_object_columns(df: pd.DataFrame) -> List[str]:
+def find_object_columns(
+    *,
+    df: pd.DataFrame
+) -> List[str]:
     """
     Find all object columns of a dataframe.
 
