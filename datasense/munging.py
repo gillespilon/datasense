@@ -1824,9 +1824,9 @@ def directory_file_list(
 
 
 def directory_file_print(
-    directory: Union[str, Path],
     *,
-    text: Optional[str] = 'Files in directory'
+    directory: Union[str, Path],
+    text: str = 'Files in directory'
 ) -> None:
     """
     Print the files in a path.
@@ -1835,7 +1835,7 @@ def directory_file_print(
     ----------
     path : Path
         The path of the files to print.
-    text : Optional[str]
+    text : str
         The text to print.
 
     Example
