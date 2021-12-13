@@ -617,13 +617,13 @@ def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
 
 
 def save_file(
+    *,
     df: Union[pd.DataFrame, pd.Series],
     file_name: Union[str, Path],
-    *,
-    index: Optional[bool] = False,
-    index_label: Optional[str] = None,
-    sheet_name: Optional[str] = 'sheet_001',
-) -> None:
+    index: bool = False,
+    index_label: str = None,
+    sheet_name: str = 'sheet_001',
+) -> NoReturn:
     """
     Save a DataFrame or Series to a file.
 
@@ -633,11 +633,11 @@ def save_file(
         The dataframe or series to be saved to a file.
     file_name : str
         The name of the file to be saved.
-    index : Optional[bool]
+    index : bool
         If True, creates an index.
-    index_label : Optional[str]
+    index_label : str
         The index label.
-    sheet_name : Optional[str]
+    sheet_name : str
         The name of the worksheet in the workbook.
 
     Examples
@@ -1755,9 +1755,9 @@ def replace_column_values(
 
 
 def directory_file_list(
-    directory: Union[str, Path],
     *,
-    patterns: Optional[List[str]] = None
+    directory: Union[str, Path],
+    patterns: List[str] = None
 ) -> List[Path]:
     """
     Return a list of files within a directory.
