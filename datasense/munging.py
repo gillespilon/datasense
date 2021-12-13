@@ -1857,6 +1857,7 @@ def directory_file_print(
 
 
 def directory_remove_file(
+    *,
     path: Path,
     file_names: List[str]
 ) -> List[str]:
@@ -1889,19 +1890,21 @@ def directory_remove_file(
 
 
 def print_list_by_item(
-    list: List[str],
     *,
-    title: Optional[str] = None,
-    width: Optional[int] = 80
+    list: List[str],
+    title: str = None,
+    width: int = 80
 ) -> None:
     '''
     Print each item of a list.
 
     Parameters
     ----------
-    list : List[str]
+    list : str
         The list of strings to print.
-    width : Optional[int] = 80
+    title : str = None
+        The title to print.
+    width : int = 80
         The width of the output in characters.
 
     Example
