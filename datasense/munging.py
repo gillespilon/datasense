@@ -351,7 +351,10 @@ def find_timedelta_columns(df: pd.DataFrame) -> List[str]:
     return columns_timedelta
 
 
-def number_empty_cells_in_columns(df: pd.DataFrame) -> None:
+def number_empty_cells_in_columns(
+    *,
+    df: pd.DataFrame
+) -> NoReturn:
     """
     Create a table of data type, empty-cell count, and empty-all percentage
     for non-empty columns of a dataframe.
