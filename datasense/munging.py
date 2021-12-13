@@ -578,7 +578,10 @@ def process_columns(df: pd.DataFrame) -> Tuple[
     )
 
 
-def process_rows(df: pd.DataFrame) -> Tuple[pd.DataFrame, int, int, int]:
+def process_rows(
+    *,
+    df: pd.DataFrame
+) -> Tuple[pd.DataFrame, int, int, int]:
     """
     Create various counts of rows of a dataframe.
     Drop duplicate rows.
