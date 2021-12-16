@@ -22,9 +22,9 @@ import numpy as np
 
 
 def dataframe_info(
+    *,
     df: pd.DataFrame,
     file_in: Union[Path, str],
-    *,
     unique_bool: bool = False
 ) -> pd.DataFrame:
     """
@@ -61,6 +61,8 @@ def dataframe_info(
         The input dataframe.
     file_in : Union[Path, str]
         The name of the file from which df was created.
+    unique_bool : bool = False
+        Print unique values of a column if True.
 
     Returns
     -------
@@ -2399,7 +2401,7 @@ def parameters_dict_replacement(
 ) -> Dict[str, str]:
     '''
     Read Excel worksheet.
-    Create dictionary of text replacement key, value paits.
+    Create dictionary of text replacement key, value pairs.
 
     Parameters
     ----------
