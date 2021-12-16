@@ -86,7 +86,7 @@ def dataframe_info(
     >>>     unique_bool=True
     >>> )
     """
-    df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df)
+    df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df=df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count,\
         columns_empty_list, columns_non_empty_list, columns_bool_list,\
         columns_bool_count,\
