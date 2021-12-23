@@ -1301,11 +1301,11 @@ def copy_directory(
 
 
 def replace_text_numbers(
+    *,
     df: pd.DataFrame,
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]],
     old: Union[List[str], List[int], List[float], List[Pattern[str]]],
     new: List[int],
-    *,
     regex: Optional[bool] = True
 ) -> pd.DataFrame:
     """
