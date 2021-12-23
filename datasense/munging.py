@@ -1627,6 +1627,7 @@ def delete_columns(
 
 
 def sort_rows(
+    *,
     df: pd.DataFrame,
     sort_columns: List[str],
     sort_columns_bool: List[bool],
