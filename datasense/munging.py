@@ -1596,6 +1596,7 @@ def delete_rows(
 
 
 def delete_columns(
+    *,
     df: pd.DataFrame,
     columns: List[str]
 ) -> pd.DataFrame:
