@@ -1706,6 +1706,7 @@ def rename_all_columns(
 
 
 def rename_some_columns(
+    *,
     df: pd.DataFrame,
     column_names_dict: Dict[str, str]
 ) -> pd.DataFrame:
