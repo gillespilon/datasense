@@ -1914,7 +1914,7 @@ def print_list_by_item(
     list: List[str],
     title: str = None,
     width: int = 80
-) -> None:
+) -> NoReturn:
     '''
     Print each item of a list.
 
