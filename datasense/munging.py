@@ -1672,6 +1672,7 @@ def sort_rows(
 
 
 def rename_all_columns(
+    *,
     df: pd.DataFrame,
     labels: List[str]
 ) -> pd.DataFrame:
