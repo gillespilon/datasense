@@ -1847,7 +1847,7 @@ def directory_file_print(
     *,
     directory: Union[str, Path],
     text: str = 'Files in directory'
-) -> None:
+) -> NoReturn:
     """
     Print the files in a path.
 
