@@ -1562,6 +1562,7 @@ def create_dataframe_norm(
 
 
 def delete_rows(
+    *,
     df: pd.DataFrame,
     delete_row_criteria:
         Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
