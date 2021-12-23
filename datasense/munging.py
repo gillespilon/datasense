@@ -1265,9 +1265,10 @@ def rename_directory(
 
 
 def copy_directory(
+    *,
     sources: List[str],
     destinations: List[str]
-) -> None:
+) -> NoReturn:
     """
     Delte destination directories (if present) and copy source directories
     to destination directories.
