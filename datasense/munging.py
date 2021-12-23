@@ -1737,9 +1737,9 @@ def rename_some_columns(
 
 
 def replace_column_values(
+    *,
     s: pd.Series,
     replace_dict: Dict[str, str],
-    *,
     regex: Optional[bool] = False
 ) -> pd.Series:
     """
