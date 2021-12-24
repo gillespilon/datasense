@@ -1161,6 +1161,7 @@ def byte_size(
 
 
 def feature_percent_empty(
+    *,
     df: pd.DataFrame,
     columns: List[str],
     threshold: float
