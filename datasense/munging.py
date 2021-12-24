@@ -1125,6 +1125,7 @@ def read_file(
 
 
 def byte_size(
+    *,
     num: np.int64,
     suffix: str = 'B'
 ) -> str:
