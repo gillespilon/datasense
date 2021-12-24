@@ -172,7 +172,10 @@ def find_bool_columns(
     return columns_bool
 
 
-def find_category_columns(df: pd.DataFrame) -> List[str]:
+def find_category_columns(
+    *,
+    df: pd.DataFrame
+) -> List[str]:
     """
     Find all category columns of a dataframe.
 
