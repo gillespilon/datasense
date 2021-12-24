@@ -1225,7 +1225,10 @@ def create_directory(
         Path(directory).mkdir(parents=True, exist_ok=True)
 
 
-def delete_directory(directories: List[str]) -> None:
+def delete_directory(
+    *,
+    directories: List[str]
+) -> NoReturn:
     """
     Delete a list of directories.
 
