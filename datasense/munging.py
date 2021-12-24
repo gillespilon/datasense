@@ -2,7 +2,7 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, NoReturn, Optional, Tuple, Union,\
+from typing import Callable, Dict, List, NoReturn, Tuple, Union,\
     Pattern
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
@@ -784,46 +784,46 @@ def read_file(
     ----------
     file_name : Union[str, Path],
         The name of the file to read.
-    skiprows : Optional[List[int]] = None
+    skiprows : List[int] = None
         The specific row indices to skip.
-    column_names_dict : Optional[List[str]] = {}
+    column_names_dict : List[str] = {}
         The new column names to replace the old column names.
-    index_columns : Optional[List[str]] = []
+    index_columns : List[str] = []
         The columns to use for the dataframe index.
-    usecols : Optional[List[str]] = None
+    usecols : List[str] = None
         The columns to read.
-    dtype: Optional[dict] = None
+    dtype: dict = None
         A dictionary of column names and dtypes.
         NOTE: Nullable Boolean data type is experimental and does not work;
         use .astype() on df after created.
-    converters : Optional[dict] = None
+    converters : dict = None
         Dictionary of functions for converting values in certain columns.
-    parse_dates : Optional[List[str]] = False
+    parse_dates : List[str] = False
         The columns to use to parse date and time.
-    date_parser : Optional[Callable] = None
+    date_parser : Callable = None
         The function to use for parsing date and time, when pandas needs
         extra help.
-    datetime_format : Optional[str] = None
+    datetime_format : str = None
         The str to use for formatting date and time.
-    time_delta_columns : Optional[List[str]] = []
+    time_delta_columns : List[str] = []
         The columns to change to dtype timedelta.
-    category_columns : Optional[List[str]] = []
+    category_columns : List[str] = []
         The columns to change to dtype category.
-    integer_columns : Optional[List[str]] = []
+    integer_columns : List[str] = []
         The columns to change to dtype integer.
-    float_columns : Optional[List[str]] = []
+    float_columns : List[str] = []
         The columns to change to dtype float.
-    boolean_columns : Optional[List[str]] = []
+    boolean_columns : List[str] = []
         The columns to change to dtype boolean.
-    object_columns : Optional[List[str]] = []
+    object_columns : List[str] = []
         The columns to change to dtype object.
-    sort_columns : Optional[List[str]] = []
+    sort_columns : List[str] = []
         The columns on which to sort the dataframe.
-    sort_columns_bool : Optional[List[bool]] = []
+    sort_columns_bool : List[bool] = []
         The booleans for sort_columns.
-    sheet_name : Optional[str] = False
+    sheet_name : str = False
         The name of the worksheet in the workbook.
-    nrows : Optional[int] = None
+    nrows : int = None
         The number of rows to read.
 
     Returns
@@ -1331,7 +1331,7 @@ def replace_text_numbers(
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]],
     old: Union[List[str], List[int], List[float], List[Pattern[str]]],
     new: List[int],
-    regex: Optional[bool] = True
+    regex: bool = True
 ) -> pd.DataFrame:
     """
     Replace text or numbers with text or numbers.
@@ -1346,7 +1346,7 @@ def replace_text_numbers(
         The list of item to replace.
     new : List[int]
         The list of replacement items.
-    regex : Optional[bool] = True
+    regex : bool = True
         Determines if the passed-in pattern is a regular expression.
 
     Returns
@@ -1423,8 +1423,8 @@ def replace_text_numbers(
 
 def create_dataframe(
     *,
-    size: Optional[int] = 42,
-    fraction_nan: Optional[float] = 0.13
+    size: int = 42,
+    fraction_nan: float = 0.13
 ) -> pd.DataFrame:
     # TODO: why did I create distribution "u"?
     """
@@ -1432,7 +1432,7 @@ def create_dataframe(
 
     Parameters
     ----------
-    size : Optional[int] = 42
+    size : int = 42
         The number of rows to create.
 
     Returns
@@ -1527,29 +1527,29 @@ def create_dataframe(
 
 def create_dataframe_norm(
     *,
-    row_count: Optional[int] = 42,
-    column_count: Optional[int] = 13,
-    loc: Optional[float] = 69,
-    scale: Optional[float] = 13,
-    random_state: Optional[int] = None,
-    column_names: Optional[List[str]] = None
+    row_count: int = 42,
+    column_count: int = 13,
+    loc: float = 69,
+    scale: float = 13,
+    random_state: int = None,
+    column_names: List[str] = None
 ) -> pd.DataFrame:
     """
     Create dataframe of random normal data.
 
     Parameters
     ----------
-    row_count : Optional[int] = 42,
+    row_count : int = 42,
         The number of rows to create.
-    column_count : Optional[int] = 13,
+    column_count : int = 13,
         The number of columns to create.
-    loc : Optional[float] = 69,
+    loc : float = 69,
         The mean of the data.
-    scale : Optional[float] = 13
+    scale : float = 13
         The standard deviation of the data.
-    random_state: Optional[int] = None
+    random_state: int = None
         The random number seed.
-    column_names: Optional[List[str]]
+    column_names: List[str]
         The column names.
 
     Examples
@@ -1770,7 +1770,7 @@ def replace_column_values(
     *,
     s: pd.Series,
     replace_dict: Dict[str, str],
-    regex: Optional[bool] = False
+    regex: bool = False
 ) -> pd.Series:
     """
     Replace values in a series using a dictionary.
@@ -1781,7 +1781,7 @@ def replace_column_values(
         The input series.
     replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
         The dictionary of values to replace.
-    regex : Optional[bool] = True
+    regex : bool = True
         Determines if the passed-in pattern is a regular expression.
 
     Returns:
