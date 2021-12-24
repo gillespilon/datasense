@@ -1199,7 +1199,10 @@ def feature_percent_empty(
     return list_columns
 
 
-def create_directory(directories: List[str]) -> None:
+def create_directory(
+    *,
+    directories: List[str]
+) -> NoReturn:
     """
     Create empty directories for a path.
 
