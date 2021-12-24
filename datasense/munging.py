@@ -143,7 +143,10 @@ def dataframe_info(
     return df
 
 
-def find_bool_columns(df: pd.DataFrame) -> List[str]:
+def find_bool_columns(
+    *,
+    df: pd.DataFrame
+) -> List[str]:
     """
     Find all boolean columns of a dataframe.
 
