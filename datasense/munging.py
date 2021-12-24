@@ -1251,9 +1251,10 @@ def delete_directory(
 
 
 def rename_directory(
+    *,
     sources: List[str],
     destinations: List[str]
-) -> None:
+) -> NoReturn:
     """
     Delete destination directories (if present) and rename source directories
     to the destination directories.
