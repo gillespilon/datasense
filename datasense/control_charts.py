@@ -5,7 +5,7 @@ Create X, mR, Xbar, R control charts
 Invoke Shewhart rules 1, 2, 3, 4
 """
 
-from typing import Union, Optional, Tuple, Iterable, TypeVar
+from typing import Union, Tuple, Iterable, TypeVar
 from collections import defaultdict
 from abc import ABC, abstractmethod
 from itertools import tee
@@ -167,7 +167,7 @@ class ControlChart(ABC):
 
     @abstractmethod
     def ax(self,
-           fig: Optional[plt.Figure] = None) -> axes.Axes:  # pragma: no cover
+           fig: plt.Figure = None) -> axes.Axes:  # pragma: no cover
         'Matplotlib control chart plot'
         raise NotImplementedError()
 
@@ -188,7 +188,7 @@ class ControlChart(ABC):
         return Sigmas(mean=self.mean, sigma=self.sigma)
 
     # TODO: cache
-    def _average_mr(self, subgroup_size: Optional[int] = 2) -> float:
+    def _average_mr(self, subgroup_size: int = 2) -> float:
         '''
         Calculate the average moving range
         '''
@@ -206,7 +206,7 @@ class X(ControlChart):
     '''
     X control chart
     '''
-    def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
+    def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
 
         if subgroup_size is None:
@@ -252,7 +252,7 @@ class X(ControlChart):
     def y(self) -> pd.Series:
         return self._df[self._df.columns[0]]
 
-    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+    def ax(self, fig: plt.Figure = None) -> axes.Axes:
         '''
         Plots individual values of the column of the dataframe (y axis) versus
         the index of the dataframe (x axis)
@@ -363,7 +363,7 @@ class mR(ControlChart):
     '''
     mR chart
     '''
-    def __init__(self, data: pd.DataFrame, subgroup_size: Optional[int] = 2):
+    def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
 
         if subgroup_size is None:
@@ -420,7 +420,7 @@ class mR(ControlChart):
         )
         return df[df.columns[0]]
 
-    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+    def ax(self, fig: plt.Figure = None) -> axes.Axes:
         '''
         Plots calculated moving ranges (y axis) versus
         the index of the dataframe (x axis)
@@ -553,7 +553,7 @@ class Xbar(ControlChart):
     def y(self) -> pd.Series:
         return self._df.mean(axis='columns')
 
-    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+    def ax(self, fig: plt.Figure = None) -> axes.Axes:
         '''
         Plots calculated averages (y axis) versus
         the index of the dataframe (x axis)
@@ -771,7 +771,7 @@ class R(ControlChart):
             - self._df.min(axis='columns')
         )
 
-    def ax(self, fig: Optional[plt.Figure] = None) -> axes.Axes:
+    def ax(self, fig: plt.Figure = None) -> axes.Axes:
         '''
         Plots calculated ranges (y axis) versus
         the index of the dataframe (x axis)
