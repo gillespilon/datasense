@@ -202,6 +202,7 @@ def find_category_columns(
 
 
 def find_datetime_columns(
+    *,
     df: pd.DataFrame
 ) -> List[str]:
     """
@@ -229,7 +230,10 @@ def find_datetime_columns(
     return columns_datetime
 
 
-def find_float_columns(df: pd.DataFrame) -> List[str]:
+def find_float_columns(
+    *,
+    df: pd.DataFrame
+) -> List[str]:
     """
     Find all float columns of a dataframe.
 
