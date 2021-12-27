@@ -756,7 +756,7 @@ def save_file(
 def read_file(
     *,
     file_name: Union[str, Path],
-    header: Union[int, List[int]] = 0,
+    header: Union[int, List[int], None] = 0,
     skiprows: Union[List[int], None] = None,
     column_names_dict: Dict[str, str] = {},
     index_columns: List[str] = [],
@@ -784,6 +784,8 @@ def read_file(
     ----------
     file_name : Union[str, Path],
         The name of the file to read.
+    header : Union[int, List[int], None] = 0
+        The row to use for the column labels. Use None if there is no header.
     skiprows : List[int] = None
         The specific row indices to skip.
     column_names_dict : List[str] = {}
