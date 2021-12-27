@@ -2478,6 +2478,13 @@ def quit_sap_excel() -> NoReturn:
             proc.kill()
 
 
+def get_mtime(path: Path) -> float:
+    '''
+    Get the time of last modification of a Path object.
+    '''
+    return path.stat().st_mtime
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2524,4 +2531,5 @@ __all__ = (
     'parameters_text_replacement',
     'parameters_dict_replacement',
     'quit_sap_excel',
+    'get_mtime',
 )
