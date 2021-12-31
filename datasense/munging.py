@@ -2342,7 +2342,7 @@ def list_one_list_two_ops(
     >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
-    >>> list_one_unique = ds.list_one_unique_list_two(
+    >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
     >>>     action='list_one'
@@ -2353,7 +2353,7 @@ def list_one_list_two_ops(
     ---------
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
-    >>> list_one_unique = ds.list_one_unique_list_two(
+    >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
     >>>     action='list_two'
@@ -2364,7 +2364,7 @@ def list_one_list_two_ops(
     ---------
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
-    >>> list_one_unique = ds.list_one_unique_list_two(
+    >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
     >>>     action='intersection'
