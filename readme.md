@@ -32,7 +32,11 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 ## XmR control charts
 
+![X control chart](scripts/x_mr_example_x.svg)
+
 ![X control chart](scripts/x_mr_example_x.png)
+
+![mR control chart](scripts/x_mr_example_mr.svg)
 
 ![mR control chart](scripts/x_mr_example_mr.png)
 
