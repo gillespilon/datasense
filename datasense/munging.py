@@ -37,17 +37,19 @@ def dataframe_info(
     Display count of empty columns (columns_empty_count)
     Display count of non-empty columns (columns_non_empty_count)
     Display table of data type, empty cell count, and empty cell percentage
-        for non-empty columns
+        for non-empty columns (calls def number_empty_cells_in_columns())
     Display count and list of non-empty columns
         (columns_non_empty_count, columns_non_empty_list)
     Display count and list of boolean columns
         (columns_bool_count, columns_bool_list)
+    Display count and list of category columns
+        (columns_category_count, columns_category_list)
+    Display count and list of datetime columns
+        (columns_datetime_count, columns_datetime_list)
     Display count and list of float columns
         (columns_float_count, columns_float_list)
     Display count and list of integer columns
         (columns_integer_count, columns_integer_list)
-    Display count and list of datetime columns
-        (columns_datetime_count, columns_datetime_list)
     Display count and list of string columns
         (columns_object_count, columns_object_list)
     Display count and list of timedelta columns
@@ -58,7 +60,7 @@ def dataframe_info(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     file_in : Union[Path, str]
         The name of the file from which df was created.
     unique_bool : bool = False
@@ -67,7 +69,7 @@ def dataframe_info(
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Examples
     --------
