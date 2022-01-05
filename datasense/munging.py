@@ -150,7 +150,7 @@ def find_bool_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all boolean columns of a dataframe.
+    Create a list of boolean column names of a DataFrame.
 
     Parameters
     ----------
