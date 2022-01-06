@@ -208,12 +208,12 @@ def find_datetime_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all datetime columns of a dataframe.
+    Find all datetime columns of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
