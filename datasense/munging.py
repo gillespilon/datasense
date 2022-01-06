@@ -155,7 +155,7 @@ def find_bool_columns(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
@@ -179,12 +179,12 @@ def find_category_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all category columns of a dataframe.
+    Create list of category column names of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
