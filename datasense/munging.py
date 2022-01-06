@@ -355,12 +355,12 @@ def find_timedelta_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all timedelta columns of a dataframe.
+    Find all timedelta columns of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
