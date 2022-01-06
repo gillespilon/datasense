@@ -384,13 +384,13 @@ def number_empty_cells_in_columns(
     df: pd.DataFrame
 ) -> NoReturn:
     """
-    Create a table of data type, empty-cell count, and empty-all percentage
-    for non-empty columns of a dataframe.
+    Create and print a table of data type, empty-cell count, and empty-all
+    percentage for non-empty columns of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Example
     -------
