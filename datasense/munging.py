@@ -326,12 +326,12 @@ def find_object_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all object columns of a dataframe.
+    Find all object columns of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
