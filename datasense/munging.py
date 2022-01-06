@@ -237,12 +237,12 @@ def find_float_columns(
     df: pd.DataFrame
 ) -> List[str]:
     """
-    Find all float columns of a dataframe.
+    Find all float columns of a DataFrame.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
