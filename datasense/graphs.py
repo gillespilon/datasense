@@ -211,7 +211,10 @@ def plot_scatter_x_y(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y,
@@ -434,7 +437,10 @@ def plot_line_x_y(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y,
@@ -583,7 +589,10 @@ def plot_scatter_scatter_x_y1_y2(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y1,
@@ -814,7 +823,10 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     )
     if smoothing is None:
         if (X1.dtype and X2.dtype) in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X1,
             y1,
@@ -934,7 +946,10 @@ def plot_scatter_line_x_y1_y2(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y1,
@@ -1174,7 +1189,10 @@ def plot_line_line_x_y1_y2(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y1,
@@ -1273,7 +1291,10 @@ def plot_line_line_line_x_y1_y2_y3(
     )
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax.plot(
             X,
             y1,
@@ -1389,7 +1410,10 @@ def plot_scatterleft_scatterright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax1)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax1.plot(
             X,
             y1,
@@ -1491,7 +1515,10 @@ def plot_lineleft_lineright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax1)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax1.plot(
             X,
             y1,
@@ -1589,7 +1616,10 @@ def plot_barleft_lineright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ['datetime64[ns]']:
-            format_dates(fig, ax1)
+            format_dates(
+                fig=fig,
+                ax=ax
+            )
         ax1.bar(
             X,
             y1,
