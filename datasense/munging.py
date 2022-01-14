@@ -1294,18 +1294,18 @@ def rename_directory(
 
 def copy_directory(
     *,
-    sources: List[str],
-    destinations: List[str]
+    sources: Union[Path, str],
+    destinations: Union[Path, str]
 ) -> NoReturn:
     """
-    Delte destination directories (if present) and copy source directories
+    Delete destination directories (if present) and copy source directories
     to destination directories.
 
     Parameters
     ----------
-    sources : str
+    sources : Union[Path, str]
         The source directory name.
-    destinations : str
+    destinations : Union[Path, str]
         The destination directory name.
 
     Example
