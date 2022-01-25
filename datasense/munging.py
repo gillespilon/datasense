@@ -2388,7 +2388,8 @@ def parameters_text_replacement(
     *,
     file_name: Path,
     sheet_name: str,
-    usecols: List[str]
+    usecols: List[str],
+    case: 'str' = None
 ) -> Tuple[Tuple[str, str]]:
     '''
     Read Excel worksheet.
@@ -2402,13 +2403,17 @@ def parameters_text_replacement(
         The Excel worksheet.
     usecols : List[str]
         The column names to read.
+    case : 'str' = None
+        Change the case of all items: None, lower, upper.
 
     Returns
     -------
     text_replacement : Tuple[Tuple[str, str]]
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> path_parameters = Path('bcp_parameters.xlsx')
     >>> usecols = ['old_text', 'new_text']
     >>> sheet_name = 'text_replacement'
@@ -2417,13 +2422,51 @@ def parameters_text_replacement(
     >>>     sheet_name=sheet_name,
     >>>     usecols=usecols
     >>> )
+
+    Example 2
+    ---------
+    >>> path_parameters = Path('bcp_parameters.xlsx')
+    >>> usecols = ['old_text', 'new_text']
+    >>> sheet_name = 'text_replacement'
+    >>> text_replacement = parameters(
+    >>>     file_name=path_parameters,
+    >>>     sheet_name=sheet_name,
+    >>>     usecols=usecols,
+    >>>     case='upper'
+    >>> )
+
+    Example 3
+    ---------
+    >>> path_parameters = Path('bcp_parameters.xlsx')
+    >>> usecols = ['old_text', 'new_text']
+    >>> sheet_name = 'text_replacement'
+    >>> text_replacement = parameters(
+    >>>     file_name=path_parameters,
+    >>>     sheet_name=sheet_name,
+    >>>     usecols=usecols,
+    >>>     case='lower'
+    >>> )
     '''
     df = read_file(
         file_name=file_name,
         sheet_name=sheet_name,
         usecols=usecols
     )
-    tuples = tuple(zip(df[usecols[0]], df[usecols[1]]))
+    if case == 'upper':
+        tuples = tuple(
+            zip(df[usecols[0]].str.upper(), df[usecols[1]].str.upper())
+        )
+    elif case == 'lower':
+        tuples = tuple(
+            zip(df[usecols[0]].str.lower(), df[usecols[1]].str.lower())
+        )
+    else:
+        tuples = tuple(
+            zip(
+                df[usecols[0]].astype(dtype='str'),
+                df[usecols[1]].astype(dtype='str')
+            )
+        )
     return tuples
 
 
