@@ -16,6 +16,7 @@ import os
 from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
 from beautifultable import BeautifulTable
+import pyarrow.feather as ft
 from scipy.stats import norm
 import pandas as pd
 import numpy as np
@@ -711,6 +712,17 @@ def save_file(
     >>>     index=True,
     >>>     sheet_name='sheet_one'
     >>> )
+
+    Example 5
+    ---------
+    >>> from pathlib import Path
+    >>> file_to_save = 'myfeatherfile.feather'
+    >>> path = Path(file_to_save)
+    >>> ds.save_file(
+    >>>     df=df,
+    >>>     file_name=path
+    >>> )
+
     """
     if type(file_name).__name__ == 'str':
         file_name = Path(file_name)
@@ -753,6 +765,11 @@ def save_file(
             index_label=index_label
         )
         excel_writer.save()
+    elif file_name.suffix in ['.feather']:
+        df = ft.write_feather(
+            df=df,
+            dest=file_name
+        )
 
 
 def read_file(
@@ -1048,6 +1065,26 @@ def read_file(
     >>>     df=df,
     >>>     file_in=file_name
     >>> )
+
+    Example 8
+    ---------
+    Read a feather file.
+    >>> from pathlib import Path
+    >>> file_to_read = 'myfeatherfile.feather'
+    >>> path = Path(file_to_read)
+    >>> df = ds.read_file(file_name=path)
+
+    Example 9
+    ---------
+    Read a feather file with columns list.
+    >>> from pathlib import Path
+    >>> file_to_read = 'myfeatherfile.feather'
+    >>> usecols = ['col1', 'col2']
+    >>> path = Path(file_to_read)
+    >>> df = ds.read_file(
+    >>>     file_name=path,
+    >>>     usecols=usecols
+    >>> )
     """
     if type(file_name).__name__ == 'str':
         file_name = Path(file_name)
@@ -1098,6 +1135,11 @@ def read_file(
             nrows=nrows,
             parse_dates=parse_dates,
             date_parser=date_parser,
+        )
+    elif file_name.suffix in ['.feather']:
+        df = ft.read_feather(
+            source=file_name,
+            columns=usecols
         )
     if column_names_dict:
         df = rename_some_columns(
