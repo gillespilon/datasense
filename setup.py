@@ -13,6 +13,8 @@ setup(
         'beautifultable',
         'matplotlib',
         'openpyxl',
+        'tabulate',
+        'pyarrow',
         'sklearn',
         'dirsync',
         'pandas',
