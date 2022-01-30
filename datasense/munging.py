@@ -1844,7 +1844,7 @@ def replace_column_values(
     """
     s = s.replace(
         to_replace=replace_dict,
-        value=None,
+        value=np.nan,
         regex=regex
     )
     return s
