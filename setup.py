@@ -17,6 +17,7 @@ setup(
         'pyarrow',
         'sklearn',
         'dirsync',
+        'psutil',
         'pandas',
         'numpy',
         'scipy',
