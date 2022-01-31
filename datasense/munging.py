@@ -1842,11 +1842,14 @@ def replace_column_values(
     >>>     replace_dict=replace_dict
     >>> )
     """
-    s = s.replace(
-        to_replace=replace_dict,
-        value=np.nan,
-        regex=regex
-    )
+    # s = s.replace(
+    #     to_replace=replace_dict,
+    #     value=None,
+    #     regex=regex
+    # )
+    list_from_series = s.to_list()
+    list_transformed = [replace_dict.get(x, x) for x in list_from_series]
+    s = pd.Series(data=list_transformed).astype(dtype='str')
     return s
 
 
