@@ -4,6 +4,7 @@ HTML and report functions
 
 from typing import IO, List, NoReturn
 from datetime import datetime
+from inspect import signature
 from pathlib import Path
 import webbrowser
 import sys
@@ -367,6 +368,33 @@ def sync_directories(
     )
 
 
+def explore_functions(function: str) -> NoReturn:
+    """
+    Explore functions using inspect.signature.
+
+    Parameters
+    ----------
+    function : str
+        Name of function to explore.
+    """
+    print()
+    print("==============================")
+    print("START of output for a function")
+    print()
+    print("function name     :", function.__name__)
+    print()
+    print("function signature:", signature(function))
+    print()
+    for param in signature(function).parameters.values():
+        print(param, param.kind.description)
+    print()
+    print(help(function))
+    print()
+    print("FINISH of output for a function")
+    print("===============================")
+    print()
+
+
 __all__ = (
     'html_header',
     'html_footer',
@@ -377,4 +405,5 @@ __all__ = (
     'report_summary',
     'script_summary',
     'sync_directories',
+    'explore_functions',
 )
