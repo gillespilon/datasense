@@ -735,6 +735,9 @@ def datetime_data(
             date_time_end.strftime('%M') + ':' +
             date_time_end.strftime('%S')
         )
+    # TODO: pandas has timestamp limitations of about 584 years
+    # http://pandas-docs.github.io/pandas-docs-travis/user_guide/timeseries.html#timeseries-timestamp-limits
+    # Need to fix above and below
     series = pd.Series(
         arange(
             start=timestart,
