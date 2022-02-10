@@ -378,20 +378,18 @@ def explore_functions(function: str) -> NoReturn:
         Name of function to explore.
     """
     print()
-    print("==============================")
-    print("START of output for a function")
+    print("function name:")
+    print("--------------")
+    print(function.__name__)
     print()
-    print("function name     :", function.__name__)
-    print()
-    print("function signature:", signature(function))
+    print("function signature:")
+    print("-------------------")
+    print(signature(function))
     print()
     for param in signature(function).parameters.values():
         print(param, param.kind.description)
     print()
     print(help(function))
-    print()
-    print("FINISH of output for a function")
-    print("===============================")
     print()
 
 
