@@ -2577,6 +2577,29 @@ def get_mtime(path: Path) -> float:
     return path.stat().st_mtime
 
 
+def file_size(path: Union[Path, str]) -> int:
+    """
+    Determine the file size in bytes.
+
+    Parameters
+    ----------
+    path : Path
+        The path of the file.
+
+    Returns
+    -------
+    size : int
+        The file size in bytes
+
+    Example
+    -------
+    >>> path = 'myfile.feather'
+    >>> size = ds.file_size(path=path)
+    """
+    size = Path(path).stat().st_size
+    return size
+
+
 __all__ = (
     'dataframe_info',
     'find_bool_columns',
@@ -2624,4 +2647,5 @@ __all__ = (
     'parameters_dict_replacement',
     'quit_sap_excel',
     'get_mtime',
+    'file_size',
 )
