@@ -449,7 +449,7 @@ def plot_line_x_y(
             marker=marker,
             markersize=markersize,
             linestyle=linestyle,
-            color='#0077bb'
+            color=colour
         )
     elif smoothing == 'natural_cubic_spline':
         if X.dtype in ['datetime64[ns]']:
@@ -468,7 +468,7 @@ def plot_line_x_y(
             model.predict(XX),
             marker=marker,
             markersize=markersize,
-            linestyle=linestyle, color='#0077bb')
+            linestyle=linestyle, color=colour)
     return (fig, ax)
 
 
