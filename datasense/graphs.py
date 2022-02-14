@@ -2493,7 +2493,7 @@ def plot_stacked_bars(
     return (fig, ax)
 
 
-def qr_code(qr_code_string: str, qr_code_path: str) -> NoReturn:
+def qr_code(qr_code_string: str, qr_code_path: Path) -> NoReturn:
     """
     Create a QR code and save as .svg and .png.
 
@@ -2511,10 +2511,10 @@ def qr_code(qr_code_string: str, qr_code_path: str) -> NoReturn:
     >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
     """
     pq.create(content=qr_code_string).svg(
-        Path(qr_code_path).with_suffix(".svg"), scale=4
+        qr_code_path.with_suffix(".svg"), scale=4
     )
     pq.create(content=qr_code_string).png(
-        Path(qr_code_path).with_suffix(".png"), scale=4
+        qr_code_path.with_suffix(".png"), scale=4
     )
 
 
