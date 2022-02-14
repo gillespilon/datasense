@@ -1519,7 +1519,7 @@ def plot_lineleft_lineright_x_y1_y2(
         if X.dtype in ['datetime64[ns]']:
             format_dates(
                 fig=fig,
-                ax=ax
+                ax=ax1
             )
         ax1.plot(
             X,
