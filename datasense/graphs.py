@@ -13,6 +13,7 @@ Colours used are colour-blind friendly.
 
 from typing import List, NoReturn, Tuple, Union
 from datetime import datetime
+from pathlib import Path
 import math
 
 from matplotlib.ticker import FormatStrFormatter
@@ -21,6 +22,7 @@ from scipy.stats import norm, probplot
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
+import pyqrcode as pq
 import pandas as pd
 import numpy as np
 
@@ -2484,6 +2486,31 @@ def plot_stacked_bars(
     return (fig, ax)
 
 
+def qr_code(qr_code_string: str, qr_code_path: str) -> NoReturn:
+    """
+    Create a QR code and save as .svg and .png.
+
+    Parameters
+    ----------
+    qr_code_string : str
+        Text for the QR code
+    qr_code_path : str
+        Text for the path
+
+    Example
+    -------
+    >>> code_string = 'mystring'
+    >>> code_path = 'str_of_path'
+    >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
+    """
+    pq.create(content=qr_code_string).svg(
+        Path(qr_code_path).with_suffix(".svg"), scale=4
+    )
+    pq.create(content=qr_code_string).png(
+        Path(qr_code_path).with_suffix(".png"), scale=4
+    )
+
+
 __all__ = (
     'plot_scatter_y',
     'plot_scatter_x_y',
@@ -2507,4 +2534,5 @@ __all__ = (
     'plot_vertical_bars',
     'plot_pie',
     'plot_stacked_bars',
+    'qr_code',
 )
