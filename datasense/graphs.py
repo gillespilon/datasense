@@ -353,6 +353,7 @@ def plot_line_x_y(
     marker: str = '.',
     markersize: float = 8,
     linestyle: str = '-',
+    linewidth: float = 1,
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
     '''
@@ -381,6 +382,8 @@ def plot_line_x_y(
         The size of the plot point (pt).
     linestyle : str = '-'
         The style of the line joining the points.
+    linewidth : float = 1
+        The width of the line joining the points.
     colour : str = '#0077bb'
         The colour of the plot point (hexadecimal triplet string).
 
@@ -412,6 +415,7 @@ def plot_line_x_y(
     >>>     marker='o',
     >>>     markersize=8,
     >>>     linestyle=':',
+    >>>     linewidth=5,
     >>>     colour='#337733'
     >>> )
     >>> plt.show()
@@ -449,6 +453,7 @@ def plot_line_x_y(
             marker=marker,
             markersize=markersize,
             linestyle=linestyle,
+            linewidth=linewidth,
             color=colour
         )
     elif smoothing == 'natural_cubic_spline':
@@ -468,7 +473,9 @@ def plot_line_x_y(
             model.predict(XX),
             marker=marker,
             markersize=markersize,
-            linestyle=linestyle, color=colour)
+            linestyle=linestyle,
+            linewidth=linewidth,
+            color=colour),
     return (fig, ax)
 
 
