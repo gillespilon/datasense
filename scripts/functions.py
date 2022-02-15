@@ -40,10 +40,10 @@ def main():
     print(signature(function_name))
     for param in signature(function_name).parameters.values():
         print(param, param.kind.description)
-    function_name(1, 2, f=3)
-    function_name(1, b=2, f=3)
-    function_name(1, 2, 13, f=3)
-    function_name(1, 2, c=13, f=3)
+    # function_name(1, 2, f=3)
+    # function_name(1, b=2, f=3)
+    # function_name(1, 2, 13, f=3)
+    # function_name(1, 2, c=13, f=3)
 
 
 if __name__ == '__main__':
