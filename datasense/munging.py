@@ -2133,7 +2133,7 @@ def ask_save_as_file_name_path(
         The title of the dialog window.
     initialdir : Union[Path, None] = None
         The directory in which the dialogue starts.
- e   filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
         The list of file types to show in the dialog.
     print_bool : bool = True
         A boolean. Print message if True.
