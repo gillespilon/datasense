@@ -1268,7 +1268,7 @@ def create_directory(
     >>> ds.create_directory(directories=directory_list)
     """
     for directory in directories:
-        rmtree(path=directory, ignore_errors=True)
+        rmtree(path=directory, ignore_errors=ignore_errors)
         Path(directory).mkdir(parents=True, exist_ok=True)
 
 
