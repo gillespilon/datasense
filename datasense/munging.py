@@ -1247,7 +1247,7 @@ def feature_percent_empty(
 def create_directory(
     *,
     directories: List[str],
-    ignore_errors: bool=True
+    ignore_errors: bool = True
 ) -> NoReturn:
     """
     Create empty directories for a path.
@@ -1275,7 +1275,7 @@ def create_directory(
 def delete_directory(
     *,
     directories: List[str],
-    ignore_errors: bool=True
+    ignore_errors: bool = True
 ) -> NoReturn:
     """
     Delete a list of directories.
@@ -1299,12 +1299,12 @@ def delete_directory(
 def rename_directory(
     *,
     sources: List[str],
-    destinations: List[str]
+    destinations: List[str],
+    ignore_errors: bool = True
 ) -> NoReturn:
     """
     Delete destination directories (if present) and rename source directories
     to the destination directories.
-    destination directory.
 
     Parameters
     ----------
@@ -1318,20 +1318,11 @@ def rename_directory(
     >>> import datasense as ds
     >>> sources = ['old_directory']
     >>> destinations = ['new_directory']
-    >>> ds.rename_directory(
-    >>>     sources=sources,
-    >>>     destinations=destinations
-    >>> )
+    >>> ds.rename_directory(sources=sources, destinations=destinations)
     """
     for source, destination in zip(sources, destinations):
-        try:
-            rmtree(destination)
-        except Exception:
-            pass
-        move(
-            src=source,
-            dst=destination
-        )
+        rmtree(path=destination, ignore_errors=ignore_errors)
+        move(src=source, dst=destination)
 
 
 def copy_directory(
