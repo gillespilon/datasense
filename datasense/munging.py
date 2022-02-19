@@ -1246,15 +1246,20 @@ def feature_percent_empty(
 
 def create_directory(
     *,
-    directories: List[str]
+    directories: List[str],
+    ignore_errors=True
 ) -> NoReturn:
     """
     Create empty directories for a path.
+    - Deletes existing directories, whether empty or non-empty.
+    - Ignores errors such as no existing directories.
 
     Parameters
     ----------
     directories : List[str]
         The list of directories.
+    ignore_errors : bool = True
+        Boolean to deal with errors.
 
     Example
     -------
@@ -1263,10 +1268,7 @@ def create_directory(
     >>> ds.create_directory(directories=directory_list)
     """
     for directory in directories:
-        try:
-            rmtree(directory)
-        except Exception:
-            pass
+        rmtree(path=directory, ignore_errors=True)
         Path(directory).mkdir(parents=True, exist_ok=True)
 
 
