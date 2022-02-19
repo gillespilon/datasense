@@ -1274,10 +1274,12 @@ def create_directory(
 
 def delete_directory(
     *,
-    directories: List[str]
+    directories: List[str],
+    ignore_errors: bool=True
 ) -> NoReturn:
     """
     Delete a list of directories.
+    - Deletes existing directories, whether empty or non-empty.
 
     Parameters
     ----------
@@ -1291,10 +1293,7 @@ def delete_directory(
     >>> ds.delete_directory(directories=directory_list)
     """
     for directory in directories:
-        try:
-            rmtree(directory)
-        except Exception:
-            pass
+        rmtree(path=directory, ignore_errors=ignore_errors)
 
 
 def rename_directory(
