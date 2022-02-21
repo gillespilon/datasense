@@ -2091,7 +2091,7 @@ def ask_open_file_name_path(
         The title of the dialog window.
     initialdir : Union[Path, None] = None
         The directory in which the dialogue starts.
-    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
         The file types to make visible.
 
     Returns
