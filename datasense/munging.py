@@ -1184,11 +1184,14 @@ def byte_size(
     Parameters
     ----------
     num : np.int64
+        The input value.
     suffix : str = 'B'
+        The units.
 
     Returns
     -------
     memory_usage : str
+        The output value.
 
     Example
     -------
