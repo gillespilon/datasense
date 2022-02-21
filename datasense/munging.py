@@ -2591,9 +2591,10 @@ def get_mtime(path: Path) -> float:
 
     Returns:
     --------
-        : float
+    modified_time : float
     '''
-    return path.stat().st_mtime
+    modified_time = path.stat().st_mtime
+    return modified_time
 
 
 def file_size(path: Union[Path, str]) -> int:
