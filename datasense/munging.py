@@ -2583,6 +2583,15 @@ def quit_sap_excel() -> NoReturn:
 def get_mtime(path: Path) -> float:
     '''
     Get the time of last modification of a Path object.
+
+    Parameters
+    ----------
+    path : Path
+        The path of the object.
+
+    Returns:
+    --------
+        : float
     '''
     return path.stat().st_mtime
 
