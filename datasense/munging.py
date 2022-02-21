@@ -1292,6 +1292,8 @@ def delete_directory(
     ----------
     directories : List[str]
         The list of directories.
+    ignore_errors : bool = True
+        Boolean to deal with errors.
 
     Example
     -------
