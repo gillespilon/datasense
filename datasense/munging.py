@@ -29,7 +29,7 @@ def dataframe_info(
     unique_bool: bool = False
 ) -> pd.DataFrame:
     """
-    Describe a dataframe.
+    Describe a DataFrame.
 
     Display count of rows (rows_in_count)
     Display count of empty rows (rows_empty_count)
@@ -469,7 +469,10 @@ def process_columns(
     int,
 ]:
     """
-    Create various counts of columns of a dataframe.
+    Return a DataFrame without empty columns and ensure all column labels are
+    strings.
+
+    Create various counts of columns of a DataFrame.
 
     Create count of columns
         (columns_in_count)
@@ -496,12 +499,12 @@ def process_columns(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
     columns_in_count : int
         The count of columns.
     columns_non_empty_count : int
@@ -617,24 +620,24 @@ def process_rows(
     df: pd.DataFrame
 ) -> Tuple[pd.DataFrame, int, int, int]:
     """
-    Create various counts of rows of a dataframe.
+    Create various counts of rows of a DataFrame.
     Drop duplicate rows.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
     rows_in_count : int
-        The count of rows of the input dataframe.
+        The count of rows of the input DataFrame.
     rows_out_count : int
-        The count of rows of the output dataframe.
+        The count of rows of the output DataFrame.
     rows_empty_count : int
-        The count of empty rows of the input dataframe.
+        The count of empty rows of the input DataFrame.
 
     Example
     -------
@@ -667,7 +670,7 @@ def save_file(
     Parameters
     ----------
     df : Union[pd.DataFrame, pd.Series]
-        The dataframe or series to be saved to a file.
+        The DataFrame or series to be saved to a file.
     file_name : str
         The name of the file to be saved.
     index : bool
@@ -796,7 +799,7 @@ def read_file(
     nrows: Union[int, None] = None
 ) -> pd.DataFrame:
     """
-    Create a dataframe from an external file.
+    Create a DataFrame from an external file.
 
     Parameters
     ----------
@@ -809,7 +812,7 @@ def read_file(
     column_names_dict : List[str] = {}
         The new column names to replace the old column names.
     index_columns : List[str] = []
-        The columns to use for the dataframe index.
+        The columns to use for the DataFrame index.
     usecols : List[str] = None
         The columns to read.
     dtype: dict = None
@@ -838,7 +841,7 @@ def read_file(
     object_columns : List[str] = []
         The columns to change to dtype object.
     sort_columns : List[str] = []
-        The columns on which to sort the dataframe.
+        The columns on which to sort the DataFrame.
     sort_columns_bool : List[bool] = []
         The booleans for sort_columns.
     sheet_name : str = False
@@ -849,7 +852,7 @@ def read_file(
     Returns
     -------
     df : pd.DataFrame
-        The dataframe created from the external file.
+        The DataFrame created from the external file.
 
     Examples
     --------
@@ -1217,7 +1220,7 @@ def feature_percent_empty(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     columns : List[str]
         The list of columns to evaluate.
     threshold : float
@@ -1328,7 +1331,8 @@ def rename_directory(
 def copy_directory(
     *,
     sources: Union[Path, str],
-    destinations: Union[Path, str]
+    destinations: Union[Path, str],
+    ignore_errors: bool = True
 ) -> NoReturn:
     """
     Delete destination directories (if present) and copy source directories
@@ -1352,10 +1356,7 @@ def copy_directory(
     >>> )
     """
     for source, destination in zip(sources, destinations):
-        try:
-            rmtree(destination)
-        except Exception:
-            pass
+        rmtree(path=destination, ignore_errors=ignore_errors)
         copytree(
             src=source,
             dst=destination
@@ -1376,7 +1377,7 @@ def replace_text_numbers(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     columns: Union[List[str], List[int], List[float], List[Pattern[str]]]
         The list of columns for replacement.
     old: Union[List[str], List[int], List[float], List[Pattern[str]]]
@@ -1389,7 +1390,7 @@ def replace_text_numbers(
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Examples
     -------
@@ -1465,7 +1466,7 @@ def create_dataframe(
 ) -> pd.DataFrame:
     # TODO: why did I create distribution "u"?
     """
-    Create a Pandas dataframe.
+    Create a Pandas DataFrame.
 
     Parameters
     ----------
@@ -1475,7 +1476,7 @@ def create_dataframe(
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Notes
     -----
@@ -1572,7 +1573,7 @@ def create_dataframe_norm(
     column_names: List[str] = None
 ) -> pd.DataFrame:
     """
-    Create dataframe of random normal data.
+    Create DataFrame of random normal data.
 
     Parameters
     ----------
@@ -1630,19 +1631,19 @@ def delete_rows(
         Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
 ) -> pd.DataFrame:
     """
-    Delete rows of a dataframe based on a value in one column.
+    Delete rows of a DataFrame based on a value in one column.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     delete_row_criteria : Tuple[str, int]
         A tuple of column name and criteria for the entire cell.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Example
     -------
@@ -1664,19 +1665,19 @@ def delete_columns(
     columns: List[str]
 ) -> pd.DataFrame:
     """
-    Delete columns of a dataframe using a list.
+    Delete columns of a DataFrame using a list.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     columns : List[str]
         A list of column names.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Example
     -------
@@ -1698,12 +1699,12 @@ def sort_rows(
     kind: str = 'mergesort'
 ) -> pd.DataFrame:
     """
-    Sort a dataframe for one or more columns.
+    Sort a DataFrame for one or more columns.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     sort_columns : List[str]
         The sort columns.
     sort_columns_bool : List[bool]
@@ -1714,7 +1715,7 @@ def sort_rows(
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Example
     -------
@@ -1742,19 +1743,19 @@ def rename_all_columns(
     labels: List[str]
 ) -> pd.DataFrame:
     """
-    Rename all dataframe columns.
+    Rename all DataFrame columns.
 
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     labels : List[str]
         The list of all column names.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Example
     -------
@@ -1782,14 +1783,14 @@ def rename_some_columns(
     Parameters
     ----------
     df : pd.DataFrame
-        The input dataframe.
+        The input DataFrame.
     column_names_dict : Dict[str, str]
         The dictionary of old:new column names.
 
     Returns
     -------
     df : pd.DataFrame
-        The output dataframe.
+        The output DataFrame.
 
     Example
     -------
