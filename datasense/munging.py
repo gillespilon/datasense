@@ -804,30 +804,30 @@ def read_file(
 
     Parameters
     ----------
-    file_name : Union[str, Path],
+    file_name : Union[str, Path]
         The name of the file to read.
     header : Union[int, List[int], None] = 0
         The row to use for the column labels. Use None if there is no header.
-    skiprows : List[int] = None
+    skiprows : Union[List[int], None] = None
         The specific row indices to skip.
-    column_names_dict : List[str] = {}
+    column_names_dict : Dict[str, str] = {}
         The new column names to replace the old column names.
     index_columns : List[str] = []
         The columns to use for the DataFrame index.
-    usecols : List[str] = None
+    usecols : Union[List[str], None] = None
         The columns to read.
-    dtype: dict = None
+    dtype : Union[dict, None] = None
         A dictionary of column names and dtypes.
         NOTE: Nullable Boolean data type is experimental and does not work;
         use .astype() on df after created.
-    converters : dict = None
+    converters : Union[dict, None] = None
         Dictionary of functions for converting values in certain columns.
     parse_dates : List[str] = False
         The columns to use to parse date and time.
-    date_parser : Callable = None
+    date_parser : Union[Callable, None] = None
         The function to use for parsing date and time, when pandas needs
         extra help.
-    datetime_format : str = None
+    datetime_format : Union[str, None] = None
         The str to use for formatting date and time.
     time_delta_columns : List[str] = []
         The columns to change to dtype timedelta.
@@ -847,7 +847,7 @@ def read_file(
         The booleans for sort_columns.
     sheet_name : str = False
         The name of the worksheet in the workbook.
-    nrows : int = None
+    nrows : Union[int, None] = None
         The number of rows to read.
 
     Returns
