@@ -1942,9 +1942,9 @@ def directory_file_print(
 
     Parameters
     ----------
-    path : Path
+    directory : Union[str, Path]
         The path of the files to print.
-    text : str
+    text : str = 'Files in directory'
         The text to print.
 
     Example
