@@ -2009,7 +2009,7 @@ def print_list_by_item(
 
     Parameters
     ----------
-    list : str
+    list : List[str]
         The list of strings to print.
     title : str = None
         The title to print.
