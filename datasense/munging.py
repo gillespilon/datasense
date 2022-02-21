@@ -1321,6 +1321,8 @@ def rename_directory(
         The old directories.
     destinations : List[str]
         The new directories.
+    ignore_errors : bool = True
+        Boolean to deal with errors.
 
     Example
     -------
