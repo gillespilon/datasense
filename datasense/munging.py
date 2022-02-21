@@ -1873,9 +1873,9 @@ def directory_file_list(
 
     Parameters
     ----------
-    path : Union[str, Path]
+    directory : Union[str, Path]
         The path of the directory.
-    extension : List[str]
+    patterns : List[str] = None
         The file extensions to use for finding files in the path.
 
     Returns
