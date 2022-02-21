@@ -2004,7 +2004,7 @@ def print_list_by_item(
     title: str = None,
     width: int = 80
 ) -> NoReturn:
-    '''
+    """
     Print each item of a list.
 
     Parameters
@@ -2020,7 +2020,7 @@ def print_list_by_item(
     -------
     >>> import datasense as ds
     >>> ds.print_list_by_item(list=my_list_to_print)
-    '''
+    """
     wrapper = textwrap.TextWrapper(width=width)
     string_not_list = ", ".join(list)
     new_list = wrapper.wrap(string_not_list)
@@ -2234,7 +2234,7 @@ def list_directories_within_directory(
     *,
     path: Union[str, Path]
 ) -> List[str]:
-    '''
+    """
     Return a list of directories found within a path.
 
     Parameters
@@ -2253,7 +2253,7 @@ def list_directories_within_directory(
     >>> directory_list = ds.list_directories_within_directory(
     >>>     path='directory_companies'
     >>> )
-    '''
+    """
     path = Path(path)
     directory_list = [item.name for item in path.iterdir() if item.is_dir()]
     return directory_list
@@ -2263,7 +2263,7 @@ def remove_punctuation(
     *,
     list_dirty: List[str]
 ) -> List[str]:
-    '''
+    """
     Remove punctuation from list items.
 
     Parameters
@@ -2280,7 +2280,7 @@ def remove_punctuation(
     -------
     >>> import datasense as ds
     >>> list_clean = ds.remove_punctuation(list_dirty=list_dirty)
-    '''
+    """
     list_clean = [
         ''.join(
             character for character in item
@@ -2296,7 +2296,7 @@ def list_change_case(
     list_dirty: List[str],
     case: str
 ) -> List[str]:
-    '''
+    """
     Change the case of items in a list.
 
     Parameters
@@ -2318,7 +2318,7 @@ def list_change_case(
     >>>     list_dirty=list_dirty,
     >>>     case='upper'
     >>> )
-    '''
+    """
     if case == 'upper':
         list_clean = [x.upper() for x in list_dirty]
     elif case == 'lower':
@@ -2335,7 +2335,7 @@ def listone_contains_all_listtwo_substrings(
     listone: List[str],
     listtwo: List[str]
 ) -> List[str]:
-    '''
+    """
     Return a list of items from one list that contain substrings of items
     from another list.
 
@@ -2361,7 +2361,7 @@ def listone_contains_all_listtwo_substrings(
     >>>     listtwo=listtow
     >>> )
     >>> ['prefix-2020-21-CMJG-suffix']
-    '''
+    """
     matches = [x for x in listone if all(y in x for y in listtwo)]
     return matches
 
@@ -2372,7 +2372,7 @@ def list_one_list_two_ops(
     list_two: Union[List[str], List[int], List[float]],
     action: str
 ) -> Union[List[str], List[int], List[float]]:
-    '''
+    """
     Create a list of items comparing two lists:
     - Items unique to list_one
     - Items unique to list_two
@@ -2427,7 +2427,7 @@ def list_one_list_two_ops(
     >>>     action='intersection'
     >>> )
     >>> [4, 5, 6]
-    '''
+    """
     if action == 'list_one':
         list_result = list(set(list_one).difference(list_two))
     elif action == 'list_two':
@@ -2446,7 +2446,7 @@ def parameters_text_replacement(
     usecols: List[str],
     case: 'str' = None
 ) -> Tuple[Tuple[str, str]]:
-    '''
+    """
     Read Excel worksheet.
     Create tuple of text replacement tuples.
 
@@ -2501,7 +2501,7 @@ def parameters_text_replacement(
     >>>     usecols=usecols,
     >>>     case='lower'
     >>> )
-    '''
+    """
     df = read_file(
         file_name=file_name,
         sheet_name=sheet_name,
@@ -2531,7 +2531,7 @@ def parameters_dict_replacement(
     sheet_name: str,
     usecols: List[str]
 ) -> Dict[str, str]:
-    '''
+    """
     Read Excel worksheet.
     Create dictionary of text replacement key, value pairs.
 
@@ -2558,7 +2558,7 @@ def parameters_dict_replacement(
     >>>     sheet_name=sheet_name,
     >>>     usecols=usecols
     >>> )
-    '''
+    """
     df = read_file(
         file_name=file_name,
         sheet_name=sheet_name,
@@ -2569,10 +2569,10 @@ def parameters_dict_replacement(
 
 
 def quit_sap_excel() -> NoReturn:
-    '''
+    """
     Several applications, Excel in particular, need to be closed otherwise
     they may cause a function to crash.
-    '''
+    """
     for proc in psutil.process_iter():
         if proc.name().lower() == "excel.exe":
             proc.kill()
@@ -2581,7 +2581,7 @@ def quit_sap_excel() -> NoReturn:
 
 
 def get_mtime(path: Path) -> float:
-    '''
+    """
     Get the time of last modification of a Path object.
 
     Parameters
@@ -2592,7 +2592,7 @@ def get_mtime(path: Path) -> float:
     Returns:
     --------
     modified_time : float
-    '''
+    """
     modified_time = path.stat().st_mtime
     return modified_time
 
