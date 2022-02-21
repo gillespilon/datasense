@@ -620,8 +620,9 @@ def process_rows(
     df: pd.DataFrame
 ) -> Tuple[pd.DataFrame, int, int, int]:
     """
+    Return a DataFrame without duplicate rows.
+
     Create various counts of rows of a DataFrame.
-    Drop duplicate rows.
 
     Parameters
     ----------
