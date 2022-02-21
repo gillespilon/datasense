@@ -672,13 +672,13 @@ def save_file(
     ----------
     df : Union[pd.DataFrame, pd.Series]
         The DataFrame or series to be saved to a file.
-    file_name : str
+    file_name : Union[str, Path]
         The name of the file to be saved.
-    index : bool
+    index : bool = False
         If True, creates an index.
-    index_label : str
+    index_label : str = None
         The index label.
-    sheet_name : str
+    sheet_name : str = 'sheet_001'
         The name of the worksheet in the workbook.
 
     Examples
