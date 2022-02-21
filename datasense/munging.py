@@ -1482,6 +1482,8 @@ def create_dataframe(
     ----------
     size : int = 42
         The number of rows to create.
+    fraction_nan : float = 0.13
+        The fraction of the DataFrame rows to contain NaN.
 
     Returns
     -------
