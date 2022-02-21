@@ -1602,6 +1602,11 @@ def create_dataframe_norm(
     column_names: List[str]
         The column names.
 
+    Returns
+    -------
+    df : pd.DataFrame
+        The output DataFrame.
+
     Examples
     --------
     Example 1
