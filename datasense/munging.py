@@ -2602,7 +2602,7 @@ def file_size(path: Union[Path, str]) -> int:
 
     Parameters
     ----------
-    path : Path
+    path : Union[Path, str]
         The path of the file.
 
     Returns
