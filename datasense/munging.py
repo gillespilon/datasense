@@ -1352,6 +1352,8 @@ def copy_directory(
         The source directory name.
     destinations : Union[Path, str]
         The destination directory name.
+    ignore_errors : bool = True
+        Boolean to deal with errors.
 
     Example
     -------
