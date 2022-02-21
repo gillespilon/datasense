@@ -1980,7 +1980,7 @@ def directory_remove_file(
 
     Returns
     -------
-    file_names : {list[str]
+    file_names : List[str]
         The list of files without the removed path.
 
     Example
