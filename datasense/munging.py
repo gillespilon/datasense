@@ -2043,9 +2043,9 @@ def ask_directory_path(
     ----------
     title : str = 'Select directory'
         The title of the dialog window.
-    initialdir : Path
+    initialdir : Path = None
         The directory in which the dialogue starts.
-    print_bool : bool = True
+    print_bool : bool = False
         A boolean. Print message if True.
 
     Returns
