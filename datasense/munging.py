@@ -1654,7 +1654,8 @@ def delete_rows(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    delete_row_criteria : Tuple[str, int]
+    delete_row_criteria:
+        Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
         A tuple of column name and criteria for the entire cell.
 
     Returns
