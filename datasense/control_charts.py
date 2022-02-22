@@ -98,11 +98,11 @@ CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
 
 
 def _despine(ax: axes.Axes) -> None:
-    '''
+    """
     Remove the top and right spines of a graph.
 
     There is only one x axis, on the bottom, and one y axis, on the left.
-    '''
+    """
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
 
@@ -128,41 +128,41 @@ class ControlChart(ABC):
     @cached_property
     @abstractmethod
     def ucl(self) -> float:  # pragma: no cover
-        '''
+        """
         Calculate the upper control limit
-        '''
+        """
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def lcl(self) -> float:  # pragma: no cover
-        '''
+        """
         Calculate the lower control limit
-        '''
+        """
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def sigma(self) -> float:  # pragma: no cover
-        '''
+        """
         Calculate the standard deviation appropriate to method used
-        '''
+        """
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def mean(self) -> float:  # pragma: no cover
-        '''
+        """
         Calculate the average
-        '''
+        """
         raise NotImplementedError()
 
     @cached_property
     @abstractmethod
     def y(self) -> pd.Series:  # pragma: no cover
-        '''
+        """
         The y coordinates of the points on a plot of this chart
-        '''
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -177,21 +177,21 @@ class ControlChart(ABC):
 
     @cached_property
     def sigmas(self):
-        '''
+        """
         TODO
 
         Ex:
 
             cc = ControlChart(some_data)
             cc.x - cc.mean * 3 == .X_chart.sigmas[-3]
-        '''
+        """
         return Sigmas(mean=self.mean, sigma=self.sigma)
 
     # TODO: cache
     def _average_mr(self, subgroup_size: int = 2) -> float:
-        '''
+        """
         Calculate the average moving range
-        '''
+        """
         if subgroup_size is None:
             subgroup_size = 2
         assert subgroup_size >= 2
@@ -203,9 +203,9 @@ class ControlChart(ABC):
 
 
 class X(ControlChart):
-    '''
+    """
     X control chart
-    '''
+    """
     def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
 
@@ -220,32 +220,32 @@ class X(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        '''
+        """
         Sigma(X)
 
         Standard deviation using rational subgroup estimator
-        '''
+        """
         return self._average_mr(self.subgroup_size) / self._d2
 
     @cached_property
     def ucl(self) -> float:
-        '''
+        """
         Upper control limit
-        '''
+        """
         return self.mean + 3 * self.sigma
 
     @cached_property
     def lcl(self) -> float:
-        '''
+        """
         Lower control limit
-        '''
+        """
         return self.mean - 3 * self.sigma
 
     @cached_property
     def mean(self) -> float:
-        '''
+        """
         Average(X)
-        '''
+        """
         return self._df.iloc[:, 0].mean()
 
     @cached_property
@@ -253,7 +253,7 @@ class X(ControlChart):
         return self._df[self._df.columns[0]]
 
     def ax(self, fig: plt.Figure = None) -> axes.Axes:
-        '''
+        """
         Plots individual values of the column of the dataframe (y axis) versus
         the index of the dataframe (x axis)
 
@@ -336,7 +336,7 @@ class X(ControlChart):
         >>> ax.set_ylabel(ylabel=x_chart_ylabel)
         >>> ax.set_xlabel(xlabel=x_chart_xlabel)
         >>> fig.savefig(fname=graph_name)
-        '''
+        """
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -360,9 +360,9 @@ class X(ControlChart):
 
 
 class mR(ControlChart):
-    '''
+    """
     mR chart
-    '''
+    """
     def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
 
@@ -381,25 +381,25 @@ class mR(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        '''
+        """
         Sigma(mR)
 
         Standard deviation using rational subgroup estimator
-        '''
+        """
         return self._average_mr(self.subgroup_size) * self._d3 / self._d2
 
     @cached_property
     def ucl(self) -> float:
-        '''
+        """
         Upper control limit
-        '''
+        """
         return self._average_mr(self.subgroup_size) + 3 * self.sigma
 
     @cached_property
     def lcl(self) -> float:
-        '''
+        """
         Lower control limit
-        '''
+        """
         r_chart_lcl = self._average_mr(self.subgroup_size) - 3 * self.sigma
         if r_chart_lcl < 0:
             r_chart_lcl = 0
@@ -407,9 +407,9 @@ class mR(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        '''
+        """
         Average(mR)
-        '''
+        """
         return self._average_mr(self.subgroup_size)
 
     @cached_property
@@ -421,7 +421,7 @@ class mR(ControlChart):
         return df[df.columns[0]]
 
     def ax(self, fig: plt.Figure = None) -> axes.Axes:
-        '''
+        """
         Plots calculated moving ranges (y axis) versus
         the index of the dataframe (x axis)
 
@@ -474,7 +474,7 @@ class mR(ControlChart):
         >>> ax.set_ylabel(ylabel=mr_chart_ylabel)
         >>> ax.set_xlabel(xlabel=mr_chart_xlabel)
         >>> fig.savefig(fname=graph_name)
-        '''
+        """
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -499,9 +499,9 @@ class mR(ControlChart):
 
 
 class Xbar(ControlChart):
-    '''
+    """
     Xbar chart
-    '''
+    """
     @cached_property
     def _average_range(self) -> float:
         'Calculate the average range'
@@ -520,16 +520,16 @@ class Xbar(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        '''
+        """
         Average(Xbar)
-        '''
+        """
         return self._df.mean(axis='columns').mean()
 
     @cached_property
     def ucl(self) -> float:
-        '''
+        """
         Upper control limit
-        '''
+        """
         return (
             self.mean
             + 3
@@ -539,9 +539,9 @@ class Xbar(ControlChart):
 
     @cached_property
     def lcl(self) -> float:
-        '''
+        """
         Lower control limit
-        '''
+        """
         return (
             self.mean
             - 3
@@ -554,7 +554,7 @@ class Xbar(ControlChart):
         return self._df.mean(axis='columns')
 
     def ax(self, fig: plt.Figure = None) -> axes.Axes:
-        '''
+        """
         Plots calculated averages (y axis) versus
         the index of the dataframe (x axis)
 
@@ -682,7 +682,7 @@ class Xbar(ControlChart):
         >>> ax.set_ylabel(ylabel=xbar_chart_ylabel)
         >>> ax.set_xlabel(xlabel=xbar_chart_xlabel)
         >>> fig.savefig(fname=graph_name)
-        '''
+        """
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -705,18 +705,18 @@ class Xbar(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        '''
+        """
         Sigma(Xbar)
 
         Standard deviation using rational subgroup estimator
-        '''
+        """
         return self._average_range / self._d2 / sqrt(self._subgroup_size)
 
 
 class R(ControlChart):
-    '''
+    """
     R chart
-    '''
+    """
     @cached_property
     def _d2(self) -> float:
         return CONSTANTS['d2'].loc[len(self._df.columns)]
@@ -727,18 +727,18 @@ class R(ControlChart):
 
     @cached_property
     def mean(self) -> float:
-        '''
+        """
         Average(R)
-        '''
+        """
         return (
             self._df.max(axis='columns') - self._df.min(axis='columns')
         ).mean()
 
     @cached_property
     def ucl(self) -> float:
-        '''
+        """
         Upper control limit
-        '''
+        """
         return (
             self.mean
             + 3
@@ -749,9 +749,9 @@ class R(ControlChart):
 
     @cached_property
     def lcl(self) -> float:
-        '''
+        """
         Lower control limit
-        '''
+        """
         ret = (
             self.mean
             - 3
@@ -772,7 +772,7 @@ class R(ControlChart):
         )
 
     def ax(self, fig: plt.Figure = None) -> axes.Axes:
-        '''
+        """
         Plots calculated ranges (y axis) versus
         the index of the dataframe (x axis)
 
@@ -899,7 +899,7 @@ class R(ControlChart):
         >>> ax.set_ylabel(ylabel=r_chart_ylabel)
         >>> ax.set_xlabel(xlabel=r_chart_xlabel)
         >>> fig.savefig(fname=graph_r_file_name)
-        '''
+        """
         if fig is None:
             fig = plt.figure()
         ax = fig.add_subplot(111)
@@ -922,11 +922,11 @@ class R(ControlChart):
 
     @cached_property
     def sigma(self) -> float:
-        '''
+        """
         Sigma(R)
 
         Standard deviation using rational subgroup estimator
-        '''
+        """
         return self.mean * self._d3 / self._d2
 
 
@@ -937,9 +937,9 @@ def draw_rule(
     below: pd.Series,
     rule_name: str
 ) -> None:
-    '''
+    """
     Invokes one of the points_* rules to identify out-of-control points
-    '''
+    """
     y_percent = (cc.y.max() - cc.y.min()) / 100
 
     for x, y in above.items():
@@ -962,9 +962,9 @@ def draw_rule(
 
 # TODO: Split into separate finder and plotter.
 def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
-    '''
+    """
     Invokes all of the points_* rules to identify out-of-control points
-    '''
+    """
     aboves = defaultdict(str)
     belows = defaultdict(str)
     for label, rule in [('1', points_one),
@@ -992,9 +992,9 @@ T = TypeVar('T')
 
 
 def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
-    '''
+    """
     Creates iterable m of n for points rules
-    '''
+    """
     its = tee(it, n)
     for it_i in range(1, n):
         for tee_times in range(it_i):
@@ -1003,19 +1003,19 @@ def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
 
 
 def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
+    """
     Return out of control points as Series of only said points
 
     Shewhart and Western Electric Rule one.
     Nelson and Minitab rule one.
     One point outside the three-sigma limits.
     This rule is used with the X, mR, Xbar, and R charts.
-    '''
+    """
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
 
 def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
+    """
     Return out of control points as Series of only said points
 
     Shewhart and Western Electric rule two.
@@ -1023,7 +1023,7 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     Two-out-of-three successive points on the same side of the central line
     and both are more than two sigma units away from the central line.
     This rule is used with the X and Xbar charts.
-    '''
+    """
 
     above = []
     below = []
@@ -1047,7 +1047,7 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 
 def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
+    """
     Return out of control points as Series of only said points
 
     Shewhart or Western Electric rule three.
@@ -1055,7 +1055,7 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     Four-out-of-five successive points on the same side of the central line
     and are more than one sigma units away from the central line.
     This rule is used with the X and Xbar charts.
-    '''
+    """
     above = []
     below = []
     for group in _nwise(cc.y.items(), 5):
@@ -1078,14 +1078,14 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 
 def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
-    '''
+    """
     Return out of control points as Series of only said points
 
     Shewhart and Western Electric rule four.
     Nelson and Minitab rule two.
     Eight successive points all on the same side of the central line.
     This rule is used with the X and Xbar charts.
-    '''
+    """
     count_above = 0
     count_below = 0
     points_above = []
