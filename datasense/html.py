@@ -93,7 +93,7 @@ def html_begin(
 
     Parameters
     ----------
-    output_url : str
+    output_url : str = 'html_report.html'
         The file name for the html output.
     header_title : str = 'Report'
         The file title.
