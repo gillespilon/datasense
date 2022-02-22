@@ -183,7 +183,7 @@ def html_figure(
     ----------
     file_name : str
         The file name of the image.
-    caption : str
+    caption : str = None
         The figure caption.
 
     Examples
