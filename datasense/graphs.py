@@ -1337,19 +1337,44 @@ def plot_line_line_line_x_y1_y2_y3(
 
     This graph is useful if y1, y2, and y3 have the same units.
 
-    X:  series for horizontal axis
-    y1: series for y1 to plot on vertical axis
-    y2: series for y2 to plot on vertical axis
-    y3: series for y3 to plot on vertical axis
-    smoothing: str
-        Optional: natural_cubic_spline
-    number_knots: positive integer
-        The number of knots to create.
-
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    X : pd.Series
+        The data to plot on the abscissa.
+    y1 : pd.Series
+        The data to plot on the y1 ordinate.
+    y2 : pd.Series
+        The data to plot on the y2 ordinate.
+    y3 : pd.Series
+        The data to plot on the y3 ordinate.
+    figsize : Tuple[float, float] = None
+        The (width, height) of the figure (in, in).
+    smoothing : str = None
+        The type of smoothing to apply.
+    number_knots : int = None
+        the number of knows for natural cubic spline smoothing.
+    colour1 : str = '#0077bb'
+        The colour of the line for y1.
+    colour2 : str = '#33bbee'
+        The colour of the line for y2.
+    colour2 : str = '#009988'
+        The colour of the line for y2.
+    labellegendy1 : str = None
+        The legend label of the line y1.
+    labellegendy2 : str = None
+        The legend label of the line y2.
+    labellegendy3 : str = None
+        The legend label of the line y3.
+
+    Returns
+    -------
+    Tuple[plt.Figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
     '''
     fig, ax = plt.subplots(
         nrows=1,
