@@ -937,11 +937,24 @@ def plot_scatter_line_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    X:  series for horizontal axis
-    y1: series for y1 to plot on vertical axis
-    y2: series for y2 to plot on vertical axis
+    x : pd.Series
+        The series for the horizontal axis.
+    y1 : pd.Series
+        The series for y1 to plot on the vertical axis.
+    y2 : pd.Series
+        The series for y2 to plot on the vertical axis.
+    figsize : Tuple[float, float] = None
+        The (width, height) of the figure (in, in).
     smoothing: str
-        Optional: natural_cubic_spline
+        Optional: 'natural_cubic_spline'
+    colour1 : str = '#0077bb'
+        The colour of the y1.
+    colour2 : str = '#33bbee'
+        The colour of y2.
+    labellegendy1 : str = None
+        The legend for y1.
+    labellegendy2 : str = None
+        The legend for the y2.
     number_knots: positive integer
         The number of knots to create.
 
