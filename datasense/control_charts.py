@@ -1138,6 +1138,16 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     Nelson and Minitab rule two.
     Eight successive points all on the same side of the central line.
     This rule is used with the X and Xbar charts.
+
+    Parameters
+    ----------
+    cc : ControlChart
+        The control chart object.
+
+    Returns
+    -------
+        : Tuple[pd.Series, pd.Series]
+        The data points that are out of control for rule four.
     """
     count_above = 0
     count_below = 0
