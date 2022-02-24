@@ -2027,7 +2027,7 @@ def plot_histogram(
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
     figsize : Tuple[float, float] = None,
-        The figure size width, height (inch).
+        The (width, height) of the figure (in, in).
     bin_width : int = None,
         The width of the bin in same units as the series s.
     edgecolor : str = '#ffffff',
@@ -2204,7 +2204,7 @@ def plot_horizontal_bars(
     height : float = 0.8,
         The height of the bars.
     figsize : Tuple[float, float] = None
-        The figure size width, height (inch).
+        The (width, height) of the figure (in, in).
     edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
@@ -2316,7 +2316,7 @@ def plot_vertical_bars(
     width : float = 0.8,
         The width of the bars.
     figsize : Tuple[float, float] = None
-        The figure size width, height (inch).
+        The (width, height) of the figure (in, in).
     edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
@@ -2381,7 +2381,7 @@ def plot_pie(
     labels : Union[List[int], List[float], List[str]],
         The labels of the wedges.
     figsize : Tuple[float, float] = None
-        The figure size width, height (inch).
+        The (width, height) of the figure (in, in).
     startangle : float = 0,
         The start angle of the pie, counterclockwise from the x axis.
     colors : List[str] = None
@@ -2494,7 +2494,7 @@ def plot_stacked_bars(
     width : float = 0.8,
         The width of the bars.
     figsize : Tuple[float, float] = None
-        The figure size width, height (inch).
+        The (width, height) of the figure (in, in).
     color: str = [
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
         '#ee3377', '#bbbbbb'
