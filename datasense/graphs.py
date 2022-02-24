@@ -280,6 +280,8 @@ def plot_line_y(
         The number of knots for natural cubic spline smoothing.
     marker : str = '.'
         The type of plot point.
+    linestyle : str = '-'
+        The style for the line.
     markersize : float = 8
         The size of the plot point (pt).
     colour : str = '#0077bb'
