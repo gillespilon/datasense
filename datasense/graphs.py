@@ -2203,7 +2203,7 @@ def plot_horizontal_bars(
         The width(s) of the bars.
     height : float = 0.8,
         The height of the bars.
-    figsize : Tuple[int, int] = (8, 6),
+    figsize : Tuple[float, float] = None
         The figure size width, height (inch).
     edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
@@ -2315,7 +2315,7 @@ def plot_vertical_bars(
         The height(s) of the bars.
     width : float = 0.8,
         The width of the bars.
-    figsize : Tuple[int, int] = (8, 6),
+    figsize : Tuple[float, float] = None
         The figure size width, height (inch).
     edgecolor : str = '#ffffff',
         The hexadecimal color value for the bar edges.
@@ -2491,7 +2491,7 @@ def plot_stacked_bars(
         The label of the level 7 bars.
     width : float = 0.8,
         The width of the bars.
-    figsize : Tuple[int, int] = (8, 6),
+    figsize : Tuple[float, float] = None
         The figure size width, height (inch).
     color: str = [
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
