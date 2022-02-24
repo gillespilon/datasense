@@ -2009,7 +2009,7 @@ def plot_histogram(
     s: pd.Series,
     number_bins: int = None,
     bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
-    figsize: Tuple[int, int] = (8, 6),
+    figsize: Tuple[float, float] = None,
     bin_width: int = None,
     edgecolor: str = '#ffffff',
     linewidth: int = 1,
@@ -2188,7 +2188,7 @@ def plot_horizontal_bars(
     y: Union[List[int], List[float], List[str]],
     width: Union[List[int], List[float]],
     height: float = 0.8,
-    figsize: Tuple[int, int] = (8, 6),
+    figsize: Tuple[float, float] = None,
     edgecolor: str = '#ffffff',
     linewidth: int = 1,
     color: str = '#0077bb',
@@ -2301,7 +2301,7 @@ def plot_vertical_bars(
     x: Union[List[int], List[float], List[str]],
     height: Union[List[int], List[float]],
     width: float = 0.8,
-    figsize: Tuple[int, int] = (8, 6),
+    figsize: Tuple[float, float] = None,
     edgecolor: str = '#ffffff',
     linewidth: int = 1,
     color: str = '#0077bb'
@@ -2368,7 +2368,7 @@ def plot_pie(
     *,
     x: Union[List[int], List[float]],
     labels: Union[List[int], List[float], List[str]],
-    figsize: Tuple[int, int] = (8, 6),
+    figsize: Tuple[float, float] = None,
     startangle: float = 0,
     colors: List[str] = None,
     autopct: str = '%1.1f%%'
@@ -2448,7 +2448,7 @@ def plot_stacked_bars(
     height7: Union[List[int], List[float]] = None,
     label7: str = None,
     width: float = 0.8,
-    figsize: Tuple[int, int] = (8, 6),
+    figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
         '#ee3377', '#bbbbbb'
