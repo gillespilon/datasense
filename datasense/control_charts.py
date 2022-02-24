@@ -1033,6 +1033,16 @@ def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     Nelson and Minitab rule one.
     One point outside the three-sigma limits.
     This rule is used with the X, mR, Xbar, and R charts.
+
+    Parameters
+    ----------
+    cc : ControlChart
+        The control chart object.
+
+    Returns
+    -------
+        : Tuple[pd.Series, pd.Series]
+        The data points that are out of control for rule one.
     """
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
