@@ -980,6 +980,13 @@ def draw_rule(
 def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
     """
     Invokes all of the points_* rules to identify out-of-control points
+
+    Parameters
+    ----------
+    cc : ControlChart
+        The control chart object.
+    ax : axes.Axes
+        The Axes object.
     """
     aboves = defaultdict(str)
     belows = defaultdict(str)
