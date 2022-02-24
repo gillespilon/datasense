@@ -1507,8 +1507,8 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+    Tuple[plt.Figure, axes.Axes, axes.Axes]
+        A matplotlib figure and Axes tuples.
     '''
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1598,22 +1598,46 @@ def plot_lineleft_lineright_x_y1_y2(
     This graph is useful if y1 and y2 have different units or scales,
     and you wish to see if they are correlated.
 
-    X:  series for horizontal axis
-    y1: series for y1 to plot using left vertical axis
-    y2: series for y2 to plot using right vertical axis
-    smoothing: str
-        Optional: natural_cubic_spline
-    number_knots: positive integer
-        The number of knots to create.
-    linestyle1: str = '-'
-        The style of the line joining the points.
-    linestyle2: str = '-'
-        The style of the line joining the points.
-
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    X : pd.Series
+        The data to plot on the abscissa.
+    y1 : pd.Series
+        The data to plot on the ordinate.
+    y2 : pd.Series
+        The data to plot on the ordinate.
+    figsize : Tuple[float, float] = None
+        The (width, height) of the figure (in, in).
+    smoothing : str = None
+        The type of smoothing to apply.
+    number_knots : int = None
+        The number of knots for natural cubic spline smoothing.
+    colour1 : str = '#0077bb'
+        The colour of the line for y1.
+    colour2 : str = '#33bbee'
+        The colour of the line for y2.
+    linestyle1 : str = '-'
+        The style of the line for y1.
+    linestyle2 : str = '-'
+        The style of the line for y2.
+    marker1 : str = '.'
+        The type of plot point for y1.
+    markersize1 : int = 8
+        The size of the plot point for y1 (pt).
+    marker2 : str = '.'
+        The type of plot point for y2.
+    markersize2 : int = 8
+        The size of the plot point for y2 (pt).
+
+    Returns
+    -------
+    Tuple[plt.Figure, axes.Axes, axes.Axes]
+        A matplotlib figure and Axes tuples.
     '''
     fig, ax1 = plt.subplots(
         nrows=1,
