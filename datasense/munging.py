@@ -727,7 +727,7 @@ def save_file(
     >>> )
 
     """
-    if type(file_name).__name__ == 'str':
+    if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
     if file_name.suffix in ['.csv', '.CSV']:
         df.to_csv(
