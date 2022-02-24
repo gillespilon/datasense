@@ -368,7 +368,7 @@ def plot_line_x_y(
 
     Parameters
     ----------
-    x : pd.Series
+    X : pd.Series
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
