@@ -1098,6 +1098,16 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     Four-out-of-five successive points on the same side of the central line
     and are more than one sigma units away from the central line.
     This rule is used with the X and Xbar charts.
+
+    Parameters
+    ----------
+    cc : ControlChart
+        The control chart object.
+
+    Returns
+    -------
+        : Tuple[pd.Series, pd.Series]
+        The data points that are out of control for rule three.
     """
     above = []
     below = []
