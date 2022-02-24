@@ -1948,7 +1948,7 @@ def probability_plot(
     ----------
     data : pd.Series
         A pandas Series.
-    figsize : Tuple[float, float]
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
     distribution : object = norm
         Fit a normal distribution by default.
