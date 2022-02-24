@@ -2026,7 +2026,7 @@ def plot_histogram(
     bin_range : Union[Tuple[int, int],Tuple[int, int]] = None,
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
-    figsize : Tuple[int, int] = (8, 6),
+    figsize : Tuple[float, float] = None,
         The figure size width, height (inch).
     bin_width : int = None,
         The width of the bin in same units as the series s.
