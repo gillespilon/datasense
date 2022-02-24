@@ -1910,11 +1910,18 @@ def plot_pareto(
 
 def format_dates(
     *,
-    fig: plt.figure,
+    fig: plt.Figure,
     ax: axes.Axes
 ) -> NoReturn:
     '''
     Format dates and ticks for plotting.
+
+    Parameters
+    ----------
+    fig : plt.Figure
+        A matplotlib figure.
+    ax : axes.Axes
+        A matplotlib Axes.
     '''
     loc = mdates.AutoDateLocator()
     fmt = mdates.AutoDateFormatter(loc)
