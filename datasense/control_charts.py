@@ -944,6 +944,17 @@ def draw_rule(
 ) -> None:
     """
     Invokes one of the points_* rules to identify out-of-control points
+
+    Parameters
+    ----------
+    cc : ControlChart
+        The control chart object.
+    ax : axes.Axes
+        The Axes object.
+    above : pd.Series
+        The pandas Series for the points above rule.
+    below : pd.Series
+        The pandas Series for the points below a rule.
     """
     y_percent = (cc.y.max() - cc.y.min()) / 100
 
