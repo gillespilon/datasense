@@ -1079,16 +1079,16 @@ def plot_line_line_y1_y2(
     marker2 : str = '.'
         The type of plot point for y2.
     markersize1 : int = 8
-        The size of the plot point for y1.
+        The size of the plot point for y1 (pt).
     markersize2 : int = 8
-        The size of the plot point for y2.
-    linestyle1 : str = 'None'
+        The size of the plot point for y2 (pt).
+    linestyle1 : str = '_'
         The style of the line for y1.
-    linestyle2 : str = 'None'
+    linestyle2 : str = '_'
         The style of the line for y2.
-    linewidth1 : float = 0
+    linewidth1 : float = 1
         The width of the line for y1.
-    linewidth2 : float = 0
+    linewidth2 : float = 1
         The width of the line for y2.
     colour1 : str = '#0077bb'
         The colour of the line for y1.
