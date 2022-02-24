@@ -737,9 +737,9 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The style of the line for y1.
     linestyle2 : str = 'None'
         The style of the line for y2.
-    linewidth1 : float = 0
+    linewidth1 : float = 1
         The width of the line for y1.
-    linewidth2 : float = 0
+    linewidth2 : float = 1
         The width of the line for y2.
     colour1 : str = '#0077bb'
         The colour of the line for y1.
