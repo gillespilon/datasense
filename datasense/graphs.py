@@ -1200,18 +1200,54 @@ def plot_line_line_x_y1_y2(
 
     This graph is useful if y1 and y2 have the same units.
 
-    X:  series for horizontal axis
-    y1: series for y1 to plot on vertical axis
-    y2: series for y2 to plot on vertical axis
-    smoothing: str
-        Optional: natural_cubic_spline
-    number_knots: positive integer
-        The number of knots to create.
-
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
     Fit a piecewise cubic function the the constraint that the fitted curve is
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
+
+    Parameters
+    ----------
+    X : pd.Series
+        The data to plot on the abscissa.
+    y1 : pd.Series
+        The data to plot on the y1 ordinate.
+    y2 : pd.Series
+        The data to plot on the y2 ordinate.
+    figsize : Tuple[float, float] = None
+        The (width, height) of the figure (in, in).
+    smoothing : str = None
+        The type of smoothing to apply.
+    number_knots : int = None
+        the number of knows for natural cubic spline smoothing.
+    marker1 : str = '.'
+        The type of plot point for y1.
+    marker2 : str = '.'
+        The type of plot point for y2.
+    markersize1 : int = 8
+        The size of the plot point for y1.
+    markersize2 : int = 8
+        The size of the plot point for y2.
+    linestyle1 : str = '-'
+        The style of the line for y1.
+    linestyle2 : str = '-'
+        The style of the line for y2.
+    linewidth1 : float = 1
+        The width of the line for y1.
+    linewidth2 : float = 1
+        The width of the line for y2.
+    colour1 : str = '#0077bb'
+        The colour of the line for y1.
+    colour2 : str = '#33bbee'
+        The colour of the line for y2.
+    labellegendy1 : str = None
+        The legend label of the line y1.
+    labellegendy2 : str = None
+        The legend label of the line y2.
+
+    Returns
+    -------
+    Tuple[plt.Figure, axes.Axes]
+        A matplotlib figure and Axes tuple.
     '''
     fig, ax = plt.subplots(
         nrows=1,
