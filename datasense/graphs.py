@@ -2380,6 +2380,8 @@ def plot_pie(
         The wedge sizes.
     labels : Union[List[int], List[float], List[str]],
         The labels of the wedges.
+    figsize : Tuple[float, float] = None
+        The figure size width, height (inch).
     startangle : float = 0,
         The start angle of the pie, counterclockwise from the x axis.
     colors : List[str] = None
