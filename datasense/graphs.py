@@ -1,4 +1,4 @@
-'''
+"""
 Graphical analysis
 
 Colours used are colour-blind friendly.
@@ -9,7 +9,7 @@ Colours used are colour-blind friendly.
     red     '#cc3311'
     magenta '#ee3377'
     grey    '#bbbbbb'
-'''
+"""
 
 from typing import List, NoReturn, Tuple, Union
 from datetime import datetime
@@ -37,7 +37,7 @@ def plot_scatter_y(
     markersize: float = 8,
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y. Optional smoothing applied to y.
 
     The abscissa is a series of integers 1 to the size of y.
@@ -88,7 +88,7 @@ def plot_scatter_y(
     >>>     colour='#ee7733'
     >>> )
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -132,7 +132,7 @@ def plot_scatter_x_y(
     markersize: float = 8,
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y versus X.  Optional smoothing applied to y.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -205,7 +205,7 @@ def plot_scatter_x_y(
     >>>     y=series_y
     >>> )
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -258,7 +258,7 @@ def plot_line_y(
     linestyle: str = '-',
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Line plot of y. Optional smoothing applied to y.
 
     The abscissa is a series of integers 1 to the size of y.
@@ -312,7 +312,7 @@ def plot_line_y(
     >>> )
     >>> )
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -358,7 +358,7 @@ def plot_line_x_y(
     linewidth: float = 1,
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y versus X. Optional smoothing applied to y.
 
     If smoothing is applied, the series must not contain NaN, inf, or -inf.
@@ -437,7 +437,7 @@ def plot_line_x_y(
     >>>     y=series_y
     >>> )
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -502,7 +502,7 @@ def plot_scatter_scatter_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y1 versus X.
     Scatter plot of y2 versus X.
     Optional smoothing applied to y1, y2.
@@ -592,7 +592,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>> )
     >>> ax.legend(frameon=False)
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -697,7 +697,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y1 versus X1.
     Scatter plot of y2 versus X2.
     Optional smoothing applied to y1, y2.
@@ -826,7 +826,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>> )
     >>> ax.legend(frameon=False)
     >>> plt.show()
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -930,7 +930,7 @@ def plot_scatter_line_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Scatter plot of y1 versus X.
     Line plot of y2 versus X.
     Optional smoothing applied to y1, y2.
@@ -969,7 +969,7 @@ def plot_scatter_line_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1193,7 +1193,7 @@ def plot_line_line_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Line plot of y1 versus X.
     Line plot of y2 versus X.
     Optional smoothing applied to y1, y2.
@@ -1248,7 +1248,7 @@ def plot_line_line_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1329,7 +1329,7 @@ def plot_line_line_line_x_y1_y2_y3(
     labellegendy2: str = None,
     labellegendy3: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Line plot of y1 versus X.
     Line plot of y2 versus X.
     Line plot of y3 versus X.
@@ -1375,7 +1375,7 @@ def plot_line_line_line_x_y1_y2_y3(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1469,7 +1469,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     linestyle1: str = 'None',
     linestyle2: str = 'None'
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
-    '''
+    """
     Scatter plot of y1 left vertical axis versus X.
     Scatter plot of y2 right vertical axis versus X.
     Optional smoothing applied to y1, y2.
@@ -1509,7 +1509,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
-    '''
+    """
     fig, ax1 = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1590,7 +1590,7 @@ def plot_lineleft_lineright_x_y1_y2(
     marker2: str = '.',
     marker2size: float = 8,
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
-    '''
+    """
     Line plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
     Optional smoothing applied to y1, y2.
@@ -1638,7 +1638,7 @@ def plot_lineleft_lineright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
-    '''
+    """
     fig, ax1 = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1715,7 +1715,7 @@ def plot_barleft_lineright_x_y1_y2(
     linestyle2: str = '-',
     marker2: str = 'o'
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
-    '''
+    """
     Bar plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
     Optional smoothing applied to y1, y2.
@@ -1759,7 +1759,7 @@ def plot_barleft_lineright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
-    '''
+    """
     fig, ax1 = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1913,7 +1913,7 @@ def format_dates(
     fig: plt.Figure,
     ax: axes.Axes
 ) -> NoReturn:
-    '''
+    """
     Format dates and ticks for plotting.
 
     Parameters
@@ -1922,7 +1922,7 @@ def format_dates(
         A matplotlib figure.
     ax : axes.Axes
         A matplotlib Axes.
-    '''
+    """
     loc = mdates.AutoDateLocator()
     fmt = mdates.AutoDateFormatter(loc)
     ax.xaxis.set_major_locator(loc)
@@ -2194,7 +2194,7 @@ def plot_horizontal_bars(
     color: str = '#0077bb',
     left: Union[datetime, int, float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
-    '''
+    """
     Parameters
     ----------
     y : Union[List[int], List[float], List[str]],
@@ -2278,7 +2278,7 @@ def plot_horizontal_bars(
     >>>     ticks=x_ticks
     >>> )
     >>> ax.set_xticklabels(labels=x_labels, rotation=45)
-    '''
+    """
     fig, ax = plt.subplots(
         nrows=1,
         ncols=1,
