@@ -627,6 +627,7 @@ def remove_worksheet_columns(
 
 
 def remove_worksheet_rows(
+    *,
     ws: Worksheet,
     rows_to_remove: List[int]
 ) -> Worksheet:
