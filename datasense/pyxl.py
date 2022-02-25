@@ -588,6 +588,7 @@ def remove_empty_worksheet_rows(
 
 
 def remove_worksheet_columns(
+    *,
     ws: Worksheet,
     starting_column: int,
     number_of_columns: int
@@ -599,9 +600,9 @@ def remove_worksheet_columns(
     ----------
     ws : Worksheet
         A worksheet from a workbook.
-    starting_column: int
+    starting_column : int
         The first column to remove.
-    number_of_columns
+    number_of_columns : int
         The number of columns to remove.
 
     Returns
