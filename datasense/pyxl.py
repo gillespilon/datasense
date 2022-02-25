@@ -512,9 +512,9 @@ def list_rows_with_content(
 
 
 def read_workbook(
-    filename: Union[Path, str],
     *,
-    data_only: Optional[bool] = True
+    filename: Union[Path, str],
+    data_only: bool = True
 ) -> Tuple[Workbook, List[str]]:
     """
     Read a workbook, print the Path, and print the sheet names.
@@ -523,7 +523,7 @@ def read_workbook(
     ----------
     filename : Union[Path, str]
         The file containing the workbook.
-    data_only : Optional[bool] = True
+    data_only : bool = True
         If True, read values stored in the cells. If False, read formulae
         stored in the cells.
 
