@@ -551,6 +551,7 @@ def read_workbook(
 
 
 def remove_empty_worksheet_rows(
+    *,
     ws: Worksheet,
     empty_rows: List[int]
 ) -> Worksheet:
