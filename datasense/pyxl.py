@@ -349,6 +349,7 @@ def list_duplicate_worksheet_rows(
 
 
 def list_empty_and_nan_worksheet_rows(
+    *,
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
