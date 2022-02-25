@@ -63,6 +63,7 @@ def autofit_column_width(
 
 
 def cell_fill_down(
+    *,
     ws: Worksheet,
     min_row: int,
     max_row: int,
