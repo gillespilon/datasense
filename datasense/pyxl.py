@@ -21,6 +21,7 @@ import numpy as np
 
 
 def autofit_column_width(
+    *,
     ws: Worksheet,
     extra_width: int
 ) -> Worksheet:
