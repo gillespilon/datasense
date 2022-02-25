@@ -465,6 +465,7 @@ def list_nan_worksheet_rows(
 
 
 def list_rows_with_content(
+    *,
     ws: Worksheet,
     min_row: int,
     column: int,
