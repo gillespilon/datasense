@@ -2,7 +2,7 @@
 openpyxl functions
 """
 
-from typing import IO, List, Optional, Tuple, Union
+from typing import IO, List, NoReturn, Optional, Tuple, Union
 from pathlib import Path
 import time
 import sys
@@ -276,9 +276,10 @@ def change_case_worksheet_columns(
 
 
 def exit_script(
+    *,
     original_stdout: IO[str],
     output_url: str
-):
+) -> NoReturn:
     """
     Exit from a script and complete the html file.
 
