@@ -218,6 +218,7 @@ def cell_style(
 
 
 def change_case_worksheet_columns(
+    *,
     ws: Worksheet,
     min_col: int,
     max_col: int,
