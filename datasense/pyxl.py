@@ -1,6 +1,6 @@
-'''
+"""
 openpyxl functions
-'''
+"""
 
 from typing import IO, List, Optional, Tuple, Union
 from pathlib import Path
@@ -25,7 +25,7 @@ def autofit_column_width(
     ws: Worksheet,
     extra_width: int
 ) -> Worksheet:
-    '''
+    """
     Autofit all columns in a worksheet.
 
     Parameters
@@ -47,7 +47,7 @@ def autofit_column_width(
     >>>     ws=ws,
     >>>     extra_width=extra_column_width
     >>> )
-    '''
+    """
     for column in ws.columns:
         max_width = 0
         column_letter = get_column_letter(column[0].column)
@@ -70,7 +70,7 @@ def cell_fill_down(
     min_col: int,
     max_col: int
 ) -> Worksheet:
-    '''
+    """
     Fill empty cell with the value from the cell above
 
     Parameters
@@ -101,7 +101,7 @@ def cell_fill_down(
     >>>         min_col=column_names_numbers[column],
     >>>         max_col=column_names_numbers[column]
     >>>     )
-    '''
+    """
     row_count = 0
     for row in ws.iter_rows(
         min_col=min_col,
@@ -140,7 +140,7 @@ def cell_style(
     border_colour: Union[str, bool] = None,
     number_format: Union[str, bool] = None
 ) -> NamedStyle:
-    '''
+    """
     Define a cell style
 
     Parameters
@@ -189,7 +189,7 @@ def cell_style(
     >>> wb.add_named_style(red_cell_style)
     >>> for cell in ['C1', 'D1', 'E1']:
     >>>     ws[cell].style = red_cell_style
-    '''
+    """
     cell_style = NamedStyle(name=style_name)
     cell_style.font = Font(
         name=font_name,
@@ -225,7 +225,7 @@ def change_case_worksheet_columns(
     max_row: int,
     case: str = 'upper'
 ) -> Worksheet:
-    '''
+    """
     Change case for one or more worksheet columns.
 
     Parameters
@@ -259,7 +259,7 @@ def change_case_worksheet_columns(
     >>>     max_row=ws.max_row,
     >>>     case='upper'
     >>> )
-    '''
+    """
     for col in ws.iter_cols(
         min_col=min_col,
         max_col=max_col,
@@ -278,7 +278,7 @@ def exit_script(
     original_stdout: IO[str],
     output_url: str
 ):
-    '''
+    """
     Exit from a script and complete the html file.
 
     Parameters
@@ -295,7 +295,7 @@ def exit_script(
         original_stdout=original_stdout,
         output_url=output_url
     )
-    '''
+    """
     html_end(
         original_stdout=original_stdout,
         output_url=output_url
@@ -308,7 +308,7 @@ def list_duplicate_worksheet_rows(
     *,
     columns_to_ignore: Optional[List[int]] = []
 ) -> List[int]:
-    '''
+    """
     Find duplicate rows in a worksheet.
 
     Parameters
@@ -331,7 +331,7 @@ def list_duplicate_worksheet_rows(
     >>>     ws=ws,
     >>>     duplicate_rows=duplicate_rows
     >>> )
-    '''
+    """
     duplicate_rows = []
     unique_rows = []
     for row in ws.rows:
@@ -350,7 +350,7 @@ def list_empty_and_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    '''
+    """
     Create list of row numbers of blank worksheet rows.
 
     Parameters
@@ -373,7 +373,7 @@ def list_empty_and_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
-    '''
+    """
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -388,7 +388,7 @@ def list_empty_except_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    '''
+    """
     Create list of row numbers of empty worksheet rows, except those
     with np.nan.
 
@@ -414,7 +414,7 @@ def list_empty_except_nan_worksheet_rows(
     >>>     min_row=2
     >>> )
 
-    '''
+    """
     empty_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -427,7 +427,7 @@ def list_nan_worksheet_rows(
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
-    '''
+    """
     Create list of row numbers of blank worksheet rows.
 
     Parameters
@@ -450,7 +450,7 @@ def list_nan_worksheet_rows(
     >>>     ws=ws,
     >>>     min_row=2
     >>> )
-    '''
+    """
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
         onerow = [cell.value for cell in row]
@@ -465,7 +465,7 @@ def list_rows_with_content(
     column: int,
     text: str
 ) -> List[int]:
-    '''
+    """
     List rows that contain specific text in a specified column.
 
     Parameters
@@ -492,7 +492,7 @@ def list_rows_with_content(
     >>>     column=11,
     >>>     text='ETA'
     >>> )
-    '''
+    """
     rows_with_text = []
     for row in ws.iter_rows(
         min_row=min_row,
@@ -510,7 +510,7 @@ def read_workbook(
     *,
     data_only: Optional[bool] = True
 ) -> Tuple[Workbook, List[str]]:
-    '''
+    """
     Read a workbook, print the Path, and print the sheet names.
 
     Parameters
@@ -535,7 +535,7 @@ def read_workbook(
     >>>     filename=filename,
     >>>     data_only=True
     >>> )
-    '''
+    """
     wb = load_workbook(
         filename=filename,
         data_only=data_only
@@ -548,7 +548,7 @@ def remove_empty_worksheet_rows(
     ws: Worksheet,
     empty_rows: List[int]
 ) -> Worksheet:
-    '''
+    """
     Delete empty worksheet rows.
 
     Parameters
@@ -571,7 +571,7 @@ def remove_empty_worksheet_rows(
     >>>     ws=ws,
     >>>     empty_rows=empty_rows
     >>> )
-    '''
+    """
     for row_idx in reversed(empty_rows):
         ws.delete_rows(
             idx=row_idx,
@@ -585,7 +585,7 @@ def remove_worksheet_columns(
     starting_column: int,
     number_of_columns: int
 ) -> Worksheet:
-    '''
+    """
     Remove worksheet columns.
 
     Parameters
@@ -610,7 +610,7 @@ def remove_worksheet_columns(
     >>>     starting_column=starting_column,
     >>>     number_of_columns=number_of_columns
     >>> )
-    '''
+    """
     ws.delete_cols(
         idx=starting_column,
         amount=number_of_columns
@@ -622,7 +622,7 @@ def remove_worksheet_rows(
     ws: Worksheet,
     rows_to_remove: List[int]
 ) -> Worksheet:
-    '''
+    """
     Remove worksheet rows.
 
     Parameters
@@ -644,7 +644,7 @@ def remove_worksheet_rows(
     >>>     ws=ws,
     >>>     rows_to_remove=rows_to_remove
     >>> )
-    '''
+    """
     for row in reversed(rows_to_remove):
         ws.delete_rows(
             idx=row,
@@ -658,7 +658,7 @@ def replace_text(
     column: int,
     text: Tuple[Tuple[str, str]]
 ) -> Worksheet:
-    '''
+    """
     Search and replace text in a cell.
 
     Parameters
@@ -682,7 +682,7 @@ def replace_text(
     >>>     column=column_names_numbers[column],
     >>>     text=text_replacement
     >>> )
-    '''
+    """
     for row in ws.iter_rows(
         min_col=column,
         max_col=column
@@ -706,7 +706,7 @@ def validate_column_labels(
     output_url: Optional[str] = None
 
 ) -> Worksheet:
-    '''
+    """
     Validate the labels of a worksheet with a desired list of labels
 
     Parameters
@@ -748,7 +748,7 @@ def validate_column_labels(
     >>>     original_stdout=original_stdout,
     >>>     output_url=output_url
     >>> )
-    '''
+    """
     labels_found = []
     for col in range(first_column, last_column + 1):
         labels_found.append(ws.cell(row=row_of_labels, column=col).value)
@@ -794,14 +794,14 @@ def unique_list_items(
     text_to_replace: List[str],
     text_to_remove: List[str]
 ) -> Tuple[List[int], List[int]]:
-    '''
+    """
     Determine list of unique items in varname.
     Replace text.
 
     TODO:
     This function does too many things. Break it up.
     Add detail to docstring.
-    '''
+    """
     column_numbers = [
         col for col in range(ws.min_column, ws.max_column + 1)
     ]
@@ -843,7 +843,7 @@ def validate_sheet_names(
     original_stdout: io.TextIOWrapper,
     output_url: str
 ) -> Workbook:
-    '''
+    """
     Parameters
     ----------
     wb : Workbook,
@@ -878,7 +878,7 @@ def validate_sheet_names(
     >>>     original_stdout=original_stdout,
     >>>     output_url=output_url
     >>> )
-    '''
+    """
     if sheet_name not in sheet_names and len(sheet_names) != 1:
         print('Manually rename one of these sheets:')
         print(wb.sheetnames)
@@ -914,7 +914,7 @@ def write_dataframe_to_worksheet(
     index: bool = False,
     header: bool = True
 ) -> Worksheet:
-    '''
+    """
     Write a dataframe to a worksheet.
 
     Parameters
@@ -941,7 +941,7 @@ def write_dataframe_to_worksheet(
     >>>     index=False,
     >>>     header=True
     >>> )
-    '''
+    """
     for row in dataframe_to_rows(
         df=df,
         index=index,
@@ -956,7 +956,7 @@ def number_non_empty_rows(
     column_number: int,
     start_row: int,
 ) -> int:
-    '''
+    """
     Determine the number of non-empty rows for a single column.
 
     Parameters
@@ -982,7 +982,7 @@ def number_non_empty_rows(
     >>>     column_number=column_number,
     >>>     start_row=start_row,
     >>> )
-    '''
+    """
     row_count = 0
     for row in ws.iter_rows(
         min_row=start_row,
