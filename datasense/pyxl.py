@@ -428,6 +428,7 @@ def list_empty_except_nan_worksheet_rows(
 
 
 def list_nan_worksheet_rows(
+    *,
     ws: Worksheet,
     min_row: int
 ) -> List[int]:
