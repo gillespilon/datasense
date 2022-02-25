@@ -123,9 +123,9 @@ def cell_fill_down(
 
 
 def cell_style(
+    *,
     wb: Workbook,
     style_name: str = 'cell_style',
-    *,
     font_name: Optional[str] = 'Lucida Sans',
     font_size: Optional[int] = 11,
     font_bold: Optional[bool] = True,
