@@ -663,6 +663,7 @@ def remove_worksheet_rows(
 
 
 def replace_text(
+    *,
     ws: Worksheet,
     column: int,
     text: Tuple[Tuple[str, str]]
