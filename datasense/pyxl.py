@@ -704,12 +704,12 @@ def replace_text(
 
 
 def validate_column_labels(
+    *,
     ws: Worksheet,
     column_labels: List[str],
     first_column: int,
     last_column: int,
     row_of_labels: int,
-    *,
     start_time: Optional[float] = None,
     stop_time: Optional[float] = None,
     original_stdout: Optional[IO[str]] = None,
@@ -797,6 +797,7 @@ def validate_column_labels(
 
 
 def unique_list_items(
+    *,
     ws: Worksheet,
     row_of_labels: int,
     row_below_labels: int,
@@ -811,6 +812,40 @@ def unique_list_items(
     TODO:
     This function does too many things. Break it up.
     Add detail to docstring.
+
+    Parameters
+    ----------
+    ws : Worksheet
+        The worksheet to analyze.
+    row_of_labels : int
+        The row number of the labels in the worksheet.
+    row_below_labels : int
+        The row number below the label row.
+    column_name_varname : str
+        The label of a column.
+    text_to_replace : List[str]
+        A list of the text to search for.
+    text_to_remove : List[str]
+        A list of the text to remove.
+
+    Returns
+    -------
+    varname : Tuple[List[int]
+        The list of unique items.
+    column_numbers : List[int]]
+        The list of column numbers.
+
+    Example
+    -------
+    >>> list_part_numbers, list_column_numbers = ds.unique_list_items(
+    >>>     ws=ws,
+    >>>     row_of_labels=row_of_labels,
+    >>>     row_below_labels=row_below_labels,
+    >>>     column_name_varname=column_name,
+    >>>     text_to_replace=text_to_replace,
+    >>>     text_to_remove=text_to_remove
+    >>> )
+
     """
     column_numbers = [
         col for col in range(ws.min_column, ws.max_column + 1)
