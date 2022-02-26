@@ -955,6 +955,7 @@ def validate_sheet_names(
 
 
 def write_dataframe_to_worksheet(
+    *,
     ws: Worksheet,
     df: pd.DataFrame,
     index: bool = False,
