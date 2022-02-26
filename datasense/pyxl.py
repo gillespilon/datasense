@@ -880,6 +880,7 @@ def unique_list_items(
 
 
 def validate_sheet_names(
+    *,
     wb: Workbook,
     filename: Union[Path, str],
     sheet_name: str,
@@ -891,17 +892,17 @@ def validate_sheet_names(
     """
     Parameters
     ----------
-    wb : Workbook,
+    wb : Workbook
         A workbook.
-    filename : Union[Path, str],
+    filename : Union[Path, str]
         The file containing the workbook.
-    sheet_name : str,
+    sheet_name : str
         A sheet name in the workbook.
-    sheet_names : List[str],
+    sheet_names : List[str]
         The sheet names in the workbook.
-    start_time : float,
+    start_time : float
         The start time of the script.
-    original_stdout : io.TextIOWrapper,
+    original_stdout : io.TextIOWrapper
         The buffered text stream for the html output.
     output_url : str
         The html filename.
