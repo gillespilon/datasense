@@ -999,6 +999,7 @@ def write_dataframe_to_worksheet(
 
 
 def number_non_empty_rows(
+    *,
     ws: Worksheet,
     column_number: int,
     start_row: int,
@@ -1017,7 +1018,7 @@ def number_non_empty_rows(
 
     Returns
     -------
-    row_count : int,
+    row_count : int
         The number of non-empty rows.
 
     Example
