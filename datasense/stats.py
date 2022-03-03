@@ -18,7 +18,7 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import norm, uniform, randint
+from scipy.stats import norm, uniform, randint, shapiro
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
@@ -778,7 +778,8 @@ def two_sample_t(
     xlabel: str,
     ylabel: str,
     hypothesis: str = 'unequal',
-    delta: float = None
+    delta: float = None,
+    significance_level: float = 0.05
 ) -> Tuple[float, float]:
     """
     Two-sample t test.
@@ -786,6 +787,10 @@ def two_sample_t(
     Parametric statistics are calculated for each sample.
     Non-parametric statistics are calculated for each sample.
     The assumption for normality of each sample is evaluted.
+        Shapiro-Wilk
+        Anderson-Darling
+        Lilliefors
+        Komogorov-Smirnov
     The homogeneity of variance of the samples is evaluated.
 
     Parameters
@@ -795,6 +800,7 @@ def two_sample_t(
     ylabel : str,
     hypothesis : str = 'unequal',
     delta : float = None
+    significance_level : float = 0.05
 
     Returns
     -------
@@ -829,23 +835,46 @@ def two_sample_t(
     if len(levels) != 2:
         print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
     # calculate parametric statistics
-    print("Parametric statistics for each sample:")
-    print()
+    # calculate Shapiro-Wilk
     for level in np.nditer(op=levels):
-        print(f"Sample {level}:")
+        print(f"Sample {level}")
+        print()
         series = df[ylabel][df[xlabel] == level]
+        print("Parametric statistics")
+        print()
         parametric_statistics = parametric_summary(series=series)
         print(parametric_statistics.to_string())
         print()
+        print("Shapiro-Wilk results for lack-of-fit test")
+        print()
+        shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
+            shapiro(x=series)
+        print(f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic}")
+        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value}")
+        if shapiro_wilk_p_value < significance_level:
+            print(
+                f"The data in sample {level} probably do not follow a normal "
+                "distribution."
+            )
+        else:
+            print(
+                f"The data in sample {level} probably follow a normal "
+                "distribution."
+            )
+        print()
     # calculate non-parametric statistics
-    print("Non-parametric statistics for each sample:")
-    print()
     for level in np.nditer(op=levels):
-        print(f"Sample {level}:")
+        print(f"Sample {level}")
+        print()
         series = df[ylabel][df[xlabel] == level]
+        print("Non-parametric statistics")
+        print()
         nonparametric_statistics = nonparametric_summary(series=series)
         print(nonparametric_statistics.to_string())
         print()
+    # TODO: calculate Anderson-Darling
+    # TODO: calculate Lilliefors
+    # TODO: calculate Kolmogorov-Smirnov
 
 
 __all__ = (
