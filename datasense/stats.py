@@ -822,7 +822,19 @@ def two_sample_t(
         by at least delta.
     hypothesis = 'difference'
     """
-    pass
+    print("Two-sample t test")
+    print("-----------------")
+    print()
+    levels = df[xlabel].sort_values().unique()
+    if len(levels) != 2:
+        print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
+    # calculate parametric statistics
+    for level in np.nditer(op=levels):
+        print(f"Sample {level}:")
+        series = df[ylabel][df[xlabel] == level]
+        parametric_statistics = parametric_summary(series=series)
+        print(parametric_statistics.to_string())
+        print()
 
 
 __all__ = (
