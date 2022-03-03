@@ -829,6 +829,8 @@ def two_sample_t(
     if len(levels) != 2:
         print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
     # calculate parametric statistics
+    print("Parametric statistics for each sample:")
+    print()
     for level in np.nditer(op=levels):
         print(f"Sample {level}:")
         series = df[ylabel][df[xlabel] == level]
@@ -836,6 +838,8 @@ def two_sample_t(
         print(parametric_statistics.to_string())
         print()
     # calculate non-parametric statistics
+    print("Non-parametric statistics for each sample:")
+    print()
     for level in np.nditer(op=levels):
         print(f"Sample {level}:")
         series = df[ylabel][df[xlabel] == level]
