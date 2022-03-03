@@ -774,10 +774,10 @@ def timedelta_data(
 
 __all__ = (
     'nonparametric_summary',
-    'parametric_summary',
-    'cubic_spline',
     'natural_cubic_spline',
-    'random_data',
-    'datetime_data',
+    'parametric_summary',
     'timedelta_data',
+    'datetime_data',
+    'cubic_spline',
+    'random_data',
 )
