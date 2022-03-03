@@ -11,7 +11,7 @@ Statistical analysis
 """
 
 from datetime import datetime, timedelta
-from typing import List
+from typing import List, Tuple
 import random
 import sys
 
@@ -772,6 +772,59 @@ def timedelta_data(
     return series
 
 
+def two_sample_t(
+    *,
+    df: pd.DataFrame,
+    xlabel: str,
+    ylabel: str,
+    hypothesis: str = 'unequal',
+    delta: float = None
+) -> Tuple[float, float]:
+    """
+    Two-sample t test.
+
+    Parametric statistics are calculated for each sample.
+    Non-parametric statistics are calculated for each sample.
+    The assumption for normality of each sample is evaluted.
+    The homogeneity of variance of the samples is evaluated.
+
+    Parameters
+    ----------
+    df : pd.DataFrame,
+    xlabel : str,
+    ylabel : str,
+    hypothesis : str = 'unequal',
+    delta : float = None
+
+    Returns
+    -------
+    t statistic : float
+        The t statistic for the hypothesis.
+    p value : float
+        The p value for the t statistic.
+
+    Examples
+    --------
+    Example 1
+    Ha: the average of sample one is not equal to the average of sample two.
+    hypothesis = 'unequal'
+
+    Example 2
+    Ha: the average of sample one is greater than the average of sample two.
+    hypothesis = 'greater than'
+
+    Example 3
+    Ha: the average of sample one is less than the average of sample three.
+    hypothesis = 'less than'
+
+    Example 4
+    Ha: the average of sample one and the average of sample two are different
+        by at least delta.
+    hypothesis = 'difference'
+    """
+    pass
+
+
 __all__ = (
     'nonparametric_summary',
     'natural_cubic_spline',
@@ -779,5 +832,6 @@ __all__ = (
     'timedelta_data',
     'datetime_data',
     'cubic_spline',
+    'two_sample_t',
     'random_data',
 )
