@@ -34,7 +34,8 @@ def nonparametric_summary(
     *,
     series: pd.Series,
     alphap: float = 1/3,
-    betap: float = 1/3
+    betap: float = 1/3,
+    decimals: int = 3
 ) -> pd.Series:
     """
     Calculate empirical quantiles for a series.
@@ -115,18 +116,20 @@ def nonparametric_summary(
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
     return pd.Series({
-        'lower outer fence': lof[0],
-        'lower inner fence': lif[0],
-        'lower quartile': q25[0],
-        'median': q50[0],
-        'upper quartile': q75[0],
-        'upper inner fence': uif[0],
-        'upper outer fence': uof[0],
-        'interquartile range': iqr[0],
-        'inner outliers': [x for x in series if x < lif or x > uif],
-        'outer outliers': [x for x in series if x < lof or x > uof],
-        'minimum value': series.min(),
-        'maximum value': series.max(),
+        'lower outer fence': round(lof[0], decimals),
+        'lower inner fence': round(lif[0], decimals),
+        'lower quartile': round(q25[0], decimals),
+        'median': round(q50[0], decimals),
+        'upper quartile': round(q75[0], decimals),
+        'upper inner fence': round(uif[0], decimals),
+        'upper outer fence': round(uof[0], decimals),
+        'interquartile range': round(iqr[0], decimals),
+        'inner outliers':
+            [round(x, decimals) for x in series if x < lif or x > uif],
+        'outer outliers':
+            [round(x, decimals) for x in series if x < lof or x > uof],
+        'minimum value': round(series.min(), 3),
+        'maximum value': round(series.max(), 3),
         'count': series.count()
     })
 
