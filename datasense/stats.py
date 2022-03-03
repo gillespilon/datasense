@@ -828,8 +828,36 @@ def two_sample_t(
         by at least delta.
     hypothesis = 'difference'
     """
-    print("Two-sample t test")
-    print("-----------------")
+    print("Assumptions")
+    print()
+    print("The data are continuous interval or ratio scales.")
+    print()
+    print(
+        "The data in each sample follow a normal distribution with mean mu "
+        "and variance sigma squared."
+    )
+    print()
+    print(
+        "The sample variances s squared follow a chi-squared distribution "
+        "with rho degrees of freedom under the null hypothesis, where rho "
+        "is a positive constant."
+    )
+    print()
+    print(
+        "(sample average - population averagee) and the sample standard "
+        "deviations s are independent."
+    )
+    print("The size of each sample may be equal or unequal.")
+    print()
+    print("The variance of each sample may be equal or unequal.")
+    print()
+    print(
+        "The data should be sampled independently from the two populations "
+        "being compared."
+    )
+    print()
+    print("Results")
+    print("-------")
     print()
     levels = df[xlabel].sort_values().unique()
     if len(levels) != 2:
@@ -845,7 +873,7 @@ def two_sample_t(
         parametric_statistics = parametric_summary(series=series)
         print(parametric_statistics.to_string())
         print()
-        print("Shapiro-Wilk results for lack-of-fit test")
+        print("Shapiro-Wilk results for normal distribution lack-of-fit test")
         print()
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             shapiro(x=series)
