@@ -835,6 +835,13 @@ def two_sample_t(
         parametric_statistics = parametric_summary(series=series)
         print(parametric_statistics.to_string())
         print()
+    # calculate non-parametric statistics
+    for level in np.nditer(op=levels):
+        print(f"Sample {level}:")
+        series = df[ylabel][df[xlabel] == level]
+        nonparametric_statistics = nonparametric_summary(series=series)
+        print(nonparametric_statistics.to_string())
+        print()
 
 
 __all__ = (
