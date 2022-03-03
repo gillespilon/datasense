@@ -18,7 +18,7 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import norm, uniform, randint, shapiro
+from scipy.stats import anderson, norm, uniform, randint, shapiro
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
@@ -48,6 +48,8 @@ def nonparametric_summary(
         Plotting positions.
     betap : float = 1/3
         Plotting positions.
+    decimals : int = 3
+        The number of decimal places for rounding.
 
         scipy.stats.mstats.mquantiles plotting positions:
         R method 1, SAS method 3:
@@ -136,7 +138,8 @@ def nonparametric_summary(
 
 def parametric_summary(
     *,
-    series: pd.Series
+    series: pd.Series,
+    decimals: int = 3
 ) -> pd.Series:
     """
     Return parametric statistics.
@@ -145,6 +148,8 @@ def parametric_summary(
     ----------
     series : pd.Series
         The input series.
+    decimals : int = 3
+        The number of decimal places for rounding.
 
     Returns
     -------
@@ -166,11 +171,11 @@ def parametric_summary(
     """
     return pd.Series({
         'n': series.count(),
-        'min': series.min(),
-        'max': series.max(),
-        'ave': series.mean(),
-        's': series.std(),
-        'var': series.var(),
+        'min': round(series.min(), decimals),
+        'max': round(series.max(), decimals),
+        'ave': round(series.mean(), decimals),
+        's': round(series.std(), decimals),
+        'var': round(series.var(), decimals),
     })
 
 
@@ -880,8 +885,10 @@ def two_sample_t(
         print()
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             shapiro(x=series)
-        print(f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic}")
-        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value}")
+        print(
+            f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:.3f}"
+        )
+        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:.3f}")
         if shapiro_wilk_p_value < significance_level:
             print(
                 f"The data in sample {level} probably do not follow a normal "
@@ -903,7 +910,36 @@ def two_sample_t(
         nonparametric_statistics = nonparametric_summary(series=series)
         print(nonparametric_statistics.to_string())
         print()
-    # TODO: calculate Anderson-Darling
+        ad_test_statistic, ad_critical_values, ad_significance_level =\
+            anderson(x=series, dist='norm')
+        match significance_level:
+            case 0.25:
+                item = 0
+            case 0.10:
+                item = 1
+            case 0.05:
+                item = 2
+            case 0.025:
+                item = 3
+            case 0.01:
+                item = 4
+            case 0.005:
+                item = 5
+        print(f"Anderson-Darling test statistic: {ad_test_statistic:.3f}")
+        print(
+            f"Anderson-Darling critical value: {ad_critical_values[item]:.3f}"
+        )
+        if ad_test_statistic > ad_critical_values[item]:
+            print(
+                f"The data in sample {level} probably do not follow a normal "
+                "distribution."
+            )
+        else:
+            print(
+                f"The data in sample {level} probably follow a normal "
+                "distribution."
+            )
+        print()
     # TODO: calculate Lilliefors
     # TODO: calculate Kolmogorov-Smirnov
 
