@@ -18,7 +18,7 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import anderson, norm, uniform, randint, shapiro
+from scipy.stats import anderson, bartlett, norm, randint, shapiro, uniform
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
@@ -792,14 +792,14 @@ def two_sample_t(
     """
     Two-sample t test.
 
-    Parametric statistics are calculated for each sample.
-    Non-parametric statistics are calculated for each sample.
-    The assumption for normality of each sample is evaluted.
-        Shapiro-Wilk
-        Anderson-Darling
-        Lilliefors
-        Komogorov-Smirnov
-    The homogeneity of variance of the samples is evaluated.
+    - Parametric statistics are calculated for each sample.
+    - Non-parametric statistics are calculated for each sample.
+    - The assumption for normality of each sample is evaluted.
+        - Shapiro-Wilk, a parametric test
+        - Anderson-Darling, a non-parametric test
+    - The homogeneity of variance of the samples is evaluated.
+        - Bartlett, a parametric test
+        - Levene, a non-parametric test
 
     Parameters
     ----------
@@ -846,15 +846,16 @@ def two_sample_t(
     )
     print()
     print(
-        "The sample variances s squared follow a chi-squared distribution "
+        "The sample variances follow a chi-squared distribution "
         "with rho degrees of freedom under the null hypothesis, where rho "
         "is a positive constant."
     )
     print()
     print(
-        "(sample average - population averagee) and the sample standard "
-        "deviations s are independent."
+        "(sample average - population average) and the sample standard "
+        "deviation are independent."
     )
+    print()
     print("The size of each sample may be equal or unequal.")
     print()
     print("The variance of each sample may be equal or unequal.")
@@ -882,7 +883,6 @@ def two_sample_t(
         print(parametric_statistics.to_string())
         print()
         print("Shapiro-Wilk results for normal distribution lack-of-fit test")
-        print()
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             shapiro(x=series)
         print(
@@ -900,6 +900,18 @@ def two_sample_t(
                 "distribution."
             )
         print()
+    # calculate Bartlett
+    bartlett_test_statistic, bartlett_p_value = bartlett(
+        df[ylabel][df[xlabel] == levels[0]],
+        df[ylabel][df[xlabel] == levels[1]]
+    )
+    print(f"Bartlett test statistic: {bartlett_test_statistic:.3f}")
+    print(f"Bartlett p value: {bartlett_p_value:.3f}")
+    if bartlett_p_value < significance_level:
+        print("The two samples probably do not have equal variances.")
+    else:
+        print("The two samples probably have equal variances.")
+    print()
     # calculate non-parametric statistics
     for level in np.nditer(op=levels):
         print(f"Sample {level}")
@@ -925,6 +937,9 @@ def two_sample_t(
                 item = 4
             case 0.005:
                 item = 5
+        print(
+            "Anderson-Darling results for normal distribution lack-of-fit test"
+        )
         print(f"Anderson-Darling test statistic: {ad_test_statistic:.3f}")
         print(
             f"Anderson-Darling critical value: {ad_critical_values[item]:.3f}"
