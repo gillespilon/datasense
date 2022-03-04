@@ -18,7 +18,8 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import anderson, bartlett, norm, randint, shapiro, uniform
+from scipy.stats import anderson, bartlett, levene, norm, randint, shapiro,\
+    uniform
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
@@ -955,6 +956,18 @@ def two_sample_t(
                 "distribution."
             )
         print()
+    # calculate Levene
+    levene_test_statistic, levene_p_value = levene(
+        df[ylabel][df[xlabel] == levels[0]],
+        df[ylabel][df[xlabel] == levels[1]]
+    )
+    print(f"Levene test statistic: {levene_test_statistic:.3f}")
+    print(f"Levene p value: {levene_p_value:.3f}")
+    if levene_p_value < significance_level:
+        print("The two samples probably do not have equal variances.")
+    else:
+        print("The two samples probably have equal variances.")
+    print()
     # TODO: calculate Lilliefors
     # TODO: calculate Kolmogorov-Smirnov
 
