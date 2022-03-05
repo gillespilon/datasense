@@ -786,7 +786,6 @@ def two_sample_t(
     xlabel: str,
     ylabel: str,
     alternative_hypothesis: str = 'unequal',
-    delta: float = None,
     significance_level: float = 0.05
 ) -> Tuple[float, float]:
     """
@@ -817,8 +816,6 @@ def two_sample_t(
         'less than' the average of sample 1 is < the average of sample 2
         'greater than' the average of sample 1 is > the average of sample 2
         'difference' the sample averages are different by at least delta
-    delta : float = None
-        The difference in sample averages to test.
     significance_level : float = 0.05
         The signficance level for rejecting the null hypothesis.
 
@@ -855,15 +852,6 @@ def two_sample_t(
     >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='unequal',
     >>>     significance_level=0.05
     >>> )
-
-    Example 4
-    Ha: the average of sample one and the average of sample two are different
-        by at least delta.
-    alternative = 'difference'
-    >>> ds.two_sample_t(
-    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='difference',
-    >>>     significance_level=0.05
-    >>> )
     """
     match alternative_hypothesis:
         case "unequal":
@@ -886,14 +874,6 @@ def two_sample_t(
             message_ha =\
                 "The average of sample 1 is probably less than the "\
                 "average of sample 2."
-        case "difference":
-            alternative = "two-sided"
-            message_ho =\
-                "The average of sample 1 is probably not different from the "\
-                f"average of sample 2 by {delta}."
-            message_ha =\
-                "The average of sample 1 is probably different from the "\
-                f"average of sample 2 by {delta}."
     print("Assumptions")
     print()
     print("The data are continuous interval or ratio scales.")
@@ -966,20 +946,12 @@ def two_sample_t(
     if bartlett_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         print()
-        if alternative_hypothesis == 'difference':
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]] - delta,
-                b=df[ylabel][df[xlabel] == levels[1]] - delta,
-                equal_var=False,
-                alternative=alternative
-            )
-        else:
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]],
-                b=df[ylabel][df[xlabel] == levels[1]],
-                equal_var=False,
-                alternative=alternative
-            )
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=False,
+            alternative=alternative
+        )
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -989,20 +961,12 @@ def two_sample_t(
     else:
         print("The two samples probably have equal variances.")
         print()
-        if alternative_hypothesis == 'difference':
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]] - delta,
-                b=df[ylabel][df[xlabel] == levels[1]] - delta,
-                equal_var=False,
-                alternative=alternative
-            )
-        else:
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]],
-                b=df[ylabel][df[xlabel] == levels[1]],
-                equal_var=True,
-                alternative=alternative
-            )
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=True,
+            alternative=alternative
+        )
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -1062,20 +1026,12 @@ def two_sample_t(
     print(f"Levene p value: {levene_p_value:.3f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
-        if alternative_hypothesis == 'difference':
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]] - delta,
-                b=df[ylabel][df[xlabel] == levels[1]] - delta,
-                equal_var=False,
-                alternative=alternative
-            )
-        else:
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]],
-                b=df[ylabel][df[xlabel] == levels[1]],
-                equal_var=False,
-                alternative=alternative
-            )
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=False,
+            alternative=alternative
+        )
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -1085,20 +1041,12 @@ def two_sample_t(
     else:
         print("The two samples probably have equal variances.")
         print()
-        if alternative_hypothesis == 'difference':
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]] - delta,
-                b=df[ylabel][df[xlabel] == levels[1]] - delta,
-                equal_var=False,
-                alternative=alternative
-            )
-        else:
-            t_test_statistic, t_test_p_value = stats.ttest_ind(
-                a=df[ylabel][df[xlabel] == levels[0]],
-                b=df[ylabel][df[xlabel] == levels[1]],
-                equal_var=True,
-                alternative=alternative
-            )
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=True,
+            alternative=alternative
+        )
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
