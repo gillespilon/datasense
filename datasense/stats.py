@@ -879,17 +879,15 @@ def two_sample_t(
     print("Results")
     print("-------")
     print()
+    print("Parametric analysis")
+    print()
     levels = df[xlabel].sort_values().unique()
     if len(levels) != 2:
         print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
-    # calculate parametric statistics
-    # calculate Shapiro-Wilk
     for level in np.nditer(op=levels):
         print(f"Sample {level}")
         print()
         series = df[ylabel][df[xlabel] == level]
-        print("Parametric statistics")
-        print()
         parametric_statistics = parametric_summary(series=series)
         print(parametric_statistics.to_string())
         print()
@@ -912,7 +910,6 @@ def two_sample_t(
                 "distribution. OK to proceed to test for equal variances."
             )
         print()
-    # calculate Bartlett
     bartlett_test_statistic, bartlett_p_value = stats.bartlett(
         df[ylabel][df[xlabel] == levels[0]],
         df[ylabel][df[xlabel] == levels[1]]
@@ -950,13 +947,12 @@ def two_sample_t(
         else:
             print("The two sample averages are probably equal.")
     print()
-    # calculate non-parametric statistics
+    print("Non-parametric analysis")
+    print()
     for level in np.nditer(op=levels):
         print(f"Sample {level}")
         print()
         series = df[ylabel][df[xlabel] == level]
-        print("Non-parametric statistics")
-        print()
         nonparametric_statistics = nonparametric_summary(series=series)
         print(nonparametric_statistics.to_string())
         print()
@@ -1003,11 +999,34 @@ def two_sample_t(
     print(f"Levene p value: {levene_p_value:.3f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=False,
+            alternative=alternative
+        )
+        print(f"t test statistic: {t_test_statistic:.3f}")
+        print(f"t test p value  : {t_test_p_value:.3f}")
+        if t_test_p_value < significance_level:
+            print("The two sample averages are probably not equal.")
+        else:
+            print("The two sample averages are probably equal.")
     else:
         print("The two samples probably have equal variances.")
+        print()
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=True,
+            alternative=alternative
+        )
+        print(f"t test statistic: {t_test_statistic:.3f}")
+        print(f"t test p value  : {t_test_p_value:.3f}")
+        if t_test_p_value < significance_level:
+            print("The two sample averages are probably not equal.")
+        else:
+            print("The two sample averages are probably equal.")
     print()
-    # TODO: calculate Lilliefors
-    # TODO: calculate Kolmogorov-Smirnov
 
 
 __all__ = (
