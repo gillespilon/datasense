@@ -785,7 +785,7 @@ def two_sample_t(
     df: pd.DataFrame,
     xlabel: str,
     ylabel: str,
-    hypothesis: str = 'unequal',
+    alternative_hypothesis: str = 'unequal',
     delta: float = None,
     significance_level: float = 0.05
 ) -> Tuple[float, float]:
@@ -806,7 +806,7 @@ def two_sample_t(
     df : pd.DataFrame,
     xlabel : str,
     ylabel : str,
-    hypothesis : str = 'unequal',
+    alternative_hypothesis : str = 'unequal',
     delta : float = None
     significance_level : float = 0.05
 
@@ -821,21 +821,28 @@ def two_sample_t(
     --------
     Example 1
     Ha: the average of sample one is not equal to the average of sample two.
-    hypothesis = 'unequal'
+    alternative = 'unequal'
 
     Example 2
     Ha: the average of sample one is greater than the average of sample two.
-    hypothesis = 'greater than'
+    alternative = 'greater than'
 
     Example 3
     Ha: the average of sample one is less than the average of sample three.
-    hypothesis = 'less than'
+    alternative = 'less than'
 
     Example 4
     Ha: the average of sample one and the average of sample two are different
         by at least delta.
-    hypothesis = 'difference'
+    alternative = 'difference'
     """
+    match alternative_hypothesis:
+        case 'unequal':
+            alternative = 'two-sided'
+        case 'less than':
+            alternative = 'less'
+        case 'greater than':
+            alternative = 'greater'
     print("Assumptions")
     print()
     print("The data are continuous interval or ratio scales.")
@@ -910,8 +917,22 @@ def two_sample_t(
     print(f"Bartlett p value: {bartlett_p_value:.3f}")
     if bartlett_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
+        print()
     else:
         print("The two samples probably have equal variances.")
+        print()
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=True,
+            alternative=alternative
+        )
+        print(f"t test statistic: {t_test_statistic:.3f}")
+        print(f"t test p value  : {t_test_p_value:.3f}")
+        if t_test_p_value < significance_level:
+            print("The two sample averages are probably not equal.")
+        else:
+            print("The two sample averages are probably equal.")
     print()
     # calculate non-parametric statistics
     for level in np.nditer(op=levels):
