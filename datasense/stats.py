@@ -918,6 +918,18 @@ def two_sample_t(
     if bartlett_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         print()
+        t_test_statistic, t_test_p_value = stats.ttest_ind(
+            a=df[ylabel][df[xlabel] == levels[0]],
+            b=df[ylabel][df[xlabel] == levels[1]],
+            equal_var=False,
+            alternative=alternative
+        )
+        print(f"t test statistic: {t_test_statistic:.3f}")
+        print(f"t test p value  : {t_test_p_value:.3f}")
+        if t_test_p_value < significance_level:
+            print("The two sample averages are probably not equal.")
+        else:
+            print("The two sample averages are probably equal.")
     else:
         print("The two samples probably have equal variances.")
         print()
@@ -945,7 +957,7 @@ def two_sample_t(
         print(nonparametric_statistics.to_string())
         print()
         ad_test_statistic, ad_critical_values, ad_significance_level =\
-           stats.anderson(x=series, dist='norm')
+            stats.anderson(x=series, dist='norm')
         match significance_level:
             case 0.25:
                 item = 0
