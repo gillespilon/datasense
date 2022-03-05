@@ -814,8 +814,8 @@ def two_sample_t(
     alternative_hypothesis : str = 'unequal',
         The alternative hypothesis for th t test.
         'unequal' the sample averages are different
-        'less than' the average of sample 1 is < the average of sample 2
         'greater than' the average of sample 1 is > the average of sample 2
+        'less than' the average of sample 1 is < the average of sample 2
         'difference' the sample averages are different by at least delta
     delta : float = None
         The difference in sample averages to test.
@@ -842,15 +842,28 @@ def two_sample_t(
     Example 2
     Ha: the average of sample one is greater than the average of sample two.
     alternative = 'greater than'
+    >>> ds.two_sample_t(
+    >>>     df=df, xlabel='x', ylabel='y',
+    >>>     alternative_hypothesis='greater than',
+    >>>     significance_level=0.05
+    >>> )
 
     Example 3
     Ha: the average of sample one is less than the average of sample three.
     alternative = 'less than'
+    >>> ds.two_sample_t(
+    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='unequal',
+    >>>     significance_level=0.05
+    >>> )
 
     Example 4
     Ha: the average of sample one and the average of sample two are different
         by at least delta.
     alternative = 'difference'
+    >>> ds.two_sample_t(
+    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='difference',
+    >>>     significance_level=0.05
+    >>> )
     """
     match alternative_hypothesis:
         case 'unequal':
