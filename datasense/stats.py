@@ -804,11 +804,23 @@ def two_sample_t(
     Parameters
     ----------
     df : pd.DataFrame,
+        The DataFrame of data, consisting of two columns, each with a column
+        label in row 0. One column contains the labels for the sample. The
+        other column contains the data for the sample.
     xlabel : str,
+        The column label for the sample identities.
     ylabel : str,
+        The column label for the data.
     alternative_hypothesis : str = 'unequal',
+        The alternative hypothesis for th t test.
+        'unequal' the sample averages are different
+        'less than' the average of sample 1 is < the average of sample 2
+        'greater than' the average of sample 1 is > the average of sample 2
+        'difference' the sample averages are different by at least delta
     delta : float = None
+        The difference in sample averages to test.
     significance_level : float = 0.05
+        The signficance level for rejecting the null hypothesis.
 
     Returns
     -------
