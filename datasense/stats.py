@@ -896,7 +896,6 @@ def two_sample_t(
                 "distribution. It is not advised to continue with the "
                 "two-sample t test."
             )
-            sys.exit()
         else:
             print(
                 f"The data in sample {level} probably follow a normal "
@@ -953,7 +952,6 @@ def two_sample_t(
                 "distribution. It is not advised to continue with the "
                 "two-sample t test."
             )
-            sys.exit()
         else:
             print(
                 f"The data in sample {level} probably follow a normal "
