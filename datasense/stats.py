@@ -18,11 +18,10 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import anderson, bartlett, levene, norm, randint, shapiro,\
-    uniform
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
+import scipy.stats as stats
 from numpy import arange
 import pandas as pd
 import numpy as np
@@ -885,7 +884,7 @@ def two_sample_t(
         print()
         print("Shapiro-Wilk results for normal distribution lack-of-fit test")
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
-            shapiro(x=series)
+            stats.shapiro(x=series)
         print(
             f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:.3f}"
         )
@@ -903,7 +902,7 @@ def two_sample_t(
             )
         print()
     # calculate Bartlett
-    bartlett_test_statistic, bartlett_p_value = bartlett(
+    bartlett_test_statistic, bartlett_p_value = stats.bartlett(
         df[ylabel][df[xlabel] == levels[0]],
         df[ylabel][df[xlabel] == levels[1]]
     )
@@ -925,7 +924,7 @@ def two_sample_t(
         print(nonparametric_statistics.to_string())
         print()
         ad_test_statistic, ad_critical_values, ad_significance_level =\
-            anderson(x=series, dist='norm')
+           stats.anderson(x=series, dist='norm')
         match significance_level:
             case 0.25:
                 item = 0
@@ -959,7 +958,7 @@ def two_sample_t(
             )
         print()
     # calculate Levene
-    levene_test_statistic, levene_p_value = levene(
+    levene_test_statistic, levene_p_value = stats.levene(
         df[ylabel][df[xlabel] == levels[0]],
         df[ylabel][df[xlabel] == levels[1]]
     )
