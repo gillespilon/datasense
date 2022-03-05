@@ -822,6 +822,10 @@ def two_sample_t(
     Example 1
     Ha: the average of sample one is not equal to the average of sample two.
     alternative = 'unequal'
+    >>> ds.two_sample_t(
+    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='unequal',
+    >>>     significance_level=0.05
+    >>> )
 
     Example 2
     Ha: the average of sample one is greater than the average of sample two.
