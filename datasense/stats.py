@@ -874,7 +874,14 @@ def two_sample_t(
             message_ha =\
                 "The average of sample 1 is probably less than the "\
                 "average of sample 2."
+    print(
+        "The two-sample t test is used to determine if the averages of two "
+        "samples of data are statistically, significantly different from each "
+        "other."
+    )
+    print()
     print("Assumptions")
+    print("-----------")
     print()
     print("The data are continuous interval or ratio scales.")
     print()
@@ -941,6 +948,7 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[0]],
         df[ylabel][df[xlabel] == levels[1]]
     )
+    print("Bartlett results for homogeneity of variance test")
     print(f"Bartlett test statistic: {bartlett_test_statistic:.3f}")
     print(f"Bartlett p value: {bartlett_p_value:.3f}")
     if bartlett_p_value < significance_level:
@@ -952,6 +960,7 @@ def two_sample_t(
             equal_var=False,
             alternative=alternative
         )
+        print("t test results")
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -967,6 +976,7 @@ def two_sample_t(
             equal_var=True,
             alternative=alternative
         )
+        print("t test results")
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -1022,6 +1032,7 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[0]],
         df[ylabel][df[xlabel] == levels[1]]
     )
+    print("Levene results for homogeneity of variance")
     print(f"Levene test statistic: {levene_test_statistic:.3f}")
     print(f"Levene p value: {levene_p_value:.3f}")
     if levene_p_value < significance_level:
@@ -1032,6 +1043,7 @@ def two_sample_t(
             equal_var=False,
             alternative=alternative
         )
+        print("t test results")
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
@@ -1047,6 +1059,7 @@ def two_sample_t(
             equal_var=True,
             alternative=alternative
         )
+        print("t test results")
         print(f"t test statistic: {t_test_statistic:.3f}")
         print(f"t test p value  : {t_test_p_value:.3f}")
         if t_test_p_value < significance_level:
