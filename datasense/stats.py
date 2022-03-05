@@ -893,12 +893,14 @@ def two_sample_t(
         if shapiro_wilk_p_value < significance_level:
             print(
                 f"The data in sample {level} probably do not follow a normal "
-                "distribution."
+                "distribution. It is not advised to continue with the "
+                "two-sample t test."
             )
+            sys.exit()
         else:
             print(
                 f"The data in sample {level} probably follow a normal "
-                "distribution."
+                "distribution. OK to proceed to test for equal variances."
             )
         print()
     # calculate Bartlett
@@ -948,12 +950,14 @@ def two_sample_t(
         if ad_test_statistic > ad_critical_values[item]:
             print(
                 f"The data in sample {level} probably do not follow a normal "
-                "distribution."
+                "distribution. It is not advised to continue with the "
+                "two-sample t test."
             )
+            sys.exit()
         else:
             print(
                 f"The data in sample {level} probably follow a normal "
-                "distribution."
+                "distribution. OK to proceed to test for equal variances."
             )
         print()
     # calculate Levene
