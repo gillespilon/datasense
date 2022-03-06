@@ -811,11 +811,10 @@ def two_sample_t(
     ylabel : str,
         The column label for the data.
     alternative_hypothesis : str = 'unequal',
-        The alternative hypothesis for th t test.
+        The alternative hypothesis for the t test.
         'unequal' the sample averages are different
         'less than' the average of sample 1 is < the average of sample 2
         'greater than' the average of sample 1 is > the average of sample 2
-        'difference' the sample averages are different by at least delta
     significance_level : float = 0.05
         The signficance level for rejecting the null hypothesis.
 
@@ -856,23 +855,43 @@ def two_sample_t(
     match alternative_hypothesis:
         case "unequal":
             alternative = "two-sided"
-            message_ho = "The two sample averages are probably equal."
-            message_ha = "The two sample averages are probably not equal."
+            message_ho =\
+                "Fail to reject the null hypothesis Ho. "\
+                "Continue to accept the null hypothesis H0. "\
+                "There is insufficient evidence to show that the sample "\
+                "averages are different."
+            message_ha =\
+                "Reject the null hypothesis Ho. "\
+                "Accept the alternative hypothesis Ha. "\
+                "There is sufficient evidence to show that the sample "\
+                "averages are different."
         case "less than":
             alternative = "less"
             message_ho =\
-                "The average of sample 1 is probably not greater than the "\
+                "Fail to reject the null hypothesis Ho. "\
+                "Continue to accept the null hypothesis H0. "\
+                "There is insufficient evidence to show that "\
+                "the average of sample 1 is less than the "\
                 "average of sample 2."
             message_ha =\
-                "The average of sample 1 is probably greater than the "\
+                "Reject the null hypothesis Ho. "\
+                "Accept the alternative hypothesis Ha. "\
+                "There is sufficient evidence to show that "\
+                "the average of sample 1 is less than the "\
                 "average of sample 2."
         case "greater than":
             alternative = "greater"
             message_ho =\
-                "The average of sample 1 is probably not less than the "\
+                "Fail to reject the null hypothesis Ho. "\
+                "Continue to accept the null hypothesis H0. "\
+                "There is insufficient evidence to show that "\
+                "the average of sample 1 is greater than the "\
                 "average of sample 2."
             message_ha =\
-                "The average of sample 1 is probably less than the "\
+                "Reject the null hypothesis Ho. "\
+                "Accept the alternative hypothesis Ha. "\
+                "There is sufficient evidence to show that "\
+                "the average of sample 1 is greater than the "\
                 "average of sample 2."
     print(
         "The two-sample t test is used to determine if the averages of two "
@@ -929,9 +948,9 @@ def two_sample_t(
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             stats.shapiro(x=series)
         print(
-            f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:.3f}"
+            f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:7.3f}"
         )
-        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:.3f}")
+        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:7.3f}")
         if shapiro_wilk_p_value < significance_level:
             print(
                 f"The data in sample {level} probably do not follow a normal "
@@ -949,8 +968,8 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[1]]
     )
     print("Bartlett results for homogeneity of variance test")
-    print(f"Bartlett test statistic: {bartlett_test_statistic:.3f}")
-    print(f"Bartlett p value: {bartlett_p_value:.3f}")
+    print(f"Bartlett test statistic: {bartlett_test_statistic:7.3f}")
+    print(f"Bartlett p value       : {bartlett_p_value:7.3f}")
     if bartlett_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         print()
@@ -961,8 +980,11 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic: {t_test_statistic:.3f}")
-        print(f"t test p value  : {t_test_p_value:.3f}")
+        print("Ho: average of sample one == average of sample two")
+        print("Ha: average of sample one != average of sample two")
+        print(f"t test statistic  : {t_test_statistic:7.3f}")
+        print(f"t test p value    : {t_test_p_value:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -977,8 +999,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic: {t_test_statistic:.3f}")
-        print(f"t test p value  : {t_test_p_value:.3f}")
+        print(f"t test statistic  : {t_test_statistic:7.3f}")
+        print(f"t test p value    : {t_test_p_value:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1011,9 +1034,9 @@ def two_sample_t(
         print(
             "Anderson-Darling results for normal distribution lack-of-fit test"
         )
-        print(f"Anderson-Darling test statistic: {ad_test_statistic:.3f}")
+        print(f"Anderson-Darling test statistic: {ad_test_statistic:7.3f}")
         print(
-            f"Anderson-Darling critical value: {ad_critical_values[item]:.3f}"
+            f"Anderson-Darling critical value: {ad_critical_values[item]:7.3f}"
         )
         if ad_test_statistic > ad_critical_values[item]:
             print(
@@ -1033,8 +1056,8 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[1]]
     )
     print("Levene results for homogeneity of variance")
-    print(f"Levene test statistic: {levene_test_statistic:.3f}")
-    print(f"Levene p value: {levene_p_value:.3f}")
+    print(f"Levene test statistic: {levene_test_statistic:7.3f}")
+    print(f"Levene p value: {levene_p_value:7.3f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         t_test_statistic, t_test_p_value = stats.ttest_ind(
@@ -1044,8 +1067,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic: {t_test_statistic:.3f}")
-        print(f"t test p value  : {t_test_p_value:.3f}")
+        print(f"t test statistic  : {t_test_statistic:7.3f}")
+        print(f"t test p value    : {t_test_p_value:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1060,8 +1084,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic: {t_test_statistic:.3f}")
-        print(f"t test p value  : {t_test_p_value:.3f}")
+        print(f"t test statistic  : {t_test_statistic:7.3f}")
+        print(f"t test p value    : {t_test_p_value:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
