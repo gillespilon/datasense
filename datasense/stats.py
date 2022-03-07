@@ -999,6 +999,8 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
+        print("Ho: average of sample one == average of sample two")
+        print("Ha: average of sample one != average of sample two")
         print(f"t test statistic  : {t_test_statistic:7.3f}")
         print(f"t test p value    : {t_test_p_value:7.3f}")
         print(f"significance level: {significance_level:7.3f}")
