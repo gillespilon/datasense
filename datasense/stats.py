@@ -857,7 +857,7 @@ def two_sample_t(
             alternative = "two-sided"
             message_ho =\
                 "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis H0. "\
+                "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that the sample "\
                 "averages are different."
             message_ha =\
@@ -869,7 +869,7 @@ def two_sample_t(
             alternative = "less"
             message_ho =\
                 "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis H0. "\
+                "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that "\
                 "the average of sample 1 is less than the "\
                 "average of sample 2."
@@ -883,7 +883,7 @@ def two_sample_t(
             alternative = "greater"
             message_ho =\
                 "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis H0. "\
+                "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that "\
                 "the average of sample 1 is greater than the "\
                 "average of sample 2."
