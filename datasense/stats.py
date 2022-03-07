@@ -955,12 +955,12 @@ def two_sample_t(
             print(
                 f"The data in sample {level} probably do not follow a normal "
                 "distribution. It is not advised to continue with the "
-                "two-sample t test."
+                "homogeneity of variance test."
             )
         else:
             print(
                 f"The data in sample {level} probably follow a normal "
-                "distribution. OK to proceed to test for equal variances."
+                "distribution. OK to proceed to homogeneity of variance test."
             )
         print()
     bartlett_test_statistic, bartlett_p_value = stats.bartlett(
@@ -1101,6 +1101,6 @@ __all__ = (
     'timedelta_data',
     'datetime_data',
     'cubic_spline',
-    # 'two_sample_t',
+    'two_sample_t',
     'random_data',
 )
