@@ -848,7 +848,7 @@ def two_sample_t(
     Ha: the average of sample one is greater than the average of sample three.
     alternative = 'greater than'
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='unequal',
+    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='less than',
     >>>     significance_level=0.05
     >>> )
     """
