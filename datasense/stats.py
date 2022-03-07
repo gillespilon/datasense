@@ -856,11 +856,15 @@ def two_sample_t(
         case "unequal":
             alternative = "two-sided"
             message_ho =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one != average of sample two\n"\
                 "Fail to reject the null hypothesis Ho. "\
                 "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that the sample "\
                 "averages are different."
             message_ha =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one != average of sample two\n"\
                 "Reject the null hypothesis Ho. "\
                 "Accept the alternative hypothesis Ha. "\
                 "There is sufficient evidence to show that the sample "\
@@ -868,12 +872,16 @@ def two_sample_t(
         case "less than":
             alternative = "less"
             message_ho =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one < average of sample two\n"\
                 "Fail to reject the null hypothesis Ho. "\
                 "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that "\
                 "the average of sample 1 is less than the "\
                 "average of sample 2."
             message_ha =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one < average of sample two\n"\
                 "Reject the null hypothesis Ho. "\
                 "Accept the alternative hypothesis Ha. "\
                 "There is sufficient evidence to show that "\
@@ -882,12 +890,16 @@ def two_sample_t(
         case "greater than":
             alternative = "greater"
             message_ho =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one > average of sample two\n"\
                 "Fail to reject the null hypothesis Ho. "\
                 "Continue to accept the null hypothesis Ho. "\
                 "There is insufficient evidence to show that "\
                 "the average of sample 1 is greater than the "\
                 "average of sample 2."
             message_ha =\
+                "Ho: average of sample one == average of sample two\n"\
+                "Ha: average of sample one > average of sample two\n"\
                 "Reject the null hypothesis Ho. "\
                 "Accept the alternative hypothesis Ha. "\
                 "There is sufficient evidence to show that "\
@@ -980,8 +992,6 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print("Ho: average of sample one == average of sample two")
-        print("Ha: average of sample one != average of sample two")
         print(f"t test statistic  : {t_test_statistic:7.3f}")
         print(f"t test p value    : {t_test_p_value:7.3f}")
         print(f"significance level: {significance_level:7.3f}")
@@ -999,8 +1009,6 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print("Ho: average of sample one == average of sample two")
-        print("Ha: average of sample one != average of sample two")
         print(f"t test statistic  : {t_test_statistic:7.3f}")
         print(f"t test p value    : {t_test_p_value:7.3f}")
         print(f"significance level: {significance_level:7.3f}")
