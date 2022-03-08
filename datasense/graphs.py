@@ -2009,7 +2009,7 @@ def despine(
 
 def plot_histogram(
     *,
-    s: pd.Series,
+    series: pd.Series,
     number_bins: int = None,
     bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
     figsize: Tuple[float, float] = None,
@@ -2022,7 +2022,7 @@ def plot_histogram(
     """
     Parameters
     ----------
-    s : pd.Series
+    series : pd.Series
         The input series.
     number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
@@ -2053,7 +2053,7 @@ def plot_histogram(
     # with the default parameters.
     >>> import datasense as ds
     >>> s = ds.random_data()
-    >>> fig, ax = ds.plot_histogram(s=s)
+    >>> fig, ax = ds.plot_histogram(series=s)
 
     Example 2
     # Create a series of random integers, integer distribution, size = 113,
@@ -2065,7 +2065,7 @@ def plot_histogram(
     >>>     low=0,
     >>>     high=14
     >>> )
-    >>> fig, ax = ds.plot_histogram(s=s)
+    >>> fig, ax = ds.plot_histogram(series=s)
 
     Example 3
     # Create a series of random integers, integer distribution, size = 113,
@@ -2078,7 +2078,7 @@ def plot_histogram(
     >>>     high=14
     >>> )
     >>> fig, ax = ds.plot_histogram(
-    >>>     s=s,
+    >>>     series=s,
     >>>     bin_width=1
 )
 
@@ -2093,7 +2093,7 @@ def plot_histogram(
     >>>     high=13
     >>> )
     >>> fig, ax = ds.plot_histogram(
-    >>>     s=s,
+    >>>     series=s,
     >>>     bin_width=1,
     >>>     bin_range=(0, 10)
     >>> )
@@ -2109,7 +2109,7 @@ def plot_histogram(
     >>>     scale=13
     >>> )
     >>> fig, ax = ds.plot_histogram(
-    >>>     s=s,
+    >>>     series=s,
     >>>     bin_width=5,
     >>>     bin_range=(30, 110)
     >>> )
@@ -2126,7 +2126,7 @@ def plot_histogram(
     >>>     scale=13
     >>> )
     >>> fig, ax = ds.plot_histogram(
-    >>>     s=s,
+    >>>     series=s,
     >>>     bin_width=5,
     >>>     bin_range=(30, 110),
     >>>     figsize=(10,8),
@@ -2140,13 +2140,13 @@ def plot_histogram(
         figsize=figsize
     )
     if bin_width and not bin_range:
-        x = (s.max() - s.min()) / bin_width
+        x = (series.max() - series.min()) / bin_width
         number_bins = math.ceil(x)
     elif bin_width and bin_range:
         number_bins = int((bin_range[1] - bin_range[0]) / bin_width)
         bin_range = bin_range
     counts, bins, patches = ax.hist(
-        x=s,
+        x=series,
         bins=number_bins,
         range=bin_range,
         edgecolor=edgecolor,
