@@ -1988,7 +1988,10 @@ def probability_plot(
     return (fig, ax)
 
 
-def despine(ax: axes.Axes) -> NoReturn:
+def despine(
+    *,
+    ax: axes.Axes
+) -> NoReturn:
     """
     Remove the top and right spines of a graph.
 
@@ -1998,7 +2001,7 @@ def despine(ax: axes.Axes) -> NoReturn:
 
     Example
     -------
-    >>> despine(ax)
+    >>> despine(ax=ax)
     """
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
