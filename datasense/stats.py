@@ -852,59 +852,117 @@ def two_sample_t(
     >>>     significance_level=0.05
     >>> )
     """
-    match alternative_hypothesis:
-        case "unequal":
-            alternative = "two-sided"
-            message_ho =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one != average of sample two\n"\
-                "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis Ho. "\
-                "There is insufficient evidence to show that the sample "\
-                "averages are different."
-            message_ha =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one != average of sample two\n"\
-                "Reject the null hypothesis Ho. "\
-                "Accept the alternative hypothesis Ha. "\
-                "There is sufficient evidence to show that the sample "\
-                "averages are different."
-        case "less than":
-            alternative = "less"
-            message_ho =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one < average of sample two\n"\
-                "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis Ho. "\
-                "There is insufficient evidence to show that "\
-                "the average of sample 1 is less than the "\
-                "average of sample 2."
-            message_ha =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one < average of sample two\n"\
-                "Reject the null hypothesis Ho. "\
-                "Accept the alternative hypothesis Ha. "\
-                "There is sufficient evidence to show that "\
-                "the average of sample 1 is less than the "\
-                "average of sample 2."
-        case "greater than":
-            alternative = "greater"
-            message_ho =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one > average of sample two\n"\
-                "Fail to reject the null hypothesis Ho. "\
-                "Continue to accept the null hypothesis Ho. "\
-                "There is insufficient evidence to show that "\
-                "the average of sample 1 is greater than the "\
-                "average of sample 2."
-            message_ha =\
-                "Ho: average of sample one == average of sample two\n"\
-                "Ha: average of sample one > average of sample two\n"\
-                "Reject the null hypothesis Ho. "\
-                "Accept the alternative hypothesis Ha. "\
-                "There is sufficient evidence to show that "\
-                "the average of sample 1 is greater than the "\
-                "average of sample 2."
+    # uncomment these lines when Anaconda releases Python 3.10
+    # start uncomment
+    # match alternative_hypothesis:
+    #     case "unequal":
+    #         alternative = "two-sided"
+    #         message_ho =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one != average of sample two\n"\
+    #             "Fail to reject the null hypothesis Ho. "\
+    #             "Continue to accept the null hypothesis Ho. "\
+    #             "There is insufficient evidence to show that the sample "\
+    #             "averages are different."
+    #         message_ha =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one != average of sample two\n"\
+    #             "Reject the null hypothesis Ho. "\
+    #             "Accept the alternative hypothesis Ha. "\
+    #             "There is sufficient evidence to show that the sample "\
+    #             "averages are different."
+    #     case "less than":
+    #         alternative = "less"
+    #         message_ho =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one < average of sample two\n"\
+    #             "Fail to reject the null hypothesis Ho. "\
+    #             "Continue to accept the null hypothesis Ho. "\
+    #             "There is insufficient evidence to show that "\
+    #             "the average of sample 1 is less than the "\
+    #             "average of sample 2."
+    #         message_ha =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one < average of sample two\n"\
+    #             "Reject the null hypothesis Ho. "\
+    #             "Accept the alternative hypothesis Ha. "\
+    #             "There is sufficient evidence to show that "\
+    #             "the average of sample 1 is less than the "\
+    #             "average of sample 2."
+    #     case "greater than":
+    #         alternative = "greater"
+    #         message_ho =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one > average of sample two\n"\
+    #             "Fail to reject the null hypothesis Ho. "\
+    #             "Continue to accept the null hypothesis Ho. "\
+    #             "There is insufficient evidence to show that "\
+    #             "the average of sample 1 is greater than the "\
+    #             "average of sample 2."
+    #         message_ha =\
+    #             "Ho: average of sample one == average of sample two\n"\
+    #             "Ha: average of sample one > average of sample two\n"\
+    #             "Reject the null hypothesis Ho. "\
+    #             "Accept the alternative hypothesis Ha. "\
+    #             "There is sufficient evidence to show that "\
+    #             "the average of sample 1 is greater than the "\
+    #             "average of sample 2."
+    # end uncomment
+    # delete these lines when Anaconda releases Python 3.10
+    # start delete
+    if alternative_hypothesis == "unequal":
+        alternative = "two-sided"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one != average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the sample "\
+            "averages are different."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one != average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that the sample "\
+            "averages are different."
+    elif alternative_hypothesis == "less than":
+        alternative = "less"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one < average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of sample 1 is less than the "\
+            "average of sample 2."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one < average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of sample 1 is less than the "\
+            "average of sample 2."
+    elif alternative_hypothesis == "greater than":
+        alternative = "greater"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one > average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of sample 1 is greater than the "\
+            "average of sample 2."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one > average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of sample 1 is greater than the "\
+            "average of sample 2."
+    # end delete
     print(
         "The two-sample t test is used to determine if the averages of two "
         "samples of data are statistically, significantly different from each "
