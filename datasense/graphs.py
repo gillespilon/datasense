@@ -2673,6 +2673,38 @@ def qr_code(qr_code_string: str, qr_code_path: Path) -> NoReturn:
     )
 
 
+def plot_boxplot(
+    *,
+    series: pd.Series,
+    notch: bool = None,
+    showmeans: bool = None,
+    figsize: Tuple[float, float] = None,
+) -> Tuple[plt.Figure, axes.Axes]:
+    """
+    Parameters
+    ----------
+    series : pd.Series
+        The input series.
+    figsize : Tuple[float, float] = None,
+        The (width, height) of the figure (in, in).
+
+    Returns
+    -------
+    fig, ax : Tuple[plt.Figure, axes.Axes]
+
+    Examples
+    --------
+    Example 1
+    """
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    ax.boxplot(
+        x=series,
+        notch=notch,
+        showmeans=showmeans
+    )
+    return (fig, ax)
+
+
 __all__ = (
     'plot_scatterleft_scatterright_x_y1_y2',
     'plot_scatter_scatter_x1_x2_y1_y2',
@@ -2691,6 +2723,7 @@ __all__ = (
     'plot_histogram',
     'plot_scatter_y',
     'plot_line_x_y',
+    'plot_boxplot',
     'plot_line_y',
     'plot_pareto',
     'format_dates',
