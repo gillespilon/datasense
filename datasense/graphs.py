@@ -2017,6 +2017,7 @@ def despine(
     Parameters
     ----------
     ax : axes.Axes
+        A matplotlib Axes.
 
     Example
     -------
