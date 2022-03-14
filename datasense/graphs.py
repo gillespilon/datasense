@@ -2672,13 +2672,13 @@ def qr_code(qr_code_string: str, qr_code_path: Path) -> NoReturn:
     ----------
     qr_code_string : str
         Text for the QR code
-    qr_code_path : str
+    qr_code_path : Path
         Text for the path
 
     Example
     -------
     >>> code_string = 'mystring'
-    >>> code_path = 'str_of_path'
+    >>> code_path = Path('str_of_path')
     >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
     """
     pq.create(content=qr_code_string).svg(
