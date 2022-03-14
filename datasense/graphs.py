@@ -1845,6 +1845,8 @@ def plot_pareto(
     linestyle: str = '-',
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
+    Parameters
+    ----------
     X : pd.Series
         The data to plot on the ordinate.
     y : pd.Series
