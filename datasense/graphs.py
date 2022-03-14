@@ -2020,8 +2020,7 @@ def despine(
     -------
     >>> despine(ax=ax)
     """
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
+    ax.spines[['top', 'right']].set_visible(b=False)
 
 
 def plot_histogram(
