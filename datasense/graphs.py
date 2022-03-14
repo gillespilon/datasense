@@ -2405,7 +2405,7 @@ def plot_pie(
         The start angle of the pie, counterclockwise from the x axis.
     colors : List[str] = None
         The color of the wedges.
-    autopct : str
+    autopct : str = '%1.1f%%'
         Label the wedges with their numeric value. If None, no label.
 
     Returns
