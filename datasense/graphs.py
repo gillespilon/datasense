@@ -55,6 +55,7 @@ def plot_scatter_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker : str = '.'
@@ -150,6 +151,7 @@ def plot_scatter_x_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker : str = '.'
@@ -276,6 +278,7 @@ def plot_line_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker : str = '.'
@@ -376,6 +379,7 @@ def plot_line_x_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker : str = '.'
@@ -526,6 +530,7 @@ def plot_scatter_scatter_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker1 : str = '.'
@@ -723,6 +728,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker1 : str = '.'
@@ -952,8 +958,9 @@ def plot_scatter_line_x_y1_y2(
         The series for y2 to plot on the vertical axis.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing: str = None
-        Optional: 'natural_cubic_spline'
+    smoothing : str = None
+        The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots: positive integer
         The number of knots to create.
     colour1 : str = '#0077bb'
@@ -1072,6 +1079,7 @@ def plot_line_line_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     marker1 : str = '.'
@@ -1217,6 +1225,7 @@ def plot_line_line_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
     marker1 : str = '.'
@@ -1356,6 +1365,7 @@ def plot_line_line_line_x_y1_y2_y3(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
     colour1 : str = '#0077bb'
@@ -1494,6 +1504,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
     colour1 : str = '#0077bb'
@@ -1615,6 +1626,7 @@ def plot_lineleft_lineright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     colour1 : str = '#0077bb'
@@ -1740,6 +1752,7 @@ def plot_barleft_lineright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
+        Options: 'natural_cubic_spline'
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     barwidth : float = 10
