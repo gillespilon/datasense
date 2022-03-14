@@ -2701,6 +2701,10 @@ def plot_boxplot(
     ----------
     series : pd.Series
         The input series.
+    notch: bool = None,
+        Boolean to show notch.
+    showmeans: bool = None,
+        Boolean to show average.
     figsize : Tuple[float, float] = None,
         The (width, height) of the figure (in, in).
 
