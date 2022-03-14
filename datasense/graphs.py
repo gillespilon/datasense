@@ -2667,7 +2667,7 @@ def plot_stacked_bars(
     return (fig, ax)
 
 
-def qr_code(qr_code_string: str, qr_code_path: Path) -> NoReturn:
+def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
     """
     Create a QR code and save as .svg and .png.
 
