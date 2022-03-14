@@ -2487,37 +2487,37 @@ def plot_stacked_bars(
         The x coordinates of the bars.
     height1 : Union[List[int], List[float]],
         The height of the level 1 bars.
-    label1: str = None,
+    label1 : str = None,
         The label of the level 1 bars.
     height2 : Union[List[int], List[float]],
         The height of the level 2 bars.
-    label2: str = None,
+    label2 : str = None,
         The label of the level 2 bars.
     height3 : Union[List[int], List[float]],
         The height of the level 3 bars.
-    label3: str = None,
+    label3 : str = None,
         The label of the level 3 bars.
     height4 : Union[List[int], List[float]],
         The height of the level 4 bars.
-    label4: str = None,
+    label4 : str = None,
         The label of the level 4 bars.
     height5 : Union[List[int], List[float]],
         The height of the level 5 bars.
-    label5: str = None,
+    label5 : str = None,
         The label of the level 5 bars.
     height6 : Union[List[int], List[float]],
         The height of the level 6 bars.
-    label6: str = None,
+    label6 : str = None,
         The label of the level 6 bars.
     height7 : Union[List[int], List[float]],
         The height of the level 7 bars.
-    label7: str = None,
+    label7 : str = None,
         The label of the level 7 bars.
     width : float = 0.8,
         The width of the bars.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    color: str = [
+    color : str = [
         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
         '#ee3377', '#bbbbbb'
     ]
