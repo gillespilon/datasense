@@ -1969,6 +1969,10 @@ def probability_plot(
         Fit a least-squares regression line to the data if True.
     plot : object = None
         If given, plot the quantiles and least-squares fit.
+    colour1 : str = '#0077bb',
+        The colour of line 1.
+    colour2 : str = '#33bbee'
+        The colour of line 2.
 
     Returns
     -------
