@@ -961,7 +961,7 @@ def plot_scatter_line_x_y1_y2(
     smoothing : str = None
         The type of smoothing to apply.
         Options: 'natural_cubic_spline'
-    number_knots: positive integer
+    number_knots : int = None
         The number of knots to create.
     colour1 : str = '#0077bb'
         The colour of y1.
