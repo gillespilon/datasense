@@ -78,7 +78,6 @@ def plot_scatter_y(
     >>>
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_y(y=series_y)
-    >>> plt.show()
 
     Example 2
     >>> fig, ax = ds.plot_scatter_y(
@@ -88,7 +87,6 @@ def plot_scatter_y(
     >>>     markersize=4,
     >>>     colour='#ee7733'
     >>> )
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -178,7 +176,6 @@ def plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
     >>> )
-    >>> plt.show()
 
     Example 2
     >>> series_x = ds.random_data(distribution='randint').sort_values()
@@ -190,7 +187,6 @@ def plot_scatter_x_y(
     >>>     markersize=8,
     >>>     colour='#cc3311'
     >>> )
-    >>> plt.show()
 
     Example 3
     >>> series_x = ds.random_data(distribution='uniform').sort_values()
@@ -198,7 +194,6 @@ def plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
     >>> )
-    >>> plt.show()
 
     Example 4
     >>> series_x = ds.random_data().sort_values()
@@ -206,7 +201,6 @@ def plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
     >>> )
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -303,7 +297,6 @@ def plot_line_y(
     >>>
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
-    >>> plt.show()
 
     Example 2
     >>> fig, ax = ds.plot_line_y(
@@ -314,7 +307,6 @@ def plot_line_y(
     >>>     colour='#ee7733'
     >>> )
     >>> )
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -410,7 +402,6 @@ def plot_line_x_y(
         X=series_x,
         y=series_y
     )
-    >>> plt.show()
 
     Example 2
     >>> series_x = ds.random_data(distribution='randint').sort_values()
@@ -424,7 +415,6 @@ def plot_line_x_y(
     >>>     linewidth=5,
     >>>     colour='#337733'
     >>> )
-    >>> plt.show()
 
     Example 3
     >>> series_x = ds.random_data(distribution='uniform').sort_values()
@@ -432,7 +422,6 @@ def plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y
     >>> )
-    >>> plt.show()
 
     Example 4
     >>> series_x = ds.random_data().sort_values()
@@ -440,7 +429,6 @@ def plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y
     >>> )
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -577,7 +565,6 @@ def plot_scatter_scatter_x_y1_y2(
     >>>     y1=series_y1,
     >>>     y2=series_y2
     >>> )
-    >>> plt.show()
 
     Example 2
     >>> series_x = ds.random_data(distribution='uniform')
@@ -596,7 +583,6 @@ def plot_scatter_scatter_x_y1_y2(
     >>>     labellegendy2='y2'
     >>> )
     >>> ax.legend(frameon=False)
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -777,10 +763,8 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     y1=series_y1,
     >>>     y2=series_y2
     >>> )
-    >>> plt.show()
 
     Example 2
-    >>> plt.show()
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     >>>     X1=series_x1,
     >>>     X2=series_x2,
@@ -789,7 +773,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     smoothing='natural_cubic_spline',
     >>>     number_knots=7
     >>> )
-    >>> plt.show()
 
     Example 3
     >>> series_x1 = ds.random_data(distribution='uniform').sort_values()
@@ -810,7 +793,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     labellegendy2='y2'
     >>> )
     >>> ax.legend(frameon=False)
-    >>> plt.show()
 
     Example 4
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
@@ -831,7 +813,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     number_knots=7
     >>> )
     >>> ax.legend(frameon=False)
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1123,7 +1104,6 @@ def plot_line_line_y1_y2(
     >>>     y1=series_y1,
     >>>     y2=series_y2
     >>> )
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1886,7 +1866,6 @@ def plot_pareto(
     >>>     X=data['ordinate'],
     >>>     y=data['abscissa']
     >>> )
-    >>> plt.show()
     """
     df = pd.concat(
         [X, y],
@@ -1988,7 +1967,6 @@ def probability_plot(
     >>>
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
-    >>> plt.show()
     """
     fig, ax = plt.subplots(
         nrows=1,
