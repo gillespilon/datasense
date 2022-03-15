@@ -18,10 +18,10 @@ import sys
 from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
+from scipy.stats import norm, uniform, randint
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
-from scipy.stats import norm
 import scipy.stats as stats
 from numpy import arange
 import pandas as pd
