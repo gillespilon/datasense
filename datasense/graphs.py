@@ -2688,6 +2688,14 @@ def plot_boxplot(
     figsize: Tuple[float, float] = None,
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
+    Create a box-and-whisker plot with several elements:
+    - minimum
+    - first quartile
+    - second quartile (median)
+    - third quartile
+    - maximum
+    - outliers
+
     Parameters
     ----------
     series : pd.Series
@@ -2708,12 +2716,11 @@ def plot_boxplot(
     >>> import datasense as ds
 
     >>> series = ds.random_data()
-    >>> fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
-    >>> ax.boxplot(
-    >>>     x=series,
-    >>>     notch=notch,
-    >>>     showmeans=showmeans
-    >>> )
+    >>> fig, ax = ds.plot_boxplot(series=series)
+    >>> ax.set_title(label='Box-and-whisker plot')
+    >>> ds.despine(ax=ax)
+    >>> ax.set_xticks(ticks=[1], labels=['series'])
+    >>> ax.set_ylabel('y')
     """
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.boxplot(
