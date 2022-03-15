@@ -1920,9 +1920,9 @@ def format_dates(
         A matplotlib Axes.
     """
     loc = mdates.AutoDateLocator()
-    fmt = mdates.AutoDateFormatter(loc)
-    ax.xaxis.set_major_locator(loc)
-    ax.xaxis.set_major_formatter(fmt)
+    fmt = mdates.AutoDateFormatter(locator=loc)
+    ax.xaxis.set_major_locator(locator=loc)
+    ax.xaxis.set_major_formatter(formatter=fmt)
     fig.autofmt_xdate()
 
 
