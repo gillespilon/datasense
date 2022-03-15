@@ -21,6 +21,7 @@ from scipy.stats.mstats import mquantiles as mq
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
+from scipy.stats import norm
 import scipy.stats as stats
 from numpy import arange
 import pandas as pd
