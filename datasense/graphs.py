@@ -33,9 +33,9 @@ def plot_scatter_y(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker: str = '.',
+    marker: str = ".",
     markersize: float = 8,
-    colour: str = '#0077bb'
+    colour: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y. Optional smoothing applied to y.
@@ -55,14 +55,14 @@ def plot_scatter_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = '.'
+    marker : str = "."
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    colour : str = '#0077bb'
+    colour : str = "#0077bb"
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -84,9 +84,9 @@ def plot_scatter_y(
     >>> fig, ax = ds.plot_scatter_y(
     >>>     y=series_y,
     >>>     figsize=(8, 4.5),
-    >>>     marker='o',
+    >>>     marker="o",
     >>>     markersize=4,
-    >>>     colour='#ee7733'
+    >>>     colour="#ee7733"
     >>> )
     """
     fig, ax = plt.subplots(
@@ -94,6 +94,7 @@ def plot_scatter_y(
         ncols=1,
         figsize=figsize
     )
+    # generate X series, required if using smoothing
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -101,10 +102,10 @@ def plot_scatter_y(
             y,
             marker=marker,
             markersize=markersize,
-            linestyle='None',
+            linestyle="None",
             color=colour
         )
-    elif smoothing == 'natural_cubic_spline':
+    elif smoothing == "natural_cubic_spline":
         model = natural_cubic_spline(
             X=X,
             y=y,
@@ -115,7 +116,7 @@ def plot_scatter_y(
             model.predict(X),
             marker=marker,
             markersize=markersize,
-            linestyle='None',
+            linestyle="None",
             color=colour
         )
     return (fig, ax)
@@ -128,7 +129,7 @@ def plot_scatter_x_y(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker: str = '.',
+    marker: str = ".",
     markersize: float = 8,
     colour: str = '#0077bb'
 ) -> Tuple[plt.Figure, axes.Axes]:
