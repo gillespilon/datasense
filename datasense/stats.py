@@ -322,7 +322,8 @@ def random_data(
     strings: List[str] = ['female', 'male'],
     categories: List[str] = ['small', 'medium', 'large'],
     random_state: int = None,
-    fraction_nan: float = 0.13
+    fraction_nan: float = 0.13,
+    name: str = None
 ) -> pd.Series:
     """
     Create a series of random items from a distribution.
@@ -349,6 +350,8 @@ def random_data(
         The random number seed.
     fraction_nan : float = 0.13
         The fraction of cells to be made np.NaN.
+    name : str = None
+        The name of the Series.
 
     Returns
     -------
@@ -547,7 +550,8 @@ def random_data(
             loc=loc,
             scale=scale,
             random_state=random_state
-            )
+            ),
+            name=name
         )
     elif distribution in distribution_list_discrete:
         if distribution == 'randInt':
@@ -556,7 +560,8 @@ def random_data(
                 high=high,
                 size=size,
                 random_state=random_state
-                )
+                ),
+                name=name
             )
             series[series.sample(frac=fraction_nan).index] = np.NaN
             series = series.astype(dtype='Int64')
@@ -566,7 +571,8 @@ def random_data(
                 high=high,
                 size=size,
                 random_state=random_state
-                )
+                ),
+                name=name
             ).astype(dtype='int64')
     elif distribution in distribution_list_bool:
         if distribution == 'boolean':
@@ -575,7 +581,8 @@ def random_data(
                 high=2,
                 size=size,
                 random_state=random_state
-                )
+                ),
+                name=name
             )
             series[series.sample(frac=fraction_nan).index] = np.NaN
             series = series.astype(dtype='boolean')
@@ -585,7 +592,8 @@ def random_data(
                 high=2,
                 size=size,
                 random_state=random_state
-                )
+                ),
+                name=name
             ).astype(dtype='bool')
     elif distribution in distribution_list_strings:
         random.seed(a=random_state)
@@ -593,7 +601,8 @@ def random_data(
             random.choices(
                 population=strings,
                 k=size
-            )
+            ),
+            name=name
         )
     elif distribution in distribution_list_categories:
         if distribution == 'categories':
@@ -602,7 +611,8 @@ def random_data(
                 random.choices(
                     population=categories,
                     k=size
-                )
+                ),
+                name=name
             ).astype(
                 CategoricalDtype(
                     categories=categories,
@@ -615,12 +625,13 @@ def random_data(
                 random.choices(
                     population=categories,
                     k=size
-                )
+                ),
+                name=name
             ).astype(dtype='category')
     elif distribution == 'timedelta':
-        series = timedelta_data(time_delta_days=size-1)
+        series = timedelta_data(time_delta_days=size-1).rename(name)
     elif distribution == 'datetime':
-        series = datetime_data(time_delta_days=size-1)
+        series = datetime_data(time_delta_days=size-1).rename(name)
     else:
         return print(
             f'Distribution instance {distribution} is not implemented '
