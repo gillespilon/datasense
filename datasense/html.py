@@ -2,7 +2,7 @@
 HTML and report functions
 """
 
-from typing import IO, List, NoReturn
+from typing import IO, List, NoReturn, Union
 from datetime import datetime
 from inspect import signature
 from pathlib import Path
@@ -173,7 +173,7 @@ def html_end(
 
 def html_figure(
     *,
-    file_name: str,
+    file_name: Union[Path,str],
     caption: str = None
 ) -> NoReturn:
     """
