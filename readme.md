@@ -58,4 +58,4 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 ## Piecewise natural cubic spline
 
-![Piecewise natural cubic spline](spline_piecewise_natural_cubic_spline_TARGET_FEATURE_30.svg)
+![Piecewise natural cubic spline](scripts/spline_piecewise_natural_cubic_spline_TARGET_FEATURE_30.svg)
