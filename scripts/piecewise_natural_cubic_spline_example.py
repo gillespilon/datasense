@@ -158,7 +158,7 @@ def plot_scatter_line(
     )
     ax.set_xlabel(xlabel=x_axis_label)
     ax.set_ylabel(ylabel=y_axis_label)
-    ds.despine(ax)
+    ds.despine(ax=ax)
     fig.savefig(
         f'{graphics_directory}'
         f'/spline_'
