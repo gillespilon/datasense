@@ -394,14 +394,14 @@ def explore_functions(function: str) -> NoReturn:
 
 
 __all__ = (
-    'html_header',
-    'html_footer',
-    'page_break',
-    'html_begin',
-    'html_end',
-    'html_figure',
+    'explore_functions',
+    'sync_directories',
     'report_summary',
     'script_summary',
-    'sync_directories',
-    'explore_functions',
+    'html_figure',
+    'html_footer',
+    'html_header',
+    'html_begin',
+    'page_break',
+    'html_end',
 )
