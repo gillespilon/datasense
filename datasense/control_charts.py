@@ -1172,14 +1172,14 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
 __all__ = (
     'ControlChart',
-    'X',
-    'mR',
-    'Xbar',
-    'R',
-    'draw_rule',
-    'draw_rules',
-    'points_one',
-    'points_two',
     'points_three',
     'points_four',
+    'points_two',
+    'points_one',
+    'draw_rules',
+    'draw_rule',
+    'Xbar',
+    'mR',
+    'R',
+    'X',
 )
