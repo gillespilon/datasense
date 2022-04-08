@@ -1978,6 +1978,7 @@ def probability_plot(
     ax.get_lines()[0].set_markerfacecolor(colour1)
     ax.get_lines()[0].set_markeredgecolor(colour1)
     ax.get_lines()[1].set_color(colour2)
+    despine(ax=ax)
     return (fig, ax)
 
 
