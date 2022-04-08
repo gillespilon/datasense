@@ -1971,16 +1971,9 @@ def probability_plot(
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     (osm, osr), (slope, intercept, r) = probplot(
-        x=data,
-        dist=distribution,
-        fit=True,
-        plot=ax
+        x=data, dist=distribution, fit=True, plot=ax
     )
     ax.get_lines()[0].set_markerfacecolor(colour1)
     ax.get_lines()[0].set_markeredgecolor(colour1)
