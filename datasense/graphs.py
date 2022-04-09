@@ -2426,7 +2426,7 @@ def plot_pie(
     >>>     labels=labels,
     >>>     startangle=90,
     >>>     colors=[
-    >>>         colour_blue, colour_cyan, "#009988", colour_orange, "#cc3311",
+    >>>         colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
     >>>         "#ee3377", "#bbbbbb"
     >>>     ]
     >>> )
@@ -2466,7 +2466,7 @@ def plot_stacked_bars(
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
-        colour_blue, colour_cyan, "#009988", colour_orange, "#cc3311",
+        colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
         "#ee3377", "#bbbbbb"
     ]
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -2510,7 +2510,7 @@ def plot_stacked_bars(
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
     color : str = [
-        colour_blue, colour_cyan, "#009988", colour_orange, "#cc3311",
+        colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
         "#ee3377", "#bbbbbb"
     ]
         The color of the bar faces, up to seven levels.
