@@ -2433,8 +2433,8 @@ def plot_pie(
     >>>     labels=labels,
     >>>     startangle=90,
     >>>     colors=[
-    >>>         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
-    >>>         colour_magenta, colour_grey
+    >>>         colour_blue, colour_cyan, colour_teal, colour_orange,
+    >>>         colour_red, colour_magenta, colour_grey
     >>>     ]
     >>> )
     """
