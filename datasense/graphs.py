@@ -2,13 +2,13 @@
 Graphical analysis
 
 Colours used are colour-blind friendly.
-    blue    '#0077bb'
-    cyan    '#33bbee'
-    teal    '#009988'
-    orange  '#ee7733'
-    red     '#cc3311'
-    magenta '#ee3377'
-    grey    '#bbbbbb'
+    blue    "#0077bb"
+    cyan    "#33bbee"
+    teal    "#009988"
+    orange  "#ee7733"
+    red     "#cc3311"
+    magenta "#ee3377"
+    grey    "#bbbbbb"
 """
 
 from typing import List, NoReturn, Tuple, Union
@@ -20,6 +20,7 @@ from matplotlib.ticker import FormatStrFormatter
 from matplotlib.offsetbox import AnchoredText
 from datasense import natural_cubic_spline
 from scipy.stats import norm, probplot
+from matplotlib import rcParams as rc
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
@@ -132,7 +133,7 @@ def plot_scatter_x_y(
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 8,
-    colour: str = '#0077bb'
+    colour: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -152,14 +153,14 @@ def plot_scatter_x_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = '.'
+    marker : str = "."
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    colour : str = '#0077bb'
+    colour : str = "#0077bb"
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -182,18 +183,18 @@ def plot_scatter_x_y(
     >>> )
 
     Example 2
-    >>> series_x = ds.random_data(distribution='randint').sort_values()
+    >>> series_x = ds.random_data(distribution="randint").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
     >>>     figsize=(8, 4.5),
-    >>>     marker='o',
+    >>>     marker="o",
     >>>     markersize=8,
-    >>>     colour='#cc3311'
+    >>>     colour="#cc3311"
     >>> )
 
     Example 3
-    >>> series_x = ds.random_data(distribution='uniform').sort_values()
+    >>> series_x = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
     >>>     y=series_y
@@ -212,7 +213,7 @@ def plot_scatter_x_y(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -222,11 +223,11 @@ def plot_scatter_x_y(
             y,
             marker=marker,
             markersize=markersize,
-            linestyle='None',
+            linestyle="None",
             color=colour
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -241,7 +242,7 @@ def plot_scatter_x_y(
             model.predict(XX),
             marker=marker,
             markersize=markersize,
-            linestyle='None',
+            linestyle="None",
             color=colour
         )
     return (fig, ax)
@@ -253,10 +254,10 @@ def plot_line_y(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker: str = '.',
+    marker: str = ".",
     markersize: float = 8,
-    linestyle: str = '-',
-    colour: str = '#0077bb'
+    linestyle: str = "-",
+    colour: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y. Optional smoothing applied to y.
@@ -276,16 +277,16 @@ def plot_line_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = '.'
+    marker : str = "."
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    linestyle : str = '-'
+    linestyle : str = "-"
         The style for the line.
-    colour : str = '#0077bb'
+    colour : str = "#0077bb"
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -306,9 +307,9 @@ def plot_line_y(
     >>> fig, ax = ds.plot_line_y(
     >>>     y=series_y,
     >>>     figsize=(8, 4.5),
-    >>>     marker='o',
+    >>>     marker="o",
     >>>     markersize=4,
-    >>>     colour='#ee7733'
+    >>>     colour="#ee7733"
     >>> )
     >>> )
     """
@@ -327,7 +328,7 @@ def plot_line_y(
             linestyle=linestyle,
             color=colour
         )
-    elif smoothing == 'natural_cubic_spline':
+    elif smoothing == "natural_cubic_spline":
         model = natural_cubic_spline(
             X=X,
             y=y,
@@ -351,11 +352,11 @@ def plot_line_x_y(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker: str = '.',
+    marker: str = ".",
     markersize: float = 8,
-    linestyle: str = '-',
+    linestyle: str = "-",
     linewidth: float = 1,
-    colour: str = '#0077bb'
+    colour: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
@@ -375,18 +376,18 @@ def plot_line_x_y(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = '.'
+    marker : str = "."
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    linestyle : str = '-'
+    linestyle : str = "-"
         The style of the line joining the points.
     linewidth : float = 1
         The width of the line joining the points.
-    colour : str = '#0077bb'
+    colour : str = "#0077bb"
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -408,20 +409,20 @@ def plot_line_x_y(
     >>> )
 
     Example 2
-    >>> series_x = ds.random_data(distribution='randint').sort_values()
+    >>> series_x = ds.random_data(distribution="randint").sort_values()
     >>> fig, ax = ds.plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y,
     >>>     figsize=(8, 4.5),
-    >>>     marker='o',
+    >>>     marker="o",
     >>>     markersize=8,
-    >>>     linestyle=':',
+    >>>     linestyle=":",
     >>>     linewidth=5,
-    >>>     colour='#337733'
+    >>>     colour="#337733"
     >>> )
 
     Example 3
-    >>> series_x = ds.random_data(distribution='uniform').sort_values()
+    >>> series_x = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_line_x_y(
     >>>     X=series_x,
     >>>     y=series_y
@@ -440,7 +441,7 @@ def plot_line_x_y(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -454,8 +455,8 @@ def plot_line_x_y(
             linewidth=linewidth,
             color=colour
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             # TODO: is this necessary?
             fig.autofmt_xdate()
@@ -485,16 +486,16 @@ def plot_scatter_scatter_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker1: str = '.',
-    marker2: str = '.',
+    marker1: str = ".",
+    marker2: str = ".",
     markersize1: int = 8,
     markersize2: int = 8,
-    linestyle1: str = 'None',
-    linestyle2: str = 'None',
+    linestyle1: str = "None",
+    linestyle2: str = "None",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -522,28 +523,28 @@ def plot_scatter_scatter_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = '.'
+    marker1 : str = "."
         The type of plot point for y1.
-    marker2 : str = '.'
+    marker2 : str = "."
         The type of plot point for y2.
     markersize1 : int = 8
         The size of the plot point for y1.
     markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : str = 'None'
+    linestyle1 : str = "None"
         The style of the line for y1.
-    linestyle2 : str = 'None'
+    linestyle2 : str = "None"
         The style of the line for y2.
     linewidth1 : float = 1
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -571,20 +572,20 @@ def plot_scatter_scatter_x_y1_y2(
     >>> )
 
     Example 2
-    >>> series_x = ds.random_data(distribution='uniform')
+    >>> series_x = ds.random_data(distribution="uniform")
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
     >>>     X=series_x,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
     >>>     figsize=(8, 5),
-    >>>     marker1='o',
-    >>>     marker2='+',
+    >>>     marker1="o",
+    >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1='#cc3311',
-    >>>     colour2='#ee3377',
-    >>>     labellegendy1='y1',
-    >>>     labellegendy2='y2'
+    >>>     colour1="#cc3311",
+    >>>     colour2="#ee3377",
+    >>>     labellegendy1="y1",
+    >>>     labellegendy2="y2"
     >>> )
     >>> ax.legend(frameon=False)
     """
@@ -594,7 +595,7 @@ def plot_scatter_scatter_x_y1_y2(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -619,8 +620,8 @@ def plot_scatter_scatter_x_y1_y2(
             color=colour2,
             label=labellegendy2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -640,7 +641,7 @@ def plot_scatter_scatter_x_y1_y2(
             model1.predict(X),
             marker=marker1,
             markersize=markersize1,
-            linestyle='None',
+            linestyle="None",
             linewidth=linewidth1,
             color=colour1
         )
@@ -649,22 +650,22 @@ def plot_scatter_scatter_x_y1_y2(
             model2.predict(X),
             marker=marker2,
             markersize=markersize2,
-            linestyle='None',
+            linestyle="None",
             linewidth=linewidth2,
             color=colour2
         )
         ax.plot(
             X,
             model1.predict(XX),
-            marker='.',
-            linestyle='',
+            marker=".",
+            linestyle="",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
-            marker='.',
-            linestyle='',
+            marker=".",
+            linestyle="",
             color=colour2
         )
     return (fig, ax)
@@ -679,16 +680,16 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker1: str = '.',
-    marker2: str = '.',
+    marker1: str = ".",
+    marker2: str = ".",
     markersize1: int = 8,
     markersize2: int = 8,
-    linestyle1: str = 'None',
-    linestyle2: str = 'None',
+    linestyle1: str = "None",
+    linestyle2: str = "None",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -718,28 +719,28 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = '.'
+    marker1 : str = "."
         The type of plot point for y1.
-    marker2 : str = '.'
+    marker2 : str = "."
         The type of plot point for y2.
     markersize1 : int = 8
         The size of the plot point for y1.
     markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : str = 'None'
+    linestyle1 : str = "None"
         The style of the line for y1.
-    linestyle2 : str = 'None'
+    linestyle2 : str = "None"
         The style of the line for y2.
     linewidth1 : float = 1
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -774,27 +775,27 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     X2=series_x2,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
-    >>>     smoothing='natural_cubic_spline',
+    >>>     smoothing="natural_cubic_spline",
     >>>     number_knots=7
     >>> )
 
     Example 3
-    >>> series_x1 = ds.random_data(distribution='uniform').sort_values()
-    >>> series_x2 = ds.random_data(distribution='uniform').sort_values()
+    >>> series_x1 = ds.random_data(distribution="uniform").sort_values()
+    >>> series_x2 = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     >>>     X1=series_x1,
     >>>     X2=series_x2,
     >>>     y1=series_y1,
     >>>     y2=series_y2,
     >>>     figsize=(8, 5),
-    >>>     marker1='o',
-    >>>     marker2='+',
+    >>>     marker1="o",
+    >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1='#cc3311',
-    >>>     colour2='#ee3377',
-    >>>     labellegendy1='y1',
-    >>>     labellegendy2='y2'
+    >>>     colour1="#cc3311",
+    >>>     colour2="#ee3377",
+    >>>     labellegendy1="y1",
+    >>>     labellegendy2="y2"
     >>> )
     >>> ax.legend(frameon=False)
 
@@ -805,15 +806,15 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     y1=series_y1,
     >>>     y2=series_y2,
     >>>     figsize=(8, 5),
-    >>>     marker1='o',
-    >>>     marker2='+',
+    >>>     marker1="o",
+    >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1='#cc3311',
-    >>>     colour2='#ee3377',
-    >>>     labellegendy1='y1',
-    >>>     labellegendy2='y2',
-    >>>     smoothing='natural_cubic_spline',
+    >>>     colour1="#cc3311",
+    >>>     colour2="#ee3377",
+    >>>     labellegendy1="y1",
+    >>>     labellegendy2="y2",
+    >>>     smoothing="natural_cubic_spline",
     >>>     number_knots=7
     >>> )
     >>> ax.legend(frameon=False)
@@ -824,7 +825,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         figsize=figsize
     )
     if smoothing is None:
-        if (X1.dtype and X2.dtype) in ['datetime64[ns]']:
+        if (X1.dtype and X2.dtype) in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -849,8 +850,8 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             color=colour2,
             label=labellegendy2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if (X1.dtype and X2.dtype) in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if (X1.dtype and X2.dtype) in ["datetime64[ns]"]:
             XX1 = pd.to_numeric(X1)
             XX2 = pd.to_numeric(X2)
             fig.autofmt_xdate()
@@ -892,7 +893,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             model1.predict(XX1),
             marker=marker1,
             markersize=0,
-            linestyle='-',
+            linestyle="-",
             linewidth=linewidth1,
             color=colour1
         )
@@ -901,7 +902,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             model2.predict(XX2),
             marker=marker2,
             markersize=0,
-            linestyle='-',
+            linestyle="-",
             linewidth=linewidth2,
             color=colour2
         )
@@ -916,8 +917,8 @@ def plot_scatter_line_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -945,12 +946,12 @@ def plot_scatter_line_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots to create.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of y2.
     labellegendy1 : str = None
         The legend for y1.
@@ -968,7 +969,7 @@ def plot_scatter_line_x_y1_y2(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -976,8 +977,8 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(
             X,
             y1,
-            marker='.',
-            linestyle='',
+            marker=".",
+            linestyle="",
             color=colour1,
             label=labellegendy1
         )
@@ -985,12 +986,12 @@ def plot_scatter_line_x_y1_y2(
             X,
             y2,
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2,
             label=labellegendy2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1008,15 +1009,15 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(
             X,
             model1.predict(XX),
-            marker='.',
-            linestyle='',
+            marker=".",
+            linestyle="",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2
         )
     return (fig, ax)
@@ -1029,16 +1030,16 @@ def plot_line_line_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker1: str = '.',
-    marker2: str = '.',
+    marker1: str = ".",
+    marker2: str = ".",
     markersize1: int = 8,
     markersize2: int = 8,
-    linestyle1: str = '-',
-    linestyle2: str = '-',
+    linestyle1: str = "-",
+    linestyle2: str = "-",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -1064,28 +1065,28 @@ def plot_line_line_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = '.'
+    marker1 : str = "."
         The type of plot point for y1.
-    marker2 : str = '.'
+    marker2 : str = "."
         The type of plot point for y2.
     markersize1 : int = 8
         The size of the plot point for y1 (pt).
     markersize2 : int = 8
         The size of the plot point for y2 (pt).
-    linestyle1 : str = '_'
+    linestyle1 : str = "_"
         The style of the line for y1.
-    linestyle2 : str = '_'
+    linestyle2 : str = "_"
         The style of the line for y2.
     linewidth1 : float = 1
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -1136,7 +1137,7 @@ def plot_line_line_y1_y2(
             color=colour2,
             label=labellegendy2
         )
-    elif smoothing == 'natural_cubic_spline':
+    elif smoothing == "natural_cubic_spline":
         model1 = natural_cubic_spline(
             X=X,
             y=y1,
@@ -1151,14 +1152,14 @@ def plot_line_line_y1_y2(
             X,
             model1.predict(X),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(X),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2
             )
     return (fig, ax)
@@ -1172,16 +1173,16 @@ def plot_line_line_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    marker1: str = '.',
-    marker2: str = '.',
+    marker1: str = ".",
+    marker2: str = ".",
     markersize1: int = 8,
     markersize2: int = 8,
-    linestyle1: str = '-',
-    linestyle2: str = '-',
+    linestyle1: str = "-",
+    linestyle2: str = "-",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -1209,28 +1210,28 @@ def plot_line_line_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
-    marker1 : str = '.'
+    marker1 : str = "."
         The type of plot point for y1.
-    marker2 : str = '.'
+    marker2 : str = "."
         The type of plot point for y2.
     markersize1 : int = 8
         The size of the plot point for y1.
     markersize2 : int = 8
         The size of the plot point for y2.
-    linestyle1 : str = '-'
+    linestyle1 : str = "-"
         The style of the line for y1.
-    linestyle2 : str = '-'
+    linestyle2 : str = "-"
         The style of the line for y2.
     linewidth1 : float = 1
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -1248,7 +1249,7 @@ def plot_line_line_x_y1_y2(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -1273,8 +1274,8 @@ def plot_line_line_x_y1_y2(
             color=colour2,
             label=labellegendy2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1293,14 +1294,14 @@ def plot_line_line_x_y1_y2(
             X,
             model1.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2
             )
     return (fig, ax)
@@ -1315,9 +1316,9 @@ def plot_line_line_line_x_y1_y2_y3(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
-    colour3: str = '#009988',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
+    colour3: str = "#009988",
     labellegendy1: str = None,
     labellegendy2: str = None,
     labellegendy3: str = None
@@ -1349,14 +1350,14 @@ def plot_line_line_line_x_y1_y2_y3(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
-    colour2 : str = '#009988'
+    colour2 : str = "#009988"
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -1376,7 +1377,7 @@ def plot_line_line_line_x_y1_y2_y3(
         figsize=figsize
     )
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax
@@ -1385,7 +1386,7 @@ def plot_line_line_line_x_y1_y2_y3(
             X,
             y1,
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour1,
             label=labellegendy1
         )
@@ -1393,7 +1394,7 @@ def plot_line_line_line_x_y1_y2_y3(
             X,
             y2,
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2,
             label=labellegendy2
         )
@@ -1401,12 +1402,12 @@ def plot_line_line_line_x_y1_y2_y3(
             X,
             y3,
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour3,
             label=labellegendy3
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1430,21 +1431,21 @@ def plot_line_line_line_x_y1_y2_y3(
             X,
             model1.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour2
         )
         ax.plot(
             X,
             model3.predict(XX),
             marker=None,
-            linestyle='-',
+            linestyle="-",
             color=colour3
         )
     return (fig, ax)
@@ -1458,10 +1459,10 @@ def plot_scatterleft_scatterright_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
-    linestyle1: str = 'None',
-    linestyle2: str = 'None'
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
+    linestyle1: str = "None",
+    linestyle2: str = "None"
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Scatter plot of y1 left vertical axis versus X.
@@ -1488,16 +1489,16 @@ def plot_scatterleft_scatterright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
-    linestyle1 : str = 'None'
+    linestyle1 : str = "None"
         The style of the line for y1.
-    linestyle2 : str = 'None'
+    linestyle2 : str = "None"
         The style of the line for y2.
 
     Returns
@@ -1512,7 +1513,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     )
     ax2 = ax1.twinx()
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax1
@@ -1520,19 +1521,19 @@ def plot_scatterleft_scatterright_x_y1_y2(
         ax1.plot(
             X,
             y1,
-            marker='.',
+            marker=".",
             linestyle=linestyle1,
             color=colour1
         )
         ax2.plot(
             X,
             y2,
-            marker='.',
+            marker=".",
             linestyle=linestyle2,
             color=colour2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1550,14 +1551,14 @@ def plot_scatterleft_scatterright_x_y1_y2(
         ax1.plot(
             X,
             model1.predict(XX),
-            marker='.',
+            marker=".",
             linestyle=linestyle1,
             color=colour1
         )
         ax2.plot(
             X,
             model2.predict(XX),
-            marker='.',
+            marker=".",
             linestyle=linestyle2,
             color=colour2
         )
@@ -1576,13 +1577,13 @@ def plot_lineleft_lineright_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
-    linestyle1: str = '-',
-    linestyle2: str = '-',
-    marker1: str = '.',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
+    linestyle1: str = "-",
+    linestyle2: str = "-",
+    marker1: str = ".",
     marker1size: float = 8,
-    marker2: str = '.',
+    marker2: str = ".",
     marker2size: float = 8,
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
@@ -1610,22 +1611,22 @@ def plot_lineleft_lineright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
-    linestyle1 : str = '-'
+    linestyle1 : str = "-"
         The style of the line for y1.
-    linestyle2 : str = '-'
+    linestyle2 : str = "-"
         The style of the line for y2.
-    marker1 : str = '.'
+    marker1 : str = "."
         The type of plot point for y1.
     markersize1 : int = 8
         The size of the plot point for y1 (pt).
-    marker2 : str = '.'
+    marker2 : str = "."
         The type of plot point for y2.
     markersize2 : int = 8
         The size of the plot point for y2 (pt).
@@ -1642,7 +1643,7 @@ def plot_lineleft_lineright_x_y1_y2(
     )
     ax2 = ax1.twinx()
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax1
@@ -1661,8 +1662,8 @@ def plot_lineleft_lineright_x_y1_y2(
             marker=marker2,
             markersize=marker2size
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1705,11 +1706,11 @@ def plot_barleft_lineright_x_y1_y2(
     smoothing: str = None,
     number_knots: int = None,
     barwidth: float = 10,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
-    linestyle1: str = '-',
-    linestyle2: str = '-',
-    marker2: str = 'o'
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
+    linestyle1: str = "-",
+    linestyle2: str = "-",
+    marker2: str = "o"
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Bar plot of y1 left vertical axis versus X.
@@ -1736,20 +1737,20 @@ def plot_barleft_lineright_x_y1_y2(
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
-        Options: 'natural_cubic_spline'
+        Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
     barwidth : float = 10
         The width of the bars.
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
-    linestyle1 : str = '-'
+    linestyle1 : str = "-"
         The style of the line for y1.
-    linestyle2 : str = '-'
+    linestyle2 : str = "-"
         The style of the line for y2.
-    marker2 : str = 'o'
+    marker2 : str = "o"
         The type of plot point for y2.
 
     Returns
@@ -1764,7 +1765,7 @@ def plot_barleft_lineright_x_y1_y2(
     )
     ax2 = ax1.twinx()
     if smoothing is None:
-        if X.dtype in ['datetime64[ns]']:
+        if X.dtype in ["datetime64[ns]"]:
             format_dates(
                 fig=fig,
                 ax=ax1
@@ -1781,8 +1782,8 @@ def plot_barleft_lineright_x_y1_y2(
             color=colour2,
             marker=marker2
         )
-    elif smoothing == 'natural_cubic_spline':
-        if X.dtype in ['datetime64[ns]']:
+    elif smoothing == "natural_cubic_spline":
+        if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
@@ -1822,11 +1823,11 @@ def plot_pareto(
     y: pd.Series,
     figsize: Tuple[float, float] = None,
     width: float = 0.8,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee',
-    marker: str = '.',
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee",
+    marker: str = ".",
     markersize: float = 8,
-    linestyle: str = '-',
+    linestyle: str = "-",
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Parameters
@@ -1839,15 +1840,15 @@ def plot_pareto(
         The (width, height) of the figure (in, in).
     width : float = 0.8
         The width of the bars (in).
-    colour1 : str = '#0077bb'
+    colour1 : str = "#0077bb"
         The colour of the line for y1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of the line for y2.
-    marker : str = '.'
+    marker : str = "."
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    linestyle : str = '-'
+    linestyle : str = "-"
         The style of the line joining the points.
 
     Returns
@@ -1862,13 +1863,13 @@ def plot_pareto(
 
     >>> data = pd.DataFrame(
     >>>     {
-    >>>         'ordinate': ['Mo', 'Larry', 'Curly', 'Shemp', 'Joe'],
-    >>>         'abscissa': [21, 2, 10, 4, 16]
+    >>>         "ordinate": ["Mo", "Larry", "Curly", "Shemp", "Joe"],
+    >>>         "abscissa": [21, 2, 10, 4, 16]
     >>>     }
     >>> )
     >>> fig, ax1, ax2 = ds.plot_pareto(
-    >>>     X=data['ordinate'],
-    >>>     y=data['abscissa']
+    >>>     X=data["ordinate"],
+    >>>     y=data["abscissa"]
     >>> )
     """
     df = pd.concat(
@@ -1878,11 +1879,11 @@ def plot_pareto(
         by=y.name,
         axis=0,
         ascending=False,
-        kind='mergesort'
+        kind="mergesort"
     )
     total_y = df[y.name].sum()
-    df['percentage'] = df[y.name] / total_y * 100
-    df['cumulative_percentage'] = df['percentage'].cumsum(skipna=True)
+    df["percentage"] = df[y.name] / total_y * 100
+    df["cumulative_percentage"] = df["percentage"].cumsum(skipna=True)
     fig, ax1 = plt.subplots(
         nrows=1,
         ncols=1,
@@ -1897,7 +1898,7 @@ def plot_pareto(
     )
     ax2.plot(
         df[X.name],
-        df['cumulative_percentage'],
+        df["cumulative_percentage"],
         marker=marker,
         markersize=markersize,
         linestyle=linestyle,
@@ -1935,8 +1936,8 @@ def probability_plot(
     distribution: object = norm,
     fit: bool = True,
     plot: object = None,
-    colour1: str = '#0077bb',
-    colour2: str = '#33bbee'
+    colour1: str = "#0077bb",
+    colour2: str = "#33bbee"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
@@ -1954,9 +1955,9 @@ def probability_plot(
         Fit a least-squares regression line to the data if True.
     plot : object = None
         If given, plot the quantiles and least-squares fit.
-    colour1 : str = '#0077bb',
+    colour1 : str = "#0077bb",
         The colour of line 1.
-    colour2 : str = '#33bbee'
+    colour2 : str = "#33bbee"
         The colour of line 2.
 
     Returns
@@ -1979,7 +1980,12 @@ def probability_plot(
     ax.get_lines()[0].set_markerfacecolor(colour1)
     ax.get_lines()[0].set_markeredgecolor(colour1)
     ax.get_lines()[1].set_color(colour2)
-    despine(ax=ax)
+    if fit:
+        r_squared = r * r
+        equation = f"$r^2 = {r_squared:.3f}$"
+        despine(ax=ax)
+        text = AnchoredText(s=equation, loc="upper left", frameon=False)
+    ax.add_artist(a=text)
     return (fig, ax)
 
 
@@ -1999,7 +2005,7 @@ def despine(
     -------
     >>> despine(ax=ax)
     """
-    ax.spines[['top', 'right']].set_visible(b=False)
+    ax.spines[["top", "right"]].set_visible(b=False)
 
 
 def plot_histogram(
@@ -2009,10 +2015,10 @@ def plot_histogram(
     bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
     figsize: Tuple[float, float] = None,
     bin_width: int = None,
-    edgecolor: str = '#ffffff',
+    edgecolor: str = "#ffffff",
     linewidth: int = 1,
     bin_label_bool: bool = False,
-    color: str = '#0077bb'
+    color: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2028,13 +2034,13 @@ def plot_histogram(
         The (width, height) of the figure (in, in).
     bin_width : int = None,
         The width of the bin in same units as the series s.
-    edgecolor : str = '#ffffff',
+    edgecolor : str = "#ffffff",
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
     bin_label_bool : bool = False
         If True, label the bars with count and percentage of total.
-    color : str = '#0077bb'
+    color : str = "#0077bb"
         The color of the bar faces.
 
     Returns
@@ -2056,7 +2062,7 @@ def plot_histogram(
     # min = 0, max = 13.
     >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution='randint',
+    >>>     distribution="randint",
     >>>     size=113,
     >>>     low=0,
     >>>     high=14
@@ -2068,7 +2074,7 @@ def plot_histogram(
     # min = 0, max = 13.
     # Set histogram parameters to control bin width.
     >>> s = ds.random_data(
-    >>>     distribution='randint',
+    >>>     distribution="randint",
     >>>     size=113,
     >>>     low=0,
     >>>     high=14
@@ -2083,7 +2089,7 @@ def plot_histogram(
     # min = 0, hight = 14,
     # Set histogram parameters to control bin width and plotting range.
     >>> s = ds.random_data(
-    >>>     distribution='randint',
+    >>>     distribution="randint",
     >>>     size=113,
     >>>     low=0,
     >>>     high=13
@@ -2099,7 +2105,7 @@ def plot_histogram(
     # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width and plotting range.
     >>> s = ds.random_data(
-    >>>     distribution='norm',
+    >>>     distribution="norm",
     >>>     size=113,
     >>>     loc=69,
     >>>     scale=13
@@ -2116,7 +2122,7 @@ def plot_histogram(
     # Set histogram parameters to control bin width, plotting range, labels.
     # Set colour of the bars.
     >>> s = ds.random_data(
-    >>>     distribution='norm',
+    >>>     distribution="norm",
     >>>     size=113,
     >>>     loc=69,
     >>>     scale=13
@@ -2127,7 +2133,7 @@ def plot_histogram(
     >>>     bin_range=(30, 110),
     >>>     figsize=(10,8),
     >>>     bin_label_bool=True,
-    >>>     color='#33bbee'
+    >>>     color="#33bbee"
     >>> )
     """
     fig, ax = plt.subplots(
@@ -2151,33 +2157,33 @@ def plot_histogram(
     )
     if bin_label_bool:
         ax.set_xticks(bins)
-        ax.xaxis.set_major_formatter(FormatStrFormatter('%0.0f'))
+        ax.xaxis.set_major_formatter(FormatStrFormatter("%0.0f"))
         bin_centers = 0.5 * np.diff(bins) + bins[:-1]
         for count, x in zip(counts, bin_centers):
             ax.annotate(
-                text=f'{str(int(count))}',
+                text=f"{str(int(count))}",
                 xy=(x, 0),
                 xytext=(0, -18),
                 xycoords=(
-                    'data',
-                    'axes fraction'
+                    "data",
+                    "axes fraction"
                 ),
-                textcoords='offset points',
-                va='top',
-                ha='center'
+                textcoords="offset points",
+                va="top",
+                ha="center"
             )
-            percent = f'{(100 * float(count) / counts.sum()):0.0f} %'
+            percent = f"{(100 * float(count) / counts.sum()):0.0f} %"
             ax.annotate(
                 text=percent,
                 xy=(x, 0),
                 xytext=(0, -32),
                 xycoords=(
-                    'data',
-                    'axes fraction'
+                    "data",
+                    "axes fraction"
                 ),
-                textcoords='offset points',
-                va='top',
-                ha='center'
+                textcoords="offset points",
+                va="top",
+                ha="center"
             )
     return (fig, ax)
 
@@ -2188,9 +2194,9 @@ def plot_horizontal_bars(
     width: Union[List[int], List[float]],
     height: float = 0.8,
     figsize: Tuple[float, float] = None,
-    edgecolor: str = '#ffffff',
+    edgecolor: str = "#ffffff",
     linewidth: int = 1,
-    color: str = '#0077bb',
+    color: str = "#0077bb",
     left: Union[datetime, int, float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
@@ -2204,11 +2210,11 @@ def plot_horizontal_bars(
         The height of the bars.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = '#ffffff',
+    edgecolor : str = "#ffffff",
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
-    color : str = '#0077bb'
+    color : str = "#0077bb"
         The color of the bar faces.
     left : Union[datetime, int, float] = None
         The x coordinates of the left sides of the bars.
@@ -2223,7 +2229,7 @@ def plot_horizontal_bars(
 
     Example 1
     ---------
-    >>> y = ['Yes', 'No']
+    >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
     >>>     y=y,
@@ -2232,7 +2238,7 @@ def plot_horizontal_bars(
 
     Example 2
     ---------
-    >>> y = ['Yes', 'No']
+    >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
     >>>     y=y,
@@ -2244,15 +2250,15 @@ def plot_horizontal_bars(
     ---------
     Create Gantt chart
     >>> data = {
-    >>>     'start': ['2021-11-01', '2021-11-03', '2021-11-04', '2021-11-08'],
-    >>>     'end': ['2021-11-08', '2021-11-16', '2021-11-11', '2021-11-13'],
-    >>>     'task': ['task 1', 'task 2', 'task 3', 'task 4']
+    >>>     "start": ["2021-11-01", "2021-11-03", "2021-11-04", "2021-11-08"],
+    >>>     "end": ["2021-11-08", "2021-11-16", "2021-11-11", "2021-11-13"],
+    >>>     "task": ["task 1", "task 2", "task 3", "task 4"]
     >>> }
-    >>> columns = ['task', 'start', 'end', 'duration', 'start_relative']
+    >>> columns = ["task", "start", "end", "duration", "start_relative"]
     >>> data_types = {
-    >>>     'start': 'datetime64[ns]',
-    >>>     'end': 'datetime64[ns]',
-    >>>     'task': 'str'
+    >>>     "start": "datetime64[ns]",
+    >>>     "end": "datetime64[ns]",
+    >>>     "task": "str"
     >>> }
     >>> df = (pd.DataFrame(data=data)).astype(dtype=data_types)
     >>> df[columns[3]] = (df[columns[2]] - df[columns[1]]).dt.days + 1
@@ -2264,7 +2270,7 @@ def plot_horizontal_bars(
     >>> start = df[columns[1]].min()
     >>> x_ticks = [x for x in range(duration + 1)]
     >>> x_labels = [
-    >>>     (start + datetime.timedelta(days=x)).strftime('%Y-%m-%d')
+    >>>     (start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
     >>>     for x in x_ticks
     >>> ]
     >>> df[columns[4]] = (df[columns[1]] - start).dt.days
@@ -2302,9 +2308,9 @@ def plot_vertical_bars(
     height: Union[List[int], List[float]],
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
-    edgecolor: str = '#ffffff',
+    edgecolor: str = "#ffffff",
     linewidth: int = 1,
-    color: str = '#0077bb'
+    color: str = "#0077bb"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2317,11 +2323,11 @@ def plot_vertical_bars(
         The width of the bars.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = '#ffffff',
+    edgecolor : str = "#ffffff",
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
-    color : str = '#0077bb'
+    color : str = "#0077bb"
         The color of the bar faces.
 
     Returns
@@ -2333,7 +2339,7 @@ def plot_vertical_bars(
     >>> import datasense as ds
 
     Example 1
-    >>> x = ['Yes', 'No']
+    >>> x = ["Yes", "No"]
     >>> height = [69, 31]
     >>> fig, ax = ds.plot_vertical_bars(
     >>>     x=x,
@@ -2341,7 +2347,7 @@ def plot_vertical_bars(
     >>> )
 
     Example 2
-    >>> x = ['Yes', 'No']
+    >>> x = ["Yes", "No"]
     >>> height = [69, 31]
     >>> fig, ax = ds.plot_vertical_bars(
     >>>     x=x,
@@ -2372,7 +2378,7 @@ def plot_pie(
     figsize: Tuple[float, float] = None,
     startangle: float = 0,
     colors: List[str] = None,
-    autopct: str = '%1.1f%%'
+    autopct: str = "%1.1f%%"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2387,7 +2393,7 @@ def plot_pie(
         The start angle of the pie, counterclockwise from the x axis.
     colors : List[str] = None
         The color of the wedges.
-    autopct : str = '%1.1f%%'
+    autopct : str = "%1.1f%%"
         Label the wedges with their numeric value. If None, no label.
 
     Returns
@@ -2400,7 +2406,7 @@ def plot_pie(
 
     Example 1
     >>> x = [69, 31]
-    >>> labels = ['Yes', 'No']
+    >>> labels = ["Yes", "No"]
     >>> fig, ax = ds.plot_pie(
     >>>     x=x,
     >>>     labels=labels
@@ -2408,14 +2414,14 @@ def plot_pie(
 
     Example 2
     >>> x = [69, 31]
-    >>> labels = ['Yes', 'No']
+    >>> labels = ["Yes", "No"]
     >>> fig, ax = ds.plot_pie(
     >>>     x=x,
     >>>     labels=labels,
     >>>     startangle=90,
     >>>     colors=[
-    >>>         '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
-    >>>         '#ee3377', '#bbbbbb'
+    >>>         "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+    >>>         "#ee3377", "#bbbbbb"
     >>>     ]
     >>> )
     """
@@ -2454,8 +2460,8 @@ def plot_stacked_bars(
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
-        '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
-        '#ee3377', '#bbbbbb'
+        "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+        "#ee3377", "#bbbbbb"
     ]
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
@@ -2498,8 +2504,8 @@ def plot_stacked_bars(
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
     color : str = [
-        '#0077bb', '#33bbee', '#009988', '#ee7733', '#cc3311',
-        '#ee3377', '#bbbbbb'
+        "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+        "#ee3377", "#bbbbbb"
     ]
         The color of the bar faces, up to seven levels.
 
@@ -2512,12 +2518,12 @@ def plot_stacked_bars(
     >>> import datasense as ds
 
     Example 1
-    >>> x = ['G1', 'G2', 'G3', 'G4', 'G5']
+    >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
-    >>> label1 = 'A'
+    >>> label1 = "A"
     >>> width = 0.35
     >>> height2 = [25, 32, 34, 20, 25]
-    >>> label2 = 'B'
+    >>> label2 = "B"
     >>> fig, ax = ds.plot_stacked_bars(
     >>>     x=x,
     >>>     height1=height1,
@@ -2525,25 +2531,25 @@ def plot_stacked_bars(
     >>>     height2=height2,
     >>>     label2=label2
     >>> )
-    >>> fig.legend(frameon=False, loc='upper right')
+    >>> fig.legend(frameon=False, loc="upper right")
 
     Example 2
-    >>> x = ['G1', 'G2', 'G3', 'G4', 'G5']
+    >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
-    >>> label1 = 'A'
+    >>> label1 = "A"
     >>> width = 0.35
     >>> height2 = [25, 32, 34, 20, 25]
-    >>> label2 = 'B'
+    >>> label2 = "B"
     >>> height3 = [30, 34, 23, 27, 32]
-    >>> label3 = 'C'
+    >>> label3 = "C"
     >>> height4 = [30, 34, 23, 27, 32]
-    >>> label4 = 'D'
+    >>> label4 = "D"
     >>> height5 = [30, 34, 23, 27, 32]
-    >>> label5 = 'E'
+    >>> label5 = "E"
     >>> height6 = [30, 34, 23, 27, 32]
-    >>> label6 = 'F'
+    >>> label6 = "F"
     >>> height7 = [30, 34, 23, 27, 32]
-    >>> label7 = 'G'
+    >>> label7 = "G"
     >>> fig, ax = ds.plot_stacked_bars(
     >>>     x=x,
     >>>     height1=height1,
@@ -2563,7 +2569,7 @@ def plot_stacked_bars(
     >>>     height7=height7,
     >>>     label7=label7,
     >>> )
-    >>> fig.legend(frameon=False, loc='upper right')
+    >>> fig.legend(frameon=False, loc="upper right")
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2664,8 +2670,8 @@ def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
     -------
     >>> import datasense as ds
 
-    >>> code_string = 'mystring'
-    >>> code_path = Path('str_of_path')
+    >>> code_string = "mystring"
+    >>> code_path = Path("str_of_path")
     >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
     """
     pq.create(content=qr_code_string).svg(
@@ -2713,10 +2719,10 @@ def plot_boxplot(
 
     >>> series = ds.random_data()
     >>> fig, ax = ds.plot_boxplot(series=series)
-    >>> ax.set_title(label='Box-and-whisker plot')
+    >>> ax.set_title(label="Box-and-whisker plot")
     >>> ds.despine(ax=ax)
-    >>> ax.set_xticks(ticks=[1], labels=['series'])
-    >>> ax.set_ylabel('y')
+    >>> ax.set_xticks(ticks=[1], labels=["series"])
+    >>> ax.set_ylabel("y")
     """
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.boxplot(
@@ -2727,29 +2733,46 @@ def plot_boxplot(
     return (fig, ax)
 
 
+def style_graph() -> NoReturn:
+    """
+    Style graphs.
+
+    Example
+    -------
+    >>> ds.style_graph()
+    """
+    rc["axes.labelweight"] = "bold"
+    rc["axes.titleweight"] = "bold"
+    rc["axes.labelsize"] = 12
+    rc["axes.titlesize"] = 15
+    rc["xtick.labelsize"] = 10
+    rc["ytick.labelsize"] = 10
+
+
 __all__ = (
-    'plot_scatterleft_scatterright_x_y1_y2',
-    'plot_scatter_scatter_x1_x2_y1_y2',
-    'plot_lineleft_lineright_x_y1_y2',
-    'plot_barleft_lineright_x_y1_y2',
-    'plot_line_line_line_x_y1_y2_y3',
-    'plot_scatter_scatter_x_y1_y2',
-    'plot_scatter_line_x_y1_y2',
-    'plot_line_line_x_y1_y2',
-    'plot_horizontal_bars',
-    'plot_line_line_y1_y2',
-    'plot_vertical_bars',
-    'plot_stacked_bars',
-    'probability_plot',
-    'plot_scatter_x_y',
-    'plot_histogram',
-    'plot_scatter_y',
-    'plot_line_x_y',
-    'plot_boxplot',
-    'plot_line_y',
-    'plot_pareto',
-    'format_dates',
-    'plot_pie',
-    'despine',
-    'qr_code',
+    "plot_scatterleft_scatterright_x_y1_y2",
+    "plot_scatter_scatter_x1_x2_y1_y2",
+    "plot_lineleft_lineright_x_y1_y2",
+    "plot_barleft_lineright_x_y1_y2",
+    "plot_line_line_line_x_y1_y2_y3",
+    "plot_scatter_scatter_x_y1_y2",
+    "plot_scatter_line_x_y1_y2",
+    "plot_line_line_x_y1_y2",
+    "plot_horizontal_bars",
+    "plot_line_line_y1_y2",
+    "plot_vertical_bars",
+    "plot_stacked_bars",
+    "probability_plot",
+    "plot_scatter_x_y",
+    "plot_histogram",
+    "plot_scatter_y",
+    "plot_line_x_y",
+    "format_dates",
+    "plot_boxplot",
+    "plot_line_y",
+    "plot_pareto",
+    "style_graph",
+    "plot_pie",
+    "despine",
+    "qr_code",
 )
