@@ -33,6 +33,7 @@ colour_blue = "#0077bb"
 colour_cyan = "#33bbee"
 colour_teal = "#009988"
 colour_orange = "#ee7733"
+colour_red = "#cc3311"
 
 
 def plot_scatter_y(
@@ -196,7 +197,7 @@ def plot_scatter_x_y(
     >>>     figsize=(8, 4.5),
     >>>     marker="o",
     >>>     markersize=8,
-    >>>     colour="#cc3311"
+    >>>     colour=colour_red
     >>> )
 
     Example 3
@@ -588,7 +589,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1="#cc3311",
+    >>>     colour1=colour_red,
     >>>     colour2="#ee3377",
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2"
@@ -798,7 +799,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1="#cc3311",
+    >>>     colour1=colour_red,
     >>>     colour2="#ee3377",
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2"
@@ -816,7 +817,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     marker2="+",
     >>>     markersize1=8,
     >>>     markersize2=12,
-    >>>     colour1="#cc3311",
+    >>>     colour1=colour_red,
     >>>     colour2="#ee3377",
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2",
@@ -2426,7 +2427,7 @@ def plot_pie(
     >>>     labels=labels,
     >>>     startangle=90,
     >>>     colors=[
-    >>>         colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
+    >>>         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
     >>>         "#ee3377", "#bbbbbb"
     >>>     ]
     >>> )
@@ -2466,7 +2467,7 @@ def plot_stacked_bars(
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
-        colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
+        colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
         "#ee3377", "#bbbbbb"
     ]
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -2510,7 +2511,7 @@ def plot_stacked_bars(
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
     color : str = [
-        colour_blue, colour_cyan, colour_teal, colour_orange, "#cc3311",
+        colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
         "#ee3377", "#bbbbbb"
     ]
         The color of the bar faces, up to seven levels.
