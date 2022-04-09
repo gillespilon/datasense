@@ -29,11 +29,14 @@ import pandas as pd
 import numpy as np
 
 
+# colour-blind friendly in order of application
 colour_blue = "#0077bb"
 colour_cyan = "#33bbee"
 colour_teal = "#009988"
 colour_orange = "#ee7733"
 colour_red = "#cc3311"
+colour_magenta = "#ee3388"
+colour_grey = "#bbbbbb"
 
 
 def plot_scatter_y(
@@ -590,7 +593,7 @@ def plot_scatter_scatter_x_y1_y2(
     >>>     markersize1=8,
     >>>     markersize2=12,
     >>>     colour1=colour_red,
-    >>>     colour2="#ee3377",
+    >>>     colour2=colour_magenta,
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2"
     >>> )
@@ -800,7 +803,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     markersize1=8,
     >>>     markersize2=12,
     >>>     colour1=colour_red,
-    >>>     colour2="#ee3377",
+    >>>     colour2=colour_magenta,
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2"
     >>> )
@@ -818,7 +821,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     >>>     markersize1=8,
     >>>     markersize2=12,
     >>>     colour1=colour_red,
-    >>>     colour2="#ee3377",
+    >>>     colour2=colour_magenta,
     >>>     labellegendy1="y1",
     >>>     labellegendy2="y2",
     >>>     smoothing="natural_cubic_spline",
@@ -2428,7 +2431,7 @@ def plot_pie(
     >>>     startangle=90,
     >>>     colors=[
     >>>         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
-    >>>         "#ee3377", "#bbbbbb"
+    >>>         colour_magenta, colour_grey
     >>>     ]
     >>> )
     """
@@ -2468,7 +2471,7 @@ def plot_stacked_bars(
     figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
-        "#ee3377", "#bbbbbb"
+        colour_magenta, colour_grey
     ]
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
@@ -2512,7 +2515,7 @@ def plot_stacked_bars(
         The (width, height) of the figure (in, in).
     color : str = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
-        "#ee3377", "#bbbbbb"
+        colour_magenta, colour_grey
     ]
         The color of the bar faces, up to seven levels.
 
