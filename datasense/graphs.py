@@ -38,6 +38,9 @@ colour_red = "#cc3311"
 colour_magenta = "#ee3388"
 colour_grey = "#bbbbbb"
 
+# other colours
+colour_white = "#ffffff"
+
 
 def plot_scatter_y(
     *,
@@ -428,7 +431,7 @@ def plot_line_x_y(
     >>>     markersize=8,
     >>>     linestyle=":",
     >>>     linewidth=5,
-    >>>     colour="#337733"
+    >>>     colour=colour_magenta
     >>> )
 
     Example 3
@@ -2025,7 +2028,7 @@ def plot_histogram(
     bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
     figsize: Tuple[float, float] = None,
     bin_width: int = None,
-    edgecolor: str = "#ffffff",
+    edgecolor: str = colour_white,
     linewidth: int = 1,
     bin_label_bool: bool = False,
     color: str = colour_blue
@@ -2044,7 +2047,7 @@ def plot_histogram(
         The (width, height) of the figure (in, in).
     bin_width : int = None,
         The width of the bin in same units as the series s.
-    edgecolor : str = "#ffffff",
+    edgecolor : str = colour_white,
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
@@ -2204,7 +2207,7 @@ def plot_horizontal_bars(
     width: Union[List[int], List[float]],
     height: float = 0.8,
     figsize: Tuple[float, float] = None,
-    edgecolor: str = "#ffffff",
+    edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue,
     left: Union[datetime, int, float] = None
@@ -2220,7 +2223,7 @@ def plot_horizontal_bars(
         The height of the bars.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = "#ffffff",
+    edgecolor : str = colour_white,
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
@@ -2318,7 +2321,7 @@ def plot_vertical_bars(
     height: Union[List[int], List[float]],
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
-    edgecolor: str = "#ffffff",
+    edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -2333,7 +2336,7 @@ def plot_vertical_bars(
         The width of the bars.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = "#ffffff",
+    edgecolor : str = colour_white,
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
