@@ -29,6 +29,9 @@ import pandas as pd
 import numpy as np
 
 
+colour_blue = "#0077bb"
+
+
 def plot_scatter_y(
     *,
     y: pd.Series,
@@ -37,7 +40,7 @@ def plot_scatter_y(
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 8,
-    colour: str = "#0077bb"
+    colour: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y. Optional smoothing applied to y.
@@ -64,7 +67,7 @@ def plot_scatter_y(
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    colour : str = "#0077bb"
+    colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -133,7 +136,7 @@ def plot_scatter_x_y(
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 8,
-    colour: str = "#0077bb"
+    colour: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -160,7 +163,7 @@ def plot_scatter_x_y(
         The type of plot point.
     markersize : float = 8
         The size of the plot point (pt).
-    colour : str = "#0077bb"
+    colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -257,7 +260,7 @@ def plot_line_y(
     marker: str = ".",
     markersize: float = 8,
     linestyle: str = "-",
-    colour: str = "#0077bb"
+    colour: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y. Optional smoothing applied to y.
@@ -286,7 +289,7 @@ def plot_line_y(
         The size of the plot point (pt).
     linestyle : str = "-"
         The style for the line.
-    colour : str = "#0077bb"
+    colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -356,7 +359,7 @@ def plot_line_x_y(
     markersize: float = 8,
     linestyle: str = "-",
     linewidth: float = 1,
-    colour: str = "#0077bb"
+    colour: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
@@ -387,7 +390,7 @@ def plot_line_x_y(
         The style of the line joining the points.
     linewidth : float = 1
         The width of the line joining the points.
-    colour : str = "#0077bb"
+    colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
 
     Returns
@@ -494,7 +497,7 @@ def plot_scatter_scatter_x_y1_y2(
     linestyle2: str = "None",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
@@ -542,7 +545,7 @@ def plot_scatter_scatter_x_y1_y2(
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -688,7 +691,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     linestyle2: str = "None",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
@@ -738,7 +741,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -917,7 +920,7 @@ def plot_scatter_line_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
@@ -949,7 +952,7 @@ def plot_scatter_line_x_y1_y2(
         Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots to create.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of y1.
     colour2 : str = "#33bbee"
         The colour of y2.
@@ -1038,7 +1041,7 @@ def plot_line_line_y1_y2(
     linestyle2: str = "-",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
@@ -1084,7 +1087,7 @@ def plot_line_line_y1_y2(
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1181,7 +1184,7 @@ def plot_line_line_x_y1_y2(
     linestyle2: str = "-",
     linewidth1: float = 1,
     linewidth2: float = 1,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     labellegendy1: str = None,
     labellegendy2: str = None
@@ -1229,7 +1232,7 @@ def plot_line_line_x_y1_y2(
         The width of the line for y1.
     linewidth2 : float = 1
         The width of the line for y2.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1316,7 +1319,7 @@ def plot_line_line_line_x_y1_y2_y3(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     colour3: str = "#009988",
     labellegendy1: str = None,
@@ -1353,7 +1356,7 @@ def plot_line_line_line_x_y1_y2_y3(
         Options: "natural_cubic_spline"
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1459,7 +1462,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     linestyle1: str = "None",
     linestyle2: str = "None"
@@ -1492,7 +1495,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
         Options: "natural_cubic_spline"
     number_knots : int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1577,7 +1580,7 @@ def plot_lineleft_lineright_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     linestyle1: str = "-",
     linestyle2: str = "-",
@@ -1614,7 +1617,7 @@ def plot_lineleft_lineright_x_y1_y2(
         Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots for natural cubic spline smoothing.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1706,7 +1709,7 @@ def plot_barleft_lineright_x_y1_y2(
     smoothing: str = None,
     number_knots: int = None,
     barwidth: float = 10,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     linestyle1: str = "-",
     linestyle2: str = "-",
@@ -1742,7 +1745,7 @@ def plot_barleft_lineright_x_y1_y2(
         The number of knots for natural cubic spline smoothing.
     barwidth : float = 10
         The width of the bars.
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1823,7 +1826,7 @@ def plot_pareto(
     y: pd.Series,
     figsize: Tuple[float, float] = None,
     width: float = 0.8,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee",
     marker: str = ".",
     markersize: float = 8,
@@ -1840,7 +1843,7 @@ def plot_pareto(
         The (width, height) of the figure (in, in).
     width : float = 0.8
         The width of the bars (in).
-    colour1 : str = "#0077bb"
+    colour1 : str = colour_blue
         The colour of the line for y1.
     colour2 : str = "#33bbee"
         The colour of the line for y2.
@@ -1936,7 +1939,7 @@ def probability_plot(
     distribution: object = norm,
     fit: bool = True,
     plot: object = None,
-    colour1: str = "#0077bb",
+    colour1: str = colour_blue,
     colour2: str = "#33bbee"
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
@@ -1955,7 +1958,7 @@ def probability_plot(
         Fit a least-squares regression line to the data if True.
     plot : object = None
         If given, plot the quantiles and least-squares fit.
-    colour1 : str = "#0077bb",
+    colour1 : str = colour_blue,
         The colour of line 1.
     colour2 : str = "#33bbee"
         The colour of line 2.
@@ -2018,7 +2021,7 @@ def plot_histogram(
     edgecolor: str = "#ffffff",
     linewidth: int = 1,
     bin_label_bool: bool = False,
-    color: str = "#0077bb"
+    color: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2040,7 +2043,7 @@ def plot_histogram(
         The bar edges line width (point).
     bin_label_bool : bool = False
         If True, label the bars with count and percentage of total.
-    color : str = "#0077bb"
+    color : str = colour_blue
         The color of the bar faces.
 
     Returns
@@ -2196,7 +2199,7 @@ def plot_horizontal_bars(
     figsize: Tuple[float, float] = None,
     edgecolor: str = "#ffffff",
     linewidth: int = 1,
-    color: str = "#0077bb",
+    color: str = colour_blue,
     left: Union[datetime, int, float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
@@ -2214,7 +2217,7 @@ def plot_horizontal_bars(
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
-    color : str = "#0077bb"
+    color : str = colour_blue
         The color of the bar faces.
     left : Union[datetime, int, float] = None
         The x coordinates of the left sides of the bars.
@@ -2310,7 +2313,7 @@ def plot_vertical_bars(
     figsize: Tuple[float, float] = None,
     edgecolor: str = "#ffffff",
     linewidth: int = 1,
-    color: str = "#0077bb"
+    color: str = colour_blue
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2327,7 +2330,7 @@ def plot_vertical_bars(
         The hexadecimal color value for the bar edges.
     linewidth : int = 1,
         The bar edges line width (point).
-    color : str = "#0077bb"
+    color : str = colour_blue
         The color of the bar faces.
 
     Returns
