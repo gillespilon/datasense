@@ -32,6 +32,7 @@ import numpy as np
 colour_blue = "#0077bb"
 colour_cyan = "#33bbee"
 colour_teal = "#009988"
+colour_orange = "#ee7733"
 
 
 def plot_scatter_y(
@@ -93,7 +94,7 @@ def plot_scatter_y(
     >>>     figsize=(8, 4.5),
     >>>     marker="o",
     >>>     markersize=4,
-    >>>     colour="#ee7733"
+    >>>     colour=colour_orange
     >>> )
     """
     fig, ax = plt.subplots(
@@ -314,7 +315,7 @@ def plot_line_y(
     >>>     figsize=(8, 4.5),
     >>>     marker="o",
     >>>     markersize=4,
-    >>>     colour="#ee7733"
+    >>>     colour=colour_orange
     >>> )
     >>> )
     """
@@ -2425,7 +2426,7 @@ def plot_pie(
     >>>     labels=labels,
     >>>     startangle=90,
     >>>     colors=[
-    >>>         "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+    >>>         "#0077bb", "#33bbee", "#009988", colour_orange, "#cc3311",
     >>>         "#ee3377", "#bbbbbb"
     >>>     ]
     >>> )
@@ -2465,7 +2466,7 @@ def plot_stacked_bars(
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     color: Union[List[str]] = [
-        "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+        "#0077bb", "#33bbee", "#009988", colour_orange, "#cc3311",
         "#ee3377", "#bbbbbb"
     ]
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -2509,7 +2510,7 @@ def plot_stacked_bars(
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
     color : str = [
-        "#0077bb", "#33bbee", "#009988", "#ee7733", "#cc3311",
+        "#0077bb", "#33bbee", "#009988", colour_orange, "#cc3311",
         "#ee3377", "#bbbbbb"
     ]
         The color of the bar faces, up to seven levels.
