@@ -17,6 +17,7 @@ from pathlib import Path
 import math
 
 from matplotlib.ticker import FormatStrFormatter
+from matplotlib.offsetbox import AnchoredText
 from datasense import natural_cubic_spline
 from scipy.stats import norm, probplot
 import matplotlib.dates as mdates
