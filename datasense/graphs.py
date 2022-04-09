@@ -30,6 +30,7 @@ import numpy as np
 
 
 colour_blue = "#0077bb"
+colour_cyan = "#33bbee"
 
 
 def plot_scatter_y(
@@ -498,7 +499,7 @@ def plot_scatter_scatter_x_y1_y2(
     linewidth1: float = 1,
     linewidth2: float = 1,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -547,7 +548,7 @@ def plot_scatter_scatter_x_y1_y2(
         The width of the line for y2.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -692,7 +693,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     linewidth1: float = 1,
     linewidth2: float = 1,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -743,7 +744,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The width of the line for y2.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -921,7 +922,7 @@ def plot_scatter_line_x_y1_y2(
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -954,7 +955,7 @@ def plot_scatter_line_x_y1_y2(
         The number of knots to create.
     colour1 : str = colour_blue
         The colour of y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of y2.
     labellegendy1 : str = None
         The legend for y1.
@@ -1042,7 +1043,7 @@ def plot_line_line_y1_y2(
     linewidth1: float = 1,
     linewidth2: float = 1,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -1089,7 +1090,7 @@ def plot_line_line_y1_y2(
         The width of the line for y2.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -1185,7 +1186,7 @@ def plot_line_line_x_y1_y2(
     linewidth1: float = 1,
     linewidth2: float = 1,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None
 ) -> Tuple[plt.Figure, axes.Axes]:
@@ -1234,7 +1235,7 @@ def plot_line_line_x_y1_y2(
         The width of the line for y2.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
@@ -1320,7 +1321,7 @@ def plot_line_line_line_x_y1_y2_y3(
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     colour3: str = "#009988",
     labellegendy1: str = None,
     labellegendy2: str = None,
@@ -1358,7 +1359,7 @@ def plot_line_line_line_x_y1_y2_y3(
         the number of knows for natural cubic spline smoothing.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     colour2 : str = "#009988"
         The colour of the line for y2.
@@ -1463,7 +1464,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     linestyle1: str = "None",
     linestyle2: str = "None"
 ) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
@@ -1497,7 +1498,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
         the number of knows for natural cubic spline smoothing.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     linestyle1 : str = "None"
         The style of the line for y1.
@@ -1581,7 +1582,7 @@ def plot_lineleft_lineright_x_y1_y2(
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     linestyle1: str = "-",
     linestyle2: str = "-",
     marker1: str = ".",
@@ -1619,7 +1620,7 @@ def plot_lineleft_lineright_x_y1_y2(
         The number of knots for natural cubic spline smoothing.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     linestyle1 : str = "-"
         The style of the line for y1.
@@ -1710,7 +1711,7 @@ def plot_barleft_lineright_x_y1_y2(
     number_knots: int = None,
     barwidth: float = 10,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     linestyle1: str = "-",
     linestyle2: str = "-",
     marker2: str = "o"
@@ -1747,7 +1748,7 @@ def plot_barleft_lineright_x_y1_y2(
         The width of the bars.
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     linestyle1 : str = "-"
         The style of the line for y1.
@@ -1827,7 +1828,7 @@ def plot_pareto(
     figsize: Tuple[float, float] = None,
     width: float = 0.8,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee",
+    colour2: str = colour_cyan,
     marker: str = ".",
     markersize: float = 8,
     linestyle: str = "-",
@@ -1845,7 +1846,7 @@ def plot_pareto(
         The width of the bars (in).
     colour1 : str = colour_blue
         The colour of the line for y1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of the line for y2.
     marker : str = "."
         The type of plot point.
@@ -1940,7 +1941,7 @@ def probability_plot(
     fit: bool = True,
     plot: object = None,
     colour1: str = colour_blue,
-    colour2: str = "#33bbee"
+    colour2: str = colour_cyan
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
@@ -1960,7 +1961,7 @@ def probability_plot(
         If given, plot the quantiles and least-squares fit.
     colour1 : str = colour_blue,
         The colour of line 1.
-    colour2 : str = "#33bbee"
+    colour2 : str = colour_cyan
         The colour of line 2.
 
     Returns
