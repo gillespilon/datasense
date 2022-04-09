@@ -31,6 +31,7 @@ import numpy as np
 
 colour_blue = "#0077bb"
 colour_cyan = "#33bbee"
+colour_teal = "#009988"
 
 
 def plot_scatter_y(
@@ -1322,7 +1323,7 @@ def plot_line_line_line_x_y1_y2_y3(
     number_knots: int = None,
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
-    colour3: str = "#009988",
+    colour3: str = colour_teal,
     labellegendy1: str = None,
     labellegendy2: str = None,
     labellegendy3: str = None
@@ -1361,7 +1362,7 @@ def plot_line_line_line_x_y1_y2_y3(
         The colour of the line for y1.
     colour2 : str = colour_cyan
         The colour of the line for y2.
-    colour2 : str = "#009988"
+    colour2 : str = colour_teal
         The colour of the line for y2.
     labellegendy1 : str = None
         The legend label of the line y1.
