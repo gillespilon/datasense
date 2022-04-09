@@ -1990,15 +1990,14 @@ def probability_plot(
     (osm, osr), (slope, intercept, r) = probplot(
         x=data, dist=distribution, fit=True, plot=ax
     )
-    ax.get_lines()[0].set_markerfacecolor(colour1)
-    ax.get_lines()[0].set_markeredgecolor(colour1)
-    ax.get_lines()[1].set_color(colour2)
+    ax.get_lines()[0].set(color=colour1, markersize=4)
+    ax.get_lines()[1].set(color=colour2)
     if fit:
         r_squared = r * r
         equation = f"$r^2 = {r_squared:.3f}$"
         despine(ax=ax)
         text = AnchoredText(s=equation, loc="upper left", frameon=False)
-    ax.add_artist(a=text)
+        ax.add_artist(a=text)
     return (fig, ax)
 
 
