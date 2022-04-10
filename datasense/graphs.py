@@ -121,7 +121,8 @@ def plot_scatter_y(
             X, model.predict(X), marker=marker, markersize=markersize,
             linestyle="None", color=colour
         )
-    despine(ax=ax)
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
