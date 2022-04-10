@@ -2705,6 +2705,7 @@ def plot_boxplot(
     notch: bool = None,
     showmeans: bool = None,
     figsize: Tuple[float, float] = None,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Create a box-and-whisker plot with several elements:
@@ -2725,6 +2726,8 @@ def plot_boxplot(
         Boolean to show average.
     figsize : Tuple[float, float] = None,
         The (width, height) of the figure (in, in).
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -2747,6 +2750,7 @@ def plot_boxplot(
         notch=notch,
         showmeans=showmeans
     )
+    despine(ax=ax)
     return (fig, ax)
 
 
