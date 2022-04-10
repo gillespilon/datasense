@@ -2739,7 +2739,8 @@ def plot_boxplot(
         notch=notch,
         showmeans=showmeans
     )
-    despine(ax=ax)
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
