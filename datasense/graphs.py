@@ -50,7 +50,8 @@ def plot_scatter_y(
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 8,
-    colour: str = colour_blue
+    colour: str = colour_blue,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y. Optional smoothing applied to y.
@@ -79,6 +80,8 @@ def plot_scatter_y(
         The size of the plot point (pt).
     colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -104,36 +107,21 @@ def plot_scatter_y(
     >>>     colour=colour_orange
     >>> )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     # generate X series, required if using smoothing
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
-            X,
-            y,
-            marker=marker,
-            markersize=markersize,
-            linestyle="None",
+            X, y, marker=marker, markersize=markersize, linestyle="None",
             color=colour
         )
     elif smoothing == "natural_cubic_spline":
-        model = natural_cubic_spline(
-            X=X,
-            y=y,
-            number_knots=number_knots
-        )
+        model = natural_cubic_spline(X=X, y=y, number_knots=number_knots)
         ax.plot(
-            X,
-            model.predict(X),
-            marker=marker,
-            markersize=markersize,
-            linestyle="None",
-            color=colour
+            X, model.predict(X), marker=marker, markersize=markersize,
+            linestyle="None", color=colour
         )
+    despine(ax=ax)
     return (fig, ax)
 
 
