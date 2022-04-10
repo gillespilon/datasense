@@ -2030,7 +2030,8 @@ def plot_histogram(
     edgecolor: str = colour_white,
     linewidth: int = 1,
     bin_label_bool: bool = False,
-    color: str = colour_blue
+    color: str = colour_blue,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2039,21 +2040,23 @@ def plot_histogram(
         The input series.
     number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
-    bin_range : Union[Tuple[int, int],Tuple[int, int]] = None,
+    bin_range : Union[Tuple[int, int],Tuple[int, int]] = None
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
-    figsize : Tuple[float, float] = None,
+    figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    bin_width : int = None,
+    bin_width : int = None
         The width of the bin in same units as the series s.
-    edgecolor : str = colour_white,
+    edgecolor : str = colour_white
         The hexadecimal color value for the bar edges.
-    linewidth : int = 1,
+    linewidth : int = 1
         The bar edges line width (point).
     bin_label_bool : bool = False
         If True, label the bars with count and percentage of total.
     color : str = colour_blue
         The color of the bar faces.
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -2197,6 +2200,8 @@ def plot_histogram(
                 va="top",
                 ha="center"
             )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
