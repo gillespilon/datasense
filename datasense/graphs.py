@@ -134,8 +134,9 @@ def plot_scatter_x_y(
     smoothing: str = None,
     number_knots: int = None,
     marker: str = ".",
-    markersize: float = 8,
-    colour: str = colour_blue
+    markersize: float = 4,
+    colour: str = colour_blue,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -160,10 +161,12 @@ def plot_scatter_x_y(
         The number of knots for natural cubic spline smoothing.
     marker : str = "."
         The type of plot point.
-    markersize : float = 8
+    markersize : float = 4
         The size of the plot point (pt).
     colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -209,23 +212,12 @@ def plot_scatter_x_y(
     >>>     y=series_y
     >>> )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
-            X,
-            y,
-            marker=marker,
-            markersize=markersize,
-            linestyle="None",
+            X, y, marker=marker, markersize=markersize, linestyle="None",
             color=colour
         )
     elif smoothing == "natural_cubic_spline":
@@ -234,19 +226,13 @@ def plot_scatter_x_y(
             fig.autofmt_xdate()
         else:
             XX = X
-        model = natural_cubic_spline(
-            X=XX,
-            y=y,
-            number_knots=number_knots
-        )
+        model = natural_cubic_spline(X=XX, y=y, number_knots=number_knots)
         ax.plot(
-            X,
-            model.predict(XX),
-            marker=marker,
-            markersize=markersize,
-            linestyle="None",
-            color=colour
+            X, model.predict(XX), marker=marker, markersize=markersize,
+            linestyle="None", color=colour
         )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
