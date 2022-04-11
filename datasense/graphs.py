@@ -495,7 +495,8 @@ def plot_scatter_scatter_x_y1_y2(
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     labellegendy1: str = None,
-    labellegendy2: str = None
+    labellegendy2: str = None,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X.
@@ -548,6 +549,8 @@ def plot_scatter_scatter_x_y1_y2(
         The legend label of the line y1.
     labellegendy2 : str = None
         The legend label of the line y2.
+    remove_spines : booll = True
+        IF True, remove top and right spines of axes.
 
     Returns
     -------
@@ -666,6 +669,8 @@ def plot_scatter_scatter_x_y1_y2(
             linestyle="",
             color=colour2
         )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
