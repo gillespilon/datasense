@@ -1344,7 +1344,8 @@ def plot_line_line_line_x_y1_y2_y3(
     colour3: str = colour_teal,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    labellegendy3: str = None
+    labellegendy3: str = None,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 versus X.
@@ -1388,6 +1389,8 @@ def plot_line_line_line_x_y1_y2_y3(
         The legend label of the line y2.
     labellegendy3 : str = None
         The legend label of the line y3.
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -1471,6 +1474,8 @@ def plot_line_line_line_x_y1_y2_y3(
             linestyle="-",
             color=colour3
         )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
