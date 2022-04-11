@@ -1054,7 +1054,8 @@ def plot_line_line_y1_y2(
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     labellegendy1: str = None,
-    labellegendy2: str = None
+    labellegendy2: str = None,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 and y2.
@@ -1105,6 +1106,8 @@ def plot_line_line_y1_y2(
         The legend label of the line y1.
     labellegendy2 : str = None
         The legend label of the line y2.
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -1175,6 +1178,8 @@ def plot_line_line_y1_y2(
             linestyle="-",
             color=colour2
             )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
