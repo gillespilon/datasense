@@ -245,7 +245,8 @@ def plot_line_y(
     marker: str = ".",
     markersize: float = 8,
     linestyle: str = "-",
-    colour: str = colour_blue
+    colour: str = colour_blue,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y. Optional smoothing applied to y.
@@ -276,6 +277,8 @@ def plot_line_y(
         The style for the line.
     colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -330,6 +333,8 @@ def plot_line_y(
             linestyle=linestyle,
             color=colour
         )
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
