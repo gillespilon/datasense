@@ -2738,12 +2738,13 @@ def style_graph() -> NoReturn:
     -------
     >>> ds.style_graph()
     """
+    rc["axes.titlecolor"] = "#000000"
     rc["axes.labelweight"] = "bold"
     rc["axes.titleweight"] = "bold"
     rc["axes.labelsize"] = 12
     rc["axes.titlesize"] = 15
-    rc["figure.titlesize"] = 15
     rc["figure.titleweight"] = "bold"
+    rc["figure.titlesize"] = 15
     rc["xtick.labelsize"] = 10
     rc["ytick.labelsize"] = 10
 
