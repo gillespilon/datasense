@@ -1965,7 +1965,8 @@ def probability_plot(
     fit: bool = True,
     plot: object = None,
     colour1: str = colour_blue,
-    colour2: str = colour_cyan
+    colour2: str = colour_cyan,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
@@ -1987,6 +1988,8 @@ def probability_plot(
         The colour of line 1.
     colour2 : str = colour_cyan
         The colour of line 2.
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
 
     Returns
     -------
@@ -2013,6 +2016,8 @@ def probability_plot(
         despine(ax=ax)
         text = AnchoredText(s=equation, loc="upper left", frameon=False)
         ax.add_artist(a=text)
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
