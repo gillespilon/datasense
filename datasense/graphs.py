@@ -349,7 +349,8 @@ def plot_line_x_y(
     markersize: float = 8,
     linestyle: str = "-",
     linewidth: float = 1,
-    colour: str = colour_blue
+    colour: str = colour_blue,
+    remove_spines: bool = True
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
@@ -382,6 +383,8 @@ def plot_line_x_y(
         The width of the line joining the points.
     colour : str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
+    remove_spines : bool = True
+        IF True, remove top and right spines of axes.
 
     Returns
     -------
@@ -468,6 +471,8 @@ def plot_line_x_y(
             linestyle=linestyle,
             linewidth=linewidth,
             color=colour),
+    if remove_spines:
+        despine(ax=ax)
     return (fig, ax)
 
 
