@@ -2307,7 +2307,7 @@ def plot_horizontal_bars(
     >>> start = df[columns[1]].min()
     >>> x_ticks = [x for x in range(duration + 1)]
     >>> x_labels = [
-    >>>     (start + datetime.timedelta(days=x)).strftime("%Y-%m-%d")
+            >>>     f"{(start + datetime.timedelta(days=x)):%Y-%m-%d}"}
     >>>     for x in x_ticks
     >>> ]
     >>> df[columns[4]] = (df[columns[1]] - start).dt.days
