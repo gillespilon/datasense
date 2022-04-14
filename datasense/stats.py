@@ -739,22 +739,8 @@ def datetime_data(
             days=time_delta_days,
             hours=time_delta_hours
         )
-        timestart = (
-            date_time_start.strftime('%Y') + '-' +
-            date_time_start.strftime('%m') + '-' +
-            date_time_start.strftime('%d') + 'T' +
-            date_time_start.strftime('%H') + ':' +
-            date_time_start.strftime('%M') + ':' +
-            date_time_start.strftime('%S')
-        )
-        timeend = (
-            date_time_end.strftime('%Y') + '-' +
-            date_time_end.strftime('%m') + '-' +
-            date_time_end.strftime('%d') + 'T' +
-            date_time_end.strftime('%H') + ':' +
-            date_time_end.strftime('%M') + ':' +
-            date_time_end.strftime('%S')
-        )
+        timestart = (f"{(date_time_start):%FT%T}")
+        timeend = (f"{(date_time_end):%FT%T}")
     # TODO: pandas has timestamp limitations of about 584 years
     # http://pandas-docs.github.io/pandas-docs-travis/user_guide/timeseries.html#timeseries-timestamp-limits
     # Need to fix above and below
