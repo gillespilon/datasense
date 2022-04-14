@@ -276,16 +276,16 @@ def report_summary(
 def script_summary(
     *,
     script_path: Path,
-    action: str = 'run'
+    action: str = "run"
 ) -> NoReturn:
-    '''
+    """
     Print script name and time of execution.
 
     Parameters
     ----------
     script_path : Path
         The path of the script file.
-    action : str = 'run'
+    action : str = "run"
         An action message: run, started, finished, etc.
 
     Examples
@@ -300,7 +300,7 @@ def script_summary(
     >>> import datasense as ds
     >>> ds.script_summary(
     >>>     script_path=Path(__file__),
-    >>>     action='started at'
+    >>>     action="started at"
     >>> )
 
     Example 3
@@ -308,14 +308,14 @@ def script_summary(
     >>> import datasense as ds
     >>> ds.script_summary(
     >>>     script_path=Path(__file__),
-    >>>     action='finished at'
+    >>>     action="finished at"
     >>> )
-    '''
+    """
     print(
-        'Script',
+        "Script",
         Path(Path().resolve(), script_path),
-        f'{action} '
-        f'{(datetime.now()):%Y-%m-%d %H:%M:%S}.'
+        f"{action} "
+        f"{(datetime.now()):%Y-%m-%d %H:%M:%S}."
     )
     print()
 
