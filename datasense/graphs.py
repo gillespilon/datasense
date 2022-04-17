@@ -2788,7 +2788,6 @@ def style_graph() -> NoReturn:
     rc["axes.titleweight"] = "bold"
     rc["axes.labelsize"] = 12
     rc["axes.titlesize"] = 15
-    rc["figure.autolayout"] = True
     rc["figure.titleweight"] = "bold"
     rc["figure.titlesize"] = 15
     rc["xtick.labelsize"] = 10
