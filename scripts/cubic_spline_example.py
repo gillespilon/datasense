@@ -23,11 +23,8 @@ import datasense as ds
 colour1 = '#0077bb'
 colour2 = '#33bbee'
 parser = '%Y-%m-%d %H:%M:%S'
-file_names = [
-    'raw_data_integer_float.csv',
-    'raw_data_datetime_float.csv'
-]
-abscissa_name = ['abscissa', 'datetime']
+file_names = ['raw_data_integer_float.csv', 'raw_data_datetime_float.csv']
+abscissa_name = ['abscissa', 'abscissa']
 ordinate_name = ['ordinate', 'observed']
 ordinate_predicted_name = [
     'ordinate_predicted',
@@ -68,16 +65,22 @@ def main():
     ):
         data = ds.read_file(
             file_name=file_name,
-            parse_dates=[abscissaname],
+            parse_dates=[abscissaname]
         )
         if datetimeparser is True:
             data[abscissaname] = pd.to_numeric(data[abscissaname])
-            spline = ds.cubic_spline(data, abscissaname, ordinatename)
+            spline = ds.cubic_spline(
+                df=data, abscissa=abscissaname, ordinate=ordinatename
+            )
             data[ordinatepredictedname] = spline(data[abscissaname])
             data[abscissaname] = data[abscissaname]\
                 .astype(dtype='datetime64[ns]')
         else:
-            spline = ds.cubic_spline(data, abscissaname, ordinatename)
+            spline = ds.cubic_spline(
+                df=data,
+                abscissa=abscissaname,
+                ordinate=ordinatename
+            )
             data[ordinatepredictedname] = spline(data[abscissaname])
         plot_graph(
             data,
