@@ -17,11 +17,9 @@ from typing import Tuple
 from matplotlib.ticker import NullFormatter, NullLocator
 from matplotlib.dates import DateFormatter, DayLocator
 import matplotlib.pyplot as plt
-import pandas as pd
 import datasense as ds
+import pandas as pd
 
-colour1 = '#0077bb'
-colour2 = '#33bbee'
 parser = '%Y-%m-%d %H:%M:%S'
 file_names = ['raw_data_integer_float.csv', 'raw_data_datetime_float.csv']
 abscissa_name = ['abscissa', 'abscissa']
@@ -44,6 +42,7 @@ axis_title = 'Cubic Spline'
 
 
 def main():
+    ds.style_graph()
     for (
         file_name,
         abscissaname,
@@ -110,42 +109,17 @@ def plot_graph(
 ) -> None:
     fig = plt.figure(figsize=figurewidthheight)
     ax = fig.add_subplot(111)
-    ax.plot(
-        df[columnx],
-        df[columny],
-        marker='.',
-        linestyle='',
-        color=colour1
-    )
-    ax.plot(
-        df[columnx],
-        df[columnz],
-        marker=None,
-        linestyle='-',
-        color=colour2
-    )
+    ax.plot(df[columnx], df[columnz])
     if dateformat:
         ax.xaxis.set_major_locator(DayLocator())
         ax.xaxis.set_minor_locator(NullLocator())
         ax.xaxis.set_major_formatter(DateFormatter(dateformat))
         ax.xaxis.set_minor_formatter(NullFormatter())
-    ax.set_title(
-        label=graphtitle,
-        fontweight='bold'
-    )
-    ax.set_xlabel(
-        xlabel=xaxislabel,
-        fontweight='bold'
-    )
-    ax.set_ylabel(
-        ylabel=yaxislabel,
-        fontweight='bold'
-    )
+    ax.set_title(label=graphtitle)
+    ax.set_xlabel(xlabel=xaxislabel)
+    ax.set_ylabel(ylabel=yaxislabel)
     ds.despine(ax=ax)
-    fig.savefig(
-        fname=f'{graphname}.svg',
-        format='svg'
-    )
+    fig.savefig(fname=f'{graphname}.svg', format='svg')
 
 
 if __name__ == '__main__':
