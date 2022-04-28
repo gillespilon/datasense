@@ -16,7 +16,7 @@ from datetime import datetime
 from pathlib import Path
 import math
 
-from matplotlib.ticker import FormatStrFormatter
+from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
 from datasense import natural_cubic_spline
 from scipy.stats import norm, probplot
@@ -2192,7 +2192,7 @@ def plot_histogram(
     )
     if bin_label_bool:
         ax.set_xticks(bins)
-        ax.xaxis.set_major_formatter(FormatStrFormatter("%0.0f"))
+        ax.xaxis.set_major_formatter(StrMethodFormatter(fmt="{x:0.0f}"))
         bin_centers = 0.5 * np.diff(bins) + bins[:-1]
         for count, x in zip(counts, bin_centers):
             ax.annotate(
