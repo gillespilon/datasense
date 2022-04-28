@@ -6,6 +6,7 @@ time -f '%e' ./xbar_r_example.py
 ./xbar_r_example.py
 """
 
+from typing import NoReturn
 import time
 
 from datasense import control_charts as cc
@@ -98,7 +99,7 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def xbar_chart(df: pd.DataFrame) -> None:
+def xbar_chart(df: pd.DataFrame) -> NoReturn:
     '''
     Creates an Xbar control chart.
     Identifies out-of-control points.
@@ -158,7 +159,7 @@ def xbar_chart(df: pd.DataFrame) -> None:
     )
 
 
-def r_chart(df: pd.DataFrame) -> None:
+def r_chart(df: pd.DataFrame) -> NoReturn:
     '''
     Creates an R control chart.
     Identifies out-of-control points.
