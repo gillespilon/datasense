@@ -2194,7 +2194,9 @@ def plot_histogram(
     )
     if bin_label_bool:
         ax.set_xticks(ticks=bins)
-        ax.xaxis.set_major_formatter(StrMethodFormatter(fmt="{x:0.0f}"))
+        ax.xaxis.set_major_formatter(
+            formatter=StrMethodFormatter(fmt="{x:0.0f}")
+        )
         bin_centers = 0.5 * np.diff(bins) + bins[:-1]
         for count, x in zip(counts, bin_centers):
             ax.annotate(
