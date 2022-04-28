@@ -2779,6 +2779,15 @@ def style_graph() -> NoReturn:
     """
     Style graphs.
 
+    Reference
+    ---------
+    https://matplotlib.org/stable/tutorials/introductory/customizing.html
+
+    Fonts
+    -----
+    For Linux these are stored:
+    /usr/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/
+
     Example
     -------
     >>> ds.style_graph()
@@ -2790,6 +2799,8 @@ def style_graph() -> NoReturn:
     rc["axes.titlesize"] = 15
     rc["figure.titleweight"] = "bold"
     rc["figure.titlesize"] = 15
+    # rc["font.family"] = "monospace"
+    # rc["font.monospace"] = "DejaVu Sans Mono"
     rc["xtick.labelsize"] = 10
     rc["ytick.labelsize"] = 10
     rc["lines.linestyle"] = "-"
