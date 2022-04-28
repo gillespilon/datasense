@@ -2169,6 +2169,8 @@ def plot_histogram(
     >>>     figsize=(10,8),
     >>>     bin_label_bool=True,
     >>>     color=colour_cyan
+    >>>     ax.set_xlabel(xlabel="X-axis label", labelpad=30)
+    >>>     plt.tight_layout()
     >>> )
     """
     fig, ax = plt.subplots(
@@ -2191,7 +2193,7 @@ def plot_histogram(
         color=color
     )
     if bin_label_bool:
-        ax.set_xticks(bins)
+        ax.set_xticks(ticks=bins)
         ax.xaxis.set_major_formatter(StrMethodFormatter(fmt="{x:0.0f}"))
         bin_centers = 0.5 * np.diff(bins) + bins[:-1]
         for count, x in zip(counts, bin_centers):
