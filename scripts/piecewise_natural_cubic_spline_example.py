@@ -29,7 +29,7 @@ The graphs can be viewed with the view_spline_graphs.html file created.
 """
 
 from multiprocessing import Pool
-from typing import List, Tuple
+from typing import List, NoReturn, Tuple
 import time
 
 import datasense as ds
@@ -132,7 +132,7 @@ def parameters(
 
 def plot_scatter_line(
         t: Tuple[pd.Series, pd.Series, int, int, str, str, str, int, bool]
-) -> None:
+) -> NoReturn:
     X, y, file_name, target, feature, number_knots, dates = t
     model = ds.natural_cubic_spline(
         X=X,
