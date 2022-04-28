@@ -6,6 +6,7 @@ time -f '%e' ./x_mr_example.py
 ./x_mr_example.py
 """
 
+from typing import NoReturn
 import time
 
 from datasense import control_charts as cc
@@ -65,7 +66,7 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def x_chart(df: pd.DataFrame) -> None:
+def x_chart(df: pd.DataFrame) -> NoReturn:
     '''
     Creates an X control chart.
     Identifies out-of-control points.
@@ -122,7 +123,7 @@ def x_chart(df: pd.DataFrame) -> None:
     )
 
 
-def mr_chart(df: pd.DataFrame) -> None:
+def mr_chart(df: pd.DataFrame) -> NoReturn:
     '''
     Creates an mR control chart.
     Identifies out-of-control points.
