@@ -5,7 +5,7 @@ Create X, mR, Xbar, R control charts
 Invoke Shewhart rules 1, 2, 3, 4
 """
 
-from typing import Union, Tuple, Iterable, TypeVar
+from typing import Iterable, NoReturn, TypeVar, Tuple, Union
 from collections import defaultdict
 from abc import ABC, abstractmethod
 from itertools import tee
@@ -97,7 +97,7 @@ CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
     orient='index').transpose().set_index('n')
 
 
-def _despine(ax: axes.Axes) -> None:
+def _despine(ax: axes.Axes) -> NoReturn:
     """
     Remove the top and right spines of a graph.
 
@@ -941,7 +941,7 @@ def draw_rule(
     above: pd.Series,
     below: pd.Series,
     rule_name: str
-) -> None:
+) -> NoReturn:
     """
     Invokes one of the points_* rules to identify out-of-control points
 
@@ -977,7 +977,7 @@ def draw_rule(
 
 
 # TODO: Split into separate finder and plotter.
-def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
+def draw_rules(cc: ControlChart, ax: axes.Axes) -> NoReturn:
     """
     Invokes all of the points_* rules to identify out-of-control points
 
