@@ -13,6 +13,7 @@ setup(
         'beautifultable',
         'matplotlib',
         'openpyxl',
+        'psycopg2',
         'pyqrcode',
         'tabulate',
         'pyarrow',
@@ -40,4 +41,3 @@ setup(
     ],
     scripts=glob('bin/*'),
 )
-
