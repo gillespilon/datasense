@@ -119,21 +119,21 @@ def nonparametric_summary(
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
     return pd.Series({
-        'lower outer fence': round(lof[0], decimals),
-        'lower inner fence': round(lif[0], decimals),
-        'lower quartile': round(q25[0], decimals),
-        'median': round(q50[0], decimals),
-        'upper quartile': round(q75[0], decimals),
-        'upper inner fence': round(uif[0], decimals),
-        'upper outer fence': round(uof[0], decimals),
-        'interquartile range': round(iqr[0], decimals),
-        'inner outliers':
+        "lower outer fence": round(lof[0], decimals),
+        "lower inner fence": round(lif[0], decimals),
+        "lower quartile": round(q25[0], decimals),
+        "median": round(q50[0], decimals),
+        "upper quartile": round(q75[0], decimals),
+        "upper inner fence": round(uif[0], decimals),
+        "upper outer fence": round(uof[0], decimals),
+        "interquartile range": round(iqr[0], decimals),
+        "inner outliers":
             [round(x, decimals) for x in series if x < lif or x > uif],
-        'outer outliers':
+        "outer outliers":
             [round(x, decimals) for x in series if x < lof or x > uof],
-        'minimum value': round(series.min(), 3),
-        'maximum value': round(series.max(), 3),
-        'count': series.count()
+        "minimum value": round(series.min(), 3),
+        "maximum value": round(series.max(), 3),
+        "count": series.count()
     })
 
 
@@ -171,12 +171,12 @@ def parametric_summary(
     >>> print(series)
     """
     return pd.Series({
-        'n': series.count(),
-        'min': round(series.min(), decimals),
-        'max': round(series.max(), decimals),
-        'ave': round(series.mean(), decimals),
-        's': round(series.std(), decimals),
-        'var': round(series.var(), decimals),
+        "n": series.count(),
+        "min": round(series.min(), decimals),
+        "max": round(series.max(), decimals),
+        "ave": round(series.mean(), decimals),
+        "s": round(series.std(), decimals),
+        "var": round(series.var(), decimals),
     })
 
 
@@ -215,26 +215,26 @@ def cubic_spline(
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     >>>     {
-    >>>         'abscissa': ds.random_data(distribution='uniform'),
-    >>>         'ordinate': ds.random_data(distribution='norm')
+    >>>         "abscissa": ds.random_data(distribution="uniform"),
+    >>>         "ordinate": ds.random_data(distribution="norm")
     >>>     }
-    >>> ).sort_values(by=['abscissa'])
+    >>> ).sort_values(by=["abscissa"])
     >>> spline = ds.cubic_spline(
     >>>     df=df,
-    >>>     abscissa='abscissa',
-    >>>     ordinate='ordinate'
+    >>>     abscissa="abscissa",
+    >>>     ordinate="ordinate"
     >>> )
-    >>> df['predicted'] = spline(df['abscissa'])
+    >>> df["predicted"] = spline(df["abscissa"])
     >>> ds.plot_scatter_line_x_y1_y2(
-    >>>     X=df['abscissa'],
-    >>>     y1=df['ordinate'],
-    >>>     y2=df['predicted']
+    >>>     X=df["abscissa"],
+    >>>     y1=df["ordinate"],
+    >>>     y2=df["predicted"]
     >>> )
     >>> plt.show()
     """
     df = df.dropna(subset=[abscissa, ordinate])
-    df = df.sort_values(by=abscissa, axis='rows', ascending=True)
-    df = df.drop_duplicates(subset=abscissa, keep='first')
+    df = df.sort_values(by=abscissa, axis="rows", ascending=True)
+    df = df.drop_duplicates(subset=abscissa, keep="first")
     print(df)
     print(df.dtypes)
     spline = CubicSpline(
@@ -280,8 +280,8 @@ def natural_cubic_spline(
     -------
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
-    >>> X = ds.random_data(distribution='uniform').sort_values()
-    >>> y = ds.random_data(distribution='norm')
+    >>> X = ds.random_data(distribution="uniform").sort_values()
+    >>> y = ds.random_data(distribution="norm")
     >>> p = ds.natural_cubic_spline(
     >>>     X=X,
     >>>     y=y,
@@ -304,8 +304,8 @@ def natural_cubic_spline(
             n_knots=number_knots
         )
     p = Pipeline([
-        ('natural_cubic_spline', spline),
-        ('linear_regression', LinearRegression(fit_intercept=True))
+        ("natural_cubic_spline", spline),
+        ("linear_regression", LinearRegression(fit_intercept=True))
     ])
     p.fit(X, y)
     return p
@@ -706,32 +706,32 @@ def datetime_data(
     Example 2
     >>> # Create a datetime series of one month in increments of six hours
     >>> X = ds.datetime_data(
-    >>>     start_year='2020',
-    >>>     start_month='01',
-    >>>     start_day='01',
-    >>>     start_hour='00',
-    >>>     start_minute='00',
-    >>>     start_second='00',
-    >>>     end_year='2020',
-    >>>     end_month='02',
-    >>>     end_day='01',
-    >>>     end_hour='00',
-    >>>     end_minute='00',
-    >>>     end_second='00',
+    >>>     start_year="2020",
+    >>>     start_month="01",
+    >>>     start_day="01",
+    >>>     start_hour="00",
+    >>>     start_minute="00",
+    >>>     start_second="00",
+    >>>     end_year="2020",
+    >>>     end_month="02",
+    >>>     end_day="01",
+    >>>     end_hour="00",
+    >>>     end_minute="00",
+    >>>     end_second="00",
     >>>     time_delta_hours=6
     >>> )
     """
     # TODO: Complete this code for all possibilities of timedelta
     if start_year:
         timestart = (
-            start_year + '-' + start_month +
-            '-' + start_day + 'T' + start_hour +
-            ':' + start_minute + ':' + start_second
+            start_year + "-" + start_month +
+            "-" + start_day + "T" + start_hour +
+            ":" + start_minute + ":" + start_second
         )
         timeend = (
-            end_year + '-' + end_month +
-            '-' + end_day + 'T' + end_hour +
-            ':' + end_minute + ':' + end_second
+            end_year + "-" + end_month +
+            "-" + end_day + "T" + end_hour +
+            ":" + end_minute + ":" + end_second
         )
     else:
         date_time_start = datetime.now()
@@ -749,7 +749,7 @@ def datetime_data(
             start=timestart,
             stop=timeend,
             step=timedelta(hours=time_delta_hours),
-            dtype='datetime64[s]'
+            dtype="datetime64[s]"
         )
     )
     return series
@@ -783,7 +783,7 @@ def two_sample_t(
     df: pd.DataFrame,
     xlabel: str,
     ylabel: str,
-    alternative_hypothesis: str = 'unequal',
+    alternative_hypothesis: str = "unequal",
     significance_level: float = 0.05
 ) -> Tuple[float, float]:
     """
@@ -808,11 +808,11 @@ def two_sample_t(
         The column label for the sample identities.
     ylabel : str,
         The column label for the data.
-    alternative_hypothesis : str = 'unequal',
+    alternative_hypothesis : str = "unequal",
         The alternative hypothesis for the t test.
-        'unequal' the sample averages are different
-        'less than' the average of sample 1 is < the average of sample 2
-        'greater than' the average of sample 1 is > the average of sample 2
+        "unequal" the sample averages are different
+        "less than" the average of sample 1 is < the average of sample 2
+        "greater than" the average of sample 1 is > the average of sample 2
     significance_level : float = 0.05
         The signficance level for rejecting the null hypothesis.
 
@@ -827,26 +827,26 @@ def two_sample_t(
     --------
     Example 1
     Ha: the average of sample one is not equal to the average of sample two.
-    alternative = 'unequal'
+    alternative = "unequal"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='unequal',
+    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="unequal",
     >>>     significance_level=0.05
     >>> )
 
     Example 2
     Ha: the average of sample one is less than the average of sample two.
-    alternative = 'less than'
+    alternative = "less than"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel='x', ylabel='y',
-    >>>     alternative_hypothesis='less than',
+    >>>     df=df, xlabel="x", ylabel="y",
+    >>>     alternative_hypothesis="less than",
     >>>     significance_level=0.05
     >>> )
 
     Example 3
     Ha: the average of sample one is greater than the average of sample three.
-    alternative = 'greater than'
+    alternative = "greater than"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel='x', ylabel='y', alternative_hypothesis='less than',
+    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="less than",
     >>>     significance_level=0.05
     >>> )
     """
@@ -1083,7 +1083,7 @@ def two_sample_t(
         print(nonparametric_statistics.to_string())
         print()
         ad_test_statistic, ad_critical_values, ad_significance_level =\
-            stats.anderson(x=series, dist='norm')
+            stats.anderson(x=series, dist="norm")
         # uncomment these lines when Anaconda release Python 3.10
         # start uncomment
         # match significance_level:
@@ -1178,12 +1178,12 @@ def two_sample_t(
 
 
 __all__ = (
-    'nonparametric_summary',
-    'natural_cubic_spline',
-    'parametric_summary',
-    'timedelta_data',
-    'datetime_data',
-    'cubic_spline',
-    'two_sample_t',
-    'random_data',
+    "nonparametric_summary",
+    "natural_cubic_spline",
+    "parametric_summary",
+    "timedelta_data",
+    "datetime_data",
+    "cubic_spline",
+    "two_sample_t",
+    "random_data",
 )
