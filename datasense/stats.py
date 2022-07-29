@@ -65,13 +65,13 @@ def nonparametric_summary(
             alphap=0.5, betap=0.5
         R method 6, SAS method 4, Minitab, SPSS:
             alphap=0, betap=0
-        R method 7, Splus 3.1:
+        R method 7, Splus 3.1, R default:
             alphap=1, betap=1
         R method 8:
             alphap=0.33, betap=0.33; is the recommended, default method
         R method 9:
             alphap=0.375, betap=0.375
-        Cunnane's method:
+        Cunnane's method, SciPy default:
             alphap=0.4, betap=0.4
         APL method;
             alphap=0.35, betap=0.35
