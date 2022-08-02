@@ -2779,6 +2779,42 @@ def plot_boxplot(
     return (fig, ax)
 
 
+def decimal_degrees(degrees:int, minutes:int, seconds:float) -> float:
+    """
+    Convert degrees, minutes, seconds location to decimal location.
+
+    Parameters
+    ----------
+    degrees : int
+        The degree portion of the location.
+    minutes : int
+        The minutes portion of the location.
+    seconds : float
+        The seconds portion of the location.
+
+    Returns
+    -------
+    float
+        The location in decimal notation.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> location_deg_min_sec = [(40, 38, 2.99976), (14, 36, 9.927)]
+    >>> location_decimal = [
+    >>>     decimal_degrees(degrees=x, minutes=y, seconds=z)
+    >>>     for x, y, z in location_deg_min_sec
+    >>> ]
+    >>> [40.6341666, 14.6027575]
+    """
+    deg = abs(degrees) + minutes / 60 + seconds / 3600
+    if abs(deg) == deg:
+        deg = deg
+    else:
+        deg = -1 * deg
+    return (round(deg, 12))
+
+
 def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
     """
     Convert decimal location to degrees, minutes, seconds location.
@@ -2855,6 +2891,7 @@ __all__ = (
     "plot_stacked_bars",
     "probability_plot",
     "plot_scatter_x_y",
+    "decimal_degrees",
     "plot_histogram",
     "plot_scatter_y",
     "plot_line_x_y",
