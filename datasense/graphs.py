@@ -2804,7 +2804,7 @@ def decimal_degrees(degrees: int, minutes: int, seconds: float) -> float:
     >>> import datasense as ds
     >>> location_deg_min_sec = [(40, 38, 2.99976), (14, 36, 9.927)]
     >>> location_decimal = [
-    >>>     decimal_degrees(degrees=x, minutes=y, seconds=z)
+    >>>     ds.decimal_degrees(degrees=x, minutes=y, seconds=z)
     >>>     for x, y, z in location_deg_min_sec
     >>> ]
     >>> [40.6341666, 14.6027575]
@@ -2837,8 +2837,9 @@ def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
     -------
     >>> import datasense as ds
     >>> location_decimal = [40.6341666, 14.6027575]
-    >>> location_deg_min_sec = \
-    >>>     [ds.deg_min_sec(decimal_deg_min_sec=x) for x in location_decimal]
+    >>> location_deg_min_sec = [
+    >>>     ds.deg_min_sec(decimal_deg_min_sec=x) for x in location_decimal
+    >>> ]
     >>> [(40, 38, 2.99976), (14, 36, 9.927)]
     """
     min, sec = divmod(abs(decimal_deg_min_sec) * 3600, 60)
