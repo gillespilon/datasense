@@ -2779,9 +2779,11 @@ def plot_boxplot(
     return (fig, ax)
 
 
-def decimal_degrees(degrees:int, minutes:int, seconds:float) -> float:
+def decimal_degrees(degrees: int, minutes: int, seconds: float) -> float:
     """
     Convert degrees, minutes, seconds location to decimal location.
+
+    Reference: https://bit.ly/3OUgeXO
 
     Parameters
     ----------
@@ -2818,6 +2820,8 @@ def decimal_degrees(degrees:int, minutes:int, seconds:float) -> float:
 def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
     """
     Convert decimal location to degrees, minutes, seconds location.
+
+    Reference: https://bit.ly/3OUgeXO
 
     Parameters
     ----------
