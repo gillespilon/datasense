@@ -2779,6 +2779,34 @@ def plot_boxplot(
     return (fig, ax)
 
 
+def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
+    """
+    Convert decimal location to degrees, minutes, seconds location.
+
+    Parameters
+    ----------
+    decimal_deg_min_sec : float
+        The location in decimal notation.
+
+    Returns
+    -------
+    Tuple[int, int, float]
+        The location in degrees, minutes, seconds location.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> location_decimal = [40.6341666, 14.6027575]
+    >>> location_deg_min_sec = \
+    >>>     [ds.deg_min_sec(decimal_deg_min_sec=x) for x in location_decimal]
+    >>> [(40, 38, 2.99976), (14, 36, 9.927)]
+    """
+    min, sec = divmod(abs(decimal_deg_min_sec) * 3600, 60)
+    deg, min = divmod(min, 60)
+    deg = int(decimal_deg_min_sec)
+    return (deg, int(min), round(sec, 9))
+
+
 def style_graph() -> NoReturn:
     """
     Style graphs.
@@ -2832,6 +2860,7 @@ __all__ = (
     "plot_line_x_y",
     "format_dates",
     "plot_boxplot",
+    "deg_min_sec",
     "plot_line_y",
     "plot_pareto",
     "style_graph",
