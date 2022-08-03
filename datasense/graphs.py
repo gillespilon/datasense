@@ -2779,7 +2779,9 @@ def plot_boxplot(
     return (fig, ax)
 
 
-def decimal_degrees(degrees: int, minutes: int, seconds: float) -> float:
+def decimal_degrees(
+        degrees: int, minutes: int, seconds: float, hemisphere: str
+) -> Tuple[float, str]:
     """
     Convert degrees, minutes, seconds location to decimal location.
 
@@ -2793,31 +2795,68 @@ def decimal_degrees(degrees: int, minutes: int, seconds: float) -> float:
         The minutes portion of the location.
     seconds : float
         The seconds portion of the location.
+    hemisphere : str
+        The relevant hemisphere: N, S, W, E
 
     Returns
     -------
     float
         The location in decimal notation.
+    hemisphere : str
+        The relevant hemisphere: N, S, W, E
 
-    Example
-    -------
+    Examples
+    --------
     >>> import datasense as ds
-    >>> location_deg_min_sec = [(40, 38, 2.99976), (14, 36, 9.927)]
+
+    Example 1
+    >>> location_deg_min_sec = [(40, 38, 2.99976, 'n'), (14, 36, 9.927, 'e')]
     >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=x, minutes=y, seconds=z)
-    >>>     for x, y, z in location_deg_min_sec
+    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    >>>     for w, x, y, z in location_deg_min_sec
     >>> ]
-    >>> [40.6341666, 14.6027575]
+    >>> [(40.6341666, 'N'), (14.6027575, 'E')]
+
+    Example 2
+    >>> location_deg_min_sec = [(34, 49, 59.06532, "S"), (20, 0, 0, "E")]
+    >>> location_decimal = [
+    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    >>>     for w, x, y, z in location_deg_min_sec
+    >>> ]
+    >>> [(-34.8330737, 'S'), (20.0, 'E')]
+
+    Example 3
+    >>> location_deg_min_sec = [(40, 41, 21.31224, "N"), (74, 2, 48.1002, "W")]
+    >>> location_decimal = [
+    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    >>>     for w, x, y, z in location_deg_min_sec
+    >>> ]
+    >>> [(40.6892534, 'N'), (-74.0466945, 'W')]
+
+    Example 4
+    >>> location_deg_min_sec = \
+    >>>     [(-13, 9, 47.89404, "S"), (-72, 32, 44.78892, "W")]
+    >>> location_decimal = [
+    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    >>>     for w, x, y, z in location_deg_min_sec
+    >>> ]
+    >>> [(-13.1633039, 'S'), (-72.5457747, 'W')]
     """
     deg = abs(degrees) + minutes / 60 + seconds / 3600
-    if abs(deg) == deg:
-        deg = deg
-    else:
+    if hemisphere == "N":
+        deg = abs(deg)
+    elif hemisphere == "S":
         deg = -1 * deg
-    return (round(deg, 12))
+    elif hemisphere == "W":
+        deg = -1 * deg
+    elif hemisphere == "E":
+        deg = abs(deg)
+    return (round(deg, 7), hemisphere)
 
 
-def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
+def deg_min_sec(
+    decimal_deg_min_sec: float, hemisphere: str
+) -> Tuple[int, int, float, str]:
     """
     Convert decimal location to degrees, minutes, seconds location.
 
@@ -2827,26 +2866,54 @@ def deg_min_sec(decimal_deg_min_sec: float) -> Tuple[int, int, float]:
     ----------
     decimal_deg_min_sec : float
         The location in decimal notation.
+    hemisphere : str
+        The relevant hemisphere: N, S, W, E
 
     Returns
     -------
-    Tuple[int, int, float]
-        The location in degrees, minutes, seconds location.
+    Tuple[int, int, float, str]
+        The location in degrees, minutes, seconds, hemisphere.
 
-    Example
-    -------
+    Examples
+    --------
     >>> import datasense as ds
-    >>> location_decimal = [40.6341666, 14.6027575]
-    >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=x, minutes=y, seconds=z)
-    >>>     for x, y, z in location_deg_min_sec
+
+    Example 1
+    >>> location_decimal = [(40.6341666, "N"), (14.6027575, "E")]
+    >>> location_deg_min_sec = [
+    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    >>>     for x, y in location_decimal
     >>> ]
-    >>> [(40, 38, 2.99976), (14, 36, 9.927)]
+    >>> [(40, 38, 2.99976, 'N'), (14, 36, 9.927, 'E')]
+
+    Example 2
+    >>> location_decimal = [(34.8330737, "S"), (20, "E")]
+    >>> location_deg_min_sec = [
+    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    >>>     for x, y in location_decimal
+    >>> ]
+    >>> [(34, 49, 59.06532, 'S'), (20, 0, 0, 'E')]
+
+    Example 3
+    >>> location_decimal = [(40.6892534, "N"), (-74.0466945, "W")]
+    >>> location_deg_min_sec = [
+    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    >>>     for x, y in location_decimal
+    >>> ]
+    >>> [(40, 41, 21.31224, 'N'), (-74, 2, 48.1002, 'W')]
+
+    Example 4
+    >>> location_decimal = [(-13.1633039, "S"), (-72.5457747, "W")]
+    >>> location_deg_min_sec = [
+    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    >>>     for x, y in location_decimal
+    >>> ]
+    >>> [(-13, 9, 47.89404, 'S'), (-72, 32, 44.78892, 'W')]
     """
     min, sec = divmod(abs(decimal_deg_min_sec) * 3600, 60)
     deg, min = divmod(min, 60)
     deg = int(decimal_deg_min_sec)
-    return (deg, int(min), round(sec, 9))
+    return (deg, int(min), round(sec, 9), hemisphere)
 
 
 def style_graph() -> NoReturn:
