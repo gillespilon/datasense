@@ -2810,7 +2810,7 @@ def decimal_degrees(
     >>> import datasense as ds
 
     Example 1
-    >>> location_deg_min_sec = [(40, 38, 2.99976, 'n'), (14, 36, 9.927, 'e')]
+    >>> location_deg_min_sec = [(40, 38, 2.99976, "N"), (14, 36, 9.927, "E")]
     >>> location_decimal = [
     >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
     >>>     for w, x, y, z in location_deg_min_sec
