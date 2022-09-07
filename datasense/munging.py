@@ -2435,7 +2435,7 @@ def list_one_list_two_ops(
     elif action == 'intersection':
         list_result = list(set(list_one).intersection(list_two))
     else:
-        print('Error. Enter "list_one" or "list_two" for parameter "action"')
+        print('Error. Enter "list_one" or "list_two" for parameter "unique"')
     return list_result
 
 
