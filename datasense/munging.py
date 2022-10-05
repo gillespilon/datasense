@@ -797,7 +797,8 @@ def read_file(
     sort_columns: List[str] = [],
     sort_columns_bool: List[bool] = [],
     sheet_name: str = False,
-    nrows: Union[int, None] = None
+    nrows: Union[int, None] = None,
+    skip_blank_lines: bool = True
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -849,6 +850,9 @@ def read_file(
         The name of the worksheet in the workbook.
     nrows : Union[int, None] = None
         The number of rows to read.
+    skip_blank_lines : bool = True
+        If True, skip over blank lines rather than interpreting as NaN values.
+
 
     Returns
     -------
@@ -1100,7 +1104,8 @@ def read_file(
             converters=converters,
             parse_dates=parse_dates,
             date_parser=date_parser,
-            nrows=nrows
+            nrows=nrows,
+            skip_blank_lines=skip_blank_lines
         )
     elif file_name.suffix in ['.ods', '.ODS']:
         df = pd.read_excel(
