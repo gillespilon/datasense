@@ -365,6 +365,20 @@ def explore_functions(function: str) -> NoReturn:
     ----------
     function : str
         Name of function to explore.
+
+    Examples
+    --------
+    Example 1
+    >>> from sklearn.compose import make_column_transformer
+    >>> function_to_explore = make_column_transformer
+    >>> ds.explore_functions(function=function_to_explore)
+
+    Example 2
+    >>> from sklearn.compose import make_column_transformer
+    >>> from sklearn.pipeline import make_pipeline
+    >>> functions = [function_name_syntax, function_name]
+    >>> for function in functions:
+    >>>     ds.explore_functions(function=function)
     """
     print()
     print("function name:")
