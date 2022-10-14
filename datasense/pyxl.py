@@ -408,7 +408,6 @@ def list_empty_except_nan_worksheet_rows(
     Example
     -------
     Remove empty rows starting from row 2.
-    >>> import datasense as ds
     >>> ws = wb[sheet_name]
     >>> empty_rows = ds.list_empty_except_nan_worksheet_rows(
     >>>     ws=ws,
