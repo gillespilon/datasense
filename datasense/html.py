@@ -29,7 +29,6 @@ def html_header(
 
     Example
     -------
-    >>> import datasense as ds
     >>> ds.html_header(
     >>>     header_title=header_title,
     >>>     header_id=header_id
@@ -60,7 +59,6 @@ def html_footer() -> NoReturn:
 
     Example
     -------
-    >>> import datasense as ds
     >>> ds.html_footer()
     """
     print('</body>')
@@ -73,7 +71,6 @@ def page_break() -> NoReturn:
 
     Example
     -------
-    >>> import datasense as ds
     >>> ds.page_break()
     """
     print('</pre>')
@@ -108,7 +105,6 @@ def html_begin(
     Examples
     --------
     Example 1
-        >>> import datasense as ds
         >>>
         >>> output_url = 'my_html_file.html'
         >>> original_stdout = ds.html_begin(output_url=output_url)
@@ -153,7 +149,6 @@ def html_end(
 
     Example
     -------
-        >>> import datasense as ds
         >>>
         >>> output_url = 'my_html_file.html'
         >>> # see original_stdout example in def html_begin()
@@ -189,7 +184,6 @@ def html_figure(
     Examples
     --------
     Example 1
-    >>> import datasense as ds
     >>> graph_file = 'my_graph_file.svg'
     >>> fig.savefig(graph_file)
     >>> ds.html_figure(file_name=graph_file)
@@ -248,8 +242,6 @@ def report_summary(
 
     Example
     -------
-    >>> import datasense as ds
-
     >>> ds.report_summary(
     >>>     start_time=start_time,
     >>>     stop_time=stop_time
@@ -292,12 +284,10 @@ def script_summary(
     --------
     Example 1
     ---------
-    >>> import datasense as ds
     >>> ds.script_summary(script_path=Path(__file__))
 
     Example 2
     ---------
-    >>> import datasense as ds
     >>> ds.script_summary(
     >>>     script_path=Path(__file__),
     >>>     action="started at"
@@ -305,7 +295,6 @@ def script_summary(
 
     Example 3
     ---------
-    >>> import datasense as ds
     >>> ds.script_summary(
     >>>     script_path=Path(__file__),
     >>>     action="finished at"
