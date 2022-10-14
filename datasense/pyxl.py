@@ -640,7 +640,6 @@ def remove_worksheet_rows(
 
     Example
     -------
-    >>> import datasense as ds
     >>> ws = ds.remove_worksheet_rows(
     >>>     ws=ws,
     >>>     rows_to_remove=rows_to_remove
