@@ -291,11 +291,11 @@ def exit_script(
 
     Example
     -------
-    import datasense as ds
-    ds.exit_script(
-        original_stdout=original_stdout,
-        output_url=output_url
-    )
+    >>> import datasense as ds
+    >>> ds.exit_script(
+    >>>     original_stdout=original_stdout,
+    >>>     output_url=output_url
+    >>> )
     """
     html_end(
         original_stdout=original_stdout,
