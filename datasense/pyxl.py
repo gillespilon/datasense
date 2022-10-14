@@ -605,7 +605,6 @@ def remove_worksheet_columns(
 
     Example
     -------
-    >>> import datasense as ds
     >>> ws = ds.remove_worksheet_columns(
     >>>     ws=ws,
     >>>     starting_column=starting_column,
