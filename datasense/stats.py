@@ -772,6 +772,11 @@ def timedelta_data(
     -------
     series : pd.Series
         The output series.
+
+    Example
+    -------
+    >>> number_days_plus_one = 42
+    >>> series = timedelta_data(time_delta_days=number_days_plus_one)
     """
     series = datetime_data(time_delta_days=time_delta_days) -\
         datetime_data(time_delta_days=time_delta_days)
