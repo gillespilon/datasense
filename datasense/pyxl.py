@@ -445,7 +445,6 @@ def list_nan_worksheet_rows(
 
     Example
     -------
-    >>> import datasense as ds
     >>> ws = wb[sheetname]
     >>> blank_rows = ds.list_nan_worksheet_rows(
     >>>     ws=ws,
