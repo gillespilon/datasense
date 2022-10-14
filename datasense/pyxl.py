@@ -251,7 +251,6 @@ def change_case_worksheet_columns(
 
     Example
     -------
-    >>> import datasense as ds
     >>> ws = ds.change_case_worksheet_columns(
     >>>     ws=ws,
     >>>     min_col=4,
