@@ -168,7 +168,7 @@ def html_end(
 
 def html_figure(
     *,
-    file_name: Union[Path,str],
+    file_name: Union[Path, str],
     caption: str = None
 ) -> NoReturn:
     """
