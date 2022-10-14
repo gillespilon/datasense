@@ -567,7 +567,6 @@ def remove_empty_worksheet_rows(
     Example
     -------
     Remove empty rows found.
-    >>> import datasense as ds
     >>> ws = ds.remove_empty_worksheet_rows(
     >>>     ws=ws,
     >>>     empty_rows=empty_rows
