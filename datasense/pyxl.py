@@ -326,7 +326,6 @@ def list_duplicate_worksheet_rows(
 
     Example
     -------
-    >>> import datasense as ds
     >>> duplicate_rows = ds.list_duplicate_worksheet_rows(ws=ws)
     >>> ws = ds.remove_worksheet_rows(
     >>>     ws=ws,
