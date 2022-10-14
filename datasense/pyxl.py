@@ -531,7 +531,6 @@ def read_workbook(
 
     Examples
     --------
-    >>> import datasense as ds
     >>> wb, sheet_names = ds.read_workbook(
     >>>     filename=filename,
     >>>     data_only=True
