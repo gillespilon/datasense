@@ -905,7 +905,6 @@ def validate_sheet_names(
 
     Example
     -------
-    >>> import datasense as ds
     >>> wb = validate_sheet_names(
     >>>     wb=wb,
     >>>     filename=filename,
