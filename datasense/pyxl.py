@@ -971,7 +971,6 @@ def write_dataframe_to_worksheet(
         The worksheet created.
 
     Example
-    >>> import datasense as ds
     >>> ws = ds.write_dataframe_to_worksheet(
     >>>     ws=ws,
     >>>     df=df,
