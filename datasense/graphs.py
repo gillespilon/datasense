@@ -973,6 +973,22 @@ def plot_scatter_line_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
+
+    Example
+    -------
+    >>> number_knots = 100
+    >>> model = ds.natural_cubic_spline(
+    >>>     X=X,
+    >>>     y=y,
+    >>>     number_knots=number_knots
+    >>> )
+    >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
+    >>>     X=X,
+    >>>     y1=y,
+    >>>     y2=model.predict(X),
+    >>>     figsize=figsize,
+    >>>     labellegendy2=f'number knots = {number_knots}'
+    >>> )
     """
     fig, ax = plt.subplots(
         nrows=1,
