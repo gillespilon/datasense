@@ -1426,6 +1426,23 @@ def plot_line_line_line_x_y1_y2_y3(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
+
+    Example
+    -------
+    >>> figsize = (6, 4)
+    >>> column_target="TargetBalance",
+    >>> column_actual="ActualBalance",
+    >>> column_actual="Predicted"
+    >>> fig, ax = ds.plot_line_line_line_x_y1_y2_y3(
+    >>>     X=X,
+    >>>     y1=target,
+    >>>     y2=actual,
+    >>>     y3=predicted,
+    >>>     figsize=figsize,
+    >>>     labellegendy1=column_target,
+    >>>     labellegendy2=column_actual,
+    >>>     labellegendy3=column_predicted
+    >>> )
     """
     fig, ax = plt.subplots(
         nrows=1,
