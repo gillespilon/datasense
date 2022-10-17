@@ -1279,6 +1279,20 @@ def plot_line_line_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
+
+    Exanple
+    -------
+    >>> figure_width_height = (15, 7)
+    >>> fig, ax = ds.plot_line_line_x_y1_y2(
+    >>>     X=X,
+    >>>     y1=y1,
+    >>>     y2=y2,
+    >>>     figsize=figure_width_height,
+    >>>     labellegendy1=column_actual,
+    >>>     labellegendy2=column_target,
+    >>>     marker2=None,
+    >>>     linestyle1='None',
+    >>> )
     """
     fig, ax = plt.subplots(
         nrows=1,
