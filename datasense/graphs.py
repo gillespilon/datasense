@@ -1,6 +1,10 @@
 """
 Graphical analysis
 
+All examples use the following, as required:
+    import datasense as ds
+    import matplotlib.pyplot as plt
+
 Colours used are colour-blind friendly.
     blue    "#0077bb"
     cyan    "#33bbee"
@@ -90,9 +94,6 @@ def plot_scatter_y(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>>
     >>> series_y = ds.random_data()
@@ -175,9 +176,6 @@ def plot_scatter_x_y(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>>
     >>> series_x = ds.datatime_data()
@@ -287,9 +285,6 @@ def plot_line_y(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
@@ -393,9 +388,6 @@ def plot_line_x_y(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>> series_x = ds.datetime_data()
     >>> series_y = ds.random_data()
@@ -559,9 +551,6 @@ def plot_scatter_scatter_x_y1_y2(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>> series_x = ds.datetime_data()
     >>> series_y1 = ds.random_data()
@@ -760,9 +749,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     Example 1
     >>> series_x1 = ds.datetime_data()
     >>> series_x2 = ds.datetime_data()
@@ -1132,9 +1118,6 @@ def plot_line_line_y1_y2(
 
     Example
     -------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_line_line_y1_y2(
@@ -1580,6 +1563,16 @@ def plot_scatterleft_scatterright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
+
+    Example
+    -------
+    >>> fig, ax1, ax2 = ds.plot_scatterleft_scatterright_x_y1_y2(
+    >>>     X=df["X"],
+    >>>     y1=df["y1"],
+    >>>     y2=df["y2"],
+    >>>     figsize=(6, 4),
+    >>>     linestyle2="-"
+    >>> )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1710,6 +1703,26 @@ def plot_lineleft_lineright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
+
+    Examples
+    --------
+    Example1
+    >>> fig, ax1, ax2 = ds.plot_lineleft_lineright_x_y1_y2(
+    >>>     X=df[column_abscissa_datetime_one],
+    >>>     y1=df[column_ordinate_one],
+    >>>     y2=df[column_ordinate_two],
+    >>>     figsize=figsize
+    >>> )
+
+    Example2
+    >>> fig, ax1, ax2 = ds.plot_lineleft_lineright_x_y1_y2(
+    >>>     X=df[column_abscissa_datetime_one],
+    >>>     y1=df[column_ordinate_one],
+    >>>     y2=df[column_ordinate_two],
+    >>>     smoothing="natural_cubic_spline",
+    >>>     number_knots=5,
+    >>>     figsize=figsize
+    >>> )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1832,6 +1845,18 @@ def plot_barleft_lineright_x_y1_y2(
     -------
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
+
+    Example
+    -------
+    >>> fig, ax1, ax2 = ds.plot_barleft_lineright_x_y1_y2(
+    >>>     X=X,
+    >>>     y1=y1,
+    >>>     y2=y2,
+    >>>     figsize=figsize,
+    >>>     barwidth=20,
+    >>>     colour1=colour1,
+    >>>     colour2=colour2
+    >>> )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1933,9 +1958,6 @@ def plot_pareto(
 
     Example 1
     ---------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     >>> data = pd.DataFrame(
     >>>     {
     >>>         "ordinate": ["Mo", "Larry", "Curly", "Shemp", "Joe"],
@@ -1996,6 +2018,13 @@ def format_dates(
         A matplotlib figure.
     ax : axes.Axes
         A matplotlib Axes.
+
+    Example
+    -------
+    >>> ds.format_dates(
+    >>>     fig=fig,
+    >>>     ax=ax
+    >>> )
     """
     loc = mdates.AutoDateLocator()
     fmt = mdates.AutoDateFormatter(locator=loc)
@@ -2045,9 +2074,6 @@ def probability_plot(
 
     Example
     -------
-    >>> import matplotlib.pyplot as plt
-    >>> import datasense as ds
-
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
     """
@@ -2131,8 +2157,6 @@ def plot_histogram(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     # Create a series of random floats, normal distribution,
     # with the default parameters.
@@ -2142,7 +2166,6 @@ def plot_histogram(
     Example 2
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, max = 13.
-    >>> import datasense as ds
     >>> s = ds.random_data(
     >>>     distribution="randint",
     >>>     size=113,
@@ -2313,10 +2336,7 @@ def plot_horizontal_bars(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
-    ---------
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
@@ -2325,7 +2345,6 @@ def plot_horizontal_bars(
     >>> )
 
     Example 2
-    ---------
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
@@ -2335,7 +2354,6 @@ def plot_horizontal_bars(
     >>> )
 
     Example 3
-    ---------
     Create Gantt chart
     >>> data = {
     >>>     "start": ["2021-11-01", "2021-11-03", "2021-11-04", "2021-11-08"],
@@ -2424,8 +2442,6 @@ def plot_vertical_bars(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
@@ -2490,8 +2506,6 @@ def plot_pie(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
@@ -2603,8 +2617,6 @@ def plot_stacked_bars(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
@@ -2756,8 +2768,6 @@ def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
 
     Example
     -------
-    >>> import datasense as ds
-
     >>> code_string = "mystring"
     >>> code_path = Path("str_of_path")
     >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
@@ -2806,8 +2816,6 @@ def plot_boxplot(
 
     Example
     --------
-    >>> import datasense as ds
-
     >>> series = ds.random_data()
     >>> fig, ax = ds.plot_boxplot(series=series)
     >>> ax.set_title(label="Box-and-whisker plot")
@@ -2854,8 +2862,6 @@ def decimal_degrees(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     >>> location_deg_min_sec = [(40, 38, 2.99976, "N"), (14, 36, 9.927, "E")]
     >>> location_decimal = [
@@ -2923,8 +2929,6 @@ def deg_min_sec(
 
     Examples
     --------
-    >>> import datasense as ds
-
     Example 1
     >>> location_decimal = [(40.6341666, "N"), (14.6027575, "E")]
     >>> location_deg_min_sec = [
