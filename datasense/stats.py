@@ -173,11 +173,18 @@ def parametric_summary(
     >>> series = ds.parametric_summary(series=series)
     >>> print(series)
     """
+    ciaverage = stats.t.interval(
+            confidence=0.95,
+            df=len(series)-1,
+            loc=np.mean(a=series),
+            scale=stats.sem(series)
+        )
     return pd.Series({
         "n": series.count(),
         "min": round(series.min(), decimals),
         "max": round(series.max(), decimals),
         "ave": round(series.mean(), decimals),
+        "confidence interval": (ciaverage[0], ciaverage[1]),
         "s": round(series.std(), decimals),
         "var": round(series.var(), decimals),
     })
