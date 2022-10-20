@@ -118,11 +118,14 @@ def nonparametric_summary(
     lif = (q25 - iqr * 1.5)
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
+    cil = (q50 - 1.57 * iqr / np.sqrt(series.count()))[0]
+    ciu = (q50 + 1.57 * iqr / np.sqrt(series.count()))[0]
     return pd.Series({
         "lower outer fence": round(lof[0], decimals),
         "lower inner fence": round(lif[0], decimals),
         "lower quartile": round(q25[0], decimals),
         "median": round(q50[0], decimals),
+        "confidence interval": (cil, ciu),
         "upper quartile": round(q75[0], decimals),
         "upper inner fence": round(uif[0], decimals),
         "upper outer fence": round(uof[0], decimals),
