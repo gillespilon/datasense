@@ -1956,8 +1956,8 @@ def plot_pareto(
     Tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuple.
 
-    Example 1
-    ---------
+    Example
+    -------
     >>> data = pd.DataFrame(
     >>>     {
     >>>         "ordinate": ["Mo", "Larry", "Curly", "Shemp", "Joe"],
