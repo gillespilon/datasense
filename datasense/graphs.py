@@ -911,6 +911,8 @@ def plot_scatter_line_x_y1_y2(
     figsize: Tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
+    y1_marker: str = ".",
+    y2_marker: str = "",
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     labellegendy1: str = None,
@@ -944,6 +946,8 @@ def plot_scatter_line_x_y1_y2(
         Options: "natural_cubic_spline"
     number_knots : int = None
         The number of knots to create.
+    marker : str = None
+        The type of marker
     colour1 : str = colour_blue
         The colour of y1.
     colour2 : str = colour_cyan
@@ -990,7 +994,7 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(
             X,
             y1,
-            marker=".",
+            marker=y1_marker,
             linestyle="",
             color=colour1,
             label=labellegendy1
@@ -998,7 +1002,7 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(
             X,
             y2,
-            marker=None,
+            marker=y2_marker,
             linestyle="-",
             color=colour2,
             label=labellegendy2
@@ -1022,14 +1026,14 @@ def plot_scatter_line_x_y1_y2(
         ax.plot(
             X,
             model1.predict(XX),
-            marker=".",
+            marker=y1_marker,
             linestyle="",
             color=colour1
         )
         ax.plot(
             X,
             model2.predict(XX),
-            marker=None,
+            marker=y2_marker,
             linestyle="-",
             color=colour2
         )
