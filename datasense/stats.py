@@ -22,6 +22,7 @@ from scipy.stats import norm, uniform, randint
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
+import statsmodels.api as sm
 import scipy.stats as stats
 from numpy import arange
 import pandas as pd
@@ -1192,10 +1193,37 @@ def two_sample_t(
     print()
 
 
+def linear_regression(
+    df: pd.DataFrame,
+    x_column: str,
+    y_column: str,
+    prediction_column: str
+) -> pd.DataFrame:
+    x = sm.add_constant(data=df[x_column])
+    y = df[y_column]
+    results = sm.OLS(
+        endog=y,
+        exog=x,
+        missing="drop"
+    ).fit(
+        method="pinv",
+        cov_type="nonrobust"
+    )
+    print(results.summary())
+    df_predictions = (
+        results.get_prediction().summary_frame(alpha=0.05).sort_values(
+            by=prediction_column
+        )
+    )
+    df_predictions = df_predictions.join(other=df[[x_column, y_column]])
+    return df_predictions
+
+
 __all__ = (
     "nonparametric_summary",
     "natural_cubic_spline",
     "parametric_summary",
+    "linear_regression",
     "timedelta_data",
     "datetime_data",
     "cubic_spline",
