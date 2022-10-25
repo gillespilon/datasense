@@ -2997,7 +2997,7 @@ def style_graph() -> NoReturn:
     rc["ytick.labelsize"] = 10
     rc["lines.linestyle"] = "-"
     rc["lines.markersize"] = 6
-    # rc["lines.marker"] = "."
+    rc["lines.marker"] = "."
 
 
 __all__ = (
