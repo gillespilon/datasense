@@ -1195,7 +1195,7 @@ def two_sample_t(
 
 def linear_regression(
     df: pd.DataFrame,
-    x_column: str,
+    x_column: List[str],
     y_column: str,
     prediction_column: str
 ) -> pd.DataFrame:
@@ -1215,7 +1215,8 @@ def linear_regression(
             by=prediction_column
         )
     )
-    df_predictions = df_predictions.join(other=df[[x_column, y_column]])
+    columns = x_column + [y_column]
+    df_predictions = df_predictions.join(other=df[columns])
     return df_predictions
 
 
