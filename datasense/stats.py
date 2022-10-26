@@ -1201,7 +1201,8 @@ def linear_regression(
     prediction_column: str
 ) -> pd.DataFrame:
     """
-    Linear regression with one or more X series and one Y series.
+    Linear regression with one or more X series and one Y series. The variables
+    are integers or floats.
 
     Parameters
     ----------
