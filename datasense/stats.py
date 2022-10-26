@@ -1248,7 +1248,7 @@ def linear_regression(
     """
     x = sm.add_constant(data=df[x_column])
     y = df[y_column]
-    results = sm.OLS(
+    fitted_model = sm.OLS(
         endog=y,
         exog=x,
         missing="drop"
@@ -1256,15 +1256,15 @@ def linear_regression(
         method="pinv",
         cov_type="nonrobust"
     )
-    print(results.summary())
+    print(fitted_model.summary())
     df_predictions = (
-        results.get_prediction().summary_frame(alpha=0.05).sort_values(
+        fitted_model.get_prediction().summary_frame(alpha=0.05).sort_values(
             by=prediction_column
         )
     )
     columns = x_column + [y_column]
     df_predictions = df_predictions.join(other=df[columns])
-    return df_predictions
+    return df_predictions, fitted_model
 
 
 __all__ = (
