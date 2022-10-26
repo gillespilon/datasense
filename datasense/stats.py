@@ -1199,6 +1199,51 @@ def linear_regression(
     y_column: str,
     prediction_column: str
 ) -> pd.DataFrame:
+    """
+    Linear regression with one or more X series and one Y series.
+
+    Parameters
+    ----------
+    df : pd.DataFrame,
+        The DataFrame of data.
+    x_column : List[str],
+        The list of column names for the X series.
+    y_column : str,
+        The column name for the Y series.
+    prediction_column : str
+        The column name for the prediction series. This must match what is
+        created by the fit() command in statsmodels.
+
+    Returns
+    -------
+    df_predictions
+        The DataFrame with the results and the X, Y series from the submitted
+        DataFrame.
+
+    Examples
+    --------
+    Example 1
+    >>> x_column = "x"
+    >>> y_column = "y"
+    >>> prediction_column = "mean"
+    >>> df_predictions = ds.linear_regression(
+    >>>     df=df,
+    >>>     x_column=[x_column],
+    >>>     y_column=y_column,
+    >>>     prediction_column=prediction_column
+    >>> )
+
+    Example 2
+    >>> x_column = ["interest_rate", "unemployment_rate"]
+    >>> y_column = "index_price"
+    >>> prediction_column = "mean"
+    >>> df_predictions = ds.linear_regression(
+    >>>     df=df,
+    >>>     x_column=x_column,
+    >>>     y_column=y_column,
+    >>>     prediction_column=prediction_column
+    >>> )
+    """
     x = sm.add_constant(data=df[x_column])
     y = df[y_column]
     results = sm.OLS(
