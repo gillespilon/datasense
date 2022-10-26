@@ -1194,6 +1194,7 @@ def two_sample_t(
 
 
 def linear_regression(
+    *,
     df: pd.DataFrame,
     x_column: List[str],
     y_column: str,
