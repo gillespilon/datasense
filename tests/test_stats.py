@@ -8,7 +8,7 @@ X = pd.Series(
         16.0, 16.0
     ]
 )
-df = pd.DataFrame(
+df_integer_float = pd.DataFrame(
     data={
         "abscissa": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         "ordinate": [
@@ -54,11 +54,11 @@ def test_parametric_summary():
 
 def test_cubic_spline():
     cubic_spline = ds.cubic_spline(
-        df=df,
+        df=df_integer_float,
         abscissa="abscissa",
         ordinate="ordinate"
     )
-    result = cubic_spline(x=df["abscissa"])
+    result = cubic_spline(x=df_integer_float["abscissa"])
     expected = (
         [
             0., 0.841470984807896, 0.909297426825682, 0.141120008059867,
