@@ -5,7 +5,12 @@ import pandas as pd
 from pytest import approx, mark
 
 
-myseries = pd.Series([1, 3, 6])
+X = pd.Series(
+    data=[
+        25.0, 24.0, 35.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0, 16.0,
+        16.0, 16.0
+    ]
+)
 
 
 # def check_nonparametric_summary(myseries, expected):
@@ -19,8 +24,14 @@ def test_nonparametric_summary():
 
 
 def test_parametric_summary():
-    ds.parametric_summary(myseries)
-    return
+    series = ds.parametric_summary(series=X)
+    assert series[0] == 13
+    assert series[1] == 10.0
+    assert series[2] == 35.5
+    assert series[3] == 18.392
+    assert series[4] == (14.012638095621575, 22.77197728899381)
+    assert series[5] == 7.248
+    assert series[6] == 52.527
 
 # TODO:
 # Add utility function for series, expected
