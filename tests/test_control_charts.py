@@ -423,7 +423,7 @@ def test_draw_rules():
         'X': [25.0, 24.0, 35.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0, 16.0,
               16.0, 16.0],
     }).set_index('Sample')
-    X = cc.X(df[['X']])
+    X = cc.X(data=df[['X']])
     fig = BytesIO()
     try:
         ax = X.ax()
