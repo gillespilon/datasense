@@ -272,7 +272,7 @@ def test_X(column, expected, subgroup_size):
     assert X.sigmas[-1] == approx(expected['-1sigma'])
     assert X.sigmas[-2] == approx(expected['-2sigma'])
     assert X.lcl == approx(expected['lcl'])
-    return  # below part broken
+    return
     fig = BytesIO()
     # TODO: fix more rendering parameters so as to be less affected by
     # environment, such as matplotlib defaults in config file, etc.
