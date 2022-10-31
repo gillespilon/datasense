@@ -20,23 +20,24 @@ df = pd.DataFrame(
 )
 
 
-# test for method 8
 def test_nonparametric_summary():
-    series = ds.nonparametric_summary(series=X)
-    assert series[0] == -15.4
-    assert series[1] == -0.85
-    assert series[2] == 13.7
-    assert series[3] == 16.0
-    assert series[4] == (11.776235355842992, 20.223764644157008)
-    assert series[5] == 23.4
-    assert series[6] == 37.95
-    assert series[7] == 52.5
-    assert series[8] == 9.7
-    assert series[9] == []
-    assert series[10] == []
-    assert series[11] == 10.0
-    assert series[12] == 35.5
-    assert series[13] == 13
+    """
+    Test for method 8
+    """
+    result = ds.nonparametric_summary(series=X)
+    expected = pd.Series(
+        data={
+            "lower outer fence": -15.4, "lower inner fence": -0.85,
+            "lower quartile": 13.7, "median": 16.0,
+            "confidence interval": (11.776235355842992, 20.223764644157008),
+            "upper quartile": 23.4,
+            "upper inner fence": 37.95, "upper outer fence": 52.5,
+            "interquartile range": 9.7,
+            "inner outliers": [], "outer outliers": [],
+            "minimum value": 10.0, "maximum value": 35.5, "count": 13
+        }
+    )
+    assert (result == expected).all()
 
 
 def test_parametric_summary():
