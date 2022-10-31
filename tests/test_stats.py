@@ -2,28 +2,27 @@ import datasense as ds
 import pandas as pd
 
 
-from pytest import approx, mark
-
-
 X = pd.Series(
     data=[
         25.0, 24.0, 35.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0, 16.0,
         16.0, 16.0
     ]
 )
-data = {
-    "abscissa": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    "ordinate": [
-        0, 0.841470984807896, 0.909297426825682, 0.141120008059867,
-        -0.756802495307928, -0.958924274663138, -0.279415498198926,
-        0.656986598718789, 0.989358246623382, 0.412118485241757
-    ]
-}
-df = pd.DataFrame(data=data)
+df = pd.DataFrame(
+    data={
+        "abscissa": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        "ordinate": [
+            0, 0.841470984807896, 0.909297426825682, 0.141120008059867,
+            -0.756802495307928, -0.958924274663138, -0.279415498198926,
+            0.656986598718789, 0.989358246623382, 0.412118485241757
+        ]
+    }
+)
+
 
 # test for method 8
 def test_nonparametric_summary():
-    series=ds.nonparametric_summary(series=X)
+    series = ds.nonparametric_summary(series=X)
     assert series[0] == -15.4
     assert series[1] == -0.85
     assert series[2] == 13.7
@@ -41,14 +40,16 @@ def test_nonparametric_summary():
 
 
 def test_parametric_summary():
-    series = ds.parametric_summary(series=X)
-    assert series[0] == 13
-    assert series[1] == 10.0
-    assert series[2] == 35.5
-    assert series[3] == 18.392
-    assert series[4] == (14.012638095621575, 22.77197728899381)
-    assert series[5] == 7.248
-    assert series[6] == 52.527
+    result = ds.parametric_summary(series=X)
+    expected = pd.Series(
+        data={
+            "n": 13, "min": 10.0, "max": 35.5, "ave": 18.392,
+            "confidence interval": (14.012638095621575, 22.77197728899381),
+            "s": 7.248, "var": 52.527
+        }
+    )
+    assert (result == expected).all()
+
 
 def test_cubic_spline():
     cubic_spline = ds.cubic_spline(
