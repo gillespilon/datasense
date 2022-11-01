@@ -34,6 +34,18 @@ df_datetime_float = pd.DataFrame(
         ]
     }
 ).astype(dtype={'abscissa': 'datetime64[s]'})
+df_two_sample_t = pd.DataFrame(
+    data={
+        "X": [
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            2, 2, 2, 2, 2, 2, 2, 2, 2
+        ],
+        "y": [
+            32, 37, 35, 38, 41, 44, 35, 31, 34, 38, 42,
+            36, 31, 30, 31, 34, 36, 39, 32, 31
+        ]
+    }
+)
 
 
 def test_nonparametric_summary():
@@ -115,8 +127,15 @@ def test_timedelta_data():
 
 
 def test_two_sample_t():
-    pass
-
+    result = ds.two_sample_t(
+        df=df_two_sample_t,
+        xlabel="X",
+        ylabel="y",
+        alternative_hypothesis="unequal",
+        significance_level=0.05
+    )
+    expected = (2.206697123558633, 0.040563312956175504)
+    assert result == expected
 
 def test_linear_regression():
     pass
