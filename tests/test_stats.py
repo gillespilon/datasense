@@ -136,6 +136,15 @@ def test_two_sample_t():
     )
     expected = (2.206697123558633, 0.040563312956175504)
     assert result == expected
+    result = ds.two_sample_t(
+        df=df_two_sample_t,
+        xlabel="X",
+        ylabel="y",
+        alternative_hypothesis="less than",
+        significance_level=0.05
+    )
+    expected = (2.206697123558633, 0.9797183435219122)
+    assert result == expected
 
 def test_linear_regression():
     pass
