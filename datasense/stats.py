@@ -1029,13 +1029,13 @@ def two_sample_t(
         print(parametric_statistics.to_string())
         print()
         print("Shapiro-Wilk results for normal distribution lack-of-fit test")
-        shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
+        test_statistic, p_value =\
             stats.shapiro(x=series)
         print(
-            f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:7.3f}"
+            f"Shapiro-Wilk test statistic: {test_statistic:7.3f}"
         )
-        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:7.3f}")
-        if shapiro_wilk_p_value < significance_level:
+        print(f"Shapiro-Wilk p value       : {p_value:7.3f}")
+        if p_value < significance_level:
             print(
                 f"The data in sample {level} probably do not follow a normal "
                 "distribution. It is not advised to continue with the "
