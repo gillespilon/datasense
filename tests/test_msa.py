@@ -16,17 +16,17 @@ def test_parallelism_plot():
     # raise NotImplementedError()
 
 
-def test_analysis_of_main_effects():
+def test_main_effects_chart_anome():
     pass
     # raise NotImplementedError()
 
 
-def test_analysis_of_mean_ranges():
+def test_mean_ranges_chart_anomr():
     pass
     # raise NotImplementedError()
 
 
-def test_emp_results():
+def test_msa_results():
     pass
     # raise NotImplementedError()
 
@@ -46,7 +46,7 @@ def test_variance_components():
     # raise NotImplementedError()
 
 
-def test_emp_gauge_rr_results():
+def test_grr_gauge_rr_results():
     pass
     # raise NotImplementedError()
 
