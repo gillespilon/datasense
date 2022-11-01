@@ -1191,6 +1191,7 @@ def two_sample_t(
         else:
             print(message_ho)
     print()
+    return (t_test_statistic, t_test_p_value)
 
 
 def linear_regression(
