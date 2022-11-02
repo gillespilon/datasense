@@ -127,8 +127,31 @@ def test_random_data():
 
 
 def test_datetime_data():
-    pass
-
+    result = ds.datetime_data(
+        start_year="2020",
+        start_month="01",
+        start_day="01",
+        start_hour="00",
+        start_minute="00",
+        start_second="00",
+        end_year="2020",
+        end_month="01",
+        end_day="01",
+        end_hour="07",
+        end_minute="00",
+        end_second="00",
+        time_delta_days=7,
+        time_delta_hours=1
+    )
+    expected = pd.Series(
+        data=[
+            "2020-01-01 00:00:00", "2020-01-01 01:00:00",
+            "2020-01-01 02:00:00", "2020-01-01 03:00:00",
+            "2020-01-01 04:00:00", "2020-01-01 05:00:00",
+            "2020-01-01 06:00:00"
+        ]
+    ).astype(dtype="datetime64[s]")
+    assert result.equals(other=expected)
 
 def test_timedelta_data():
     result = ds.timedelta_data(time_delta_days=7)
