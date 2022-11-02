@@ -711,6 +711,7 @@ def datetime_data(
     Example
     -------
     Example 1
+    >>> import datasense as ds
     >>> # Create a default datetime series
     >>> X = ds.datetime_data()
 
@@ -786,6 +787,7 @@ def timedelta_data(
 
     Example
     -------
+    >>> import datasense as ds
     >>> number_days_plus_one = 42
     >>> series = timedelta_data(time_delta_days=number_days_plus_one)
     """
@@ -844,6 +846,7 @@ def two_sample_t(
     Example 1
     Ha: the average of sample one is not equal to the average of sample two.
     alternative = "unequal"
+    >>> import datasense as ds
     >>> ds.two_sample_t(
     >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="unequal",
     >>>     significance_level=0.05
@@ -1226,6 +1229,7 @@ def linear_regression(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> x_column = "x"
     >>> y_column = "y"
     >>> prediction_column = "mean"
