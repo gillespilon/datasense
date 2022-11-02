@@ -73,7 +73,7 @@ def test_nonparametric_summary():
             "minimum value": 10.0, "maximum value": 35.5, "count": 13
         }
     )
-    assert (result == expected).all()
+    assert result.equals(other=expected)
 
 
 def test_parametric_summary():
