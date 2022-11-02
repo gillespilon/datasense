@@ -123,7 +123,20 @@ def test_natural_cubic_spline():
 
 
 def test_random_data():
-    pass
+    result = ds.random_data(
+        size=13,
+        random_state=41
+    )
+    expected = pd.Series(
+        data=[
+            -0.2707123230673205, 0.10484805260974006, 0.25052781572357197,
+            -0.9251999652780767, 0.567143660285906, -1.040180216082938,
+            -0.15367595145793744, 0.7898518103468191, -1.2262158464418542,
+            -0.9480069877134585, -0.5696539419300647, -0.9771502146977724,
+            -0.7706317111835508
+        ]
+    )
+    assert result.equals(other=expected)
 
 
 def test_datetime_data():
@@ -152,6 +165,7 @@ def test_datetime_data():
         ]
     ).astype(dtype="datetime64[s]")
     assert result.equals(other=expected)
+
 
 def test_timedelta_data():
     result = ds.timedelta_data(time_delta_days=7)
