@@ -85,7 +85,7 @@ def test_parametric_summary():
             "s": 7.248, "var": 52.527
         }
     )
-    assert (result == expected).all()
+    assert result.equals(other=expected)
 
 
 def test_cubic_spline():
