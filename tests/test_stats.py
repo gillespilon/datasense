@@ -1,7 +1,12 @@
+import warnings
+
+from pandas.testing import assert_series_equal
 import datasense as ds
 import pandas as pd
+import numpy as np
 
 
+warnings.filterwarnings("ignore")
 X = pd.Series(
     data=[
         25.0, 24.0, 35.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0, 16.0,
@@ -99,7 +104,8 @@ def test_cubic_spline():
         [
             0., 0.841470984807896, 0.909297426825682, 0.141120008059867,
             -0.756802495307928, -0.958924274663138, -0.279415498198926,
-            0.656986598718789, 0.989358246623382, 0.41211848524175704]
+            0.656986598718789, 0.989358246623382, 0.41211848524175704
+        ]
     )
     assert (result == expected).all()
     cubic_spline = ds.cubic_spline(
@@ -119,7 +125,28 @@ def test_cubic_spline():
 
 
 def test_natural_cubic_spline():
-    pass
+    pipeline = ds.natural_cubic_spline(
+        X=df_linear_regression["X"],
+        y=df_linear_regression["y"],
+        number_knots=10
+    )
+    X = ds.random_data(
+        size=13,
+        random_state=41
+    )
+    out = pipeline.predict(X=X)
+    result = pd.Series(data=out)
+    exp = np.array(
+        object=[
+            -8.449635833832208, -7.369397489580049, -6.950373342494703,
+            -10.332163099070616, -6.0396793560020665, -10.66288509157907,
+            -8.112999744210992, -5.399095580784705, -11.197986327827774,
+            -10.397763790060722, -9.309492784412193, -10.481589542995772,
+            -9.887572653190901
+        ]
+    )
+    expected = pd.Series(data=exp)
+    assert result.equals(other=expected)
 
 
 def test_random_data():
