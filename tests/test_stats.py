@@ -131,7 +131,11 @@ def test_datetime_data():
 
 
 def test_timedelta_data():
-    pass
+    result = ds.timedelta_data(time_delta_days=7)
+    expected = pd.Series(
+        data=[0, 0, 0, 0, 0, 0, 0, 0]
+    ).astype(dtype="timedelta64[s]")
+    assert result.equals(other=expected)
 
 
 def test_two_sample_t():
