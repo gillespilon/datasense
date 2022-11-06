@@ -64,7 +64,11 @@ def main():
     # print(data.head())
     # Create Xbar control chart
     ds.page_break()
-    fig = plt.figure(figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     xbar = cc.Xbar(data=data)
     # print('class:', type(x).__name__)
     ax = xbar.ax(fig)
@@ -79,7 +83,11 @@ def main():
        f'Sigma(Xbar): {xbar.sigma.round(3)}\n'
     )
     # Create R chart
-    fig = plt.figure(figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     r = cc.R(data=data)
     # print('class:', type(x).__name__)
     ax = r.ax(fig)
