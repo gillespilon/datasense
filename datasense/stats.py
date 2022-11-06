@@ -77,6 +77,16 @@ def nonparametric_summary(
         APL method;
             alphap=0.35, betap=0.35
 
+    Notes
+    -----
+
+    The 1.57 used to calculate the confidence intervals was empirically
+    determined. See:
+    McGill, Robert, John W. Tukey, and Wayne A. Larsen (Feb. 1978).
+    “Variations of Box Plots”. In: The American Statistician
+    32.1, pp. 12–16. doi: https://doi.org/10.2307/2683468. url:
+    https://www.jstor.org/stable/2683468.
+
     Returns
     -------
     pd.Series containing:
