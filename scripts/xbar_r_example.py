@@ -108,7 +108,7 @@ def xbar_chart(df: pd.DataFrame) -> NoReturn:
     """
     fig = plt.figure(figsize=(8, 6))
     xbar = cc.Xbar(df)
-    ax = xbar.ax(fig)
+    ax = xbar.ax(fig=fig)
     ax.axhline(
         y=xbar.sigmas[+1],
         linestyle="--",
@@ -186,7 +186,7 @@ def r_chart(df: pd.DataFrame) -> NoReturn:
     """
     fig = plt.figure(figsize=(8, 6))
     r = cc.R(df)
-    ax = r.ax(fig)
+    ax = r.ax(fig=fig)
     ax.axhline(
         y=r.sigmas[+1],
         linestyle="--",
