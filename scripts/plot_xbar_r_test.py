@@ -13,11 +13,11 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
+graph_xbar_file_name = 'plot_xbar_test.svg'
+graph_r_file_name = 'plot_r_test.svg'
 output_url = 'plot_xbar_r_test.html'
 header_title = 'plot_xbar_r_test'
 header_id = 'plot-xbar-r-test'
-graph_xbar_file_name = 'plot_xbar_test.svg'
-graph_r_file_name = 'plot_r_test.svg'
 figsize = (8, 6)
 
 
@@ -60,8 +60,6 @@ def main():
             'X4': X4,
         }
     )
-    # print('dtype:', type(data).__name__)
-    # print(data.head())
     # Create Xbar control chart
     ds.page_break()
     fig, ax = plt.subplots(
@@ -69,8 +67,8 @@ def main():
         ncols=1,
         figsize=figsize
     )
+    ds.despine(ax=ax)
     xbar = cc.Xbar(data=data)
-    # print('class:', type(x).__name__)
     ax = xbar.ax(fig)
     fig.savefig(fname=graph_xbar_file_name)
     ds.html_figure(file_name=graph_xbar_file_name)
@@ -88,8 +86,8 @@ def main():
         ncols=1,
         figsize=figsize
     )
+    ds.despine(ax=ax)
     r = cc.R(data=data)
-    # print('class:', type(x).__name__)
     ax = r.ax(fig)
     fig.savefig(fname=graph_r_file_name)
     ds.html_figure(file_name=graph_r_file_name)
