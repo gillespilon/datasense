@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
-'''
+"""
 Test Xbar and R of control_charts.py
 
-time -f '%e' ./control_charts.py
+time -f "%e" ./control_charts.py
 ./control_charts.py
-'''
+"""
 
 import time
 
@@ -13,11 +13,11 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
-graph_xbar_file_name = 'plot_xbar_test.svg'
-graph_r_file_name = 'plot_r_test.svg'
-output_url = 'plot_xbar_r_test.html'
-header_title = 'plot_xbar_r_test'
-header_id = 'plot-xbar-r-test'
+graph_xbar_file_name = "plot_xbar_test.svg"
+graph_r_file_name = "plot_r_test.svg"
+output_url = "plot_xbar_r_test.html"
+header_title = "plot_xbar_r_test"
+header_id = "plot-xbar-r-test"
 figsize = (8, 6)
 
 
@@ -29,35 +29,35 @@ def main():
         header_id=header_id
     )
     X1 = ds.random_data(
-        distribution='norm',
+        distribution="norm",
         size=25,
         loc=69,
         scale=13
     )
     X2 = ds.random_data(
-        distribution='norm',
+        distribution="norm",
         size=25,
         loc=69,
         scale=13
     )
     X3 = ds.random_data(
-        distribution='norm',
+        distribution="norm",
         size=25,
         loc=69,
         scale=13
     )
     X4 = ds.random_data(
-        distribution='norm',
+        distribution="norm",
         size=25,
         loc=69,
         scale=13
     )
     data = pd.DataFrame(
         data={
-            'X1': X1,
-            'X2': X2,
-            'X3': X3,
-            'X4': X4,
+            "X1": X1,
+            "X2": X2,
+            "X3": X3,
+            "X4": X4,
         }
     )
     # Create Xbar control chart
@@ -73,12 +73,12 @@ def main():
     fig.savefig(fname=graph_xbar_file_name)
     ds.html_figure(file_name=graph_xbar_file_name)
     print(
-       f'Xbar Report\n'
-       f'============\n'
-       f'UCL        : {xbar.ucl.round(3)}\n'
-       f'Xbarbar    : {xbar.mean.round(3)}\n'
-       f'LCL        : {xbar.lcl.round(3)}\n'
-       f'Sigma(Xbar): {xbar.sigma.round(3)}\n'
+       f"Xbar Report\n"
+       f"============\n"
+       f"UCL        : {xbar.ucl.round(3)}\n"
+       f"Xbarbar    : {xbar.mean.round(3)}\n"
+       f"LCL        : {xbar.lcl.round(3)}\n"
+       f"Sigma(Xbar): {xbar.sigma.round(3)}\n"
     )
     # Create R chart
     fig, ax = plt.subplots(
@@ -92,12 +92,12 @@ def main():
     fig.savefig(fname=graph_r_file_name)
     ds.html_figure(file_name=graph_r_file_name)
     print(
-       f'R Report\n'
-       f'============\n'
-       f'UCL        : {r.ucl.round(3)}\n'
-       f'Rbar       : {r.mean.round(3)}\n'
-       f'LCL        : {round(r.lcl, 3)}\n'
-       f'Sigma(R)   : {r.sigma.round(3)}\n'
+       f"R Report\n"
+       f"============\n"
+       f"UCL        : {r.ucl.round(3)}\n"
+       f"Rbar       : {r.mean.round(3)}\n"
+       f"LCL        : {round(r.lcl, 3)}\n"
+       f"Sigma(R)   : {r.sigma.round(3)}\n"
     )
     stop_time = time.time()
     ds.page_break()
@@ -111,5 +111,5 @@ def main():
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
