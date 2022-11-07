@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
-'''
+"""
 Test X and mR of control_charts.py
 
-time -f '%e' ./control_charts.py
+time -f "%e" ./control_charts.py
 ./control_charts.py
-'''
+"""
 
 import time
 
@@ -13,11 +13,11 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
-output_url = 'plot_x_mr_test.html'
-header_title = 'plot_x_mr_test'
-header_id = 'plot-x-mr-test'
-graph_x_file_name = 'plot_x_test.svg'
-graph_mr_file_name = 'plot_mr_test.svg'
+graph_mr_file_name = "plot_mr_test.svg"
+graph_x_file_name = "plot_x_test.svg"
+output_url = "plot_x_mr_test.html"
+header_title = "plot_x_mr_test"
+header_id = "plot-x-mr-test"
 figsize = (8, 6)
 
 
@@ -29,47 +29,43 @@ def main():
         header_id=header_id
     )
     data = ds.random_data(
-        distribution='norm',
+        distribution="norm",
         size=42,
         loc=69,
         scale=13
     )
     data = pd.DataFrame(
         data=data,
-        columns=['X']
+        columns=["X"]
     )
-    # print('dtype:', type(data).__name__)
-    # print(data.head())
     # Create X control chart
     ds.page_break()
     fig = plt.figure(figsize=figsize)
     x = cc.X(data=data)
-    # print('class:', type(x).__name__)
-    ax = x.ax(fig)
+    ax = x.ax(fig=fig)
     fig.savefig(fname=graph_x_file_name)
     ds.html_figure(file_name=graph_x_file_name)
     print(
-       f'X Report\n'
-       f'============\n'
-       f'UCL        : {x.ucl.round(3)}\n'
-       f'Xbar       : {x.mean.round(3)}\n'
-       f'LCL        : {x.lcl.round(3)}\n'
-       f'Sigma(X)   : {x.sigma.round(3)}\n'
+       f"X Report\n"
+       f"============\n"
+       f"UCL        : {x.ucl.round(3)}\n"
+       f"Xbar       : {x.mean.round(3)}\n"
+       f"LCL        : {x.lcl.round(3)}\n"
+       f"Sigma(X)   : {x.sigma.round(3)}\n"
     )
     # Create mr chart
     fig = plt.figure(figsize=figsize)
     mr = cc.mR(data=data)
-    # print('class:', type(x).__name__)
-    ax = mr.ax(fig)
+    ax = mr.ax(fig=fig)
     fig.savefig(fname=graph_mr_file_name)
     ds.html_figure(file_name=graph_mr_file_name)
     print(
-       f'mR Report\n'
-       f'============\n'
-       f'UCL        : {mr.ucl.round(3)}\n'
-       f'mRbar      : {mr.mean.round(3)}\n'
-       f'LCL        : {round(mr.lcl, 3)}\n'
-       f'Sigma(mR)  : {mr.sigma.round(3)}\n'
+       f"mR Report\n"
+       f"============\n"
+       f"UCL        : {mr.ucl.round(3)}\n"
+       f"mRbar      : {mr.mean.round(3)}\n"
+       f"LCL        : {round(mr.lcl, 3)}\n"
+       f"Sigma(mR)  : {mr.sigma.round(3)}\n"
     )
     stop_time = time.time()
     ds.page_break()
@@ -83,5 +79,5 @@ def main():
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
