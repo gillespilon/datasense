@@ -62,12 +62,7 @@ def main():
     )
     # Create Xbar control chart
     ds.page_break()
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
-    ds.despine(ax=ax)
+    fig = plt.figure(figsize=figsize)
     xbar = cc.Xbar(data=data)
     ax = xbar.ax(fig=fig)
     fig.savefig(fname=graph_xbar_file_name)
@@ -81,12 +76,7 @@ def main():
        f"Sigma(Xbar): {xbar.sigma.round(3)}\n"
     )
     # Create R chart
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
-    ds.despine(ax=ax)
+    fig = plt.figure(figsize=figsize)
     r = cc.R(data=data)
     ax = r.ax(fig=fig)
     fig.savefig(fname=graph_r_file_name)
