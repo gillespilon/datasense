@@ -69,7 +69,7 @@ def main():
     )
     ds.despine(ax=ax)
     xbar = cc.Xbar(data=data)
-    ax = xbar.ax(fig)
+    ax = xbar.ax(fig=fig)
     fig.savefig(fname=graph_xbar_file_name)
     ds.html_figure(file_name=graph_xbar_file_name)
     print(
@@ -88,7 +88,7 @@ def main():
     )
     ds.despine(ax=ax)
     r = cc.R(data=data)
-    ax = r.ax(fig)
+    ax = r.ax(fig=fig)
     fig.savefig(fname=graph_r_file_name)
     ds.html_figure(file_name=graph_r_file_name)
     print(
