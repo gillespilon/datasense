@@ -282,7 +282,7 @@ class X(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=figsize)
         >>> x = cc.X(data=data)
-        >>> ax = x.ax(fig)
+        >>> ax = x.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
         Example 2, complete X control chart
@@ -304,7 +304,7 @@ class X(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=figsize)
         >>> x = cc.X(data=data)
-        >>> ax = x.ax(fig)
+        >>> ax = x.ax(fig=fig)
         >>> ax.axhline(
         >>>     y=x.sigmas[+1],
         >>>     linestyle='--',
@@ -450,7 +450,7 @@ class mR(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=figsize)
         >>> mr = cc.mR(data=data)
-        >>> ax = mr.ax(fig)
+        >>> ax = mr.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
         Example 2, complete mR control chart
@@ -470,7 +470,7 @@ class mR(ControlChart):
         >>>     columns=['X']
         >>> )
         >>> mr = cc.mR(data=data)
-        >>> ax = mr.ax(fig)
+        >>> ax = mr.ax(fig=fig)
         >>> cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
         >>> ax.set_title(
         >>>     label=mr_chart_title,
@@ -606,7 +606,7 @@ class Xbar(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=figsize)
         >>> xbar = cc.Xbar(data=data)
-        >>> ax = xbar.ax(fig)
+        >>> ax = xbar.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
         Example 2, complete Xbar control chart
@@ -650,7 +650,7 @@ class Xbar(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=figsize)
         >>> xbar = cc.Xbar(data=data)
-        >>> ax = xbar.ax(fig)
+        >>> ax = xbar.ax(fig=fig)
         >>> ax.axhline(
         >>>     y=xbar.sigmas[+1],
         >>>     linestyle='--',
@@ -823,7 +823,7 @@ class R(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=(8, 6))
         >>> r = cc.R(data=data)
-        >>> ax = r.ax(fig)
+        >>> ax = r.ax(fig=fig)
         >>> fig.savefig(fname=graph_r_file_name)
 
         Example 2, complete R control chart
@@ -867,7 +867,7 @@ class R(ControlChart):
         >>> )
         >>> fig = plt.figure(figsize=(8, 6))
         >>> r = cc.R(data=data)
-        >>> ax = r.ax(fig)
+        >>> ax = r.ax(fig=fig)
         >>> ax.axhline(
         >>>     y=r.sigmas[+1],
         >>>     linestyle='--',
