@@ -108,7 +108,11 @@ def plot_scatter_y(
     >>>     colour=colour_orange
     >>> )
     """
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     # generate X series, required if using smoothing
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
@@ -210,7 +214,11 @@ def plot_scatter_x_y(
     >>>     y=series_y
     >>> )
     """
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
             format_dates(fig=fig, ax=ax)
@@ -2081,7 +2089,11 @@ def probability_plot(
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
     """
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     (osm, osr), (slope, intercept, r) = probplot(
         x=data, dist=distribution, fit=True, plot=ax
     )
@@ -2827,7 +2839,11 @@ def plot_boxplot(
     >>> ax.set_xticks(ticks=[1], labels=["series"])
     >>> ax.set_ylabel("y")
     """
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.boxplot(
         x=series,
         notch=notch,
