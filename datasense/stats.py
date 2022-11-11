@@ -132,24 +132,29 @@ def nonparametric_summary(
     cil = (q50 - 1.57 * iqr / np.sqrt(series.count()))[0]
     ciu = (q50 + 1.57 * iqr / np.sqrt(series.count()))[0]
     return pd.Series({
-        "lower outer fence": round(lof[0], decimals),
-        "lower inner fence": round(lif[0], decimals),
-        "lower quartile": round(q25[0], decimals),
-        "median": round(q50[0], decimals),
+        "lower outer fence": round(number=lof[0], ndigits=decimals),
+        "lower inner fence": round(number=lif[0], ndigits=decimals),
+        "lower quartile": round(number=q25[0], ndigits=decimals),
+        "median": round(number=q50[0], ndigits=decimals),
         "confidence interval": (
             round(number=cil, ndigits=decimals),
             round(number=ciu, ndigits=decimals)
         ),
-        "upper quartile": round(q75[0], decimals),
-        "upper inner fence": round(uif[0], decimals),
-        "upper outer fence": round(uof[0], decimals),
-        "interquartile range": round(iqr[0], decimals),
+        "upper quartile": round(number=q75[0], ndigits=decimals),
+        "upper inner fence": round(number=uif[0], ndigits=decimals),
+        "upper outer fence": round(number=uof[0], ndigits=decimals),
+        "interquartile range": round(number=iqr[0], ndigits=decimals),
         "inner outliers":
-            [round(x, decimals) for x in series if x < lif or x > uif],
+            [
+                round(number=x, ndigits=decimals)
+                for x in series if x < lif or x > uif],
         "outer outliers":
-            [round(x, decimals) for x in series if x < lof or x > uof],
-        "minimum value": round(series.min(), 3),
-        "maximum value": round(series.max(), 3),
+            [
+                round(number=x, ndigits=decimals)
+                for x in series if x < lof or x > uof
+            ],
+        "minimum value": round(number=series.min(), ndigits=decimals),
+        "maximum value": round(number=series.max(), ndigits=decimals),
         "count": series.count()
     })
 
