@@ -200,12 +200,15 @@ def parametric_summary(
         )
     return pd.Series({
         "n": series.count(),
-        "min": round(series.min(), decimals),
-        "max": round(series.max(), decimals),
-        "ave": round(series.mean(), decimals),
-        "confidence interval": (ciaverage[0], ciaverage[1]),
-        "s": round(series.std(), decimals),
-        "var": round(series.var(), decimals),
+        "min": round(number=series.min(), ndigits=decimals),
+        "max": round(number=series.max(), ndigits=decimals),
+        "ave": round(number=series.mean(), ndigits=decimals),
+        "confidence interval": (
+            round(number=ciaverage[0], ndigits=decimals),
+            round(number=ciaverage[1], ndigits=decimals)
+        ),
+        "s": round(number=series.std(), ndigits=decimals),
+        "var": round(number=series.var(), ndigits=decimals),
     })
 
 
