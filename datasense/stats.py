@@ -136,7 +136,10 @@ def nonparametric_summary(
         "lower inner fence": round(lif[0], decimals),
         "lower quartile": round(q25[0], decimals),
         "median": round(q50[0], decimals),
-        "confidence interval": (cil, ciu),
+        "confidence interval": (
+            round(number=cil, ndigits=decimals),
+            round(number=ciu, ndigits=decimals)
+        ),
         "upper quartile": round(q75[0], decimals),
         "upper inner fence": round(uif[0], decimals),
         "upper outer fence": round(uof[0], decimals),
