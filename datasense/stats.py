@@ -198,18 +198,20 @@ def parametric_summary(
             loc=np.mean(a=series),
             scale=stats.sem(series)
         )
-    return pd.Series({
-        "n": series.count(),
-        "min": round(number=series.min(), ndigits=decimals),
-        "max": round(number=series.max(), ndigits=decimals),
-        "ave": round(number=series.mean(), ndigits=decimals),
-        "confidence interval": (
-            round(number=ciaverage[0], ndigits=decimals),
-            round(number=ciaverage[1], ndigits=decimals)
-        ),
-        "s": round(number=series.std(), ndigits=decimals),
-        "var": round(number=series.var(), ndigits=decimals),
-    })
+    return pd.Series(
+        data={
+            "n": series.count(),
+            "min": round(number=series.min(), ndigits=decimals),
+            "max": round(number=series.max(), ndigits=decimals),
+            "ave": round(number=series.mean(), ndigits=decimals),
+            "confidence interval": (
+                round(number=ciaverage[0], ndigits=decimals),
+                round(number=ciaverage[1], ndigits=decimals)
+            ),
+            "s": round(number=series.std(), ndigits=decimals),
+            "var": round(number=series.var(), ndigits=decimals),
+        }
+    )
 
 
 def cubic_spline(
