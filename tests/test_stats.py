@@ -88,11 +88,14 @@ def test_nonparametric_summary():
 
 
 def test_parametric_summary():
-    result = ds.parametric_summary(series=X)
+    result = ds.parametric_summary(
+        series=X,
+        decimals=3
+    )
     expected = pd.Series(
         data={
             "n": 13, "min": 10.0, "max": 35.5, "ave": 18.392,
-            "confidence interval": (14.012638095621575, 22.77197728899381),
+            "confidence interval": (14.013, 22.772),
             "s": 7.248, "var": 52.527
         }
     )
