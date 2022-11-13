@@ -1,6 +1,7 @@
 import warnings
 
 from pandas.testing import assert_series_equal
+from pytest import approx
 import datasense as ds
 import pandas as pd
 import numpy as np
@@ -65,12 +66,17 @@ def test_nonparametric_summary():
     """
     Test for method 8
     """
-    result = ds.nonparametric_summary(series=X)
+    result = ds.nonparametric_summary(
+        series=X,
+        alphap=1/3,
+        betap=1/3,
+        decimals=3
+    )
     expected = pd.Series(
         data={
             "lower outer fence": -15.4, "lower inner fence": -0.85,
             "lower quartile": 13.7, "median": 16.0,
-            "confidence interval": (11.776235355842992, 20.223764644157008),
+            "confidence interval": (11.776, 20.224),
             "upper quartile": 23.4,
             "upper inner fence": 37.95, "upper outer fence": 52.5,
             "interquartile range": 9.7,
