@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 import datasense.control_charts as cc
-
 from pytest import approx, mark
 
 
