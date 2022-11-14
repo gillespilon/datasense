@@ -161,9 +161,7 @@ def html_end(
     html_footer()
     sys.stdout.close()
     sys.stdout = original_stdout
-    webbrowser.open_new_tab(
-        url=output_url
-    )
+    webbrowser.open_new_tab(url=output_url)
 
 
 def html_figure(
