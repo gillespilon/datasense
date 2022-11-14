@@ -826,7 +826,35 @@ def one_sample_t(
     hypothesized_value: Union[int, float],
     alternative_hypothesis: str = "two-sided",
     significance_level: float = 0.05
-) -> Tuple[float, float]:
+) -> Tuple[float, float, float]:
+    """
+    Examples
+    --------
+    Example 1
+    import datasense as ds
+    >>> result = ds.one_sample_t(
+    >>>     series=series,
+    >>>     hypothesized_value=value,
+    >>>     alternative_hypothesis="two-sided"
+    >>> )
+    # result is a tuple of t statistic, p value, power of the test
+
+    Example 2
+    >>> result = ds.one_sample_t(
+    >>>     series=series,
+    >>>     hypothesized_value=value,
+    >>>     alternative_hypothesis="less"
+    >>> )
+    # result is a tuple of t statistic, p value, power of the test
+
+    Example 3
+    >>> result = ds.one_sample_t(
+    >>>     series=series,
+    >>>     hypothesized_value=value,
+    >>>     alternative_hypothesis="greater"
+    >>> )
+    # result is a tuple of t statistic, p value, power of the test
+    """
     if alternative_hypothesis == "two-sided":
         result = stats.ttest_1samp(
             a=series,
