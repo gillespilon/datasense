@@ -52,6 +52,12 @@ df_two_sample_t = pd.DataFrame(
         ]
     }
 )
+series_one_sample_t = pd.Series(
+    data=[
+        211, 572, 558, 250, 478, 307, 184, 435, 460, 308, 188, 111, 676, 326,
+        142, 255, 205, 77, 190, 320, 407, 333, 488, 374, 409
+    ]
+)
 df_linear_regression = pd.DataFrame(
     data={
         "X": [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5],
@@ -209,6 +215,31 @@ def test_timedelta_data():
         data=[0, 0, 0, 0, 0, 0, 0, 0]
     ).astype(dtype="timedelta64[s]")
     assert result.equals(other=expected)
+
+
+def test_one_sample_t():
+    result = ds.one_sample_t(
+        series=series_one_sample_t,
+        hypothesized_value=400,
+        alternative_hypothesis="two-sided"
+    )
+    # expected = (statistic, p value, power)
+    expected = (-2.2519472501384548, 0.0337482297588424, 0.5798034164658731)
+    assert result == expected
+    result = ds.one_sample_t(
+        series=series_one_sample_t,
+        hypothesized_value=400,
+        alternative_hypothesis="less"
+    )
+    expected = (-2.2519472501384548, 0.0168741148794212, 6.257488453140399e-05)
+    assert result == expected
+    result = ds.one_sample_t(
+        series=series_one_sample_t,
+        hypothesized_value=400,
+        alternative_hypothesis="greater"
+    )
+    expected = (-2.2519472501384548, 0.9831258851205789, 0.7063989742605766)
+    assert result == expected
 
 
 def test_two_sample_t():
