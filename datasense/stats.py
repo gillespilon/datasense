@@ -860,17 +860,115 @@ def one_sample_t(
         "sample of data is statistically, significantly different from a "
         "hypothesized value."
     )
+    print()
+    print("Assumptions")
+    print("-----------")
+    print()
+    print("The data are continuous interval or ratio scales.")
+    print()
+    print(
+        "The data in each sample follow a normal distribution with mean mu "
+        "and variance sigma squared."
+    )
+    print("The data should be sampled independently from the population.")
+    print()
+    print("Results")
+    print("-------")
+    print()
+    parametric_statistics = parametric_summary(
+        series=series,
+    ).to_string()
+    print("Parametric statistics for y")
+    print(parametric_statistics)
+    print()
+    nonparametric_statistics = nonparametric_summary(
+        series=series,
+        alphap=1/3,
+        betap=1/3
+    ).to_string()
+    print()
+    print("Shapiro-Wilk results for normal distribution lack-of-fit test")
+    shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
+        stats.shapiro(x=series)
+    print(
+        f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:7.3f}"
+    )
+    print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:7.3f}")
+    if shapiro_wilk_p_value < significance_level:
+        print(
+            "The data in the sample probably do not follow a normal "
+            "distribution."
+        )
+    else:
+        print(
+            "The data in the sample probably follow a normal "
+            "distribution."
+        )
+    print()
+    print("Non-parametric statistics for y")
+    print(nonparametric_statistics)
+    print()
+    ad_test_statistic, ad_critical_values, ad_significance_level =\
+        stats.anderson(x=series, dist="norm")
+    # uncomment these lines when Anaconda release Python 3.10
+    # start uncomment
+    # match significance_level:
+    #     case 0.25:
+    #         item = 0
+    #     case 0.10:
+    #         item = 1
+    #     case 0.05:
+    #         item = 2
+    #     case 0.025:
+    #         item = 3
+    #     case 0.01:
+    #         item = 4
+    #     case 0.005:
+    #         item = 5
+    # end uncomment
+    # start delele
+    if significance_level == 0.25:
+        item = 0
+    elif significance_level == 0.10:
+        item = 1
+    elif significance_level == 0.05:
+        item = 2
+    elif significance_level == 0.025:
+        item = 3
+    elif significance_level == 0.01:
+        item = 4
+    elif significance_level == 0.005:
+        item = 5
+    # end delete
+    print(
+        "Anderson-Darling results for normal distribution lack-of-fit test"
+    )
+    print(f"Anderson-Darling test statistic: {ad_test_statistic:7.3f}")
+    print(
+        f"Anderson-Darling critical value: {ad_critical_values[item]:7.3f}"
+    )
+    if ad_test_statistic > ad_critical_values[item]:
+        print(
+            "The data in the sample probably do not follow a normal "
+            "distribution."
+        )
+    else:
+        print(
+            "The data in the sample probably follow a normal "
+            "distribution."
+        )
+    print()
     if alternative_hypothesis == "two-sided":
         message_ho =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample != average of sample two\n"\
+            "Ho: average of sample == hypothesized_value\n"\
+            "Ha: average of sample != hypothesized_value\n"\
             "Fail to reject the null hypothesis Ho. "\
             "Continue to accept the null hypothesis Ho. "\
             "There is insufficient evidence to show that the sample "\
             "average is different from the hypothesized value."
         message_ha =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample != average of sample two\n"\
+            "Ho: average of sample == hypothesized value\n"\
+            "Ha: average of sample != hypothesized value\n"\
             "Reject the null hypothesis Ho. "\
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the sample "\
@@ -888,22 +986,33 @@ def one_sample_t(
             alpha=significance_level,
             alternative='two-sided'
         )
+        if result.pvalue < significance_level:
+            print(message_ha)
+        else:
+            print(message_ho)
+        print()
+        print("t test results")
+        print(f"t test statistic  : {result.statistic:7.3f}")
+        print(f"t test p value    : {result.pvalue:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
+        print(f"power of the test : {power:7.3f}")
+        print()
     elif alternative_hypothesis == "less":
         message_ho =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample < average of sample two\n"\
+            "Ho: average of sample == hypothesized value\n"\
+            "Ha: average of sample < hypothesized value\n"\
             "Fail to reject the null hypothesis Ho. "\
             "Continue to accept the null hypothesis Ho. "\
             "There is insufficient evidence to show that "\
-            "the average of the sample is less than the "\
+            "the sample average is less than the "\
             "hypothesized value."
         message_ha =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample < average of sample two\n"\
+            "Ho: average of sample == hypothesized value\n"\
+            "Ha: average of sample < hypothesized value\n"\
             "Reject the null hypothesis Ho. "\
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that "\
-            "the average of the sample 1 is less than the "\
+            "the sample average is less than the "\
             "hypothesized value."
         result = stats.ttest_1samp(
             a=series,
@@ -918,18 +1027,29 @@ def one_sample_t(
             alpha=significance_level,
             alternative='smaller'
         )
+        if result.pvalue < significance_level:
+            print(message_ha)
+        else:
+            print(message_ho)
+        print()
+        print("t test results")
+        print(f"t test statistic  : {result.statistic:7.3f}")
+        print(f"t test p value    : {result.pvalue:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
+        print(f"power of the test : {power:7.3f}")
+        print()
     elif alternative_hypothesis == "greater":
         message_ho =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample > average of sample two\n"\
+            "Ho: average of sample == hypothesized value\n"\
+            "Ha: average of sample > hypothesized value\n"\
             "Fail to reject the null hypothesis Ho. "\
             "Continue to accept the null hypothesis Ho. "\
             "There is insufficient evidence to show that "\
             "the average of the sample is greater than the "\
             "hypothesized value."
         message_ha =\
-            "Ho: average of sample == average of sample two\n"\
-            "Ha: average of sample > average of sample two\n"\
+            "Ho: average of sample == hypothesized value\n"\
+            "Ha: average of sample > hypothesized value\n"\
             "Reject the null hypothesis Ho. "\
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that "\
@@ -948,6 +1068,17 @@ def one_sample_t(
             alpha=significance_level,
             alternative='larger'
         )
+        if result.pvalue < significance_level:
+            print(message_ha)
+        else:
+            print(message_ho)
+        print()
+        print("t test results")
+        print(f"t test statistic  : {result.statistic:7.3f}")
+        print(f"t test p value    : {result.pvalue:7.3f}")
+        print(f"significance level: {significance_level:7.3f}")
+        print(f"power of the test : {power:7.3f}")
+        print()
     return (result.statistic, result.pvalue, power)
 
 
