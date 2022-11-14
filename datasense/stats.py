@@ -855,7 +855,26 @@ def one_sample_t(
     >>> )
     # result is a tuple of t statistic, p value, power of the test
     """
+    print(
+        "The one-sample t test is used to determine if the average of one "
+        "sample of data is statistically, significantly different from a "
+        "hypothesized value."
+    )
     if alternative_hypothesis == "two-sided":
+        message_ho =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample != average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the sample "\
+            "average is different from the hypothesized value."
+        message_ha =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample != average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that the sample "\
+            "average is different from the hypothesized value."
         result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
@@ -870,6 +889,22 @@ def one_sample_t(
             alternative='two-sided'
         )
     elif alternative_hypothesis == "less":
+        message_ho =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample < average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of the sample is less than the "\
+            "hypothesized value."
+        message_ha =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample < average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of the sample 1 is less than the "\
+            "hypothesized value."
         result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
@@ -884,6 +919,22 @@ def one_sample_t(
             alternative='smaller'
         )
     elif alternative_hypothesis == "greater":
+        message_ho =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample > average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of the sample is greater than the "\
+            "hypothesized value."
+        message_ha =\
+            "Ho: average of sample == average of sample two\n"\
+            "Ha: average of sample > average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of the sample is greater than the "\
+            "hypothesized value."
         result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
