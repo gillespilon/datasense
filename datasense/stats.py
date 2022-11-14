@@ -11,7 +11,7 @@ Statistical analysis
 """
 
 from datetime import datetime, timedelta
-from typing import List, Tuple
+from typing import List, Tuple, Union
 import random
 import sys
 
@@ -22,6 +22,7 @@ from scipy.stats import norm, uniform, randint
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
+import statsmodels.stats.power as smp
 import statsmodels.api as sm
 import scipy.stats as stats
 from numpy import arange
@@ -819,6 +820,58 @@ def timedelta_data(
     return series
 
 
+def one_sample_t(
+    *,
+    series: pd.Series,
+    hypothesized_value: Union[int, float],
+    alternative_hypothesis: str = "two-sided",
+    significance_level: float = 0.05
+) -> Tuple[float, float]:
+    if alternative_hypothesis == "two-sided":
+        result = stats.ttest_1samp(
+            a=series,
+            popmean=hypothesized_value,
+            alternative=alternative_hypothesis
+        )
+        power = smp.ttest_power(
+            effect_size=np.absolute(
+                (hypothesized_value - series.mean()) / series.std()
+            ),
+            nobs=series.count(),
+            alpha=significance_level,
+            alternative='two-sided'
+        )
+    elif alternative_hypothesis == "less":
+        result = stats.ttest_1samp(
+            a=series,
+            popmean=hypothesized_value,
+            alternative=alternative_hypothesis
+        )
+        power = smp.ttest_power(
+            effect_size=np.absolute(
+                (hypothesized_value - series.mean()) / series.std()
+            ),
+            nobs=series.count(),
+            alpha=significance_level,
+            alternative='smaller'
+        )
+    elif alternative_hypothesis == "greater":
+        result = stats.ttest_1samp(
+            a=series,
+            popmean=hypothesized_value,
+            alternative=alternative_hypothesis
+        )
+        power = smp.ttest_power(
+            effect_size=np.absolute(
+                (hypothesized_value - series.mean()) / series.std()
+            ),
+            nobs=series.count(),
+            alpha=significance_level,
+            alternative='larger'
+        )
+    return (result.statistic, result.pvalue, power)
+
+
 def two_sample_t(
     *,
     df: pd.DataFrame,
@@ -1304,5 +1357,6 @@ __all__ = (
     "datetime_data",
     "cubic_spline",
     "two_sample_t",
+    "one_sample_t",
     "random_data",
 )
