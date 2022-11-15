@@ -12,10 +12,13 @@ Statistical analysis
 
 from datetime import datetime, timedelta
 from typing import List, Tuple, Union
+import statistics
 import random
+import math
 import sys
 
 from sklearn.linear_model import LinearRegression
+from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.stats import norm, uniform, randint
@@ -1273,6 +1276,7 @@ def two_sample_t(
     # start delete
     if alternative_hypothesis == "unequal":
         alternative = "two-sided"
+        alternative_for_power = "two-sided"
         message_ho =\
             "Ho: average of sample one == average of sample two\n"\
             "Ha: average of sample one != average of sample two\n"\
@@ -1289,6 +1293,7 @@ def two_sample_t(
             "averages are different."
     elif alternative_hypothesis == "less than":
         alternative = "less"
+        alternative_for_power = "smaller"
         message_ho =\
             "Ho: average of sample one == average of sample two\n"\
             "Ha: average of sample one < average of sample two\n"\
@@ -1307,6 +1312,7 @@ def two_sample_t(
             "average of sample 2."
     elif alternative_hypothesis == "greater than":
         alternative = "greater"
+        alternative_for_power = "larger"
         message_ho =\
             "Ho: average of sample one == average of sample two\n"\
             "Ha: average of sample one > average of sample two\n"\
@@ -1366,6 +1372,20 @@ def two_sample_t(
     print("Parametric analysis")
     print()
     levels = df[xlabel].sort_values().unique()
+    n_one = df[ylabel][df[xlabel] == 1].count()
+    n_two = df[ylabel][df[xlabel] == 2].count()
+    y_one = df[ylabel][df[xlabel] == 1]
+    y_two = df[ylabel][df[xlabel] == 2]
+    variance_sample_one = statistics.variance(data=y_one)
+    variance_sample_two = statistics.variance(data=y_two)
+    pooled_variance = (
+        (n_one - 1) * variance_sample_one +
+        (n_two - 1) * variance_sample_two
+    ) / (n_one + n_two - 2)
+    pooled_standard_deviation = math.sqrt(pooled_variance)
+    effect_size = (
+        np.absolute(y_one.mean() - y_two.mean()) / pooled_standard_deviation
+    )
     if len(levels) != 2:
         print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
     for level in np.nditer(op=levels):
@@ -1417,10 +1437,18 @@ def two_sample_t(
             equal_var=False,
             alternative=alternative
         )
+        power = TTestIndPower().power(
+            effect_size=effect_size,
+            nobs1=n_one,
+            alpha=significance_level,
+            ratio=(n_two / n_one),
+            alternative=alternative_for_power
+        )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1434,10 +1462,18 @@ def two_sample_t(
             equal_var=True,
             alternative=alternative
         )
+        power = TTestIndPower().power(
+            effect_size=effect_size,
+            nobs1=n_one,
+            alpha=significance_level,
+            ratio=(n_two / n_one),
+            alternative=alternative_for_power
+        )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1525,10 +1561,18 @@ def two_sample_t(
             equal_var=False,
             alternative=alternative
         )
+        power = TTestIndPower().power(
+            effect_size=effect_size,
+            nobs1=n_one,
+            alpha=significance_level,
+            ratio=(n_two / n_one),
+            alternative=alternative_for_power
+        )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1542,16 +1586,24 @@ def two_sample_t(
             equal_var=True,
             alternative=alternative
         )
+        power = TTestIndPower().power(
+            effect_size=effect_size,
+            nobs1=n_one,
+            alpha=significance_level,
+            ratio=(n_two / n_one),
+            alternative=alternative_for_power
+        )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
             print(message_ho)
     print()
-    return (t_test_statistic, t_test_p_value)
+    return (t_test_statistic, t_test_p_value, power)
 
 
 def linear_regression(
