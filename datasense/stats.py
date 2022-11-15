@@ -1379,9 +1379,13 @@ def two_sample_t(
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             stats.shapiro(x=series)
         print(
-            f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:7.3f}"
+            "Shapiro-Wilk test statistic: "
+            f"{shapiro_wilk_test_statistic:{width}.{decimals}f}"
         )
-        print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:7.3f}")
+        print(
+            "Shapiro-Wilk p value       : "
+            f"{shapiro_wilk_p_value:{width}.{decimals}f}"
+        )
         if shapiro_wilk_p_value < significance_level:
             print(
                 f"The data in sample {level} probably do not follow a normal "
@@ -1399,8 +1403,11 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[1]]
     )
     print("Bartlett results for homogeneity of variance test")
-    print(f"Bartlett test statistic: {bartlett_test_statistic:7.3f}")
-    print(f"Bartlett p value       : {bartlett_p_value:7.3f}")
+    print(
+        "Bartlett test statistic: "
+        f"{bartlett_test_statistic:{width}.{decimals}f}"
+    )
+    print(f"Bartlett p value       : {bartlett_p_value:{width}.{decimals}f}")
     if bartlett_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         print()
@@ -1411,9 +1418,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:7.3f}")
-        print(f"t test p value    : {t_test_p_value:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
+        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1428,9 +1435,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:7.3f}")
-        print(f"t test p value    : {t_test_p_value:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
+        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1480,9 +1487,13 @@ def two_sample_t(
         print(
             "Anderson-Darling results for normal distribution lack-of-fit test"
         )
-        print(f"Anderson-Darling test statistic: {ad_test_statistic:7.3f}")
         print(
-            f"Anderson-Darling critical value: {ad_critical_values[item]:7.3f}"
+            "Anderson-Darling test statistic: "
+            f"{ad_test_statistic:{width}.{decimals}f}"
+        )
+        print(
+            "Anderson-Darling critical value: "
+            f"{ad_critical_values[item]:{width}.{decimals}f}"
         )
         if ad_test_statistic > ad_critical_values[item]:
             print(
@@ -1502,8 +1513,10 @@ def two_sample_t(
         df[ylabel][df[xlabel] == levels[1]]
     )
     print("Levene results for homogeneity of variance")
-    print(f"Levene test statistic: {levene_test_statistic:7.3f}")
-    print(f"Levene p value: {levene_p_value:7.3f}")
+    print(
+        f"Levene test statistic: {levene_test_statistic:{width}.{decimals}f}"
+    )
+    print(f"Levene p value: {levene_p_value:{width}.{decimals}f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         t_test_statistic, t_test_p_value = stats.ttest_ind(
@@ -1513,9 +1526,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:7.3f}")
-        print(f"t test p value    : {t_test_p_value:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
+        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1530,9 +1543,9 @@ def two_sample_t(
             alternative=alternative
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:7.3f}")
-        print(f"t test p value    : {t_test_p_value:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
+        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
