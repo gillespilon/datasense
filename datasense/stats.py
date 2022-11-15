@@ -834,24 +834,27 @@ def one_sample_t(
     import datasense as ds
     >>> result = ds.one_sample_t(
     >>>     series=series,
-    >>>     hypothesized_value=value,
-    >>>     alternative_hypothesis="two-sided"
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="two-sided",
+    >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
 
     Example 2
     >>> result = ds.one_sample_t(
     >>>     series=series,
-    >>>     hypothesized_value=value,
-    >>>     alternative_hypothesis="less"
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="less",
+    >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
 
     Example 3
     >>> result = ds.one_sample_t(
     >>>     series=series,
-    >>>     hypothesized_value=value,
-    >>>     alternative_hypothesis="greater"
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="greater",
+    >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
     """
