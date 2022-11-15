@@ -825,7 +825,9 @@ def one_sample_t(
     series: pd.Series,
     hypothesized_value: Union[int, float],
     alternative_hypothesis: str = "two-sided",
-    significance_level: float = 0.05
+    significance_level: float = 0.05,
+    width: int = 7,
+    decimals: int = 3
 ) -> Tuple[float, float, float]:
     """
     Examples
@@ -836,6 +838,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="two-sided",
+    >>>     width=7,
     >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
@@ -845,6 +848,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="less",
+    >>>     width=7,
     >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
@@ -854,6 +858,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="greater",
+    >>>     width=7,
     >>>     significance_level=0.05
     >>> )
     # result is a tuple of t statistic, p value, power of the test
@@ -894,9 +899,12 @@ def one_sample_t(
     shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
         stats.shapiro(x=series)
     print(
-        f"Shapiro-Wilk test statistic: {shapiro_wilk_test_statistic:7.3f}"
+        "Shapiro-Wilk test statistic: "
+        f"{shapiro_wilk_test_statistic:{width}.{decimals}f}"
     )
-    print(f"Shapiro-Wilk p value       : {shapiro_wilk_p_value:7.3f}")
+    print(
+        "Shapiro-Wilk p value       : "
+        f"{shapiro_wilk_p_value:{width}.{decimals}f}")
     if shapiro_wilk_p_value < significance_level:
         print(
             "The data in the sample probably do not follow a normal "
@@ -946,9 +954,12 @@ def one_sample_t(
     print(
         "Anderson-Darling results for normal distribution lack-of-fit test"
     )
-    print(f"Anderson-Darling test statistic: {ad_test_statistic:7.3f}")
     print(
-        f"Anderson-Darling critical value: {ad_critical_values[item]:7.3f}"
+        "Anderson-Darling test statistic: "
+        f"{ad_test_statistic:{width}.{decimals}f}")
+    print(
+        "Anderson-Darling critical value: "
+        f"{ad_critical_values[item]:{width}.{decimals}f}"
     )
     if ad_test_statistic > ad_critical_values[item]:
         print(
@@ -995,10 +1006,10 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
-        print(f"t test statistic  : {result.statistic:7.3f}")
-        print(f"t test p value    : {result.pvalue:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
-        print(f"power of the test : {power:7.3f}")
+        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         print()
     elif alternative_hypothesis == "less":
         message_ho =\
@@ -1036,10 +1047,10 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
-        print(f"t test statistic  : {result.statistic:7.3f}")
-        print(f"t test p value    : {result.pvalue:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
-        print(f"power of the test : {power:7.3f}")
+        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         print()
     elif alternative_hypothesis == "greater":
         message_ho =\
@@ -1077,10 +1088,10 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
-        print(f"t test statistic  : {result.statistic:7.3f}")
-        print(f"t test p value    : {result.pvalue:7.3f}")
-        print(f"significance level: {significance_level:7.3f}")
-        print(f"power of the test : {power:7.3f}")
+        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
+        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(f"significance level: {significance_level:{width}.{decimals}f}")
+        print(f"power of the test : {power:{width}.{decimals}f}")
         print()
     return (result.statistic, result.pvalue, power)
 
