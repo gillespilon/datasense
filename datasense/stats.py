@@ -830,6 +830,41 @@ def one_sample_t(
     decimals: int = 3
 ) -> Tuple[float, float, float]:
     """
+    One-sample t test.
+
+    - Parametric statistics are calculated for the sample.
+    - Non-parametric statistics are calculated for the sample.
+    - The assumption for normality of each sample is evaluted.
+        - Shapiro-Wilk, a parametric test
+        - Anderson-Darling, a non-parametric test
+
+    Parameters
+    ----------
+    series : pd.Series,
+        The Series of data, consisting of one column with a label y.
+    hypothesized_value : Union[int, float]
+        The hypothesized value for the test.
+    alternative_hypothesis : str = "two-sided",
+        The alternative hypothesis for the t test.
+        "two-sided" the sample is different from the hypothesized value
+        "less" the sample is less than the hypothesized value
+        "greater" the sample is greater than the hypothesized value
+    significance_level : float = 0.05
+        The significance level for rejecting the null hypothesis.
+    width : int = 7
+        The width for the formatted number.
+    decimals : int = 3
+        The number of decimal places for the formatted number.
+
+    Returns
+    -------
+    t statistic : float
+        The t statistic for the hypothesis.
+    p value : float
+        The p value for the t statistic.
+    power : float
+        The power of the t test.
+
     Examples
     --------
     Example 1
@@ -838,6 +873,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="two-sided",
+    >>>     significance_level=0.05,
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
@@ -848,6 +884,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="less",
+    >>>     significance_level=0.05,
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
@@ -858,6 +895,7 @@ def one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="greater",
+    >>>     significance_level=0.05,
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
