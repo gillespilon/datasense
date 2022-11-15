@@ -250,7 +250,8 @@ def test_two_sample_t():
         alternative_hypothesis="unequal",
         significance_level=0.05
     )
-    expected = (2.206697123558633, 0.040563312956175504)
+    # expected = (statistic, p value, power)
+    expected = (2.206697123558633, 0.040563312956175504, 0.5510566836848744)
     assert result == expected
     result = ds.two_sample_t(
         df=df_two_sample_t,
@@ -259,7 +260,7 @@ def test_two_sample_t():
         alternative_hypothesis="less than",
         significance_level=0.05
     )
-    expected = (2.206697123558633, 0.9797183435219122)
+    expected = (2.206697123558633, 0.9797183435219122, 8.068361761393895e-05)
     assert result == expected
     result = ds.two_sample_t(
         df=df_two_sample_t,
@@ -268,7 +269,7 @@ def test_two_sample_t():
         alternative_hypothesis="greater than",
         significance_level=0.05
     )
-    expected = (2.206697123558633, 0.020281656478087752)
+    expected = (2.206697123558633, 0.020281656478087752, 0.6835840521967709)
     assert result == expected
 
 
