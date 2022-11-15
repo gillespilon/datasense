@@ -19,10 +19,10 @@ from sklearn.linear_model import LinearRegression
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
 from scipy.stats import norm, uniform, randint
+from statsmodels.stats.power import TTestPower
 from pandas.api.types import CategoricalDtype
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
-import statsmodels.stats.power as smp
 import statsmodels.api as sm
 import scipy.stats as stats
 from numpy import arange
@@ -1030,7 +1030,7 @@ def one_sample_t(
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
         )
-        power = smp.ttest_power(
+        power = TTestPower().power(
             effect_size=np.absolute(
                 (hypothesized_value - series.mean()) / series.std()
             ),
@@ -1071,7 +1071,7 @@ def one_sample_t(
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
         )
-        power = smp.ttest_power(
+        power = TTestPower().power(
             effect_size=np.absolute(
                 (hypothesized_value - series.mean()) / series.std()
             ),
@@ -1112,7 +1112,7 @@ def one_sample_t(
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
         )
-        power = smp.ttest_power(
+        power = TTestPower().power(
             effect_size=np.absolute(
                 (hypothesized_value - series.mean()) / series.std()
             ),
@@ -1140,7 +1140,9 @@ def two_sample_t(
     xlabel: str,
     ylabel: str,
     alternative_hypothesis: str = "unequal",
-    significance_level: float = 0.05
+    significance_level: float = 0.05,
+    width: int = 7,
+    decimals: int = 3
 ) -> Tuple[float, float]:
     """
     Two-sample t test.
@@ -1170,7 +1172,11 @@ def two_sample_t(
         "less than" the average of sample 1 is < the average of sample 2
         "greater than" the average of sample 1 is > the average of sample 2
     significance_level : float = 0.05
-        The signficance level for rejecting the null hypothesis.
+        The significance level for rejecting the null hypothesis.
+    width : int = 7
+        The width for the formatted number.
+    decimals : int = 3
+        The number of decimal places for the formatted number.
 
     Returns
     -------
