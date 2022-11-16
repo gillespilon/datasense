@@ -1017,10 +1017,10 @@ def one_sample_t(
     print()
     kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue = \
         ksstat, kspvalue = smd.kstest_normal(
-        x=series,
-        dist="norm",
-        pvalmethod="approx"
-    )
+            x=series,
+            dist="norm",
+            pvalmethod="approx"
+        )
     print(
         "Kolmogorov-Smirnov results for normal distribution lack-of-fit test"
     )
@@ -1479,10 +1479,12 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
+        print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level : {significance_level:{width}.{decimals}f}")
+        print(f"power of the test  : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1504,10 +1506,12 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
+        print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level : {significance_level:{width}.{decimals}f}")
+        print(f"power of the test  : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1606,10 +1610,12 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
-        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
+        print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level : {significance_level:{width}.{decimals}f}")
+        print(f"power of the test  : {power:{width}.{decimals}f}")
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1631,6 +1637,8 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
+        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
