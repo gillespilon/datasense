@@ -24,6 +24,7 @@ from scipy.stats.mstats import mquantiles as mq
 from scipy.stats import norm, uniform, randint
 from statsmodels.stats.power import TTestPower
 from pandas.api.types import CategoricalDtype
+import statsmodels.stats.diagnostic as smd
 from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
 import statsmodels.api as sm
@@ -837,9 +838,10 @@ def one_sample_t(
 
     - Parametric statistics are calculated for the sample.
     - Non-parametric statistics are calculated for the sample.
-    - The assumption for normality of each sample is evaluted.
+    - The assumption for normality of each sample is evaluated.
         - Shapiro-Wilk, a parametric test
         - Anderson-Darling, a non-parametric test
+        - Kolmogorov-Smirnov, a non-parametric test
 
     Parameters
     ----------
@@ -1013,6 +1015,33 @@ def one_sample_t(
             "distribution."
         )
     print()
+    kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue = \
+        ksstat, kspvalue = smd.kstest_normal(
+        x=series,
+        dist="norm",
+        pvalmethod="approx"
+    )
+    print(
+        "Kolmogorov-Smirnov results for normal distribution lack-of-fit test"
+    )
+    print(
+        "Kolmogorov-Smirnov test statistic: "
+        f"{kolmogorov_smirnov_test_statistic:{width}.{decimals}f}")
+    print(
+        "Kolmogorov-Smirnov p value: "
+        f"{kolmogorov_smirnov_test_pvalue:{width}.{decimals}f}"
+    )
+    if kolmogorov_smirnov_test_pvalue < significance_level:
+        print(
+            "The data in the sample probably do not follow a normal "
+            "distribution."
+        )
+    else:
+        print(
+            "The data in the sample probably follow a normal "
+            "distribution."
+        )
+    print()
     if alternative_hypothesis == "two-sided":
         message_ho =\
             "Ho: average of sample == hypothesized_value\n"\
@@ -1047,6 +1076,8 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
+        print(f"average           : {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
         print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
         print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
@@ -1088,6 +1119,8 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
+        print(f"average           : {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
         print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
         print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
@@ -1129,6 +1162,8 @@ def one_sample_t(
             print(message_ho)
         print()
         print("t test results")
+        print(f"average           : {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
         print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
         print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
         print(f"significance level: {significance_level:{width}.{decimals}f}")
