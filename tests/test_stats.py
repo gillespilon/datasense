@@ -40,17 +40,13 @@ df_datetime_float = pd.DataFrame(
         ]
     }
 ).astype(dtype={'abscissa': 'datetime64[s]'})
-df_two_sample_t = pd.DataFrame(
-    data={
-        "X": [
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            2, 2, 2, 2, 2, 2, 2, 2, 2
-        ],
-        "y": [
-            32, 37, 35, 38, 41, 44, 35, 31, 34, 38, 42,
-            36, 31, 30, 31, 34, 36, 39, 32, 31
-        ]
-    }
+series1_two_sample_t = pd.Series(
+    data=[32, 37, 35, 38, 41, 44, 35, 31, 34, 38, 42],
+    name="y1"
+)
+series2_two_sample_t = pd.Series(
+    data=[36, 31, 30, 31, 34, 36, 39, 32, 31],
+    name="y2"
 )
 series_one_sample_t = pd.Series(
     data=[
@@ -244,29 +240,26 @@ def test_one_sample_t():
 
 def test_two_sample_t():
     result = ds.two_sample_t(
-        df=df_two_sample_t,
-        xlabel="X",
-        ylabel="y",
-        alternative_hypothesis="unequal",
+        series1=series1_two_sample_t,
+        series2=series2_two_sample_t,
+        alternative_hypothesis="two-sided",
         significance_level=0.05
     )
     # expected = (statistic, p value, power)
     expected = (2.206697123558633, 0.040563312956175504, 0.5510566836848744)
     assert result == expected
     result = ds.two_sample_t(
-        df=df_two_sample_t,
-        xlabel="X",
-        ylabel="y",
-        alternative_hypothesis="less than",
+        series1=series1_two_sample_t,
+        series2=series2_two_sample_t,
+        alternative_hypothesis="less",
         significance_level=0.05
     )
     expected = (2.206697123558633, 0.9797183435219122, 8.068361761393895e-05)
     assert result == expected
     result = ds.two_sample_t(
-        df=df_two_sample_t,
-        xlabel="X",
-        ylabel="y",
-        alternative_hypothesis="greater than",
+        series1=series1_two_sample_t,
+        series2=series2_two_sample_t,
+        alternative_hypothesis="greater",
         significance_level=0.05
     )
     expected = (2.206697123558633, 0.020281656478087752, 0.6835840521967709)
