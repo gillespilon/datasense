@@ -1142,7 +1142,7 @@ def two_sample_t(
     df: pd.DataFrame,
     xlabel: str,
     ylabel: str,
-    alternative_hypothesis: str = "unequal",
+    alternative_hypothesis: str = "two-sided",
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
@@ -1169,9 +1169,9 @@ def two_sample_t(
         The column label for the sample identities.
     ylabel : str,
         The column label for the data.
-    alternative_hypothesis : str = "unequal",
+    alternative_hypothesis : str = "two-sided",
         The alternative hypothesis for the t test.
-        "unequal" the sample averages are different
+        "two-sided" the sample averages are different
         "less than" the average of sample 1 is < the average of sample 2
         "greater than" the average of sample 1 is > the average of sample 2
     significance_level : float = 0.05
@@ -1192,10 +1192,10 @@ def two_sample_t(
     --------
     Example 1
     Ha: the average of sample one is not equal to the average of sample two.
-    alternative = "unequal"
+    alternative = "two-sided"
     >>> import datasense as ds
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="unequal",
+    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="two-sided",
     >>>     significance_level=0.05
     >>> )
 
@@ -1204,7 +1204,7 @@ def two_sample_t(
     alternative = "less than"
     >>> ds.two_sample_t(
     >>>     df=df, xlabel="x", ylabel="y",
-    >>>     alternative_hypothesis="less than",
+    >>>     alternative_hypothesis="less",
     >>>     significance_level=0.05
     >>> )
 
@@ -1212,14 +1212,14 @@ def two_sample_t(
     Ha: the average of sample one is greater than the average of sample three.
     alternative = "greater than"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="less than",
+    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="less",
     >>>     significance_level=0.05
     >>> )
     """
     # uncomment these lines when Anaconda releases Python 3.10
     # start uncomment
     # match alternative_hypothesis:
-    #     case "unequal":
+    #     case "two-sided":
     #         alternative = "two-sided"
     #         message_ho =\
     #             "Ho: average of sample one == average of sample two\n"\
@@ -1274,7 +1274,7 @@ def two_sample_t(
     # end uncomment
     # delete these lines when Anaconda releases Python 3.10
     # start delete
-    if alternative_hypothesis == "unequal":
+    if alternative_hypothesis == "two-sided":
         alternative = "two-sided"
         alternative_for_power = "two-sided"
         message_ho =\
@@ -1291,7 +1291,7 @@ def two_sample_t(
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the sample "\
             "averages are different."
-    elif alternative_hypothesis == "less than":
+    elif alternative_hypothesis == "less":
         alternative = "less"
         alternative_for_power = "smaller"
         message_ho =\
@@ -1310,7 +1310,7 @@ def two_sample_t(
             "There is sufficient evidence to show that "\
             "the average of sample 1 is less than the "\
             "average of sample 2."
-    elif alternative_hypothesis == "greater than":
+    elif alternative_hypothesis == "greater":
         alternative = "greater"
         alternative_for_power = "larger"
         message_ho =\
