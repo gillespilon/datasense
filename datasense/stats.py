@@ -1139,14 +1139,13 @@ def one_sample_t(
 
 def two_sample_t(
     *,
-    df: pd.DataFrame,
-    xlabel: str,
-    ylabel: str,
+    series1: pd.Series,
+    series2: pd.Series,
     alternative_hypothesis: str = "two-sided",
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[float, float]:
+) -> Tuple[float, float, float]:
     """
     Two-sample t test.
 
@@ -1161,19 +1160,15 @@ def two_sample_t(
 
     Parameters
     ----------
-    df : pd.DataFrame,
-        The DataFrame of data, consisting of two columns, each with a column
-        label in row 0. One column contains the labels for the sample. The
-        other column contains the data for the sample.
-    xlabel : str,
-        The column label for the sample identities.
-    ylabel : str,
-        The column label for the data.
+    series1 : pd.Series
+        The first series of data, with a name.
+    series2 : pd.Series
+        The second series of data, with a name.
     alternative_hypothesis : str = "two-sided",
         The alternative hypothesis for the t test.
         "two-sided" the sample averages are different
-        "less than" the average of sample 1 is < the average of sample 2
-        "greater than" the average of sample 1 is > the average of sample 2
+        "less" the average of sample 1 is < the average of sample 2
+        "greater" the average of sample 1 is > the average of sample 2
     significance_level : float = 0.05
         The significance level for rejecting the null hypothesis.
     width : int = 7
@@ -1187,6 +1182,8 @@ def two_sample_t(
         The t statistic for the hypothesis.
     p value : float
         The p value for the t statistic.
+    power : float
+        The power of the t test.
 
     Examples
     --------
@@ -1195,7 +1192,9 @@ def two_sample_t(
     alternative = "two-sided"
     >>> import datasense as ds
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="two-sided",
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     alternative_hypothesis="two-sided",
     >>>     significance_level=0.05
     >>> )
 
@@ -1203,7 +1202,8 @@ def two_sample_t(
     Ha: the average of sample one is less than the average of sample two.
     alternative = "less than"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel="x", ylabel="y",
+    >>>     series1=series1,
+    >>>     series2=series2,
     >>>     alternative_hypothesis="less",
     >>>     significance_level=0.05
     >>> )
@@ -1212,7 +1212,9 @@ def two_sample_t(
     Ha: the average of sample one is greater than the average of sample three.
     alternative = "greater than"
     >>> ds.two_sample_t(
-    >>>     df=df, xlabel="x", ylabel="y", alternative_hypothesis="less",
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     alternative_hypothesis="greater",
     >>>     significance_level=0.05
     >>> )
     """
@@ -1274,62 +1276,6 @@ def two_sample_t(
     # end uncomment
     # delete these lines when Anaconda releases Python 3.10
     # start delete
-    if alternative_hypothesis == "two-sided":
-        alternative = "two-sided"
-        alternative_for_power = "two-sided"
-        message_ho =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one != average of sample two\n"\
-            "Fail to reject the null hypothesis Ho. "\
-            "Continue to accept the null hypothesis Ho. "\
-            "There is insufficient evidence to show that the sample "\
-            "averages are different."
-        message_ha =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one != average of sample two\n"\
-            "Reject the null hypothesis Ho. "\
-            "Accept the alternative hypothesis Ha. "\
-            "There is sufficient evidence to show that the sample "\
-            "averages are different."
-    elif alternative_hypothesis == "less":
-        alternative = "less"
-        alternative_for_power = "smaller"
-        message_ho =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one < average of sample two\n"\
-            "Fail to reject the null hypothesis Ho. "\
-            "Continue to accept the null hypothesis Ho. "\
-            "There is insufficient evidence to show that "\
-            "the average of sample 1 is less than the "\
-            "average of sample 2."
-        message_ha =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one < average of sample two\n"\
-            "Reject the null hypothesis Ho. "\
-            "Accept the alternative hypothesis Ha. "\
-            "There is sufficient evidence to show that "\
-            "the average of sample 1 is less than the "\
-            "average of sample 2."
-    elif alternative_hypothesis == "greater":
-        alternative = "greater"
-        alternative_for_power = "larger"
-        message_ho =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one > average of sample two\n"\
-            "Fail to reject the null hypothesis Ho. "\
-            "Continue to accept the null hypothesis Ho. "\
-            "There is insufficient evidence to show that "\
-            "the average of sample 1 is greater than the "\
-            "average of sample 2."
-        message_ha =\
-            "Ho: average of sample one == average of sample two\n"\
-            "Ha: average of sample one > average of sample two\n"\
-            "Reject the null hypothesis Ho. "\
-            "Accept the alternative hypothesis Ha. "\
-            "There is sufficient evidence to show that "\
-            "the average of sample 1 is greater than the "\
-            "average of sample 2."
-    # end delete
     print(
         "The two-sample t test is used to determine if the averages of two "
         "samples of data are statistically, significantly different from each "
@@ -1369,29 +1315,82 @@ def two_sample_t(
     print("Results")
     print("-------")
     print()
+    if alternative_hypothesis == "two-sided":
+        alternative_hypothesis_for_power = "two-sided"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one != average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the sample "\
+            "averages are different."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one != average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that the sample "\
+            "averages are different."
+    elif alternative_hypothesis == "less":
+        alternative_hypothesis_for_power = "smaller"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one < average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of sample 1 is less than the "\
+            "average of sample 2."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one < average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of sample 1 is less than the "\
+            "average of sample 2."
+    elif alternative_hypothesis == "greater":
+        alternative_hypothesis_for_power = "larger"
+        message_ho =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one > average of sample two\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that "\
+            "the average of sample 1 is greater than the "\
+            "average of sample 2."
+        message_ha =\
+            "Ho: average of sample one == average of sample two\n"\
+            "Ha: average of sample one > average of sample two\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that "\
+            "the average of sample 1 is greater than the "\
+            "average of sample 2."
+    # end delete
     print("Parametric analysis")
     print()
-    levels = df[xlabel].sort_values().unique()
-    n_one = df[ylabel][df[xlabel] == 1].count()
-    n_two = df[ylabel][df[xlabel] == 2].count()
-    y_one = df[ylabel][df[xlabel] == 1]
-    y_two = df[ylabel][df[xlabel] == 2]
-    variance_sample_one = statistics.variance(data=y_one)
-    variance_sample_two = statistics.variance(data=y_two)
+    levels = [1, 2]
+    n_one = series1.count()
+    n_two = series2.count()
+    variance_sample_one = statistics.variance(data=series1)
+    variance_sample_two = statistics.variance(data=series2)
     pooled_variance = (
         (n_one - 1) * variance_sample_one +
         (n_two - 1) * variance_sample_two
     ) / (n_one + n_two - 2)
     pooled_standard_deviation = math.sqrt(pooled_variance)
     effect_size = (
-        np.absolute(y_one.mean() - y_two.mean()) / pooled_standard_deviation
+        np.absolute(series1.mean() - series2.mean()) /
+        pooled_standard_deviation
     )
-    if len(levels) != 2:
-        print(f"Levels must equal 2. Levels in DataFrame equal {levels}")
-    for level in np.nditer(op=levels):
+    for level in levels:
         print(f"Sample {level}")
         print()
-        series = df[ylabel][df[xlabel] == level]
+        if level == 1:
+            series = series1
+        else:
+            series = series2
         parametric_statistics = parametric_summary(series=series)
         print(parametric_statistics.to_string())
         print()
@@ -1419,8 +1418,8 @@ def two_sample_t(
             )
         print()
     bartlett_test_statistic, bartlett_p_value = stats.bartlett(
-        df[ylabel][df[xlabel] == levels[0]],
-        df[ylabel][df[xlabel] == levels[1]]
+        series1,
+        series2
     )
     print("Bartlett results for homogeneity of variance test")
     print(
@@ -1432,17 +1431,17 @@ def two_sample_t(
         print("The two samples probably do not have equal variances.")
         print()
         t_test_statistic, t_test_p_value = stats.ttest_ind(
-            a=df[ylabel][df[xlabel] == levels[0]],
-            b=df[ylabel][df[xlabel] == levels[1]],
+            a=series1,
+            b=series2,
             equal_var=False,
-            alternative=alternative
+            alternative=alternative_hypothesis
         )
         power = TTestIndPower().power(
             effect_size=effect_size,
             nobs1=n_one,
             alpha=significance_level,
             ratio=(n_two / n_one),
-            alternative=alternative_for_power
+            alternative=alternative_hypothesis_for_power
         )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
@@ -1457,17 +1456,17 @@ def two_sample_t(
         print("The two samples probably have equal variances.")
         print()
         t_test_statistic, t_test_p_value = stats.ttest_ind(
-            a=df[ylabel][df[xlabel] == levels[0]],
-            b=df[ylabel][df[xlabel] == levels[1]],
+            a=series1,
+            b=series2,
             equal_var=True,
-            alternative=alternative
+            alternative=alternative_hypothesis
         )
         power = TTestIndPower().power(
             effect_size=effect_size,
             nobs1=n_one,
             alpha=significance_level,
             ratio=(n_two / n_one),
-            alternative=alternative_for_power
+            alternative=alternative_hypothesis_for_power
         )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
@@ -1481,10 +1480,13 @@ def two_sample_t(
     print()
     print("Non-parametric analysis")
     print()
-    for level in np.nditer(op=levels):
+    for level in levels:
         print(f"Sample {level}")
         print()
-        series = df[ylabel][df[xlabel] == level]
+        if level == 1:
+            series = series1
+        else:
+            series = series2
         nonparametric_statistics = nonparametric_summary(series=series)
         print(nonparametric_statistics.to_string())
         print()
@@ -1545,8 +1547,8 @@ def two_sample_t(
         print()
     # calculate Levene
     levene_test_statistic, levene_p_value = stats.levene(
-        df[ylabel][df[xlabel] == levels[0]],
-        df[ylabel][df[xlabel] == levels[1]]
+        series1,
+        series2
     )
     print("Levene results for homogeneity of variance")
     print(
@@ -1556,17 +1558,17 @@ def two_sample_t(
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         t_test_statistic, t_test_p_value = stats.ttest_ind(
-            a=df[ylabel][df[xlabel] == levels[0]],
-            b=df[ylabel][df[xlabel] == levels[1]],
+            a=series1,
+            b=series2,
             equal_var=False,
-            alternative=alternative
+            alternative=alternative_hypothesis
         )
         power = TTestIndPower().power(
             effect_size=effect_size,
             nobs1=n_one,
             alpha=significance_level,
             ratio=(n_two / n_one),
-            alternative=alternative_for_power
+            alternative=alternative_hypothesis_for_power
         )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
@@ -1581,17 +1583,17 @@ def two_sample_t(
         print("The two samples probably have equal variances.")
         print()
         t_test_statistic, t_test_p_value = stats.ttest_ind(
-            a=df[ylabel][df[xlabel] == levels[0]],
-            b=df[ylabel][df[xlabel] == levels[1]],
+            a=series1,
+            b=series2,
             equal_var=True,
-            alternative=alternative
+            alternative=alternative_hypothesis
         )
         power = TTestIndPower().power(
             effect_size=effect_size,
             nobs1=n_one,
             alpha=significance_level,
             ratio=(n_two / n_one),
-            alternative=alternative_for_power
+            alternative=alternative_hypothesis_for_power
         )
         print("t test results")
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
