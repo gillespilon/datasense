@@ -1070,23 +1070,44 @@ def one_sample_t(
             alpha=significance_level,
             alternative='two-sided'
         )
+        t_value_alpha_by_two = (
+            -1 * stats.t.isf(
+                q=significance_level / 2,
+                df=series.count() - 1
+            )
+        )
+        t_value_one_minus_alpha_by_two = (
+            stats.t.isf(
+                q=significance_level / 2,
+                df=series.count() - 1
+            )
+        )
+        lower_bound = series.mean() + series.sem() * t_value_alpha_by_two
+        upper_bound = (
+            series.mean() + series.sem() * t_value_one_minus_alpha_by_two
+        )
         if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
         print()
         print("t test results")
-        print(f"average           : {series.mean():{width}.{decimals}f}")
-        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
+        print(f"average             {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value  {hypothesized_value:{width}.{decimals}f}")
         print(
-            "t test statistic  : "
+            "confidence interval "
+            f"{lower_bound:{width}.{decimals}f}, "
+            f"{upper_bound:{width}.{decimals}f}"
+        )
+        print(
+            "t test statistic    "
             f"{t_test_result.statistic:{width}.{decimals}f}"
         )
         print(
-            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+            f"t test p value      {t_test_result.pvalue:{width}.{decimals}f}"
         )
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"significance level  {significance_level:{width}.{decimals}f}")
+        print(f"power of the test   {power:{width}.{decimals}f}")
         print()
     elif alternative_hypothesis == "less":
         message_ho =\
@@ -1118,23 +1139,38 @@ def one_sample_t(
             alpha=significance_level,
             alternative='smaller'
         )
+        t_value_alpha = (
+            stats.t.isf(
+                q=significance_level,
+                df=series.count() - 1
+            )
+        )
+        lower_bound = "N/A"
+        upper_bound = (
+            series.mean() + series.sem() * t_value_alpha
+        )
         if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
         print()
         print("t test results")
-        print(f"average           : {series.mean():{width}.{decimals}f}")
-        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
+        print(f"average             {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value  {hypothesized_value:{width}.{decimals}f}")
         print(
-            "t test statistic  : "
+            "confidence interval "
+            f"{lower_bound}, "
+            f"{upper_bound:{width}.{decimals}f}"
+        )
+        print(
+            "t test statistic    "
             f"{t_test_result.statistic:{width}.{decimals}f}"
         )
         print(
-            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+            f"t test p value      {t_test_result.pvalue:{width}.{decimals}f}"
         )
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"significance level  {significance_level:{width}.{decimals}f}")
+        print(f"power of the test   {power:{width}.{decimals}f}")
         print()
     elif alternative_hypothesis == "greater":
         message_ho =\
@@ -1166,28 +1202,44 @@ def one_sample_t(
             alpha=significance_level,
             alternative='larger'
         )
+        t_value_alpha = (
+            -1 * stats.t.isf(
+                q=significance_level,
+                df=series.count() - 1
+            )
+        )
+        lower_bound = (
+            series.mean() + series.sem() * t_value_alpha
+        )
+        upper_bound = "N/A"
         if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
         print()
         print("t test results")
-        print(f"average           : {series.mean():{width}.{decimals}f}")
-        print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
+        print(f"average             {series.mean():{width}.{decimals}f}")
+        print(f"hypothesized value  {hypothesized_value:{width}.{decimals}f}")
         print(
-            "t test statistic  : "
+            "confidence interval "
+            f"{lower_bound:{width}.{decimals}f}, "
+            f"{upper_bound}"
+        )
+        print(
+            "t test statistic    "
             f"{t_test_result.statistic:{width}.{decimals}f}"
         )
         print(
-            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+            f"t test p value      {t_test_result.pvalue:{width}.{decimals}f}"
         )
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"significance level  {significance_level:{width}.{decimals}f}")
+        print(f"power of the test   {power:{width}.{decimals}f}")
         print()
     return (
         t_test_result.statistic, t_test_result.pvalue, power,
         shapiro_wilk_test_statistic, shapiro_wilk_p_value,
-        ad_test_statistic, ad_critical_values[2]
+        ad_test_statistic, ad_critical_values[2],
+        ksstat, kspvalue, lower_bound, upper_bound
     )
 
 
