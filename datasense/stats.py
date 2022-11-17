@@ -1497,12 +1497,20 @@ def two_sample_t(
             series = series1
         else:
             series = series2
-        parametric_statistics = parametric_summary(series=series)
-        print(parametric_statistics.to_string())
+        parametric_statistics = parametric_summary(
+            series=series
+        ).to_string()
+        print(parametric_statistics)
         print()
         print("Shapiro-Wilk results for normal distribution lack-of-fit test")
         shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
             stats.shapiro(x=series)
+        if level == 1:
+            swstat1 = shapiro_wilk_test_statistic
+            swpvalue1 = shapiro_wilk_p_value
+        else:
+            swstat2 = shapiro_wilk_test_statistic
+            swpvalue2 = shapiro_wilk_p_value
         print(
             "Shapiro-Wilk test statistic: "
             f"{shapiro_wilk_test_statistic:{width}.{decimals}f}"
@@ -1597,8 +1605,10 @@ def two_sample_t(
             series = series1
         else:
             series = series2
-        nonparametric_statistics = nonparametric_summary(series=series)
-        print(nonparametric_statistics.to_string())
+        nonparametric_statistics = nonparametric_summary(
+            series=series
+        ).to_string()
+        print(nonparametric_statistics)
         print()
         ad_test_statistic, ad_critical_values, ad_significance_level =\
             stats.anderson(x=series, dist="norm")
@@ -1719,7 +1729,10 @@ def two_sample_t(
         else:
             print(message_ho)
     print()
-    return (t_test_statistic, t_test_p_value, power)
+    return (
+        t_test_statistic, t_test_p_value, power,
+        swstat1, swpvalue1, swstat2, swpvalue2
+    )
 
 
 def linear_regression(
