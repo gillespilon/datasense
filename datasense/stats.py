@@ -874,7 +874,7 @@ def one_sample_t(
     --------
     Example 1
     import datasense as ds
-    >>> result = ds.one_sample_t(
+    >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="two-sided",
@@ -882,10 +882,10 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # result is a tuple of t statistic, p value, power of the test
+    # t_test_result is a tuple of t statistic, p value, power of the test
 
     Example 2
-    >>> result = ds.one_sample_t(
+    >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="less",
@@ -893,10 +893,10 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # result is a tuple of t statistic, p value, power of the test
+    # t_test_result is a tuple of t statistic, p value, power of the test
 
     Example 3
-    >>> result = ds.one_sample_t(
+    >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="greater",
@@ -904,7 +904,7 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # result is a tuple of t statistic, p value, power of the test
+    # t_test_result is a tuple of t statistic, p value, power of the test
     """
     print(
         "The one-sample t test is used to determine if the average of one "
@@ -1057,7 +1057,7 @@ def one_sample_t(
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the sample "\
             "average is different from the hypothesized value."
-        result = stats.ttest_1samp(
+        t_test_result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
@@ -1070,7 +1070,7 @@ def one_sample_t(
             alpha=significance_level,
             alternative='two-sided'
         )
-        if result.pvalue < significance_level:
+        if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
@@ -1078,8 +1078,13 @@ def one_sample_t(
         print("t test results")
         print(f"average           : {series.mean():{width}.{decimals}f}")
         print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
-        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(
+            "t test statistic  : "
+            f"{t_test_result.statistic:{width}.{decimals}f}"
+        )
+        print(
+            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+        )
         print(f"significance level: {significance_level:{width}.{decimals}f}")
         print(f"power of the test : {power:{width}.{decimals}f}")
         print()
@@ -1100,7 +1105,7 @@ def one_sample_t(
             "There is sufficient evidence to show that "\
             "the sample average is less than the "\
             "hypothesized value."
-        result = stats.ttest_1samp(
+        t_test_result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
@@ -1113,7 +1118,7 @@ def one_sample_t(
             alpha=significance_level,
             alternative='smaller'
         )
-        if result.pvalue < significance_level:
+        if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
@@ -1121,8 +1126,13 @@ def one_sample_t(
         print("t test results")
         print(f"average           : {series.mean():{width}.{decimals}f}")
         print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
-        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(
+            "t test statistic  : "
+            f"{t_test_result.statistic:{width}.{decimals}f}"
+        )
+        print(
+            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+        )
         print(f"significance level: {significance_level:{width}.{decimals}f}")
         print(f"power of the test : {power:{width}.{decimals}f}")
         print()
@@ -1143,7 +1153,7 @@ def one_sample_t(
             "There is sufficient evidence to show that "\
             "the average of the sample is greater than the "\
             "hypothesized value."
-        result = stats.ttest_1samp(
+        t_test_result = stats.ttest_1samp(
             a=series,
             popmean=hypothesized_value,
             alternative=alternative_hypothesis
@@ -1156,7 +1166,7 @@ def one_sample_t(
             alpha=significance_level,
             alternative='larger'
         )
-        if result.pvalue < significance_level:
+        if t_test_result.pvalue < significance_level:
             print(message_ha)
         else:
             print(message_ho)
@@ -1164,14 +1174,19 @@ def one_sample_t(
         print("t test results")
         print(f"average           : {series.mean():{width}.{decimals}f}")
         print(f"hypothesized value: {hypothesized_value:{width}.{decimals}f}")
-        print(f"t test statistic  : {result.statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {result.pvalue:{width}.{decimals}f}")
+        print(
+            "t test statistic  : "
+            f"{t_test_result.statistic:{width}.{decimals}f}"
+        )
+        print(
+            f"t test p value    : {t_test_result.pvalue:{width}.{decimals}f}"
+        )
         print(f"significance level: {significance_level:{width}.{decimals}f}")
         print(f"power of the test : {power:{width}.{decimals}f}")
         print()
     return (
-        result.statistic, result.pvalue, power, shapiro_wilk_test_statistic,
-        shapiro_wilk_p_value
+        t_test_result.statistic, t_test_result.pvalue, power,
+        shapiro_wilk_test_statistic, shapiro_wilk_p_value
     )
 
 
