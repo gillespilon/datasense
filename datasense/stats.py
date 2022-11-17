@@ -1169,7 +1169,10 @@ def one_sample_t(
         print(f"significance level: {significance_level:{width}.{decimals}f}")
         print(f"power of the test : {power:{width}.{decimals}f}")
         print()
-    return (result.statistic, result.pvalue, power)
+    return (
+        result.statistic, result.pvalue, power, shapiro_wilk_test_statistic,
+        shapiro_wilk_p_value
+    )
 
 
 def two_sample_t(
