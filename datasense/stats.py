@@ -1186,7 +1186,8 @@ def one_sample_t(
         print()
     return (
         t_test_result.statistic, t_test_result.pvalue, power,
-        shapiro_wilk_test_statistic, shapiro_wilk_p_value
+        shapiro_wilk_test_statistic, shapiro_wilk_p_value,
+        ad_test_statistic, ad_critical_values[2]
     )
 
 
