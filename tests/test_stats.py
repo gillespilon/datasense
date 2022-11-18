@@ -273,12 +273,15 @@ def test_two_sample_t():
     # expected = (
     # t statistic, t p value, t power,
     # Shapiro-Wilk statistic sample 1, Shapiro-Wilk p value sample 1,
-    # Shapiro-Wilk statistic sample 2, Shapiro-Wilk p value sample 2
+    # Shapiro-Wilk statistic sample 2, Shapiro-Wilk p value sample 2,
+    # Bartlett test statistic, Bartlett p value
     # )
     expected = (
         2.1353336482435243, 0.0467302735601054, 0.5243039932709265,
         0.9785250425338745, 0.9574037790298462,
-        0.8853150606155396, 0.17846621572971344
+        0.8853150606155396, 0.17846621572971344,
+        3.2744574205759416, 0.07036619072494953
+
     )
     assert result == expected
     result = ds.two_sample_t(
@@ -290,7 +293,8 @@ def test_two_sample_t():
     expected = (
         2.1353336482435243, 0.9766348632199473, 0.00010611922933969828,
         0.9785250425338745, 0.9574037790298462,
-        0.8853150606155396, 0.17846621572971344
+        0.8853150606155396, 0.17846621572971344,
+        3.2744574205759416, 0.07036619072494953
     )
     assert result == expected
     result = ds.two_sample_t(
@@ -302,7 +306,8 @@ def test_two_sample_t():
     expected = (
         2.1353336482435243, 0.0233651367800527, 0.6587984489683615,
         0.9785250425338745, 0.9574037790298462,
-        0.8853150606155396, 0.17846621572971344
+        0.8853150606155396, 0.17846621572971344,
+        3.2744574205759416, 0.07036619072494953
     )
     assert result == expected
 
