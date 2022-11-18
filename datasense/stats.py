@@ -1731,7 +1731,8 @@ def two_sample_t(
     print()
     return (
         t_test_statistic, t_test_p_value, power,
-        swstat1, swpvalue1, swstat2, swpvalue2
+        swstat1, swpvalue1, swstat2, swpvalue2,
+        bartlett_test_statistic, bartlett_p_value
     )
 
 
