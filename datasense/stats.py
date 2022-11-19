@@ -1612,6 +1612,12 @@ def two_sample_t(
         print()
         ad_test_statistic, ad_critical_values, ad_significance_level =\
             stats.anderson(x=series, dist="norm")
+        if level == 1:
+            ad_test_statistic_1 = ad_test_statistic
+            ad_critical_value_1 = ad_critical_values[2]
+        else:
+            ad_test_statistic_2 = ad_test_statistic
+            ad_critical_value_2 = ad_critical_values[2]
         # uncomment these lines when Anaconda release Python 3.10
         # start uncomment
         # match significance_level:
@@ -1732,7 +1738,9 @@ def two_sample_t(
     return (
         t_test_statistic, t_test_p_value, power,
         swstat1, swpvalue1, swstat2, swpvalue2,
-        bartlett_test_statistic, bartlett_p_value
+        bartlett_test_statistic, bartlett_p_value,
+        ad_test_statistic_1, ad_critical_value_1,
+        ad_test_statistic_2, ad_critical_value_2
     )
 
 
