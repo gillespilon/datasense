@@ -1498,11 +1498,11 @@ def two_sample_t(
         q=significance_level / 2,
         df=n_one + n_two - 2
     )
-    lower_bound = (
+    hypothesis_test_ci_lower_bound = (
         delta_one_two - t_critical_equal * pooled_standard_deviation *
         math.sqrt(1 / n_one + 1 / n_two)
     )
-    upper_bound = (
+    hypothesis_test_ci_upper_bound = (
         delta_one_two + t_critical_equal * pooled_standard_deviation *
         math.sqrt(1 / n_one + 1 / n_two)
     )
@@ -1578,8 +1578,8 @@ def two_sample_t(
         print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
         print(
             "confidence interval "
-            f"{lower_bound:{width}.{decimals}f}, "
-            f"{upper_bound}"
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound}"
         )
         print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
@@ -1610,8 +1610,8 @@ def two_sample_t(
         print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
         print(
             "confidence interval "
-            f"{lower_bound:{width}.{decimals}f}, "
-            f"{upper_bound}"
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound}"
         )
         print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
@@ -1727,8 +1727,8 @@ def two_sample_t(
         print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
         print(
             "confidence interval "
-            f"{lower_bound:{width}.{decimals}f}, "
-            f"{upper_bound}"
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound}"
         )
         print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
@@ -1759,8 +1759,8 @@ def two_sample_t(
         print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
         print(
             "confidence interval "
-            f"{lower_bound:{width}.{decimals}f}, "
-            f"{upper_bound}"
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound}"
         )
         print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
         print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
@@ -1776,7 +1776,8 @@ def two_sample_t(
         swstat1, swpvalue1, swstat2, swpvalue2,
         bartlett_test_statistic, bartlett_p_value,
         ad_test_statistic_1, ad_critical_value_1,
-        ad_test_statistic_2, ad_critical_value_2
+        ad_test_statistic_2, ad_critical_value_2,
+        hypothesis_test_ci_lower_bound, hypothesis_test_ci_upper_bound
     )
 
 
