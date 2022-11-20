@@ -225,7 +225,7 @@ def test_one_sample_t():
     # Anderson-Darling statistic, Anderson-Darling critical value for
     # alpha 0.05,
     # Kolmogorov-Smirnov statistic, Kolmogorov-Smirnov p value,
-    # CI lower bound, CI upper bound
+    # hypothesis test CI lower bound, hypothesis test CI upper bound
     # )
     expected = (
         -2.2519472501384548, 0.0337482297588424, 0.5798034164658731,
@@ -274,14 +274,16 @@ def test_two_sample_t():
     # t statistic, t p value, t power,
     # Shapiro-Wilk statistic sample 1, Shapiro-Wilk p value sample 1,
     # Shapiro-Wilk statistic sample 2, Shapiro-Wilk p value sample 2,
-    # Bartlett test statistic, Bartlett p value
+    # Bartlett test statistic, Bartlett p value,
+    # Anderson-Darling test statistic, Anderson-Darling p value`
     # )
     expected = (
         2.1353336482435243, 0.0467302735601054, 0.5243039932709265,
         0.9785250425338745, 0.9574037790298462,
         0.8853150606155396, 0.17846621572971344,
         3.2744574205759416, 0.07036619072494953,
-        0.15265397324961683, 0.68, 0.49940696863048295, 0.693
+        0.15265397324961683, 0.68, 0.49940696863048295, 0.693,
+        0.06234516845619442, 7.67502856891755
 
     )
     assert result == expected
@@ -296,7 +298,8 @@ def test_two_sample_t():
         0.9785250425338745, 0.9574037790298462,
         0.8853150606155396, 0.17846621572971344,
         3.2744574205759416, 0.07036619072494953,
-        0.15265397324961683, 0.68, 0.49940696863048295, 0.693
+        0.15265397324961683, 0.68, 0.49940696863048295, 0.693,
+        0.06234516845619442, 7.67502856891755
     )
     assert result == expected
     result = ds.two_sample_t(
@@ -310,7 +313,8 @@ def test_two_sample_t():
         0.9785250425338745, 0.9574037790298462,
         0.8853150606155396, 0.17846621572971344,
         3.2744574205759416, 0.07036619072494953,
-        0.15265397324961683, 0.68, 0.49940696863048295, 0.693
+        0.15265397324961683, 0.68, 0.49940696863048295, 0.693,
+        0.06234516845619442, 7.67502856891755
     )
     assert result == expected
 
