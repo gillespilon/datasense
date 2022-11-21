@@ -1063,7 +1063,7 @@ def one_sample_t(
             alternative=alternative_hypothesis
         )
         power = TTestPower().power(
-            effect_size=np.absolute(
+            effect_size=math.fabs(
                 (hypothesized_value - series.mean()) / series.std()
             ),
             nobs=series.count(),
@@ -1134,7 +1134,7 @@ def one_sample_t(
             alternative=alternative_hypothesis
         )
         power = TTestPower().power(
-            effect_size=np.absolute(
+            effect_size=math.fabs(
                 (hypothesized_value - series.mean()) / series.std()
             ),
             nobs=series.count(),
@@ -1197,7 +1197,7 @@ def one_sample_t(
             alternative=alternative_hypothesis
         )
         power = TTestPower().power(
-            effect_size=np.absolute(
+            effect_size=math.fabs(
                 (hypothesized_value - series.mean()) / series.std()
             ),
             nobs=series.count(),
@@ -1490,7 +1490,7 @@ def two_sample_t(
     ) / (n_one + n_two - 2)
     pooled_standard_deviation = math.sqrt(pooled_variance)
     effect_size = (
-        np.absolute(series1.mean() - series2.mean()) /
+        math.fabs(series1.mean() - series2.mean()) /
         pooled_standard_deviation
     )
     delta_one_two = series1.mean() - series2.mean()
