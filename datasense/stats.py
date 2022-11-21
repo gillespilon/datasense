@@ -134,8 +134,8 @@ def nonparametric_summary(
     lif = (q25 - iqr * 1.5)
     uif = (q75 + iqr * 1.5)
     uof = (q75 + iqr * 3)
-    cil = (q50 - 1.57 * iqr / np.sqrt(series.count()))[0]
-    ciu = (q50 + 1.57 * iqr / np.sqrt(series.count()))[0]
+    cil = (q50 - 1.57 * iqr / math.sqrt(series.count()))[0]
+    ciu = (q50 + 1.57 * iqr / math.sqrt(series.count()))[0]
     return pd.Series({
         "lower outer fence": round(number=lof[0], ndigits=decimals),
         "lower inner fence": round(number=lif[0], ndigits=decimals),
