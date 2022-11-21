@@ -1781,6 +1781,68 @@ def two_sample_t(
     )
 
 
+def paired_t(
+    *,
+    series1: pd.Series,
+    series2: pd.Series,
+    significance_level: float = 0.05,
+    alternative_hypothesis: str = "two-sided",
+    width: int = 7,
+    decimals: int = 3
+) -> Tuple[float, float]:
+    t_test_statisic, t_test_pvalue = stats.ttest_rel(
+        a=series1,
+        b=series2
+    )
+    series_differences = series2 - series1
+    degrees_of_freedom = len(series_differences) - 1
+    t_critical_two_tail = stats.t.isf(
+        q=significance_level / 2,
+        df=degrees_of_freedom
+    )
+    print(t_critical_two_tail)
+    t_critical_one_tail = stats.t.isf(
+        q=significance_level,
+        df=degrees_of_freedom
+    )
+    print(t_critical_one_tail)
+    levels = [1, 2]
+    for level in levels:
+        if level == 1:
+            series = series1
+        else:
+            series = series2
+        parametric_statistics = parametric_summary(
+            series=series,
+            decimals=decimals
+        ).to_string()
+        print(f"Parametric statistics for y level {level}")
+        print(parametric_statistics)
+        print()
+    for level in levels:
+        if level == 1:
+            series = series1
+        else:
+            series = series2
+        nonparametric_statistics = nonparametric_summary(
+            series=series,
+            alphap=1/3,
+            betap=1/3,
+            decimals=decimals
+        ).to_string()
+        print(f"Non-parametric statistics for y level {level}")
+        print(nonparametric_statistics)
+        print()
+    print("t test results")
+    print(
+        "average of the differences: "
+        f"{series_differences.mean():{width}.{decimals}f}"
+    )
+    print()
+
+    return (t_test_statisic, t_test_pvalue)
+
+
 def linear_regression(
     *,
     df: pd.DataFrame,
@@ -1867,4 +1929,5 @@ __all__ = (
     "two_sample_t",
     "one_sample_t",
     "random_data",
+    "paired_t",
 )
