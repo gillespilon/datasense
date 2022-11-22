@@ -1514,7 +1514,8 @@ def two_sample_t(
         else:
             series = series2
         parametric_statistics = parametric_summary(
-            series=series
+            series=series,
+            decimals=dciamls
         ).to_string()
         print(parametric_statistics)
         print()
@@ -1632,7 +1633,8 @@ def two_sample_t(
         else:
             series = series2
         nonparametric_statistics = nonparametric_summary(
-            series=series
+            series=series,
+            decimals=decimals
         ).to_string()
         print(nonparametric_statistics)
         print()
