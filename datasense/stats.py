@@ -1792,9 +1792,9 @@ def paired_t(
     decimals: int = 3
 ) -> Tuple[float, float]:
     print(
-        "The paired t test is used to determine if the averages of two "
-        "samples of data are statistically, significantly different from each "
-        "other."
+        "The paired-sample t test is used to determine whether the average "
+        "of the differences between two paired samples differs from zero or "
+        "some hypothesized value."
     )
     print()
     print("Assumptions")
@@ -1834,27 +1834,19 @@ def paired_t(
     series_differences_average = series_differences.mean()
     degrees_of_freedom = len(series_differences) - 1
     series_differences_standard_deviation = series_differences.std()
-    print("standard deviation :", series_differences_standard_deviation)
     t_calculated = series_differences_average * math.sqrt(
         len(series_differences)) / series_differences_standard_deviation
-    print("t calculated       :", t_calculated)
     t_critical_two_tail = stats.t.isf(
         q=significance_level / 2,
         df=degrees_of_freedom
     )
-    print("t critical two-tail:", t_critical_two_tail)
     t_critical_one_tail = stats.t.isf(
         q=significance_level,
         df=degrees_of_freedom
     )
-    print("t critical one-tail:", t_critical_one_tail)
     print()
-    if hypothesized_value:
-        print("hypothesized value given")
-    else:
-        print("hypothesized value not given")
+    if hypothesized_value is None:
         hypothesized_value = 0
-        print("hypothesized value:", hypothesized_value)
     if alternative_hypothesis == "two-sided":
         alternative_hypothesis_for_power = "two-sided"
         message_ho =\
@@ -1865,7 +1857,7 @@ def paired_t(
             "Fail to reject the null hypothesis Ho. "\
             "Continue to accept the null hypothesis Ho. "\
             "There is insufficient evidence to show that the population "\
-            "average of the differences != "
+            "average of the differences != "\
             f"{hypothesized_value}."
         message_ha =\
             "Ho: The population average of the differences = "\
@@ -1875,7 +1867,7 @@ def paired_t(
             "Reject the null hypothesis Ho. "\
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the population "\
-            "average of the differences != "
+            "average of the differences != "\
             f"{hypothesized_value}."
         t_test_statisic, t_test_pvalue = stats.ttest_rel(
             a=series1,
@@ -1891,7 +1883,7 @@ def paired_t(
             "Fail to reject the null hypothesis Ho. "\
             "Continue to accept the null hypothesis Ho. "\
             "There is insufficient evidence to show that the population "\
-            "average of the differences < "
+            "average of the differences < "\
             f"{hypothesized_value}."
         message_ha =\
             "Ho: The population average of the differences = "\
@@ -1901,7 +1893,7 @@ def paired_t(
             "Reject the null hypothesis Ho. "\
             "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the population "\
-            "average of the differences < "
+            "average of the differences < "\
             f"{hypothesized_value}."
         t_test_statisic, t_test_pvalue = stats.ttest_rel(
             a=series1,
