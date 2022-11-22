@@ -1787,28 +1787,157 @@ def paired_t(
     series2: pd.Series,
     significance_level: float = 0.05,
     alternative_hypothesis: str = "two-sided",
+    hypothesized_value: Union[int, float, bool] = None,
     width: int = 7,
     decimals: int = 3
 ) -> Tuple[float, float]:
-    t_test_statisic, t_test_pvalue = stats.ttest_rel(
-        a=series1,
-        b=series2
+    print(
+        "The paired t test is used to determine if the averages of two "
+        "samples of data are statistically, significantly different from each "
+        "other."
     )
+    print()
+    print("Assumptions")
+    print("-----------")
+    print()
+    print("The data are continuous interval or ratio scales.")
+    print()
+    print(
+        "The data in each sample follow a normal distribution with mean mu "
+        "and variance sigma squared."
+    )
+    print()
+    print(
+        "The sample variances follow a chi-squared distribution "
+        "with rho degrees of freedom under the null hypothesis, where rho "
+        "is a positive constant."
+    )
+    print()
+    print(
+        "(sample average - population average) and the sample standard "
+        "deviation are independent."
+    )
+    print()
+    print("The size of each sample may be equal or unequal.")
+    print()
+    print("The variance of each sample may be equal or unequal.")
+    print()
+    print(
+        "The data should be sampled independently from the two populations "
+        "being compared."
+    )
+    print()
+    print("Results")
+    print("-------")
+    print()
     series_differences = series2 - series1
+    series_differences_average = series_differences.mean()
     degrees_of_freedom = len(series_differences) - 1
+    series_differences_standard_deviation = series_differences.std()
+    print("standard deviation :", series_differences_standard_deviation)
+    t_calculated = series_differences_average * math.sqrt(
+        len(series_differences)) / series_differences_standard_deviation
+    print("t calculated       :", t_calculated)
     t_critical_two_tail = stats.t.isf(
         q=significance_level / 2,
         df=degrees_of_freedom
     )
-    print(t_critical_two_tail)
+    print("t critical two-tail:", t_critical_two_tail)
     t_critical_one_tail = stats.t.isf(
         q=significance_level,
         df=degrees_of_freedom
     )
-    print(t_critical_one_tail)
-    levels = [1, 2]
+    print("t critical one-tail:", t_critical_one_tail)
+    print()
+    if hypothesized_value:
+        print("hypothesized value given")
+    else:
+        print("hypothesized value not given")
+        hypothesized_value = 0
+        print("hypothesized value:", hypothesized_value)
+    if alternative_hypothesis == "two-sided":
+        alternative_hypothesis_for_power = "two-sided"
+        message_ho =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences != "\
+            f"{hypothesized_value}\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the population "\
+            "average of the differences != "
+            f"{hypothesized_value}."
+        message_ha =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences != "\
+            f"{hypothesized_value}\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that the population "\
+            "average of the differences != "
+            f"{hypothesized_value}."
+        t_test_statisic, t_test_pvalue = stats.ttest_rel(
+            a=series1,
+            b=series2
+        )
+    elif alternative_hypothesis == "less":
+        alternative_hypothesis_for_power = "smaller"
+        message_ho =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences < "\
+            f"{hypothesized_value}\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the population "\
+            "average of the differences < "
+            f"{hypothesized_value}."
+        message_ha =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences < "\
+            f"{hypothesized_value}\n"\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
+            "There is sufficient evidence to show that the population "\
+            "average of the differences < "
+            f"{hypothesized_value}."
+        t_test_statisic, t_test_pvalue = stats.ttest_rel(
+            a=series1,
+            b=series2
+        )
+    elif alternative_hypothesis == "greater":
+        alternative_hypothesis_for_power = "larger"
+        message_ho =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences > "\
+            f"{hypothesized_value}\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is insufficient evidence to show that the population "\
+            "average of the differences > "\
+            f"{hypothesized_value}."
+        message_ha =\
+            "Ho: The population average of the differences = "\
+            f"{hypothesized_value}\n"\
+            "Ha: The population average of the differences > "\
+            f"{hypothesized_value}\n"\
+            "Fail to reject the null hypothesis Ho. "\
+            "Continue to accept the null hypothesis Ho. "\
+            "There is sufficient evidence to show that the population "\
+            "average of the differences > "\
+            f"{hypothesized_value}."
+        t_test_statisic, t_test_pvalue = stats.ttest_rel(
+            a=series1,
+            b=series2
+        )
+    print("Parametric analysis")
+    print()
+    levels = ["before", "after"]
     for level in levels:
-        if level == 1:
+        if level == "before":
             series = series1
         else:
             series = series2
@@ -1820,7 +1949,7 @@ def paired_t(
         print(parametric_statistics)
         print()
     for level in levels:
-        if level == 1:
+        if level == "before":
             series = series1
         else:
             series = series2
@@ -1835,10 +1964,17 @@ def paired_t(
         print()
     print("t test results")
     print(
-        "average of the differences: "
+        "average of the sample before: "
+        f"{series1.mean():{width}.{decimals}f}"
+    )
+    print(
+            "average of the sample after : "
+        f"{series2.mean():{width}.{decimals}f}"
+    )
+    print(
+            "average of the differences  :  "
         f"{series_differences.mean():{width}.{decimals}f}"
     )
-    print()
 
     return (t_test_statisic, t_test_pvalue)
 
