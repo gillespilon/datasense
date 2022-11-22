@@ -928,6 +928,7 @@ def one_sample_t(
     print()
     parametric_statistics = parametric_summary(
         series=series,
+        decimals=decimals
     ).to_string()
     print("Parametric statistics for y")
     print(parametric_statistics)
@@ -935,7 +936,8 @@ def one_sample_t(
     nonparametric_statistics = nonparametric_summary(
         series=series,
         alphap=1/3,
-        betap=1/3
+        betap=1/3,
+        decimals=decimals
     ).to_string()
     print()
     print("Shapiro-Wilk results for normal distribution lack-of-fit test")
