@@ -1517,7 +1517,7 @@ def two_sample_t(
             series = series2
         parametric_statistics = parametric_summary(
             series=series,
-            decimals=dciamls
+            decimals=decimals
         ).to_string()
         print(parametric_statistics)
         print()
@@ -1944,6 +1944,28 @@ def paired_t(
         print(f"Parametric statistics for y level {level}")
         print(parametric_statistics)
         print()
+    print("Shapiro-Wilk results for normal distribution lack-of-fit test")
+    shapiro_wilk_test_statistic, shapiro_wilk_p_value =\
+        stats.shapiro(x=series_differences)
+    print(
+        "Shapiro-Wilk test statistic: "
+        f"{shapiro_wilk_test_statistic:{width}.{decimals}f}"
+    )
+    print(
+        "Shapiro-Wilk p value       : "
+        f"{shapiro_wilk_p_value:{width}.{decimals}f}"
+    )
+    if shapiro_wilk_p_value < significance_level:
+        print(
+            "The differences between the pairs of data probably do not follow "
+            "a normal distribution."
+        )
+    else:
+        print(
+            "The differences between the pairs of data probably follow "
+            "a normal distribution."
+        )
+    print()
     for level in levels:
         if level == "before":
             series = series1
@@ -1972,7 +1994,10 @@ def paired_t(
         f"{series_differences.mean():{width}.{decimals}f}"
     )
 
-    return (t_test_statisic, t_test_pvalue)
+    return (
+        t_test_statisic, t_test_pvalue,
+        shapiro_wilk_test_statistic, shapiro_wilk_p_value
+    )
 
 
 def linear_regression(
