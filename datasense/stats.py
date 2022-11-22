@@ -1838,7 +1838,7 @@ def paired_t(
     series_differences_average = series_differences.mean()
     degrees_of_freedom = len(series_differences) - 1
     series_differences_standard_deviation = series_differences.std()
-    t_calculated = series_differences_average * math.sqrt(
+    t_test_statistic = series_differences_average * math.sqrt(
         len(series_differences)) / series_differences_standard_deviation
     t_critical_two_tail = stats.t.isf(
         q=significance_level / 2,
@@ -1873,10 +1873,10 @@ def paired_t(
             "There is sufficient evidence to show that the population "\
             "average of the differences != "\
             f"{hypothesized_value}."
-        t_test_statisic, t_test_pvalue = stats.ttest_rel(
-            a=series1,
-            b=series2
-        )
+        t_test_p_value = stats.t.sf(
+            x=math.fabs(t_test_statistic),
+            df=degrees_of_freedom
+        ) * 2
     elif alternative_hypothesis == "less":
         alternative_hypothesis_for_power = "smaller"
         message_ho =\
@@ -1899,9 +1899,9 @@ def paired_t(
             "There is sufficient evidence to show that the population "\
             "average of the differences < "\
             f"{hypothesized_value}."
-        t_test_statisic, t_test_pvalue = stats.ttest_rel(
-            a=series1,
-            b=series2
+        t_test_p_value = 1 - stats.t.sf(
+            x=math.fabs(t_test_statistic),
+            df=degrees_of_freedom
         )
     elif alternative_hypothesis == "greater":
         alternative_hypothesis_for_power = "larger"
@@ -1925,9 +1925,9 @@ def paired_t(
             "There is sufficient evidence to show that the population "\
             "average of the differences > "\
             f"{hypothesized_value}."
-        t_test_statisic, t_test_pvalue = stats.ttest_rel(
-            a=series1,
-            b=series2
+        t_test_p_value = stats.t.sf(
+            x=math.fabs(t_test_statistic),
+            df=degrees_of_freedom
         )
     print("Parametric analysis")
     print()
@@ -1980,23 +1980,90 @@ def paired_t(
         print(f"Non-parametric statistics for y level {level}")
         print(nonparametric_statistics)
         print()
+    ad_test_statistic, ad_critical_values, ad_significance_level =\
+        stats.anderson(x=series_differences, dist="norm")
+    # uncomment these lines when Anaconda release Python 3.10
+    # start uncomment
+    # match significance_level:
+    #     case 0.25:
+    #         item = 0
+    #     case 0.10:
+    #         item = 1
+    #     case 0.05:
+    #         item = 2
+    #     case 0.025:
+    #         item = 3
+    #     case 0.01:
+    #         item = 4
+    #     case 0.005:
+    #         item = 5
+    # end uncomment
+    # start delele
+    if significance_level == 0.25:
+        item = 0
+    elif significance_level == 0.10:
+        item = 1
+    elif significance_level == 0.05:
+        item = 2
+    elif significance_level == 0.025:
+        item = 3
+    elif significance_level == 0.01:
+        item = 4
+    elif significance_level == 0.005:
+        item = 5
+    # end delete
+    print(
+        "Anderson-Darling results for normal distribution lack-of-fit test"
+    )
+    print(
+        "Anderson-Darling test statistic: "
+        f"{ad_test_statistic:{width}.{decimals}f}"
+    )
+    print(
+        "Anderson-Darling critical value: "
+        f"{ad_critical_values[item]:{width}.{decimals}f}"
+    )
+    if ad_test_statistic > ad_critical_values[item]:
+        print(
+            "The differences between the pairs of data probably do not follow "
+            "a normal distribution."
+        )
+    else:
+        print(
+            "The differences between the pairs of data probably follow "
+            "a normal distribution."
+        )
+    print()
     print("t test results")
     print(
         "average of the sample before: "
         f"{series1.mean():{width}.{decimals}f}"
     )
     print(
-            "average of the sample after : "
+        "average of the sample after : "
         f"{series2.mean():{width}.{decimals}f}"
     )
     print(
-            "average of the differences  :  "
-        f"{series_differences.mean():{width}.{decimals}f}"
+        "average of the differences  :  "
+        f"{series_differences_average:{width}.{decimals}f}"
+    )
+    print(
+        "hypothesized difference     : "
+        f"{hypothesized_value:{width}.{decimals}f}"
+    )
+    print(
+        "t test statistic"
+        f"{t_test_statistic:{width}.{decimals}f}"
+    )
+    print(
+        "t test p value"
+        f"{t_test_p_value:{width}.{decimals}f}"
     )
 
     return (
-        t_test_statisic, t_test_pvalue,
-        shapiro_wilk_test_statistic, shapiro_wilk_p_value
+        t_test_statistic, t_test_p_value,
+        shapiro_wilk_test_statistic, shapiro_wilk_p_value,
+        ad_test_statistic, ad_critical_values[2]
     )
 
 
