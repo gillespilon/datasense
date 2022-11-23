@@ -1835,12 +1835,17 @@ def paired_t(
     print("-------")
     print()
     # series_differences = series2 - series1
+    if hypothesized_value is None:
+        hypothesized_value = 0
     series_differences = series1 - series2
     series_differences_average = series_differences.mean()
     degrees_of_freedom = len(series_differences) - 1
     series_differences_standard_deviation = series_differences.std()
-    t_test_statistic = series_differences_average * math.sqrt(
-        len(series_differences)) / series_differences_standard_deviation
+    t_test_statistic = (
+        (series_differences_average - hypothesized_value) *
+        math.sqrt(len(series_differences)) /
+        series_differences_standard_deviation
+    )
     t_critical_two_tail = stats.t.isf(
         q=significance_level / 2,
         df=degrees_of_freedom
@@ -1850,8 +1855,6 @@ def paired_t(
         df=degrees_of_freedom
     )
     print()
-    if hypothesized_value is None:
-        hypothesized_value = 0
     if alternative_hypothesis == "two-sided":
         alternative_hypothesis_for_power = "two-sided"
         message_ho =\
@@ -2089,7 +2092,7 @@ def paired_t(
         "t test statistic                     : "
         f"{t_test_statistic:{width}.{decimals}f}"
     )
-    if significance_level == "two-sided":
+    if alternative_hypothesis == "two-sided":
         print(
             "t test critical two-tailed           : "
             f"{t_critical_two_tail       :{width}.{decimals}f}"
