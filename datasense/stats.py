@@ -1834,7 +1834,8 @@ def paired_t(
     print("Results")
     print("-------")
     print()
-    series_differences = series2 - series1
+    # series_differences = series2 - series1
+    series_differences = series1 - series2
     series_differences_average = series_differences.mean()
     degrees_of_freedom = len(series_differences) - 1
     series_differences_standard_deviation = series_differences.std()
@@ -1900,7 +1901,7 @@ def paired_t(
             "average of the differences < "\
             f"{hypothesized_value}."
         t_test_p_value = 1 - stats.t.sf(
-            x=math.fabs(t_test_statistic),
+            x=(t_test_statistic),
             df=degrees_of_freedom
         )
     elif alternative_hypothesis == "greater":
@@ -1920,20 +1921,20 @@ def paired_t(
             f"{hypothesized_value}\n"\
             "Ha: The population average of the differences > "\
             f"{hypothesized_value}\n"\
-            "Fail to reject the null hypothesis Ho. "\
-            "Continue to accept the null hypothesis Ho. "\
+            "Reject the null hypothesis Ho. "\
+            "Accept the alternative hypothesis Ha. "\
             "There is sufficient evidence to show that the population "\
             "average of the differences > "\
             f"{hypothesized_value}."
         t_test_p_value = stats.t.sf(
-            x=math.fabs(t_test_statistic),
+            x=(t_test_statistic),
             df=degrees_of_freedom
         )
     print("Parametric analysis")
     print()
-    levels = ["before", "after"]
+    levels = [1, 2]
     for level in levels:
-        if level == "before":
+        if level == 1:
             series = series1
         else:
             series = series2
@@ -1966,8 +1967,10 @@ def paired_t(
             "a normal distribution."
         )
     print()
+    print("Non-parametric analysis")
+    print()
     for level in levels:
-        if level == "before":
+        if level == 1:
             series = series1
         else:
             series = series2
@@ -2036,29 +2039,47 @@ def paired_t(
     print()
     print("t test results")
     print(
-        "average of the sample before: "
+        "average of sample 1                  : "
         f"{series1.mean():{width}.{decimals}f}"
     )
     print(
-        "average of the sample after : "
+        "average of sample 2                  : "
         f"{series2.mean():{width}.{decimals}f}"
     )
     print(
-        "average of the differences  :  "
+        "average of the differences           : "
         f"{series_differences_average:{width}.{decimals}f}"
     )
     print(
-        "hypothesized difference     : "
+        "hypothesized difference              : "
         f"{hypothesized_value:{width}.{decimals}f}"
     )
     print(
-        "t test statistic"
-        f"{t_test_statistic:{width}.{decimals}f}"
+        "standard deviation of the differences: "
+        f"{series_differences_standard_deviation:{width}.{decimals}f}"
     )
     print(
-        "t test p value"
+        "t test statistic                     : "
+        f"{t_test_statistic:{width}.{decimals}f}"
+    )
+    if significance_level == "two-sided":
+        print(
+            "t test critical two-tailed           : "
+            f"{t_critical_two_tail       :{width}.{decimals}f}"
+        )
+    else:
+        print(
+            "t test critical one-tailed           : "
+            f"{t_critical_one_tail       :{width}.{decimals}f}"
+        )
+    print(
+        "t test p value                       : "
         f"{t_test_p_value:{width}.{decimals}f}"
     )
+    if t_test_p_value < significance_level:
+        print(message_ha)
+    else:
+        print(message_ho)
 
     return (
         t_test_statistic, t_test_p_value,
