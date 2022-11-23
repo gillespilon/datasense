@@ -378,6 +378,48 @@ def test_paired_t():
         0.14709700945048904, 0.3071349516596349
     )
     assert result == expected
+    result = ds.paired_t(
+        series1=series1_paired,
+        series2=series2_paired,
+        significance_level=0.05,
+        alternative_hypothesis="two-sided",
+        hypothesized_value=4
+    )
+    expected = (
+        -2.4737187176869146, 0.022976718604245508,
+        0.9718567132949829, 0.7935113906860352,
+        0.33171651643374744, 0.692,
+        0.14709700945048904, 0.3071349516596349
+    )
+    assert result == expected
+    result = ds.paired_t(
+        series1=series1_paired,
+        series2=series2_paired,
+        significance_level=0.05,
+        alternative_hypothesis="less",
+        hypothesized_value=4
+    )
+    expected = (
+        -2.4737187176869146, 0.011488359302122775,
+        0.9718567132949829, 0.7935113906860352,
+        0.33171651643374744, 0.692,
+        0.14709700945048904, 0.3071349516596349
+    )
+    assert result == expected
+    result = ds.paired_t(
+        series1=series1_paired,
+        series2=series2_paired,
+        significance_level=0.05,
+        alternative_hypothesis="greater",
+        hypothesized_value=4
+    )
+    expected = (
+        -2.4737187176869146, 0.9885116406978772,
+        0.9718567132949829, 0.7935113906860352,
+        0.33171651643374744, 0.692,
+        0.14709700945048904, 0.3071349516596349
+    )
+    assert result == expected
 
 
 def test_linear_regression():
