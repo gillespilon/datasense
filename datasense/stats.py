@@ -2037,6 +2037,33 @@ def paired_t(
             "a normal distribution."
         )
     print()
+    kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue = \
+        ksstat, kspvalue = smd.kstest_normal(
+            x=series_differences,
+            dist="norm",
+            pvalmethod="approx"
+        )
+    print(
+        "Kolmogorov-Smirnov results for normal distribution lack-of-fit test"
+    )
+    print(
+        "Kolmogorov-Smirnov test statistic: "
+        f"{kolmogorov_smirnov_test_statistic:{width}.{decimals}f}")
+    print(
+        "Kolmogorov-Smirnov p value       : "
+        f"{kolmogorov_smirnov_test_pvalue:{width}.{decimals}f}"
+    )
+    if kolmogorov_smirnov_test_pvalue < significance_level:
+        print(
+            "The differences between the pairs of data probably do not follow "
+            "a normal distribution."
+        )
+    else:
+        print(
+            "The differences between the pairs of data probably follow "
+            "a normal distribution."
+        )
+    print()
     print("t test results")
     print(
         "average of sample 1                  : "
