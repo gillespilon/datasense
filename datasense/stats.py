@@ -2111,7 +2111,8 @@ def paired_t(
     return (
         t_test_statistic, t_test_p_value,
         shapiro_wilk_test_statistic, shapiro_wilk_p_value,
-        ad_test_statistic, ad_critical_values[2]
+        ad_test_statistic, ad_critical_values[2],
+        kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue
     )
 
 
