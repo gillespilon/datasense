@@ -264,7 +264,10 @@ df_control_chart_test_data = pd.read_csv(
                    if constructor is cc.X])
 @mark.parametrize('subgroup_size', [None, 2])
 def test_X(column, expected, subgroup_size):
-    X = cc.X(df_control_chart_test_data[[column]], subgroup_size=subgroup_size)
+    X = cc.X(
+        data=df_control_chart_test_data[[column]],
+        subgroup_size=subgroup_size
+    )
     assert X.sigma == approx(expected['sigma'])
     assert X.ucl == approx(expected['ucl'])
     assert X.sigmas[+2] == approx(expected['+2sigma'])
@@ -302,7 +305,8 @@ def test_X(column, expected, subgroup_size):
 @mark.parametrize('subgroup_size', [None, 2])
 def test_mR(column, expected, subgroup_size):
     mR = cc.mR(
-        df_control_chart_test_data[[column]], subgroup_size=subgroup_size
+        data=df_control_chart_test_data[[column]],
+        subgroup_size=subgroup_size
     )
     assert mR.sigma == approx(expected['sigma'])
     assert mR.ucl == approx(expected['ucl'])
@@ -333,7 +337,7 @@ def test_mR(column, expected, subgroup_size):
                    in minitab_control.items()
                    if constructor is cc.Xbar])
 def test_Xbar(columns, expected):
-    xbar = cc.Xbar(df_control_chart_test_data.loc[:, columns])
+    xbar = cc.Xbar(data=df_control_chart_test_data.loc[:, columns])
     assert xbar.ucl == approx(expected['ucl'])
     assert xbar.mean == approx(expected['average'])
     assert xbar.lcl == approx(expected['lcl'])
@@ -365,7 +369,7 @@ def test_Xbar(columns, expected):
                    in minitab_control.items()
                    if constructor is cc.R])
 def test_R(columns, expected):
-    R = cc.R(df_control_chart_test_data.loc[:, columns])
+    R = cc.R(data=df_control_chart_test_data.loc[:, columns])
     assert R.ucl == approx(expected['ucl'], rel=1e-4)
     assert R.mean == approx(expected['average'])
     assert R.lcl == approx(expected['lcl'])
@@ -396,7 +400,7 @@ df_many = pd.read_csv(Path(__file__)
 
 
 def test_Xbar_many():
-    xbar = cc.Xbar(df_many)
+    xbar = cc.Xbar(data=df_many)
     assert xbar.ucl == approx(601.641)
     assert xbar.mean == approx(600.072)
     assert xbar.lcl == approx(598.503)
@@ -404,7 +408,7 @@ def test_Xbar_many():
 
 
 def test_R_many():
-    r = cc.R(df_many)
+    r = cc.R(data=df_many)
     assert r.ucl == approx(5.75141)
     assert r.mean == approx(2.72)
     assert r.lcl == approx(0)
@@ -430,7 +434,10 @@ def test_draw_rules():
     fig = BytesIO()
     try:
         ax = X.ax()
-        cc.draw_rules(X, ax)
+        cc.draw_rules(
+            cc=X,
+            ax=ax
+        )
         ax.figure.savefig(
             fname=fig,
             format='png'
