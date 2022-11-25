@@ -251,7 +251,7 @@ minitab_control = {
     },
 }
 
-test_25_12_csv = pd.read_csv(Path(__file__).with_name('test_25_12.csv'),
+df_control_chart_test_data = pd.read_csv(Path(__file__).with_name('test_25_12.csv'),
                              index_col='sample')
 
 
@@ -262,7 +262,7 @@ test_25_12_csv = pd.read_csv(Path(__file__).with_name('test_25_12.csv'),
                    if constructor is cc.X])
 @mark.parametrize('subgroup_size', [None, 2])
 def test_X(column, expected, subgroup_size):
-    X = cc.X(test_25_12_csv[[column]], subgroup_size=subgroup_size)
+    X = cc.X(df_control_chart_test_data[[column]], subgroup_size=subgroup_size)
     assert X.sigma == approx(expected['sigma'])
     assert X.ucl == approx(expected['ucl'])
     assert X.sigmas[+2] == approx(expected['+2sigma'])
@@ -299,7 +299,7 @@ def test_X(column, expected, subgroup_size):
                    if constructor is cc.mR])
 @mark.parametrize('subgroup_size', [None, 2])
 def test_mR(column, expected, subgroup_size):
-    mR = cc.mR(test_25_12_csv[[column]], subgroup_size=subgroup_size)
+    mR = cc.mR(df_control_chart_test_data[[column]], subgroup_size=subgroup_size)
     assert mR.sigma == approx(expected['sigma'])
     assert mR.ucl == approx(expected['ucl'])
     assert mR.mean == approx(expected['average'])
@@ -329,7 +329,7 @@ def test_mR(column, expected, subgroup_size):
                    in minitab_control.items()
                    if constructor is cc.Xbar])
 def test_Xbar(columns, expected):
-    xbar = cc.Xbar(test_25_12_csv.loc[:, columns])
+    xbar = cc.Xbar(df_control_chart_test_data.loc[:, columns])
     assert xbar.ucl == approx(expected['ucl'])
     assert xbar.mean == approx(expected['average'])
     assert xbar.lcl == approx(expected['lcl'])
@@ -361,7 +361,7 @@ def test_Xbar(columns, expected):
                    in minitab_control.items()
                    if constructor is cc.R])
 def test_R(columns, expected):
-    R = cc.R(test_25_12_csv.loc[:, columns])
+    R = cc.R(df_control_chart_test_data.loc[:, columns])
     assert R.ucl == approx(expected['ucl'], rel=1e-4)
     assert R.mean == approx(expected['average'])
     assert R.lcl == approx(expected['lcl'])
