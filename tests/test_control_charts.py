@@ -251,8 +251,10 @@ minitab_control = {
     },
 }
 
-df_control_chart_test_data = pd.read_csv(Path(__file__).with_name('test_25_12.csv'),
-                             index_col='sample')
+df_control_chart_test_data = pd.read_csv(
+    filepath_or_buffer=Path(__file__).with_name("control_chart_test_data.csv"),
+    index_col="sample"
+)
 
 
 @mark.parametrize('column,expected',
@@ -299,7 +301,9 @@ def test_X(column, expected, subgroup_size):
                    if constructor is cc.mR])
 @mark.parametrize('subgroup_size', [None, 2])
 def test_mR(column, expected, subgroup_size):
-    mR = cc.mR(df_control_chart_test_data[[column]], subgroup_size=subgroup_size)
+    mR = cc.mR(
+        df_control_chart_test_data[[column]], subgroup_size=subgroup_size
+    )
     assert mR.sigma == approx(expected['sigma'])
     assert mR.ucl == approx(expected['ucl'])
     assert mR.mean == approx(expected['average'])
