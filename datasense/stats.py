@@ -1789,12 +1789,69 @@ def paired_t(
     *,
     series1: pd.Series,
     series2: pd.Series,
-    significance_level: float = 0.05,
-    alternative_hypothesis: str = "two-sided",
     hypothesized_value: Union[int, float, bool] = None,
+    alternative_hypothesis: str = "two-sided",
+    significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
 ) -> Tuple[float, float]:
+    """
+    Two-sample t test.
+
+    - Parametric statistics are calculated for each sample.
+    - Non-parametric statistics are calculated for each sample.
+    - The assumption for normality of each sample is evaluted.
+        - Shapiro-Wilk, a parametric test
+        - Anderson-Darling, a non-parametric test
+    - The homogeneity of variance of the samples is evaluated.
+        - Bartlett, a parametric test
+        - Levene, a non-parametric test
+
+    Parameters
+    ----------
+    series1 : pd.Series
+        The first series of data, with a name.
+    series2 : pd.Series
+        The second series of data, with a name.
+    hypothesized_value : Union[int, float, bool] = None
+        The hypothesized value for the test.
+    alternative_hypothesis : str = "two-sided",
+        The alternative hypothesis for the paired t test.
+        "two-sided" the average of the differences are not zero or some
+        hypothesized value
+        "less" the average of the differences are less than zero or some
+        hypothesized value
+        "greater" the average of the differences are greater than zero or some
+        hypothesized value
+    significance_level : float = 0.05
+        The significance level for rejecting the null hypothesis.
+    width : int = 7
+        The width for the formatted number.
+    decimals : int = 3
+        The number of decimal places for the formatted number.
+
+    Returns
+    -------
+    t_test_statistic : float
+        The calculated t statistic for the hypothesis.
+    t_test_p_value : float
+        The calculated p value for the calculated t statistic.
+    shapiro_wilk_test_statistic : float
+        The Shapiro-Wilk calculated t statistic.
+    shapiro_wilk_p_value : float
+        The Shapiro-Wilk calculated p value for the calculated t statistic.
+    ad_test_statistic : float
+        The Anderson-Darling calculated t statistic.
+    ad_critical_values[2] : float
+        The Anderson-Darling calculated p value for the calculated t statistic
+        at alpha = 0.05.
+    kolmogorov_smirnov_test_statistic : float
+        The Kolmogorov-Smirnov calculated t statistic.
+    kolmogorov_smirnov_test_pvalue : float
+        The Komogorov-Smirnov calculated p value for the calculated
+        t statistic.
+
+    """
     print(
         "The paired-sample t test is used to determine whether the average "
         "of the differences between two paired samples differs from zero or "
