@@ -1903,6 +1903,71 @@ def paired_t(
         The Komogorov-Smirnov calculated p value for the calculated
         t statistic.
 
+    Examples
+    --------
+    Example 1
+    Ho: The population average of the differences equals zero.
+    Ha: The population average of the differences does not equal zero.
+    >>> import datasense as ds
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="two-sided"
+    >>> )
+
+    Example 2
+    Ho: The population average of the differences equals zero.
+    Ha: The population average of the differences is less than zero.
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="less"
+    >>> )
+
+    Example 3
+    Ho: The population average of the differences equals zero.
+    Ha: The population average of the differences is greater than zero.
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="greater"
+    >>> )
+
+    Example 4
+    Ho: The population average of the differences equals d.
+    Ha: The population average of the differences does not equal d.
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="two-sided"
+    >>>     hypothesized_value=hypothesized_value
+    >>> )
+
+    Example 5
+    Ho: The population average of the differences equals d.
+    Ha: The population average of the differences is less than d.
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="less",
+    >>>     hypothesized_value=hypothesized_value
+    >>> )
+
+    Example 6
+    Ho: The population average of the differences equals d.
+    Ha: The population average of the differences is greater than d.
+    >>> paired_t_result = ds.paired_t(
+    >>>     series1=series1,
+    >>>     series2=series2,
+    >>>     significance_level=significance_level,
+    >>>     alternative_hypothesis="greater",
+    >>>     hypothesized_value=hypothesized_value
+    >>> )
     """
     print(
         "The paired-sample t test is used to determine whether the average "
