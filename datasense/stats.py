@@ -863,12 +863,26 @@ def one_sample_t(
 
     Returns
     -------
-    t statistic : float
-        The t statistic for the hypothesis.
-    p value : float
-        The p value for the t statistic.
+    t_test_result.statistic : float
+        The calculated t statistic for the hypothesis.
+    t_test_result.pvalue : float
+        The calculated p value for the calculated t statistic.
     power : float
         The power of the t test.
+    shapiro_wilk_test_statistic : float
+        The Shapiro-Wilk calculated t statistic.
+    shapiro_wilk_p_value : float
+        The Shapiro-Wilk calculated p value for the calculated t statistic.
+    ad_test_statistic : float
+        The Anderson-Darling calculated t statistic.
+    ad_critical_values[2] : float
+        The Anderson-Darling calculated p value for the calculated t statistic
+        at alpha = 0.05.
+    kolmogorov_smirnov_test_statistic : float
+        The Kolmogorov-Smirnov calculated t statistic.
+    kolmogorov_smirnov_test_pvalue : float
+        The Komogorov-Smirnov calculated p value for the calculated
+        t statistic.
 
     Examples
     --------
@@ -882,7 +896,6 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # t_test_result is a tuple of t statistic, p value, power of the test
 
     Example 2
     >>> t_test_result = ds.one_sample_t(
@@ -893,7 +906,6 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # t_test_result is a tuple of t statistic, p value, power of the test
 
     Example 3
     >>> t_test_result = ds.one_sample_t(
@@ -904,7 +916,6 @@ def one_sample_t(
     >>>     width=7,
     >>>     significance_level=0.05
     >>> )
-    # t_test_result is a tuple of t statistic, p value, power of the test
     """
     print(
         "The one-sample t test is used to determine if the average of one "
