@@ -892,7 +892,7 @@ def one_sample_t(
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is not equal to the hypothesized value.
     >>> import datasense as ds
-    >>> t_test_result = ds.one_sample_t(
+    >>> one_sample_t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="two-sided",
@@ -904,7 +904,7 @@ def one_sample_t(
     Example 2
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is less than the hypothesized value.
-    >>> t_test_result = ds.one_sample_t(
+    >>> one_sample_t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="less",
@@ -916,7 +916,7 @@ def one_sample_t(
     Example 3
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is greater than the hypothesized value.
-    >>> t_test_result = ds.one_sample_t(
+    >>> one_sample_t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="greater",
