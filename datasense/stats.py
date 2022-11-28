@@ -1533,7 +1533,6 @@ def two_sample_t(
     # end delete
     print("Parametric analysis")
     print()
-    levels = [1, 2]
     n_one = series1.count()
     n_two = series2.count()
     variance_sample_one = statistics.variance(data=series1)
@@ -1560,6 +1559,7 @@ def two_sample_t(
         delta_one_two + t_critical_equal * pooled_standard_deviation *
         math.sqrt(1 / n_one + 1 / n_two)
     )
+    levels = [1, 2]
     for level in levels:
         print(f"Sample {level}")
         print()
@@ -2013,7 +2013,7 @@ def paired_t(
         hypothesized_value = 0
     series_differences = series1 - series2
     series_differences_average = series_differences.mean()
-    degrees_of_freedom = len(series_differences) - 1
+    degrees_of_freedom = series_differences.count() - 1
     series_differences_standard_deviation = series_differences.std()
     t_test_statistic = (
         (series_differences_average - hypothesized_value) *
