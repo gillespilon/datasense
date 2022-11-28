@@ -1267,7 +1267,10 @@ def two_sample_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[float, float, float]:
+) -> Tuple[
+    float, float, float, float, float, float, float, float, float, float,
+    float, float, float, float, float
+]:
     """
     Two-sample t test.
 
@@ -1300,12 +1303,42 @@ def two_sample_t(
 
     Returns
     -------
-    t statistic : float
-        The t statistic for the hypothesis.
-    p value : float
-        The p value for the t statistic.
+    t_test_statistic : float
+        The calculated t statistic for the hypothesis.
+    t_test_p_value : float
+        The calculated p value for the calculated t statistic.
     power : float
         The power of the t test.
+    swstat1 : float
+        The Shapiro-Wilk calculated t statistic for level 1 of the dataset.
+    swpvalue1 : float
+        The Shapiro-Wilk p value for the Shapiro-Wilk calculated t statistic
+        for level 1 of the dataset.
+    swstat2 : float
+        The Shapiro-Wilk calculated t statistic for level 2 of the dataset.
+    swpvalue2 : float
+        The Shapiro-Wilk p value for the Shapiro-Wilk calculated t statistic
+        for level 2 of the dataset.
+    bartlett_test_statistic : float
+        The Bartlett test statistic.
+    bartlett_p_value : float
+        The Bartlett v p value for the Bartlett test statistic.
+    ad_test_statistic_1 : float
+        The Anderson-Darling calculated t statistic for level 1 of the dataset.
+    ad_critical_value_1 : float
+        The Anderson-Darling p value for the Anderson-Darling calculated t
+        statistic for the level 1 of the dataset.
+    ad_test_statistic_2 : float
+        The Anderson-Darling calculated t statistic for level 2 of the dataset.
+    ad_critical_value_2 : float
+        The Anderson-Darling p value for the Anderson-Darling calculated t
+        statistic for the level 2 of the dataset.
+    hypothesis_test_ci_lower_bound : float
+        The lower bound of the confidence interval of the difference in the
+        sample averages.
+    hypothesis_test_ci_upper_bound : float
+        The upper bound of the confidence interval of the difference in the
+        sample averages.
 
     Examples
     --------
