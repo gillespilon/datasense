@@ -832,7 +832,9 @@ def one_sample_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[float, float, float]:
+) -> Tuple[
+    float, float, float, float, float, float, float, float, float, float, float
+]:
     """
     One-sample t test.
 
@@ -887,7 +889,9 @@ def one_sample_t(
     Examples
     --------
     Example 1
-    import datasense as ds
+    Ho: the average of the sample is equal to the hypothesized value.
+    Ha: the average of the sample is not equal to the hypothesized value.
+    >>> import datasense as ds
     >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
@@ -898,6 +902,8 @@ def one_sample_t(
     >>> )
 
     Example 2
+    Ho: the average of the sample is equal to the hypothesized value.
+    Ha: the average of the sample is less than the hypothesized value.
     >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
@@ -908,6 +914,8 @@ def one_sample_t(
     >>> )
 
     Example 3
+    Ho: the average of the sample is equal to the hypothesized value.
+    Ha: the average of the sample is greater than the hypothesized value.
     >>> t_test_result = ds.one_sample_t(
     >>>     series=series,
     >>>     hypothesized_value=hypothesized_value,
@@ -1343,8 +1351,8 @@ def two_sample_t(
     Examples
     --------
     Example 1
+    Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is not equal to the average of sample two.
-    alternative = "two-sided"
     >>> import datasense as ds
     >>> ds.two_sample_t(
     >>>     series1=series1,
@@ -1354,8 +1362,8 @@ def two_sample_t(
     >>> )
 
     Example 2
+    Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is less than the average of sample two.
-    alternative = "less than"
     >>> ds.two_sample_t(
     >>>     series1=series1,
     >>>     series2=series2,
@@ -1364,8 +1372,8 @@ def two_sample_t(
     >>> )
 
     Example 3
+    Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is greater than the average of sample three.
-    alternative = "greater than"
     >>> ds.two_sample_t(
     >>>     series1=series1,
     >>>     series2=series2,
