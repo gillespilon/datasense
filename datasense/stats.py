@@ -1354,7 +1354,7 @@ def two_sample_t(
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is not equal to the average of sample two.
     >>> import datasense as ds
-    >>> ds.two_sample_t(
+    >>> two_sample_t_test_result = ds.two_sample_t(
     >>>     series1=series1,
     >>>     series2=series2,
     >>>     alternative_hypothesis="two-sided",
@@ -1364,7 +1364,7 @@ def two_sample_t(
     Example 2
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is less than the average of sample two.
-    >>> ds.two_sample_t(
+    >>> two_sample_t_test_result = ds.two_sample_t(
     >>>     series1=series1,
     >>>     series2=series2,
     >>>     alternative_hypothesis="less",
@@ -1374,7 +1374,7 @@ def two_sample_t(
     Example 3
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is greater than the average of sample three.
-    >>> ds.two_sample_t(
+    >>> two_sample_t_test_result = ds.two_sample_t(
     >>>     series1=series1,
     >>>     series2=series2,
     >>>     alternative_hypothesis="greater",
