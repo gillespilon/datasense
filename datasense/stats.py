@@ -2057,6 +2057,16 @@ def paired_t(
             x=math.fabs(t_test_statistic),
             df=degrees_of_freedom
         ) * 2
+        hypothesis_test_ci_lower_bound = (
+            series_differences_average -
+            t_critical_two_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
+        hypothesis_test_ci_upper_bound = (
+            series_differences_average +
+            t_critical_two_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
         power = TTestPower().power(
             effect_size=math.fabs(
                 (series_differences_average - hypothesized_value) /
@@ -2091,6 +2101,12 @@ def paired_t(
         t_test_p_value = 1 - stats.t.sf(
             x=(t_test_statistic),
             df=degrees_of_freedom
+        )
+        hypothesis_test_ci_lower_bound = "N/A"
+        hypothesis_test_ci_upper_bound = (
+            series_differences_average +
+            t_critical_one_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
         )
         power = TTestPower().power(
             effect_size=math.fabs(
@@ -2127,6 +2143,12 @@ def paired_t(
             x=(t_test_statistic),
             df=degrees_of_freedom
         )
+        hypothesis_test_ci_lower_bound = (
+            series_differences_average -
+            t_critical_one_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
+        hypothesis_test_ci_upper_bound = "N/A"
         power = TTestPower().power(
             effect_size=math.fabs(
                 (series_differences_average - hypothesized_value) /
@@ -2287,6 +2309,24 @@ def paired_t(
         "hypothesized difference              : "
         f"{hypothesized_value:{width}.{decimals}f}"
     )
+    if alternative_hypothesis == "two-sided":
+        print(
+            "confidence interval                  : "
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+        )
+    elif alternative_hypothesis == "less":
+        print(
+            "confidence interval                  : "
+            f"{hypothesis_test_ci_lower_bound}, "
+            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+        )
+    else:
+        print(
+            "confidence interval                  : "
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound}"
+        )
     print(
         "standard deviation of the differences: "
         f"{series_differences_standard_deviation:{width}.{decimals}f}"
