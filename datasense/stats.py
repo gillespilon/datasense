@@ -1922,8 +1922,9 @@ def paired_t(
     >>> paired_t_result = ds.paired_t(
     >>>     series1=series1,
     >>>     series2=series2,
-    >>>     significance_level=significance_level,
-    >>>     alternative_hypothesis="less"
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="less",
+    >>>     significance_level=significance_level
     >>> )
 
     Example 3
@@ -1932,8 +1933,9 @@ def paired_t(
     >>> paired_t_result = ds.paired_t(
     >>>     series1=series1,
     >>>     series2=series2,
-    >>>     significance_level=significance_level,
-    >>>     alternative_hypothesis="greater"
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="greater",
+    >>>     significance_level=significance_level
     >>> )
 
     Example 4
@@ -1942,9 +1944,9 @@ def paired_t(
     >>> paired_t_result = ds.paired_t(
     >>>     series1=series1,
     >>>     series2=series2,
+    >>>     hypothesized_value=hypothesized_value,
+    >>>     alternative_hypothesis="two-sided",
     >>>     significance_level=significance_level,
-    >>>     alternative_hypothesis="two-sided"
-    >>>     hypothesized_value=hypothesized_value
     >>> )
 
     Example 5
@@ -1953,9 +1955,9 @@ def paired_t(
     >>> paired_t_result = ds.paired_t(
     >>>     series1=series1,
     >>>     series2=series2,
-    >>>     significance_level=significance_level,
+    >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="less",
-    >>>     hypothesized_value=hypothesized_value
+    >>>     significance_level=significance_level
     >>> )
 
     Example 6
@@ -1964,9 +1966,9 @@ def paired_t(
     >>> paired_t_result = ds.paired_t(
     >>>     series1=series1,
     >>>     series2=series2,
-    >>>     significance_level=significance_level,
+    >>>     hypothesized_value=hypothesized_value,
     >>>     alternative_hypothesis="greater",
-    >>>     hypothesized_value=hypothesized_value
+    >>>     significance_level=significance_level
     >>> )
     """
     print(
@@ -2017,7 +2019,7 @@ def paired_t(
     series_differences_standard_deviation = series_differences.std()
     t_test_statistic = (
         (series_differences_average - hypothesized_value) *
-        math.sqrt(len(series_differences)) /
+        math.sqrt(series_differences.count()) /
         series_differences_standard_deviation
     )
     t_critical_two_tail = stats.t.isf(
@@ -2055,6 +2057,15 @@ def paired_t(
             x=math.fabs(t_test_statistic),
             df=degrees_of_freedom
         ) * 2
+        power = TTestPower().power(
+            effect_size=math.fabs(
+                (series_differences_average - hypothesized_value) /
+                series_differences_standard_deviation
+            ),
+            nobs=series_differences.count(),
+            alpha=significance_level,
+            alternative=alternative_hypothesis_for_power
+        )
     elif alternative_hypothesis == "less":
         alternative_hypothesis_for_power = "smaller"
         message_ho =\
@@ -2081,6 +2092,15 @@ def paired_t(
             x=(t_test_statistic),
             df=degrees_of_freedom
         )
+        power = TTestPower().power(
+            effect_size=math.fabs(
+                (series_differences_average - hypothesized_value) /
+                series_differences_standard_deviation
+            ),
+            nobs=series_differences.count(),
+            alpha=significance_level,
+            alternative=alternative_hypothesis_for_power
+        )
     elif alternative_hypothesis == "greater":
         alternative_hypothesis_for_power = "larger"
         message_ho =\
@@ -2106,6 +2126,15 @@ def paired_t(
         t_test_p_value = stats.t.sf(
             x=(t_test_statistic),
             df=degrees_of_freedom
+        )
+        power = TTestPower().power(
+            effect_size=math.fabs(
+                (series_differences_average - hypothesized_value) /
+                series_differences_standard_deviation
+            ),
+            nobs=series_differences.count(),
+            alpha=significance_level,
+            alternative=alternative_hypothesis_for_power
         )
     print("Parametric analysis")
     print()
@@ -2279,6 +2308,10 @@ def paired_t(
     print(
         "t test p value                       : "
         f"{t_test_p_value:{width}.{decimals}f}"
+    )
+    print(
+        "t test power                         : "
+        f"{power:{width}.{decimals}f}"
     )
     if t_test_p_value < significance_level:
         print(message_ha)
