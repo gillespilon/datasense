@@ -1846,7 +1846,7 @@ def paired_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[float, float]:
+) -> Tuple[float, float, float, float, float, float, float, float]:
     """
     Two-sample t test.
 
