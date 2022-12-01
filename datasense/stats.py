@@ -1850,6 +1850,10 @@ def paired_t(
     """
     Two-sample t test.
 
+    The two samples of a paired t test arise from any circumstance in which
+    each data point in one sample is uniquely matched to a data point in the
+    second sample. Paired samples are also called dependent samples.
+
     - Parametric statistics are calculated for each sample.
     - Non-parametric statistics are calculated for each sample.
     - The assumption for normality of each sample is evaluted.
