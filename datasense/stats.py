@@ -1850,7 +1850,8 @@ def paired_t(
         float, float, float, float, float, float, float, float, float, float
 ]:
     """
-    Two-sample t test.
+    Two-sample t test. It is a one-sample t test for the average of the
+    pairwise differences.
 
     The two samples of a paired t test arise from any circumstance in which
     each data point in one sample is uniquely matched to a data point in the
@@ -1858,12 +1859,15 @@ def paired_t(
 
     - Parametric statistics are calculated for each sample.
     - Non-parametric statistics are calculated for each sample.
-    - The assumption for normality of each sample is evaluted.
+    - The assumption for normality of each sample is evaluated.
         - Shapiro-Wilk, a parametric test
         - Anderson-Darling, a non-parametric test
-    - The homogeneity of variance of the samples is evaluated.
-        - Bartlett, a parametric test
-        - Levene, a non-parametric test
+        - Kolmogorov-Smirnov, a non-parametric test
+
+    The paired t test has the following assumptions:
+    - The data must be paired.
+    - The differences must be independent of each other.
+    - The differences follow a normal distribution.
 
     Parameters
     ----------
@@ -1875,12 +1879,12 @@ def paired_t(
         The hypothesized value for the test.
     alternative_hypothesis : str = "two-sided",
         The alternative hypothesis for the paired t test.
-        "two-sided" the average of the differences are not zero or some
-        hypothesized value
+        "two-sided" the average of the differences are not equal to zero or
+        some hypothesized value.
         "less" the average of the differences are less than zero or some
-        hypothesized value
+        hypothesized value.
         "greater" the average of the differences are greater than zero or some
-        hypothesized value
+        hypothesized value.
     significance_level : float = 0.05
         The significance level for rejecting the null hypothesis.
     width : int = 7
@@ -1908,6 +1912,13 @@ def paired_t(
     kolmogorov_smirnov_test_pvalue : float
         The Komogorov-Smirnov calculated p value for the calculated
         t statistic.
+    hypothesis_test_ci_lower_bound
+        The lower value of the confidence interval of the average of the
+        differences.
+    hypothesis_test_ci_upper_bound
+        The upper value of the confidence interval of the average of the
+        differences.
+
 
     Examples
     --------
