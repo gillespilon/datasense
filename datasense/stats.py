@@ -1846,7 +1846,9 @@ def paired_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[float, float, float, float, float, float, float, float]:
+) -> Tuple[
+        float, float, float, float, float, float, float, float, float, float
+    ]:
     """
     Two-sample t test.
 
@@ -2366,7 +2368,8 @@ def paired_t(
         t_test_statistic, t_test_p_value,
         shapiro_wilk_test_statistic, shapiro_wilk_p_value,
         ad_test_statistic, ad_critical_values[2],
-        kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue
+        kolmogorov_smirnov_test_statistic, kolmogorov_smirnov_test_pvalue,
+        hypothesis_test_ci_lower_bound, hypothesis_test_ci_upper_bound
     )
 
 
