@@ -1848,7 +1848,7 @@ def paired_t(
     decimals: int = 3
 ) -> Tuple[
         float, float, float, float, float, float, float, float, float, float
-    ]:
+]:
     """
     Two-sample t test.
 
@@ -2036,7 +2036,6 @@ def paired_t(
         q=significance_level,
         df=degrees_of_freedom
     )
-    print()
     if alternative_hypothesis == "two-sided":
         alternative_hypothesis_for_power = "two-sided"
         message_ho =\
@@ -2108,7 +2107,16 @@ def paired_t(
             x=(t_test_statistic),
             df=degrees_of_freedom
         )
-        hypothesis_test_ci_lower_bound = "N/A"
+        hypothesis_test_ci_lower_bound = (
+            series_differences_average -
+            t_critical_one_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
+        hypothesis_test_ci_upper_bound = (
+            series_differences_average +
+            t_critical_one_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
         hypothesis_test_ci_upper_bound = (
             series_differences_average +
             t_critical_one_tail * series_differences_standard_deviation /
@@ -2154,7 +2162,11 @@ def paired_t(
             t_critical_one_tail * series_differences_standard_deviation /
             math.sqrt(series_differences.count())
         )
-        hypothesis_test_ci_upper_bound = "N/A"
+        hypothesis_test_ci_upper_bound = (
+            series_differences_average +
+            t_critical_one_tail * series_differences_standard_deviation /
+            math.sqrt(series_differences.count())
+        )
         power = TTestPower().power(
             effect_size=math.fabs(
                 (series_differences_average - hypothesized_value) /
@@ -2324,14 +2336,14 @@ def paired_t(
     elif alternative_hypothesis == "less":
         print(
             "confidence interval                  : "
-            f"{hypothesis_test_ci_lower_bound}, "
+            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
             f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
         )
     else:
         print(
             "confidence interval                  : "
             f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound}"
+            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
         )
     print(
         "standard deviation of the differences: "
