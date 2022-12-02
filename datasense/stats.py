@@ -271,7 +271,7 @@ def cubic_spline(
     >>> )
     >>> plt.show()
     """
-    df = df.dropna(subset=[abscissa, ordinate])
+    df = df[df[[abscissa, ordinate]].notna().all(axis="columns")]
     df = df.sort_values(by=abscissa, axis="rows", ascending=True)
     df = df.drop_duplicates(subset=abscissa, keep="first")
     print(df)
