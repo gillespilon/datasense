@@ -651,7 +651,7 @@ def process_rows(
     rows_empty_count: 0
     """
     rows_in_count = df.shape[0]
-    df = df.dropna(axis='rows', how='all').drop_duplicates()
+    df = df.drop_duplicates()
     rows_out_count = df.shape[0]
     rows_empty_count = rows_in_count - rows_out_count
     return (df, rows_in_count, rows_out_count, rows_empty_count)
