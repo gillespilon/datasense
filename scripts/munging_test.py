@@ -31,7 +31,7 @@ def main():
     print('test dataframe_info')
     print('test example 1')
     my_file = 'myfile.csv'
-    df = ds.read_file(my_file)
+    df = ds.read_file(file_name=my_file)
     df = ds.dataframe_info(
         df=df,
         file_in=my_file
@@ -137,7 +137,9 @@ def main():
     print('test process_rows')
     print('test example')
     df = ds.create_dataframe()
-    df, rows_in_count, rows_out_count, rows_empty_count = ds.process_rows(df)
+    df, rows_in_count, rows_out_count, rows_empty_count = ds.process_rows(
+        df=df
+    )
     print('rows_in_count   :', rows_in_count)
     print('rows_out_count  :', rows_out_count)
     print('rows_empty_count:', rows_empty_count)
