@@ -1864,7 +1864,7 @@ def replace_column_values(
     # )
     list_from_series = s.to_list()
     list_transformed = [replace_dict.get(x, x) for x in list_from_series]
-    s = pd.Series(data=list_transformed).astype(dtype='str')
+    s = pd.Series(data=list_transformed).astype(dtype='object')
     return s
 
 
@@ -2523,8 +2523,8 @@ def parameters_text_replacement(
     else:
         tuples = tuple(
             zip(
-                df[usecols[0]].astype(dtype='str'),
-                df[usecols[1]].astype(dtype='str')
+                df[usecols[0]].astype(dtype='object'),
+                df[usecols[1]].astype(dtype='object')
             )
         )
     return tuples
