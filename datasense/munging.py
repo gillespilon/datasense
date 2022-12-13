@@ -2736,7 +2736,11 @@ def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def delete_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
+def delete_empty_columns(
+    *,
+    df: pd.DataFrame,
+    list_empty_columns: Union[List[str], None] = None
+) -> pd.DataFrame:
     """
     Delete empty columns
 
@@ -2750,10 +2754,19 @@ def delete_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
     df : pd.DataFrame
         The output DataFrame.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
     >>> import datasense as ds
     >>> df = ds.delete_empty_columns(df=df)
+
+    Example 2
+    ---------
+    >>> list_empty_columns = ["mixed", "nan_none"])
+    >>> df = ds.delete_empty_columns(
+    >>>    df=df,
+    >>>    list_empty_columns=list_empty_columns
+    >>> )
 
     Notes
     -----
@@ -2770,10 +2783,17 @@ def delete_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
         "",
         np.NaN,
         regex=True
-    ).dropna(
-        axis="columns",
-        how="all"
     )
+    if list_empty_columns:
+        df = df.drop(
+            list_empty_columns,
+            axis="columns"
+        )
+    else:
+        df = df.dropna(
+            axis="columns",
+            how="all"
+        )
     return df
 
 
