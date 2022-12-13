@@ -651,7 +651,7 @@ def process_rows(
     rows_empty_count: 0
     """
     rows_in_count = df.shape[0]
-    df = df.drop_duplicates()
+    # df = delete_empty_rows(df=df).drop_duplicates()
     rows_out_count = df.shape[0]
     rows_empty_count = rows_in_count - rows_out_count
     return (df, rows_in_count, rows_out_count, rows_empty_count)
@@ -2682,6 +2682,60 @@ def mask_outliers(
     return pd.DataFrame(data=df)
 
 
+def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Delete empty rows
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input DataFrame.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output DataFrame.
+
+    Example
+    -------
+    import datasense as ds
+    df = ds.delete_empty_rows(df=df)
+
+    Notes
+    -----
+    The following code also works, should dropna not work.
+
+    Delete rows where all elements are missing in all columns.
+    df.loc[~(df.shape[1] == df.isna().sum(axis=1)), :]
+
+    Delete rows where all elements are missing, in specific columns.
+    df.dropna(
+        how="all",
+        subset=specific_columns
+    )
+
+    Delete rows where all elements are missing, in specific columns.
+    df.loc[
+        ~((df[look_in_columns].isna().sum(axis=1)) ==
+          (len(specific_columns))),
+        :
+    ]
+    """
+    df = df.replace(
+        r"^\s*$",
+        np.NaN,
+        regex=True
+    ).replace(
+        "",
+        np.NaN,
+        regex=True
+    ).dropna(
+        axis="index",
+        how="all"
+    )
+    return df
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "list_directories_within_directory",
@@ -2710,6 +2764,7 @@ __all__ = (
     "find_float_columns",
     "remove_punctuation",
     "print_list_by_item",
+    "delete_empty_rows",
     "find_bool_columns",
     "create_dataframe",
     "create_directory",
