@@ -428,7 +428,7 @@ def number_empty_cells_in_columns(
     num_rows = df.shape[0]
     for column_name in df:
         try:
-            sum_nan = sum(pd.isnull(df[column_name]))
+            sum_nan = sum(pd.isna(df[column_name]))
             percent_nan = round(sum_nan / num_rows * 100, 1)
             table.rows.append(
                 [column_name,
@@ -579,7 +579,7 @@ def process_columns(
     """
     columns_empty_list = sorted({
         column_name for column_name in df.columns
-        if df[column_name].isnull().all()
+        if df[column_name].isna().all()
     })
     columns_in_count = len(df.columns)
     columns_empty_count = len(columns_empty_list)
@@ -651,7 +651,7 @@ def process_rows(
     rows_empty_count: 0
     """
     rows_in_count = df.shape[0]
-    # df = delete_empty_rows(df=df).drop_duplicates()
+    df = delete_empty_rows(df=df).drop_duplicates()
     rows_out_count = df.shape[0]
     rows_empty_count = rows_in_count - rows_out_count
     return (df, rows_in_count, rows_out_count, rows_empty_count)
