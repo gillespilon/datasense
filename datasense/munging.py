@@ -2748,6 +2748,11 @@ def delete_empty_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
+    list_empty_columns : Union[List[str], None] = None
+        A list of empty columns to delete. The code does not check if these
+        columns are empty, but assumes they are.
+
+    TODO: Check that the columns in list_empty_columns are empty.
 
     Returns
     -------
