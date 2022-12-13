@@ -584,7 +584,7 @@ def process_columns(
     columns_in_count = len(df.columns)
     columns_empty_count = len(columns_empty_list)
     columns_non_empty_count = columns_in_count - columns_empty_count
-    df = df.drop(columns_empty_list, axis='columns')
+    df = df.drop(columns_empty_list, axis="columns")
     # ensure all column labels are strings
     df.columns = [str(column) for column in df.columns]
     columns_non_empty_list = sorted(df.columns)
@@ -1790,7 +1790,7 @@ def rename_all_columns(
     """
     df = df.set_axis(
         labels=labels,
-        axis='columns'
+        axis="columns"
     )
     return df
 
@@ -2698,8 +2698,8 @@ def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
 
     Example
     -------
-    import datasense as ds
-    df = ds.delete_empty_rows(df=df)
+    >>> import datasense as ds
+    >>> df = ds.delete_empty_rows(df=df)
 
     Notes
     -----
@@ -2736,6 +2736,47 @@ def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def delete_empty_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Delete empty columns
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The input DataFrame.
+
+    Returns
+    -------
+    df : pd.DataFrame
+        The output DataFrame.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> df = ds.delete_empty_columns(df=df)
+
+    Notes
+    -----
+    The following code also works, should dropna not work.
+
+    Delete columns where all elements are missing.
+    df.loc[:, ~df.isna().all()]
+    """
+    df = df.replace(
+        r"^\s*$",
+        np.NaN,
+        regex=True
+    ).replace(
+        "",
+        np.NaN,
+        regex=True
+    ).dropna(
+        axis="columns",
+        how="all"
+    )
+    return df
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "list_directories_within_directory",
@@ -2754,8 +2795,9 @@ __all__ = (
     "find_datetime_columns",
     "list_one_list_two_ops",
     "series_replace_string",
-    "replace_text_numbers",
+    "delete_empty_columns",
     "directory_file_print",
+    "replace_text_numbers",
     "directory_file_list",
     "find_object_columns",
     "rename_some_columns",
