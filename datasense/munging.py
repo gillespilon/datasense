@@ -2790,10 +2790,21 @@ def delete_empty_columns(
         regex=True
     )
     if list_empty_columns:
-        df = df.drop(
-            list_empty_columns,
-            axis="columns"
-        )
+        if (
+            len(list_empty_columns) * df.shape[0] ==
+            df[list_empty_columns].isna().sum().sum()
+        ):
+            df = df.drop(
+                list_empty_columns,
+                axis="columns"
+            )
+        else:
+            print(
+                "One or more of the columns in the submitted list were not "
+                "empty. None of the columns in the submitted list were "
+                "deleted."
+            )
+            print()
     else:
         df = df.dropna(
             axis="columns",
