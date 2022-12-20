@@ -584,7 +584,14 @@ def process_columns(
     columns_in_count = len(df.columns)
     columns_empty_count = len(columns_empty_list)
     columns_non_empty_count = columns_in_count - columns_empty_count
-    df = df.drop(columns_empty_list, axis="columns")
+    # df = df.drop(
+    #     labels=columns_empty_list,
+    #     axis="columns"
+    # )
+    df = delete_empty_columns(
+        df=df,
+        list_empty_columns=columns_empty_list
+    )
     # ensure all column labels are strings
     df.columns = [str(column) for column in df.columns]
     columns_non_empty_list = sorted(df.columns)
