@@ -2802,7 +2802,7 @@ def delete_empty_columns(
             df[list_empty_columns].isna().sum().sum()
         ):
             df = df.drop(
-                list_empty_columns,
+                labels=list_empty_columns,
                 axis="columns"
             )
         else:
