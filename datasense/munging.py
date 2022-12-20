@@ -2689,7 +2689,10 @@ def mask_outliers(
     return pd.DataFrame(data=df)
 
 
-def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
+def delete_empty_rows(
+    df: pd.DataFrame,
+    list_columns: Union[List[str], None] = None
+) -> pd.DataFrame:
     """
     Delete empty rows
 
@@ -2697,16 +2700,28 @@ def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
     ----------
     df : pd.DataFrame
         The input DataFrame.
+    list_columns : Union[List[str], None] = None
+        A list of columns to use to determine if row elements are empty.
 
     Returns
     -------
     df : pd.DataFrame
         The output DataFrame.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
     >>> df = ds.delete_empty_rows(df=df)
+
+    Example 2
+    ---------
+    >>> list_columns = ["column_x", "column_y", "column_z"]
+    >>> df = ds.delete_empty_rows(
+    >>>     df=df,
+    >>>     list_columns=list_columns
+    >>> )
 
     Notes
     -----
@@ -2736,10 +2751,17 @@ def delete_empty_rows(df: pd.DataFrame) -> pd.DataFrame:
         "",
         np.NaN,
         regex=True
-    ).dropna(
-        axis="index",
-        how="all"
     )
+    if list_columns:
+        df = df.dropna(
+            axis="index",
+            subset=list_columns
+        )
+    else:
+        df = df.dropna(
+            axis="index",
+            how="all"
+        )
     return df
 
 
