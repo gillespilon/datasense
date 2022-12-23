@@ -1875,7 +1875,7 @@ def replace_column_values(
     return s
 
 
-def directory_file_list(
+def list_files(
     *,
     directory: Union[str, Path],
     patterns: List[str] = None
@@ -1901,7 +1901,7 @@ def directory_file_list(
     ---------
     >>> patterns = ['.pdf']
     >>> import datasense as ds
-    >>> files = ds.directory_file_list(
+    >>> files = ds.list_files(
     >>>     directory=path,
     >>>     patterns=patterns
     >>> )
@@ -1910,7 +1910,7 @@ def directory_file_list(
     ---------
     >>> patterns = ['.PDF']
     >>> import datasense as ds
-    >>> files = ds.directory_file_list(
+    >>> files = ds.list_files(
     >>>     directory=path,
     >>>     patterns=patterns
     >>> )
@@ -1919,7 +1919,7 @@ def directory_file_list(
     ---------
     >>> patterns = ['.pdf', '.PDF']
     >>> import datasense as ds
-    >>> files = ds.directory_file_list(
+    >>> files = ds.list_files(
     >>>     directory=path,
     >>>     patterns=patterns
     >>> )
@@ -1928,7 +1928,7 @@ def directory_file_list(
     ---------
     >>> # Return all files within a directory
     >>> import datasense as ds
-    >>> files = ds.directory_file_list(
+    >>> files = ds.list_files(
     >>>     directory=path
     >>> )
     """
@@ -2844,7 +2844,6 @@ def delete_empty_columns(
 
 __all__ = (
     "listone_contains_all_listtwo_substrings",
-    "list_directories",
     "number_empty_cells_in_columns",
     "parameters_dict_replacement",
     "parameters_text_replacement",
@@ -2863,7 +2862,6 @@ __all__ = (
     "delete_empty_columns",
     "directory_file_print",
     "replace_text_numbers",
-    "directory_file_list",
     "find_object_columns",
     "rename_some_columns",
     "ask_directory_path",
@@ -2878,6 +2876,7 @@ __all__ = (
     "delete_directory",
     "find_int_columns",
     "list_change_case",
+    "list_directories",
     "rename_directory",
     "process_columns",
     "copy_directory",
@@ -2887,6 +2886,7 @@ __all__ = (
     "mask_outliers",
     "process_rows",
     "delete_rows",
+    "list_files",
     "byte_size",
     "get_mtime",
     "file_size",
