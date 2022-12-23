@@ -258,7 +258,7 @@ def test_directory_file_print():
     pass
 
 
-def test_directory_file_list():
+def test_list_files():
     pass
 
 
