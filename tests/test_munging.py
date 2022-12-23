@@ -53,7 +53,7 @@ def test_listone_contains_all_listtwo_substrings():
     pass
 
 
-def test_list_directories_within_directory():
+def test_list_directories():
     pass
 
 
