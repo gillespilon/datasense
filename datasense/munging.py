@@ -2242,7 +2242,7 @@ def series_replace_string(
     return series
 
 
-def list_directories_within_directory(
+def list_directories(
     *,
     path: Union[str, Path]
 ) -> List[str]:
@@ -2262,7 +2262,7 @@ def list_directories_within_directory(
     Example
     -------
     >>> import datasense as ds
-    >>> directory_list = ds.list_directories_within_directory(
+    >>> directory_list = ds.list_directories(
     >>>     path='directory_companies'
     >>> )
     """
@@ -2844,7 +2844,7 @@ def delete_empty_columns(
 
 __all__ = (
     "listone_contains_all_listtwo_substrings",
-    "list_directories_within_directory",
+    "list_directories",
     "number_empty_cells_in_columns",
     "parameters_dict_replacement",
     "parameters_text_replacement",
