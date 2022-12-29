@@ -1878,7 +1878,7 @@ def replace_column_values(
 def list_files(
     *,
     directory: Union[str, Path],
-    patterns: List[str] = None
+    pattern_extension: Union[List[str], Tuple[str], None] = None
 ) -> List[Path]:
     """
     Return a list of files within a directory.
@@ -1887,7 +1887,7 @@ def list_files(
     ----------
     directory : Union[str, Path]
         The path of the directory.
-    patterns : List[str] = None
+    pattern_extension : Union[List[str], Tuple[str], None] = None
         The file extensions to use for finding files in the path.
 
     Returns
@@ -1899,29 +1899,29 @@ def list_files(
     --------
     Example 1
     ---------
-    >>> patterns = ['.pdf']
     >>> import datasense as ds
+    >>> pattern_extension = ['.pdf']
     >>> files = ds.list_files(
     >>>     directory=path,
-    >>>     patterns=patterns
+    >>>     pattern_extension=pattern_extension
     >>> )
 
     Example 2
     ---------
-    >>> patterns = ['.PDF']
     >>> import datasense as ds
+    >>> pattern_extension = ['.PDF']
     >>> files = ds.list_files(
     >>>     directory=path,
-    >>>     patterns=patterns
+    >>>     pattern_extension=pattern_extension
     >>> )
 
     Example 3
     ---------
-    >>> patterns = ['.pdf', '.PDF']
     >>> import datasense as ds
+    >>> pattern_extension = ['.pdf', '.PDF']
     >>> files = ds.list_files(
     >>>     directory=path,
-    >>>     patterns=patterns
+    >>>     pattern_extension=pattern_extension
     >>> )
 
     Example 4
@@ -1933,14 +1933,17 @@ def list_files(
     >>> )
     """
     directory = Path(directory)
-    if not patterns:
-        files = [
-            x for x in directory.iterdir()
-        ]
-    else:
-        files = [
-            x for x in directory.iterdir() if x.suffix in patterns
-        ]
+    files = [f for f in directory.iterdir()]
+    if pattern_extension:
+        files = [f for f in files if f.suffix in pattern_extension]
+    # if not pattern_extension:
+    #     files = [
+    #         x for x in directory.iterdir()
+    #     ]
+    # else:
+    #     files = [
+    #         x for x in directory.iterdir() if x.suffix in pattern_extension
+    #     ]
     return files
 
 
