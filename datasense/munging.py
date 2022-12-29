@@ -1903,16 +1903,12 @@ def list_files(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> pattern_extension = ['.pdf']
-    >>> files = ds.list_files(
-    >>>     directory=path,
-    >>>     pattern_extension=pattern_extension
-    >>> )
+    >>> files = ds.list_files(directory=path)
 
     Example 2
     ---------
     >>> import datasense as ds
-    >>> pattern_extension = ['.PDF']
+    >>> pattern_extension = [".html", ".HTML"]
     >>> files = ds.list_files(
     >>>     directory=path,
     >>>     pattern_extension=pattern_extension
@@ -1921,18 +1917,12 @@ def list_files(
     Example 3
     ---------
     >>> import datasense as ds
-    >>> pattern_extension = ['.pdf', '.PDF']
+    >>> pattern_extension = [".html", ".HTML"]
+    >>> pattern_startswith = ["job_aid"]
     >>> files = ds.list_files(
     >>>     directory=path,
-    >>>     pattern_extension=pattern_extension
-    >>> )
-
-    Example 4
-    ---------
-    >>> # Return all files within a directory
-    >>> import datasense as ds
-    >>> files = ds.list_files(
-    >>>     directory=path
+    >>>     pattern_extension=pattern_extension,
+    >>>     pattern_startswith=pattern_startswith
     >>> )
     """
     directory = Path(directory)
