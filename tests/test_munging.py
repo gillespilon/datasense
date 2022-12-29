@@ -1,5 +1,7 @@
 import warnings
 
+from pathlib import Path, PosixPath
+
 import datasense as ds
 import pandas as pd
 import numpy as np
@@ -259,7 +261,42 @@ def test_directory_file_print():
 
 
 def test_list_files():
-    pass
+    pattern_extension = [".html", ".HTML"]
+    pattern_startswith = ["job_aid"]
+    path = Path("dir_files")
+    result1 = ds.list_files(directory=path)
+    expected1 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML'),
+        PosixPath('dir_files/job_aid_file_one.mkd'),
+        PosixPath('dir_files/job_aid_file_two.MKD'),
+        PosixPath('dir_files/file_one.html'),
+        PosixPath('dir_files/file_two.HTML'),
+        PosixPath('dir_files/file_one.mkd'),
+        PosixPath('dir_files/file_two.MKD')
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_files(
+        directory=path,
+        pattern_extension=pattern_extension
+    )
+    expected2 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML'),
+        PosixPath('dir_files/file_one.html'),
+        PosixPath('dir_files/file_two.HTML')
+    ]
+    assert set(result2) == set(expected2)
+    result3 = ds.list_files(
+        directory=path,
+        pattern_extension=pattern_extension,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML')
+    ]
+    assert set(result3) == set(expected3)
 
 
 def test_find_object_columns():
