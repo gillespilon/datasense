@@ -56,7 +56,26 @@ def test_listone_contains_all_listtwo_substrings():
 
 
 def test_list_directories():
-    pass
+    pattern_startswith = ["job_aids"]
+    path = "dir_directories"
+    result1 = ds.list_directories(path=path)
+    expected1 = [
+        'cheatsheet_directory', 'another_directory', 'job_aids_directory'
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected2 = ['job_aids_directory']
+    assert set(result2) == set(expected2)
+    pattern_startswith = ["job_aids", "cheatsheet"]
+    result3 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = ['cheatsheet_directory', 'job_aids_directory']
+    assert set(result3) == set(expected3)
 
 
 def test_number_empty_cells_in_columns():
