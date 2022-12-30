@@ -2235,7 +2235,8 @@ def series_replace_string(
 
 def list_directories(
     *,
-    path: Union[str, Path]
+    path: Union[str, Path],
+    pattern_startswith: Union[List[str], Tuple[str], None] = None
 ) -> List[str]:
     """
     Return a list of directories found within a path.
@@ -2244,22 +2245,50 @@ def list_directories(
     ----------
     path : Union[str, Path]
         The path of the enclosing directory.
+    pattern_startswith : Union[List[str], Tuple[str], None] = None
+        The string for determining if a directory start with this string.
 
     Returns
     -------
     directory_list : List[str]
         A list of directories.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
+    >>> path = <your path>
+    >>> directory_list = ds.list_directories(path=path)
+
+    Example 2
+    ---------
+    >>> import datasense as ds
+    >>> path = <your path>
+    >>> pattern_startswith = ["job aids"]
     >>> directory_list = ds.list_directories(
-    >>>     path='directory_companies'
+    >>>     path=path,
+    >>>     pattern_startswith=pattern_startswith
+    >>> )
+
+    Example 3
+    ---------
+    >>> import datasense as ds
+    >>> path = <your path>
+    >>> pattern_startswith = ["job aids", "cheatsheet"]
+    >>> directory_list = ds.list_directories(
+    >>>     path=path,
+    >>>     pattern_startswith=pattern_startswith
     >>> )
     """
     path = Path(path)
-    directory_list = [item.name for item in path.iterdir() if item.is_dir()]
-    return directory_list
+    directories = [d.name for d in path.iterdir() if d.is_dir()]
+    if pattern_startswith:
+        pattern_startswith = tuple(pattern_startswith)
+        directories = [
+            d for d in directories if d.startswith(pattern_startswith)
+        ]
+    return directories
 
 
 def remove_punctuation(
