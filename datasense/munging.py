@@ -246,7 +246,7 @@ def find_float_columns(
 
     Returns
     -------
-    columns_float : List[str]
+    float_columns : List[str]
         A list of float column names.
 
     Example
@@ -275,7 +275,7 @@ def find_integer_columns(
 
     Returns
     -------
-    columns_int : List[str]
+    integer_columns : List[str]
         A list of integer column names.
 
     Example
@@ -337,7 +337,7 @@ def find_object_columns(
 
     Returns
     -------
-    columns_object : List[str]
+    object_columns : List[str]
         A list of object column names.
 
     Example
@@ -348,8 +348,8 @@ def find_object_columns(
     >>> print(columns_object)
     ['r', 's']
     """
-    columns_object = list(df.select_dtypes(include=['object']).columns)
-    return columns_object
+    object_columns = df.select_dtypes(include=['object']).columns.tolist()
+    return object_columns
 
 
 def find_timedelta_columns(
@@ -2997,7 +2997,7 @@ def optimize_objects(
     >>> )
     """
     if not object_columns:
-        object_columns = df.select_dtypes(include=["object"]).columns.tolist()
+        object_columns = find_object_columns(df=df)
     for column in object_columns:
         num_unique_values = len(df[column].unique())
         num_total_values = len(df[column])
