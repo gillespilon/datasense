@@ -2889,6 +2889,33 @@ def optimize_floats(
     return df
 
 
+def optimize_integers(
+    df: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Downcast integer columns
+
+    Paramaeter
+    ---------
+    df : pd.DataFrame
+        The DataFrame that contains one or more integer columns.
+
+    Returns
+    ------
+    df : pd.DataFrame
+        The DataFrame with all integer columns downcast and other columns
+        unchanged.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> df = ds.optimize_integers(df=df)
+    """
+    integers = df.select_dtypes(include=["int64"]).columns.tolist()
+    df[integers] = df[integers].apply(pd.to_numeric, downcast="integer")
+    return df
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -2918,6 +2945,7 @@ __all__ = (
     "print_list_by_item",
     "delete_empty_rows",
     "find_bool_columns",
+    "optimize_integers",
     "create_dataframe",
     "create_directory",
     "delete_directory",
