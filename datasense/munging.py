@@ -2864,7 +2864,7 @@ def delete_empty_columns(
     return df
 
 
-def optimize_floats(
+def optimiza_float_columnss(
     df: pd.DataFrame,
     float_columns: Union[List[float]] = None
 ) -> pd.DataFrame:
@@ -2889,12 +2889,12 @@ def optimize_floats(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_floats(df=df)
+    >>> df = ds.optimiza_float_columnss(df=df)
 
     Example 2
     ---------
     >>> float_columns = ["column A", "column B"]
-    >>> df = ds.optimize_floats(
+    >>> df = ds.optimiza_float_columnss(
     >>>     df=df,
     >>>     float_columns=float_columns
     >>> )
@@ -3018,6 +3018,7 @@ __all__ = (
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
     "ask_open_file_name_path",
+    "optimiza_float_columnss",
     "find_int_float_columns",
     "find_timedelta_columns",
     "create_dataframe_norm",
@@ -3048,7 +3049,6 @@ __all__ = (
     "list_directories",
     "optimize_objects",
     "rename_directory",
-    "optimize_floats",
     "process_columns",
     "copy_directory",
     "dataframe_info",
