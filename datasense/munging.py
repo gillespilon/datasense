@@ -2907,7 +2907,7 @@ def optimize_float_columns(
     return df
 
 
-def optimize_integers(
+def optimize_integer_columns(
     df: pd.DataFrame,
     integer_columns: Union[List[str], None] = None
 ) -> pd.DataFrame:
@@ -2932,12 +2932,12 @@ def optimize_integers(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_integers(df=df)
+    >>> df = ds.optimize_integer_columns(df=df)
 
     Example 2
     ---------
     >>> integer_columns = ["column A", "column B"]
-    >>> df = ds.optimize_integers(
+    >>> df = ds.optimize_integer_columns(
     >>>     df=df,
     >>>     integer_columns=integer_columns
     >>> )
@@ -2978,12 +2978,12 @@ def optimize_objects(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_integers(df=df)
+    >>> df = ds.optimize_integer_columns(df=df)
 
     Example 2
     ---------
     >>> fraction_categories = 0.25
-    >>> df = ds.optimize_integers(
+    >>> df = ds.optimize_integer_columns(
     >>>     df=df,
     >>>     fraction_categories = fraction_categories
     >>> )
@@ -3017,6 +3017,7 @@ __all__ = (
     "parameters_dict_replacement",
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
+    "optimize_integer_columns",
     "ask_open_file_name_path",
     "find_int_float_columns",
     "find_timedelta_columns",
@@ -3041,7 +3042,6 @@ __all__ = (
     "print_list_by_item",
     "delete_empty_rows",
     "find_bool_columns",
-    "optimize_integers",
     "create_dataframe",
     "create_directory",
     "delete_directory",
