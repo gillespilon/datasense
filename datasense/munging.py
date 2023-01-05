@@ -2906,6 +2906,8 @@ def optimize_integers(
     df : pd.DataFrame
         The DataFrame with all integer columns downcast and other columns
         unchanged.
+    integer_columns : Union[List[str], None] = None
+        A list of integer columns to downcast.
 
     Examples
     --------
