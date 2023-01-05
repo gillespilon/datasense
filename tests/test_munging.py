@@ -414,7 +414,7 @@ def test_delete_directory():
     pass
 
 
-def test_find_int_columns():
+def test_find_integer_columns():
     pass
 
 
