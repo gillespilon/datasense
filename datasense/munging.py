@@ -2950,6 +2950,7 @@ def optimize_integers(
 
 def optimize_objects(
     df: pd.DataFrame,
+    object_columns: Union[List[str], None] = None,
     fraction_categories: Union[int, None] = 0.5
 ) -> pd.DataFrame:
     """
@@ -2959,6 +2960,8 @@ def optimize_objects(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
+    object_columns : Union[List[str], None] = None
+        A list of object columns to downcast.
     fraction_categories : Union[int, None] = 0.5
         The fraction of categories in an object column.
 
@@ -2982,13 +2985,22 @@ def optimize_objects(
     >>>     df=df,
     >>>     fraction_categories = fraction_categories
     >>> )
+
+    Example 3
+    ---------
+    >>> object_columns = ["column A", "column B"]
+    >>> df = df.optimize_objects(
+    >>>     df=df,
+    >>>     object_columns=object_columns
+    >>> )
     """
-    objects = df.select_dtypes(include=["object"]).columns.tolist()
-    for col in objects:
-        num_unique_values = len(df[col].unique())
-        num_total_values = len(df[col])
+    if not object_columns:
+        object_columns = df.select_dtypes(include=["object"]).columns.tolist()
+    for column in object_columns:
+        num_unique_values = len(df[column].unique())
+        num_total_values = len(df[column])
         if float(num_unique_values) / num_total_values < fraction_categories:
-            df[col] = df[col].astype(
+            df[column] = df[column].astype(
                 CategoricalDtype(
                     categories=None,
                     ordered=False
