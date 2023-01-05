@@ -2890,7 +2890,8 @@ def optimize_floats(
 
 
 def optimize_integers(
-    df: pd.DataFrame
+    df: pd.DataFrame,
+    integer_columns: Union[List[str], None] = None
 ) -> pd.DataFrame:
     """
     Downcast integer columns
@@ -2906,13 +2907,23 @@ def optimize_integers(
         The DataFrame with all integer columns downcast and other columns
         unchanged.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
     >>> df = ds.optimize_integers(df=df)
+
+    Example 2
+    ---------
+    >>> integer_columns = ["column A", "column B"]
+    >>> df = ds.optimize_integers(df=df, integer_columns=integer_columns)
     """
-    integers = df.select_dtypes(include=["int64"]).columns.tolist()
-    df[integers] = df[integers].apply(pd.to_numeric, downcast="integer")
+    if not integer_columns:
+        integer_columns = df.select_dtypes(include=["int64"]).columns.tolist()
+    df[integer_columns] = (
+        df[integer_columns].apply(pd.to_numeric, downcast="integer")
+    )
     return df
 
 
