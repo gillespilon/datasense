@@ -2862,6 +2862,33 @@ def delete_empty_columns(
     return df
 
 
+def optimize_floats(
+    df: pd.DataFrame
+) -> pd.DataFrame:
+    """
+    Downcast float columns
+
+    Paramaeter
+    ---------
+    df : pd.DataFrame
+        The DataFrame that contains one or more float columns.
+
+    Returns
+    ------
+    df : pd.DataFrame
+        The DataFrame with all float columns downcast and other columns
+        unchanged.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> df = ds.optimize_floats(df=df)
+    """
+    floats = df.select_dtypes(include=["float64"]).columns.tolist()
+    df[floats] = df[floats].apply(pd.to_numeric, downcast="float")
+    return df
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -2898,6 +2925,7 @@ __all__ = (
     "list_change_case",
     "list_directories",
     "rename_directory",
+    "optimize_floats",
     "process_columns",
     "copy_directory",
     "dataframe_info",
