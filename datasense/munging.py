@@ -2950,7 +2950,7 @@ def optimize_integer_columns(
     return df
 
 
-def optimize_objects(
+def optimize_object_columns(
     df: pd.DataFrame,
     object_columns: Union[List[str], None] = None,
     fraction_categories: Union[int, None] = 0.5
@@ -2991,7 +2991,7 @@ def optimize_objects(
     Example 3
     ---------
     >>> object_columns = ["column A", "column B"]
-    >>> df = df.optimize_objects(
+    >>> df = df.optimize_object_columns(
     >>>     df=df,
     >>>     object_columns=object_columns
     >>> )
@@ -3018,6 +3018,7 @@ __all__ = (
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
     "optimize_integer_columns",
+    "optimize_object_columns",
     "ask_open_file_name_path",
     "find_int_float_columns",
     "find_timedelta_columns",
@@ -3047,7 +3048,6 @@ __all__ = (
     "delete_directory",
     "list_change_case",
     "list_directories",
-    "optimize_objects",
     "rename_directory",
     "process_columns",
     "copy_directory",
