@@ -2863,7 +2863,8 @@ def delete_empty_columns(
 
 
 def optimize_floats(
-    df: pd.DataFrame
+    df: pd.DataFrame,
+    float_columns: Union[List[float]] = None
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -2878,14 +2879,29 @@ def optimize_floats(
     df : pd.DataFrame
         The DataFrame with all float columns downcast and other columns
         unchanged.
+    float_columns : Union[List[str], None] = None
+        A list of float columns to downcast.
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
     >>> import datasense as ds
     >>> df = ds.optimize_floats(df=df)
+
+    Example 2
+    ---------
+    >>> float_columns = ["column A", "column B"]
+    >>> df = ds.optimize_floats(
+    >>>     df=df,
+    >>>     float_columns=float_columns
+    >>> )
     """
-    floats = df.select_dtypes(include=["float64"]).columns.tolist()
-    df[floats] = df[floats].apply(pd.to_numeric, downcast="float")
+    if not float_columns:
+        float_columns = df.select_dtypes(include=["float64"]).columns.tolist()
+    df[float_columns] = (
+        df[float_columns].apply(pd.to_numeric, downcast="float")
+    )
     return df
 
 
@@ -2900,14 +2916,14 @@ def optimize_integers(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
+    integer_columns : Union[List[str], None] = None
+        A list of integer columns to downcast.
 
     Returns
     ------
     df : pd.DataFrame
         The DataFrame with all integer columns downcast and other columns
         unchanged.
-    integer_columns : Union[List[str], None] = None
-        A list of integer columns to downcast.
 
     Examples
     --------
@@ -2919,7 +2935,10 @@ def optimize_integers(
     Example 2
     ---------
     >>> integer_columns = ["column A", "column B"]
-    >>> df = ds.optimize_integers(df=df, integer_columns=integer_columns)
+    >>> df = ds.optimize_integers(
+    >>>     df=df,
+    >>>     integer_columns=integer_columns
+    >>> )
     """
     if not integer_columns:
         integer_columns = df.select_dtypes(include=["int64"]).columns.tolist()
