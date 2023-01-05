@@ -286,7 +286,7 @@ def find_int_columns(
     >>> print(columns_int)
     ['y']
     """
-    columns_int = list(df.select_dtypes(include=['int64', 'Int64']).columns)
+    columns_int = df.select_dtypes(include=['int64', 'Int64']).columns.tolist()
     return columns_int
 
 
