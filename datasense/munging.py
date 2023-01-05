@@ -261,7 +261,7 @@ def find_float_columns(
     return columns_float
 
 
-def find_int_columns(
+def find_integer_columns(
     *,
     df: pd.DataFrame
 ) -> List[str]:
@@ -282,7 +282,7 @@ def find_int_columns(
     -------
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
-    >>> columns_int = ds.find_int_columns(df=df)
+    >>> columns_int = ds.find_integer_columns(df=df)
     >>> print(columns_int)
     ['y']
     """
@@ -605,7 +605,7 @@ def process_columns(
     columns_datetime_count = len(columns_datetime_list)
     columns_float_list = find_float_columns(df=df)
     columns_float_count = len(columns_float_list)
-    columns_integer_list = find_int_columns(df=df)
+    columns_integer_list = find_integer_columns(df=df)
     columns_integer_count = len(columns_integer_list)
     columns_object_list = find_object_columns(df=df)
     columns_object_count = len(columns_object_list)
@@ -2943,7 +2943,7 @@ def optimize_integers(
     >>> )
     """
     if not integer_columns:
-        integer_columns = df.select_dtypes(include=["int64"]).columns.tolist()
+        integer_columns = find_integer_columns(df=df)
     df[integer_columns] = (
         df[integer_columns].apply(pd.to_numeric, downcast="integer")
     )
@@ -3030,6 +3030,7 @@ __all__ = (
     "series_replace_string",
     "delete_empty_columns",
     "directory_file_print",
+    "find_integer_columns",
     "replace_text_numbers",
     "find_object_columns",
     "rename_some_columns",
@@ -3044,7 +3045,6 @@ __all__ = (
     "create_dataframe",
     "create_directory",
     "delete_directory",
-    "find_int_columns",
     "list_change_case",
     "list_directories",
     "optimize_objects",
