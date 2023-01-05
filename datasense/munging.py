@@ -286,8 +286,10 @@ def find_int_columns(
     >>> print(columns_int)
     ['y']
     """
-    columns_int = df.select_dtypes(include=['int64', 'Int64']).columns.tolist()
-    return columns_int
+    integer_columns = (
+        df.select_dtypes(include=['int64', 'Int64']).columns.tolist()
+    )
+    return integer_columns
 
 
 def find_int_float_columns(
