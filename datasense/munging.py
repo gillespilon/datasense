@@ -2916,6 +2916,55 @@ def optimize_integers(
     return df
 
 
+def optimize_objects(
+    df: pd.DataFrame,
+    fraction_categories: Union[int, None] = 0.5
+) -> pd.DataFrame:
+    """
+    Downcast object columns
+
+    Paramaeter
+    ---------
+    df : pd.DataFrame
+        The DataFrame that contains one or more integer columns.
+    fraction_categories : Union[int, None] = 0.5
+        The fraction of categories in an object column.
+
+    Returns
+    ------
+    df : pd.DataFrame
+        The DataFrame with all object columns downcast and other columns
+        unchanged.
+
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> df = ds.optimize_integers(df=df)
+
+    Example 2
+    ---------
+    >>> fraction_categories = 0.25
+    >>> df = ds.optimize_integers(
+    >>>     df=df,
+    >>>     fraction_categories = fraction_categories
+    >>> )
+    """
+    objects = df.select_dtypes(include=["object"]).columns.tolist()
+    for col in objects:
+        num_unique_values = len(df[col].unique())
+        num_total_values = len(df[col])
+        if float(num_unique_values) / num_total_values < fraction_categories:
+            df[col] = df[col].astype(
+                CategoricalDtype(
+                    categories=None,
+                    ordered=False
+                )
+            )
+    return df
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -2952,6 +3001,7 @@ __all__ = (
     "find_int_columns",
     "list_change_case",
     "list_directories",
+    "optimize_objects",
     "rename_directory",
     "optimize_floats",
     "process_columns",
