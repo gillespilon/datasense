@@ -257,8 +257,8 @@ def find_float_columns(
     >>> print(columns_float)
     ['a', 'i', 'x', 'z']
     """
-    columns_float = list(df.select_dtypes(include=['float64']).columns)
-    return columns_float
+    float_columns = df.select_dtypes(include=['float64']).columns.tolist()
+    return float_columns
 
 
 def find_integer_columns(
@@ -2900,7 +2900,7 @@ def optimize_floats(
     >>> )
     """
     if not float_columns:
-        float_columns = df.select_dtypes(include=["float64"]).columns.tolist()
+        float_columns = find_float_columns(df=df)
     df[float_columns] = (
         df[float_columns].apply(pd.to_numeric, downcast="float")
     )
@@ -3030,7 +3030,6 @@ __all__ = (
     "series_replace_string",
     "delete_empty_columns",
     "directory_file_print",
-    "find_integer_columns",
     "replace_text_numbers",
     "find_object_columns",
     "rename_some_columns",
