@@ -2875,14 +2875,14 @@ def optimize_float_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more float columns.
+    float_columns : Union[List[str], None] = None
+        A list of float columns to downcast.
 
     Returns
     ------
     df : pd.DataFrame
         The DataFrame with all float columns downcast and other columns
         unchanged.
-    float_columns : Union[List[str], None] = None
-        A list of float columns to downcast.
 
     Examples
     --------
@@ -3011,6 +3011,67 @@ def optimize_object_columns(
     return df
 
 
+def optimize_columns(
+    df: pd.DataFrame,
+    float_columns: Union[List[float]] = None,
+    integer_columns: Union[List[str], None] = None,
+    object_columns: Union[List[str], None] = None,
+    fraction_categories: Union[int, None] = 0.5
+) -> pd.DataFrame:
+    """
+    Downcast float columns
+
+    Paramaeter
+    ---------
+    df : pd.DataFrame
+        The DataFrame.
+    float_columns : Union[List[str], None] = None
+        A list of float columns to downcast.
+    integer_columns : Union[List[str], None] = None
+        A list of integer columns to downcast.
+    object_columns : Union[List[str], None] = None
+        A list of object columns to downcast.
+    fraction_categories : Union[int, None] = 0.5
+        The fraction of categories in an object column.
+
+    Returns
+    ------
+    df : pd.DataFrame
+        The DataFrame with all columns downcast where possible or requested.
+
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> df = ds.optimize_columns(df=df)
+
+    Example 2
+    ---------
+    >>> df = ds.optimize_columns(
+    >>>     df=df,
+    >>>     float_columns=["latitude", "longitude"],
+    >>>     integer_columns=[
+    >>>         "calculated_host_listings_count", "availability_365"
+    >>>     ],
+    >>>     object_columns=["last_review"],
+    >>>     fraction_categories=0.2
+    >>> )
+    """
+    return (
+        optimize_float_columns(
+            optimize_integer_columns(
+                optimize_object_columns(
+                    df,
+                    object_columns,
+                    fraction_categories
+                ),
+                integer_columns),
+            float_columns
+        )
+    )
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -3048,6 +3109,7 @@ __all__ = (
     "delete_directory",
     "list_change_case",
     "list_directories",
+    "optimize_columns",
     "rename_directory",
     "process_columns",
     "copy_directory",
