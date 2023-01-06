@@ -217,7 +217,7 @@ def find_datetime_columns(
 
     Returns
     -------
-    columns_datetime : List[str]
+    datetime_columns : List[str]
         A list of datetime column names.
 
     Example
@@ -228,8 +228,8 @@ def find_datetime_columns(
     >>> print(columns_datetime)
     ['t', 'u']
     """
-    columns_datetime = list(df.select_dtypes(include=['datetime64']).columns)
-    return columns_datetime
+    datetime_columns = list(df.select_dtypes(include=['datetime64']).columns)
+    return datetime_columns
 
 
 def find_float_columns(
@@ -3011,10 +3011,54 @@ def optimize_object_columns(
     return df
 
 
+def optimize_datetime_columns(
+    df: pd.DataFrame,
+    datetime_columns: Union[List[float]] = None
+) -> pd.DataFrame:
+    """
+    Cast object and datetime columns to pandas datetime. It does not reduce
+    memory usage, but enables time-based operations.
+
+    Paramaeter
+    ---------
+    df : pd.DataFrame
+        The DataFrame that contains one or more datetime columns.
+    datetime_columns : Union[List[str], None] = None
+        A list of datetime columns to cast.
+
+    Returns
+    ------
+    df : pd.DataFrame
+        The DataFrame with all datetime columns cast and other columns
+        unchanged.
+
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> df = ds.optimize_integer_columns(df=df)
+
+    Example 2
+    ---------
+    >>> integer_columns = ["column A", "column B"]
+    >>> df = ds.optimize_integer_columns(
+    >>>     df=df,
+    >>>     datetime_columns=datetime_columns
+    >>> )
+    """
+    if not datetime_columns:
+        datetime_columns = find_datetime_columns(df=df)
+    for column in datetime_columns:
+        df[column] = pd.to_datetime(df[column])
+    return df
+
+
 def optimize_columns(
     df: pd.DataFrame,
     float_columns: Union[List[float]] = None,
     integer_columns: Union[List[str], None] = None,
+    datetime_columns: Union[List[str], None] = None,
     object_columns: Union[List[str], None] = None,
     fraction_categories: Union[int, None] = 0.5
 ) -> pd.DataFrame:
@@ -3048,6 +3092,15 @@ def optimize_columns(
 
     Example 2
     ---------
+    If using the default values, it is important to identify object columns
+    that should be datetime columns in order to get the correct answer.
+    >>> df = ds.optimize_columns(
+    >>>     df=df,
+    >>>     datetime_columns=datetime_columns,
+    >>> )
+
+    Example 3
+    ---------
     >>> float_columns = ["column_A", "column_B"]
     >>> integer_columns = ["column_C", "column_D"]
     >>> object_columns = ["column_E", "column_F"]
@@ -3055,22 +3108,29 @@ def optimize_columns(
     >>>     df=df,
     >>>     float_columns=float_columns,
     >>>     integer_columns=integer_columns,
+    >>>     datetime_columns=datetime_columns,
     >>>     object_columns=object_columns,
     >>>     fraction_categories=0.2
     >>> )
     """
-    return (
-        optimize_float_columns(
-            optimize_integer_columns(
-                optimize_object_columns(
-                    df,
-                    object_columns,
-                    fraction_categories
-                ),
-                integer_columns),
-            float_columns
-        )
+    df = optimize_float_columns(
+        df=df,
+        float_columns=float_columns
     )
+    df = optimize_integer_columns(
+        df=df,
+        integer_columns=integer_columns
+    )
+    df = optimize_datetime_columns(
+        df=df,
+        datetime_columns=datetime_columns
+    )
+    df = optimize_object_columns(
+        df=df,
+        fraction_categories=fraction_categories,
+        object_columns=object_columns
+    )
+    return df
 
 
 __all__ = (
@@ -3079,6 +3139,7 @@ __all__ = (
     "parameters_dict_replacement",
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
+    "optimize_datetime_columns",
     "optimize_integer_columns",
     "optimize_object_columns",
     "ask_open_file_name_path",
