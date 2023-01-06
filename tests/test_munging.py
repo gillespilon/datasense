@@ -94,7 +94,19 @@ def test_ask_save_as_file_name_path():
     pass
 
 
+def test_optimize_integer_columns():
+    pass
+
+
 def test_ask_open_file_name_path():
+    pass
+
+
+def test_optimize_object_columns():
+    pass
+
+
+def test_optimize_float_columns():
     pass
 
 
@@ -275,47 +287,12 @@ def test_replace_text_numbers():
     pass
 
 
-def test_directory_file_print():
+def test_find_integer_columns():
     pass
 
 
-def test_list_files():
-    pattern_extension = [".html", ".HTML"]
-    pattern_startswith = ["job_aid"]
-    path = Path("dir_files")
-    result1 = ds.list_files(directory=path)
-    expected1 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML'),
-        PosixPath('dir_files/job_aid_file_one.mkd'),
-        PosixPath('dir_files/job_aid_file_two.MKD'),
-        PosixPath('dir_files/file_one.html'),
-        PosixPath('dir_files/file_two.HTML'),
-        PosixPath('dir_files/file_one.mkd'),
-        PosixPath('dir_files/file_two.MKD')
-    ]
-    assert set(result1) == set(expected1)
-    result2 = ds.list_files(
-        directory=path,
-        pattern_extension=pattern_extension
-    )
-    expected2 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML'),
-        PosixPath('dir_files/file_one.html'),
-        PosixPath('dir_files/file_two.HTML')
-    ]
-    assert set(result2) == set(expected2)
-    result3 = ds.list_files(
-        directory=path,
-        pattern_extension=pattern_extension,
-        pattern_startswith=pattern_startswith
-    )
-    expected3 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML')
-    ]
-    assert set(result3) == set(expected3)
+def test_directory_file_print():
+    pass
 
 
 def test_find_object_columns():
@@ -402,6 +379,10 @@ def test_find_bool_columns():
     pass
 
 
+def test_optimize_columns():
+    pass
+
+
 def test_create_dataframe():
     pass
 
@@ -411,10 +392,6 @@ def test_create_directory():
 
 
 def test_delete_directory():
-    pass
-
-
-def test_find_integer_columns():
     pass
 
 
@@ -456,6 +433,45 @@ def test_process_rows():
 
 def test_delete_rows():
     pass
+
+
+def test_list_files():
+    pattern_extension = [".html", ".HTML"]
+    pattern_startswith = ["job_aid"]
+    path = Path("dir_files")
+    result1 = ds.list_files(directory=path)
+    expected1 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML'),
+        PosixPath('dir_files/job_aid_file_one.mkd'),
+        PosixPath('dir_files/job_aid_file_two.MKD'),
+        PosixPath('dir_files/file_one.html'),
+        PosixPath('dir_files/file_two.HTML'),
+        PosixPath('dir_files/file_one.mkd'),
+        PosixPath('dir_files/file_two.MKD')
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_files(
+        directory=path,
+        pattern_extension=pattern_extension
+    )
+    expected2 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML'),
+        PosixPath('dir_files/file_one.html'),
+        PosixPath('dir_files/file_two.HTML')
+    ]
+    assert set(result2) == set(expected2)
+    result3 = ds.list_files(
+        directory=path,
+        pattern_extension=pattern_extension,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = [
+        PosixPath('dir_files/job_aid_file_one.html'),
+        PosixPath('dir_files/job_aid_file_two.HTML')
+    ]
+    assert set(result3) == set(expected3)
 
 
 def test_byte_size():
