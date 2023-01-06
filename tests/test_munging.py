@@ -94,6 +94,10 @@ def test_ask_save_as_file_name_path():
     pass
 
 
+def test_optimize_datetime_columns():
+    pass
+
+
 def test_optimize_integer_columns():
     pass
 
