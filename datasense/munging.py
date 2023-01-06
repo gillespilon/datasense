@@ -3048,13 +3048,14 @@ def optimize_columns(
 
     Example 2
     ---------
+    >>> float_columns = ["column_A", "column_B"]
+    >>> integer_columns = ["column_C", "column_D"]
+    >>> object_columns = ["column_E", "column_F"]
     >>> df = ds.optimize_columns(
     >>>     df=df,
-    >>>     float_columns=["latitude", "longitude"],
-    >>>     integer_columns=[
-    >>>         "calculated_host_listings_count", "availability_365"
-    >>>     ],
-    >>>     object_columns=["last_review"],
+    >>>     float_columns=float_columns,
+    >>>     integer_columns=integer_columns,
+    >>>     object_columns=object_columns,
     >>>     fraction_categories=0.2
     >>> )
     """
