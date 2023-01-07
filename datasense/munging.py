@@ -11,6 +11,7 @@ from tkinter import Tk
 import textwrap
 import psutil
 import string
+import sys
 import os
 
 from datasense import random_data, timedelta_data, datetime_data
@@ -3167,6 +3168,65 @@ def series_memory_usage(
     return memory_usage
 
 
+def convert_csv_to_feather(
+    paths_in: Union[List[str], Path],
+    paths_out: Union[List[str], Path]
+) -> NoReturn:
+    """
+    Convert list of csv files to feather files
+
+    Parameters
+    ----------
+    paths_in : Union[List[str], Path]
+        List of csv file names or paths.
+    paths_out : Union[List[str], Path]
+        Liat of feather file names or paths.
+
+    Note
+    ----
+    paths_in and paths_out must be of the same length
+
+    Example
+    -------
+    >>> import datasense as ds
+
+    One way to create paths_in:
+    >>> extension_in = [".csv"]
+    >>> paths_in = ds.list_files(
+    >>>     directory=path_csv,
+    >>>     pattern_extension=extension_in
+    >>> )
+
+    One way to create paths_out:
+    >>> extension_out = ".feather"
+    >>> paths_out = [
+    >>>     Path(
+    >>>         directory_feather_files,
+    >>>         paths_in[count].name
+    >>>     ).with_suffix(extension_out)
+    >>>     for count, element in enumerate(paths_in)
+    >>> ]
+
+    Convert csv to feather
+    >>> ds.convert_csv_to_feather(
+    >>>     paths_in=paths_in,
+    >>>     paths_out=paths_out
+    >>> )
+    """
+    try:
+        if len(paths_in) == len(paths_out):
+            pass
+    except Exception:
+        print("Length of paths_in != length of paths_out.")
+        sys.exit()
+    for path_in, path_out in zip(paths_in, paths_out):
+        df = read_file(file_name=path_in)
+        save_file(
+            df=df,
+            file_name=path_out
+        )
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -3177,6 +3237,7 @@ __all__ = (
     "optimize_integer_columns",
     "optimize_object_columns",
     "ask_open_file_name_path",
+    "convert_csv_to_feather",
     "find_int_float_columns",
     "find_timedelta_columns",
     "optimize_float_columns",
