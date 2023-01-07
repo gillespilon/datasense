@@ -778,7 +778,7 @@ def save_file(
         )
         excel_writer.save()
     elif file_name.suffix in ['.feather']:
-        df = ft.write_feather(
+        ft.write_feather(
             df=df,
             dest=file_name
         )
@@ -3133,6 +3133,40 @@ def optimize_columns(
     return df
 
 
+def series_memory_usage(
+    s: pd.Series,
+    suffix: str = "B"
+) -> str:
+    """
+    Determine memory usage of a pandas Series
+
+    Parameters
+    ----------
+    s : pd.Series
+        A pandas Series.
+    suffix : str = "B"
+        The units of the memory usage.
+
+    Returns
+    -------
+    memory_usage : str
+        A string with the value and units of memory usage.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> memory_usage = ds.series_memory_usage(
+    >>>     s=s,
+    >>>     suffix="B"
+    >>> )
+    """
+    memory_usage = byte_size(
+        num=s.memory_usage(index=False),
+        suffix="B"
+    )
+    return memory_usage
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -3159,6 +3193,7 @@ __all__ = (
     "replace_text_numbers",
     "find_object_columns",
     "rename_some_columns",
+    "series_memory_usage",
     "ask_directory_path",
     "rename_all_columns",
     "find_float_columns",
