@@ -2421,9 +2421,11 @@ def linear_regression(
 
     Returns
     -------
-    df_predictions
+    df_predictions : pd.DataFrame
         The DataFrame with the results and the X, Y series from the submitted
         DataFrame.
+    fitted_model : statsmodels.regression.linear_model.OLS
+        The fitted model.
 
     Examples
     --------
