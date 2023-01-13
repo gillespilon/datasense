@@ -2867,7 +2867,7 @@ def delete_empty_columns(
 
 def optimize_float_columns(
     df: pd.DataFrame,
-    float_columns: Union[List[float]] = None
+    float_columns: Union[List[str]] = None
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -3014,7 +3014,7 @@ def optimize_object_columns(
 
 def optimize_datetime_columns(
     df: pd.DataFrame,
-    datetime_columns: Union[List[float]] = None
+    datetime_columns: Union[List[str]] = None
 ) -> pd.DataFrame:
     """
     Cast object and datetime columns to pandas datetime. It does not reduce
@@ -3057,7 +3057,7 @@ def optimize_datetime_columns(
 
 def optimize_columns(
     df: pd.DataFrame,
-    float_columns: Union[List[float]] = None,
+    float_columns: Union[List[str]] = None,
     integer_columns: Union[List[str], None] = None,
     datetime_columns: Union[List[str], None] = None,
     object_columns: Union[List[str], None] = None,
