@@ -2398,79 +2398,73 @@ def paired_t(
 
 def linear_regression(
     *,
-    df: pd.DataFrame,
-    x_column: List[str],
-    y_column: str,
-    prediction_column: str
-) -> pd.DataFrame:
+    X: pd.Series,
+    y: pd.Series,
+    prediction_column: str = "mean",
+    print_model_summary: bool = False
+) -> Tuple[sm.regression.linear_model.OLS, pd.Series]:
     """
     Linear regression with one or more X series and one Y series. The variables
     are integers or floats.
 
     Parameters
     ----------
-    df : pd.DataFrame,
-        The DataFrame of data.
-    x_column : List[str],
-        The list of column names for the X series.
-    y_column : str,
-        The column name for the Y series.
+    X : pd.Series
+        The pandas Series of the independent data.
+    y : pd.Series,
+        The pandas Series of the dependent data.
     prediction_column : str
         The column name for the prediction series. This must match what is
         created by the fit() command in statsmodels.
+    print_model_summary : bool = False
+        Print the model summary.
 
     Returns
     -------
-    df_predictions : pd.DataFrame
-        The DataFrame with the results and the X, Y series from the submitted
-        DataFrame.
-    fitted_model : statsmodels.regression.linear_model.OLS
+    fitted_model : sm.regression.linear_model.OLS
         The fitted model.
+    predictions : pd.Series
+        The pandas Series with the predictions from the model.
 
     Examples
     --------
     Example 1
     >>> import datasense as ds
-    >>> x_column = "x"
-    >>> y_column = "y"
     >>> prediction_column = "mean"
     >>> df_predictions = ds.linear_regression(
-    >>>     df=df,
-    >>>     x_column=[x_column],
-    >>>     y_column=y_column,
-    >>>     prediction_column=prediction_column
+    >>>     X=X,
+    >>>     y=y,
     >>> )
 
     Example 2
-    >>> x_column = ["interest_rate", "unemployment_rate"]
-    >>> y_column = "index_price"
     >>> prediction_column = "mean"
     >>> df_predictions = ds.linear_regression(
     >>>     df=df,
-    >>>     x_column=x_column,
-    >>>     y_column=y_column,
+    >>>     X=X,
+    >>>     y=y,
     >>>     prediction_column=prediction_column
+    >>>     print_model_summary=True
     >>> )
     """
-    x = sm.add_constant(data=df[x_column])
-    y = df[y_column]
+    X = sm.add_constant(data=X)
     fitted_model = sm.OLS(
         endog=y,
-        exog=x,
+        exog=X,
         missing="drop"
     ).fit(
         method="pinv",
         cov_type="nonrobust"
     )
-    print(fitted_model.summary())
-    df_predictions = (
-        fitted_model.get_prediction().summary_frame(alpha=0.05).sort_values(
-            by=prediction_column
-        )
-    )
-    columns = x_column + [y_column]
-    df_predictions = df_predictions.join(other=df[columns])
-    return df_predictions, fitted_model
+    predictions = pd.Series(fitted_model.predict(exog=X))
+    # predictions = (
+    #     fitted_model.get_prediction().summary_frame(alpha=0.05).sort_values(
+    #         by=prediction_column
+    #     )
+    # )
+    if print_model_summary:
+            print(fitted_model.summary())
+            print()
+    return (fitted_model, predictions)
 
 
 __all__ = (
