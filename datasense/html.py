@@ -278,7 +278,7 @@ def script_summary(
     script_path : Path
         The path of the script file.
     action : str = "run"
-        An action message: run, started, finished, etc.
+        An action message: run, started at, finished at, etc.
 
     Examples
     --------
