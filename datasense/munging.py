@@ -12,7 +12,6 @@ import textwrap
 import psutil
 import string
 import sys
-import os
 
 from datasense import random_data, timedelta_data, datetime_data
 from pandas.api.types import CategoricalDtype
@@ -1971,37 +1970,28 @@ def directory_file_print(
     print()
 
 
-def directory_remove_file(
+def delete_list_files(
     *,
-    path: Path,
-    file_names: List[str]
-) -> List[str]:
+    files: Union[List[Path], List[str]]
+) -> NoReturn:
     """
+    Delete a list of files
+
     Parameters
     ----------
-    path : Path
-        The path of the file to remove.
-    file_names : List[str]
+    files : Union[List[Path], List[str]]
         The list of files from which to remove the path.
-
-    Returns
-    -------
-    file_names : List[str]
-        The list of files without the removed path.
 
     Example
     -------
     >>> import datasense as ds
-    >>> file_names = ds.directory_remove_file(
-    >>>     path=path,
-    >>>     file_names=file_names
+    >>> ds.delete_list_files(
+    >>>     files=files,
     >>> )
     """
-    for file in file_names:
-        if path.name in file:
-            os.remove(file)
-            file_names.remove(file)
-    return file_names
+    paths = [Path(file) for file in files]
+    for path in paths:
+        path.unlink()
 
 
 def print_list_by_item(
@@ -3242,7 +3232,6 @@ __all__ = (
     "find_timedelta_columns",
     "optimize_float_columns",
     "create_dataframe_norm",
-    "directory_remove_file",
     "replace_column_values",
     "feature_percent_empty",
     "find_category_columns",
@@ -3261,6 +3250,7 @@ __all__ = (
     "remove_punctuation",
     "print_list_by_item",
     "delete_empty_rows",
+    "delete_list_files",
     "find_bool_columns",
     "create_dataframe",
     "create_directory",
