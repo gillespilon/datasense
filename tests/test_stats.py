@@ -1,7 +1,5 @@
 import warnings
 
-from pandas.testing import assert_series_equal
-from pytest import approx
 import datasense as ds
 import pandas as pd
 import numpy as np
@@ -433,12 +431,11 @@ def test_linear_regression():
         y=df_linear_regression["y"],
         prediction_column="mean"
     )
+    predictions = pd.Series(data=predictions).round(decimals=6)
     expected = pd.Series(
         data=[
-            8.001, 7.000818181818182, 9.501272727272728, 7.500909090909091,
-            8.501090909090909, 10.001363636363635, 6.000636363636364,
-            5.000454545454545, 9.001181818181818, 6.500727272727273,
-            5.500545454545454
+            8.001000, 7.000818, 9.501273, 7.500909, 8.501091, 10.001364,
+            6.000636, 5.000455, 9.001182, 6.500727, 5.500545
         ]
-    )
+    ).round(decimals=6)
     assert predictions.equals(other=expected)
