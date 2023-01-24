@@ -126,7 +126,7 @@ def test_create_dataframe_norm():
     pass
 
 
-def test_directory_remove_file():
+def test_delete_list_files():
     pass
 
 
