@@ -150,7 +150,7 @@ def test_cubic_spline():
 
 
 def test_natural_cubic_spline():
-    pipeline = ds.natural_cubic_spline(
+    pipeline_fit = ds.natural_cubic_spline(
         X=df_linear_regression["X"],
         y=df_linear_regression["y"],
         number_knots=10
@@ -158,9 +158,9 @@ def test_natural_cubic_spline():
     X = ds.random_data(
         size=13,
         random_state=41
-    )
-    out = pipeline.predict(X=X)
-    result = pd.Series(data=out)
+    ).values
+    predictions = pipeline_fit.predict(X=X)
+    result = pd.Series(data=predictions)
     exp = np.array(
         object=[
             -8.449635833832144, -7.369397489579985, -6.950373342494639,
