@@ -17,6 +17,7 @@ import random
 import math
 import sys
 
+from statsmodels.stats.outliers_influence import summary_table
 from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
@@ -2400,12 +2401,14 @@ def linear_regression(
     *,
     X: pd.Series,
     y: pd.Series,
-    prediction_column: str = "mean",
     print_model_summary: bool = False
-) -> Tuple[sm.regression.linear_model.OLS, pd.Series]:
+) -> Tuple[
+        sm.regression.linear_model.OLS, pd.Series, pd.Series, pd.Series,
+        pd.Series, pd.Series
+]:
     """
-    Linear regression with one or more X series and one Y series. The variables
-    are integers or floats.
+    Linear regression of one X series and one Y series. The variables
+    are integers or floats. The X and y values must be sorted by X.
 
     Parameters
     ----------
@@ -2413,9 +2416,6 @@ def linear_regression(
         The pandas Series of the independent data.
     y : pd.Series,
         The pandas Series of the dependent data.
-    prediction_column : str
-        The column name for the prediction series. This must match what is
-        created by the fit() command in statsmodels.
     print_model_summary : bool = False
         Print the model summary.
 
@@ -2425,27 +2425,33 @@ def linear_regression(
         The fitted model.
     predictions : pd.Series
         The pandas Series with the predictions from the model.
+    confidence_interval_lower : pd.Series,
+        The lower confidence interval of the average.
+    confidence_interval_upper : pd.Series,
+        The upper confidence interval of the saverage.
+    prediction_interval_lower : pd.Series,
+        The lower prediction interval of the data.
+    prediction_interval_upper : pd.Series
+        The upper prediction interval of the data.
 
-    Examples
+    Example
     --------
-    Example 1
     >>> import datasense as ds
-    >>> prediction_column = "mean"
-    >>> df_predictions = ds.linear_regression(
+    >>> (
+    >>>     fitted_model, predictions, confidence_interval_lower,
+    >>>     confidence_interval_upper, prediction_interval_lower,
+    >>>     prediction_interval_upper
+    >>> ) = ds.linear_regression(
     >>>     X=X,
-    >>>     y=y,
-    >>> )
-
-    Example 2
-    >>> prediction_column = "mean"
-    >>> df_predictions = ds.linear_regression(
-    >>>     df=df,
-    >>>     X=X,
-    >>>     y=y,
-    >>>     prediction_column=prediction_column
-    >>>     print_model_summary=True
+    >>>     y=y
     >>> )
     """
+    if not X.is_monotonic_increasing:
+        print(
+            "The X and y values are not sorted in increasing order by X. "
+            "The confidence and prediction intervals will not look right "
+            "on the graph."
+        )
     X = sm.add_constant(data=X)
     fitted_model = sm.OLS(
         endog=y,
@@ -2456,15 +2462,21 @@ def linear_regression(
         cov_type="nonrobust"
     )
     predictions = pd.Series(fitted_model.predict(exog=X))
-    # predictions = (
-    #     fitted_model.get_prediction().summary_frame(alpha=0.05).sort_values(
-    #         by=prediction_column
-    #     )
-    # )
+    results, measures, columns = summary_table(fitted_model, alpha=0.05)
+    confidence_interval_lower, confidence_interval_upper = measures[:, 4:6].T
+    confidence_interval_lower = pd.Series(confidence_interval_lower)
+    confidence_interval_upper = pd.Series(confidence_interval_upper)
+    prediction_interval_lower, prediction_interval_upper = measures[:, 6:8].T
+    prediction_interval_lower = pd.Series(prediction_interval_lower)
+    prediction_interval_upper = pd.Series(prediction_interval_upper)
     if print_model_summary:
-            print(fitted_model.summary())
-            print()
-    return (fitted_model, predictions)
+        print(fitted_model.summary())
+        print()
+    return (
+        fitted_model, predictions, confidence_interval_lower,
+        confidence_interval_upper, prediction_interval_lower,
+        prediction_interval_upper
+    )
 
 
 __all__ = (
