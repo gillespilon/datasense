@@ -426,16 +426,19 @@ def test_paired_t():
 
 
 def test_linear_regression():
-    fitted_model, predictions = ds.linear_regression(
+    (
+        fitted_model, predictions, confidence_interval_lower,
+        confidence_interval_upper, prediction_interval_lower,
+        prediction_interval_upper
+    ) = ds.linear_regression(
         X=df_linear_regression["X"],
         y=df_linear_regression["y"],
-        prediction_column="mean"
     )
     predictions = pd.Series(data=predictions).round(decimals=6)
-    expected = pd.Series(
+    expected_predictions = pd.Series(
         data=[
             8.001000, 7.000818, 9.501273, 7.500909, 8.501091, 10.001364,
             6.000636, 5.000455, 9.001182, 6.500727, 5.500545
         ]
     ).round(decimals=6)
-    assert predictions.equals(other=expected)
+    assert predictions.equals(other=expected_predictions)
