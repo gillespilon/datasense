@@ -2399,7 +2399,7 @@ def paired_t(
 
 def linear_regression(
     *,
-    X: pd.Series,
+    X: Union[pd.Series, pd.DataFrame],
     y: pd.Series,
     print_model_summary: bool = False
 ) -> Tuple[
@@ -2446,12 +2446,6 @@ def linear_regression(
     >>>     y=y
     >>> )
     """
-    if not X.is_monotonic_increasing:
-        print(
-            "The X and y values are not sorted in increasing order by X. "
-            "The confidence and prediction intervals will not look right "
-            "on the graph."
-        )
     X = sm.add_constant(data=X)
     fitted_model = sm.OLS(
         endog=y,
