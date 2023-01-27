@@ -24,6 +24,7 @@ def main():
         header_title=HEADER_TITLE,
         header_id=HEADER_ID
     )
+    ds.style_graph()
     data = create_data()
     ds.page_break()
     xbar_chart(df=data)
@@ -157,18 +158,9 @@ def xbar_chart(
         cc=xbar,
         ax=ax
     )
-    ax.set_title(
-        label=xbar_chart_title,
-        fontweight="bold"
-    )
-    ax.set_ylabel(
-        ylabel=xbar_chart_ylabel,
-        fontweight="bold"
-    )
-    ax.set_xlabel(
-        xlabel=xbar_chart_xlabel,
-        fontweight="bold"
-    )
+    ax.set_title(label=xbar_chart_title)
+    ax.set_ylabel(ylabel=xbar_chart_ylabel)
+    ax.set_xlabel(xlabel=xbar_chart_xlabel)
     fig.savefig(fname=f"{graph_file_prefix}_xbar.svg")
     ds.html_figure(file_name=f"{graph_file_prefix}_xbar.svg")
     print(
@@ -234,18 +226,9 @@ def r_chart(
         *cc.points_one(r),
         "1"
     )
-    ax.set_title(
-        label=r_chart_title,
-        fontweight="bold"
-    )
-    ax.set_ylabel(
-        ylabel=r_chart_ylabel,
-        fontweight="bold"
-    )
-    ax.set_xlabel(
-        xlabel=r_chart_xlabel,
-        fontweight="bold"
-    )
+    ax.set_title(label=r_chart_title)
+    ax.set_ylabel(ylabel=r_chart_ylabel)
+    ax.set_xlabel(xlabel=r_chart_xlabel)
     fig.savefig(fname=f"{graph_file_prefix}_r.svg")
     ds.html_figure(file_name=f"{graph_file_prefix}_r.svg")
     print(
