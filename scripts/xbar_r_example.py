@@ -2,11 +2,10 @@
 """
 Example of XbarR control charts
 
-time -f "%e" ./xbar_r_example.py
-./xbar_r_example.py
+Requires datasense: https://github.com/gillespilon/datasense
 """
 
-from typing import NoReturn
+from typing import NoReturn, Tuple
 import time
 
 from datasense import control_charts as cc
@@ -14,26 +13,16 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
-xbar_chart_ylabel = "Measurement Xbar (units)"
-xbar_chart_title = "Average Control Chart"
-r_chart_ylabel = "Measurement R (units)"
-r_chart_title = "Range Control Chart"
-output_url = "xbar_r_example.html"
-header_title = "xbar_r_example"
-header_id = "xbar-r-example"
-xbar_chart_xlabel = "Sample"
-data_file = "xbar_r_example"
-r_chart_xlabel = "Sample"
-colour = "#33bbee"
-figsize = (8, 6)
-
 
 def main():
+    HEADER_TITLE = "XbarR Control Charts"
+    OUTPUT_URL = "xbar_r_example.html"
+    HEADER_ID = "xbar-r-example"
     start_time = time.time()
     original_stdout = ds.html_begin(
-        output_url=output_url,
-        header_title=header_title,
-        header_id=header_id
+        output_url=OUTPUT_URL,
+        header_title=HEADER_TITLE,
+        header_id=HEADER_ID
     )
     data = create_data()
     ds.page_break()
@@ -48,7 +37,7 @@ def main():
     )
     ds.html_end(
         original_stdout=original_stdout,
-        output_url=output_url
+        output_url=OUTPUT_URL
     )
 
 
@@ -99,15 +88,24 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def xbar_chart(df: pd.DataFrame) -> NoReturn:
+def xbar_chart(
+    *,
+    df: pd.DataFrame,
+    figsize: Tuple[float, float] = (8, 6),
+    colour: str = "#33bbee",
+    xbar_chart_title: str = "Average Control Chart",
+    xbar_chart_ylabel: str = "Measurement Xbar (units)",
+    xbar_chart_xlabel: str = "Sample",
+    graph_file_prefix: str = "xbar_r_example"
+) -> NoReturn:
     """
     Creates an Xbar control chart.
     Identifies out-of-control points.
-    Adds cart and axis titles.
+    Adds chart and axis titles.
     Saves the figure in svg format.
     """
-    fig = plt.figure(figsize=(8, 6))
-    xbar = cc.Xbar(df)
+    fig = plt.figure(figsize=figsize)
+    xbar = cc.Xbar(data=df)
     ax = xbar.ax(fig=fig)
     ax.axhline(
         y=xbar.sigmas[+1],
@@ -163,10 +161,16 @@ def xbar_chart(df: pd.DataFrame) -> NoReturn:
         label=xbar_chart_title,
         fontweight="bold"
     )
-    ax.set_ylabel(ylabel=xbar_chart_ylabel)
-    ax.set_xlabel(xlabel=xbar_chart_xlabel)
-    fig.savefig(fname=f"{data_file}_xbar.svg")
-    ds.html_figure(file_name=f"{data_file}_xbar.svg")
+    ax.set_ylabel(
+        ylabel=xbar_chart_ylabel,
+        fontweight="bold"
+    )
+    ax.set_xlabel(
+        xlabel=xbar_chart_xlabel,
+        fontweight="bold"
+    )
+    fig.savefig(fname=f"{graph_file_prefix}_xbar.svg")
+    ds.html_figure(file_name=f"{graph_file_prefix}_xbar.svg")
     print(
         f"Xbar Report\n"
         f"===================\n"
@@ -177,15 +181,24 @@ def xbar_chart(df: pd.DataFrame) -> NoReturn:
     )
 
 
-def r_chart(df: pd.DataFrame) -> NoReturn:
+def r_chart(
+    *,
+    df: pd.DataFrame,
+    figsize: Tuple[float, float] = (8, 6),
+    colour: str = "#33bbee",
+    r_chart_title: str = "Range Control Chart",
+    r_chart_ylabel: str = "Measurement R (units)",
+    r_chart_xlabel: str = "Sample",
+    graph_file_prefix: str = "xbar_r_example"
+) -> NoReturn:
     """
     Creates an R control chart.
     Identifies out-of-control points.
     Adds chart and axis titles.
     Saves the figure in svg format.
     """
-    fig = plt.figure(figsize=(8, 6))
-    r = cc.R(df)
+    fig = plt.figure(figsize=figsize)
+    r = cc.R(data=df)
     ax = r.ax(fig=fig)
     ax.axhline(
         y=r.sigmas[+1],
@@ -225,10 +238,16 @@ def r_chart(df: pd.DataFrame) -> NoReturn:
         label=r_chart_title,
         fontweight="bold"
     )
-    ax.set_ylabel(ylabel=r_chart_ylabel)
-    ax.set_xlabel(xlabel=r_chart_xlabel)
-    fig.savefig(fname=f"{data_file}_r.svg")
-    ds.html_figure(file_name=f"{data_file}_r.svg")
+    ax.set_ylabel(
+        ylabel=r_chart_ylabel,
+        fontweight="bold"
+    )
+    ax.set_xlabel(
+        xlabel=r_chart_xlabel,
+        fontweight="bold"
+    )
+    fig.savefig(fname=f"{graph_file_prefix}_r.svg")
+    ds.html_figure(file_name=f"{graph_file_prefix}_r.svg")
     print(
         f"R Report\n"
         f"===================\n"
