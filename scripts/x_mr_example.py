@@ -2,11 +2,10 @@
 """
 Example of XmR control charts
 
-time -f "%e" ./x_mr_example.py
-./x_mr_example.py
+Requires datasense: https://github.com/gillespilon/datasense
 """
 
-from typing import NoReturn
+from typing import NoReturn, Tuple
 import time
 
 from datasense import control_charts as cc
@@ -14,26 +13,16 @@ import matplotlib.pyplot as plt
 import datasense as ds
 import pandas as pd
 
-mr_chart_title = "Moving Range Control Chart"
-x_chart_title = "Individuals Control Chart"
-mr_chart_ylabel = "Measurement mR (units)"
-x_chart_ylabel = "Measurement X (units)"
-output_url = "x_mr_example.html"
-header_title = "x_mr_example"
-header_id = "x-mr-example"
-mr_chart_xlabel = "Sample"
-data_file = "x_mr_example"
-x_chart_xlabel = "Sample"
-colour = "#33bbee"
-figsize = (8, 6)
-
 
 def main():
+    HEADER_TITLE = "XmR Control Charts"
+    OUTPUT_URL = "x_mr_example.html"
+    HEADER_ID = "x-mr-example"
     start_time = time.time()
     original_stdout = ds.html_begin(
-        output_url=output_url,
-        header_title=header_title,
-        header_id=header_id
+        output_url=OUTPUT_URL,
+        header_title=HEADER_TITLE,
+        header_id=HEADER_ID
     )
     data = create_data()
     ds.page_break()
@@ -48,7 +37,7 @@ def main():
     )
     ds.html_end(
         original_stdout=original_stdout,
-        output_url=output_url
+        output_url=OUTPUT_URL
     )
 
 
@@ -68,7 +57,16 @@ def create_data() -> pd.DataFrame:
     return df
 
 
-def x_chart(df: pd.DataFrame) -> NoReturn:
+def x_chart(
+    *,
+    df: pd.DataFrame,
+    figsize: Tuple[float, float] = (8, 6),
+    colour: str = "#33bbee",
+    x_chart_title: str = "Individuals Control Chart",
+    x_chart_ylabel: str = "Measurement X (units)",
+    x_chart_xlabel: str = "Sample",
+    graph_file_prefix: str = "x_mr_example"
+) -> NoReturn:
     """
     Creates an X control chart.
     Identifies out-of-control points.
@@ -111,10 +109,16 @@ def x_chart(df: pd.DataFrame) -> NoReturn:
         label=x_chart_title,
         fontweight="bold"
     )
-    ax.set_ylabel(ylabel=x_chart_ylabel)
-    ax.set_xlabel(xlabel=x_chart_xlabel)
-    fig.savefig(fname=f"{data_file}_x.svg")
-    ds.html_figure(file_name=f"{data_file}_x.svg")
+    ax.set_ylabel(
+        ylabel=x_chart_ylabel,
+        fontweight="bold"
+    )
+    ax.set_xlabel(
+        xlabel=x_chart_xlabel,
+        fontweight="bold"
+    )
+    fig.savefig(fname=f"{graph_file_prefix}_x.svg")
+    ds.html_figure(file_name=f"{graph_file_prefix}_x.svg")
     print(
        f"X Report\n"
        f"===================\n"
@@ -125,7 +129,16 @@ def x_chart(df: pd.DataFrame) -> NoReturn:
     )
 
 
-def mr_chart(df: pd.DataFrame) -> NoReturn:
+def mr_chart(
+    *,
+    df: pd.DataFrame,
+    figsize: Tuple[float, float] = (8, 6),
+    colour: str = "#33bbee",
+    mr_chart_title: str = "Moving Range Control Chart",
+    mr_chart_ylabel: str = "Measurement mR (units)",
+    mr_chart_xlabel: str = "Sample",
+    graph_file_prefix: str = "x_mr_example"
+) -> NoReturn:
     """
     Creates an mR control chart.
     Identifies out-of-control points.
@@ -145,10 +158,16 @@ def mr_chart(df: pd.DataFrame) -> NoReturn:
         label=mr_chart_title,
         fontweight="bold"
     )
-    ax.set_ylabel(ylabel=mr_chart_ylabel)
-    ax.set_xlabel(xlabel=mr_chart_xlabel)
-    fig.savefig(fname=f"{data_file}_mr.svg")
-    ds.html_figure(file_name=f"{data_file}_mr.svg")
+    ax.set_ylabel(
+        ylabel=mr_chart_ylabel,
+        fontweight="bold"
+    )
+    ax.set_xlabel(
+        xlabel=mr_chart_xlabel,
+        fontweight="bold"
+    )
+    fig.savefig(fname=f"{graph_file_prefix}_mr.svg")
+    ds.html_figure(file_name=f"{graph_file_prefix}_mr.svg")
     print(
        f"mR Report\n"
        f"===================\n"
