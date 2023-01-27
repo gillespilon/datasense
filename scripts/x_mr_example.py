@@ -24,6 +24,7 @@ def main():
         header_title=HEADER_TITLE,
         header_id=HEADER_ID
     )
+    ds.style_graph()
     data = create_data()
     ds.page_break()
     x_chart(df=data)
@@ -105,18 +106,9 @@ def x_chart(
         alpha=0.5
     )
     cc.draw_rules(x, ax)
-    ax.set_title(
-        label=x_chart_title,
-        fontweight="bold"
-    )
-    ax.set_ylabel(
-        ylabel=x_chart_ylabel,
-        fontweight="bold"
-    )
-    ax.set_xlabel(
-        xlabel=x_chart_xlabel,
-        fontweight="bold"
-    )
+    ax.set_title(label=x_chart_title)
+    ax.set_ylabel(ylabel=x_chart_ylabel)
+    ax.set_xlabel(xlabel=x_chart_xlabel)
     fig.savefig(fname=f"{graph_file_prefix}_x.svg")
     ds.html_figure(file_name=f"{graph_file_prefix}_x.svg")
     print(
@@ -154,18 +146,9 @@ def mr_chart(
         *cc.points_one(mr),
         "1"
     )
-    ax.set_title(
-        label=mr_chart_title,
-        fontweight="bold"
-    )
-    ax.set_ylabel(
-        ylabel=mr_chart_ylabel,
-        fontweight="bold"
-    )
-    ax.set_xlabel(
-        xlabel=mr_chart_xlabel,
-        fontweight="bold"
-    )
+    ax.set_title(label=mr_chart_title)
+    ax.set_ylabel(ylabel=mr_chart_ylabel)
+    ax.set_xlabel(xlabel=mr_chart_xlabel)
     fig.savefig(fname=f"{graph_file_prefix}_mr.svg")
     ds.html_figure(file_name=f"{graph_file_prefix}_mr.svg")
     print(
