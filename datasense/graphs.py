@@ -3020,6 +3020,62 @@ def style_graph() -> NoReturn:
     rc["lines.marker"] = "."
 
 
+def empirical_cdf(
+    *,
+    s: pd.Series,
+    figsize: Tuple[float, float] = None,
+    marker: str = ".",
+    markersize: float = 4,
+    colour: str = colour_blue,
+    remove_spines: bool = True
+) -> Tuple[plt.Figure, axes.Axes]:
+    """
+    Create an empirical cumulative distribution function.
+
+    Parameters
+    ----------
+    s : pd.Series
+        The input series.
+    figsize : Tuple[float, float] = None
+        The (width, height) of the figure (in, in).
+    marker : str = "."
+        The type of plot point.
+    markersize : float = 4
+        The size of the plot point (pt).
+    colour : str = colour_blue
+        The colour of the plot point (hexadecimal triplet string).
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
+
+    Returns
+    -------
+    fig, ax : Tuple[plt.Figure, axes.Axes]
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> series_x = ds.random_data(
+    >>>     loc=69,
+    >>>     scale=13
+    >>> )
+    >>> fig, ax = ds.empirical_cdf(s=series_x)
+    """
+    x_data = np.sort(
+        a=s,
+        axis=-1,
+        kind=None,
+        order=None
+    )
+    y_data = np.arange(start=1, stop=len(x_data) + 1) / len(x_data)
+    fig, ax = plot_scatter_x_y(
+        X=x_data,
+        y=y_data
+    )
+    ax.set_title(label="Empirical Cumulative Distribution Function")
+    ax.set_ylabel("Fraction")
+    return (fig, ax)
+
+
 __all__ = (
     "plot_scatterleft_scatterright_x_y1_y2",
     "plot_scatter_scatter_x1_x2_y1_y2",
@@ -3038,6 +3094,7 @@ __all__ = (
     "decimal_degrees",
     "plot_histogram",
     "plot_scatter_y",
+    "empirical_cdf",
     "plot_line_x_y",
     "format_dates",
     "plot_boxplot",
