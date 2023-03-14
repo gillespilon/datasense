@@ -182,7 +182,7 @@ def plot_scatter_x_y(
     --------
     Example 1
     >>>
-    >>> series_x = ds.datatime_data()
+    >>> series_x = ds.datetime_data()
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_x_y(
     >>>     X=series_x,
