@@ -2133,7 +2133,7 @@ def plot_histogram(
     *,
     series: pd.Series,
     number_bins: int = None,
-    bin_range: Union[Tuple[int, int], Tuple[int, int]] = None,
+    bin_range: [Tuple[int, int] | Tuple[int, int]] = None,
     figsize: Tuple[float, float] = None,
     bin_width: int = None,
     edgecolor: str = colour_white,
@@ -2149,7 +2149,7 @@ def plot_histogram(
         The input series.
     number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
-    bin_range : Union[Tuple[int, int],Tuple[int, int]] = None
+    bin_range : [Tuple[int, int] | Tuple[int, int]] = None
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
     figsize : Tuple[float, float] = None
@@ -3059,6 +3059,10 @@ def empirical_cdf(
     >>>     scale=13
     >>> )
     >>> fig, ax = ds.empirical_cdf(s=series_x)
+
+    Notes
+    -----
+    scipy is working on scipy.stats.cdf post version 1.10.1
     """
     x_data = np.sort(
         a=s,
