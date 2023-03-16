@@ -2493,8 +2493,8 @@ def plot_vertical_bars(
 
 def plot_pie(
     *,
-    x: Union[List[int], List[float]],
-    labels: Union[List[int], List[float], List[str]],
+    x: [List[int] | List[float]],
+    labels: [List[int] | List[float] | List[str]],
     figsize: Tuple[float, float] = None,
     startangle: float = 0,
     colors: List[str] = None,
@@ -2503,9 +2503,9 @@ def plot_pie(
     """
     Parameters
     ----------
-    x : Union[List[int], List[float]],
+    x : [List[int] | List[float]],
         The wedge sizes.
-    labels : Union[List[int], List[float], List[str]],
+    labels : [List[int] | List[float] | List[str]],
         The labels of the wedges.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
