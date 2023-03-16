@@ -2426,8 +2426,8 @@ def plot_horizontal_bars(
 
 def plot_vertical_bars(
     *,
-    x: Union[List[int], List[float], List[str]],
-    height: Union[List[int], List[float]],
+    x: [List[int] | List[float] | List[str]],
+    height: [List[int] | List[float]],
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     edgecolor: str = colour_white,
@@ -2437,9 +2437,9 @@ def plot_vertical_bars(
     """
     Parameters
     ----------
-    x : Union[List[int], List[float], List[str]],
+    x : [List[int] | List[float], List[str]],
         The x coordinates of the bars.
-    height : Union[List[int], List[float]],
+    height : [List[int] | List[float]],
         The height(s) of the bars.
     width : float = 0.8,
         The width of the bars.
