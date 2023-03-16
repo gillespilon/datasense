@@ -2317,21 +2317,21 @@ def plot_histogram(
 
 def plot_horizontal_bars(
     *,
-    y: Union[List[int], List[float], List[str]],
-    width: Union[List[int], List[float]],
+    y: [List[int] | List[float] | List[str]],
+    width: [List[int] | List[float]],
     height: float = 0.8,
     figsize: Tuple[float, float] = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue,
-    left: Union[datetime, int, float] = None
+    left: [datetime | int | float] = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
-    y : Union[List[int], List[float], List[str]],
+    y : [List[int] | List[float] | List[str]],
         The y coordinates of the bars.
-    width : Union[List[int], List[float]],
+    width : [List[int] | List[float]],
         The width(s) of the bars.
     height : float = 0.8,
         The height of the bars.
@@ -2343,7 +2343,7 @@ def plot_horizontal_bars(
         The bar edges line width (point).
     color : str = colour_blue
         The color of the bar faces.
-    left : Union[datetime, int, float] = None
+    left : [datetime | int | float] = None
         The x coordinates of the left sides of the bars.
 
     Returns
@@ -3062,7 +3062,7 @@ def empirical_cdf(
 
     Notes
     -----
-    scipy is working on scipy.stats.cdf post version 1.10.1
+    scipy is working on scipy.stats.ecdf post version 1.10.1
     """
     x_data = np.sort(
         a=s,
