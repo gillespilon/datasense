@@ -508,7 +508,7 @@ def list_rows_with_content(
 
 def read_workbook(
     *,
-    filename: Union[Path, str],
+    filename: Path | str,
     data_only: bool = True
 ) -> Tuple[Workbook, List[str]]:
     """
@@ -516,7 +516,7 @@ def read_workbook(
 
     Parameters
     ----------
-    filename : Union[Path, str]
+    filename : Path | str
         The file containing the workbook.
     data_only : bool = True
         If True, read values stored in the cells. If False, read formulae
@@ -873,7 +873,7 @@ def unique_list_items(
 def validate_sheet_names(
     *,
     wb: Workbook,
-    filename: Union[Path, str],
+    filename: Path | str,
     sheet_name: str,
     sheet_names: List[str],
     start_time: float,
@@ -885,7 +885,7 @@ def validate_sheet_names(
     ----------
     wb : Workbook
         A workbook.
-    filename : Union[Path, str]
+    filename : Path | str
         The file containing the workbook.
     sheet_name : str
         A sheet name in the workbook.
