@@ -129,7 +129,7 @@ def cell_style(
     style_name: str = 'cell_style',
     font_name: str = 'Lucida Sans',
     font_size: int = 11,
-    font_bold: Optional[bool] = True,
+    font_bold: bool = True,
     font_colour: str = '000000',
     horizontal_alignment: str = 'center',
     vertical_alignment: str = 'center',
@@ -153,7 +153,7 @@ def cell_style(
         The font name for the style.
     font_size : int = 11
         The font size for the style.
-    font_bold : Optional[bool] = True
+    font_bold : bool = True
         A boolean or string to apply bold style.
     font_colour : str = 'ffffff'
         The string for the font colour.
