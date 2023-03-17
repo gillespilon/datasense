@@ -128,7 +128,7 @@ def cell_style(
     wb: Workbook,
     style_name: str = 'cell_style',
     font_name: str = 'Lucida Sans',
-    font_size: Optional[int] = 11,
+    font_size: int = 11,
     font_bold: Optional[bool] = True,
     font_colour: str = '000000',
     horizontal_alignment: str = 'center',
@@ -151,7 +151,7 @@ def cell_style(
         The name for the cell style.
     font_name : str = 'Lucida Sans'
         The font name for the style.
-    font_size : Optional[int] = 11
+    font_size : int = 11
         The font size for the style.
     font_bold : Optional[bool] = True
         A boolean or string to apply bold style.
