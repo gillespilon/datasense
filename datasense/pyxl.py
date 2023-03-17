@@ -703,7 +703,7 @@ def validate_column_labels(
     row_of_labels: int,
     start_time: float = None,
     stop_time: float = None,
-    original_stdout: Optional[IO[str]] = None,
+    original_stdout: IO[str] = None,
     output_url: str = None
 
 ) -> Worksheet:
@@ -726,7 +726,7 @@ def validate_column_labels(
         The start time of the script.
     stop_time : float = None
         The stop time of the script.
-    original_stdout : Optional[IO[str]] = None
+    original_stdout : IO[str] = None
         The original stdout.
     output_url : str = None
         The output url.
