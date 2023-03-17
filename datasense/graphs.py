@@ -2133,7 +2133,7 @@ def plot_histogram(
     *,
     series: pd.Series,
     number_bins: int = None,
-    bin_range: [Tuple[int, int] | Tuple[int, int]] = None,
+    bin_range: Tuple[int, int] | Tuple[int, int] = None,
     figsize: Tuple[float, float] = None,
     bin_width: int = None,
     edgecolor: str = colour_white,
@@ -2149,7 +2149,7 @@ def plot_histogram(
         The input series.
     number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
-    bin_range : [Tuple[int, int] | Tuple[int, int]] = None
+    bin_range : Tuple[int, int] | Tuple[int, int] = None
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
     figsize : Tuple[float, float] = None
@@ -2317,21 +2317,21 @@ def plot_histogram(
 
 def plot_horizontal_bars(
     *,
-    y: [List[int] | List[float] | List[str]],
-    width: [List[int] | List[float]],
+    y: List[int] | List[float] | List[str],
+    width: List[int] | List[float],
     height: float = 0.8,
     figsize: Tuple[float, float] = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue,
-    left: [datetime | int | float] = None
+    left: datetime | int | float = None
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
-    y : [List[int] | List[float] | List[str]],
+    y : List[int] | List[float] | List[str],
         The y coordinates of the bars.
-    width : [List[int] | List[float]],
+    width : List[int] | List[float],
         The width(s) of the bars.
     height : float = 0.8,
         The height of the bars.
@@ -2343,7 +2343,7 @@ def plot_horizontal_bars(
         The bar edges line width (point).
     color : str = colour_blue
         The color of the bar faces.
-    left : [datetime | int | float] = None
+    left : datetime | int | float = None
         The x coordinates of the left sides of the bars.
 
     Returns
@@ -2426,8 +2426,8 @@ def plot_horizontal_bars(
 
 def plot_vertical_bars(
     *,
-    x: [List[int] | List[float] | List[str]],
-    height: [List[int] | List[float]],
+    x: List[int] | List[float] | List[str],
+    height: List[int] | List[float],
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
     edgecolor: str = colour_white,
@@ -2437,9 +2437,9 @@ def plot_vertical_bars(
     """
     Parameters
     ----------
-    x : [List[int] | List[float], List[str]],
+    x : List[int] | List[float] | List[str],
         The x coordinates of the bars.
-    height : [List[int] | List[float]],
+    height : List[int] | List[float],
         The height(s) of the bars.
     width : float = 0.8,
         The width of the bars.
@@ -2493,8 +2493,8 @@ def plot_vertical_bars(
 
 def plot_pie(
     *,
-    x: [List[int] | List[float]],
-    labels: [List[int] | List[float] | List[str]],
+    x: List[int] | List[float],
+    labels: List[int] | List[float] | List[str],
     figsize: Tuple[float, float] = None,
     startangle: float = 0,
     colors: List[str] = None,
@@ -2503,9 +2503,9 @@ def plot_pie(
     """
     Parameters
     ----------
-    x : [List[int] | List[float]],
+    x : List[int] | List[float],
         The wedge sizes.
-    labels : [List[int] | List[float] | List[str]],
+    labels : List[int] | List[float] | List[str],
         The labels of the wedges.
     figsize : Tuple[float, float] = None
         The (width, height) of the figure (in, in).
@@ -2560,20 +2560,20 @@ def plot_pie(
 
 def plot_stacked_bars(
     *,
-    x: [List[int] | List[float] | List[str]],
-    height1: [List[int] | List[float]],
+    x: List[int] | List[float] | List[str],
+    height1: List[int] | List[float],
     label1: str = None,
-    height2: [List[int] | List[float]] = None,
+    height2: List[int] | List[float] = None,
     label2: str = None,
-    height3: [List[int] | List[float]] = None,
+    height3: List[int] | List[float] = None,
     label3: str = None,
-    height4: [List[int] | List[float]] = None,
+    height4: List[int] | List[float] = None,
     label4: str = None,
-    height5: [List[int] | List[float]] = None,
+    height5: List[int] | List[float] = None,
     label5: str = None,
-    height6: [List[int] | List[float]] = None,
+    height6: List[int] | List[float] = None,
     label6: str = None,
-    height7: [List[int] | List[float]] = None,
+    height7: List[int] | List[float] = None,
     label7: str = None,
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
@@ -2587,33 +2587,33 @@ def plot_stacked_bars(
 
     Parameters
     ----------
-    x : [List[int] | List[float] | List[str]],
+    x : List[int] | List[float] | List[str],
         The x coordinates of the bars.
-    height1 : [List[int] | List[float]],
+    height1 : List[int] | List[float],
         The height of the level 1 bars.
     label1 : str = None,
         The label of the level 1 bars.
-    height2 : [List[int] | List[float]],
+    height2 : List[int] | List[float],
         The height of the level 2 bars.
     label2 : str = None,
         The label of the level 2 bars.
-    height3 : [List[int] | List[float]],
+    height3 : List[int] | List[float],
         The height of the level 3 bars.
     label3 : str = None,
         The label of the level 3 bars.
-    height4 : [List[int] | List[float]],
+    height4 : List[int] | List[float],
         The height of the level 4 bars.
     label4 : str = None,
         The label of the level 4 bars.
-    height5 : [List[int] | List[float]],
+    height5 : List[int] | List[float],
         The height of the level 5 bars.
     label5 : str = None,
         The label of the level 5 bars.
-    height6 : [List[int] | List[float]],
+    height6 : List[int] | List[float],
         The height of the level 6 bars.
     label6 : str = None,
         The label of the level 6 bars.
-    height7 : [List[int] | List[float]],
+    height7 : List[int] | List[float],
         The height of the level 7 bars.
     label7 : str = None,
         The label of the level 7 bars.
