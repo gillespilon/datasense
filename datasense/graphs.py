@@ -15,7 +15,7 @@ Colours used are colour-blind friendly.
     grey    "#bbbbbb"
 """
 
-from typing import List, NoReturn, Tuple, Union
+from typing import List, NoReturn, Tuple
 from datetime import datetime
 from pathlib import Path
 import math
@@ -2560,24 +2560,24 @@ def plot_pie(
 
 def plot_stacked_bars(
     *,
-    x: Union[List[int], List[float], List[str]],
-    height1: Union[List[int], List[float]],
+    x: [List[int] | List[float] | List[str]],
+    height1: [List[int] | List[float]],
     label1: str = None,
-    height2: Union[List[int], List[float]] = None,
+    height2: [List[int] | List[float]] = None,
     label2: str = None,
-    height3: Union[List[int], List[float]] = None,
+    height3: [List[int] | List[float]] = None,
     label3: str = None,
-    height4: Union[List[int], List[float]] = None,
+    height4: [List[int] | List[float]] = None,
     label4: str = None,
-    height5: Union[List[int], List[float]] = None,
+    height5: [List[int] | List[float]] = None,
     label5: str = None,
-    height6: Union[List[int], List[float]] = None,
+    height6: [List[int] | List[float]] = None,
     label6: str = None,
-    height7: Union[List[int], List[float]] = None,
+    height7: [List[int] | List[float]] = None,
     label7: str = None,
     width: float = 0.8,
     figsize: Tuple[float, float] = None,
-    color: Union[List[str]] = [
+    color: [List[str]] = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
         colour_magenta, colour_grey
     ]
@@ -2587,33 +2587,33 @@ def plot_stacked_bars(
 
     Parameters
     ----------
-    x : Union[List[int], List[float], List[str]],
+    x : [List[int] | List[float] | List[str]],
         The x coordinates of the bars.
-    height1 : Union[List[int], List[float]],
+    height1 : [List[int] | List[float]],
         The height of the level 1 bars.
     label1 : str = None,
         The label of the level 1 bars.
-    height2 : Union[List[int], List[float]],
+    height2 : [List[int] | List[float]],
         The height of the level 2 bars.
     label2 : str = None,
         The label of the level 2 bars.
-    height3 : Union[List[int], List[float]],
+    height3 : [List[int] | List[float]],
         The height of the level 3 bars.
     label3 : str = None,
         The label of the level 3 bars.
-    height4 : Union[List[int], List[float]],
+    height4 : [List[int] | List[float]],
         The height of the level 4 bars.
     label4 : str = None,
         The label of the level 4 bars.
-    height5 : Union[List[int], List[float]],
+    height5 : [List[int] | List[float]],
         The height of the level 5 bars.
     label5 : str = None,
         The label of the level 5 bars.
-    height6 : Union[List[int], List[float]],
+    height6 : [List[int] | List[float]],
         The height of the level 6 bars.
     label6 : str = None,
         The label of the level 6 bars.
-    height7 : Union[List[int], List[float]],
+    height7 : [List[int] | List[float]],
         The height of the level 7 bars.
     label7 : str = None,
         The label of the level 7 bars.
