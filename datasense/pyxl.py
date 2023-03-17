@@ -2,7 +2,7 @@
 openpyxl functions
 """
 
-from typing import IO, List, NoReturn, Optional, Tuple, Union
+from typing import IO, List, NoReturn, Tuple, Union
 from pathlib import Path
 import time
 import sys
@@ -127,12 +127,12 @@ def cell_style(
     *,
     wb: Workbook,
     style_name: str = 'cell_style',
-    font_name: Optional[str] = 'Lucida Sans',
+    font_name: str = 'Lucida Sans',
     font_size: Optional[int] = 11,
     font_bold: Optional[bool] = True,
-    font_colour: Optional[str] = '000000',
-    horizontal_alignment: Optional[str] = 'center',
-    vertical_alignment: Optional[str] = 'center',
+    font_colour: str = '000000',
+    horizontal_alignment: str = 'center',
+    vertical_alignment: str = 'center',
     wrap_text: Union[str, bool] = None,
     fill_type: Union[str, bool] = 'solid',
     foreground_colour: Union[str, bool] = 'd9d9d9',
@@ -149,23 +149,23 @@ def cell_style(
         The workbook in which to define the cell style.
     style_name : str = 'cell_style'
         The name for the cell style.
-    font_name : Optional[str] = 'Lucida Sans'
+    font_name : str = 'Lucida Sans'
         The font name for the style.
     font_size : Optional[int] = 11
         The font size for the style.
     font_bold : Optional[bool] = True
         A boolean or string to apply bold style.
-    font_colour : Optional[str] = 'ffffff'
+    font_colour : str = 'ffffff'
         The string for the font colour.
-    horizontal_alignment : Optional[str] = 'center'
+    horizontal_alignment : str = 'center'
         The string for horizontal alignment.
-    vertical_alignment : Optional[str] = 'center'
+    vertical_alignment : str = 'center'
         The string for vertical alignment.
     wrap_text : Union[str, bool] = None
         A boolean or string to wrap text.
-    fill_type : Optional[str] = 'solid'
+    fill_type : str = 'solid'
         The string for the fill type.
-    foreground_colour : Optional[str] = 'd9d9d9'
+    foreground_colour : str = 'd9d9d9'
         The string for the foreground colour.
     border_style : Union[str, bool] = None
         A boolean or string to apply a border.
@@ -704,7 +704,7 @@ def validate_column_labels(
     start_time: Optional[float] = None,
     stop_time: Optional[float] = None,
     original_stdout: Optional[IO[str]] = None,
-    output_url: Optional[str] = None
+    output_url: str = None
 
 ) -> Worksheet:
     """
@@ -728,7 +728,7 @@ def validate_column_labels(
         The stop time of the script.
     original_stdout : Optional[IO[str]] = None
         The original stdout.
-    output_url : Optional[str] = None
+    output_url : str = None
         The output url.
 
     Returns
