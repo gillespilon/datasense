@@ -307,7 +307,7 @@ def exit_script(
 def list_duplicate_worksheet_rows(
     *,
     ws: Worksheet,
-    columns_to_ignore: Union[List[int]] = None
+    columns_to_ignore: List[int] = None
 ) -> List[int]:
     """
     Find duplicate rows in a worksheet.
@@ -316,7 +316,7 @@ def list_duplicate_worksheet_rows(
     ----------
     ws : Worksheet
         A worksheet from a workbook.
-    columns_to_ignore : Union[List[int]] = None
+    columns_to_ignore : List[int] = None
         A list of column numbers to not use in determining duplicate rows.
 
     Returns
