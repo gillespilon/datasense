@@ -701,8 +701,8 @@ def validate_column_labels(
     first_column: int,
     last_column: int,
     row_of_labels: int,
-    start_time: Optional[float] = None,
-    stop_time: Optional[float] = None,
+    start_time: float = None,
+    stop_time: float = None,
     original_stdout: Optional[IO[str]] = None,
     output_url: str = None
 
@@ -722,9 +722,9 @@ def validate_column_labels(
         The last column of the label range in the worksheet.
     row_of_labels : int
         The row number of the labels in the worksheet.
-    start_time : Optional[float] = None
+    start_time : float = None
         The start time of the script.
-    stop_time : Optional[float] = None
+    stop_time : float = None
         The stop time of the script.
     original_stdout : Optional[IO[str]] = None
         The original stdout.
