@@ -2,7 +2,7 @@
 openpyxl functions
 """
 
-from typing import IO, List, NoReturn, Tuple, Union
+from typing import IO, List, NoReturn, Tuple
 from pathlib import Path
 import time
 import sys
@@ -133,12 +133,12 @@ def cell_style(
     font_colour: str = '000000',
     horizontal_alignment: str = 'center',
     vertical_alignment: str = 'center',
-    wrap_text: Union[str, bool] = None,
-    fill_type: Union[str, bool] = 'solid',
-    foreground_colour: Union[str, bool] = 'd9d9d9',
-    border_style: Union[str, bool] = None,
-    border_colour: Union[str, bool] = None,
-    number_format: Union[str, bool] = None
+    wrap_text: str | bool = None,
+    fill_type: str | bool = 'solid',
+    foreground_colour: str | bool = 'd9d9d9',
+    border_style: str | bool = None,
+    border_colour: str | bool = None,
+    number_format: str | bool = None
 ) -> NamedStyle:
     """
     Define a cell style
@@ -161,17 +161,17 @@ def cell_style(
         The string for horizontal alignment.
     vertical_alignment : str = 'center'
         The string for vertical alignment.
-    wrap_text : Union[str, bool] = None
+    wrap_text : str | bool = None
         A boolean or string to wrap text.
     fill_type : str = 'solid'
         The string for the fill type.
     foreground_colour : str = 'd9d9d9'
         The string for the foreground colour.
-    border_style : Union[str, bool] = None
+    border_style : str | bool = None
         A boolean or string to apply a border.
-    border_colour : Union[str, bool] = None
+    border_colour : str | bool = None
         A boolean or string to apply a border colour.
-    number_format : Union[str, bool] = None
+    number_format : str | bool = None
         A boolean or string to apply a number format.
 
     Returns
