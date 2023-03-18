@@ -2,8 +2,7 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, NoReturn, Tuple, Union,\
-    Pattern
+from typing import Callable, Dict, List, NoReturn, Pattern, Tuple
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
@@ -25,7 +24,7 @@ import numpy as np
 def dataframe_info(
     *,
     df: pd.DataFrame,
-    file_in: Union[Path, str],
+    file_in: Path | str,
     unique_bool: bool = False
 ) -> pd.DataFrame:
     """
@@ -62,7 +61,7 @@ def dataframe_info(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    file_in : Union[Path, str]
+    file_in : Path | str
         The name of the file from which df was created.
     unique_bool : bool = False
         Print unique values of a column if True.
@@ -668,8 +667,8 @@ def process_rows(
 
 def save_file(
     *,
-    df: Union[pd.DataFrame, pd.Series],
-    file_name: Union[str, Path],
+    df: pd.DataFrame | pd.Series,
+    file_name: str | Path,
     index: bool = False,
     index_label: str = None,
     sheet_name: str = 'sheet_001',
@@ -679,9 +678,9 @@ def save_file(
 
     Parameters
     ----------
-    df : Union[pd.DataFrame, pd.Series]
-        The DataFrame or series to be saved to a file.
-    file_name : Union[str, Path]
+    df : pd.DataFrame | pd.Series
+        The DataFrame or Series to be saved to a file.
+    file_name : str | Path
         The name of the file to be saved.
     index : bool = False
         If True, creates an index.
@@ -786,17 +785,17 @@ def save_file(
 
 def read_file(
     *,
-    file_name: Union[str, Path],
-    header: Union[int, List[int], None] = 0,
-    skiprows: Union[List[int], None] = None,
+    file_name: str | Path,
+    header: int | List[int] | None = 0,
+    skiprows: List[int] | None = None,
     column_names_dict: Dict[str, str] = {},
     index_columns: List[str] = [],
-    usecols: Union[List[str], None] = None,
-    dtype: Union[dict, None] = None,
-    converters: Union[dict, None] = None,
+    usecols: List[str] | None = None,
+    dtype: dict | None = None,
+    converters: dict | None = None,
     parse_dates: List[str] = False,
-    date_parser: Union[Callable, None] = None,
-    datetime_format: Union[str, None] = None,
+    date_parser: Callable | None = None,
+    datetime_format: str | None = None,
     time_delta_columns: List[str] = [],
     category_columns: List[str] = [],
     integer_columns: List[str] = [],
@@ -806,7 +805,7 @@ def read_file(
     sort_columns: List[str] = [],
     sort_columns_bool: List[bool] = [],
     sheet_name: str = False,
-    nrows: Union[int, None] = None,
+    nrows: int | None = None,
     skip_blank_lines: bool = True
 ) -> pd.DataFrame:
     """
@@ -814,30 +813,30 @@ def read_file(
 
     Parameters
     ----------
-    file_name : Union[str, Path]
+    file_name : str | Path
         The name of the file to read.
-    header : Union[int, List[int], None] = 0
+    header : int | List[int] | None = 0
         The row to use for the column labels. Use None if there is no header.
-    skiprows : Union[List[int], None] = None
+    skiprows : List[int] | None = None
         The specific row indices to skip.
     column_names_dict : Dict[str, str] = {}
         The new column names to replace the old column names.
     index_columns : List[str] = []
         The columns to use for the DataFrame index.
-    usecols : Union[List[str], None] = None
+    usecols : List[str] | None = None
         The columns to read.
-    dtype : Union[dict, None] = None
+    dtype : dict | None = None
         A dictionary of column names and dtypes.
         NOTE: Nullable Boolean data type is experimental and does not work;
         use .astype() on df after created.
-    converters : Union[dict, None] = None
+    converters : dict | None = None
         Dictionary of functions for converting values in certain columns.
     parse_dates : List[str] = False
         The columns to use to parse date and time.
-    date_parser : Union[Callable, None] = None
+    date_parser : Callable | None = None
         The function to use for parsing date and time, when pandas needs
         extra help.
-    datetime_format : Union[str, None] = None
+    datetime_format : str | None = None
         The str to use for formatting date and time.
     time_delta_columns : List[str] = []
         The columns to change to dtype timedelta.
@@ -857,7 +856,7 @@ def read_file(
         The booleans for sort_columns.
     sheet_name : str = False
         The name of the worksheet in the workbook.
-    nrows : Union[int, None] = None
+    nrows : int | None = None
         The number of rows to read.
     skip_blank_lines : bool = True
         If True, skip over blank lines rather than interpreting as NaN values.
@@ -1352,8 +1351,8 @@ def rename_directory(
 
 def copy_directory(
     *,
-    sources: Union[Path, str],
-    destinations: Union[Path, str],
+    sources: Path | str,
+    destinations: Path | str,
     ignore_errors: bool = True
 ) -> NoReturn:
     """
@@ -1362,9 +1361,9 @@ def copy_directory(
 
     Parameters
     ----------
-    sources : Union[Path, str]
+    sources : Path | str
         The source directory name.
-    destinations : Union[Path, str]
+    destinations : Path | str
         The destination directory name.
     ignore_errors : bool = True
         Boolean to deal with errors.
@@ -1390,8 +1389,8 @@ def copy_directory(
 def replace_text_numbers(
     *,
     df: pd.DataFrame,
-    columns: Union[List[str], List[int], List[float], List[Pattern[str]]],
-    old: Union[List[str], List[int], List[float], List[Pattern[str]]],
+    columns: List[str] | List[int] | List[float] | List[Pattern[str]],
+    old: List[str] | List[int] | List[float] | List[Pattern[str]],
     new: List[int],
     regex: bool = True
 ) -> pd.DataFrame:
@@ -1402,9 +1401,9 @@ def replace_text_numbers(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    columns: Union[List[str], List[int], List[float], List[Pattern[str]]]
+    columns: List[str] | List[int] | List[float] | List[Pattern[str]]
         The list of columns for replacement.
-    old: Union[List[str], List[int], List[float], List[Pattern[str]]]
+    old: List[str] | List[int] | List[float] | List[Pattern[str]]
         The list of item to replace.
     new : List[int]
         The list of replacement items.
@@ -1659,7 +1658,7 @@ def delete_rows(
     *,
     df: pd.DataFrame,
     delete_row_criteria:
-        Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
+        Tuple[str, int] | Tuple[str, float] | Tuple[str, str]
 ) -> pd.DataFrame:
     """
     Delete rows of a DataFrame based on a value in one column.
@@ -1669,7 +1668,7 @@ def delete_rows(
     df : pd.DataFrame
         The input DataFrame.
     delete_row_criteria:
-        Union[Tuple[str, int], Tuple[str, float], Tuple[str, str]]
+        Tuple[str, int] | Tuple[str, float] | Tuple[str, str]
         A tuple of column name and criteria for the entire cell.
 
     Returns
@@ -1839,7 +1838,7 @@ def rename_some_columns(
 def replace_column_values(
     *,
     s: pd.Series,
-    replace_dict: Union[Dict[str, str], Dict[int, int], Dict[float, float]],
+    replace_dict: Dict[str, str] | Dict[int, int] | Dict[float, float],
     regex: bool = False
 ) -> pd.Series:
     """
@@ -1849,7 +1848,7 @@ def replace_column_values(
     ----------
     s : pd.Series
         The input series.
-    replace_dict : Union[Dict[str, str], Dict[int, int], Dict[float, float]]
+    replace_dict : Dict[str, str] | Dict[int, int] |, Dict[float, float]
         The dictionary of values to replace.
     regex : bool = True
         Determines if the passed-in pattern is a regular expression.
@@ -1879,20 +1878,20 @@ def replace_column_values(
 
 def list_files(
     *,
-    directory: Union[str, Path],
-    pattern_extension: Union[List[str], Tuple[str], None] = None,
-    pattern_startswith: Union[List[str], Tuple[str], None] = None
+    directory: str | Path,
+    pattern_extension: List[str] | Tuple[str] | None = None,
+    pattern_startswith: List[str] | Tuple[str] | None = None
 ) -> List[Path]:
     """
     Return a list of files within a directory.
 
     Parameters
     ----------
-    directory : Union[str, Path]
+    directory : str | Path
         The path of the directory.
-    pattern_extension : Union[List[str], Tuple[str], None] = None
+    pattern_extension : List[str] | Tuple[str] | None = None
         The file extensions to use for finding files in the path.
-    pattern_startswith : Union[List[str], Tuple[str], None] = None
+    pattern_startswith : List[str] | Tuple[str] | None = None
         The string for determining if a file starts with this string.
 
     Returns
@@ -1939,7 +1938,7 @@ def list_files(
 
 def directory_file_print(
     *,
-    directory: Union[str, Path],
+    directory: str | Path,
     text: str = 'Files in directory'
 ) -> NoReturn:
     """
@@ -1947,7 +1946,7 @@ def directory_file_print(
 
     Parameters
     ----------
-    directory : Union[str, Path]
+    directory : str | Path
         The path of the files to print.
     text : str = 'Files in directory'
         The text to print.
@@ -1972,14 +1971,14 @@ def directory_file_print(
 
 def delete_list_files(
     *,
-    files: Union[List[Path], List[str]]
+    files: List[Path] | List[str]
 ) -> NoReturn:
     """
     Delete a list of files
 
     Parameters
     ----------
-    files : Union[List[Path], List[str]]
+    files : List[Path] | List[str]
         The list of files from which to remove the path.
 
     Example
@@ -2075,8 +2074,8 @@ def ask_directory_path(
 def ask_open_file_name_path(
     *,
     title: str,
-    initialdir: Union[Path, None] = None,
-    filetypes: Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+    initialdir: Path | None = None,
+    filetypes: List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
 ) -> Path:
     """
     Ask user for the path of the file to open.
@@ -2085,9 +2084,9 @@ def ask_open_file_name_path(
     ----------
     title : str
         The title of the dialog window.
-    initialdir : Union[Path, None] = None
+    initialdir : Path | None = None
         The directory in which the dialogue starts.
-    filetypes : Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
         The file types to make visible.
 
     Returns
@@ -2127,8 +2126,8 @@ def ask_open_file_name_path(
 def ask_save_as_file_name_path(
     *,
     title: str = 'Select file',
-    initialdir: Union[Path, None] = None,
-    filetypes: Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')],
+    initialdir: Path | None = None,
+    filetypes: List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')],
     print_bool: bool = True
 ) -> Path:
     """
@@ -2138,9 +2137,9 @@ def ask_save_as_file_name_path(
     ----------
     title : str = 'Select file'
         The title of the dialog window.
-    initialdir : Union[Path, None] = None
+    initialdir : Path | None = None
         The directory in which the dialogue starts.
-    filetypes : Union[List[Tuple[str]]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
         The list of file types to show in the dialog.
     print_bool : bool = True
         A boolean. Print message if True.
@@ -2228,17 +2227,17 @@ def series_replace_string(
 
 def list_directories(
     *,
-    path: Union[str, Path],
-    pattern_startswith: Union[List[str], Tuple[str], None] = None
+    path: str | Path,
+    pattern_startswith: List[str] | Tuple[str] | None = None
 ) -> List[str]:
     """
     Return a list of directories found within a path.
 
     Parameters
     ----------
-    path : Union[str, Path]
+    path : str | Path
         The path of the enclosing directory.
-    pattern_startswith : Union[List[str], Tuple[str], None] = None
+    pattern_startswith : List[str] | Tuple[str] | None = None
         The string for determining if a directory start with this string.
 
     Returns
@@ -2393,10 +2392,10 @@ def listone_contains_all_listtwo_substrings(
 
 def list_one_list_two_ops(
     *,
-    list_one: Union[List[str], List[int], List[float]],
-    list_two: Union[List[str], List[int], List[float]],
+    list_one: List[str] | List[int] | List[float],
+    list_two: List[str] | List[int] | List[float],
     action: str
-) -> Union[List[str], List[int], List[float]]:
+) -> List[str] | List[int] | List[float]:
     """
     Create a list of items comparing two lists:
     - Items unique to list_one
@@ -2405,16 +2404,16 @@ def list_one_list_two_ops(
 
     Parameters
     ----------
-    list_one : Union[List[str], List[int], List[float]]
+    list_one : List[str] | List[int] | List[float]
         A list of items.
-    list_two : Union[List[str], List[int], List[float]]
+    list_two : List[str] | List[int] | List[float]
         A list of items.
     action : str
         A string of either "list_one", "list_two", or "intersection"
 
     Returns
     -------
-    list_result : Union[List[str], List[int], List[float]]
+    list_result : List[str] | List[int] | List[float]
         The list of unique items.
 
     Examples
@@ -2622,13 +2621,13 @@ def get_mtime(path: Path) -> float:
     return modified_time
 
 
-def file_size(path: Union[Path, str]) -> int:
+def file_size(path: Path | str) -> int:
     """
     Determine the file size in bytes.
 
     Parameters
     ----------
-    path : Union[Path, str]
+    path : Path | str
         The path of the file.
 
     Returns
@@ -2704,7 +2703,7 @@ def mask_outliers(
 
 def delete_empty_rows(
     df: pd.DataFrame,
-    list_columns: Union[List[str], None] = None
+    list_columns: List[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty rows
@@ -2713,7 +2712,7 @@ def delete_empty_rows(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    list_columns : Union[List[str], None] = None
+    list_columns : List[str] | None = None
         A list of columns to use to determine if row elements are empty.
 
     Returns
@@ -2781,7 +2780,7 @@ def delete_empty_rows(
 def delete_empty_columns(
     *,
     df: pd.DataFrame,
-    list_empty_columns: Union[List[str], None] = None
+    list_empty_columns: List[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty columns
@@ -2790,7 +2789,7 @@ def delete_empty_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    list_empty_columns : Union[List[str], None] = None
+    list_empty_columns : List[str] | None = None
         A list of empty columns to delete. The code does not check if these
         columns are empty, but assumes they are.
 
@@ -2857,7 +2856,7 @@ def delete_empty_columns(
 
 def optimize_float_columns(
     df: pd.DataFrame,
-    float_columns: Union[List[str]] = None
+    float_columns: List[str] = None
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -2866,7 +2865,7 @@ def optimize_float_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more float columns.
-    float_columns : Union[List[str], None] = None
+    float_columns : List[str] | None = None
         A list of float columns to downcast.
 
     Returns
@@ -2900,7 +2899,7 @@ def optimize_float_columns(
 
 def optimize_integer_columns(
     df: pd.DataFrame,
-    integer_columns: Union[List[str], None] = None
+    integer_columns: List[str] | None = None
 ) -> pd.DataFrame:
     """
     Downcast integer columns
@@ -2909,7 +2908,7 @@ def optimize_integer_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
-    integer_columns : Union[List[str], None] = None
+    integer_columns : List[str] | None = None
         A list of integer columns to downcast.
 
     Returns
@@ -2943,8 +2942,8 @@ def optimize_integer_columns(
 
 def optimize_object_columns(
     df: pd.DataFrame,
-    object_columns: Union[List[str], None] = None,
-    fraction_categories: Union[int, None] = 0.5
+    object_columns: List[str] | None = None,
+    fraction_categories: int | None = 0.5
 ) -> pd.DataFrame:
     """
     Downcast object columns
@@ -2953,9 +2952,9 @@ def optimize_object_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
-    object_columns : Union[List[str], None] = None
+    object_columns : List[str] | None = None
         A list of object columns to downcast.
-    fraction_categories : Union[int, None] = 0.5
+    fraction_categories : int | None = 0.5
         The fraction of categories in an object column.
 
     Returns
@@ -3004,7 +3003,7 @@ def optimize_object_columns(
 
 def optimize_datetime_columns(
     df: pd.DataFrame,
-    datetime_columns: Union[List[str]] = None
+    datetime_columns: List[str] = None
 ) -> pd.DataFrame:
     """
     Cast object and datetime columns to pandas datetime. It does not reduce
@@ -3014,7 +3013,7 @@ def optimize_datetime_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more datetime columns.
-    datetime_columns : Union[List[str], None] = None
+    datetime_columns : List[str] | None = None
         A list of datetime columns to cast.
 
     Returns
@@ -3047,11 +3046,11 @@ def optimize_datetime_columns(
 
 def optimize_columns(
     df: pd.DataFrame,
-    float_columns: Union[List[str]] = None,
-    integer_columns: Union[List[str], None] = None,
-    datetime_columns: Union[List[str], None] = None,
-    object_columns: Union[List[str], None] = None,
-    fraction_categories: Union[int, None] = 0.5
+    float_columns: List[str] = None,
+    integer_columns: List[str] | None = None,
+    datetime_columns: List[str] | None = None,
+    object_columns: List[str] | None = None,
+    fraction_categories: int | None = 0.5
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -3060,13 +3059,13 @@ def optimize_columns(
     ---------
     df : pd.DataFrame
         The DataFrame.
-    float_columns : Union[List[str], None] = None
+    float_columns : List[str] | None = None
         A list of float columns to downcast.
-    integer_columns : Union[List[str], None] = None
+    integer_columns : List[str] | None = None
         A list of integer columns to downcast.
-    object_columns : Union[List[str], None] = None
+    object_columns : List[str] | None = None
         A list of object columns to downcast.
-    fraction_categories : Union[int, None] = 0.5
+    fraction_categories : int | None = 0.5
         The fraction of categories in an object column.
 
     Returns
@@ -3159,17 +3158,17 @@ def series_memory_usage(
 
 
 def convert_csv_to_feather(
-    paths_in: Union[List[str], Path],
-    paths_out: Union[List[str], Path]
+    paths_in: List[str] | Path,
+    paths_out: List[str] | Path
 ) -> NoReturn:
     """
     Convert list of csv files to feather files
 
     Parameters
     ----------
-    paths_in : Union[List[str], Path]
+    paths_in : List[str] | Path
         List of csv file names or paths.
-    paths_out : Union[List[str], Path]
+    paths_out : List[str] | Path
         Liat of feather file names or paths.
 
     Note
