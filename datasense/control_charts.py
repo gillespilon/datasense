@@ -5,7 +5,7 @@ Create X, mR, Xbar, R control charts
 Invoke Shewhart rules 1, 2, 3, 4
 """
 
-from typing import Iterable, NoReturn, TypeVar, Tuple, Union
+from typing import Iterable, NoReturn, TypeVar, Tuple
 from collections import defaultdict
 from abc import ABC, abstractmethod
 from itertools import tee
@@ -117,7 +117,7 @@ class Sigmas:
         self._mean = mean
         self._sigma = sigma
 
-    def __getitem__(self, index: Union[int, slice]) -> float:
+    def __getitem__(self, index: int | slice) -> float:
         if isinstance(index, int):
             return self._mean + index * self._sigma
         elif isinstance(index, slice):
