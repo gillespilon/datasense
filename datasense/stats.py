@@ -11,7 +11,7 @@ Statistical analysis
 """
 
 from datetime import datetime, timedelta
-from typing import List, Tuple, Union
+from typing import List, Tuple
 import statistics
 import random
 import math
@@ -828,7 +828,7 @@ def timedelta_data(
 def one_sample_t(
     *,
     series: pd.Series,
-    hypothesized_value: Union[int, float],
+    hypothesized_value: int | float,
     alternative_hypothesis: str = "two-sided",
     significance_level: float = 0.05,
     width: int = 7,
@@ -850,7 +850,7 @@ def one_sample_t(
     ----------
     series : pd.Series,
         The Series of data, consisting of one column with a label y.
-    hypothesized_value : Union[int, float]
+    hypothesized_value : int | float
         The hypothesized value for the test.
     alternative_hypothesis : str = "two-sided",
         The alternative hypothesis for the t test.
@@ -1842,7 +1842,7 @@ def paired_t(
     *,
     series1: pd.Series,
     series2: pd.Series,
-    hypothesized_value: Union[int, float, bool] = None,
+    hypothesized_value: int | float | bool = None,
     alternative_hypothesis: str = "two-sided",
     significance_level: float = 0.05,
     width: int = 7,
@@ -1876,7 +1876,7 @@ def paired_t(
         The first series of data, with a name.
     series2 : pd.Series
         The second series of data, with a name.
-    hypothesized_value : Union[int, float, bool] = None
+    hypothesized_value : int | float | bool = None
         The hypothesized value for the test.
     alternative_hypothesis : str = "two-sided",
         The alternative hypothesis for the paired t test.
@@ -2399,7 +2399,7 @@ def paired_t(
 
 def linear_regression(
     *,
-    X: Union[pd.Series, pd.DataFrame],
+    X: pd.Series,
     y: pd.Series,
     print_model_summary: bool = False
 ) -> Tuple[
@@ -2414,7 +2414,7 @@ def linear_regression(
     ----------
     X : pd.Series
         The pandas Series of the independent data.
-    y : pd.Series,
+    y : pd.Series
         The pandas Series of the dependent data.
     print_model_summary : bool = False
         Print the model summary.
