@@ -23,7 +23,7 @@ import math
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
 from datasense import natural_cubic_spline
-from scipy.stats import norm, probplot
+from scipy.stats import boxcox, boxcox_normplot, norm, probplot
 from matplotlib import rcParams as rc
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
@@ -3080,6 +3080,121 @@ def empirical_cdf(
     return (fig, ax)
 
 
+def plot_boxcox(
+    *,
+    s: pd.Series | np.ndarray,
+    la: int = -20,
+    lb: int = 20,
+    colour1: str = colour_blue,
+    colour2: str = colour_cyan,
+    marker: str = ".",
+    markersize: float = 4,
+    ylabel: str = "Correlation Coefficient",
+    remove_spines: bool = True,
+    lmbda: float | int | None = None,
+    alpha: float = 0.05
+) -> NoReturn:
+    """
+    Box-Cox normality plot
+
+    Parameters
+    ----------
+    s : pd.Series | np.ndarray
+        The data series or NumPy array.
+    la : int = -20
+    lb : int = 20
+        The lower and upper bounds for the lmbda values to pass to boxcox for
+        Box-Cox transformations. These are also the limits of the horizontal
+        axis of the plot if that is generated.
+    colour1 : str = colour_blue
+        The colour of the plot points.
+    colour2 : str = colour_cyan
+        The colour of the lower and upper bound lines.
+    marker : str = "."
+        The type of plot points.
+    markersize : float = 4
+        The size of the plot points.
+    ylabel : str = "Correlation Coefficient"
+        The label of the y axis.
+    remove_spines : bool = True
+        If True, remove top and right spines of axes.
+    lmbda : float | int | None = None
+        If lmbda is None (default), find the value of lmbda that maximizes the
+        log-likelihood function and return it as the second output argument.
+        If lmbda is not None, do the transformation for that value.
+    alpha : float = 0.05
+        If lmbda is None and alpha is not None (default), return the
+        100 * (1-alpha)% confidence interval for lmbda as the third output
+        argument. Must be between 0.0 and 1.0. If lmbda is not None, alpha is
+        ignored.
+
+    Returns
+    -------
+    (fig, ax) : Tuple[plt.Figure, axes.Axes]
+        A Matplotlib figure and Axes tuple.
+
+    Example
+    -------
+    >>> from scipy import stats
+    >>> import datasense as ds
+    >>> s = stats.loggamma.rvs(5, size=500) + 5
+    >>> fig, ax = ds.plot_boxcox(s=s)
+
+    Notes
+    -----
+    Series must be > 0
+
+    References
+    ----------
+    - https://www.itl.nist.gov/div898/handbook/eda/section3/eda336.htm
+    - https://www.itl.nist.gov/div898/handbook/eda/section3/boxcox.htm
+    """
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1
+    )
+    boxcox_normplot(
+        x=s,
+        la=la,
+        lb=lb,
+        plot=ax
+    )
+    ax.get_lines()[0].set(
+        color=colour1,
+        marker=marker,
+        markersize=markersize
+    )
+    boxcox_array, lmax_mle, (min_ci, max_ci) = boxcox(
+        x=s,
+        lmbda=lmbda,
+        alpha=alpha,
+        optimizer=None
+    )
+    ax.axvline(
+        x=min_ci,
+        color=colour2,
+        label=f"min CI = {min_ci:7.3f}"
+    )
+    ax.axvline(
+        lmax_mle,
+        color=colour1,
+        label=f"λ      = {lmax_mle:7.3f}"
+    )
+    ax.axvline(
+        x=max_ci,
+        color=colour2,
+        label=f"max CI = {max_ci:7.3f}"
+    )
+    ax.set_ylabel(ylabel=ylabel)
+    ax.legend(
+        frameon=False,
+        prop={"family": "monospace", "size": 8}
+    )
+    if remove_spines:
+        despine(ax=ax)
+    return (fig, ax)
+
+
 __all__ = (
     "plot_scatterleft_scatterright_x_y1_y2",
     "plot_scatter_scatter_x1_x2_y1_y2",
@@ -3102,6 +3217,7 @@ __all__ = (
     "plot_line_x_y",
     "format_dates",
     "plot_boxplot",
+    "plot_boxcox",
     "deg_min_sec",
     "plot_line_y",
     "plot_pareto",
@@ -3109,4 +3225,5 @@ __all__ = (
     "plot_pie",
     "despine",
     "qr_code",
+    "boxcox",
 )
