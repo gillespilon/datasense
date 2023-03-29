@@ -986,36 +986,33 @@ def one_sample_t(
     print()
     ad_test_statistic, ad_critical_values, ad_significance_level =\
         stats.anderson(x=series, dist="norm")
-    # uncomment these lines when Anaconda release Python 3.10
-    # start uncomment
-    # match significance_level:
-    #     case 0.25:
-    #         item = 0
-    #     case 0.10:
-    #         item = 1
-    #     case 0.05:
-    #         item = 2
-    #     case 0.025:
-    #         item = 3
-    #     case 0.01:
-    #         item = 4
-    #     case 0.005:
-    #         item = 5
-    # end uncomment
-    # start delele
-    if significance_level == 0.25:
-        item = 0
-    elif significance_level == 0.10:
-        item = 1
-    elif significance_level == 0.05:
-        item = 2
-    elif significance_level == 0.025:
-        item = 3
-    elif significance_level == 0.01:
-        item = 4
-    elif significance_level == 0.005:
-        item = 5
-    # end delete
+    # introduced for Python 3.10
+    match significance_level:
+        case 0.25:
+            item = 0
+        case 0.10:
+            item = 1
+        case 0.05:
+            item = 2
+        case 0.025:
+            item = 3
+        case 0.01:
+            item = 4
+        case 0.005:
+            item = 5
+    # introduced before Python 3.10
+    # if significance_level == 0.25:
+    #     item = 0
+    # elif significance_level == 0.10:
+    #     item = 1
+    # elif significance_level == 0.05:
+    #     item = 2
+    # elif significance_level == 0.025:
+    #     item = 3
+    # elif significance_level == 0.01:
+    #     item = 4
+    # elif significance_level == 0.005:
+    #     item = 5
     print(
         "Anderson-Darling results for normal distribution lack-of-fit test"
     )
