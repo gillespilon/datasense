@@ -2409,7 +2409,7 @@ def list_one_list_two_ops(
     list_two : List[str] | List[int] | List[float]
         A list of items.
     action : str
-        A string of either "list_one", "list_two", or "intersection"
+        A string of either "list_one", "list_two", or "intersection".
 
     Returns
     -------
@@ -2426,7 +2426,7 @@ def list_one_list_two_ops(
     >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
-    >>>     action='list_one'
+    >>>     action="list_one"
     >>> )
     >>> [1, 2, 3]
 
@@ -2437,7 +2437,7 @@ def list_one_list_two_ops(
     >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
-    >>>     action='list_two'
+    >>>     action="list_two"
     >>> )
     >>> [7, 8, 9]
 
@@ -2448,18 +2448,34 @@ def list_one_list_two_ops(
     >>> list_one_unique = ds.list_one_list_two_ops(
     >>>     list_one=list_one,
     >>>     list_two=list_two,
-    >>>     action='intersection'
+    >>>     action="intersection"
     >>> )
     >>> [4, 5, 6]
     """
-    if action == 'list_one':
-        list_result = list(set(list_one).difference(list_two))
-    elif action == 'list_two':
-        list_result = list(set(list_two).difference(list_one))
-    elif action == 'intersection':
-        list_result = list(set(list_one).intersection(list_two))
-    else:
-        print('Error. Enter "list_one" or "list_two" for parameter "unique"')
+    match action:
+        case "list_one":
+            list_result = list(set(list_one).difference(list_two))
+        case "list_two":
+            list_result = list(set(list_two).difference(list_one))
+        case "intersection":
+            list_result = list(set(list_one).intersection(list_two))
+        case _:
+            print(
+                'Error. Enter "list_one", "list_two", or "intersection" '
+                'for parameter "action".'
+            )
+    # introduced before Python 3.10
+    # if action == 'list_one':
+    #     list_result = list(set(list_one).difference(list_two))
+    # elif action == 'list_two':
+    #     list_result = list(set(list_two).difference(list_one))
+    # elif action == 'intersection':
+    #     list_result = list(set(list_one).intersection(list_two))
+    # else:
+    #     print(
+    #         'Error. Enter "list_one", "list_two", or "intersection" '
+    #         'for parameter "action".'
+    #     )
     return list_result
 
 

@@ -3093,7 +3093,7 @@ def plot_boxcox(
     remove_spines: bool = True,
     lmbda: float | int | None = None,
     alpha: float = 0.05
-) -> NoReturn:
+) -> Tuple[plt.Figure, axes.Axes]:
     """
     Box-Cox normality plot
 
