@@ -2327,24 +2327,44 @@ def paired_t(
         "hypothesized difference              : "
         f"{hypothesized_value:{width}.{decimals}f}"
     )
-    if alternative_hypothesis == "two-sided":
-        print(
-            "confidence interval                  : "
-            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
-        )
-    elif alternative_hypothesis == "less":
-        print(
-            "confidence interval                  : "
-            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
-        )
-    else:
-        print(
-            "confidence interval                  : "
-            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
-        )
+    match alternative_hypothesis:
+        case "two-sided":
+            print(
+                "confidence interval                  : "
+                f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+                f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+            )
+        case "less":
+            print(
+                "confidence interval                  : "
+                f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+                f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+            )
+        case _:
+            print(
+                "confidence interval                  : "
+                f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+                f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+            )
+    # introduced before Python 3.10
+    # if alternative_hypothesis == "two-sided":
+    #     print(
+    #         "confidence interval                  : "
+    #         f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+    #         f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+    #     )
+    # elif alternative_hypothesis == "less":
+    #     print(
+    #         "confidence interval                  : "
+    #         f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+    #         f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+    #     )
+    # else:
+    #     print(
+    #         "confidence interval                  : "
+    #         f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
+    #         f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
+    #     )
     print(
         "standard deviation of the differences: "
         f"{series_differences_standard_deviation:{width}.{decimals}f}"
