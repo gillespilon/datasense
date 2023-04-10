@@ -584,100 +584,196 @@ def random_data(
     distribution_list_strings = ["strings"]
     distribution_list_bool = ["bool", "boolean"]
     distribution_list_categories = ["category", "categories"]
-    if distribution in distribution_list_continuous:
-        series = pd.Series(eval(distribution).rvs(
-            size=size,
-            loc=loc,
-            scale=scale,
-            random_state=random_state
-            ),
-            name=name
-        )
-    elif distribution in distribution_list_discrete:
-        if distribution == "randInt":
-            series = pd.Series(eval(distribution.lower()).rvs(
-                low=low,
-                high=high,
-                size=size,
-                random_state=random_state
-                ),
-                name=name
-            )
-            series[series.sample(frac=fraction_nan).index] = np.NaN
-            series = series.astype(dtype="Int64")
-        elif distribution == "randint":
+    match distribution:
+        case distribution if distribution in distribution_list_continuous:
             series = pd.Series(eval(distribution).rvs(
-                low=low,
-                high=high,
                 size=size,
-                random_state=random_state
-                ),
-                name=name
-            ).astype(dtype="int64")
-    elif distribution in distribution_list_bool:
-        if distribution == "boolean":
-            series = pd.Series(eval("randint").rvs(
-                low=0,
-                high=2,
-                size=size,
+                loc=loc,
+                scale=scale,
                 random_state=random_state
                 ),
                 name=name
             )
-            series[series.sample(frac=fraction_nan).index] = np.NaN
-            series = series.astype(dtype="boolean")
-        elif distribution == "bool":
-            series = pd.Series(eval("randint").rvs(
-                low=0,
-                high=2,
-                size=size,
-                random_state=random_state
-                ),
-                name=name
-            ).astype(dtype="bool")
-    elif distribution in distribution_list_strings:
-        random.seed(a=random_state)
-        series = pd.Series(
-            random.choices(
-                population=strings,
-                k=size
-            ),
-            name=name
-        )
-    elif distribution in distribution_list_categories:
-        if distribution == "categories":
-            random.seed(a=random_state)
-            series = pd.Series(
-                random.choices(
-                    population=categories,
-                    k=size
-                ),
-                name=name
-            ).astype(
-                CategoricalDtype(
-                    categories=categories,
-                    ordered=True
+    # introduced before Python 3.10
+    # if distribution in distribution_list_continuous:
+    #     series = pd.Series(eval(distribution).rvs(
+    #         size=size,
+    #         loc=loc,
+    #         scale=scale,
+    #         random_state=random_state
+    #         ),
+    #         name=name
+    #     )
+        case distribution if distribution in distribution_list_discrete:
+            if distribution == "randInt":
+                series = pd.Series(eval(distribution.lower()).rvs(
+                    low=low,
+                    high=high,
+                    size=size,
+                    random_state=random_state
+                    ),
+                    name=name
                 )
-            )
-        elif distribution == "category":
+                series[series.sample(frac=fraction_nan).index] = np.NaN
+                series = series.astype(dtype="Int64")
+            elif distribution == "randint":
+                series = pd.Series(eval(distribution).rvs(
+                    low=low,
+                    high=high,
+                    size=size,
+                    random_state=random_state
+                    ),
+                    name=name
+                ).astype(dtype="int64")
+    # elif distribution in distribution_list_discrete:
+    #     if distribution == "randInt":
+    #         series = pd.Series(eval(distribution.lower()).rvs(
+    #             low=low,
+    #             high=high,
+    #             size=size,
+    #             random_state=random_state
+    #             ),
+    #             name=name
+    #         )
+    #         series[series.sample(frac=fraction_nan).index] = np.NaN
+    #         series = series.astype(dtype="Int64")
+    #     elif distribution == "randint":
+    #         series = pd.Series(eval(distribution).rvs(
+    #             low=low,
+    #             high=high,
+    #             size=size,
+    #             random_state=random_state
+    #             ),
+    #             name=name
+    #         ).astype(dtype="int64")
+        case distribution if distribution in distribution_list_bool:
+            if distribution == "boolean":
+                series = pd.Series(eval("randint").rvs(
+                    low=0,
+                    high=2,
+                    size=size,
+                    random_state=random_state
+                    ),
+                    name=name
+                )
+                series[series.sample(frac=fraction_nan).index] = np.NaN
+                series = series.astype(dtype="boolean")
+            elif distribution == "bool":
+                series = pd.Series(eval("randint").rvs(
+                    low=0,
+                    high=2,
+                    size=size,
+                    random_state=random_state
+                    ),
+                    name=name
+                ).astype(dtype="bool")
+    # elif distribution in distribution_list_bool:
+    #     if distribution == "boolean":
+    #         series = pd.Series(eval("randint").rvs(
+    #             low=0,
+    #             high=2,
+    #             size=size,
+    #             random_state=random_state
+    #             ),
+    #             name=name
+    #         )
+    #         series[series.sample(frac=fraction_nan).index] = np.NaN
+    #         series = series.astype(dtype="boolean")
+    #     elif distribution == "bool":
+    #         series = pd.Series(eval("randint").rvs(
+    #             low=0,
+    #             high=2,
+    #             size=size,
+    #             random_state=random_state
+    #             ),
+    #             name=name
+    #         ).astype(dtype="bool")
+        case distribution if distribution in distribution_list_strings:
             random.seed(a=random_state)
             series = pd.Series(
                 random.choices(
-                    population=categories,
+                    population=strings,
                     k=size
                 ),
                 name=name
-            ).astype(dtype="category")
-    elif distribution == "timedelta":
-        series = timedelta_data(time_delta_days=size-1).rename(name)
-    elif distribution == "datetime":
-        series = datetime_data(time_delta_days=size-1).rename(name)
-    else:
-        return print(
-            f"Distribution instance {distribution} is not implemented "
-            "in datasense."
             )
-        sys.exit()
+    # elif distribution in distribution_list_strings:
+    #     random.seed(a=random_state)
+    #     series = pd.Series(
+    #         random.choices(
+    #             population=strings,
+    #             k=size
+    #         ),
+    #         name=name
+    #     )
+        case distribution if distribution in distribution_list_categories:
+            if distribution == "categories":
+                random.seed(a=random_state)
+                series = pd.Series(
+                    random.choices(
+                        population=categories,
+                        k=size
+                    ),
+                    name=name
+                ).astype(
+                    CategoricalDtype(
+                        categories=categories,
+                        ordered=True
+                    )
+                )
+            elif distribution == "category":
+                random.seed(a=random_state)
+                series = pd.Series(
+                    random.choices(
+                        population=categories,
+                        k=size
+                    ),
+                    name=name
+                ).astype(dtype="category")
+    # elif distribution in distribution_list_categories:
+    #     if distribution == "categories":
+    #         random.seed(a=random_state)
+    #         series = pd.Series(
+    #             random.choices(
+    #                 population=categories,
+    #                 k=size
+    #             ),
+    #             name=name
+    #         ).astype(
+    #             CategoricalDtype(
+    #                 categories=categories,
+    #                 ordered=True
+    #             )
+    #         )
+    #     elif distribution == "category":
+    #         random.seed(a=random_state)
+    #         series = pd.Series(
+    #             random.choices(
+    #                 population=categories,
+    #                 k=size
+    #             ),
+    #             name=name
+    #         ).astype(dtype="category")
+        case "timedelta":
+            series = timedelta_data(time_delta_days=size-1).rename(name)
+    # elif distribution == "timedelta":
+    #     series = timedelta_data(time_delta_days=size-1).rename(name)
+        case "datetime":
+            series = datetime_data(time_delta_days=size-1).rename(name)
+    # elif distribution == "datetime":
+    #     series = datetime_data(time_delta_days=size-1).rename(name)
+        case _:
+            return print(
+                f"Distribution instance {distribution} is not implemented "
+                "in datasense."
+                )
+            sys.exit()
+    # else:
+    #     return print(
+    #         f"Distribution instance {distribution} is not implemented "
+    #         "in datasense."
+    #         )
+    #     sys.exit()
     return series
 
 
