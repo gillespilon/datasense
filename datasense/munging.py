@@ -2484,7 +2484,7 @@ def parameters_text_replacement(
     file_name: Path,
     sheet_name: str,
     usecols: List[str],
-    case: 'str' = None
+    text_case: "str" = None
 ) -> Tuple[Tuple[str, str]]:
     """
     Read Excel worksheet.
@@ -2498,7 +2498,7 @@ def parameters_text_replacement(
         The Excel worksheet.
     usecols : List[str]
         The column names to read.
-    case : 'str' = None
+    case : "str" = None
         Change the case of all items: None, lower, upper.
 
     Returns
@@ -2509,9 +2509,9 @@ def parameters_text_replacement(
     --------
     Example 1
     ---------
-    >>> path_parameters = Path('bcp_parameters.xlsx')
-    >>> usecols = ['old_text', 'new_text']
-    >>> sheet_name = 'text_replacement'
+    >>> path_parameters = Path("bcp_parameters.xlsx")
+    >>> usecols = ["old_text", "new_text"]
+    >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
     >>>     file_name=path_parameters,
     >>>     sheet_name=sheet_name,
@@ -2520,26 +2520,26 @@ def parameters_text_replacement(
 
     Example 2
     ---------
-    >>> path_parameters = Path('bcp_parameters.xlsx')
-    >>> usecols = ['old_text', 'new_text']
-    >>> sheet_name = 'text_replacement'
+    >>> path_parameters = Path("bcp_parameters.xlsx")
+    >>> usecols = ["old_text", "new_text"]
+    >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
     >>>     file_name=path_parameters,
     >>>     sheet_name=sheet_name,
     >>>     usecols=usecols,
-    >>>     case='upper'
+    >>>     case="upper"
     >>> )
 
     Example 3
     ---------
-    >>> path_parameters = Path('bcp_parameters.xlsx')
-    >>> usecols = ['old_text', 'new_text']
-    >>> sheet_name = 'text_replacement'
+    >>> path_parameters = Path("bcp_parameters.xlsx")
+    >>> usecols = ["old_text", "new_text"]
+    >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
     >>>     file_name=path_parameters,
     >>>     sheet_name=sheet_name,
     >>>     usecols=usecols,
-    >>>     case='lower'
+    >>>     case="lower"
     >>> )
     """
     df = read_file(
@@ -2547,21 +2547,38 @@ def parameters_text_replacement(
         sheet_name=sheet_name,
         usecols=usecols
     )
-    if case == 'upper':
-        tuples = tuple(
-            zip(df[usecols[0]].str.upper(), df[usecols[1]].str.upper())
-        )
-    elif case == 'lower':
-        tuples = tuple(
-            zip(df[usecols[0]].str.lower(), df[usecols[1]].str.lower())
-        )
-    else:
-        tuples = tuple(
-            zip(
-                df[usecols[0]].astype(dtype='object'),
-                df[usecols[1]].astype(dtype='object')
+    match text_case:
+        case "upper":
+            tuples = tuple(
+                zip(df[usecols[0]].str.upper(), df[usecols[1]].str.upper())
             )
-        )
+        case "lower":
+            tuples = tuple(
+                zip(df[usecols[0]].str.lower(), df[usecols[1]].str.lower())
+            )
+        case _:
+            tuples = tuple(
+                zip(
+                    df[usecols[0]].astype(dtype="object"),
+                    df[usecols[1]].astype(dtype="object")
+                )
+            )
+    # introduced before Python 3.10
+    # if text_case == "upper":
+    #     tuples = tuple(
+    #         zip(df[usecols[0]].str.upper(), df[usecols[1]].str.upper())
+    #     )
+    # elif text_case == "lower":
+    #     tuples = tuple(
+    #         zip(df[usecols[0]].str.lower(), df[usecols[1]].str.lower())
+    #     )
+    # else:
+    #     tuples = tuple(
+    #         zip(
+    #             df[usecols[0]].astype(dtype="object"),
+    #             df[usecols[1]].astype(dtype="object")
+    #         )
+    #     )
     return tuples
 
 
