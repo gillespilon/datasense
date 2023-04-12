@@ -2799,7 +2799,7 @@ def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
 def plot_boxplot(
     *,
     series: pd.Series,
-    notch: bool = None,
+    notch: bool = True,
     showmeans: bool = None,
     figsize: Tuple[float, float] = None,
     remove_spines: bool = True
@@ -2809,6 +2809,7 @@ def plot_boxplot(
     - minimum
     - first quartile
     - second quartile (median)
+    - confidence interval of the second quartile
     - third quartile
     - maximum
     - outliers
@@ -2817,9 +2818,9 @@ def plot_boxplot(
     ----------
     series : pd.Series
         The input series.
-    notch: bool = None,
-        Boolean to show notch.
-    showmeans: bool = None,
+    notch : bool = True,
+        Boolean to show the confidence interval of the second quartile.
+    showmeans : bool = None,
         Boolean to show average.
     figsize : Tuple[float, float] = None,
         The (width, height) of the figure (in, in).
