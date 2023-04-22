@@ -2140,7 +2140,8 @@ def plot_histogram(
     linewidth: int = 1,
     bin_label_bool: bool = False,
     color: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
+    probability_density_function: bool = False
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2166,6 +2167,10 @@ def plot_histogram(
         The color of the bar faces.
     remove_spines : bool = True
         If True, remove top and right spines of axes.
+    probability_density_function : bool = False
+        If True, a density parameter normalizes the bin heights so that the
+        integral of the histogram is 1. The resulting histogram is an
+        approximation of the probability density function.
 
     Returns
     -------
@@ -2242,6 +2247,7 @@ def plot_histogram(
     # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width, plotting range, labels.
     # Set colour of the bars.
+    # Plot the probability density function on top of the histogram.
     >>> s = ds.random_data(
     >>>     distribution="norm",
     >>>     size=113,
@@ -2276,8 +2282,17 @@ def plot_histogram(
         range=bin_range,
         edgecolor=edgecolor,
         linewidth=linewidth,
-        color=color
+        color=color,
+        density=True
     )
+    if probability_density_function:
+        series_std_dev = series.std()
+        series_ave = series.mean()
+        y_fit = (
+            (1 / (np.sqrt(2 * np.pi) * series_std_dev)) *
+            np.exp(-0.5 * (1 / series_std_dev * (bins - series_ave)) ** 2)
+        )
+        ax.plot(bins, y_fit, linestyle='--', color='r')
     if bin_label_bool:
         ax.set_xticks(ticks=bins)
         ax.xaxis.set_major_formatter(
