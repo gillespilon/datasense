@@ -5,6 +5,7 @@ Statistical and graphical functions for:
 - Analysing process variation
 - Supervised machine learning
 - Six Sigma methodology
+- Regular expressions
 - Excel file edits
 - Data science
 - Analytics
@@ -21,11 +22,12 @@ Why this?
 '''
 
 
-from .stats import *
 from .control_charts import *
-from .msa import *
 from .munging import *
 from .graphs import *
+from .sequel import *
+from .stats import *
 from .html import *
 from .pyxl import *
-from .sequel import *
+from .msa import *
+from .rgx import *
