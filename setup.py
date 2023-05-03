@@ -24,6 +24,7 @@ setup(
         "numpy",
         "pypng",
         "scipy",
+        "re",
     ],
     author="Gilles Pilon",
     author_email="gillespilon13@gmail.com",
