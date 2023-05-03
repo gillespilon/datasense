@@ -11,7 +11,7 @@ def rgx_email_address(
     strings: List[str]
 ) -> List[str]:
     """
-    Extract email addresses from a list of strings.
+    Extract list of unique email addresses from a list of strings.
 
     Parameters
     ----------
@@ -41,7 +41,7 @@ def rgx_email_address(
     ]
 
     Example 2
-    # open a file containing \n\t and email addresses
+    # open a file containing email addresses and \n\t
     >>> with open('mailbox.txt') as f:
     >>>     data = f.read()
     >>> strings = data.split("\n")
@@ -51,7 +51,10 @@ def rgx_email_address(
     # pattern = r"[\w.-]+@[\w.-]+"
     pattern = re.compile(r"[\w.-]+@[\w.-]+")
     list_of_lists = [re.findall(pattern=pattern, string=x) for x in strings]
-    matches = [x for sublist in list_of_lists for x in sublist]
+    list_of_emails = [x for sublist in list_of_lists for x in sublist]
+    unique_emails = list(set(list_of_emails))
+    matches = [email for email in unique_emails if email]
+    matches.sort()
     return matches
 
 
