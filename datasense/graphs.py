@@ -2854,6 +2854,9 @@ def plot_boxplot(
     >>> ds.despine(ax=ax)
     >>> ax.set_xticks(ticks=[1], labels=["series"])
     >>> ax.set_ylabel("y")
+
+    Reference
+    ---------
     """
     fig, ax = plt.subplots(
         nrows=1,
