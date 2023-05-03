@@ -22,12 +22,12 @@ Why this?
 '''
 
 
+from .stats import *
 from .control_charts import *
+from .msa import *
 from .munging import *
 from .graphs import *
-from .sequel import *
-from .stats import *
 from .html import *
 from .pyxl import *
-from .msa import *
+from .sequel import *
 from .rgx import *
