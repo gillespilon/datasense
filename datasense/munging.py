@@ -7,7 +7,6 @@ from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
 from tkinter import Tk
-import textwrap
 import psutil
 import string
 import sys
@@ -110,31 +109,31 @@ def dataframe_info(
     print()
     number_empty_cells_in_columns(df=df)
     print(f'List of {columns_non_empty_count} non-empty columns:')
-    print_list_by_item(list=columns_non_empty_list)
+    print_list_by_item(list_to_print=columns_non_empty_list)
     print()
     print(f'List of {columns_bool_count} bool columns:')
-    print_list_by_item(list=columns_bool_list)
+    print_list_by_item(list_to_print=columns_bool_list)
     print()
     print(f'List of {columns_category_count} category columns:')
-    print_list_by_item(list=columns_category_list)
+    print_list_by_item(list_to_print=columns_category_list)
     print()
     print(f'List of {columns_datetime_count} datetime columns:')
-    print_list_by_item(list=columns_datetime_list)
+    print_list_by_item(list_to_print=columns_datetime_list)
     print()
     print(f'List of {columns_float_count} float columns:')
-    print_list_by_item(list=columns_float_list)
+    print_list_by_item(list_to_print=columns_float_list)
     print()
     print(f'List of {columns_integer_count} integer columns:')
-    print_list_by_item(list=columns_integer_list)
+    print_list_by_item(list_to_print=columns_integer_list)
     print()
     print(f'List of {columns_object_count} string columns:')
-    print_list_by_item(list=columns_object_list)
+    print_list_by_item(list_to_print=columns_object_list)
     print()
     print(f'List of {columns_timedelta_count} timedelta columns:')
-    print_list_by_item(list=columns_timedelta_list)
+    print_list_by_item(list_to_print=columns_timedelta_list)
     print()
     print(f'List of {columns_empty_count} empty columns:')
-    print_list_by_item(list=columns_empty_list)
+    print_list_by_item(list_to_print=columns_empty_list)
     print()
     if unique_bool:
         for column in columns_non_empty_list:
@@ -1995,9 +1994,8 @@ def delete_list_files(
 
 def print_list_by_item(
     *,
-    list: List[str],
-    title: str = None,
-    width: int = 80
+    list_to_print: List[str],
+    title: str = None
 ) -> NoReturn:
     """
     Print each item of a list.
@@ -2008,21 +2006,15 @@ def print_list_by_item(
         The list of strings to print.
     title : str = None
         The title to print.
-    width : int = 80
-        The width of the output in characters.
 
     Example
     -------
     >>> import datasense as ds
     >>> ds.print_list_by_item(list=my_list_to_print)
     """
-    wrapper = textwrap.TextWrapper(width=width)
-    string_not_list = ", ".join(list)
-    new_list = wrapper.wrap(string_not_list)
     if title:
         print(title)
-    for element in new_list:
-        print(element)
+    print(*list_to_print, sep='\n')
 
 
 def ask_directory_path(
