@@ -2002,7 +2002,7 @@ def print_list_by_item(
 
     Parameters
     ----------
-    list : List[str]
+    list_to_print : List[str]
         The list of strings to print.
     title : str = None
         The title to print.
@@ -2010,7 +2010,7 @@ def print_list_by_item(
     Example
     -------
     >>> import datasense as ds
-    >>> ds.print_list_by_item(list=my_list_to_print)
+    >>> ds.print_list_by_item(list_to_print=my_list_to_print)
     """
     if title:
         print(title)
@@ -3241,6 +3241,33 @@ def convert_csv_to_feather(
         )
 
 
+def print_dictionary_by_key(
+    *,
+    dictionary_to_print: Dict[str, List[str]],
+    title: str = None
+) -> NoReturn:
+    """
+    Print each key, value of a dictionary, one key per line.
+
+    Parameters
+    ----------
+    dictionary_to_print : Dict[str, List[str]]
+        The dictionary to print.
+    title : str = None
+        The title to print.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.print_dictionary_by_key(dictionary_to_print=my_dictionary_to_print)
+    """
+    if title:
+        print(title)
+
+    for key, value in dictionary_to_print.items():
+        print(str(key) + ' : ' + str(value))
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
@@ -3249,6 +3276,7 @@ __all__ = (
     "ask_save_as_file_name_path",
     "optimize_datetime_columns",
     "optimize_integer_columns",
+    "print_dictionary_by_key",
     "optimize_object_columns",
     "ask_open_file_name_path",
     "convert_csv_to_feather",
