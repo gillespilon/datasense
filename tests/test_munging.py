@@ -327,6 +327,10 @@ def test_print_list_by_item():
     pass
 
 
+def test_print_dictionary_by_key():
+    pass
+
+
 def test_delete_empty_rows():
     """
     Test delete empty rows:
