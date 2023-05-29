@@ -278,7 +278,7 @@ def test_X(column, expected, subgroup_size):
     assert X.lcl == approx(expected['lcl'])
     return
     fig = BytesIO()
-    # TODO: fix more rendering parameters so as to be less affected by
+    # TODO:pytest –html=report.htmlpytest –html=report.htmlpytest –html=report.html fix more rendering parameters so as to be less affected by
     # environment, such as matplotlib defaults in config file, etc.
     try:
         X.ax().figure.savefig(
