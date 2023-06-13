@@ -14,7 +14,6 @@ def main():
     url = ("pytest.html")
     pytest.main(["--html=pytest.html"])
     webbrowser.open_new_tab(url=url)
-    webbrowser.open_new_tab(url=url)
 
 
 if __name__ == "__main__":
