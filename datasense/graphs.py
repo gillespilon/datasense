@@ -2141,7 +2141,9 @@ def plot_histogram(
     bin_label_bool: bool = False,
     color: str = colour_blue,
     remove_spines: bool = True,
-    probability_density_function: bool = False
+    probability_density_function: bool = False,
+    percentiles: Tuple[float, float] = None,
+    percentiles_colour: str = colour_red,
 ) -> Tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2171,6 +2173,10 @@ def plot_histogram(
         If True, a density parameter normalizes the bin heights so that the
         integral of the histogram is 1. The resulting histogram is an
         approximation of the probability density function.
+    percentiles : Tuple[float, float] = [0.025, 0.975]
+        The percentiles for plotting vertical lines on the histogram.
+    percentiles_colour : str = colour_red
+        The colour of the vertical lines for the percentiles.
 
     Returns
     -------
@@ -2327,6 +2333,9 @@ def plot_histogram(
             )
     if remove_spines:
         despine(ax=ax)
+    if percentiles:
+        ax.axvline(series.quantile(q=percentiles[0]), color=percentiles_colour)
+        ax.axvline(series.quantile(q=percentiles[1]), color=percentiles_colour)
     return (fig, ax)
 
 
