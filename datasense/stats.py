@@ -201,9 +201,9 @@ def parametric_summary(
     """
     ciaverage = stats.t.interval(
             confidence=0.95,
-            df=len(series)-1,
-            loc=np.mean(a=series),
-            scale=stats.sem(series)
+            df=series.size - 1,
+            loc=series.mean(),
+            scale=series.sem()
         )
     return pd.Series(
         data={
@@ -1626,8 +1626,8 @@ def two_sample_t(
     print()
     n_one = series1.count()
     n_two = series2.count()
-    variance_sample_one = statistics.variance(data=series1)
-    variance_sample_two = statistics.variance(data=series2)
+    variance_sample_one = series1.var()
+    variance_sample_two = series2.var()
     pooled_variance = (
         (n_one - 1) * variance_sample_one +
         (n_two - 1) * variance_sample_two
