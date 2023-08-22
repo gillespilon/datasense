@@ -12,7 +12,6 @@ Statistical analysis
 
 from datetime import datetime, timedelta
 from typing import List, Tuple
-import statistics
 import random
 import math
 import sys
@@ -22,7 +21,7 @@ from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-from scipy.stats import norm, uniform, randint
+# from scipy.stats import norm, uniform, randint
 from statsmodels.stats.power import TTestPower
 from pandas.api.types import CategoricalDtype
 import statsmodels.stats.diagnostic as smd
@@ -1530,98 +1529,6 @@ def two_sample_t(
                 "There is sufficient evidence to show that "\
                 "the average of sample 1 is greater than the "\
                 "average of sample 2."
-    # introduced before Python 3.10
-    # print(
-    #     "The two-sample t test is used to determine if the averages of two "
-    #     "samples are statistically, significantly different from each "
-    #     "other."
-    # )
-    # print()
-    # print("Assumptions")
-    # print("-----------")
-    # print()
-    # print("The data are continuous interval or ratio scales.")
-    # print()
-    # print(
-    #     "The data in each sample follow a normal distribution with mean mu "
-    #     "and variance sigma squared."
-    # )
-    # print()
-    # print(
-    #     "The sample variances follow a chi-squared distribution "
-    #     "with rho degrees of freedom under the null hypothesis, where rho "
-    #     "is a positive constant."
-    # )
-    # print()
-    # print(
-    #     "(sample average - population average) and the sample standard "
-    #     "deviation are independent."
-    # )
-    # print()
-    # print("The size of each sample may be equal or unequal.")
-    # print()
-    # print("The variance of each sample may be equal or unequal.")
-    # print()
-    # print(
-    #     "The data should be sampled independently from the two populations "
-    #     "being compared."
-    # )
-    # print()
-    # print("Results")
-    # print("-------")
-    # print()
-    # if alternative_hypothesis == "two-sided":
-    #     alternative_hypothesis_for_power = "two-sided"
-    #     message_ho =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one != average of sample two\n"\
-    #         "Fail to reject the null hypothesis Ho. "\
-    #         "Continue to accept the null hypothesis Ho. "\
-    #         "There is insufficient evidence to show that the sample "\
-    #         "averages are different."
-    #     message_ha =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one != average of sample two\n"\
-    #         "Reject the null hypothesis Ho. "\
-    #         "Accept the alternative hypothesis Ha. "\
-    #         "There is sufficient evidence to show that the sample "\
-    #         "averages are different."
-    # elif alternative_hypothesis == "less":
-    #     alternative_hypothesis_for_power = "smaller"
-    #     message_ho =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one < average of sample two\n"\
-    #         "Fail to reject the null hypothesis Ho. "\
-    #         "Continue to accept the null hypothesis Ho. "\
-    #         "There is insufficient evidence to show that "\
-    #         "the average of sample 1 is less than the "\
-    #         "average of sample 2."
-    #     message_ha =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one < average of sample two\n"\
-    #         "Reject the null hypothesis Ho. "\
-    #         "Accept the alternative hypothesis Ha. "\
-    #         "There is sufficient evidence to show that "\
-    #         "the average of sample 1 is less than the "\
-    #         "average of sample 2."
-    # elif alternative_hypothesis == "greater":
-    #     alternative_hypothesis_for_power = "larger"
-    #     message_ho =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one > average of sample two\n"\
-    #         "Fail to reject the null hypothesis Ho. "\
-    #         "Continue to accept the null hypothesis Ho. "\
-    #         "There is insufficient evidence to show that "\
-    #         "the average of sample 1 is greater than the "\
-    #         "average of sample 2."
-    #     message_ha =\
-    #         "Ho: average of sample one == average of sample two\n"\
-    #         "Ha: average of sample one > average of sample two\n"\
-    #         "Reject the null hypothesis Ho. "\
-    #         "Accept the alternative hypothesis Ha. "\
-    #         "There is sufficient evidence to show that "\
-    #         "the average of sample 1 is greater than the "\
-    #         "average of sample 2."
     print("Parametric analysis")
     print()
     n_one = series1.count()
@@ -1852,7 +1759,7 @@ def two_sample_t(
     print(
         f"Levene test statistic: {levene_test_statistic:{width}.{decimals}f}"
     )
-    print(f"Levene p value: {levene_p_value:{width}.{decimals}f}")
+    print(f"Levene p value       : {levene_p_value:{width}.{decimals}f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
         print()
@@ -1872,15 +1779,22 @@ def two_sample_t(
         print("t test results")
         print(f"average of sample 1   : {series1.mean():{width}.{decimals}f}")
         print(f"average of sample 2   : {series2.mean():{width}.{decimals}f}")
-        print(f"difference in averages: {(series1.mean() - series2.mean()):{width}.{decimals}f}")
         print(
-            "confidence interval  :  "
+            "difference in averages: "
+            f"{(series1.mean() - series2.mean()):{width}.{decimals}f}"
+        )
+        print(
+            "confidence interval   :  "
             f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
             f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
         )
-        print(f"t test statistic      : {t_test_statistic:{width}.{decimals}f}")
+        print(
+            f"t test statistic      : {t_test_statistic:{width}.{decimals}f}"
+        )
         print(f"t test p value        : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level    : {significance_level:{width}.{decimals}f}")
+        print(
+            f"significance level    : {significance_level:{width}.{decimals}f}"
+        )
         print(f"power of the test     : {power:{width}.{decimals}f}")
         print()
         if t_test_p_value < significance_level:
@@ -1906,15 +1820,22 @@ def two_sample_t(
         print("t test results")
         print(f"average of sample 1   : {series1.mean():{width}.{decimals}f}")
         print(f"average of sample 2   : {series2.mean():{width}.{decimals}f}")
-        print(f"difference in averages: {(series1.mean() - series2.mean()):{width}.{decimals}f}")
+        print(
+            "difference in averages: "
+            f"{(series1.mean() - series2.mean()):{width}.{decimals}f}"
+        )
         print(
             "confidence interval   : "
             f"{hypothesis_test_ci_lower_bound   :{width}.{decimals}f}, "
             f"{hypothesis_test_ci_upper_bound   :{width}.{decimals}f}"
         )
-        print(f"t test statistic      : {t_test_statistic:{width}.{decimals}f}")
+        print(
+            f"t test statistic      : {t_test_statistic:{width}.{decimals}f}"
+        )
         print(f"t test p value        : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level    : {significance_level:{width}.{decimals}f}")
+        print(
+            f"significance level    : {significance_level:{width}.{decimals}f}"
+        )
         print(f"power of the test     : {power:{width}.{decimals}f}")
         print()
         if t_test_p_value < significance_level:
