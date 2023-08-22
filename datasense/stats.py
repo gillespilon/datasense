@@ -1731,6 +1731,7 @@ def two_sample_t(
         print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level : {significance_level:{width}.{decimals}f}")
         print(f"power of the test  : {power:{width}.{decimals}f}")
+        print()
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1763,6 +1764,7 @@ def two_sample_t(
         print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
         print(f"significance level : {significance_level:{width}.{decimals}f}")
         print(f"power of the test  : {power:{width}.{decimals}f}")
+        print()
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1853,6 +1855,7 @@ def two_sample_t(
     print(f"Levene p value: {levene_p_value:{width}.{decimals}f}")
     if levene_p_value < significance_level:
         print("The two samples probably do not have equal variances.")
+        print()
         t_test_statistic, t_test_p_value = stats.ttest_ind(
             a=series1,
             b=series2,
@@ -1867,17 +1870,19 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
-        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
-        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
+        print(f"average of sample 1   : {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2   : {series2.mean():{width}.{decimals}f}")
+        print(f"difference in averages: {(series1.mean() - series2.mean()):{width}.{decimals}f}")
         print(
-            "confidence interval "
+            "confidence interval  :  "
             f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound}"
+            f"{hypothesis_test_ci_upper_bound:{width}.{decimals}f}"
         )
-        print(f"t test statistic   : {t_test_statistic:{width}.{decimals}f}")
-        print(f"t test p value     : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level : {significance_level:{width}.{decimals}f}")
-        print(f"power of the test  : {power:{width}.{decimals}f}")
+        print(f"t test statistic      : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value        : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level    : {significance_level:{width}.{decimals}f}")
+        print(f"power of the test     : {power:{width}.{decimals}f}")
+        print()
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
@@ -1899,17 +1904,19 @@ def two_sample_t(
             alternative=alternative_hypothesis_for_power
         )
         print("t test results")
-        print(f"average of sample 1: {series1.mean():{width}.{decimals}f}")
-        print(f"average of sample 2: {series2.mean():{width}.{decimals}f}")
+        print(f"average of sample 1   : {series1.mean():{width}.{decimals}f}")
+        print(f"average of sample 2   : {series2.mean():{width}.{decimals}f}")
+        print(f"difference in averages: {(series1.mean() - series2.mean()):{width}.{decimals}f}")
         print(
-            "confidence interval "
-            f"{hypothesis_test_ci_lower_bound:{width}.{decimals}f}, "
-            f"{hypothesis_test_ci_upper_bound}"
+            "confidence interval   : "
+            f"{hypothesis_test_ci_lower_bound   :{width}.{decimals}f}, "
+            f"{hypothesis_test_ci_upper_bound   :{width}.{decimals}f}"
         )
-        print(f"t test statistic  : {t_test_statistic:{width}.{decimals}f}")
-        print(f"t test p value    : {t_test_p_value:{width}.{decimals}f}")
-        print(f"significance level: {significance_level:{width}.{decimals}f}")
-        print(f"power of the test : {power:{width}.{decimals}f}")
+        print(f"t test statistic      : {t_test_statistic:{width}.{decimals}f}")
+        print(f"t test p value        : {t_test_p_value:{width}.{decimals}f}")
+        print(f"significance level    : {significance_level:{width}.{decimals}f}")
+        print(f"power of the test     : {power:{width}.{decimals}f}")
+        print()
         if t_test_p_value < significance_level:
             print(message_ha)
         else:
