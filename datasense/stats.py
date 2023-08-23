@@ -21,7 +21,7 @@ from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
 from scipy.stats.mstats import mquantiles as mq
-# from scipy.stats import norm, uniform, randint
+from scipy.stats import norm, uniform, randint
 from statsmodels.stats.power import TTestPower
 from pandas.api.types import CategoricalDtype
 import statsmodels.stats.diagnostic as smd
