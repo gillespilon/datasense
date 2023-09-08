@@ -12,6 +12,7 @@ setup(
         "cached_property",
         "beautifultable",
         "scikit-learn",
+        "statsmodels",
         "matplotlib",
         "openpyxl",
         "psycopg2",
