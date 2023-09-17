@@ -127,7 +127,26 @@ def test_create_dataframe_norm():
 
 
 def test_delete_list_files():
-    pass
+    pattern_startswith = ["job_aids"]
+    path = "dir_directories"
+    result1 = ds.list_directories(path=path)
+    expected1 = [
+        "cheatsheet_directory", "another_directory", "job_aids_directory"
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected2 = ["job_aids_directory"]
+    assert set(result2) == set(expected2)
+    pattern_startswith = ["job_aids", "cheatsheet"]
+    result3 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = ["cheatsheet_directory", "job_aids_directory"]
+    assert set(result3) == set(expected3)
 
 
 def test_replace_column_values():
@@ -444,42 +463,67 @@ def test_delete_rows():
 
 
 def test_list_files():
-    pattern_extension = [".html", ".HTML"]
-    pattern_startswith = ["job_aid"]
-    path = Path("dir_files")
-    result1 = ds.list_files(directory=path)
+    pattern_extension = [".html", ".HTML", ".mkd", ".MKD"]
+    pattern_startswith = ["file_", "job_aid_"]
+    directory = "dir_files"
+    result1 = ds.list_files(directory=directory)
     expected1 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML'),
-        PosixPath('dir_files/job_aid_file_one.mkd'),
-        PosixPath('dir_files/job_aid_file_two.MKD'),
-        PosixPath('dir_files/file_one.html'),
-        PosixPath('dir_files/file_two.HTML'),
-        PosixPath('dir_files/file_one.mkd'),
-        PosixPath('dir_files/file_two.MKD')
+        PosixPath("dir_files/job_aid_file_one.html"),
+        PosixPath("dir_files/job_aid_file_two.HTML"),
+        PosixPath("dir_files/job_aid_file_one.mkd"),
+        PosixPath("dir_files/job_aid_file_two.MKD"),
+        PosixPath("dir_files/file_one.html"),
+        PosixPath("dir_files/file_two.HTML"),
+        PosixPath("dir_files/file_one.mkd"),
+        PosixPath("dir_files/file_two.MKD")
     ]
-    assert set(result1) == set(expected1)
+    assert result1 == expected1
     result2 = ds.list_files(
-        directory=path,
-        pattern_extension=pattern_extension
-    )
-    expected2 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML'),
-        PosixPath('dir_files/file_one.html'),
-        PosixPath('dir_files/file_two.HTML')
-    ]
-    assert set(result2) == set(expected2)
-    result3 = ds.list_files(
-        directory=path,
-        pattern_extension=pattern_extension,
+        directory=directory,
         pattern_startswith=pattern_startswith
     )
-    expected3 = [
-        PosixPath('dir_files/job_aid_file_one.html'),
-        PosixPath('dir_files/job_aid_file_two.HTML')
+    expected2 = [
+        PosixPath("dir_files/job_aid_file_one.html"),
+        PosixPath("dir_files/job_aid_file_two.HTML"),
+        PosixPath("dir_files/job_aid_file_one.mkd"),
+        PosixPath("dir_files/job_aid_file_two.MKD"),
+        PosixPath("dir_files/file_one.html"),
+        PosixPath("dir_files/file_two.HTML"),
+        PosixPath("dir_files/file_one.mkd"),
+        PosixPath("dir_files/file_two.MKD")
     ]
-    assert set(result3) == set(expected3)
+    assert result2 == expected2
+    result3 = ds.list_files(
+        directory=directory,
+        pattern_extension=pattern_extension,
+    )
+    expected3 = [
+        PosixPath("dir_files/job_aid_file_one.html"),
+        PosixPath("dir_files/job_aid_file_two.HTML"),
+        PosixPath("dir_files/job_aid_file_one.mkd"),
+        PosixPath("dir_files/job_aid_file_two.MKD"),
+        PosixPath("dir_files/file_one.html"),
+        PosixPath("dir_files/file_two.HTML"),
+        PosixPath("dir_files/file_one.mkd"),
+        PosixPath("dir_files/file_two.MKD")
+    ]
+    assert result3 == expected3
+    result4 = ds.list_files(
+        directory=directory,
+        pattern_startswith=pattern_startswith,
+        pattern_extension=pattern_extension
+    )
+    expected4 = [
+        PosixPath("dir_files/job_aid_file_one.html"),
+        PosixPath("dir_files/job_aid_file_two.HTML"),
+        PosixPath("dir_files/job_aid_file_one.mkd"),
+        PosixPath("dir_files/job_aid_file_two.MKD"),
+        PosixPath("dir_files/file_one.html"),
+        PosixPath("dir_files/file_two.HTML"),
+        PosixPath("dir_files/file_one.mkd"),
+        PosixPath("dir_files/file_two.MKD")
+    ]
+    assert result4 == expected4
 
 
 def test_byte_size():
