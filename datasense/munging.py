@@ -88,13 +88,13 @@ def dataframe_info(
     >>> )
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df=df)
-    df, columns_in_count, columns_non_empty_count, columns_empty_count,\
-        columns_empty_list, columns_non_empty_list, columns_bool_list,\
-        columns_bool_count,\
-        columns_float_list, columns_float_count,\
-        columns_integer_list, columns_integer_count, columns_datetime_list,\
-        columns_datetime_count, columns_object_list, columns_object_count,\
-        columns_category_list, columns_category_count,\
+    df, columns_in_count, columns_non_empty_count, columns_empty_count, \
+        columns_empty_list, columns_non_empty_list, columns_bool_list, \
+        columns_bool_count, \
+        columns_float_list, columns_float_count, \
+        columns_integer_list, columns_integer_count, columns_datetime_list, \
+        columns_datetime_count, columns_object_list, columns_object_count, \
+        columns_category_list, columns_category_count, \
         columns_timedelta_list, columns_timedelta_count\
         = process_columns(df=df)
     print('==========================')
@@ -1926,7 +1926,7 @@ def list_files(
     >>> )
     """
     directory = Path(directory)
-    files = [f for f in directory.iterdir()]
+    files = directory.iterdir()
     if pattern_extension:
         files = [f for f in files if f.suffix in pattern_extension]
     if pattern_startswith:
