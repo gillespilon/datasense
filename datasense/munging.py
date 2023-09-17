@@ -95,7 +95,7 @@ def dataframe_info(
         columns_integer_list, columns_integer_count, columns_datetime_list, \
         columns_datetime_count, columns_object_list, columns_object_count, \
         columns_category_list, columns_category_count, \
-        columns_timedelta_list, columns_timedelta_count\
+        columns_timedelta_list, columns_timedelta_count \
         = process_columns(df=df)
     print('==========================')
     print(f'DataFrame information for: {file_in}')
@@ -1878,8 +1878,8 @@ def replace_column_values(
 def list_files(
     *,
     directory: str | Path,
-    pattern_extension: List[str] | Tuple[str] | None = None,
-    pattern_startswith: List[str] | Tuple[str] | None = None
+    pattern_startswith: List[str] | Tuple[str] | None = None,
+    pattern_extension: List[str] | Tuple[str] | None = None
 ) -> List[Path]:
     """
     Return a list of files within a directory.
@@ -1888,10 +1888,10 @@ def list_files(
     ----------
     directory : str | Path
         The path of the directory.
-    pattern_extension : List[str] | Tuple[str] | None = None
-        The file extensions to use for finding files in the path.
     pattern_startswith : List[str] | Tuple[str] | None = None
         The string for determining if a file starts with this string.
+    pattern_extension : List[str] | Tuple[str] | None = None
+        The file extensions to use for finding files in the path.
 
     Returns
     -------
@@ -1926,7 +1926,7 @@ def list_files(
     >>> )
     """
     directory = Path(directory)
-    files = directory.iterdir()
+    files = list(directory.iterdir())
     if pattern_extension:
         files = [f for f in files if f.suffix in pattern_extension]
     if pattern_startswith:
