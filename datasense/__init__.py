@@ -8,6 +8,7 @@ Statistical and graphical functions for:
 - Regular expressions
 - Excel file edits
 - Data science
+- Automation
 - Analytics
 
 Why this?
@@ -31,3 +32,4 @@ from .html import *
 from .pyxl import *
 from .sequel import *
 from .rgx import *
+from .automation import *
