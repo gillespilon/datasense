@@ -16,7 +16,8 @@ def water_coffee_tea(
     water_coffee_mass: int = 220
 ) -> List[int]:
     """
-    Calculate water mass required for coffee mugs, tea cups, tea mugs
+    Calculate water mass required for coffee mugs, tea cups, tea mugs.
+    All units are g.
 
     Parameters
     ----------
@@ -39,23 +40,55 @@ def water_coffee_tea(
     Returns
     -------
         water : int
-            The total amount of water to boil.
+            The total amount of water to boil (g).
         coffee_mug_water : int
-            The amount of water for the coffee mugs.
+            The amount of water for the coffee mugs (g).
         coffee_filter_water : int
-            The amount of water to wet the coffee filters.
+            The amount of water to wet the coffee filters (g).
         tea_cup_water : int
-            The amount of water for the tea cups.
+            The amount of water for the tea cups (g).
         tea_mug_water : int
-            The amount of water for the tea mugs.
+            The amount of water for the tea mugs (g).
 
-    Example
-    -------
+    Examples
+    --------
+
+    Example 1
+    ---------
     >>> import datasense as ds
-    >>> df = ds.create_dataframe()
-    >>> columns_bool = ds.find_bool_columns(df=df)
-    >>> print(columns_bool)
-    ['b']
+    >>> water, coffee_mug_water, coffee_filter_water, tea_cup_water, \
+    >>>     tea_mug_water = ds.water_coffee_tea(
+    >>>         mugs_coffee=1,
+    >>>         cups_tea=0,
+    >>>         mugs_tea=0
+    >>>     )
+    >>> print(
+    >>>    water, coffee_mug_water, coffee_filter_water, tea_cup_water, \
+    >>>     tea_mug_water
+    >>> )
+    370, 220, 150, 0, 0
+
+    Example 2
+    ---------
+    >>> import datasense as ds
+    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea(
+    >>>     mugs_coffee=1,
+    >>>     cups_tea=0,
+    >>>     mugs_tea=0
+    >>> )[i] for i in [1, 2]]
+    >>> print(coffee_mug_water, coffee_filter_water)
+    220, 150
+
+    Example 3
+    ---------
+    >>> import datasense as ds
+    >>> all_coffee_water = ds.water_coffee_tea(
+    >>>     mugs_coffee=1,
+    >>>     cups_tea=0,
+    >>>     mugs_tea=0
+    >>> )[0:3]
+    >>> print(all_coffee_water)
+    (370, 220, 150)
     """
     coffee_mug_water = mugs_coffee * water_coffee_mass
     coffee_filter_water = mugs_coffee * water_coffee_filter_mass
