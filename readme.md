@@ -4,8 +4,6 @@ This repository contains a package of statistical and graphical functions
 that I use in my work of making sense of data to create information
 and understanding.
 
-[![Github Downloads (total)](https://img.shields.io/github/downloads/gillespilon/datasense/total.svg)]()
-
 # To install #
 
 Do this if this is your first-time installation. Ensure you have `git` installed.
