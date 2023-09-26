@@ -4,7 +4,7 @@ This repository contains a package of statistical and graphical functions
 that I use in my work of making sense of data to create information
 and understanding.
 
-![GitHub Releases](https://img.shields.io/github/downloads/gilles/datasense/version/total)
+![GitHub Releases](https://img.shields.io/github/downloads/gilles/datasense/0.2/total)
 
 # To install #
 
