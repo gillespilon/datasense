@@ -28,7 +28,7 @@ from .control_charts import *
 from .msa import *
 from .munging import *
 from .graphs import *
-from .html import *
+from .htmlds import *
 from .pyxl import *
 from .sequel import *
 from .rgx import *
