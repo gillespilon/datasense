@@ -55,7 +55,8 @@ def water_coffee_tea(
 
     Example 1
     ---------
-    >>> water_coffee_tea(
+    >>> import datasense as ds
+    >>> ds.water_coffee_tea(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
@@ -64,7 +65,8 @@ def water_coffee_tea(
 
     Example 2
     ---------
-    >>> coffee_mug_water, coffee_filter_water = [water_coffee_tea(
+    >>> import datasense as ds
+    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
@@ -74,7 +76,8 @@ def water_coffee_tea(
 
     Example 3
     ---------
-    >>> all_coffee_water = water_coffee_tea(
+    >>> import datasense as ds
+    >>> all_coffee_water = ds.water_coffee_tea(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
