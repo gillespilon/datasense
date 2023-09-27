@@ -266,20 +266,22 @@ class X(ControlChart):
         --------
         Example 1, minimal X control chart
         ----------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_x.svg'
         >>> data = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=42,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=42,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data=data,
-        >>>     columns=['X']
-        >>> )
+        ...     data=data,
+        ...     columns=['X']
+        ... )
         >>> fig = plt.figure(figsize=figsize)
         >>> x = cc.X(data=data)
         >>> ax = x.ax(fig=fig)
@@ -287,59 +289,61 @@ class X(ControlChart):
 
         Example 2, complete X control chart
         -----------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_x.svg'
-        >>> colour='33bbee'
+        >>> colour='#33bbee'
         >>> data = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=42,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=42,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data=data,
-        >>>     columns=['X']
-        >>> )
+        ...     data=data,
+        ...     columns=['X']
+        ... )
         >>> fig = plt.figure(figsize=figsize)
         >>> x = cc.X(data=data)
         >>> ax = x.ax(fig=fig)
         >>> ax.axhline(
-        >>>     y=x.sigmas[+1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=x.sigmas[+1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=x.sigmas[-1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=x.sigmas[-1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=x.sigmas[+2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=x.sigmas[+2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=x.sigmas[-2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=x.sigmas[-2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> cc.draw_rules(x, ax)
         >>> ax.set_title(
-        >>>     label=x_chart_title,
-        >>>     fontweight='bold'
-        >>> )
-        >>> ax.set_ylabel(ylabel=x_chart_ylabel)
-        >>> ax.set_xlabel(xlabel=x_chart_xlabel)
+        ...     label="X chart title",
+        ...     fontweight="bold"
+        ... ) # doctest: +SKIP
+        >>> ax.set_ylabel(ylabel="X chart Y label") # doctest: +SKIP
+        >>> ax.set_xlabel(xlabel="X chart X label") # doctest: +SKIP
         >>> fig.savefig(fname=graph_name)
         """
         if fig is None:
@@ -434,20 +438,22 @@ class mR(ControlChart):
         --------
         Example 1, minimal mR control chart
         ----------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_mr.svg'
         >>> data = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=42,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=42,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data=data,
-        >>>     columns=['X']
-        >>> )
+        ...     data=data,
+        ...     columns=['X']
+        ... )
         >>> fig = plt.figure(figsize=figsize)
         >>> mr = cc.mR(data=data)
         >>> ax = mr.ax(fig=fig)
@@ -455,29 +461,29 @@ class mR(ControlChart):
 
         Example 2, complete mR control chart
         -----------------------------------
-        >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense.control_charts as cc
+        >>> import datasense as ds
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_mr.svg'
         >>> data = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=42,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=42,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data=data,
-        >>>     columns=['X']
-        >>> )
+        ...     data=data,
+        ...     columns=['X']
+        ... )
         >>> mr = cc.mR(data=data)
         >>> ax = mr.ax(fig=fig)
         >>> cc.draw_rule(mr, ax, *cc.points_one(mr), '1')
         >>> ax.set_title(
-        >>>     label=mr_chart_title,
-        >>>     fontweight='bold'
-        >>> )
-        >>> ax.set_ylabel(ylabel=mr_chart_ylabel)
-        >>> ax.set_xlabel(xlabel=mr_chart_xlabel)
+        ...     label="mR chart title",
+        ...     fontweight="bold"
+        ... ) # doctest: +SKIP
+        >>> ax.set_ylabel(ylabel="mR chart Y label") # doctest: +SKIP
+        >>> ax.set_xlabel(xlabel="mR chart X label") # doctest: +SKIP
         >>> fig.savefig(fname=graph_name)
         """
         if fig is None:
@@ -567,43 +573,45 @@ class Xbar(ControlChart):
         --------
         Example 1, minimal Xbar control chart
         -------------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_xbar.svg'
-        >>> colour='33bbee'
+        >>> colour='#33bbee'
         >>> X1 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X2 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X3 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X4 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data={
-        >>>         'X1': X1,
-        >>>         'X2': X2,
-        >>>         'X3': X3,
-        >>>         'X4': X4,
-        >>>     }
-        >>> )
+        ...     data={
+        ...         'X1': X1,
+        ...         'X2': X2,
+        ...         'X3': X3,
+        ...         'X4': X4,
+        ...     }
+        ... )
         >>> fig = plt.figure(figsize=figsize)
         >>> xbar = cc.Xbar(data=data)
         >>> ax = xbar.ax(fig=fig)
@@ -611,81 +619,83 @@ class Xbar(ControlChart):
 
         Example 2, complete Xbar control chart
         --------------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_xbar.svg'
-        >>> colour='33bbee'
+        >>> colour='#33bbee'
         >>> X1 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X2 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X3 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X4 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data={
-        >>>         'X1': X1,
-        >>>         'X2': X2,
-        >>>         'X3': X3,
-        >>>         'X4': X4,
-        >>>     }
-        >>> )
+        ...     data={
+        ...         'X1': X1,
+        ...         'X2': X2,
+        ...         'X3': X3,
+        ...         'X4': X4,
+        ...     }
+        ... )
         >>> fig = plt.figure(figsize=figsize)
         >>> xbar = cc.Xbar(data=data)
         >>> ax = xbar.ax(fig=fig)
         >>> ax.axhline(
-        >>>     y=xbar.sigmas[+1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=xbar.sigmas[+1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=xbar.sigmas[-1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=xbar.sigmas[-1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=xbar.sigmas[+2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=xbar.sigmas[+2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=xbar.sigmas[-2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
-        >>> cc.draw_rules(xbar, ax)
+        ...     y=xbar.sigmas[-2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
+        >>> cc.draw_rules(xbar, ax) # doctest: +SKIP
         >>> ax.set_title(
-        >>>     label=xbar_chart_title,
-        >>>     fontweight='bold'
-        >>> )
-        >>> ax.set_ylabel(ylabel=xbar_chart_ylabel)
-        >>> ax.set_xlabel(xlabel=xbar_chart_xlabel)
+        ...     label="Xbar chart title",
+        ...     fontweight="bold"
+        ... ) # doctest: +SKIP
+        >>> ax.set_ylabel(ylabel="Xbar chart Y label") # doctest: +SKIP
+        >>> ax.set_xlabel(xlabel="Xbar chart X label") # doctest: +SKIP
         >>> fig.savefig(fname=graph_name)
         """
         if fig is None:
@@ -785,42 +795,45 @@ class R(ControlChart):
         --------
         Example 1, minimal R control chart
         ----------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_r.svg'
         >>> X1 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X2 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X3 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X4 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data={
-        >>>         'X1': X1,
-        >>>         'X2': X2,
-        >>>         'X3': X3,
-        >>>         'X4': X4,
-        >>>     }
-        >>> )
+        ...     data={
+        ...         'X1': X1,
+        ...         'X2': X2,
+        ...         'X3': X3,
+        ...         'X4': X4,
+        ...     }
+        ... )
+        >>> graph_r_file_name = 'graph_r.svg'
         >>> fig = plt.figure(figsize=(8, 6))
         >>> r = cc.R(data=data)
         >>> ax = r.ax(fig=fig)
@@ -828,81 +841,84 @@ class R(ControlChart):
 
         Example 2, complete R control chart
         -----------------------------------
+        >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
-        >>> from datasense import control_charts as cc
+        >>> import datasense as ds
+        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_r.svg'
-        >>> colour='33bbee'
+        >>> colour='#33bbee'
         >>> X1 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X2 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X3 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> X4 = ds.random_data(
-        >>>     distribution='norm',
-        >>>     size=25,
-        >>>     loc=69,
-        >>>     scale=13
-        >>> )
+        ...     distribution='norm',
+        ...     size=25,
+        ...     loc=69,
+        ...     scale=13
+        ... )
         >>> data = pd.DataFrame(
-        >>>     data={
-        >>>         'X1': X1,
-        >>>         'X2': X2,
-        >>>         'X3': X3,
-        >>>         'X4': X4,
-        >>>     }
-        >>> )
+        ...     data={
+        ...         'X1': X1,
+        ...         'X2': X2,
+        ...         'X3': X3,
+        ...         'X4': X4,
+        ...     }
+        ... )
         >>> fig = plt.figure(figsize=(8, 6))
         >>> r = cc.R(data=data)
         >>> ax = r.ax(fig=fig)
         >>> ax.axhline(
-        >>>     y=r.sigmas[+1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=r.sigmas[+1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=r.sigmas[-1],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=r.sigmas[-1],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=r.sigmas[+2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=r.sigmas[+2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> ax.axhline(
-        >>>     y=r.sigmas[-2],
-        >>>     linestyle='--',
-        >>>     dashes=(5, 5),
-        >>>     color=colour,
-        >>>     alpha=0.5
-        >>> )
+        ...     y=r.sigmas[-2],
+        ...     linestyle='--',
+        ...     dashes=(5, 5),
+        ...     color=colour,
+        ...     alpha=0.5
+        ... ) # doctest: +SKIP
         >>> cc.draw_rule(r, ax, *cc.points_one(r), '1')
         >>> ax.set_title(
-        >>>     label=r_chart_title,
-        >>>     fontweight='bold'
-        >>> )
-        >>> ax.set_ylabel(ylabel=r_chart_ylabel)
-        >>> ax.set_xlabel(xlabel=r_chart_xlabel)
+        ...     label="R chart",
+        ...     fontweight="bold"
+        ... ) # doctest: +SKIP
+        >>> ax.set_ylabel(ylabel="Y label") # doctest: +SKIP
+        >>> ax.set_xlabel(xlabel="X label") # doctest: +SKIP
+        >>> graph_r_file_name = 'graph_r.svg'
         >>> fig.savefig(fname=graph_r_file_name)
         """
         if fig is None:
