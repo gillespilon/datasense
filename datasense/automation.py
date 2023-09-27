@@ -16,7 +16,7 @@ def water_coffee_tea(
     water_coffee_mass: int = 220
 ) -> List[int]:
     """
-    Calculate water mass required for coffee mugs, tea cups, tea mugs.
+    Calculate the water mass required for coffee mugs, tea cups, and tea mugs.
     All units are g.
 
     Parameters
@@ -33,7 +33,7 @@ def water_coffee_tea(
     water_tea_cup_mass : int = 400,
         The mass of water for a tea cup.
     water_tea_mug_mass : int = 300,
-        The mas of water for a coffee mug.
+        The mass of water for a coffee mug.
     water_coffee_mass : int = 220
         The mass of water to wet the coffee grinds.
 
@@ -55,38 +55,30 @@ def water_coffee_tea(
 
     Example 1
     ---------
-    >>> import datasense as ds
-    >>> water, coffee_mug_water, coffee_filter_water, tea_cup_water, \
-    >>>     tea_mug_water = ds.water_coffee_tea(
-    >>>         mugs_coffee=1,
-    >>>         cups_tea=0,
-    >>>         mugs_tea=0
-    >>>     )
-    >>> print(
-    >>>    water, coffee_mug_water, coffee_filter_water, tea_cup_water, \
-    >>>     tea_mug_water
-    >>> )
-    370, 220, 150, 0, 0
+    >>> water_coffee_tea(
+    ... mugs_coffee=1,
+    ... cups_tea=0,
+    ... mugs_tea=0
+    ... )
+    (370, 220, 150, 0, 0)
 
     Example 2
     ---------
-    >>> import datasense as ds
-    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea(
-    >>>     mugs_coffee=1,
-    >>>     cups_tea=0,
-    >>>     mugs_tea=0
-    >>> )[i] for i in [1, 2]]
+    >>> coffee_mug_water, coffee_filter_water = [water_coffee_tea(
+    ... mugs_coffee=1,
+    ... cups_tea=0,
+    ... mugs_tea=0
+    ... )[i] for i in [1, 2]]
     >>> print(coffee_mug_water, coffee_filter_water)
-    220, 150
+    220 150
 
     Example 3
     ---------
-    >>> import datasense as ds
-    >>> all_coffee_water = ds.water_coffee_tea(
-    >>>     mugs_coffee=1,
-    >>>     cups_tea=0,
-    >>>     mugs_tea=0
-    >>> )[0:3]
+    >>> all_coffee_water = water_coffee_tea(
+    ... mugs_coffee=1,
+    ... cups_tea=0,
+    ... mugs_tea=0
+    ... )[0:3]
     >>> print(all_coffee_water)
     (370, 220, 150)
     """
