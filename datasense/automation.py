@@ -56,18 +56,18 @@ def water_coffee_tea(
     Example 1
     ---------
     >>> water_coffee_tea(
-    ... mugs_coffee=1,
-    ... cups_tea=0,
-    ... mugs_tea=0
+    ...     mugs_coffee=1,
+    ...     cups_tea=0,
+    ...     mugs_tea=0
     ... )
     (370, 220, 150, 0, 0)
 
     Example 2
     ---------
     >>> coffee_mug_water, coffee_filter_water = [water_coffee_tea(
-    ... mugs_coffee=1,
-    ... cups_tea=0,
-    ... mugs_tea=0
+    ...     mugs_coffee=1,
+    ...     cups_tea=0,
+    ...     mugs_tea=0
     ... )[i] for i in [1, 2]]
     >>> print(coffee_mug_water, coffee_filter_water)
     220 150
@@ -75,9 +75,9 @@ def water_coffee_tea(
     Example 3
     ---------
     >>> all_coffee_water = water_coffee_tea(
-    ... mugs_coffee=1,
-    ... cups_tea=0,
-    ... mugs_tea=0
+    ...     mugs_coffee=1,
+    ...     cups_tea=0,
+    ...     mugs_tea=0
     ... )[0:3]
     >>> print(all_coffee_water)
     (370, 220, 150)
