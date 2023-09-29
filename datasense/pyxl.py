@@ -8,7 +8,7 @@ import time
 import sys
 import io
 
-from openpyxl.styles import Alignment, Border, Font, NamedStyle, PatternFill,\
+from openpyxl.styles import Alignment, Border, Font, NamedStyle, PatternFill, \
     Side
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.worksheet import Worksheet
@@ -42,11 +42,13 @@ def autofit_column_width(
 
     Example
     -------
-    >>> extra_column_width = 7
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.autofit_column_width(
-    >>>     ws=ws,
-    >>>     extra_width=extra_column_width
-    >>> )
+    ...     ws=ws,
+    ...     extra_width=7
+    ... )
     """
     for column in ws.columns:
         max_width = 0
@@ -93,14 +95,18 @@ def cell_fill_down(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
+    >>> fill_down_columns = ["col1", "col2", "col3"]
     >>> for column in fill_down_columns:
-    >>>     ws = ds.cell_fill_down(
-    >>>         ws=ws,
-    >>>         min_row=row_below_labels,
-    >>>         max_row=ws.max_row,
-    >>>         min_col=column_names_numbers[column],
-    >>>         max_col=column_names_numbers[column]
-    >>>     )
+    ...     ws = ds.cell_fill_down(
+    ...         ws=ws,
+    ...         min_row=2,
+    ...         max_row=ws.max_row,
+    ...         min_col=1,
+    ...         max_col=3
+    ...     )
     """
     row_count = 0
     for row in ws.iter_rows(
@@ -181,14 +187,18 @@ def cell_style(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> red_cell_style = ds.cell_style(
-    >>>     style_name='red_cell_style',
-    >>>     font_colour='ffffff',
-    >>>     foreground_colour='c00000'
-    >>> )
-    >>> wb.add_named_style(red_cell_style)
+    ...     wb=wb,
+    ...     style_name='red_cell_style',
+    ...     font_colour='ffffff',
+    ...     foreground_colour='c00000'
+    ... )
+    >>> wb.add_named_style(red_cell_style) # doctest: +SKIP
     >>> for cell in ['C1', 'D1', 'E1']:
-    >>>     ws[cell].style = red_cell_style
+    ...     ws[cell].style = red_cell_style # doctest: +SKIP
     """
     cell_style = NamedStyle(name=style_name)
     cell_style.font = Font(
@@ -251,14 +261,17 @@ def change_case_worksheet_columns(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.change_case_worksheet_columns(
-    >>>     ws=ws,
-    >>>     min_col=4,
-    >>>     max_col=6,
-    >>>     min_row=1,
-    >>>     max_row=ws.max_row,
-    >>>     case='upper'
-    >>> )
+    ...     ws=ws,
+    ...     min_col=4,
+    ...     max_col=6,
+    ...     min_row=1,
+    ...     max_row=ws.max_row,
+    ...     case='upper'
+    ... )
     """
     for col in ws.iter_cols(
         min_col=min_col,
@@ -293,9 +306,9 @@ def exit_script(
     -------
     >>> import datasense as ds
     >>> ds.exit_script(
-    >>>     original_stdout=original_stdout,
-    >>>     output_url=output_url
-    >>> )
+    ...     original_stdout=original_stdout,
+    ...     output_url=output_url
+    ... ) # doctest: +SKIP
     """
     html_end(
         original_stdout=original_stdout,
@@ -326,11 +339,14 @@ def list_duplicate_worksheet_rows(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> duplicate_rows = ds.list_duplicate_worksheet_rows(ws=ws)
     >>> ws = ds.remove_worksheet_rows(
-    >>>     ws=ws,
-    >>>     duplicate_rows=duplicate_rows
-    >>> )
+    ...     ws=ws,
+    ...     rows_to_remove=duplicate_rows
+    ... )
     """
     duplicate_rows = []
     unique_rows = []
@@ -368,11 +384,15 @@ def list_empty_and_nan_worksheet_rows(
 
     Example
     -------
-    >>> ws = wb[sheetname]
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
+    >>> sheetname = "sheetname"
+    >>> ws = wb[sheetname] # doctest: +SKIP
     >>> blank_rows = ds.list_nan_worksheet_rows(
-    >>>     ws=ws,
-    >>>     min_row=2
-    >>> )
+    ...     ws=ws,
+    ...     min_row=2
+    ... ) # doctest: +SKIP
     """
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
@@ -408,11 +428,13 @@ def list_empty_except_nan_worksheet_rows(
     Example
     -------
     Remove empty rows starting from row 2.
-    >>> ws = wb[sheet_name]
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> empty_rows = ds.list_empty_except_nan_worksheet_rows(
-    >>>     ws=ws,
-    >>>     min_row=2
-    >>> )
+    ...     ws=ws,
+    ...     min_row=2
+    ... )
 
     """
     empty_rows = []
@@ -445,11 +467,15 @@ def list_nan_worksheet_rows(
 
     Example
     -------
-    >>> ws = wb[sheetname]
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
+    >>> sheetname = "sheetname"
+    >>> ws = wb[sheetname] # doctest: +SKIP
     >>> blank_rows = ds.list_nan_worksheet_rows(
-    >>>     ws=ws,
-    >>>     min_row=2
-    >>> )
+    ...     ws=ws,
+    ...     min_row=2
+    ... )
     """
     blank_rows = []
     for row in ws.iter_rows(min_row=min_row):
@@ -487,12 +513,15 @@ def list_rows_with_content(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> rows_with_text = ds.list_rows_with_content(
-    >>>     ws=ws,
-    >>>     min_row=2,
-    >>>     column=11,
-    >>>     text='ETA'
-    >>> )
+    ...     ws=ws,
+    ...     min_row=2,
+    ...     column=11,
+    ...     text='ETA'
+    ... )
     """
     rows_with_text = []
     for row in ws.iter_rows(
@@ -531,10 +560,14 @@ def read_workbook(
 
     Examples
     --------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
+    >>> filename = "excel_file.xlsx"
     >>> wb, sheet_names = ds.read_workbook(
-    >>>     filename=filename,
-    >>>     data_only=True
-    >>> )
+    ...     filename=filename,
+    ...     data_only=True
+    ... ) # doctest: +SKIP
     """
     wb = load_workbook(
         filename=filename,
@@ -567,10 +600,13 @@ def remove_empty_worksheet_rows(
     Example
     -------
     Remove empty rows found.
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.remove_empty_worksheet_rows(
-    >>>     ws=ws,
-    >>>     empty_rows=empty_rows
-    >>> )
+    ...     ws=ws,
+    ...     empty_rows=[5, 6, 7]
+    ... )
     """
     for row_idx in reversed(empty_rows):
         ws.delete_rows(
@@ -605,11 +641,14 @@ def remove_worksheet_columns(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.remove_worksheet_columns(
-    >>>     ws=ws,
-    >>>     starting_column=starting_column,
-    >>>     number_of_columns=number_of_columns
-    >>> )
+    ...     ws=ws,
+    ...     starting_column=13,
+    ...     number_of_columns=3
+    ... )
     """
     ws.delete_cols(
         idx=starting_column,
@@ -640,10 +679,13 @@ def remove_worksheet_rows(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.remove_worksheet_rows(
-    >>>     ws=ws,
-    >>>     rows_to_remove=rows_to_remove
-    >>> )
+    ...     ws=ws,
+    ...     rows_to_remove=[4, 5, 6]
+    ... )
     """
     for row in reversed(rows_to_remove):
         ws.delete_rows(
@@ -678,11 +720,14 @@ def replace_text(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.replace_text(
-    >>>     ws=ws,
-    >>>     column=column_names_numbers[column],
-    >>>     text=text_replacement
-    >>> )
+    ...     ws=ws,
+    ...     column=13,
+    ...     text=['old_text', 'new_text']
+    ... ) # doctest: +SKIP
     """
     for row in ws.iter_rows(
         min_col=column,
@@ -738,17 +783,20 @@ def validate_column_labels(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> ws = ds.validate_column_labels(
-    >>>     ws=ws,
-    >>>     column_labels=column_labels,
-    >>>     first_column=first_column,
-    >>>     last_column=last_column,
-    >>>     row_of_labels=row_of_labels,
-    >>>     start_time=start_time,
-    >>>     stop_time=time.time(),
-    >>>     original_stdout=original_stdout,
-    >>>     output_url=output_url
-    >>> )
+    ...     ws=ws,
+    ...     column_labels=column_labels,
+    ...     first_column=first_column,
+    ...     last_column=last_column,
+    ...     row_of_labels=row_of_labels,
+    ...     start_time=start_time,
+    ...     stop_time=time.time(),
+    ...     original_stdout=original_stdout,
+    ...     output_url=output_url
+    ... ) # doctest: +SKIP
     """
     labels_found = []
     for col in range(first_column, last_column + 1):
@@ -828,14 +876,17 @@ def unique_list_items(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> list_part_numbers, list_column_numbers = ds.unique_list_items(
-    >>>     ws=ws,
-    >>>     row_of_labels=row_of_labels,
-    >>>     row_below_labels=row_below_labels,
-    >>>     column_name_varname=column_name,
-    >>>     text_to_replace=text_to_replace,
-    >>>     text_to_remove=text_to_remove
-    >>> )
+    ...     ws=ws,
+    ...     row_of_labels=row_of_labels,
+    ...     row_below_labels=row_below_labels,
+    ...     column_name_varname=column_name,
+    ...     text_to_replace=text_to_replace,
+    ...     text_to_remove=text_to_remove
+    ... ) # doctest: +SKIP
 
     """
     column_numbers = [
@@ -905,15 +956,18 @@ def validate_sheet_names(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> wb = validate_sheet_names(
-    >>>     wb=wb,
-    >>>     filename=filename,
-    >>>     sheet_name=sheet_name,
-    >>>     sheet_names=sheet_names,
-    >>>     start_time=start_time,
-    >>>     original_stdout=original_stdout,
-    >>>     output_url=output_url
-    >>> )
+    ...     wb=wb,
+    ...     filename=filename,
+    ...     sheet_name=sheet_name,
+    ...     sheet_names=sheet_names,
+    ...     start_time=start_time,
+    ...     original_stdout=original_stdout,
+    ...     output_url=output_url
+    ... ) # doctest: +SKIP
     """
     if sheet_name not in sheet_names and len(sheet_names) != 1:
         print('Manually rename one of these sheets:')
@@ -971,12 +1025,21 @@ def write_dataframe_to_worksheet(
         The worksheet created.
 
     Example
+    -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
+    >>> df = pd.DataFrame({
+    ...     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
+    ...     'Y': [27, 24, np.nan, 23, np.nan],
+    ...     'Z': ['a', 'b', np.nan, 'd', 'e']
+    ... })
     >>> ws = ds.write_dataframe_to_worksheet(
-    >>>     ws=ws,
-    >>>     df=df,
-    >>>     index=False,
-    >>>     header=True
-    >>> )
+    ...     ws=ws,
+    ...     df=df,
+    ...     index=False,
+    ...     header=True
+    ... )
     """
     for row in dataframe_to_rows(
         df=df,
@@ -1012,13 +1075,16 @@ def number_non_empty_rows(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> wb = Workbook()
+    >>> ws = wb.active
     >>> start_row = 2
     >>> column_number = 1
     >>> row_count = ds.number_non_empty_rows(
-    >>>     ws=ws,
-    >>>     column_number=column_number,
-    >>>     start_row=start_row,
-    >>> )
+    ...     ws=ws,
+    ...     column_number=column_number,
+    ...     start_row=start_row,
+    ... )
     """
     row_count = 0
     for row in ws.iter_rows(
