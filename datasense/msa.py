@@ -1,6 +1,6 @@
-'''
+"""
 Honest MSA reports on pandas DataFrames
-'''
+"""
 
 # TODO: Measurement system analysis (MSA) using control charts.
 # TODO: MSA range chart.
@@ -19,13 +19,17 @@ import pandas as pd
 
 
 class MSA:
-    '''
+    """
     TODO
-    '''
+    """
     def __init__(self, df: pd.DataFrame) -> NoReturn:
-        '''
-        :param df: Must be a dataframe with an index set and 2+ numeric columns
-        '''
+        """
+        Parameters
+        ----------
+
+        df : pd.DataFrame
+            It is a dataframe with an index set and 2+ numeric columns.
+        """
         # call def:
         # do_the_calculations()
 
@@ -35,9 +39,9 @@ class MSA:
     # […]
 
     def report(self):
-        '''
+        """
         TODO
-        '''
+        """
         return [
             self.range_chart(),
             self.average_chart(),
@@ -56,127 +60,127 @@ class MSA:
     # Charts
 
     def range_chart(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def average_chart(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def parallelism_chart(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def main_effects_chart_anome(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def mean_ranges_chart_anomr(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     # Tables
 
     def msa_results(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def classification(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def effective_resolution(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def variance_components(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def msa_gauge_rr_results(self):
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def interpret(self):
-        '''
+        """
         Overall interpretation
-        '''
+        """
         raise NotImplementedError()
 
     def interpret_tables(self):
-        '''
+        """
         General interpretation of tables
-        '''
+        """
         raise NotImplementedError()
 
     # Chart interpretations
 
     def range_in_control(self) -> bool:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def range_out_of_control_reason(self) -> str:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def average_in_control(self) -> bool:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def average_out_of_control_reason(self) -> str:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def main_effects_in_control(self) -> bool:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def main_effects_out_of_control_reason(self) -> str:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def mean_ranges_in_control(self) -> bool:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     def mean_ranges_out_of_control_reason(self) -> str:
-        '''
+        """
         TODO
-        '''
+        """
         raise NotImplementedError()
 
     # Table interpretations
