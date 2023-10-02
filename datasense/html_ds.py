@@ -29,10 +29,11 @@ def html_header(
 
     Example
     -------
+    >>> import datasense as ds
     >>> ds.html_header(
-    >>>     header_title=header_title,
-    >>>     header_id=header_id
-    >>> )
+    ...     header_title=header_title,
+    ...     header_id=header_id
+    ... ) # doctest: +SKIP
     """
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
@@ -59,7 +60,8 @@ def html_footer() -> NoReturn:
 
     Example
     -------
-    >>> ds.html_footer()
+    >>> import datasense as ds
+    >>> ds.html_footer() # doctest: +SKIP
     """
     print('</body>')
     print('</html>')
@@ -71,7 +73,8 @@ def page_break() -> NoReturn:
 
     Example
     -------
-    >>> ds.page_break()
+    >>> import datasense as ds
+    >>> ds.page_break() # doctest: +SKIP
     """
     print('</pre>')
     print('<p style="page-break-after:always"></p>')
@@ -105,19 +108,21 @@ def html_begin(
     Examples
     --------
     Example 1
-        >>>
-        >>> output_url = 'my_html_file.html'
-        >>> original_stdout = ds.html_begin(output_url=output_url)
+    ---------
+    >>> import datasense as ds
+    >>> output_url = 'my_html_file.html'
+    >>> original_stdout = ds.html_begin(output_url=output_url)
 
     Example 2
-        >>> header_title = 'My Report'
-        >>> header_id = 'my-report'
-        >>> original_stdout = ds.html_begin(
-        >>>     output_url=output_url,
-        >>>     header_title=header_title,
-        >>>     header_id=header_id
-        >>> )
-    """
+    ---------
+    >>> header_title = 'My Report'
+    >>> header_id = 'my-report'
+    >>> original_stdout = ds.html_begin(
+    ...     output_url=output_url,
+    ...     header_title=header_title,
+    ...     header_id=header_id
+    ... )
+     """
     original_stdout = sys.stdout
     sys.stdout = open(
         file=output_url,
@@ -149,13 +154,13 @@ def html_end(
 
     Example
     -------
-        >>>
-        >>> output_url = 'my_html_file.html'
-        >>> # see original_stdout example in def html_begin()
-        >>> ds.html_end(
-        >>>     original_stdout=original_stdout,
-        >>>     output_url=output_url
-        >>> )
+    >>> import datasense as ds
+    >>> output_url = 'my_html_file.html'
+    >>> # see original_stdout example in def html_begin()
+    >>> ds.html_end(
+    ...     original_stdout=original_stdout,
+    ...     output_url=output_url
+    ... ) # doctest: +SKIP
     """
     print('</pre>')
     html_footer()
@@ -184,15 +189,22 @@ def html_figure(
     Examples
     --------
     Example 1
+    ---------
+    >>> import datasense as ds
+    >>> import matplotlib.pyplot as plt
     >>> graph_file = 'my_graph_file.svg'
+    >>> figsize = (8, 6)
+    >>> fig = plt.figure(figsize=figsize)
     >>> fig.savefig(graph_file)
-    >>> ds.html_figure(file_name=graph_file)
+    >>> ds.html_figure(file_name=graph_file) # doctest: +SKIP
 
     Example 2
+    ---------
+    >>> import datasense as ds
     >>> ds.html_figure(
-    >>>     file_name=graph_file,
-    >>>     caption='my graph file caption'
-    >>> )
+    ...     file_name=graph_file,
+    ...     caption='my graph file caption'
+    ... ) # doctest: +SKIP
     """
     if caption is None:
         caption = file_name
@@ -242,10 +254,11 @@ def report_summary(
 
     Example
     -------
+    >>> import datasense as ds
     >>> ds.report_summary(
-    >>>     start_time=start_time,
-    >>>     stop_time=stop_time
-    >>> )
+    ...     start_time=start_time,
+    ...     stop_time=stop_time
+    ... ) # doctest: +SKIP
     """
     elapsed_time = stop_time - start_time
     if print_heading:
@@ -284,21 +297,24 @@ def script_summary(
     --------
     Example 1
     ---------
-    >>> ds.script_summary(script_path=Path(__file__))
+    >>> import datasense as ds
+    >>> ds.script_summary(script_path=Path(__file__)) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> ds.script_summary(
-    >>>     script_path=Path(__file__),
-    >>>     action="started at"
-    >>> )
+    ...     script_path=Path(__file__),
+    ...     action="started at"
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> ds.script_summary(
-    >>>     script_path=Path(__file__),
-    >>>     action="finished at"
-    >>> )
+    ...     script_path=Path(__file__),
+    ...     action="finished at"
+    ... ) # doctest: +SKIP
     """
     print(
         "Script",
@@ -336,16 +352,17 @@ def sync_directories(
 
     Example
     -------
+    >>> import datasense as ds
     >>> local_docs = 'string_to_directory'
     >>> sharepoint_docs = 'string_to_mapped_drive_of_sharepoint'
     >>> ds.sync_directories(
-    >>>     sourcedir=local_docs,
-    >>>     targetdir=sharepoint_docs,
-    >>>     action='sync',
-    >>>     twoway=False,
-    >>>     purge=False,
-    >>>     verbose=True
-    >>> )
+    ...     sourcedir=local_docs,
+    ...     targetdir=sharepoint_docs,
+    ...     action='sync',
+    ...     twoway=False,
+    ...     purge=False,
+    ...     verbose=True
+    ... ) # doctest: +SKIP
     """
     sync(
         sourcedir=sourcedir,
@@ -369,16 +386,19 @@ def explore_functions(function: str) -> NoReturn:
     Examples
     --------
     Example 1
+    ---------
+    >>> import datasense as ds
     >>> from sklearn.compose import make_column_transformer
     >>> function_to_explore = make_column_transformer
-    >>> ds.explore_functions(function=function_to_explore)
+    >>> ds.explore_functions(function=function_to_explore) # doctest: +SKIP
 
     Example 2
+    ---------
     >>> from sklearn.compose import make_column_transformer
     >>> from sklearn.pipeline import make_pipeline
-    >>> functions = [function_name_syntax, function_name]
+    >>> functions = ["function_name_syntax", "function_name"]
     >>> for function in functions:
-    >>>     ds.explore_functions(function=function)
+    ...     ds.explore_functions(function=function) # doctest: +SKIP
     """
     print()
     print("function name:")
