@@ -22,6 +22,32 @@ def rgx_email_address(
     -------
     matches : List[str]
         A list of strings containing the email addresses in the input list.
+
+    Examples
+    --------
+    Example 1
+    ---------
+    >>> import datasense as ds
+    >>> strings = [
+    ...     "first email bob.smith@somemail.com send",
+    ...     "second email bobsmith13@othermail.com received",
+    ...     "third email tom@onemail.com and fourth mail frank@twomail.com"
+    ... ]
+    >>> matches = ds.rgx_email_address(strings=strings)
+    >>> matches # doctest: +NORMALIZE_WHITESPACE
+    ['bob.smith@somemail.com',
+     'bobsmith13@othermail.com',
+     'frank@twomail.com',
+     'tom@onemail.com']
+
+    Example 2
+    ---------
+    # open a file containing email addresses and \n\t
+    >>> import datasense as ds
+    >>> with open("mailbox.txt") as f:
+    ...     data = f.read() # doctest: +SKIP
+    >>> strings = data.split("\\n") # doctest: +SKIP
+    >>> matches = ds.rgx_email_address(strings=strings)
     """
     regex = re.compile(pattern=r"[\w.-]+@[\w.-]+")
     list_of_lists = [re.findall(pattern=regex, string=x) for x in strings]
@@ -51,8 +77,6 @@ def rgx_url(
     matches : List[str]
         A list of strings containing URLs in the input list.
 
-    Example
-    -------
     Example
     -------
     >>> import datasense as ds
