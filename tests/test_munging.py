@@ -51,31 +51,12 @@ df_empty_test = pd.DataFrame(
 )
 
 
-def test_listone_contains_all_listtwo_substrings():
+def test_convert_seconds_to_hours_minutes_seconds():
     pass
 
 
-def test_list_directories():
-    pattern_startswith = ["job_aids"]
-    path = "dir_directories"
-    result1 = ds.list_directories(path=path)
-    expected1 = [
-        'cheatsheet_directory', 'another_directory', 'job_aids_directory'
-    ]
-    assert set(result1) == set(expected1)
-    result2 = ds.list_directories(
-        path=path,
-        pattern_startswith=pattern_startswith
-    )
-    expected2 = ['job_aids_directory']
-    assert set(result2) == set(expected2)
-    pattern_startswith = ["job_aids", "cheatsheet"]
-    result3 = ds.list_directories(
-        path=path,
-        pattern_startswith=pattern_startswith
-    )
-    expected3 = ['cheatsheet_directory', 'job_aids_directory']
-    assert set(result3) == set(expected3)
+def test_listone_contains_all_listtwo_substrings():
+    pass
 
 
 def test_number_empty_cells_in_columns():
@@ -102,7 +83,7 @@ def test_optimize_integer_columns():
     pass
 
 
-def test_ask_open_file_name_path():
+def test_print_dictionary_by_key():
     pass
 
 
@@ -110,7 +91,11 @@ def test_optimize_object_columns():
     pass
 
 
-def test_optimize_float_columns():
+def test_ask_open_file_name_path():
+    pass
+
+
+def test_convert_csv_to_feather():
     pass
 
 
@@ -122,31 +107,12 @@ def test_find_timedelta_columns():
     pass
 
 
-def test_create_dataframe_norm():
+def test_optimize_float_columns():
     pass
 
 
-def test_delete_list_files():
-    pattern_startswith = ["job_aids"]
-    path = "dir_directories"
-    result1 = ds.list_directories(path=path)
-    expected1 = [
-        "cheatsheet_directory", "another_directory", "job_aids_directory"
-    ]
-    assert set(result1) == set(expected1)
-    result2 = ds.list_directories(
-        path=path,
-        pattern_startswith=pattern_startswith
-    )
-    expected2 = ["job_aids_directory"]
-    assert set(result2) == set(expected2)
-    pattern_startswith = ["job_aids", "cheatsheet"]
-    result3 = ds.list_directories(
-        path=path,
-        pattern_startswith=pattern_startswith
-    )
-    expected3 = ["cheatsheet_directory", "job_aids_directory"]
-    assert set(result3) == set(expected3)
+def test_create_dataframe_norm():
+    pass
 
 
 def test_replace_column_values():
@@ -306,6 +272,10 @@ def test_delete_empty_columns():
     assert result3.equals(other=expected3)
 
 
+def test_directory_file_print():
+    pass
+
+
 def test_replace_text_numbers():
     pass
 
@@ -314,15 +284,15 @@ def test_find_integer_columns():
     pass
 
 
-def test_directory_file_print():
-    pass
-
-
 def test_find_object_columns():
     pass
 
 
 def test_rename_some_columns():
+    pass
+
+
+def test_series_memory_usage():
     pass
 
 
@@ -343,10 +313,6 @@ def test_remove_punctuation():
 
 
 def test_print_list_by_item():
-    pass
-
-
-def test_print_dictionary_by_key():
     pass
 
 
@@ -402,11 +368,30 @@ def test_delete_empty_rows():
     assert result.equals(other=expected)
 
 
+def test_delete_list_files():
+    pattern_startswith = ["job_aids"]
+    path = "dir_directories"
+    result1 = ds.list_directories(path=path)
+    expected1 = [
+        "cheatsheet_directory", "another_directory", "job_aids_directory"
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected2 = ["job_aids_directory"]
+    assert set(result2) == set(expected2)
+    pattern_startswith = ["job_aids", "cheatsheet"]
+    result3 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = ["cheatsheet_directory", "job_aids_directory"]
+    assert set(result3) == set(expected3)
+
+
 def test_find_bool_columns():
-    pass
-
-
-def test_optimize_columns():
     pass
 
 
@@ -423,6 +408,33 @@ def test_delete_directory():
 
 
 def test_list_change_case():
+    pass
+
+
+def test_list_directories():
+    pattern_startswith = ["job_aids"]
+    path = "dir_directories"
+    result1 = ds.list_directories(path=path)
+    expected1 = [
+        'cheatsheet_directory', 'another_directory', 'job_aids_directory'
+    ]
+    assert set(result1) == set(expected1)
+    result2 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected2 = ['job_aids_directory']
+    assert set(result2) == set(expected2)
+    pattern_startswith = ["job_aids", "cheatsheet"]
+    result3 = ds.list_directories(
+        path=path,
+        pattern_startswith=pattern_startswith
+    )
+    expected3 = ['cheatsheet_directory', 'job_aids_directory']
+    assert set(result3) == set(expected3)
+
+
+def test_optimize_columns():
     pass
 
 
