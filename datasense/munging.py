@@ -74,18 +74,20 @@ def dataframe_info(
     --------
     Example 1
     ---------
+    >>> import datasense as ds
     >>> df = ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in='df'
-    >>> )
+    ...     df=df,
+    ...     file_in='df'
+    ... ) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> df = ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in='df',
-    >>>     unique_bool=True
-    >>> )
+    ...     df=df,
+    ...     file_in='df',
+    ...     unique_bool=True
+    ... ) # doctest: +SKIP
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df=df)
     df, columns_in_count, columns_non_empty_count, columns_empty_count, \
@@ -165,8 +167,8 @@ def find_bool_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_bool = ds.find_bool_columns(df=df)
-    >>> print(columns_bool)
-    ['b']
+    >>> columns_bool
+    ['b', 'bn']
     """
     columns_bool = list(df.select_dtypes(include=['bool', 'boolean']).columns)
     return columns_bool
@@ -194,8 +196,8 @@ def find_category_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_category = ds.find_category_columns(df=df)
-    >>> print(columns_category)
-    ['c']
+    >>> columns_category
+    ['c', 'cs']
     """
     columns_category = list(df.select_dtypes(include=['category']).columns)
     return columns_category
@@ -223,7 +225,7 @@ def find_datetime_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_datetime = ds.find_datetime_columns(df=df)
-    >>> print(columns_datetime)
+    >>> columns_datetime
     ['t', 'u']
     """
     datetime_columns = list(df.select_dtypes(include=['datetime64']).columns)
@@ -252,8 +254,8 @@ def find_float_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_float = ds.find_float_columns(df=df)
-    >>> print(columns_float)
-    ['a', 'i', 'x', 'z']
+    >>> columns_float
+    ['a', 'x', 'z']
     """
     float_columns = df.select_dtypes(include=['float64']).columns.tolist()
     return float_columns
@@ -281,8 +283,8 @@ def find_integer_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_int = ds.find_integer_columns(df=df)
-    >>> print(columns_int)
-    ['y']
+    >>> columns_int
+    ['i', 'y', 'yn']
     """
     integer_columns = (
         df.select_dtypes(include=['int64', 'Int64']).columns.tolist()
@@ -312,8 +314,8 @@ def find_int_float_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_int_float = ds.find_int_float_columns(df=df)
-    >>> print(columns_int_float)
-    ['a', 'i', 'x', 'y', 'z']
+    >>> columns_int_float
+    ['a', 'i', 'x', 'y', 'yn', 'z']
     """
     columns_int_float = list(
         df.select_dtypes(include=['int64', 'float64']).columns
@@ -343,7 +345,7 @@ def find_object_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_object = ds.find_object_columns(df=df)
-    >>> print(columns_object)
+    >>> columns_object
     ['r', 's']
     """
     object_columns = df.select_dtypes(include=['object']).columns.tolist()
@@ -372,7 +374,7 @@ def find_timedelta_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> columns_timedelta = ds.find_timedelta_columns(df=df)
-    >>> print(columns_timedelta)
+    >>> columns_timedelta
     ['d']
     """
     columns_timedelta = list(df.select_dtypes(include=['timedelta']).columns)
@@ -398,12 +400,11 @@ def number_empty_cells_in_columns(
     >>> import pandas as pd
     >>> import numpy as np
     >>> df = pd.DataFrame({
-    >>>     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
-    >>>     'Y': [27, 24, np.nan, 23, np.nan],
-    >>>     'Z': ['a', 'b', np.nan, 'd', 'e']
-    >>> })
-    >>> empty_cells = ds.number_empty_cells_in_columns(df=df)
-    >>> print(empty_cells)
+    ...     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
+    ...     'Y': [27, 24, np.nan, 23, np.nan],
+    ...     'Z': ['a', 'b', np.nan, 'd', 'e']
+    ... })
+    >>> ds.number_empty_cells_in_columns(df=df) # doctest:+NORMALIZE_WHITESPACE
     Information about non-empty columns
      Column   Data type   Empty cell count   Empty cell %   Unique
     -------- ----------- ------------------ -------------- --------
@@ -440,7 +441,6 @@ def number_empty_cells_in_columns(
         except KeyError:
             print('Error on column:', column_name)
     print(table)
-    print()
 
 
 def process_columns(
@@ -549,13 +549,13 @@ def process_columns(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> df, columns_in_count, columns_non_empty_count, columns_empty_count,\
-    >>>     columns_empty_list, columns_non_empty_list, columns_bool_list,\
-    >>>     columns_bool_count, columns_float_list, columns_float_count,\
-    >>>     columns_integer_list, columns_integer_count,\
-    >>>     columns_datetime_list, columns_datetime_count,\
-    >>>     columns_object_list, columns_object_count, columns_category_list,\
-    >>>     columns_category_count, columns_timedelta_list,\
-    >>>     columns_timedelta_count = ds.process_columns(df=df)
+    ...     columns_empty_list, columns_non_empty_list, columns_bool_list,\
+    ...     columns_bool_count, columns_float_list, columns_float_count,\
+    ...     columns_integer_list, columns_integer_count,\
+    ...     columns_datetime_list, columns_datetime_count,\
+    ...     columns_object_list, columns_object_count, columns_category_list,\
+    ...     columns_category_count, columns_timedelta_list,\
+    ...     columns_timedelta_count = ds.process_columns(df=df) # doctest:+SKIP
     columns_in_count       : 12
     columns_non_empty_count: 12
     columns_empty_count    : 0
@@ -651,8 +651,8 @@ def process_rows(
     -------
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
-    >>> df, rows_in_count, rows_out_count, rows_empty_count =\
-    >>>     ds.process_rows(df)
+    >>> df, rows_in_count, rows_out_count, rows_empty_count = \
+    ...     ds.process_rows(df=df) # doctest: +SKIP
     rows_in_count   : 42
     rows_out_count  : 42
     rows_empty_count: 0
@@ -695,43 +695,47 @@ def save_file(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name='x_y.csv'
-    >>> )
+    ...     df=df,
+    ...     file_name='x_y.csv'
+    ... )
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name='x_y.csv',
-    >>>     index=True
-    >>> )
+    ...     df=df,
+    ...     file_name='x_y.csv',
+    ...     index=True
+    ... )
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name='x_y.xlsx'
-    >>> )
+    ...     df=df,
+    ...     file_name='x_y.xlsx'
+    ... )
 
     Example 4
     ---------
+    >>> import datasense as ds
     >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name='x_y.xlsx',
-    >>>     index=True,
-    >>>     sheet_name='sheet_one'
-    >>> )
+    ...     df=df,
+    ...     file_name='x_y.xlsx',
+    ...     index=True,
+    ...     sheet_name='sheet_one'
+    ... )
 
     Example 5
     ---------
+    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_save = 'myfeatherfile.feather'
     >>> path = Path(file_to_save)
     >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name=path
-    >>> )
+    ...     df=df,
+    ...     file_name=path
+    ... )
 
     """
     if isinstance(type(file_name).__name__, str):
@@ -753,7 +757,7 @@ def save_file(
             index=index,
             index_label=index_label
         )
-        excel_writer.save()
+        excel_writer.close()
     elif file_name.suffix in ['.xlsx', '.XLSX']:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
@@ -763,18 +767,18 @@ def save_file(
             index=index,
             index_label=index_label
         )
-        excel_writer.save()
-    # this works in Linux but not in Windows
-    elif file_name.suffix in ['.xlsb', '.XLSB']:
-        excel_writer = pd.ExcelWriter(file_name)
-        df.to_excel(
-            excel_writer=excel_writer,
-            sheet_name=sheet_name,
-            engine='pyxlsb',
-            index=index,
-            index_label=index_label
-        )
-        excel_writer.save()
+        excel_writer.close()
+    # Removed xlsb XLSB support because Arch Linux does not support
+    # elif file_name.suffix in ['.xlsb', '.XLSB']:
+    #     excel_writer = pd.ExcelWriter(file_name)
+    #     df.to_excel(
+    #         excel_writer=excel_writer,
+    #         sheet_name=sheet_name,
+    #         engine='pyxlsb',
+    #         index=index,
+    #         index_label=index_label
+    #     )
+    #     excel_writer.save()
     elif file_name.suffix in ['.feather']:
         ft.write_feather(
             df=df,
@@ -868,16 +872,18 @@ def read_file(
 
     Examples
     --------
+    Example 1
+    ---------
     Create a data file for the examples.
-    >>> import datsense as ds
+    >>> import datasense as ds
     >>> file_name='myfile.csv'
     >>> df = ds.create_dataframe()
-    >>> print(df.columns)
-    >>> print(df.dtypes)
-    >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name=file_name
-    >>> )
+    >>> df.columns # doctest: +SKIP
+    >>> df.dtypes # doctest: +SKIP
+    >>> df.save_file(
+    ...     df=df,
+    ...     file_name=file_name
+    ... ) # doctest: +SKIP
     Index(
         ['a', 'b', 'c', 'd', 'i', 'r', 's', 't', 'u', 'x', 'y', 'z'],
         dtype='object'
@@ -896,12 +902,14 @@ def read_file(
     z            float64
     dtype: object
 
-    Example 1
+    Example 2
     ---------
     Read a csv file. There is no guarantee the column dtypes will be correct.
     Only [a, i, s, x, z] have the correct dtypes.
-    >>> df = ds.read_file(file_name=file_name)
-    >>> print(df.dtypes)
+    >>> import datasense as ds
+    >>> file_name = "file.csv"
+    >>> df = ds.read_file(file_name=file_name) # doctest: +SKIP
+    >>> df.dtypes # doctest: +SKIP
     a    float64
     b       bool
     c     object
@@ -916,80 +924,90 @@ def read_file(
     z    float64
     dtype: object
 
-    Example 2
+    Example 3
     ---------
     Read a csv file. Ensure the dtypes of datetime columns.
+    >>> import datasense as ds
     >>> parse_dates = ['t', 'u']
+    >>> file_name = "file.csv"
     >>> df = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     parse_dates=parse_dates
-    >>> )
-    >>> print(df.dtypes)
+    ...     file_name=file_name,
+    ...     parse_dates=parse_dates
+    ... ) # doctest: +SKIP
+    >>> df.dtypes# doctest: +NORMALIZE_WHITESPACE
     a           float64
     b              bool
-    c            object
-    d            object
-    i           float64
-    r             int64
+    bn          boolean
+    c          category
+    cs         category
+    d   timedelta64[ns]
+    i             int64
+    r            object
     s            object
     t    datetime64[ns]
     u    datetime64[ns]
     x           float64
     y             int64
+    yn            Int64
     z           float64
-    dtype: object
-
-    Example 3
-    ---------
-    Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
-    >>> convert_dict = {
-    >>>     'a': 'float64',
-    >>>     'b': 'boolean',
-    >>>     'c': 'category',
-    >>>     'i': 'float64',
-    >>>     'r': 'str',
-    >>>     's': 'str',
-    >>>     'x': 'float64',
-    >>>     'y': 'Int64',
-    >>>     'z': 'float64'
-    >>> }
-    >>> df = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     dtype=convert_dict
-    >>> )
-    >>> print(df.dtypes)
-    a     float64
-    b     boolean
-    c    category
-    d      object
-    i     float64
-    r      object
-    s      object
-    t      object
-    u      object
-    x     float64
-    y       Int64
-    z     float64
     dtype: object
 
     Example 4
     ---------
+    Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
+    >>> import datasense as ds
+    >>> convert_dict = {
+    ...     'a': 'float64',
+    ...     'b': 'boolean',
+    ...     'c': 'category',
+    ...     'i': 'float64',
+    ...     'r': 'str',
+    ...     's': 'str',
+    ...     'x': 'float64',
+    ...     'y': 'Int64',
+    ...     'z': 'float64'
+    ... }
+    >>> df = ds.read_file(
+    ...     file_name=file_name,
+    ...     dtype=convert_dict
+    ... ) # doctest: +SKIP
+    >>> df.dtypes
+    a             float64
+    b                bool
+    bn            boolean
+    c            category
+    cs           category
+    d     timedelta64[ns]
+    i               int64
+    r              object
+    s              object
+    t      datetime64[ns]
+    u      datetime64[ns]
+    x             float64
+    y               int64
+    yn              Int64
+    z             float64
+    dtype: object
+
+    Example 5
+    ---------
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
+    >>> import datasense as ds
     >>> column_names_dict = {
-    >>>     'a': 'A',
-    >>>     'b': 'B',
-    >>>     'c': 'C',
-    >>>     'd': 'D',
-    >>>     'i': 'I',
-    >>>     'r': 'R',
-    >>>     's': 'S',
-    >>>     't': 'T',
-    >>>     'u': 'U',
-    >>>     'y': 'Y',
-    >>>     'x': 'X',
-    >>>     'z': 'Z'
-    >>> }
+    ...     'a': 'A',
+    ...     'b': 'B',
+    ...     'c': 'C',
+    ...     'd': 'D',
+    ...     'i': 'I',
+    ...     'r': 'R',
+    ...     's': 'S',
+    ...     't': 'T',
+    ...     'u': 'U',
+    ...     'y': 'Y',
+    ...     'x': 'X',
+    ...     'z': 'Z'
+    ... }
     >>> index_columns = ['Y']
     >>> parse_dates = ['t', 'u']
     >>> time_delta_columns = ['D']
@@ -1000,105 +1018,107 @@ def read_file(
     >>> object_columns = ['Z']
     >>> sort_columns = ['I', 'A']
     >>> sort_columns_bool = [True, False]
-    >>> df = ds.read_file(
-    >>>     file_name='myfile.csv',
-    >>>     column_names_dict=column_names_dict,
-    >>>     index_columns=index_columns,
-    >>>     parse_dates=parse_dates,
-    >>>     date_parser=date_parser(),
-    >>>     time_delta_columns=time_delta_columns,
-    >>>     category_columns=category_columns,
-    >>>     integer_columns=integer_columns
-    >>>     float_columns=float_columns,
-    >>>     boolean_columns=boolean_columns,
-    >>>     object_columns=object_columns,
-    >>>     sort_columns=sort_columns,
-    >>>     sort_columns_bool=sort_columns_bool
-    >>> )
-    >>>
-    >>>
     >>> def date_parser() -> Callable:
-    >>>     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
-    >>>
-    >>>
-    >>> data = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     column_names_dict=column_names_dict,
-    >>>     index_columns=index_columns,
-    >>>     date_time_columns=date_time_columns,
-    >>>     date_parser=date_parser,
-    >>>     parse_dates=date_time_columns,
-    >>>     time_delta_columns=time_delta_columns,
-    >>>     category_columns=category_columns,
-    >>>     integer_columns=integer_columns
-    >>> )
-
-    Example 5
-    ---------
-    Read an ods file.
-    >>> file_name = 'myfile.ods'
-    >>> df = ds.create_dataframe()
-    >>> ds.save_file(
-    >>>     df=df,
-    >>>     file_name=file_name
-    >>> )
-    >>> parse_dates = ['t', 'u']
+    ...     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
     >>> df = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     parse_dates=parse_dates
-    >>> )
-    >>> ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in=file_name
-    >>> )
+    ...     file_name='myfile.csv',
+    ...     column_names_dict=column_names_dict,
+    ...     index_columns=index_columns,
+    ...     parse_dates=parse_dates,
+    ...     date_parser=date_parser(),
+    ...     time_delta_columns=time_delta_columns,
+    ...     category_columns=category_columns,
+    ...     integer_columns=integer_columns,
+    ...     float_columns=float_columns,
+    ...     boolean_columns=boolean_columns,
+    ...     object_columns=object_columns,
+    ...     sort_columns=sort_columns,
+    ...     sort_columns_bool=sort_columns_bool
+    ... ) # doctest: +SKIP
+    >>> data = ds.read_file(
+    ...     file_name=file_name,
+    ...     column_names_dict=column_names_dict,
+    ...     index_columns=index_columns,
+    ...     date_time_columns=date_time_columns,
+    ...     date_parser=date_parser,
+    ...     parse_dates=date_time_columns,
+    ...     time_delta_columns=time_delta_columns,
+    ...     category_columns=category_columns,
+    ...     integer_columns=integer_columns
+    ... ) # doctest: +SKIP
 
     Example 6
     ---------
-    Read an xlsx file.
-    >>> file_name = 'myfile.xlsx'
-    >>> sheet_name = 'raw_data'
+    Read an ods file.
+    >>> import datasense as ds
+    >>> file_name = 'myfile.ods'
+    >>> df = ds.create_dataframe()
+    >>> ds.save_file(
+    ...     df=df,
+    ...     file_name=file_name
+    ... )
+    >>> parse_dates = ['t', 'u']
     >>> df = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     sheet_name=sheet_name
-    >>> )
+    ...     file_name=file_name,
+    ...     parse_dates=parse_dates
+    ... ) # doctest: +SKIP
     >>> ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in=file_name
-    >>> )
+    ...     df=df,
+    ...     file_in=file_name
+    ... ) # doctest: +SKIP
 
     Example 7
     ---------
-    Read an xlsb file.
-    >>> file_name = 'myfile.xlsb'
+    Read an xlsx file.
+    >>> import datasense as ds
+    >>> file_name = 'myfile.xlsx'
     >>> sheet_name = 'raw_data'
     >>> df = ds.read_file(
-    >>>     file_name=file_name,
-    >>>     sheet_name=sheet_name
-    >>> )
+    ...     file_name=file_name,
+    ...     sheet_name=sheet_name
+    ... ) # doctest: +SKIP
     >>> ds.dataframe_info(
-    >>>     df=df,
-    >>>     file_in=file_name
-    >>> )
+    ...     df=df,
+    ...     file_in=file_name
+    ... ) # doctest: +SKIP
 
     Example 8
     ---------
     Read a feather file.
+    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_read = 'myfeatherfile.feather'
     >>> path = Path(file_to_read)
     >>> df = ds.read_file(file_name=path)
 
     Example 9
-    ---------
+    ----------
     Read a feather file with columns list.
+    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_read = 'myfeatherfile.feather'
     >>> usecols = ['col1', 'col2']
     >>> path = Path(file_to_read)
     >>> df = ds.read_file(
-    >>>     file_name=path,
-    >>>     usecols=usecols
-    >>> )
+    ...     file_name=path,
+    ...     usecols=usecols
+    ... ) # doctest: +SKIP
+
+    # Removed xlsb XLSB support because Arch Linux does not support
+    # Example 10
+    # ---------
+    # Read an xlsb file.
+    # >>> import datasense as ds
+    # >>> file_name = 'myfile.xlsb'
+    # >>> sheet_name = 'raw_data'
+    # >>> df = ds.read_file(
+    # ...     file_name=file_name,
+    # ...     sheet_name=sheet_name
+    # ... )
+    # >>> ds.dataframe_info(
+    # ...     df=df,
+    # ...     file_in=file_name
+    # ... )
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
@@ -1138,19 +1158,20 @@ def read_file(
             parse_dates=parse_dates,
             date_parser=date_parser,
         )
-    elif file_name.suffix in ['.xlsb', '.XLSB']:
-        df = pd.read_excel(
-            io=file_name,
-            sheet_name=sheet_name,
-            header=header,
-            usecols=usecols,
-            dtype=dtype,
-            engine='pyxlsb',
-            skiprows=skiprows,
-            nrows=nrows,
-            parse_dates=parse_dates,
-            date_parser=date_parser,
-        )
+    # Removed xlsb XLSB support because Arch Linux does not support
+    # elif file_name.suffix in ['.xlsb', '.XLSB']:
+    #     df = pd.read_excel(
+    #         io=file_name,
+    #         sheet_name=sheet_name,
+    #         header=header,
+    #         usecols=usecols,
+    #         dtype=dtype,
+    #         engine='pyxlsb',
+    #         skiprows=skiprows,
+    #         nrows=nrows,
+    #         parse_dates=parse_dates,
+    #         date_parser=date_parser,
+    #     )
     elif file_name.suffix in ['.feather']:
         df = ft.read_feather(
             source=file_name,
@@ -1210,11 +1231,11 @@ def byte_size(
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> print(
-    >>>     ds.byte_size(
-    >>>         num=df.memory_usage(index=True).sum()
-    >>>     )
-    >>> )
-    3.6 KiB
+    ...     ds.byte_size(
+    ...         num=df.memory_usage(index=True).sum()
+    ...     )
+    ... )
+    4.2 KiB
     """
     for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
         if abs(num) < 1024.0:
@@ -1250,12 +1271,11 @@ def feature_percent_empty(
     Example
     -------
     >>> import datasense as ds
-
     >>> features = ds.feature_percent_empty(
-    >>>     df=data,
-    >>>     columns=features,
-    >>>     threshold=percent_empty_features
-    >>> )
+    ...     df=data,
+    ...     columns=features,
+    ...     threshold=percent_empty_features
+    ... ) # doctest: +SKIP
     """
     num_rows = df.shape[0]
     list_columns = [col for col in columns if
@@ -1341,7 +1361,8 @@ def rename_directory(
     >>> import datasense as ds
     >>> sources = ['old_directory']
     >>> destinations = ['new_directory']
-    >>> ds.rename_directory(sources=sources, destinations=destinations)
+    >>> ds.rename_directory(sources=sources, destinations=destinations) \
+    ...     # doctest: +SKIP
     """
     for source, destination in zip(sources, destinations):
         rmtree(path=destination, ignore_errors=ignore_errors)
@@ -1373,9 +1394,9 @@ def copy_directory(
     >>> sources = ['source_directory']
     >>> destinations = ['destination_directory']
     >>> ds.rename_directory(
-    >>>     sources=sources,
-    >>>     destinations=destinations
-    >>> )
+    ...     sources=sources,
+    ...     destinations=destinations
+    ... ) # doctest: +SKIP
     """
     for source, destination in zip(sources, destinations):
         rmtree(path=destination, ignore_errors=ignore_errors)
@@ -1415,61 +1436,63 @@ def replace_text_numbers(
         The output DataFrame.
 
     Examples
-    -------
+    --------
     Example 1
     ---------
     >>> import datasense as ds
     >>> list_y_1_n_5 = [
-    >>>     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
-    >>>     'Q19', 'Q20', 'Q21', 'Q23', 'Q24', 'Q25'
-    >>> ]
+    ...     'Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q10', 'Q17', 'Q18',
+    ...     'Q19', 'Q20', 'Q21', 'Q23', 'Q24', 'Q25'
+    ... ]
     >>> list_y_5_n_1 = [
-    >>>     'Q07', 'Q11', 'Q12', 'Q13', 'Q15', 'Q16'
-    >>> ]
+    ...     'Q07', 'Q11', 'Q12', 'Q13', 'Q15', 'Q16'
+    ... ]
     >>> data = ds.replace_text_numbers(
-    >>>     df=data,
-    >>>     columns=list_y_1_n_5,
-    >>>     old=['Yes', 'No'],
-    >>>     new=[1, 5],
-    >>>     regex=False
-    >>> )
+    ...     df=data,
+    ...     columns=list_y_1_n_5,
+    ...     old=['Yes', 'No'],
+    ...     new=[1, 5],
+    ...     regex=False
+    ... ) # doctest: +SKIP
     >>> data = ds.replace_text_numbers(
-    >>>     df=data,
-    >>>     columns=list_y_5_n_1,
-    >>>     old=['Yes', 'No'],
-    >>>     new=[5, 1],
-    >>>     regex=False
-    >>> )
+    ...     df=data,
+    ...     columns=list_y_5_n_1,
+    ...     old=['Yes', 'No'],
+    ...     new=[5, 1],
+    ...     regex=False
+    ... ) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> data = ds.replace_text_numbers(
-    >>>     df=data,
-    >>>     columns=['Q23'],
-    >>>     old=[r'\xa0'],
-    >>>     new=[r' '],
-    >>>     regex=True
-    >>> )
+    ...     df=data,
+    ...     columns=['Q23'],
+    ...     old=[r'\xa0'],
+    ...     new=[r' '],
+    ...     regex=True
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> data = ds.replace_text_numbers(
-    >>>     df=data,
-    >>>     columns=['address_country'],
-    >>>     old=[
-    >>>         'AD', 'AE', 'AF', 'AG',
-    >>>         'AI', 'AL', 'AM', 'AN',
-    >>>         'AO', 'AQ', 'AR', 'AS',
-    >>>         'AT', 'AU', 'AW', 'AZ',
-    >>>     ]
-    >>>     new=[
-    >>>         'Andorra', 'Unit.Arab Emir.', 'Afghanistan', 'Antigua/Barbuda',
-    >>>         'Anguilla', 'Albania', 'Armenia', 'Niederl.Antill.',
-    >>>         'Angola', 'Antarctica', 'Argentina', 'Samoa,American',
-    >>>         'Austria', 'Australia', 'Aruba', 'Azerbaijan',
-    >>>     ],
-    >>>     regex=False
-    >>> )
+    ...     df=data,
+    ...     columns=['address_country'],
+    ...     old=[
+    ...         'AD', 'AE', 'AF', 'AG',
+    ...         'AI', 'AL', 'AM', 'AN',
+    ...         'AO', 'AQ', 'AR', 'AS',
+    ...         'AT', 'AU', 'AW', 'AZ',
+    ...     ]
+    ...     new=[
+    ...         'Andorra', 'Unit.Arab Emir.', 'Afghanistan', 'Antigua/Barbuda',
+    ...         'Anguilla', 'Albania', 'Armenia', 'Niederl.Antill.',
+    ...         'Angola', 'Antarctica', 'Argentina', 'Samoa,American',
+    ...         'Austria', 'Australia', 'Aruba', 'Azerbaijan',
+    ...     ],
+    ...     regex=False
+    ... ) # doctest: +SKIP
     """
     dfnew = df.copy(deep=True)
     for column in columns:
@@ -1521,6 +1544,7 @@ def create_dataframe(
 
     Example
     -------
+    >>> import datasense as ds
     >>> df = create_dataframe()
     """
     df = pd.DataFrame(
@@ -1623,21 +1647,23 @@ def create_dataframe_norm(
     --------
     Example 1
     ---------
+    >>> import datasense as ds
     >>> df = ds.create_dataframe_norm()
 
     Example 2
     ---------
-    >>> column_names = [f'col{item}' for item in range(column_count)]
-    >>> row_count = 1000
+    >>> import datasense as ds
     >>> column_count = 100
+    >>> row_count = 1000
+    >>> column_names = [f'col{item}' for item in range(column_count)]
     >>> df = ds.create_dataframe_norm(
-    >>>     row_count=row_count,
-    >>>     column_count=column_count,
-    >>>     loc=69,
-    >>>     scale=13,
-    >>>     random_state=42,
-    >>>     column_names=column_names
-    >>> )
+    ...     row_count=row_count,
+    ...     column_count=column_count,
+    ...     loc=69,
+    ...     scale=13,
+    ...     random_state=42,
+    ...     column_names=column_names
+    ... )
     """
     if not column_names:
         column_names = [f'col{item}' for item in range(column_count)]
@@ -1679,9 +1705,9 @@ def delete_rows(
     -------
     >>> import datasense as ds
     >>> df = ds.delete_rows(
-    >>>     df=df,
-    >>>     delete_row_criteria=['Batch Acceptance', 1]
-    >>> )
+    ...     df=df,
+    ...     delete_row_criteria=['Batch Acceptance', 1]
+    ... ) # doctest: +SKIP
     """
 
     if delete_row_criteria:
@@ -1713,9 +1739,9 @@ def delete_columns(
     -------
     >>> import datasense as ds
     >>> df = ds.delete_columns(
-    >>>     df=df,
-    >>>     columns=columns
-    >>> )
+    ...     df=df,
+    ...     columns=columns
+    ... ) # doctest: +SKIP
     """
     df = df.drop(columns=columns)
     return df
@@ -1751,11 +1777,11 @@ def sort_rows(
     -------
     >>> import datasense as ds
     >>> df = ds.sort_rows(
-    >>>     df=df,
-    >>>     sort_columns=sort_columns,
-    >>>     sort_columns_bool=sort_columns_bool,
-    >>>     kind='mergesort'
-    >>> )
+    ...     df=df,
+    ...     sort_columns=sort_columns,
+    ...     sort_columns_bool=sort_columns_bool,
+    ...     kind='mergesort'
+    ... ) # doctest: +SKIP
     """
 
     df = df.sort_values(
@@ -1791,9 +1817,9 @@ def rename_all_columns(
     -------
     >>> import datasense as ds
     >>> df = ds.rename_all_columns(
-    >>>     df=df,
-    >>>     labels=labels
-    >>> )
+    ...     df=df,
+    ...     labels=labels
+    ... ) # doctest: +SKIP
     """
     df = df.set_axis(
         labels=labels,
@@ -1826,9 +1852,9 @@ def rename_some_columns(
     -------
     >>> import datasense as ds
     >>> df = ds.rename_some_columns(
-    >>>     df=df,
-    >>>     column_names_dict=column_names_dict
-    >>> )
+    ...     df=df,
+    ...     column_names_dict=column_names_dict
+    ... ) # doctest: +SKIP
     """
     df = df.rename(columns=column_names_dict)
     return df
@@ -1860,9 +1886,9 @@ def replace_column_values(
     --------
     >>> import datasense as ds
     >>> s = ds.replace_column_values(
-    >>>     s=s
-    >>>     replace_dict=replace_dict
-    >>> )
+    ...     s=s,
+    ...     replace_dict=replace_dict
+    ... ) # doctest: +SKIP
     """
     # s = s.replace(
     #     to_replace=replace_dict,
@@ -1903,16 +1929,17 @@ def list_files(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> files = ds.list_files(directory=path)
+    >>> files = ds.list_files(directory=path) # doctest: +SKIP
 
     Example 2
     ---------
     >>> import datasense as ds
     >>> pattern_extension = [".html", ".HTML"]
+    >>> path = "path"
     >>> files = ds.list_files(
-    >>>     directory=path,
-    >>>     pattern_extension=pattern_extension
-    >>> )
+    ...     directory=path,
+    ...     pattern_extension=pattern_extension
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
@@ -1920,10 +1947,10 @@ def list_files(
     >>> pattern_extension = [".html", ".HTML"]
     >>> pattern_startswith = ["job_aid"]
     >>> files = ds.list_files(
-    >>>     directory=path,
-    >>>     pattern_extension=pattern_extension,
-    >>>     pattern_startswith=pattern_startswith
-    >>> )
+    ...     directory=path,
+    ...     pattern_extension=pattern_extension,
+    ...     pattern_startswith=pattern_startswith
+    ... ) # doctest: +SKIP
     """
     directory = Path(directory)
     files = list(directory.iterdir())
@@ -1953,12 +1980,12 @@ def directory_file_print(
     Example
     -------
     >>> import datasense as ds
-    >>> path = <path to a directory>
+    >>> path = "path to a directory"
     >>> text = 'your text'
     >>> ds.directory_file_print(
-    >>>     path=path,
-    >>>     text=text
-    >>> )
+    ...     directory=path,
+    ...     text=text
+    ... ) # doctest: +SKIP
     """
     directory = Path(directory)
     if text:
@@ -1984,8 +2011,8 @@ def delete_list_files(
     -------
     >>> import datasense as ds
     >>> ds.delete_list_files(
-    >>>     files=files,
-    >>> )
+    ...     files=files,
+    ... ) # doctest: +SKIP
     """
     paths = [Path(file) for file in files]
     for path in paths:
@@ -2010,7 +2037,7 @@ def print_list_by_item(
     Example
     -------
     >>> import datasense as ds
-    >>> ds.print_list_by_item(list_to_print=my_list_to_print)
+    >>> ds.print_list_by_item(list_to_print=my_list_to_print) # doctest: +SKIP
     """
     if title:
         print(title)
@@ -2046,7 +2073,7 @@ def ask_directory_path(
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
-    >>> path = ds.ask_directory_path(title='your message')
+    >>> path = ds.ask_directory_path(title='your message') # doctest: +SKIP
     """
     rootwindow = Tk()
     path = filedialog.askdirectory(
@@ -2094,14 +2121,15 @@ def ask_open_file_name_path(
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
-    >>> path = ds.ask_open_file_name_path(title='your message')
+    >>> path = ds.ask_open_file_name_path(title='message') # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> path = ds.ask_open_file_name_path(
-    >>>     title='your message',
-    >>>     filetypes=[('csv files', '.csv .CSV')]
-    >>> )
+    ...     title='your message',
+    ...     filetypes=[('csv files', '.csv .CSV')]
+    ... ) # doctest: +SKIP
     """
     rootwindow = Tk()
     path = filedialog.askopenfilename(
@@ -2149,14 +2177,15 @@ def ask_save_as_file_name_path(
     >>> from pathlib import Path
     >>> from tkinter import Tk
     >>> import datasense as ds
-    >>> path = ds.ask_save_as_file_name_path(title='your message')
+    >>> path = ds.ask_save_as_file_name_path(title='message') # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> path = ds.ask_save_as_file_name_path(
-    >>>     title='your message',
-    >>>     filetypes=[('csv files', '.csv .CSV')]
-    >>> )
+    ...     title='your message',
+    ...     filetypes=[('csv files', '.csv .CSV')]
+    ... ) # doctest: +SKIP
     """
     rootwindow = Tk()
     path = filedialog.asksaveasfilename(
@@ -2204,10 +2233,10 @@ def series_replace_string(
     -------
     >>> import datasense as ds
     >>> df[column] = series_replace_string(
-    >>>     series=df[column],
-    >>>     find='find this text',
-    >>>     replace='replace with this text'
-    >>> )
+    ...     series=df[column],
+    ...     find='find this text',
+    ...     replace='replace with this text'
+    ... ) # doctest: +SKIP
     """
     series = series.str.replace(
         pat=find,
@@ -2242,28 +2271,28 @@ def list_directories(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> path = <your path>
-    >>> directory_list = ds.list_directories(path=path)
+    >>> path = "path"
+    >>> directory_list = ds.list_directories(path=path) # doctest: +SKIP
 
     Example 2
     ---------
     >>> import datasense as ds
-    >>> path = <your path>
+    >>> path = "path"
     >>> pattern_startswith = ["job aids"]
     >>> directory_list = ds.list_directories(
-    >>>     path=path,
-    >>>     pattern_startswith=pattern_startswith
-    >>> )
+    ...     path=path,
+    ...     pattern_startswith=pattern_startswith
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
     >>> import datasense as ds
-    >>> path = <your path>
+    >>> path = "path"
     >>> pattern_startswith = ["job aids", "cheatsheet"]
     >>> directory_list = ds.list_directories(
-    >>>     path=path,
-    >>>     pattern_startswith=pattern_startswith
-    >>> )
+    ...     path=path,
+    ...     pattern_startswith=pattern_startswith
+    ... ) # doctest: +SKIP
     """
     path = Path(path)
     directories = [d.name for d in path.iterdir() if d.is_dir()]
@@ -2295,7 +2324,8 @@ def remove_punctuation(
     Example
     -------
     >>> import datasense as ds
-    >>> list_clean = ds.remove_punctuation(list_dirty=list_dirty)
+    >>> list_clean = ds.remove_punctuation(list_dirty=list_dirty) \
+    ...     # doctest: +SKIP
     """
     list_clean = [
         ''.join(
@@ -2331,9 +2361,9 @@ def list_change_case(
     -------
     >>> import datasense as ds
     >>> list_clean = ds.list_change_case(
-    >>>     list_dirty=list_dirty,
-    >>>     case='upper'
-    >>> )
+    ...     list_dirty=list_dirty,
+    ...     case='upper'
+    ... ) # doctest: +SKIP
     """
     if case == 'upper':
         list_clean = [x.upper() for x in list_dirty]
@@ -2370,13 +2400,14 @@ def listone_contains_all_listtwo_substrings(
 
     Example
     -------
+    >>> import datasense as ds
     >>> listone = ['prefix-2020-21-CMJG-suffix', 'bobs your uncle']
     >>> listwo = [ 'CMJG', '2020-21']
-    >>> matches = ds.listone_contains_all_listwo_substrings(
-    >>>     listone=listone,
-    >>>     listtwo=listtow
-    >>> )
-    >>> ['prefix-2020-21-CMJG-suffix']
+    >>> matches = ds.listone_contains_all_listtwo_substrings(
+    ...     listone=listone,
+    ...     listtwo=listtow
+    ... ) # doctest: +SKIP
+    ['prefix-2020-21-CMJG-suffix']
     """
     matches = [x for x in listone if all(y in x for y in listtwo)]
     return matches
@@ -2416,33 +2447,35 @@ def list_one_list_two_ops(
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_list_two_ops(
-    >>>     list_one=list_one,
-    >>>     list_two=list_two,
-    >>>     action="list_one"
-    >>> )
-    >>> [1, 2, 3]
+    ...     list_one=list_one,
+    ...     list_two=list_two,
+    ...     action="list_one"
+    ... ) # doctest: +SKIP
+    [1, 2, 3]
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_list_two_ops(
-    >>>     list_one=list_one,
-    >>>     list_two=list_two,
-    >>>     action="list_two"
-    >>> )
-    >>> [7, 8, 9]
+    ...     list_one=list_one,
+    ...     list_two=list_two,
+    ...     action="list_two"
+    ... ) # doctest: +SKIP
+    [7, 8, 9]
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_list_two_ops(
-    >>>     list_one=list_one,
-    >>>     list_two=list_two,
-    >>>     action="intersection"
-    >>> )
-    >>> [4, 5, 6]
+    ...     list_one=list_one,
+    ...     list_two=list_two,
+    ...     action="intersection"
+    ... ) # doctest: +SKIP
+    [4, 5, 6]
     """
     match action:
         case "list_one":
@@ -2501,38 +2534,41 @@ def parameters_text_replacement(
     --------
     Example 1
     ---------
+    >>> import datasense as ds
     >>> path_parameters = Path("bcp_parameters.xlsx")
     >>> usecols = ["old_text", "new_text"]
     >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
-    >>>     file_name=path_parameters,
-    >>>     sheet_name=sheet_name,
-    >>>     usecols=usecols
-    >>> )
+    ...     file_name=path_parameters,
+    ...     sheet_name=sheet_name,
+    ...     usecols=usecols
+    ... ) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> path_parameters = Path("bcp_parameters.xlsx")
     >>> usecols = ["old_text", "new_text"]
     >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
-    >>>     file_name=path_parameters,
-    >>>     sheet_name=sheet_name,
-    >>>     usecols=usecols,
-    >>>     case="upper"
-    >>> )
+    ...     file_name=path_parameters,
+    ...     sheet_name=sheet_name,
+    ...     usecols=usecols,
+    ...     case="upper"
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> path_parameters = Path("bcp_parameters.xlsx")
     >>> usecols = ["old_text", "new_text"]
     >>> sheet_name = "text_replacement"
     >>> text_replacement = parameters(
-    >>>     file_name=path_parameters,
-    >>>     sheet_name=sheet_name,
-    >>>     usecols=usecols,
-    >>>     case="lower"
-    >>> )
+    ...     file_name=path_parameters,
+    ...     sheet_name=sheet_name,
+    ...     usecols=usecols,
+    ...     case="lower"
+    ... ) # doctest: +SKIP
     """
     df = read_file(
         file_name=file_name,
@@ -2599,14 +2635,15 @@ def parameters_dict_replacement(
 
     Example
     -------
+    >>> import datasense as ds
     >>> path_parameters = Path('parameters.xlsx')
     >>> usecols = ['old_text', 'new_text']
     >>> sheet_name = 'text_replacement'
     >>> replacement_dict = ds.parameters_dict_replacement(
-    >>>     file_name=path_parameters,
-    >>>     sheet_name=sheet_name,
-    >>>     usecols=usecols
-    >>> )
+    ...     file_name=path_parameters,
+    ...     sheet_name=sheet_name,
+    ...     usecols=usecols
+    ... ) # doctest: +SKIP
     """
     df = read_file(
         file_name=file_name,
@@ -2662,8 +2699,9 @@ def file_size(path: Path | str) -> int:
 
     Example
     -------
-    >>> path = 'myfile.feather'
-    >>> size = ds.file_size(path=path)
+    >>> import datasense as ds
+    >>> path = "myfile.feather"
+    >>> size = ds.file_size(path=path) # doctest: +SKIP
     """
     size = Path(path).stat().st_size
     return size
@@ -2692,31 +2730,35 @@ def mask_outliers(
     -------
     Create a transformer to be used in a scikit-learn pipeline.
     >>> from sklearn.preprocessing import FunctionTransformer
+    >>> from sklearn.compose import make_column_transformer
+    >>> from sklearn.pipeline import make_pipeline
+    >>> from sklearn.impute import SimpleImputer
+    >>> import datasense as ds
     >>> mask = [
-    >>>     ("X1", -10, 10),
-    >>>     ("X2", -25, 25),
-    >>>     ("X3", -5, 5),
-    >>>     ("X4", -7, 7),
-    >>>     ("X5", -3, 3),
-    >>>     ("X6", -2, 2),
-    >>>     ("X7", -13, 13),
-    >>>     ("X8", -8, 8),
-    >>>     ("X9", -9, 9),
-    >>>     ("X10", -10, 10),
-    >>>     ("X11", -9, 9),
-    >>>     ("X12", -16, 17),
-    >>>     ("X13", -20, 23)
-    >>> ]
+    ...     ("X1", -10, 10),
+    ...     ("X2", -25, 25),
+    ...     ("X3", -5, 5),
+    ...     ("X4", -7, 7),
+    ...     ("X5", -3, 3),
+    ...     ("X6", -2, 2),
+    ...     ("X7", -13, 13),
+    ...     ("X8", -8, 8),
+    ...     ("X9", -9, 9),
+    ...     ("X10", -10, 10),
+    ...     ("X11", -9, 9),
+    ...     ("X12", -16, 17),
+    ...     ("X13", -20, 23)
+    ... ]
     >>> mask = FunctionTransformer(
-    >>>     mask_outliers,
-    >>>     kw_args={"mask": mask}
-    >>> )
+    ...     mask_outliers,
+    ...     kw_args={"mask": mask}
+    ... )
     >>> imputer = SimpleImputer()
     >>> imputer_pipeline = make_pipeline(mask, imputer)
     >>> transformer = make_column_transformer(
-    >>>     (imputer_pipeline, features),
-    >>>     remainder="drop"
-    >>> )
+    ...     (imputer_pipeline, features),
+    ...     remainder="drop"
+    ... ) # doctest: +SKIP
     """
     for column, lowvalue, highvalue in mask:
         df[column] = df[column].mask(
@@ -2750,15 +2792,16 @@ def delete_empty_rows(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.delete_empty_rows(df=df)
+    >>> df = ds.delete_empty_rows(df=df) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> list_columns = ["column_x", "column_y", "column_z"]
     >>> df = ds.delete_empty_rows(
-    >>>     df=df,
-    >>>     list_columns=list_columns
-    >>> )
+    ...     df=df,
+    ...     list_columns=list_columns
+    ... ) # doctest: +SKIP
 
     Notes
     -----
@@ -2828,16 +2871,18 @@ def delete_empty_columns(
     Examples
     --------
     Example 1
+    ---------
     >>> import datasense as ds
-    >>> df = ds.delete_empty_columns(df=df)
+    >>> df = ds.delete_empty_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
-    >>> list_empty_columns = ["mixed", "nan_none"])
+    >>> import datasense as ds
+    >>> list_empty_columns = ["mixed", "nan_none"]
     >>> df = ds.delete_empty_columns(
-    >>>    df=df,
-    >>>    list_empty_columns=list_empty_columns
-    >>> )
+    ...    df=df,
+    ...    list_empty_columns=list_empty_columns
+    ... ) # doctest: +SKIP
 
     Notes
     -----
@@ -2904,15 +2949,16 @@ def optimize_float_columns(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_float_columns(df=df)
+    >>> df = ds.optimize_float_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> float_columns = ["column A", "column B"]
     >>> df = ds.optimize_float_columns(
-    >>>     df=df,
-    >>>     float_columns=float_columns
-    >>> )
+    ...     df=df,
+    ...     float_columns=float_columns
+    ... ) # doctest: +SKIP
     """
     if not float_columns:
         float_columns = find_float_columns(df=df)
@@ -2947,15 +2993,16 @@ def optimize_integer_columns(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_integer_columns(df=df)
+    >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> integer_columns = ["column A", "column B"]
     >>> df = ds.optimize_integer_columns(
-    >>>     df=df,
-    >>>     integer_columns=integer_columns
-    >>> )
+    ...     df=df,
+    ...     integer_columns=integer_columns
+    ... ) # doctest: +SKIP
     """
     if not integer_columns:
         integer_columns = find_integer_columns(df=df)
@@ -2993,23 +3040,25 @@ def optimize_object_columns(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_integer_columns(df=df)
+    >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> fraction_categories = 0.25
     >>> df = ds.optimize_integer_columns(
-    >>>     df=df,
-    >>>     fraction_categories = fraction_categories
-    >>> )
+    ...     df=df,
+    ...     fraction_categories = fraction_categories
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> object_columns = ["column A", "column B"]
     >>> df = df.optimize_object_columns(
-    >>>     df=df,
-    >>>     object_columns=object_columns
-    >>> )
+    ...     df=df,
+    ...     object_columns=object_columns
+    ... ) # doctest: +SKIP
     """
     if not object_columns:
         object_columns = find_object_columns(df=df)
@@ -3052,15 +3101,16 @@ def optimize_datetime_columns(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_integer_columns(df=df)
+    >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
+    >>> import datasense as ds
     >>> integer_columns = ["column A", "column B"]
     >>> df = ds.optimize_integer_columns(
-    >>>     df=df,
-    >>>     datetime_columns=datetime_columns
-    >>> )
+    ...     df=df,
+    ...     datetime_columns=datetime_columns
+    ... ) # doctest: +SKIP
     """
     if not datetime_columns:
         datetime_columns = find_datetime_columns(df=df)
@@ -3103,30 +3153,32 @@ def optimize_columns(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> df = ds.optimize_columns(df=df)
+    >>> df = ds.optimize_columns(df=df) # doctest: +SKIP
 
     Example 2
     ---------
     If using the default values, it is important to identify object columns
     that should be datetime columns in order to get the correct answer.
+    >>> import datasense as ds
     >>> df = ds.optimize_columns(
-    >>>     df=df,
-    >>>     datetime_columns=datetime_columns,
-    >>> )
+    ...     df=df,
+    ...     datetime_columns=datetime_columns,
+    ... ) # doctest: +SKIP
 
     Example 3
     ---------
+    >>> import datasense as ds
     >>> float_columns = ["column_A", "column_B"]
     >>> integer_columns = ["column_C", "column_D"]
     >>> object_columns = ["column_E", "column_F"]
     >>> df = ds.optimize_columns(
-    >>>     df=df,
-    >>>     float_columns=float_columns,
-    >>>     integer_columns=integer_columns,
-    >>>     datetime_columns=datetime_columns,
-    >>>     object_columns=object_columns,
-    >>>     fraction_categories=0.2
-    >>> )
+    ...     df=df,
+    ...     float_columns=float_columns,
+    ...     integer_columns=integer_columns,
+    ...     datetime_columns=datetime_columns,
+    ...     object_columns=object_columns,
+    ...     fraction_categories=0.2
+    ... ) # doctest: +SKIP
     """
     df = optimize_float_columns(
         df=df,
@@ -3171,9 +3223,9 @@ def series_memory_usage(
     -------
     >>> import datasense as ds
     >>> memory_usage = ds.series_memory_usage(
-    >>>     s=s,
-    >>>     suffix="B"
-    >>> )
+    ...     s=s,
+    ...     suffix="B"
+    ... ) # doctest: +SKIP
     """
     memory_usage = byte_size(
         num=s.memory_usage(index=False),
@@ -3202,30 +3254,28 @@ def convert_csv_to_feather(
 
     Example
     -------
+    One way to create paths_in.
     >>> import datasense as ds
-
-    One way to create paths_in:
     >>> extension_in = [".csv"]
     >>> paths_in = ds.list_files(
-    >>>     directory=path_csv,
-    >>>     pattern_extension=extension_in
-    >>> )
-
-    One way to create paths_out:
+    ...     directory=path_csv,
+    ...     pattern_extension=extension_in
+    ... ) # doctest: +SKIP
+    One way to create paths_out.
     >>> extension_out = ".feather"
     >>> paths_out = [
-    >>>     Path(
-    >>>         directory_feather_files,
-    >>>         paths_in[count].name
-    >>>     ).with_suffix(extension_out)
-    >>>     for count, element in enumerate(paths_in)
-    >>> ]
-
-    Convert csv to feather
+    ...     Path(
+    ...         directory_feather_files,
+    ...         paths_in[count].name
+    ...     ).with_suffix(extension_out)
+    ...     for count, element in enumerate(paths_in)
+    ... ] # doctest: +SKIP
+    Convert csv to feather.
+    >>> import datasense as ds
     >>> ds.convert_csv_to_feather(
-    >>>     paths_in=paths_in,
-    >>>     paths_out=paths_out
-    >>> )
+    ...     paths_in=paths_in,
+    ...     paths_out=paths_out
+    ... ) # doctest: +SKIP
     """
     try:
         if len(paths_in) == len(paths_out):
@@ -3259,7 +3309,7 @@ def print_dictionary_by_key(
     Example
     -------
     >>> import datasense as ds
-    >>> ds.print_dictionary_by_key(dictionary_to_print=my_dictionary_to_print)
+    >>> ds.print_dictionary_by_key(dictionary_to_print=mydict) # doctest: +SKIP
     """
     if title:
         print(title)
@@ -3268,9 +3318,41 @@ def print_dictionary_by_key(
         print(str(key) + ' : ' + str(value))
 
 
+def convert_seconds_to_hh_mm_ss(
+    *,
+    seconds: int = None
+) -> Tuple[int, int, int]:
+    """
+    Convert seconds to hours, minutes and seconds.
+
+    Parameters
+    ----------
+    seconds : int = None
+        Time in seconds
+
+    Returns
+    -------
+        Tuple of (hours, minutes, seconds).
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> hours_minutes_seconds = ds.convert_seconds_to_hh_mm_ss(seconds=251)
+    >>> hours_minutes_seconds
+    (0, 4, 11)
+    """
+    hours = int(seconds // 3600)
+    seconds %= 3600
+    minutes = int(seconds // 60)
+    seconds %= 60
+    seconds = int(seconds)
+    return (hours, minutes, seconds)
+
+
 __all__ = (
     "listone_contains_all_listtwo_substrings",
     "number_empty_cells_in_columns",
+    "convert_seconds_to_hh_mm_ss",
     "parameters_dict_replacement",
     "parameters_text_replacement",
     "ask_save_as_file_name_path",
@@ -3293,6 +3375,7 @@ __all__ = (
     "delete_empty_columns",
     "directory_file_print",
     "replace_text_numbers",
+    "find_integer_columns",
     "find_object_columns",
     "rename_some_columns",
     "series_memory_usage",
