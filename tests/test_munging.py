@@ -51,16 +51,32 @@ df_empty_test = pd.DataFrame(
 )
 
 
-def test_convert_seconds_to_hours_minutes_seconds():
-    pass
-
-
 def test_listone_contains_all_listtwo_substrings():
     pass
 
 
 def test_number_empty_cells_in_columns():
     pass
+
+
+def test_convert_seconds_to_hh_mm_ss():
+    """
+    Convert seconds to hours, minutes and seconds.
+    """
+    result = ds. convert_seconds_to_hh_mm_ss(seconds=1)
+    expected = (0, 0, 1)
+    assert result == expected
+    result = ds. convert_seconds_to_hh_mm_ss(seconds=61)
+    expected = (0, 1, 1)
+    assert result == expected
+    result = ds. convert_seconds_to_hh_mm_ss(seconds=3601)
+    expected = (1, 0, 1)
+    assert result == expected
+    result = ds. convert_seconds_to_hh_mm_ss(seconds=3661)
+    expected = (1, 1, 1)
+    result = ds. convert_seconds_to_hh_mm_ss(seconds=251)
+    expected = (0, 4, 11)
+    assert result == expected
 
 
 def test_parameters_dict_replacement():
