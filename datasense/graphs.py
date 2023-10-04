@@ -2214,7 +2214,7 @@ def plot_histogram(
     >>> fig, ax = ds.plot_histogram(
     >>>     series=s,
     >>>     bin_width=1
-)
+    >>> )
 
     Example 4
     # Create a series of random integers, integer distribution, size = 113,
@@ -2390,7 +2390,7 @@ def plot_horizontal_bars(
     >>> fig, ax = ds.plot_horizontal_bars(
     >>>     y=y,
     >>>     width=width,
-    >>>>    height=0.4
+    >>>     height=0.4
     >>> )
 
     Example 3
@@ -2496,7 +2496,7 @@ def plot_vertical_bars(
     >>> fig, ax = ds.plot_vertical_bars(
     >>>     x=x,
     >>>     height=height,
-    >>>>    width=0.4
+    >>>     width=0.4
     >>> )
     """
     fig, ax = plt.subplots(
