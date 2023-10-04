@@ -3882,9 +3882,28 @@ def linear_regression(
     prediction_interval_upper : pd.Series
         The upper prediction interval of the data.
 
+    References
+    ----------
+    https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html
+
     Example
     --------
     >>> import datasense as ds
+    >>> import pandas as pd
+    >>> df = pd.DataFrame(
+    ...     {
+    ...         "abscissa": ds.random_data(
+    ...             distribution="uniform",
+    ...             random_state=42
+    ...         ),
+    ...         "ordinate": ds.random_data(
+    ...             distribution="norm",
+    ...             random_state=42
+    ...         )
+    ...     }
+    ... ).sort_values(by=["abscissa"])
+    >>> X = df["abscissa"].squeeze()
+    >>> y = df["ordinate"].squeeze()
     >>> (
     ...     fitted_model, predictions, confidence_interval_lower,
     ...     confidence_interval_upper, prediction_interval_lower,
@@ -3892,7 +3911,7 @@ def linear_regression(
     ... ) = ds.linear_regression(
     ...     X=X,
     ...     y=y
-    ... ) # doctest: +SKIP
+    ... )
     """
     X = sm.add_constant(data=X)
     fitted_model = sm.OLS(
