@@ -44,9 +44,9 @@ def rgx_email_address(
     ---------
     # open a file containing email addresses and \n\t
     >>> import datasense as ds
-    >>> with open("mailbox.txt") as f:
-    ...     data = f.read() # doctest: +SKIP
-    >>> strings = data.split("\\n") # doctest: +SKIP
+    >>> with open("../tests/mailbox.txt") as f:
+    ...     data = f.read()
+    >>> strings = data.split("\\n")
     >>> matches = ds.rgx_email_address(strings=strings)
     """
     regex = re.compile(pattern=r"[\w.-]+@[\w.-]+")
