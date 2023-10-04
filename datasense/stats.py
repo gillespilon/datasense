@@ -113,18 +113,20 @@ def nonparametric_summary(
     Examples
     --------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> series = ds.random_data()
     >>> series = ds.nonparametric_summary(series=series)
-    >>> print(series)
 
     Example 2
+    ---------
+    >>> import datasense as ds
+    >>> series = ds.random_data()
     >>> series = ds.nonparametric_summary(
-    >>>     series=series,
-    >>>     alphap=0,
-    >>>     betap=0
-    >>> )
-    >>> print(series)
+    ...     series=series,
+    ...     alphap=0,
+    ...     betap=0
+    ... )
     """
     xm = np.ma.masked_array(series, mask=np.isnan(series))
     q25 = mq(xm, prob=(0.25), alphap=alphap, betap=betap)
@@ -196,7 +198,6 @@ def parametric_summary(
     >>> import datasense as ds
     >>> series = ds.random_data()
     >>> series = ds.parametric_summary(series=series)
-    >>> print(series)
     """
     ciaverage = stats.t.interval(
             confidence=0.95,
@@ -254,23 +255,22 @@ def cubic_spline(
     >>> import datasense as ds
     >>> import pandas as pd
     >>> df = pd.DataFrame(
-    >>>     {
-    >>>         "abscissa": ds.random_data(distribution="uniform"),
-    >>>         "ordinate": ds.random_data(distribution="norm")
-    >>>     }
-    >>> ).sort_values(by=["abscissa"])
+    ...     {
+    ...         "abscissa": ds.random_data(distribution="uniform"),
+    ...         "ordinate": ds.random_data(distribution="norm")
+    ...     }
+    ... ).sort_values(by=["abscissa"]) # doctest: +SKIP
     >>> spline = ds.cubic_spline(
-    >>>     df=df,
-    >>>     abscissa="abscissa",
-    >>>     ordinate="ordinate"
-    >>> )
-    >>> df["predicted"] = spline(df["abscissa"])
+    ...     df=df,
+    ...     abscissa="abscissa",
+    ...     ordinate="ordinate"
+    ... ) # doctest: +SKIP
+    >>> df["predicted"] = spline(df["abscissa"]) # doctest: +SKIP
     >>> ds.plot_scatter_line_x_y1_y2(
-    >>>     X=df["abscissa"],
-    >>>     y1=df["ordinate"],
-    >>>     y2=df["predicted"]
-    >>> )
-    >>> plt.show()
+    ...     X=df["abscissa"],
+    ...     y1=df["ordinate"],
+    ...     y2=df["predicted"]
+    ... ) # doctest: +SKIP
     """
     df = df[df[[abscissa, ordinate]].notna().all(axis="columns")]
     df = df.sort_values(by=abscissa, axis="rows", ascending=True)
@@ -323,16 +323,15 @@ def natural_cubic_spline(
     >>> X = ds.random_data(distribution="uniform").sort_values()
     >>> y = ds.random_data(distribution="norm")
     >>> p = ds.natural_cubic_spline(
-    >>>     X=X,
-    >>>     y=y,
-    >>>     number_knots=10
-    >>> )
+    ...     X=X,
+    ...     y=y,
+    ...     number_knots=10
+    ... )
     >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
-    >>>     X=X,
-    >>>     y1=y,
-    >>>     y2=p.predict(X)
-    >>> )
-    >>> plt.show()
+    ...     X=X,
+    ...     y1=y,
+    ...     y2=p.predict(X)
+    ... )
     """
 
     if list_knots:
@@ -414,170 +413,213 @@ def random_data(
     Examples
     --------
     Example 1
+    ---------
     # Generate a series of random floats, normal distribution,
     # with the default parameters.
     >>> import datasense as ds
     >>> s = ds.random_data()
 
-    # Example 2
+    Example 2
+    ---------
     # Generate a series of random floats, normal distribution,
     # with the default parameters.
     # Set random_state seed for repeatable sample.
+    >>> import datasense as ds
     >>> s = ds.random_data(random_state=42)
 
     Example 3
+    ---------
     # Create a series of random float, normal distribution,
     # with sample size = 113, mean = 69, standard deviation = 13.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="norm",
-    >>>     size=113,
-    >>>     loc=69,
-    >>>     scale=13
-    >>> )
+    ...     distribution="norm",
+    ...     size=113,
+    ...     loc=69,
+    ...     scale=13
+    ... )
 
     Example 4
+    ---------
     # Create series of random floats, standard uniform distribution,
     # with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="uniform")
 
     Example 5
+    ---------
     # Create series of random floats, standard uniform distribution,
     # with the default parameters.
     # Set random_state seed for repeatable sample
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="uniform",
-    >>>     random_state=42
-    >>> )
+    ...     distribution="uniform",
+    ...     random_state=42
+    ... )
 
     Example 6
+    ---------
     # Create series of random floats, uniform distribution, size = 113,
     # min = 13, max = 69.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="uniform",
-    >>>     size=113,
-    >>>     loc=13,
-    >>>     scale=70
-    >>> )
+    ...     distribution="uniform",
+    ...     size=113,
+    ...     loc=13,
+    ...     scale=70
+    ... )
 
     Example 7
+    ---------
     # Create series of random integers, integer distribution,
     # with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="randint")
 
     Example 8
+    ---------
     # Create series of random nullable integers, integer distribution,
     # with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="randInt")
 
     Example 9
+    ---------
     # Create series of random integers, integer distribution, size = 113,
     # min = 0, max = 1.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="randint",
-    >>>     size=113,
-    >>>     low=0,
-    >>>     high=2
-    >>> )
+    ...     distribution="randint",
+    ...     size=113,
+    ...     low=0,
+    ...     high=2
+    ... )
 
     Example 10
+    ----------
     # Create series of random integers, integer distribution, size = 113,
     # min = 0, max = 1.
     # Set random_state seed for repeatable sample
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="randint",
-    >>>     size=113,
-    >>>     low=0,
-    >>>     high=2,
-    >>>     random_state=42
-    >>> )
+    ...     distribution="randint",
+    ...     size=113,
+    ...     low=0,
+    ...     high=2,
+    ...     random_state=42
+    ... )
 
     Example 11
+    ----------
     # Create series of random strings from the default list.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="strings")
 
     Example 12
+    ----------
     # Create series of random strings from a list of strings.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="strings",
-    >>>     size=113,
-    >>>     strings=["tom", "dick", "harry"]
-    >>> )
+    ...     distribution="strings",
+    ...     size=113,
+    ...     strings=["tom", "dick", "harry"]
+    ... )
 
     Example 13
+    ----------
     # Create series of random strings from a list of strings.
     # Set random_state seed for repeatable sample
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="strings",
-    >>>     size=113,
-    >>>     strings=["tom", "dick", "harry"],
-    >>>     random_state=42
-    >>> )
+    ...     distribution="strings",
+    ...     size=113,
+    ...     strings=["tom", "dick", "harry"],
+    ...     random_state=42
+    ... )
 
     Example 14
+    ----------
     # Create series of random booleans with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="bool")
 
     Example 15
+    ----------
     # Create series of random nullable booleans with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="boolean")
 
     Example 16
+    ----------
     # Create series of random booleans, size = 113.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>> distribution="bool",
-    >>> size=113
-    >>> )
+    ...     distribution="bool",
+    ...     size=113
+    ... )
 
     Example 17
+    ----------
     # Create series of random booleans, size = 113.
     # Set random_state seed for repeatable sample
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>> distribution="bool",
-    >>> size=113,
-    >>> random_state=42
-    >>> )
+    ...     distribution="bool",
+    ...     size=113,
+    ...     random_state=42
+    ... )
 
     Example 18
+    ----------
     # Create series of unordered categories.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="category")
 
     Example 19
+    ----------
     # Create series of ordered categories.
+    >>> import datasense as ds
     >>> s = ds.random_data(distribution="categories")
 
     Example 20
+    ----------
     # Create series of ordered categories.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="categories",
-    >>>     categories=["XS", "S", "M", "L", "XL"],
-    >>>     size=113
-    >>> )
+    ...     distribution="categories",
+    ...     categories=["XS", "S", "M", "L", "XL"],
+    ...     size=113
+    ... )
 
     Example 21
+    ----------
     # Create series of ordered categories.
     # Set random_state seed for repeatable sample
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="categories",
-    >>>     categories=["XS", "S", "M", "L", "XL"],
-    >>>     size=113,
-    >>>     random_state=42
-    >>> )
+    ...     distribution="categories",
+    ...     categories=["XS", "S", "M", "L", "XL"],
+    ...     size=113,
+    ...     random_state=42
+    ... )
 
     Example 22
+    ----------
     # Create series of timedelta64[ns].
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="timedelta",
-    >>>     size=7
-    >>> )
-    >>> s
+    ...     distribution="timedelta",
+    ...     size=7
+    ... )
 
     Example 23
+    ----------
     # Create series of datetime64[ns].
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="datetime",
-    >>>     size=7
-    >>> )
-    >>> s
+    ...     distribution="datetime",
+    ...     size=7
+    ... )
     """
     distribution_list_continuous = ["norm", "uniform"]
     distribution_list_discrete = ["randint", "randInt"]
@@ -833,30 +875,33 @@ def datetime_data(
     series: pd.Series
         The datetime series.
 
-    Example
-    -------
+    Examples
+    --------
     Example 1
+    ---------
     >>> import datasense as ds
     >>> # Create a default datetime series
     >>> X = ds.datetime_data()
 
     Example 2
+    ---------
+    >>> import datasense as ds
     >>> # Create a datetime series of one month in increments of six hours
     >>> X = ds.datetime_data(
-    >>>     start_year="2020",
-    >>>     start_month="01",
-    >>>     start_day="01",
-    >>>     start_hour="00",
-    >>>     start_minute="00",
-    >>>     start_second="00",
-    >>>     end_year="2020",
-    >>>     end_month="02",
-    >>>     end_day="01",
-    >>>     end_hour="00",
-    >>>     end_minute="00",
-    >>>     end_second="00",
-    >>>     time_delta_hours=6
-    >>> )
+    ...     start_year="2020",
+    ...     start_month="01",
+    ...     start_day="01",
+    ...     start_hour="00",
+    ...     start_minute="00",
+    ...     start_second="00",
+    ...     end_year="2020",
+    ...     end_month="02",
+    ...     end_day="01",
+    ...     end_hour="00",
+    ...     end_minute="00",
+    ...     end_second="00",
+    ...     time_delta_hours=6
+    ... )
     """
     # TODO: Complete this code for all possibilities of timedelta
     if start_year:
@@ -986,41 +1031,262 @@ def one_sample_t(
     Examples
     --------
     Example 1
+    ---------
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is not equal to the hypothesized value.
     >>> import datasense as ds
+    >>> series = ds.random_data(random_state=42)
     >>> one_sample_t_test_result = ds.one_sample_t(
-    >>>     series=series,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="two-sided",
-    >>>     significance_level=0.05,
-    >>>     width=7,
-    >>>     significance_level=0.05
-    >>> )
+    ...     series=series,
+    ...     hypothesized_value=0,
+    ...     alternative_hypothesis="two-sided",
+    ...     significance_level=0.05,
+    ...     width=7
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The one-sample t test is used to determine if the average of one sample of\
+            data is statistically, significantly different from a hypothesized\
+            value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    The data should be sampled independently from the population.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric statistics for y
+    n                                  42
+    min                             -1.96
+    max                             1.852
+    ave                            -0.187
+    confidence interval    (-0.48, 0.107)
+    s                               0.943
+    var                             0.889
+    <BLANKLINE>
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.982
+    Shapiro-Wilk p value       :   0.726
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Non-parametric statistics for y
+    lower outer fence               -4.824
+    lower inner fence               -2.871
+    lower quartile                  -0.917
+    median                           -0.23
+    confidence interval    (-0.546, 0.086)
+    upper quartile                   0.386
+    upper inner fence                 2.34
+    upper outer fence                4.293
+    interquartile range              1.303
+    inner outliers                      []
+    outer outliers                      []
+    minimum value                    -1.96
+    maximum value                    1.852
+    count                               42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.193
+    Anderson-Darling critical value:   0.728
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.068
+    Kolmogorov-Smirnov p value:   0.901
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Ho: average of sample == hypothesized_value
+    Ha: average of sample != hypothesized_value
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            sample average is different from the hypothesized value.
+    <BLANKLINE>
+    t test results
+    average              -0.187
+    hypothesized value    0.000
+    confidence interval  -0.480,   0.107
+    t test statistic     -1.283
+    t test p value        0.207
+    significance level    0.050
+    power of the test     0.240
+    <BLANKLINE>
 
     Example 2
+    ---------
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is less than the hypothesized value.
+    >>> import datasense as ds
+    >>> series = ds.random_data(random_state=42)
     >>> one_sample_t_test_result = ds.one_sample_t(
-    >>>     series=series,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="less",
-    >>>     significance_level=0.05,
-    >>>     width=7,
-    >>>     significance_level=0.05
-    >>> )
+    ...     series=series,
+    ...     hypothesized_value=0,
+    ...     alternative_hypothesis="less",
+    ...     significance_level=0.05,
+    ...     width=7
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The one-sample t test is used to determine if the average of one sample of\
+            data is statistically, significantly different from a hypothesized\
+            value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    The data should be sampled independently from the population.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric statistics for y
+    n                                  42
+    min                             -1.96
+    max                             1.852
+    ave                            -0.187
+    confidence interval    (-0.48, 0.107)
+    s                               0.943
+    var                             0.889
+    <BLANKLINE>
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.982
+    Shapiro-Wilk p value       :   0.726
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Non-parametric statistics for y
+    lower outer fence               -4.824
+    lower inner fence               -2.871
+    lower quartile                  -0.917
+    median                           -0.23
+    confidence interval    (-0.546, 0.086)
+    upper quartile                   0.386
+    upper inner fence                 2.34
+    upper outer fence                4.293
+    interquartile range              1.303
+    inner outliers                      []
+    outer outliers                      []
+    minimum value                    -1.96
+    maximum value                    1.852
+    count                               42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.193
+    Anderson-Darling critical value:   0.728
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.068
+    Kolmogorov-Smirnov p value:   0.901
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Ho: average of sample == hypothesized value
+    Ha: average of sample < hypothesized value
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            sample average is less than the hypothesized value.
+    <BLANKLINE>
+    t test results
+    average              -0.187
+    hypothesized value    0.000
+    confidence interval N/A,   0.058
+    t test statistic     -1.283
+    t test p value        0.103
+    significance level    0.050
+    power of the test     0.002
+    <BLANKLINE>
 
     Example 3
+    ---------
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is greater than the hypothesized value.
+    >>> import datasense as ds
+    >>> series = ds.random_data(random_state=42)
     >>> one_sample_t_test_result = ds.one_sample_t(
-    >>>     series=series,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="greater",
-    >>>     significance_level=0.05,
-    >>>     width=7,
-    >>>     significance_level=0.05
-    >>> )
+    ...     series=series,
+    ...     hypothesized_value=0,
+    ...     alternative_hypothesis="greater",
+    ...     significance_level=0.05,
+    ...     width=7
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The one-sample t test is used to determine if the average of one sample\
+            of data is statistically, significantly different from a\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    The data should be sampled independently from the population.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric statistics for y
+    n                                  42
+    min                             -1.96
+    max                             1.852
+    ave                            -0.187
+    confidence interval    (-0.48, 0.107)
+    s                               0.943
+    var                             0.889
+    <BLANKLINE>
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.982
+    Shapiro-Wilk p value       :   0.726
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Non-parametric statistics for y
+    lower outer fence               -4.824
+    lower inner fence               -2.871
+    lower quartile                  -0.917
+    median                           -0.23
+    confidence interval    (-0.546, 0.086)
+    upper quartile                   0.386
+    upper inner fence                 2.34
+    upper outer fence                4.293
+    interquartile range              1.303
+    inner outliers                      []
+    outer outliers                      []
+    minimum value                    -1.96
+    maximum value                    1.852
+    count                               42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.193
+    Anderson-Darling critical value:   0.728
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.068
+    Kolmogorov-Smirnov p value:   0.901
+    The data in the sample probably follow a normal distribution.
+    <BLANKLINE>
+    Ho: average of sample == hypothesized value
+    Ha: average of sample > hypothesized value
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            average of the sample is greater than the hypothesized value.
+    <BLANKLINE>
+    t test results
+    average              -0.187
+    hypothesized value    0.000
+    confidence interval  -0.431, N/A
+    t test statistic     -1.283
+    t test p value        0.897
+    significance level    0.050
+    power of the test     0.351
+    <BLANKLINE>
     """
     print(
         "The one-sample t test is used to determine if the average of one "
@@ -1445,35 +1711,417 @@ def two_sample_t(
     Examples
     --------
     Example 1
+    ---------
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is not equal to the average of sample two.
     >>> import datasense as ds
+    >>> series1 = ds.random_data(random_state=13)
+    >>> series2 = ds.random_data(random_state=69)
     >>> two_sample_t_test_result = ds.two_sample_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     alternative_hypothesis="two-sided",
-    >>>     significance_level=0.05
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     alternative_hypothesis="two-sided",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    Parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.983
+    Shapiro-Wilk p value       :   0.779
+    The data in sample 1 probably follow a normal distribution. OK to proceed\
+            to homogeneity of variance test.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.969
+    Shapiro-Wilk p value       :   0.302
+    The data in sample 2 probably follow a normal distribution. OK to proceed\
+            to homogeneity of variance test.
+    <BLANKLINE>
+    Bartlett results for homogeneity of variance test
+    Bartlett test statistic:   0.426
+    Bartlett p value       :   0.514
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1:   0.153
+    average of sample 2:  -0.291
+    confidence interval   0.004, 0.884031656611471
+    t test statistic   :   2.008
+    t test p value     :   0.048
+    significance level :   0.050
+    power of the test  :   0.510
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one != average of sample two
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the sample averages are\
+            different.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.174
+    Anderson-Darling critical value:   0.728
+    The data in sample 1 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.322
+    Anderson-Darling critical value:   0.728
+    The data in sample 2 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Levene results for homogeneity of variance
+    Levene test statistic:   0.788
+    Levene p value       :   0.377
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1   :   0.153
+    average of sample 2   :  -0.291
+    difference in averages:   0.444
+    confidence interval   :   0.004,   0.884
+    t test statistic      :   2.008
+    t test p value        :   0.048
+    significance level    :   0.050
+    power of the test     :   0.510
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one != average of sample two
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the sample averages are\
+            different.
+    <BLANKLINE>
 
     Example 2
+    ---------
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is less than the average of sample two.
+    >>> import datasense as ds
+    >>> series1 = ds.random_data(random_state=13)
+    >>> series2 = ds.random_data(random_state=69)
     >>> two_sample_t_test_result = ds.two_sample_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     alternative_hypothesis="less",
-    >>>     significance_level=0.05
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     alternative_hypothesis="less",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    Parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.983
+    Shapiro-Wilk p value       :   0.779
+    The data in sample 1 probably follow a normal distribution.\
+            OK to proceed to homogeneity of variance test.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.969
+    Shapiro-Wilk p value       :   0.302
+    The data in sample 2 probably follow a normal distribution.\
+            OK to proceed to homogeneity of variance test.
+    <BLANKLINE>
+    Bartlett results for homogeneity of variance test
+    Bartlett test statistic:   0.426
+    Bartlett p value       :   0.514
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1:   0.153
+    average of sample 2:  -0.291
+    confidence interval   0.004, 0.884031656611471
+    t test statistic   :   2.008
+    t test p value     :   0.976
+    significance level :   0.050
+    power of the test  :   0.000
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one < average of sample two
+    Fail to reject the null hypothesis Ho.\
+            Continue to accept the null hypothesis Ho.\
+            There is insufficient evidence to show that the average of\
+            sample 1 is less than the average of sample 2.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.174
+    Anderson-Darling critical value:   0.728
+    The data in sample 1 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.322
+    Anderson-Darling critical value:   0.728
+    The data in sample 2 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Levene results for homogeneity of variance
+    Levene test statistic:   0.788
+    Levene p value       :   0.377
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1   :   0.153
+    average of sample 2   :  -0.291
+    difference in averages:   0.444
+    confidence interval   :   0.004,   0.884
+    t test statistic      :   2.008
+    t test p value        :   0.976
+    significance level    :   0.050
+    power of the test     :   0.000
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one < average of sample two
+    Fail to reject the null hypothesis Ho.\
+            Continue to accept the null hypothesis Ho.\
+            There is insufficient evidence to show that the average of\
+            sample 1 is less than the average of sample 2.
+    <BLANKLINE>
 
     Example 3
+    ---------
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is greater than the average of sample three.
+    >>> import datasense as ds
+    >>> series1 = ds.random_data(random_state=13)
+    >>> series2 = ds.random_data(random_state=69)
     >>> two_sample_t_test_result = ds.two_sample_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     alternative_hypothesis="greater",
-    >>>     significance_level=0.05
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     alternative_hypothesis="greater",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    Parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.983
+    Shapiro-Wilk p value       :   0.779
+    The data in sample 1 probably follow a normal distribution.\
+            OK to proceed to homogeneity of variance test.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.969
+    Shapiro-Wilk p value       :   0.302
+    The data in sample 2 probably follow a normal distribution.\
+            OK to proceed to homogeneity of variance test.
+    <BLANKLINE>
+    Bartlett results for homogeneity of variance test
+    Bartlett test statistic:   0.426
+    Bartlett p value       :   0.514
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1:   0.153
+    average of sample 2:  -0.291
+    confidence interval   0.004, 0.884031656611471
+    t test statistic   :   2.008
+    t test p value     :   0.024
+    significance level :   0.050
+    power of the test  :   0.635
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one > average of sample two
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the average of\
+            sample 1 is greater than the average of sample 2.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Sample 1
+    <BLANKLINE>
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.174
+    Anderson-Darling critical value:   0.728
+    The data in sample 1 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Sample 2
+    <BLANKLINE>
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.322
+    Anderson-Darling critical value:   0.728
+    The data in sample 2 probably follow a normal distribution.\
+            OK to proceed to test for equal variances.
+    <BLANKLINE>
+    Levene results for homogeneity of variance
+    Levene test statistic:   0.788
+    Levene p value       :   0.377
+    The two samples probably have equal variances.
+    <BLANKLINE>
+    t test results
+    average of sample 1   :   0.153
+    average of sample 2   :  -0.291
+    difference in averages:   0.444
+    confidence interval   :   0.004,   0.884
+    t test statistic      :   2.008
+    t test p value        :   0.024
+    significance level    :   0.050
+    power of the test     :   0.635
+    <BLANKLINE>
+    Ho: average of sample one == average of sample two
+    Ha: average of sample one > average of sample two
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the average of\
+            sample 1 is greater than the average of sample 2.
+    <BLANKLINE>
     """
     # introduced for Python 3.10
     match alternative_hypothesis:
@@ -1939,70 +2587,785 @@ def paired_t(
     Examples
     --------
     Example 1
+    ---------
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences does not equal zero.
     >>> import datasense as ds
+    >>> series1 = ds.random_data(random_state=13)
+    >>> series2 = ds.random_data(random_state=69)
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     significance_level=significance_level,
-    >>>     alternative_hypothesis="two-sided"
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     significance_level=0.05,
+    ...     alternative_hypothesis="two-sided"
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho degrees\
+            of freedom under the null hypothesis, where rho is a positive\
+            constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   0.000
+    confidence interval                  :  -0.037,   0.925
+    standard deviation of the differences:   1.544
+    t test statistic                     :   1.863
+    t test critical two-tailed           :   2.020
+    t test p value                       :   0.070
+    t test power                         :   0.444
+    Ho: The population average of the differences = 0
+    Ha: The population average of the differences != 0
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            population average of the differences != 0.
 
     Example 2
+    ---------
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences is less than zero.
+    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="less",
-    >>>     significance_level=significance_level
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     hypothesized_value=0,
+    ...     alternative_hypothesis="less",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho degrees\
+            of freedom under the null hypothesis, where rho is a positive\
+            constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   0.000
+    confidence interval                  :   0.043,   0.845
+    standard deviation of the differences:   1.544
+    t test statistic                     :   1.863
+    t test critical one-tailed           :   1.683
+    t test p value                       :   0.965
+    t test power                         :   0.000
+    Ho: The population average of the differences = 0
+    Ha: The population average of the differences < 0
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            population average of the differences < 0.
 
     Example 3
+    ---------
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences is greater than zero.
+    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="greater",
-    >>>     significance_level=significance_level
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     hypothesized_value=0,
+    ...     alternative_hypothesis="greater",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho\
+            degrees of freedom under the null hypothesis, where rho is a\
+            positive constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   0.000
+    confidence interval                  :   0.043,   0.845
+    standard deviation of the differences:   1.544
+    t test statistic                     :   1.863
+    t test critical one-tailed           :   1.683
+    t test p value                       :   0.035
+    t test power                         :   0.574
+    Ho: The population average of the differences = 0
+    Ha: The population average of the differences > 0
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the population average\
+            of the differences > 0.
 
     Example 4
+    ---------
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences does not equal d.
+    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="two-sided",
-    >>>     significance_level=significance_level,
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     hypothesized_value=3,
+    ...     alternative_hypothesis="two-sided",
+    ...     significance_level=0.05,
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho degrees\
+            of freedom under the null hypothesis, where rho is a positive\
+            constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   3.000
+    confidence interval                  :  -0.037,   0.925
+    standard deviation of the differences:   1.544
+    t test statistic                     : -10.726
+    t test critical two-tailed           :   2.020
+    t test p value                       :   0.000
+    t test power                         :   1.000
+    Ho: The population average of the differences = 3
+    Ha: The population average of the differences != 3
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.
+    There is sufficient evidence to show that the population average of the\
+            differences != 3.
 
     Example 5
+    ---------
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences is less than d.
+    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="less",
-    >>>     significance_level=significance_level
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     hypothesized_value=3,
+    ...     alternative_hypothesis="less",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho degrees\
+            of freedom under the null hypothesis, where rho is a positive\
+            constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   3.000
+    confidence interval                  :   0.043,   0.845
+    standard deviation of the differences:   1.544
+    t test statistic                     : -10.726
+    t test critical one-tailed           :   1.683
+    t test p value                       :   0.000
+    t test power                         :   0.000
+    Ho: The population average of the differences = 3
+    Ha: The population average of the differences < 3
+    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
+            There is sufficient evidence to show that the population average\
+            of the differences < 3.
 
     Example 6
+    ---------
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences is greater than d.
+    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
-    >>>     series1=series1,
-    >>>     series2=series2,
-    >>>     hypothesized_value=hypothesized_value,
-    >>>     alternative_hypothesis="greater",
-    >>>     significance_level=significance_level
-    >>> )
+    ...     series1=series1,
+    ...     series2=series2,
+    ...     hypothesized_value=3,
+    ...     alternative_hypothesis="greater",
+    ...     significance_level=0.05
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    The paired-sample t test is used to determine whether the average of the\
+            differences between two paired samples differs from zero or some\
+            hypothesized value.
+    <BLANKLINE>
+    Assumptions
+    -----------
+    <BLANKLINE>
+    The data are continuous interval or ratio scales.
+    <BLANKLINE>
+    The data in each sample follow a normal distribution with mean mu and\
+            variance sigma squared.
+    <BLANKLINE>
+    The sample variances follow a chi-squared distribution with rho degrees\
+            of freedom under the null hypothesis, where rho is a positive\
+            constant.
+    <BLANKLINE>
+    (sample average - population average) and the sample standard deviation\
+            are independent.
+    <BLANKLINE>
+    The size of each sample may be equal or unequal.
+    <BLANKLINE>
+    The variance of each sample may be equal or unequal.
+    <BLANKLINE>
+    The data should be sampled independently from the two populations being\
+            compared.
+    <BLANKLINE>
+    Results
+    -------
+    <BLANKLINE>
+    Parametric analysis
+    <BLANKLINE>
+    Parametric statistics for y level 1
+    n                                   42
+    min                             -1.639
+    max                               2.15
+    ave                              0.153
+    confidence interval    (-0.146, 0.453)
+    s                                 0.96
+    var                              0.922
+    <BLANKLINE>
+    Parametric statistics for y level 2
+    n                                   42
+    min                             -2.283
+    max                              1.592
+    ave                             -0.291
+    confidence interval    (-0.622, 0.041)
+    s                                1.064
+    var                              1.132
+    <BLANKLINE>
+    Shapiro-Wilk results for normal distribution lack-of-fit test
+    Shapiro-Wilk test statistic:   0.974
+    Shapiro-Wilk p value       :   0.434
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Non-parametric analysis
+    <BLANKLINE>
+    Non-parametric statistics for y level 1
+    lower outer fence              -5.111
+    lower inner fence               -2.87
+    lower quartile                 -0.629
+    median                          0.228
+    confidence interval    (-0.134, 0.59)
+    upper quartile                  0.866
+    upper inner fence               3.107
+    upper outer fence               5.348
+    interquartile range             1.494
+    inner outliers                     []
+    outer outliers                     []
+    minimum value                  -1.639
+    maximum value                    2.15
+    count                              42
+    <BLANKLINE>
+    Non-parametric statistics for y level 2
+    lower outer fence             -6.731
+    lower inner fence             -3.947
+    lower quartile                -1.163
+    median                        -0.249
+    confidence interval    (-0.699, 0.2)
+    upper quartile                 0.694
+    upper inner fence              3.478
+    upper outer fence              6.262
+    interquartile range            1.856
+    inner outliers                    []
+    outer outliers                    []
+    minimum value                 -2.283
+    maximum value                  1.592
+    count                             42
+    <BLANKLINE>
+    Anderson-Darling results for normal distribution lack-of-fit test
+    Anderson-Darling test statistic:   0.299
+    Anderson-Darling critical value:   0.728
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    Kolmogorov-Smirnov results for normal distribution lack-of-fit test
+    Kolmogorov-Smirnov test statistic:   0.080
+    Kolmogorov-Smirnov p value       :   0.713
+    The differences between the pairs of data probably follow a normal\
+            distribution.
+    <BLANKLINE>
+    t test results
+    average of sample 1                  :   0.153
+    average of sample 2                  :  -0.291
+    average of the differences           :   0.444
+    hypothesized difference              :   3.000
+    confidence interval                  :   0.043,   0.845
+    standard deviation of the differences:   1.544
+    t test statistic                     : -10.726
+    t test critical one-tailed           :   1.683
+    t test p value                       :   1.000
+    t test power                         :   1.000
+    Ho: The population average of the differences = 3
+    Ha: The population average of the differences > 3
+    Fail to reject the null hypothesis Ho. Continue to accept the null\
+            hypothesis Ho. There is insufficient evidence to show that the\
+            population average of the differences > 3.
     """
     print(
         "The paired-sample t test is used to determine whether the average "
@@ -2471,13 +3834,13 @@ def linear_regression(
     --------
     >>> import datasense as ds
     >>> (
-    >>>     fitted_model, predictions, confidence_interval_lower,
-    >>>     confidence_interval_upper, prediction_interval_lower,
-    >>>     prediction_interval_upper
-    >>> ) = ds.linear_regression(
-    >>>     X=X,
-    >>>     y=y
-    >>> )
+    ...     fitted_model, predictions, confidence_interval_lower,
+    ...     confidence_interval_upper, prediction_interval_lower,
+    ...     prediction_interval_upper
+    ... ) = ds.linear_regression(
+    ...     X=X,
+    ...     y=y
+    ... ) # doctest: +SKIP
     """
     X = sm.add_constant(data=X)
     fitted_model = sm.OLS(
