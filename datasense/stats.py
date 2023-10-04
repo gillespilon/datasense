@@ -256,21 +256,73 @@ def cubic_spline(
     >>> import pandas as pd
     >>> df = pd.DataFrame(
     ...     {
-    ...         "abscissa": ds.random_data(distribution="uniform"),
-    ...         "ordinate": ds.random_data(distribution="norm")
+    ...         "abscissa": ds.random_data(
+    ...             distribution="uniform",
+    ...             random_state=42
+    ...         ),
+    ...         "ordinate": ds.random_data(
+    ...             distribution="norm",
+    ...             random_state=42
+    ...         )
     ...     }
-    ... ).sort_values(by=["abscissa"]) # doctest: +SKIP
+    ... ).sort_values(by=["abscissa"])
     >>> spline = ds.cubic_spline(
     ...     df=df,
     ...     abscissa="abscissa",
     ...     ordinate="ordinate"
-    ... ) # doctest: +SKIP
-    >>> df["predicted"] = spline(df["abscissa"]) # doctest: +SKIP
-    >>> ds.plot_scatter_line_x_y1_y2(
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+        abscissa  ordinate
+    10  0.020584 -0.463418
+    29  0.046450 -0.291694
+    6   0.058084  1.579213
+    32  0.065052 -0.013497
+    37  0.097672 -1.959670
+    40  0.122038  0.738467
+    21  0.139494 -0.225776
+    5   0.155995 -0.234137
+    4   0.156019 -0.234153
+    31  0.170524  1.852278
+    14  0.181825 -1.724918
+    15  0.183405 -0.562288
+    26  0.199674 -1.150994
+    13  0.212339 -1.913280
+    19  0.291229 -1.412304
+    22  0.292145  0.067528
+    16  0.304242 -1.012831
+    36  0.304614  0.208864
+    23  0.366362 -1.424748
+    0   0.374540  0.496714
+    18  0.431945 -0.908024
+    39  0.440152  0.196861
+    24  0.456070 -0.544383
+    41  0.495177  0.171368
+    27  0.514234  0.375698
+    17  0.524756  0.314247
+    28  0.592415 -0.600639
+    3   0.598658  1.523030
+    8   0.601115 -0.469474
+    30  0.607545 -0.601707
+    20  0.611853  1.465649
+    38  0.684233 -1.328186
+    9   0.708073  0.542560
+    2   0.731994  0.647689
+    25  0.785176  0.110923
+    35  0.808397 -1.220844
+    12  0.832443  0.241962
+    7   0.866176  0.767435
+    33  0.948886 -1.057711
+    1   0.950714 -0.138264
+    34  0.965632  0.822545
+    11  0.969910 -0.465730
+    abscissa    float64
+    ordinate    float64
+    dtype: object
+    >>> df["predicted"] = spline(df["abscissa"])
+    >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
     ...     X=df["abscissa"],
     ...     y1=df["ordinate"],
     ...     y2=df["predicted"]
-    ... ) # doctest: +SKIP
+    ... )
     """
     df = df[df[[abscissa, ordinate]].notna().all(axis="columns")]
     df = df.sort_values(by=abscissa, axis="rows", ascending=True)
