@@ -31,9 +31,20 @@ def html_header(
     -------
     >>> import datasense as ds
     >>> ds.html_header(
-    ...     header_title=header_title,
-    ...     header_id=header_id
-    ... ) # doctest: +SKIP
+    ...     header_title="header title",
+    ...     header_id="header-id"
+    ... ) # doctest: +NORMALIZE_WHITESPACE
+    <!DOCTYPE html>
+    <html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=yes"\
+            name="viewport"/>
+    <style>@import url("support.css");</style>
+    <title>header title</title>
+    </head>
+    <body>
+    <h1 class="title" id="header-id">header title</h1>
     """
     print('<!DOCTYPE html>')
     print('<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">')
@@ -61,7 +72,9 @@ def html_footer() -> NoReturn:
     Example
     -------
     >>> import datasense as ds
-    >>> ds.html_footer() # doctest: +SKIP
+    >>> ds.html_footer() # doctest: +NORMALIZE_WHITESPACE
+    </body>
+    </html>
     """
     print('</body>')
     print('</html>')
@@ -74,7 +87,11 @@ def page_break() -> NoReturn:
     Example
     -------
     >>> import datasense as ds
-    >>> ds.page_break() # doctest: +SKIP
+    >>> ds.page_break() # doctest: +NORMALIZE_WHITESPACE
+    </pre>
+    <p style="page-break-after:always"></p>
+    <p style="page-break-before:always"></p>
+    <pre style="white-space: pre-wrap;">
     """
     print('</pre>')
     print('<p style="page-break-after:always"></p>')
@@ -110,7 +127,7 @@ def html_begin(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> output_url = 'my_html_file.html'
+    >>> output_url = '../tests/my_html_file.html'
     >>> original_stdout = ds.html_begin(output_url=output_url)
 
     Example 2
@@ -155,12 +172,17 @@ def html_end(
     Example
     -------
     >>> import datasense as ds
-    >>> output_url = 'my_html_file.html'
+    >>> output_url = '../tests/my_html_file.html'
     >>> # see original_stdout example in def html_begin()
+    >>> original_stdout = ds.html_begin(
+    ...     output_url="output_url.html",
+    ...     header_title="header_title",
+    ...     header_id="header-id"
+    ... )
     >>> ds.html_end(
     ...     original_stdout=original_stdout,
-    ...     output_url=output_url
-    ... ) # doctest: +SKIP
+    ...     output_url="output_url.html"
+    ... )
     """
     print('</pre>')
     html_footer()
@@ -196,15 +218,21 @@ def html_figure(
     >>> figsize = (8, 6)
     >>> fig = plt.figure(figsize=figsize)
     >>> fig.savefig(graph_file)
-    >>> ds.html_figure(file_name=graph_file) # doctest: +SKIP
+    >>> ds.html_figure(file_name=graph_file)
+    </pre><figure><img src="my_graph_file.svg" alt="my_graph_file.svg"/>\
+<figcaption>my_graph_file.svg</figcaption>\
+</figure><pre style="white-space: pre-wrap;">
 
     Example 2
     ---------
     >>> import datasense as ds
     >>> ds.html_figure(
     ...     file_name=graph_file,
-    ...     caption='my graph file caption'
-    ... ) # doctest: +SKIP
+    ...     caption='../tests/my graph file caption'
+    ... )
+    </pre><figure><img src="my_graph_file.svg" alt="my_graph_file.svg"/>\
+<figcaption>../tests/my graph file caption</figcaption>\
+</figure><pre style="white-space: pre-wrap;">
     """
     if caption is None:
         caption = file_name
@@ -255,10 +283,17 @@ def report_summary(
     Example
     -------
     >>> import datasense as ds
+    >>> import time
+    >>> start_time = time.perf_counter()
+    >>> stop_time = time.perf_counter()
     >>> ds.report_summary(
     ...     start_time=start_time,
     ...     stop_time=stop_time
-    ... ) # doctest: +SKIP
+    ... )
+    </pre>
+    <h1>Report summary</h1>
+    <pre style="white-space: pre-wrap;">
+    Execution time : 0.000 s
     """
     elapsed_time = stop_time - start_time
     if print_heading:
@@ -335,6 +370,8 @@ def sync_directories(
     verbose: bool = True
 ) -> NoReturn:
     """
+    Synchronize two directories.
+
     Parameters
     ----------
     sourcedir : str
@@ -356,8 +393,8 @@ def sync_directories(
     >>> local_docs = 'string_to_directory'
     >>> sharepoint_docs = 'string_to_mapped_drive_of_sharepoint'
     >>> ds.sync_directories(
-    ...     sourcedir=local_docs,
-    ...     targetdir=sharepoint_docs,
+    ...     sourcedir="../tests/sourcedir",
+    ...     targetdir="../tests/targetdir",
     ...     action='sync',
     ...     twoway=False,
     ...     purge=False,
