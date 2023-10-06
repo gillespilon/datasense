@@ -305,6 +305,8 @@ def exit_script(
     Example
     -------
     >>> import datasense as ds
+    >>> output_url = '../tests/my_html_file.html'
+    >>> original_stdout = ds.html_begin(output_url=output_url)
     >>> ds.exit_script(
     ...     original_stdout=original_stdout,
     ...     output_url=output_url
@@ -563,7 +565,7 @@ def read_workbook(
     >>> import datasense as ds
     >>> wb = Workbook()
     >>> ws = wb.active
-    >>> filename = "excel_file.xlsx"
+    >>> filename = "../tests/excel_file.xlsx"
     >>> wb, sheet_names = ds.read_workbook(
     ...     filename=filename,
     ...     data_only=True
@@ -957,6 +959,13 @@ def validate_sheet_names(
     Example
     -------
     >>> import datasense as ds
+    >>> start_time = time.perf_counter()
+    >>> stop_time = time.perf_counter()
+    >>> filename = "../tests/excel_file.xlsx"
+    >>> sheet_name = "sheet_01"
+    >>> sheet_names = ["sheet_01", "sheet_02"]
+    >>> output_url = "../tests/my_html_file.html"
+    >>> original_stdout = ds.html_begin(output_url=output_url)
     >>> wb = Workbook()
     >>> ws = wb.active
     >>> wb = validate_sheet_names(
