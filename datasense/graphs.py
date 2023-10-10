@@ -1451,7 +1451,7 @@ def plot_line_line_line_x_y1_y2_y3(
     >>> import datasense as ds
     >>> import pandas as pd
     >>> figsize = (6, 4)
-    >>> df = pd.DataFrame({
+    >>> df = pd.DataFrame(data={
     ...     'x1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     ...     'y1': [
     ...         8000, 9000, 10000, 11000, 12000,
