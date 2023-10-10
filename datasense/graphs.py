@@ -95,18 +95,19 @@ def plot_scatter_y(
     Examples
     --------
     Example 1
-    >>>
+    >>> import datasense as ds
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_y(y=series_y)
 
     Example 2
+    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_y(
-    >>>     y=series_y,
-    >>>     figsize=(8, 4.5),
-    >>>     marker="o",
-    >>>     markersize=4,
-    >>>     colour=colour_orange
-    >>> )
+    ...     y=series_y,
+    ...     figsize=(8, 4.5),
+    ...     marker="o",
+    ...     markersize=4,
+    ...     colour=colour_orange
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -181,38 +182,41 @@ def plot_scatter_x_y(
     Examples
     --------
     Example 1
-    >>>
+    >>> import datasense as ds
     >>> series_x = ds.datetime_data()
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=series_x,
+    ...     y=series_y
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="randint").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y,
-    >>>     figsize=(8, 4.5),
-    >>>     marker="o",
-    >>>     markersize=8,
-    >>>     colour=colour_red
-    >>> )
+    ...     X=series_x,
+    ...     y=series_y,
+    ...     figsize=(8, 4.5),
+    ...     marker="o",
+    ...     markersize=8,
+    ...     colour=colour_red
+    ... )
 
     Example 3
+    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=series_x,
+    ...     y=series_y
+    ... )
 
     Example 4
+    >>> import datasense as ds
     >>> series_x = ds.random_data().sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=series_x,
+    ...     y=series_y
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -294,18 +298,19 @@ def plot_line_y(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
 
     Example 2
+    >>> import datasense as ds
     >>> fig, ax = ds.plot_line_y(
-    >>>     y=series_y,
-    >>>     figsize=(8, 4.5),
-    >>>     marker="o",
-    >>>     markersize=4,
-    >>>     colour=colour_orange
-    >>> )
-    >>> )
+    ...     y=series_y,
+    ...     figsize=(8, 4.5),
+    ...     marker="o",
+    ...     markersize=4,
+    ...     colour=colour_orange
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -397,39 +402,46 @@ def plot_line_x_y(
     Examples
     --------
     Example 1
-    >>> series_x = ds.datetime_data()
-    >>> series_y = ds.random_data()
+    >>> import datasense as ds
+    >>> X = ds.datetime_data()
+    >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=X,
+    ...     y=y
+    ... )
 
     Example 2
-    >>> series_x = ds.random_data(distribution="randint").sort_values()
+    >>> import datasense as ds
+    >>> X = ds.random_data(distribution="randint").sort_values()
+    >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y,
-    >>>     figsize=(8, 4.5),
-    >>>     marker="o",
-    >>>     markersize=8,
-    >>>     linestyle=":",
-    >>>     linewidth=5,
-    >>>     colour=colour_magenta
-    >>> )
+    ...     X=X,
+    ...     y=y,
+    ...     figsize=(8, 4.5),
+    ...     marker="o",
+    ...     markersize=8,
+    ...     linestyle=":",
+    ...     linewidth=5,
+    ...     colour="#ee3377"
+    ... )
 
     Example 3
-    >>> series_x = ds.random_data(distribution="uniform").sort_values()
+    >>> import datasense as ds
+    >>> X = ds.random_data(distribution="uniform").sort_values()
+    >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=X,
+    ...     y=y
+    ... )
 
     Example 4
-    >>> series_x = ds.random_data().sort_values()
+    >>> import datasense as ds
+    >>> X = ds.random_data().sort_values()
+    >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
-    >>>     X=series_x,
-    >>>     y=series_y
-    >>> )
+    ...     X=X,
+    ...     y=y
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -473,6 +485,7 @@ def plot_line_x_y(
             color=colour),
     if remove_spines:
         despine(ax=ax)
+    plt.close("all")
     return (fig, ax)
 
 
@@ -560,32 +573,34 @@ def plot_scatter_scatter_x_y1_y2(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> series_x = ds.datetime_data()
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
-    >>>     X=series_x,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2
-    >>> )
+    ...     X=series_x,
+    ...     y1=series_y1,
+    ...     y2=series_y2
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform")
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
-    >>>     X=series_x,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2,
-    >>>     figsize=(8, 5),
-    >>>     marker1="o",
-    >>>     marker2="+",
-    >>>     markersize1=8,
-    >>>     markersize2=12,
-    >>>     colour1=colour_red,
-    >>>     colour2=colour_magenta,
-    >>>     labellegendy1="y1",
-    >>>     labellegendy2="y2"
-    >>> )
-    >>> ax.legend(frameon=False)
+    ...     X=series_x,
+    ...     y1=series_y1,
+    ...     y2=series_y2,
+    ...     figsize=(8, 5),
+    ...     marker1="o",
+    ...     marker2="+",
+    ...     markersize1=8,
+    ...     markersize2=12,
+    ...     colour1=colour_red,
+    ...     colour2=colour_magenta,
+    ...     labellegendy1="y1",
+    ...     labellegendy2="y2"
+    ... )
+    >>> ax.legend(frameon=False) # doctest: +SKIP
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -758,66 +773,70 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> series_x1 = ds.datetime_data()
     >>> series_x2 = ds.datetime_data()
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
-    >>>     X1=series_x1,
-    >>>     X2=series_x2,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2
-    >>> )
+    ...     X1=series_x1,
+    ...     X2=series_x2,
+    ...     y1=series_y1,
+    ...     y2=series_y2
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
-    >>>     X1=series_x1,
-    >>>     X2=series_x2,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2,
-    >>>     smoothing="natural_cubic_spline",
-    >>>     number_knots=7
-    >>> )
+    ...     X1=series_x1,
+    ...     X2=series_x2,
+    ...     y1=series_y1,
+    ...     y2=series_y2,
+    ...     smoothing="natural_cubic_spline",
+    ...     number_knots=7
+    ... )
 
     Example 3
+    >>> import datasense as ds
     >>> series_x1 = ds.random_data(distribution="uniform").sort_values()
     >>> series_x2 = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
-    >>>     X1=series_x1,
-    >>>     X2=series_x2,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2,
-    >>>     figsize=(8, 5),
-    >>>     marker1="o",
-    >>>     marker2="+",
-    >>>     markersize1=8,
-    >>>     markersize2=12,
-    >>>     colour1=colour_red,
-    >>>     colour2=colour_magenta,
-    >>>     labellegendy1="y1",
-    >>>     labellegendy2="y2"
-    >>> )
-    >>> ax.legend(frameon=False)
+    ...     X1=series_x1,
+    ...     X2=series_x2,
+    ...     y1=series_y1,
+    ...     y2=series_y2,
+    ...     figsize=(8, 5),
+    ...     marker1="o",
+    ...     marker2="+",
+    ...     markersize1=8,
+    ...     markersize2=12,
+    ...     colour1=colour_red,
+    ...     colour2=colour_magenta,
+    ...     labellegendy1="y1",
+    ...     labellegendy2="y2"
+    ... )
+    >>> ax.legend(frameon=False) # doctest: +SKIP
 
     Example 4
+    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
-    >>>     X1=series_x1,
-    >>>     X2=series_x2,
-    >>>     y1=series_y1,
-    >>>     y2=series_y2,
-    >>>     figsize=(8, 5),
-    >>>     marker1="o",
-    >>>     marker2="+",
-    >>>     markersize1=8,
-    >>>     markersize2=12,
-    >>>     colour1=colour_red,
-    >>>     colour2=colour_magenta,
-    >>>     labellegendy1="y1",
-    >>>     labellegendy2="y2",
-    >>>     smoothing="natural_cubic_spline",
-    >>>     number_knots=7
-    >>> )
-    >>> ax.legend(frameon=False)
+    ...     X1=series_x1,
+    ...     X2=series_x2,
+    ...     y1=series_y1,
+    ...     y2=series_y2,
+    ...     figsize=(8, 5),
+    ...     marker1="o",
+    ...     marker2="+",
+    ...     markersize1=8,
+    ...     markersize2=12,
+    ...     colour1=colour_red,
+    ...     colour2=colour_magenta,
+    ...     labellegendy1="y1",
+    ...     labellegendy2="y2",
+    ...     smoothing="natural_cubic_spline",
+    ...     number_knots=7
+    ... )
+    >>> ax.legend(frameon=False) # doctest: +SKIP
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -974,19 +993,23 @@ def plot_scatter_line_x_y1_y2(
 
     Example
     -------
+    >>> import datasense as ds
     >>> number_knots = 100
+    >>> figsize = (6, 4)
+    >>> X = ds.random_data(distribution="uniform").sort_values()
+    >>> y = ds.random_data(distribution="norm")
     >>> model = ds.natural_cubic_spline(
-    >>>     X=X,
-    >>>     y=y,
-    >>>     number_knots=number_knots
-    >>> )
+    ...     X=X,
+    ...     y=y,
+    ...     number_knots=number_knots
+    ... )
     >>> fig, ax = ds.plot_scatter_line_x_y1_y2(
-    >>>     X=X,
-    >>>     y1=y,
-    >>>     y2=model.predict(X),
-    >>>     figsize=figsize,
-    >>>     labellegendy2=f'number knots = {number_knots}'
-    >>> )
+    ...     X=X,
+    ...     y1=y,
+    ...     y2=model.predict(X),
+    ...     figsize=figsize,
+    ...     labellegendy2=f'number knots = {number_knots}'
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1130,12 +1153,13 @@ def plot_line_line_y1_y2(
 
     Example
     -------
+    >>> import datasense as ds
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_line_line_y1_y2(
-    >>>     y1=series_y1,
-    >>>     y2=series_y2
-    >>> )
+    ...     y1=series_y1,
+    ...     y2=series_y2
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1277,17 +1301,17 @@ def plot_line_line_x_y1_y2(
 
     Exanple
     -------
-    >>> figure_width_height = (15, 7)
+    >>> import datasense as ds
+    >>> figsize = (6, 4)
+    >>> X = ds.datetime_data()
+    >>> y1 = ds.random_data()
+    >>> y2 = ds.random_data()
     >>> fig, ax = ds.plot_line_line_x_y1_y2(
-    >>>     X=X,
-    >>>     y1=y1,
-    >>>     y2=y2,
-    >>>     figsize=figure_width_height,
-    >>>     labellegendy1=column_actual,
-    >>>     labellegendy2=column_target,
-    >>>     marker2=None,
-    >>>     linestyle1='None',
-    >>> )
+    ...     X=X,
+    ...     y1=y1,
+    ...     y2=y2,
+    ...     figsize=figsize
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1424,20 +1448,41 @@ def plot_line_line_line_x_y1_y2_y3(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> import pandas as pd
     >>> figsize = (6, 4)
-    >>> column_target="TargetBalance",
-    >>> column_actual="ActualBalance",
-    >>> column_actual="Predicted"
+    >>> df = pd.DataFrame({
+    ...     'x1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    ...     'y1': [
+    ...         8000, 9000, 10000, 11000, 12000,
+    ...         13000, 14000, 15000, 16000, 17000
+    ...     ],
+    ...     'y2': [
+    ...         7630.59, 12091.24, 12610.42, 14382.62, 23275.12,
+    ...         21676.23, 22264.38, 20776.82, 21384.69, 17041.38
+    ...     ]
+    ... }).sort_values(by=["x1"])
+    >>> x1 = df["x1"].squeeze()
+    >>> y1 = df["y1"].squeeze()
+    >>> y2 = df["y2"].squeeze()
+    >>> (
+    ...     fitted_model, predictions, confidence_interval_lower,
+    ...     confidence_interval_upper, prediction_interval_lower,
+    ...     prediction_interval_upper
+    ... ) = ds.linear_regression(
+    ...     X=x1,
+    ...     y=y2
+    ... )
     >>> fig, ax = ds.plot_line_line_line_x_y1_y2_y3(
-    >>>     X=X,
-    >>>     y1=target,
-    >>>     y2=actual,
-    >>>     y3=predicted,
-    >>>     figsize=figsize,
-    >>>     labellegendy1=column_target,
-    >>>     labellegendy2=column_actual,
-    >>>     labellegendy3=column_predicted
-    >>> )
+    ...     X=x1,
+    ...     y1=y1,
+    ...     y2=y2,
+    ...     y3=predictions,
+    ...     figsize=figsize,
+    ...     labellegendy1="target",
+    ...     labellegendy2="actual",
+    ...     labellegendy3="predicted"
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -1578,13 +1623,17 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> X = ds.random_data(distribution="randint").sort_values()
+    >>> y1 = ds.random_data(distribution="norm")
+    >>> y2 = ds.random_data(distribution="norm")
     >>> fig, ax1, ax2 = ds.plot_scatterleft_scatterright_x_y1_y2(
-    >>>     X=df["X"],
-    >>>     y1=df["y1"],
-    >>>     y2=df["y2"],
-    >>>     figsize=(6, 4),
-    >>>     linestyle2="-"
-    >>> )
+    ...     X=X,
+    ...     y1=y1,
+    ...     y2=y2,
+    ...     figsize=(6, 4),
+    ...     linestyle2="-"
+    ... )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1719,22 +1768,47 @@ def plot_lineleft_lineright_x_y1_y2(
     Examples
     --------
     Example1
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> figsize = (6, 4)
+    >>> df = pd.DataFrame(data={
+    ...     "X": [
+    ...         "2018-07-31", "2018-08-04", "2018-08-06", "2018-08-11",
+    ...         "2018-08-12", "2018-08-15", "2018-08-16", "2018-08-17",
+    ...         "2018-08-18", "2018-08-25", "2018-09-15"
+    ...     ],
+    ...     "y1": [10, 15, 30, 35, 40, 45, 40, 30, 35, 50, 75],
+    ...     "y2": [20, 35, 20, 15, 30, 45, 50, 40, 45, 50, 65]
+    ... })
     >>> fig, ax1, ax2 = ds.plot_lineleft_lineright_x_y1_y2(
-    >>>     X=df[column_abscissa_datetime_one],
-    >>>     y1=df[column_ordinate_one],
-    >>>     y2=df[column_ordinate_two],
-    >>>     figsize=figsize
-    >>> )
+    ...     X=df["X"],
+    ...     y1=df["y1"],
+    ...     y2=df["y2"],
+    ...     figsize=figsize
+    ... )
 
     Example2
+    >>> import datasense as ds
+    >>> import pandas as pd
+    >>> figsize = (6, 4)
+    >>> df = pd.DataFrame(data={
+    ...     "X": [
+    ...         "2018-07-31", "2018-08-04", "2018-08-06", "2018-08-11",
+    ...         "2018-08-12", "2018-08-15", "2018-08-16", "2018-08-17",
+    ...         "2018-08-18", "2018-08-25", "2018-09-15"
+    ...     ],
+    ...     "y1": [10, 15, 30, 35, 40, 45, 40, 30, 35, 50, 75],
+    ...     "y2": [20, 35, 20, 15, 30, 45, 50, 40, 45, 50, 65]
+    ... })
+    >>> df["X"] = pd.to_datetime(df["X"])
     >>> fig, ax1, ax2 = ds.plot_lineleft_lineright_x_y1_y2(
-    >>>     X=df[column_abscissa_datetime_one],
-    >>>     y1=df[column_ordinate_one],
-    >>>     y2=df[column_ordinate_two],
-    >>>     smoothing="natural_cubic_spline",
-    >>>     number_knots=5,
-    >>>     figsize=figsize
-    >>> )
+    ...     X=df["X"],
+    ...     y1=df["y1"],
+    ...     y2=df["y2"],
+    ...     smoothing="natural_cubic_spline",
+    ...     number_knots=5,
+    ...     figsize=figsize
+    ... )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1794,6 +1868,7 @@ def plot_lineleft_lineright_x_y1_y2(
         tl.set_color(colour1)
     for tl in ax2.get_yticklabels():
         tl.set_color(colour2)
+    plt.close("all")
     return (fig, ax1, ax2)
 
 
@@ -1860,15 +1935,20 @@ def plot_barleft_lineright_x_y1_y2(
 
     Example
     -------
+    >>> import datasense as ds
+    >>> X = ds.datetime_data()
+    >>> y1 = ds.random_data()
+    >>> y2 = ds.random_data()
+    >>> figsize = (6, 4)
     >>> fig, ax1, ax2 = ds.plot_barleft_lineright_x_y1_y2(
-    >>>     X=X,
-    >>>     y1=y1,
-    >>>     y2=y2,
-    >>>     figsize=figsize,
-    >>>     barwidth=20,
-    >>>     colour1=colour1,
-    >>>     colour2=colour2
-    >>> )
+    ...     X=X,
+    ...     y1=y1,
+    ...     y2=y2,
+    ...     figsize=figsize,
+    ...     barwidth=20,
+    ...     colour1="#cc3311",
+    ...     colour2="#ee3377"
+    ... )
     """
     fig, ax1 = plt.subplots(
         nrows=1,
@@ -1970,16 +2050,17 @@ def plot_pareto(
 
     Example
     -------
+    >>> import datasense as ds
     >>> data = pd.DataFrame(
-    >>>     {
-    >>>         "ordinate": ["Mo", "Larry", "Curly", "Shemp", "Joe"],
-    >>>         "abscissa": [21, 2, 10, 4, 16]
-    >>>     }
-    >>> )
+    ...     {
+    ...         "ordinate": ["Mo", "Larry", "Curly", "Shemp", "Joe"],
+    ...         "abscissa": [21, 2, 10, 4, 16]
+    ...     }
+    ... )
     >>> fig, ax1, ax2 = ds.plot_pareto(
-    >>>     X=data["ordinate"],
-    >>>     y=data["abscissa"]
-    >>> )
+    ...     X=data["ordinate"],
+    ...     y=data["abscissa"]
+    ... )
     """
     df = pd.concat(
         [X, y],
@@ -2033,10 +2114,14 @@ def format_dates(
 
     Example
     -------
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> fig = plt.figure()
+    >>> ax = fig.add_subplot(111)
     >>> ds.format_dates(
-    >>>     fig=fig,
-    >>>     ax=ax
-    >>> )
+    ...     fig=fig,
+    ...     ax=ax
+    ... )
     """
     loc = mdates.AutoDateLocator()
     fmt = mdates.AutoDateFormatter(locator=loc)
@@ -2086,6 +2171,7 @@ def probability_plot(
 
     Example
     -------
+    >>> import datasense as ds
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
     """
@@ -2124,6 +2210,10 @@ def despine(
 
     Example
     -------
+    >>> import matplotlib.pyplot as plt
+    >>> import datasense as ds
+    >>> fig = plt.figure()
+    >>> ax = fig.add_subplot(111)
     >>> despine(ax=ax)
     """
     ax.spines[["top", "right"]].set_visible(b=False)
@@ -2187,66 +2277,71 @@ def plot_histogram(
     Example 1
     # Create a series of random floats, normal distribution,
     # with the default parameters.
+    >>> import datasense as ds
     >>> s = ds.random_data()
     >>> fig, ax = ds.plot_histogram(series=s)
 
     Example 2
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, max = 13.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="randint",
-    >>>     size=113,
-    >>>     low=0,
-    >>>     high=14
-    >>> )
+    ...     distribution="randint",
+    ...     size=113,
+    ...     low=0,
+    ...     high=14
+    ... )
     >>> fig, ax = ds.plot_histogram(series=s)
 
     Example 3
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, max = 13.
     # Set histogram parameters to control bin width.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="randint",
-    >>>     size=113,
-    >>>     low=0,
-    >>>     high=14
-    >>> )
+    ...     distribution="randint",
+    ...     size=113,
+    ...     low=0,
+    ...     high=14
+    ... )
     >>> fig, ax = ds.plot_histogram(
-    >>>     series=s,
-    >>>     bin_width=1
-    >>> )
+    ...     series=s,
+    ...     bin_width=1
+    ... )
 
     Example 4
     # Create a series of random integers, integer distribution, size = 113,
     # min = 0, hight = 14,
     # Set histogram parameters to control bin width and plotting range.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="randint",
-    >>>     size=113,
-    >>>     low=0,
-    >>>     high=13
-    >>> )
+    ...     distribution="randint",
+    ...     size=113,
+    ...     low=0,
+    ...     high=13
+    ... )
     >>> fig, ax = ds.plot_histogram(
-    >>>     series=s,
-    >>>     bin_width=1,
-    >>>     bin_range=(0, 10)
-    >>> )
+    ...     series=s,
+    ...     bin_width=1,
+    ...     bin_range=(0, 10)
+    ... )
 
     Example 5
     # Create a series of random floats, size = 113,
     # average = 69, standard deviation = 13.
     # Set histogram parameters to control bin width and plotting range.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="norm",
-    >>>     size=113,
-    >>>     loc=69,
-    >>>     scale=13
-    >>> )
+    ...     distribution="norm",
+    ...     size=113,
+    ...     loc=69,
+    ...     scale=13
+    ... )
     >>> fig, ax = ds.plot_histogram(
-    >>>     series=s,
-    >>>     bin_width=5,
-    >>>     bin_range=(30, 110)
-    >>> )
+    ...     series=s,
+    ...     bin_width=5,
+    ...     bin_range=(30, 110)
+    ... )
 
     Example 6
     # Create a series of random floats, size = 113,
@@ -2254,22 +2349,23 @@ def plot_histogram(
     # Set histogram parameters to control bin width, plotting range, labels.
     # Set colour of the bars.
     # Plot the probability density function on top of the histogram.
+    >>> import datasense as ds
     >>> s = ds.random_data(
-    >>>     distribution="norm",
-    >>>     size=113,
-    >>>     loc=69,
-    >>>     scale=13
-    >>> )
+    ...     distribution="norm",
+    ...     size=113,
+    ...     loc=69,
+    ...     scale=13
+    ... )
     >>> fig, ax = ds.plot_histogram(
-    >>>     series=s,
-    >>>     bin_width=5,
-    >>>     bin_range=(30, 110),
-    >>>     figsize=(10,8),
-    >>>     bin_label_bool=True,
-    >>>     color=colour_cyan
-    >>>     ax.set_xlabel(xlabel="X-axis label", labelpad=30)
-    >>>     plt.tight_layout()
-    >>> )
+    ...     series=s,
+    ...     bin_width=5,
+    ...     bin_range=(30, 110),
+    ...     figsize=(10,8),
+    ...     bin_label_bool=True,
+    ...     color="#33bbee"
+    ... )
+    >>> ax.set_xlabel(xlabel="X-axis label", labelpad=30) # doctest: +SKIP
+    >>> plt.tight_layout()
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2377,59 +2473,64 @@ def plot_horizontal_bars(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
-    >>>     y=y,
-    >>>     width=width
-    >>> )
+    ...     y=y,
+    ...     width=width
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
-    >>>     y=y,
-    >>>     width=width,
-    >>>     height=0.4
-    >>> )
+    ...     y=y,
+    ...     width=width,
+    ...     height=0.4
+    ... )
 
     Example 3
     Create Gantt chart
+    >>> import datasense as ds
+    >>> import datetime
     >>> data = {
-    >>>     "start": ["2021-11-01", "2021-11-03", "2021-11-04", "2021-11-08"],
-    >>>     "end": ["2021-11-08", "2021-11-16", "2021-11-11", "2021-11-13"],
-    >>>     "task": ["task 1", "task 2", "task 3", "task 4"]
-    >>> }
+    ...     "start": ["2021-11-01", "2021-11-03", "2021-11-04", "2021-11-08"],
+    ...     "end": ["2021-11-08", "2021-11-16", "2021-11-11", "2021-11-13"],
+    ...     "task": ["task 1", "task 2", "task 3", "task 4"]
+    ... }
     >>> columns = ["task", "start", "end", "duration", "start_relative"]
     >>> data_types = {
-    >>>     "start": "datetime64[ns]",
-    >>>     "end": "datetime64[ns]",
-    >>>     "task": "str"
-    >>> }
+    ...     "start": "datetime64[ns]",
+    ...     "end": "datetime64[ns]",
+    ...     "task": "str"
+    ... }
     >>> df = (pd.DataFrame(data=data)).astype(dtype=data_types)
     >>> df[columns[3]] = (df[columns[2]] - df[columns[1]]).dt.days + 1
     >>> df = df.sort_values(
-    >>>     by=[columns[1]],
-    >>>     axis=0,
-    >>>     ascending=[True]
-    >>> )
+    ...     by=[columns[1]],
+    ...     axis=0,
+    ...     ascending=[True]
+    ... )
     >>> start = df[columns[1]].min()
+    >>> end = df[columns[2]].max()
+    >>> start = df[columns[1]].min()
+    >>> duration = (end - start).days + 1
     >>> x_ticks = [x for x in range(duration + 1)]
     >>> x_labels = [
-            >>>     f"{(start + datetime.timedelta(days=x)):%Y-%m-%d}"}
-    >>>     for x in x_ticks
-    >>> ]
+    ...     f"{(start + datetime.timedelta(days=x)):%Y-%m-%d}"
+    ...     for x in x_ticks
+    ... ]
     >>> df[columns[4]] = (df[columns[1]] - start).dt.days
     >>> fig, ax = ds.plot_horizontal_bars(
-    >>>     y=df[columns[0]],
-    >>>     width=df[columns[3]],
-    >>>     left=df[columns[4]]
-    >>> )
-    >>> ax.invert_yaxis()
-    >>> ax.set_xticks(
-    >>>     ticks=x_ticks
-    >>> )
-    >>> ax.set_xticklabels(labels=x_labels, rotation=45)
+    ...     y=df[columns[0]],
+    ...     width=df[columns[3]],
+    ...     left=df[columns[4]]
+    ... )
+    >>> ax.invert_yaxis() # doctest: +SKIP
+    >>> ax.set_xticks(ticks=x_ticks) # doctest: +SKIP
+    >>> ax.set_xticklabels(labels=x_labels, rotation=45) # doctest: +SKIP
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2483,21 +2584,23 @@ def plot_vertical_bars(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
     >>> fig, ax = ds.plot_vertical_bars(
-    >>>     x=x,
-    >>>     height=height
-    >>> )
+    ...     x=x,
+    ...     height=height
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
     >>> fig, ax = ds.plot_vertical_bars(
-    >>>     x=x,
-    >>>     height=height,
-    >>>     width=0.4
-    >>> )
+    ...     x=x,
+    ...     height=height,
+    ...     width=0.4
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2512,6 +2615,7 @@ def plot_vertical_bars(
         linewidth=linewidth,
         color=color
     )
+    plt.close("all")
     return (fig, ax)
 
 
@@ -2547,25 +2651,27 @@ def plot_pie(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
     >>> fig, ax = ds.plot_pie(
-    >>>     x=x,
-    >>>     labels=labels
-    >>> )
+    ...     x=x,
+    ...     labels=labels
+    ... )
 
     Example 2
+    >>> import datasense as ds
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
     >>> fig, ax = ds.plot_pie(
-    >>>     x=x,
-    >>>     labels=labels,
-    >>>     startangle=90,
-    >>>     colors=[
-    >>>         colour_blue, colour_cyan, colour_teal, colour_orange,
-    >>>         colour_red, colour_magenta, colour_grey
-    >>>     ]
-    >>> )
+    ...     x=x,
+    ...     labels=labels,
+    ...     startangle=90,
+    ...     colors=[
+    ...         colour_blue, colour_cyan, colour_teal, colour_orange,
+    ...         colour_red, colour_magenta, colour_grey
+    ...     ]
+    ... )
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2658,6 +2764,7 @@ def plot_stacked_bars(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
     >>> label1 = "A"
@@ -2665,15 +2772,16 @@ def plot_stacked_bars(
     >>> height2 = [25, 32, 34, 20, 25]
     >>> label2 = "B"
     >>> fig, ax = ds.plot_stacked_bars(
-    >>>     x=x,
-    >>>     height1=height1,
-    >>>     label1=label1,
-    >>>     height2=height2,
-    >>>     label2=label2
-    >>> )
-    >>> fig.legend(frameon=False, loc="upper right")
+    ...     x=x,
+    ...     height1=height1,
+    ...     label1=label1,
+    ...     height2=height2,
+    ...     label2=label2
+    ... )
+    >>> fig.legend(frameon=False, loc="upper right") # doctest: +SKIP
 
     Example 2
+    >>> import datasense as ds
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
     >>> label1 = "A"
@@ -2691,25 +2799,25 @@ def plot_stacked_bars(
     >>> height7 = [30, 34, 23, 27, 32]
     >>> label7 = "G"
     >>> fig, ax = ds.plot_stacked_bars(
-    >>>     x=x,
-    >>>     height1=height1,
-    >>>     label1=label1,
-    >>>     width=width,
-    >>>     figsize=(9, 6),
-    >>>     height2=height2,
-    >>>     label2=label2,
-    >>>     height3=height3,
-    >>>     label3=label3,
-    >>>     height4=height4,
-    >>>     label4=label4,
-    >>>     height5=height5,
-    >>>     label5=label5,
-    >>>     height6=height6,
-    >>>     label6=label6,
-    >>>     height7=height7,
-    >>>     label7=label7,
-    >>> )
-    >>> fig.legend(frameon=False, loc="upper right")
+    ...     x=x,
+    ...     height1=height1,
+    ...     label1=label1,
+    ...     width=width,
+    ...     figsize=(9, 6),
+    ...     height2=height2,
+    ...     label2=label2,
+    ...     height3=height3,
+    ...     label3=label3,
+    ...     height4=height4,
+    ...     label4=label4,
+    ...     height5=height5,
+    ...     label5=label5,
+    ...     height6=height6,
+    ...     label6=label6,
+    ...     height7=height7,
+    ...     label7=label7,
+    ... )
+    >>> fig.legend(frameon=False, loc="upper right") # doctest: +SKIP
     """
     fig, ax = plt.subplots(
         nrows=1,
@@ -2808,6 +2916,7 @@ def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
 
     Example
     -------
+    >>> import datasense as ds
     >>> code_string = "mystring"
     >>> code_path = Path("str_of_path")
     >>> ds.qr_code(qr_code_string=code_string, qr_code_path=code_path)
@@ -2857,12 +2966,13 @@ def plot_boxplot(
 
     Example
     --------
+    >>> import datasense as ds
     >>> series = ds.random_data()
     >>> fig, ax = ds.plot_boxplot(series=series)
-    >>> ax.set_title(label="Box-and-whisker plot")
-    >>> ds.despine(ax=ax)
-    >>> ax.set_xticks(ticks=[1], labels=["series"])
-    >>> ax.set_ylabel("y")
+    >>> ax.set_title(label="Box-and-whisker plot") # doctest: +SKIP
+    >>> ax.set_xticks(ticks=[1], labels=["series"]) # doctest: +SKIP
+    >>> ax.set_ylabel("y") # doctest: +SKIP
+    >>> ds.despine(ax=ax) # doctest: +SKIP
 
     Reference
     ---------
@@ -2911,37 +3021,46 @@ def decimal_degrees(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> location_deg_min_sec = [(40, 38, 2.99976, "N"), (14, 36, 9.927, "E")]
     >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    >>>     for w, x, y, z in location_deg_min_sec
-    >>> ]
-    >>> [(40.6341666, 'N'), (14.6027575, 'E')]
+    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    ...     for w, x, y, z in location_deg_min_sec
+    ... ]
+    >>> location_decimal
+    [(40.6341666, 'N'), (14.6027575, 'E')]
 
     Example 2
+    >>> import datasense as ds
     >>> location_deg_min_sec = [(34, 49, 59.06532, "S"), (20, 0, 0, "E")]
     >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    >>>     for w, x, y, z in location_deg_min_sec
-    >>> ]
-    >>> [(-34.8330737, 'S'), (20.0, 'E')]
+    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    ...     for w, x, y, z in location_deg_min_sec
+    ... ]
+    >>> location_decimal
+    [(-34.8330737, 'S'), (20.0, 'E')]
 
     Example 3
+    >>> import datasense as ds
     >>> location_deg_min_sec = [(40, 41, 21.31224, "N"), (74, 2, 48.1002, "W")]
     >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    >>>     for w, x, y, z in location_deg_min_sec
-    >>> ]
-    >>> [(40.6892534, 'N'), (-74.0466945, 'W')]
+    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    ...     for w, x, y, z in location_deg_min_sec
+    ... ]
+    >>> location_decimal
+    [(40.6892534, 'N'), (-74.0466945, 'W')]
 
     Example 4
-    >>> location_deg_min_sec = \
-    >>>     [(-13, 9, 47.89404, "S"), (-72, 32, 44.78892, "W")]
+    >>> import datasense as ds
+    >>> location_deg_min_sec = [
+    ...     (-13, 9, 47.89404, "S"), (-72, 32, 44.78892, "W")
+    ... ]
     >>> location_decimal = [
-    >>>     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    >>>     for w, x, y, z in location_deg_min_sec
-    >>> ]
-    >>> [(-13.1633039, 'S'), (-72.5457747, 'W')]
+    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
+    ...     for w, x, y, z in location_deg_min_sec
+    ... ]
+    >>> location_decimal
+    [(-13.1633039, 'S'), (-72.5457747, 'W')]
     """
     deg = abs(degrees) + minutes / 60 + seconds / 3600
     if hemisphere == "N":
@@ -2978,36 +3097,44 @@ def deg_min_sec(
     Examples
     --------
     Example 1
+    >>> import datasense as ds
     >>> location_decimal = [(40.6341666, "N"), (14.6027575, "E")]
     >>> location_deg_min_sec = [
-    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    >>>     for x, y in location_decimal
-    >>> ]
-    >>> [(40, 38, 2.99976, 'N'), (14, 36, 9.927, 'E')]
+    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    ...     for x, y in location_decimal
+    ... ]
+    >>> location_deg_min_sec
+    [(40, 38, 2.99976, 'N'), (14, 36, 9.927, 'E')]
 
     Example 2
+    >>> import datasense as ds
     >>> location_decimal = [(34.8330737, "S"), (20, "E")]
     >>> location_deg_min_sec = [
-    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    >>>     for x, y in location_decimal
-    >>> ]
-    >>> [(34, 49, 59.06532, 'S'), (20, 0, 0, 'E')]
+    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    ...     for x, y in location_decimal
+    ... ]
+    >>> location_deg_min_sec
+    [(34, 49, 59.06532, 'S'), (20, 0, 0, 'E')]
 
     Example 3
+    >>> import datasense as ds
     >>> location_decimal = [(40.6892534, "N"), (-74.0466945, "W")]
     >>> location_deg_min_sec = [
-    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    >>>     for x, y in location_decimal
-    >>> ]
-    >>> [(40, 41, 21.31224, 'N'), (-74, 2, 48.1002, 'W')]
+    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    ...     for x, y in location_decimal
+    ... ]
+    >>> location_deg_min_sec
+    [(40, 41, 21.31224, 'N'), (-74, 2, 48.1002, 'W')]
 
     Example 4
+    >>> import datasense as ds
     >>> location_decimal = [(-13.1633039, "S"), (-72.5457747, "W")]
     >>> location_deg_min_sec = [
-    >>>     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    >>>     for x, y in location_decimal
-    >>> ]
-    >>> [(-13, 9, 47.89404, 'S'), (-72, 32, 44.78892, 'W')]
+    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
+    ...     for x, y in location_decimal
+    ... ]
+    >>> location_deg_min_sec
+    [(-13, 9, 47.89404, 'S'), (-72, 32, 44.78892, 'W')]
     """
     min, sec = divmod(abs(decimal_deg_min_sec) * 3600, 60)
     deg, min = divmod(min, 60)
@@ -3030,6 +3157,7 @@ def style_graph() -> NoReturn:
 
     Example
     -------
+    >>> import datasense as ds
     >>> ds.style_graph()
     """
     rc["axes.titlecolor"] = "#000000"
@@ -3083,9 +3211,9 @@ def empirical_cdf(
     -------
     >>> import datasense as ds
     >>> series_x = ds.random_data(
-    >>>     loc=69,
-    >>>     scale=13
-    >>> )
+    ...     loc=69,
+    ...     scale=13
+    ... )
     >>> fig, ax = ds.empirical_cdf(s=series_x)
 
     Notes
