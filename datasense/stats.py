@@ -3902,8 +3902,8 @@ def linear_regression(
     ...         )
     ...     }
     ... ).sort_values(by=["abscissa"])
-    >>> X = df["abscissa"].squeeze()
-    >>> y = df["ordinate"].squeeze()
+    >>> X = df["abscissa"]
+    >>> y = df["ordinate"]
     >>> (
     ...     fitted_model, predictions, confidence_interval_lower,
     ...     confidence_interval_upper, prediction_interval_lower,
