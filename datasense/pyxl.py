@@ -1038,7 +1038,7 @@ def write_dataframe_to_worksheet(
     >>> import datasense as ds
     >>> wb = Workbook()
     >>> ws = wb.active
-    >>> df = pd.DataFrame({
+    >>> df = pd.DataFrame(data={
     ...     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
     ...     'Y': [27, 24, np.nan, 23, np.nan],
     ...     'Z': ['a', 'b', np.nan, 'd', 'e']
