@@ -1462,9 +1462,9 @@ def plot_line_line_line_x_y1_y2_y3(
     ...         21676.23, 22264.38, 20776.82, 21384.69, 17041.38
     ...     ]
     ... }).sort_values(by=["x1"])
-    >>> x1 = df["x1"].squeeze()
-    >>> y1 = df["y1"].squeeze()
-    >>> y2 = df["y2"].squeeze()
+    >>> x1 = df["x1"]
+    >>> y1 = df["y1"]
+    >>> y2 = df["y2"]
     >>> (
     ...     fitted_model, predictions, confidence_interval_lower,
     ...     confidence_interval_upper, prediction_interval_lower,
