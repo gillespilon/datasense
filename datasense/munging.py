@@ -399,7 +399,7 @@ def number_empty_cells_in_columns(
     >>> import datasense as ds
     >>> import pandas as pd
     >>> import numpy as np
-    >>> df = pd.DataFrame({
+    >>> df = pd.DataFrame(data={
     ...     'X': [25.0, 24.0, 35.5, np.nan, 23.1],
     ...     'Y': [27, 24, np.nan, 23, np.nan],
     ...     'Z': ['a', 'b', np.nan, 'd', 'e']
