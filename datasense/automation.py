@@ -5,6 +5,76 @@ Automation functions
 from typing import List
 
 
+def fahrenheit_to_celsius_table(
+    min_fahrenheit: int = 350,
+    max_fahrenheit: int = 450,
+    fahrenheit_increment: int = 5,
+    rounding_increment: int = 5
+):
+    """
+    Generates an HTML table of Fahrenheit to Celsius conversions.
+
+    Parameters
+    ----------
+    min_fahrenheit : int = 350
+        The minimum Fahrenheit temperature to include in the table.
+    max_fahrenheit : int = 450
+        The maximum Fahrenheit temperature to include in the table.
+    fahrenheit_increment : int = 5
+        The increment in Fahrenheit degrees between each row in the table.
+    rounding_increment : int = 5
+        The increment of rounding in the ones place value.
+
+    Returns
+    -------
+    An HTML table of Fahrenheit to Celsius conversions.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> output_url = 'fahrenheit_to_celsius.html'
+    >>> header_title = 'Fahrenheit to Celsius'
+    >>> header_id = 'fahrenehit-to-celsius'
+    >>> original_stdout = ds.html_begin(
+    ...     output_url=output_url,
+    ...     header_title=header_title,
+    ...     header_id=header_id
+    ... )
+    >>> table = ds.fahrenheit_to_celsius_table()
+    >>> print(table)
+    >>> ds.html_end(
+    ...     original_stdout=original_stdout,
+    ...     output_url=output_url
+    ... )
+    """
+    html_table = """
+    <table>
+      <tr>
+        <th>Fahrenheit</th>
+        <th>Celsius</th>
+      </tr>
+    """
+    for fahrenheit in range(
+        min_fahrenheit,
+        max_fahrenheit + fahrenheit_increment,
+        fahrenheit_increment
+    ):
+        celsius = (
+            rounding_increment *
+            round(((fahrenheit - 32) * 5 / 9) / rounding_increment)
+        )
+        html_table += """
+        <tr>
+          <td>{}</td>
+          <td>{}</td>
+        </tr>
+        """.format(fahrenheit, celsius)
+    html_table += """
+    </table>
+    """
+    return html_table
+
+
 def water_coffee_tea(
     *,
     mugs_coffee: int = 0,
@@ -98,5 +168,6 @@ def water_coffee_tea(
 
 
 __all__ = (
+    "fahrenheit_to_celsius_table",
     "water_coffee_tea",
 )
