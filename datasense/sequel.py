@@ -26,14 +26,15 @@ def psycopg2_connection(params: Dict) -> psycopg2.connect:
 
     Example
     -------
+    >>> import datasense as ds
     >>> connect_parameters = {
-    >>>     "database": "mydb",
-    >>>     "user": "postgres",
-    >>>     "password": "password",
-    >>>     "host": "localhost",
-    >>>     "port": 5432
-    >>> }
-    >>> con = ds.psycopg2_connection(params=connect_parameters)
+    ...     "database": "mydb",
+    ...     "user": "postgres",
+    ...     "password": "password",
+    ...     "host": "localhost",
+    ...     "port": 5432
+    ... } # doctest: +SKIP
+    >>> con = ds.psycopg2_connection(params=connect_parameters) # doctest: +SKIP
     """
     con = psycopg2.connect(**params)
     return con
