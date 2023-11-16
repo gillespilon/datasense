@@ -4,6 +4,8 @@ Automation functions
 
 from typing import List
 
+from datasense import convert_seconds_to_hh_mm_ss
+
 
 def fahrenheit_to_celsius_table(
     min_fahrenheit: int = 350,
@@ -75,7 +77,7 @@ def fahrenheit_to_celsius_table(
     return html_table
 
 
-def water_coffee_tea(
+def water_coffee_tea_milk(
     *,
     mugs_coffee: int = 0,
     cups_tea: int = 0,
@@ -83,11 +85,14 @@ def water_coffee_tea(
     water_coffee_filter_mass: int = 150,
     water_tea_cup_mass: int = 400,
     water_tea_mug_mass: int = 300,
-    water_coffee_mass: int = 220
+    water_coffee_mass: int = 220,
+    milk_coffee_mass: int = 150,
+    coffee_beans_mass: int = 20,
+    time_1000_g_water: int = 340
 ) -> List[int]:
     """
-    Calculate the water mass required for coffee mugs, tea cups, and tea mugs.
-    All units are g.
+    Calculate the mass of water and milk required for coffee mugs, tea cups,
+    and tea mugs. All units are g.
 
     Parameters
     ----------
@@ -106,6 +111,12 @@ def water_coffee_tea(
         The mass of water for a coffee mug.
     water_coffee_mass : int = 220
         The mass of water to wet the coffee grinds.
+    milk_coffee_mass : int = 150
+        The mass of milk for one serving.`
+    coffee_beans_mnass : int = 20
+        The mass of coffee beans for one serving.
+    time_1000_g_water : int =340
+        The time to boil 1000 g of water at 8 on a 2300 W induction element.
 
     Returns
     -------
@@ -119,6 +130,10 @@ def water_coffee_tea(
             The amount of water for the tea cups (g).
         tea_mug_water : int
             The amount of water for the tea mugs (g).
+        coffee_milk : int
+            The mass of milk to foam (g).
+        coffee_mass : int
+            The mass of coffee beans to grind (g).
 
     Examples
     --------
@@ -126,17 +141,17 @@ def water_coffee_tea(
     Example 1
     ---------
     >>> import datasense as ds
-    >>> ds.water_coffee_tea(
+    >>> ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
     ... )
-    (370, 220, 150, 0, 0)
+    (370, 220, 150, 0, 0, 150, 20, (0, 2, 5))
 
     Example 2
     ---------
     >>> import datasense as ds
-    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea(
+    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
@@ -147,7 +162,7 @@ def water_coffee_tea(
     Example 3
     ---------
     >>> import datasense as ds
-    >>> all_coffee_water = ds.water_coffee_tea(
+    >>> all_coffee_water = ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
     ...     mugs_tea=0
@@ -161,13 +176,19 @@ def water_coffee_tea(
     tea_mug_water = mugs_tea * water_tea_mug_mass
     water = coffee_mug_water + coffee_filter_water + tea_cup_water + \
         tea_mug_water
+    coffee_milk = mugs_coffee * milk_coffee_mass
+    coffee_mass = mugs_coffee * coffee_beans_mass
+    time_water = water * time_1000_g_water / 1000
+    time_h_min_s = convert_seconds_to_hh_mm_ss(
+        seconds=time_water
+    )
     return (
         water, coffee_mug_water, coffee_filter_water, tea_cup_water,
-        tea_mug_water
+        tea_mug_water, coffee_milk, coffee_mass, time_h_min_s
     )
 
 
 __all__ = (
     "fahrenheit_to_celsius_table",
-    "water_coffee_tea",
+    "water_coffee_tea_milk",
 )
