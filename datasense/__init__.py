@@ -1,13 +1,13 @@
 '''
 datasense
 
-Statistical and graphical functions for:
-- Analysing process variation
+Tools for statistical, graphical, and predictive analysis:
 - Supervised machine learning
 - Six Sigma methodology
 - Regular expressions
+- Process variation
 - Excel file edits
-- Data science
+- Data Science
 - Automation
 - Analytics
 
