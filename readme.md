@@ -64,9 +64,10 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 To cite this repository, please use:
 
-@article{datasense,
-    author       = {Gilles Pilon},
-    title        = { datasense},
-    howpublished = {\url{https://github.com/gillespilon/datasense}},
-    year         = {2022}
+@software{datasense,
+  author      = {Gilles Pilon},
+  title       = {datasense},
+  url         = {https://github.com/gillespilon/datasense},
+  version     = {0.2},
+  date        = {2024-01-11}
 }
