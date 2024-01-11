@@ -58,8 +58,8 @@ This is built into the docstrings of the functions. These can be easily accessed
     >     sequel
     >     stats
 
-    pydoc datasense.automation
-    pydoc datasense.control_charts
+    pydoc datasense.graphs
+    pydoc datasense.graphs.probability_plot
     etc.
 
 # Examples
