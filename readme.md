@@ -19,6 +19,48 @@ Do this if this is an update anytime after your first-time installation.
 ```
 pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#egg=datasense"
 ```
+# Documentation
+
+This is built into the docstrings of the functions. These can be easily accessed using pydoc.
+
+    pydoc datasense
+    > ...
+    > DESCRIPTION
+    >     Tools for statistical, graphical, and predictive analysis:
+    >     - Supervised machine learning
+    >     - Six Sigma methodology
+    >     - Regular expressions
+    >     - Process variation
+    >     - Excel file edits
+    >     - Data Science
+    >     - Automation
+    >     - Analytics
+    > ...
+    >     Why this?
+    >     - Equivalent Python functions that are available in R, SAS, JMP, Minitab
+    >     - Other packages have limited process control analysis features.
+    >     - Other packages are abandoned or inadequately supported.
+    >     - Functions to support measurement system analysis.
+    >     - Functions to simplify statistics, graphs, etc.
+    >     - Functions to support process control charts.
+    >     - Functions to support SQL functionality.
+    >     - Develop a free open-source package.
+
+    > PACKAGE CONTENTS
+    >     automation
+    >     control_charts
+    >     graphs
+    >     html_ds
+    >     msa
+    >     munging
+    >     pyxl
+    >     rgx
+    >     sequel
+    >     stats
+
+    pydoc datasense.automation
+    pydoc datasense.control_charts
+    etc.
 
 # Examples
 
