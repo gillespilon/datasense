@@ -1,11 +1,11 @@
-"""
+""
 Shewhart control charts
 
 Create X, mR, Xbar, R control charts
 Invoke Shewhart rules 1, 2, 3, 4
 """
 
-from typing import Iterable, TypeVar, Tuple
+from typing import Iterable, TypeVar
 from collections import defaultdict
 from abc import ABC, abstractmethod
 from itertools import tee
@@ -1030,7 +1030,7 @@ def draw_rules(cc: ControlChart, ax: axes.Axes) -> None:
 T = TypeVar('T')
 
 
-def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
+def _nwise(it: Iterable[T], n: int) -> Iterable[tuple[T, ...]]:
     """
     Creates iterable m of n for points rules
     """
@@ -1041,7 +1041,7 @@ def _nwise(it: Iterable[T], n: int) -> Iterable[Tuple[T, ...]]:
     return zip(*its)
 
 
-def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+def points_one(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
     """
     Return out of control points as Series of only said points
 
@@ -1057,13 +1057,13 @@ def points_one(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : Tuple[pd.Series, pd.Series]
+        : tuple[pd.Series, pd.Series]
         The data points that are out of control for rule one.
     """
     return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
 
 
-def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+def points_two(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
     """
     Return out of control points as Series of only said points
 
@@ -1080,7 +1080,7 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : Tuple[pd.Series, pd.Series]
+        : tuple[pd.Series, pd.Series]
         The data points that are out of control for rule two.
     """
 
@@ -1105,7 +1105,7 @@ def points_two(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     )
 
 
-def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+def points_three(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
     """
     Return out of control points as Series of only said points
 
@@ -1122,7 +1122,7 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : Tuple[pd.Series, pd.Series]
+        : tuple[pd.Series, pd.Series]
         The data points that are out of control for rule three.
     """
     above = []
@@ -1146,7 +1146,7 @@ def points_three(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
     )
 
 
-def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
+def points_four(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
     """
     Return out of control points as Series of only said points
 
@@ -1162,7 +1162,7 @@ def points_four(cc: ControlChart) -> Tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : Tuple[pd.Series, pd.Series]
+        : tuple[pd.Series, pd.Series]
         The data points that are out of control for rule four.
     """
     count_above = 0
