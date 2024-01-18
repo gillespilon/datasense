@@ -15,7 +15,7 @@ Colours used are colour-blind friendly.
     grey    "#bbbbbb"
 """
 
-from typing import List, NoReturn, Tuple
+from typing import List, Tuple
 from datetime import datetime
 from pathlib import Path
 import math
@@ -2101,7 +2101,7 @@ def format_dates(
     *,
     fig: plt.Figure,
     ax: axes.Axes
-) -> NoReturn:
+) -> None:
     """
     Format dates and ticks for plotting.
 
@@ -2199,7 +2199,7 @@ def probability_plot(
 def despine(
     *,
     ax: axes.Axes
-) -> NoReturn:
+) -> None:
     """
     Remove the top and right spines of a graph.
 
@@ -2903,7 +2903,7 @@ def plot_stacked_bars(
     return (fig, ax)
 
 
-def qr_code(*, qr_code_string: str, qr_code_path: Path) -> NoReturn:
+def qr_code(*, qr_code_string: str, qr_code_path: Path) -> None:
     """
     Create a QR code and save as .svg and .png.
 
@@ -3142,7 +3142,7 @@ def deg_min_sec(
     return (deg, int(min), round(sec, 9), hemisphere)
 
 
-def style_graph() -> NoReturn:
+def style_graph() -> None:
     """
     Style graphs.
 
