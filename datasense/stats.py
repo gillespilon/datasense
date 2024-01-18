@@ -11,7 +11,6 @@ Statistical analysis
 """
 
 from datetime import datetime, timedelta
-from typing import List, Tuple
 import random
 import math
 import sys
@@ -104,8 +103,8 @@ def nonparametric_summary(
         upper inner fence : float
         upper outer fence : float
         interquartile range : float
-        inner outliers : List[float]
-        outer outliers : List[float]
+        inner outliers : list[float]
+        outer outliers : list[float]
         minimum value : float
         maximum value : float
         count : int
@@ -341,7 +340,7 @@ def natural_cubic_spline(
     X: pd.Series,
     y: pd.Series,
     number_knots: int,
-    list_knots: List[int] = None
+    list_knots: list[int] = None
 ) -> Pipeline:
     """
     Piecewise natural cubic spline helper function
@@ -360,7 +359,7 @@ def natural_cubic_spline(
         The data series of the ordinate.
     number_knots : int
         The number of knots for the spline.
-    list_knots : List[int] = None
+    list_knots : list[int] = None
         A list of specific knots.
 
     Returns
@@ -410,8 +409,8 @@ def random_data(
     scale: float = 1,
     low: int = 13,
     high: int = 70,
-    strings: List[str] = ["female", "male"],
-    categories: List[str] = ["small", "medium", "large"],
+    strings: list[str] = ["female", "male"],
+    categories: list[str] = ["small", "medium", "large"],
     random_state: int = None,
     fraction_nan: float = 0.13,
     name: str = None
@@ -433,9 +432,9 @@ def random_data(
         The low value (inclusive) for the integer distribution.
     high : int = 70,
         The high value (exclusive) for the integer distribution.
-    strings : List[str] = ["female", "male"],
+    strings : list[str] = ["female", "male"],
         The list of strings for the distribution of strings.
-    categories : List[str] = ["small", "medium", "large"],
+    categories : list[str] = ["small", "medium", "large"],
         The list of strings for the distribution of categories.
     random_state : int = None
         The random number seed.
@@ -1026,7 +1025,7 @@ def one_sample_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[
+) -> tuple[
     float, float, float, float, float, float, float, float, float, float, float
 ]:
     """
@@ -1687,7 +1686,7 @@ def two_sample_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[
+) -> tuple[
     float, float, float, float, float, float, float, float, float, float,
     float, float, float, float, float
 ]:
@@ -2562,7 +2561,7 @@ def paired_t(
     significance_level: float = 0.05,
     width: int = 7,
     decimals: int = 3
-) -> Tuple[
+) -> tuple[
         float, float, float, float, float, float, float, float, float, float
 ]:
     """
@@ -3850,7 +3849,7 @@ def linear_regression(
     X: pd.Series,
     y: pd.Series,
     print_model_summary: bool = False
-) -> Tuple[
+) -> tuple[
         sm.regression.linear_model.OLS, pd.Series, pd.Series, pd.Series,
         pd.Series, pd.Series
 ]:
