@@ -2,10 +2,10 @@
 HTML and report functions
 """
 
-from typing import IO, List
 from datetime import datetime
 from inspect import signature
 from pathlib import Path
+from typing import IO
 import webbrowser
 import sys
 
@@ -252,11 +252,11 @@ def report_summary(
     start_time: float,
     stop_time: float,
     print_heading: bool = True,
-    read_file_names: List[str] = None,
-    save_file_names: List[str] = None,
-    targets: List[str] = None,
-    features: List[str] = None,
-    number_knots: List[int] = None
+    read_file_names: list[str] = None,
+    save_file_names: list[str] = None,
+    targets: list[str] = None,
+    features: list[str] = None,
+    number_knots: list[int] = None
 ) -> None:
     """
     Create a report summary.
@@ -269,15 +269,15 @@ def report_summary(
         The stop time.
     print_heading : bool = True
         The boolean to print the heading for the report summary.
-    read_file_names : List[str] = None
+    read_file_names : list[str] = None
         The list of file names read.
-    save_file_names : List[str] = None
+    save_file_names : list[str] = None
         The list of file names saved.
-    targets : List[str] = None
+    targets : list[str] = None
         The list of target variables.
-    features : List[str] = None
+    features : list[str] = None
         Thje list of feature variables.
-    number_knots : List[str] = None
+    number_knots : list[str] = None
         The number of spline knots.
 
     Example
