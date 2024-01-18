@@ -15,7 +15,6 @@ Colours used are colour-blind friendly.
     grey    "#bbbbbb"
 """
 
-from typing import List, Tuple
 from datetime import datetime
 from pathlib import Path
 import math
@@ -49,14 +48,14 @@ colour_white = "#ffffff"
 def plot_scatter_y(
     *,
     y: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 8,
     colour: str = colour_blue,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y. Optional smoothing applied to y.
 
@@ -71,7 +70,7 @@ def plot_scatter_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -89,7 +88,7 @@ def plot_scatter_y(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -136,14 +135,14 @@ def plot_scatter_x_y(
     *,
     X: pd.Series,
     y: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker: str = ".",
     markersize: float = 4,
     colour: str = colour_blue,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
 
@@ -158,7 +157,7 @@ def plot_scatter_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -176,7 +175,7 @@ def plot_scatter_x_y(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -249,7 +248,7 @@ def plot_scatter_x_y(
 def plot_line_y(
     *,
     y: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker: str = ".",
@@ -257,7 +256,7 @@ def plot_line_y(
     linestyle: str = "-",
     colour: str = colour_blue,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y. Optional smoothing applied to y.
 
@@ -272,7 +271,7 @@ def plot_line_y(
     ----------
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -292,7 +291,7 @@ def plot_line_y(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -350,7 +349,7 @@ def plot_line_x_y(
     *,
     X: pd.Series,
     y: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker: str = ".",
@@ -359,7 +358,7 @@ def plot_line_x_y(
     linewidth: float = 1,
     colour: str = colour_blue,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
 
@@ -374,7 +373,7 @@ def plot_line_x_y(
         The data to plot on the abscissa.
     y : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -396,7 +395,7 @@ def plot_line_x_y(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -494,7 +493,7 @@ def plot_scatter_scatter_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker1: str = ".",
@@ -510,7 +509,7 @@ def plot_scatter_scatter_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X.
     Scatter plot of y2 versus X.
@@ -531,7 +530,7 @@ def plot_scatter_scatter_x_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -567,7 +566,7 @@ def plot_scatter_scatter_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -692,7 +691,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     X2: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker1: str = ".",
@@ -708,7 +707,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X1.
     Scatter plot of y2 versus X2.
@@ -731,7 +730,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -767,7 +766,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Examples
@@ -935,7 +934,7 @@ def plot_scatter_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     y1_marker: str = ".",
@@ -945,7 +944,7 @@ def plot_scatter_line_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X.
     Line plot of y2 versus X.
@@ -966,7 +965,7 @@ def plot_scatter_line_x_y1_y2(
         The series for y1 to plot on the vertical axis.
     y2 : pd.Series
         The series for y2 to plot on the vertical axis.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -988,7 +987,7 @@ def plot_scatter_line_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -1077,7 +1076,7 @@ def plot_line_line_y1_y2(
     *,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker1: str = ".",
@@ -1093,7 +1092,7 @@ def plot_line_line_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 and y2.
 
@@ -1112,7 +1111,7 @@ def plot_line_line_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1148,7 +1147,7 @@ def plot_line_line_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -1223,7 +1222,7 @@ def plot_line_line_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     marker1: str = ".",
@@ -1239,7 +1238,7 @@ def plot_line_line_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -1260,7 +1259,7 @@ def plot_line_line_x_y1_y2(
         The data to plot on the y1 ordinate.
     y2 : pd.Series
         The data to plot on the y2 ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1296,7 +1295,7 @@ def plot_line_line_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Exanple
@@ -1385,7 +1384,7 @@ def plot_line_line_line_x_y1_y2_y3(
     y1: pd.Series,
     y2: pd.Series,
     y3: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
@@ -1395,7 +1394,7 @@ def plot_line_line_line_x_y1_y2_y3(
     labellegendy2: str = None,
     labellegendy3: str = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 versus X.
     Line plot of y2 versus X.
@@ -1419,7 +1418,7 @@ def plot_line_line_line_x_y1_y2_y3(
         The data to plot on the y2 ordinate.
     y3 : pd.Series
         The data to plot on the y3 ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1443,7 +1442,7 @@ def plot_line_line_line_x_y1_y2_y3(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -1571,14 +1570,14 @@ def plot_scatterleft_scatterright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     linestyle1: str = "None",
     linestyle2: str = "None"
-) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Scatter plot of y1 left vertical axis versus X.
     Scatter plot of y2 right vertical axis versus X.
@@ -1600,7 +1599,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
         The data to plot on the y1 ordinate.
     y2 : pd.Series
         The data to plot on the y2 ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1618,7 +1617,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes, axes.Axes]
+    tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
 
     Example
@@ -1703,7 +1702,7 @@ def plot_lineleft_lineright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     colour1: str = colour_blue,
@@ -1714,7 +1713,7 @@ def plot_lineleft_lineright_x_y1_y2(
     marker1size: float = 8,
     marker2: str = ".",
     marker2size: float = 8,
-) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Line plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
@@ -1736,7 +1735,7 @@ def plot_lineleft_lineright_x_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1762,7 +1761,7 @@ def plot_lineleft_lineright_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes, axes.Axes]
+    tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
 
     Examples
@@ -1877,7 +1876,7 @@ def plot_barleft_lineright_x_y1_y2(
     X: pd.Series,
     y1: pd.Series,
     y2: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     smoothing: str = None,
     number_knots: int = None,
     barwidth: float = 10,
@@ -1886,7 +1885,7 @@ def plot_barleft_lineright_x_y1_y2(
     linestyle1: str = "-",
     linestyle2: str = "-",
     marker2: str = "o"
-) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Bar plot of y1 left vertical axis versus X.
     Line plot of y2 right vertical axis versus X.
@@ -1908,7 +1907,7 @@ def plot_barleft_lineright_x_y1_y2(
         The data to plot on the ordinate.
     y2 : pd.Series
         The data to plot on the ordinate.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     smoothing : str = None
         The type of smoothing to apply.
@@ -1930,7 +1929,7 @@ def plot_barleft_lineright_x_y1_y2(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes, axes.Axes]
+    tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuples.
 
     Example
@@ -2013,14 +2012,14 @@ def plot_pareto(
     *,
     X: pd.Series,
     y: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     width: float = 0.8,
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     marker: str = ".",
     markersize: float = 8,
     linestyle: str = "-",
-) -> Tuple[plt.Figure, axes.Axes, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Parameters
     ----------
@@ -2028,7 +2027,7 @@ def plot_pareto(
         The data to plot on the ordinate.
     y : pd.Series
         The data to plot on the abscissa.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     width : float = 0.8
         The width of the bars (in).
@@ -2045,7 +2044,7 @@ def plot_pareto(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes, axes.Axes]
+    tuple[plt.Figure, axes.Axes, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -2133,14 +2132,14 @@ def format_dates(
 def probability_plot(
     *,
     data: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     distribution: object = norm,
     fit: bool = True,
     plot: object = None,
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
     theoretical distribution.
@@ -2149,7 +2148,7 @@ def probability_plot(
     ----------
     data : pd.Series
         A pandas Series.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     distribution : object = norm
         Fit a normal distribution by default.
@@ -2166,7 +2165,7 @@ def probability_plot(
 
     Returns
     -------
-    Tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
         A matplotlib figure and Axes tuple.
 
     Example
@@ -2223,8 +2222,8 @@ def plot_histogram(
     *,
     series: pd.Series,
     number_bins: int = None,
-    bin_range: Tuple[int, int] | Tuple[int, int] = None,
-    figsize: Tuple[float, float] = None,
+    bin_range: tuple[int, int] | tuple[int, int] = None,
+    figsize: tuple[float, float] = None,
     bin_width: int = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
@@ -2232,9 +2231,9 @@ def plot_histogram(
     color: str = colour_blue,
     remove_spines: bool = True,
     probability_density_function: bool = False,
-    percentiles: Tuple[float, float] = None,
+    percentiles: tuple[float, float] = None,
     percentiles_colour: str = colour_red,
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
@@ -2242,10 +2241,10 @@ def plot_histogram(
         The input series.
     number_bins : int = None
         The number of equal-width bins in the range s.max() - s.min().
-    bin_range : Tuple[int, int] | Tuple[int, int] = None
+    bin_range : tuple[int, int] | tuple[int, int] = None
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     bin_width : int = None
         The width of the bin in same units as the series s.
@@ -2263,14 +2262,14 @@ def plot_histogram(
         If True, a density parameter normalizes the bin heights so that the
         integral of the histogram is 1. The resulting histogram is an
         approximation of the probability density function.
-    percentiles : Tuple[float, float] = [0.025, 0.975]
+    percentiles : tuple[float, float] = [0.025, 0.975]
         The percentiles for plotting vertical lines on the histogram.
     percentiles_colour : str = colour_red
         The colour of the vertical lines for the percentiles.
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2437,25 +2436,25 @@ def plot_histogram(
 
 def plot_horizontal_bars(
     *,
-    y: List[int] | List[float] | List[str],
-    width: List[int] | List[float],
+    y: list[int] | list[float] | list[str],
+    width: list[int] | list[float],
     height: float = 0.8,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue,
     left: datetime | int | float = None
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
-    y : List[int] | List[float] | List[str],
+    y : list[int] | list[float] | list[str],
         The y coordinates of the bars.
-    width : List[int] | List[float],
+    width : list[int] | list[float],
         The width(s) of the bars.
     height : float = 0.8,
         The height of the bars.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     edgecolor : str = colour_white,
         The hexadecimal color value for the bar edges.
@@ -2468,7 +2467,7 @@ def plot_horizontal_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2551,24 +2550,24 @@ def plot_horizontal_bars(
 
 def plot_vertical_bars(
     *,
-    x: List[int] | List[float] | List[str],
-    height: List[int] | List[float],
+    x: list[int] | list[float] | list[str],
+    height: list[int] | list[float],
     width: float = 0.8,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
-    x : List[int] | List[float] | List[str],
+    x : list[int] | list[float] | list[str],
         The x coordinates of the bars.
-    height : List[int] | List[float],
+    height : list[int] | list[float],
         The height(s) of the bars.
     width : float = 0.8,
         The width of the bars.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     edgecolor : str = colour_white,
         The hexadecimal color value for the bar edges.
@@ -2579,7 +2578,7 @@ def plot_vertical_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2621,32 +2620,32 @@ def plot_vertical_bars(
 
 def plot_pie(
     *,
-    x: List[int] | List[float],
-    labels: List[int] | List[float] | List[str],
-    figsize: Tuple[float, float] = None,
+    x: list[int] | list[float],
+    labels: list[int] | list[float] | list[str],
+    figsize: tuple[float, float] = None,
     startangle: float = 0,
-    colors: List[str] = None,
+    colors: list[str] = None,
     autopct: str = "%1.1f%%"
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
     ----------
-    x : List[int] | List[float],
+    x : list[int] | list[float],
         The wedge sizes.
-    labels : List[int] | List[float] | List[str],
+    labels : list[int] | list[float] | list[str],
         The labels of the wedges.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     startangle : float = 0,
         The start angle of the pie, counterclockwise from the x axis.
-    colors : List[str] = None
+    colors : list[str] = None
         The color of the wedges.
     autopct : str = "%1.1f%%"
         Label the wedges with their numeric value. If None, no label.
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2690,66 +2689,66 @@ def plot_pie(
 
 def plot_stacked_bars(
     *,
-    x: List[int] | List[float] | List[str],
-    height1: List[int] | List[float],
+    x: list[int] | list[float] | list[str],
+    height1: list[int] | list[float],
     label1: str = None,
-    height2: List[int] | List[float] = None,
+    height2: list[int] | list[float] = None,
     label2: str = None,
-    height3: List[int] | List[float] = None,
+    height3: list[int] | list[float] = None,
     label3: str = None,
-    height4: List[int] | List[float] = None,
+    height4: list[int] | list[float] = None,
     label4: str = None,
-    height5: List[int] | List[float] = None,
+    height5: list[int] | list[float] = None,
     label5: str = None,
-    height6: List[int] | List[float] = None,
+    height6: list[int] | list[float] = None,
     label6: str = None,
-    height7: List[int] | List[float] = None,
+    height7: list[int] | list[float] = None,
     label7: str = None,
     width: float = 0.8,
-    figsize: Tuple[float, float] = None,
-    color: [List[str]] = [
+    figsize: tuple[float, float] = None,
+    color: [list[str]] = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
         colour_magenta, colour_grey
     ]
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Stacked vertical bar plot of up to seven levels per bar.
 
     Parameters
     ----------
-    x : List[int] | List[float] | List[str],
+    x : list[int] | list[float] | list[str],
         The x coordinates of the bars.
-    height1 : List[int] | List[float],
+    height1 : list[int] | list[float],
         The height of the level 1 bars.
     label1 : str = None,
         The label of the level 1 bars.
-    height2 : List[int] | List[float],
+    height2 : list[int] | list[float],
         The height of the level 2 bars.
     label2 : str = None,
         The label of the level 2 bars.
-    height3 : List[int] | List[float],
+    height3 : list[int] | list[float],
         The height of the level 3 bars.
     label3 : str = None,
         The label of the level 3 bars.
-    height4 : List[int] | List[float],
+    height4 : list[int] | list[float],
         The height of the level 4 bars.
     label4 : str = None,
         The label of the level 4 bars.
-    height5 : List[int] | List[float],
+    height5 : list[int] | list[float],
         The height of the level 5 bars.
     label5 : str = None,
         The label of the level 5 bars.
-    height6 : List[int] | List[float],
+    height6 : list[int] | list[float],
         The height of the level 6 bars.
     label6 : str = None,
         The label of the level 6 bars.
-    height7 : List[int] | List[float],
+    height7 : list[int] | list[float],
         The height of the level 7 bars.
     label7 : str = None,
         The label of the level 7 bars.
     width : float = 0.8,
         The width of the bars.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     color : str = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
@@ -2759,7 +2758,7 @@ def plot_stacked_bars(
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
@@ -2934,9 +2933,9 @@ def plot_boxplot(
     series: pd.Series,
     notch: bool = True,
     showmeans: bool = None,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Create a box-and-whisker plot with several elements:
     - minimum
@@ -2955,14 +2954,14 @@ def plot_boxplot(
         Boolean to show the confidence interval of the second quartile.
     showmeans : bool = None,
         Boolean to show average.
-    figsize : Tuple[float, float] = None,
+    figsize : tuple[float, float] = None,
         The (width, height) of the figure (in, in).
     remove_spines : bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Example
     --------
@@ -2994,7 +2993,7 @@ def plot_boxplot(
 
 def decimal_degrees(
         degrees: int, minutes: int, seconds: float, hemisphere: str
-) -> Tuple[float, str]:
+) -> tuple[float, str]:
     """
     Convert degrees, minutes, seconds location to decimal location.
 
@@ -3076,7 +3075,7 @@ def decimal_degrees(
 
 def deg_min_sec(
     decimal_deg_min_sec: float, hemisphere: str
-) -> Tuple[int, int, float, str]:
+) -> tuple[int, int, float, str]:
     """
     Convert decimal location to degrees, minutes, seconds location.
 
@@ -3091,7 +3090,7 @@ def deg_min_sec(
 
     Returns
     -------
-    Tuple[int, int, float, str]
+    tuple[int, int, float, str]
         The location in degrees, minutes, seconds, hemisphere.
 
     Examples
@@ -3179,12 +3178,12 @@ def style_graph() -> None:
 def empirical_cdf(
     *,
     s: pd.Series,
-    figsize: Tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
     marker: str = ".",
     markersize: float = 4,
     colour: str = colour_blue,
     remove_spines: bool = True
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Create an empirical cumulative distribution function.
 
@@ -3192,7 +3191,7 @@ def empirical_cdf(
     ----------
     s : pd.Series
         The input series.
-    figsize : Tuple[float, float] = None
+    figsize : tuple[float, float] = None
         The (width, height) of the figure (in, in).
     marker : str = "."
         The type of plot point.
@@ -3205,7 +3204,7 @@ def empirical_cdf(
 
     Returns
     -------
-    fig, ax : Tuple[plt.Figure, axes.Axes]
+    fig, ax : tuple[plt.Figure, axes.Axes]
 
     Example
     -------
@@ -3249,7 +3248,7 @@ def plot_boxcox(
     remove_spines: bool = True,
     lmbda: float | int | None = None,
     alpha: float = 0.05
-) -> Tuple[plt.Figure, axes.Axes]:
+) -> tuple[plt.Figure, axes.Axes]:
     """
     Box-Cox normality plot
 
@@ -3286,7 +3285,7 @@ def plot_boxcox(
 
     Returns
     -------
-    (fig, ax) : Tuple[plt.Figure, axes.Axes]
+    (fig, ax) : tuple[plt.Figure, axes.Axes]
         A Matplotlib figure and Axes tuple.
 
     Example
