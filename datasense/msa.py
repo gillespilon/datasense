@@ -13,8 +13,6 @@ Honest MSA reports on pandas DataFrames
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
 
-from typing import NoReturn
-
 import pandas as pd
 
 
@@ -22,7 +20,7 @@ class MSA:
     """
     TODO
     """
-    def __init__(self, df: pd.DataFrame) -> NoReturn:
+    def __init__(self, df: pd.DataFrame):
         """
         Parameters
         ----------
