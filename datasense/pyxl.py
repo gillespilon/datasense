@@ -2,8 +2,8 @@
 openpyxl functions
 """
 
-from typing import IO, List, Tuple
 from pathlib import Path
+from typing import IO
 import time
 import sys
 import io
@@ -322,8 +322,8 @@ def exit_script(
 def list_duplicate_worksheet_rows(
     *,
     ws: Worksheet,
-    columns_to_ignore: List[int] = None
-) -> List[int]:
+    columns_to_ignore: list[int] = None
+) -> list[int]:
     """
     Find duplicate rows in a worksheet.
 
@@ -331,12 +331,12 @@ def list_duplicate_worksheet_rows(
     ----------
     ws : Worksheet
         A worksheet from a workbook.
-    columns_to_ignore : List[int] = None
+    columns_to_ignore : list[int] = None
         A list of column numbers to not use in determining duplicate rows.
 
     Returns
     -------
-    duplicate_rows : List[int]
+    duplicate_rows : list[int]
         A list of duplicate row numbers.
 
     Example
@@ -368,7 +368,7 @@ def list_empty_and_nan_worksheet_rows(
     *,
     ws: Worksheet,
     min_row: int
-) -> List[int]:
+) -> list[int]:
     """
     Create list of row numbers of blank worksheet rows.
 
@@ -381,7 +381,7 @@ def list_empty_and_nan_worksheet_rows(
 
     Returns
     -------
-    blank_rows : List[int]
+    blank_rows : list[int]
         List of row numbers.
 
     Example
@@ -410,7 +410,7 @@ def list_empty_except_nan_worksheet_rows(
     *,
     ws: Worksheet,
     min_row: int
-) -> List[int]:
+) -> list[int]:
     """
     Create list of row numbers of empty worksheet rows, except those
     with np.nan.
@@ -424,7 +424,7 @@ def list_empty_except_nan_worksheet_rows(
 
     Returns
     -------
-    empty_rows : List[int]
+    empty_rows : list[int]
         List of row numbers.
 
     Example
@@ -451,7 +451,7 @@ def list_nan_worksheet_rows(
     *,
     ws: Worksheet,
     min_row: int
-) -> List[int]:
+) -> list[int]:
     """
     Create list of row numbers of blank worksheet rows.
 
@@ -464,7 +464,7 @@ def list_nan_worksheet_rows(
 
     Returns
     -------
-    blank_rows : List[int]
+    blank_rows : list[int]
         List of row numbers.
 
     Example
@@ -493,7 +493,7 @@ def list_rows_with_content(
     min_row: int,
     column: int,
     text: str
-) -> List[int]:
+) -> list[int]:
     """
     List rows that contain specific text in a specified column.
 
@@ -510,7 +510,7 @@ def list_rows_with_content(
 
     Returns
     -------
-    List[int]
+    list[int]
         A list of row numbers.
 
     Example
@@ -541,7 +541,7 @@ def read_workbook(
     *,
     filename: Path | str,
     data_only: bool = True
-) -> Tuple[Workbook, List[str]]:
+) -> tuple[Workbook, list[str]]:
     """
     Read a workbook, print the Path, and print the sheet names.
 
@@ -557,7 +557,7 @@ def read_workbook(
     -------
     wb : Workbook
         A workbook.
-    sheet_names : List[str]
+    sheet_names : list[str]
         The sheet names in the workbook.
 
     Examples
@@ -582,7 +582,7 @@ def read_workbook(
 def remove_empty_worksheet_rows(
     *,
     ws: Worksheet,
-    empty_rows: List[int]
+    empty_rows: list[int]
 ) -> Worksheet:
     """
     Delete empty worksheet rows.
@@ -591,7 +591,7 @@ def remove_empty_worksheet_rows(
     ----------
     ws : Worksheet
         A worksheet from a workbook.
-    empty_rows : List[int]
+    empty_rows : list[int]
         List of row numbers.
 
     Returns
@@ -662,7 +662,7 @@ def remove_worksheet_columns(
 def remove_worksheet_rows(
     *,
     ws: Worksheet,
-    rows_to_remove: List[int]
+    rows_to_remove: list[int]
 ) -> Worksheet:
     """
     Remove worksheet rows.
@@ -671,7 +671,7 @@ def remove_worksheet_rows(
     ----------
     ws : Worksheet
         A worksheet from a workbook.
-    rows_to_remove: List[int]
+    rows_to_remove: list[int]
         The list of row numbers to remove.
 
     Returns
@@ -701,7 +701,7 @@ def replace_text(
     *,
     ws: Worksheet,
     column: int,
-    text: Tuple[Tuple[str, str]]
+    text: tuple[tuple[str, str]]
 ) -> Worksheet:
     """
     Search and replace text in a cell.
@@ -712,7 +712,7 @@ def replace_text(
         The worksheet in which to search and replace text.
     column : int
         The column number in which to search and replace text.
-    text ; Tuple[Tuple[str, str]]
+    text ; tuple[tuple[str, str]]
         The search and replace text.
 
     Returns
@@ -744,7 +744,7 @@ def replace_text(
 def validate_column_labels(
     *,
     ws: Worksheet,
-    column_labels: List[str],
+    column_labels: list[str],
     first_column: int,
     last_column: int,
     row_of_labels: int,
@@ -761,7 +761,7 @@ def validate_column_labels(
     ----------
     ws : Worksheet
         The worksheet to analyze.
-    column_labels : List[str]
+    column_labels : list[str]
         The list of desired column labels.
     first_column : int
         The first column of the label range in the worksheet.
@@ -843,9 +843,9 @@ def unique_list_items(
     row_of_labels: int,
     row_below_labels: int,
     column_name_varname: str,
-    text_to_replace: List[str],
-    text_to_remove: List[str]
-) -> Tuple[List[int], List[int]]:
+    text_to_replace: list[str],
+    text_to_remove: list[str]
+) -> tuple[list[int], list[int]]:
     """
     Determine list of unique items in varname.
     Replace text.
@@ -864,16 +864,16 @@ def unique_list_items(
         The row number below the label row.
     column_name_varname : str
         The label of a column.
-    text_to_replace : List[str]
+    text_to_replace : list[str]
         A list of the text to search for.
-    text_to_remove : List[str]
+    text_to_remove : list[str]
         A list of the text to remove.
 
     Returns
     -------
-    varname : Tuple[List[int]
+    varname : tuple[list[int]
         The list of unique items.
-    column_numbers : List[int]]
+    column_numbers : list[int]]
         The list of column numbers.
 
     Example
@@ -928,7 +928,7 @@ def validate_sheet_names(
     wb: Workbook,
     filename: Path | str,
     sheet_name: str,
-    sheet_names: List[str],
+    sheet_names: list[str],
     start_time: float,
     original_stdout: io.TextIOWrapper,
     output_url: str
@@ -942,7 +942,7 @@ def validate_sheet_names(
         The file containing the workbook.
     sheet_name : str
         A sheet name in the workbook.
-    sheet_names : List[str]
+    sheet_names : list[str]
         The sheet names in the workbook.
     start_time : float
         The start time of the script.
