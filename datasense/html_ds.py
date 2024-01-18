@@ -2,7 +2,7 @@
 HTML and report functions
 """
 
-from typing import IO, List, NoReturn
+from typing import IO, List
 from datetime import datetime
 from inspect import signature
 from pathlib import Path
@@ -16,7 +16,7 @@ def html_header(
     *,
     header_title: str = 'Report',
     header_id: str = 'report'
-) -> NoReturn:
+) -> None:
     """
     Create an html header.
 
@@ -65,7 +65,7 @@ def html_header(
     )
 
 
-def html_footer() -> NoReturn:
+def html_footer() -> None:
     """
     Create an html footer.
 
@@ -80,7 +80,7 @@ def html_footer() -> NoReturn:
     print('</html>')
 
 
-def page_break() -> NoReturn:
+def page_break() -> None:
     """
     Create an html page break.
 
@@ -157,7 +157,7 @@ def html_end(
     *,
     original_stdout: IO[str],
     output_url: str
-) -> NoReturn:
+) -> None:
     """
     Create an html footer, close an html file, and open an html file in
     a new tab in a web browser.
@@ -197,7 +197,7 @@ def html_figure(
     *,
     file_name: Path | str,
     caption: str = None
-) -> NoReturn:
+) -> None:
     """
     Print an html tag for a figure.
 
@@ -257,7 +257,7 @@ def report_summary(
     targets: List[str] = None,
     features: List[str] = None,
     number_knots: List[int] = None
-) -> NoReturn:
+) -> None:
     """
     Create a report summary.
 
@@ -317,7 +317,7 @@ def script_summary(
     *,
     script_path: Path,
     action: str = "run"
-) -> NoReturn:
+) -> None:
     """
     Print script name and time of execution.
 
@@ -368,7 +368,7 @@ def sync_directories(
     twoway: bool = False,
     purge: bool = False,
     verbose: bool = True
-) -> NoReturn:
+) -> None:
     """
     Synchronize two directories.
 
@@ -411,7 +411,7 @@ def sync_directories(
     )
 
 
-def explore_functions(function: str) -> NoReturn:
+def explore_functions(function: str) -> None:
     """
     Explore functions using inspect.signature.
 
