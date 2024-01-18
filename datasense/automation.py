@@ -2,8 +2,6 @@
 Automation functions
 """
 
-from typing import List
-
 from datasense import convert_seconds_to_hh_mm_ss
 
 
@@ -89,7 +87,7 @@ def water_coffee_tea_milk(
     milk_coffee_mass: int = 150,
     coffee_beans_mass: int = 20,
     time_1000_g_water: int = 340
-) -> List[int]:
+) -> list[int]:
     """
     Calculate the mass of water and milk required for coffee mugs, tea cups,
     and tea mugs. All units are g.
