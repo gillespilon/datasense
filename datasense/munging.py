@@ -2,7 +2,7 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, NoReturn, Pattern, Tuple
+from typing import Callable, Dict, List, Pattern, Tuple
 from shutil import copytree, move, rmtree
 from tkinter import filedialog
 from pathlib import Path
@@ -384,7 +384,7 @@ def find_timedelta_columns(
 def number_empty_cells_in_columns(
     *,
     df: pd.DataFrame
-) -> NoReturn:
+) -> None:
     """
     Create and print a table of data type, empty-cell count, and empty-all
     percentage for non-empty columns of a DataFrame.
@@ -671,7 +671,7 @@ def save_file(
     index: bool = False,
     index_label: str = None,
     sheet_name: str = 'sheet_001',
-) -> NoReturn:
+) -> None:
     """
     Save a DataFrame or Series to a file.
 
@@ -1287,7 +1287,7 @@ def create_directory(
     *,
     directories: List[str],
     ignore_errors: bool = True
-) -> NoReturn:
+) -> None:
     """
     Create empty directories for a path.
     - Deletes existing directories, whether empty or non-empty.
@@ -1315,7 +1315,7 @@ def delete_directory(
     *,
     directories: List[str],
     ignore_errors: bool = True
-) -> NoReturn:
+) -> None:
     """
     Delete a list of directories.
     - Deletes existing directories, whether empty or non-empty.
@@ -1342,7 +1342,7 @@ def rename_directory(
     sources: List[str],
     destinations: List[str],
     ignore_errors: bool = True
-) -> NoReturn:
+) -> None:
     """
     Delete destination directories (if present) and rename source directories
     to the destination directories.
@@ -1374,7 +1374,7 @@ def copy_directory(
     sources: Path | str,
     destinations: Path | str,
     ignore_errors: bool = True
-) -> NoReturn:
+) -> None:
     """
     Delete destination directories (if present) and copy source directories
     to destination directories.
@@ -1966,7 +1966,7 @@ def directory_file_print(
     *,
     directory: str | Path,
     text: str = 'Files in directory'
-) -> NoReturn:
+) -> None:
     """
     Print the files in a path.
 
@@ -1998,7 +1998,7 @@ def directory_file_print(
 def delete_list_files(
     *,
     files: List[Path] | List[str]
-) -> NoReturn:
+) -> None:
     """
     Delete a list of files
 
@@ -2023,7 +2023,7 @@ def print_list_by_item(
     *,
     list_to_print: List[str],
     title: str = None
-) -> NoReturn:
+) -> None:
     """
     Print each item of a list.
 
@@ -2654,7 +2654,7 @@ def parameters_dict_replacement(
     return dictionary
 
 
-def quit_sap_excel() -> NoReturn:
+def quit_sap_excel() -> None:
     """
     Several applications, Excel in particular, need to be closed otherwise
     they may cause a function to crash.
@@ -3237,7 +3237,7 @@ def series_memory_usage(
 def convert_csv_to_feather(
     paths_in: List[str] | Path,
     paths_out: List[str] | Path
-) -> NoReturn:
+) -> None:
     """
     Convert list of csv files to feather files
 
@@ -3295,7 +3295,7 @@ def print_dictionary_by_key(
     *,
     dictionary_to_print: Dict[str, List[str]],
     title: str = None
-) -> NoReturn:
+) -> None:
     """
     Print each key, value of a dictionary, one key per line.
 
