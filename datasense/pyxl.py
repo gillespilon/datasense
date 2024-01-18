@@ -2,7 +2,7 @@
 openpyxl functions
 """
 
-from typing import IO, List, NoReturn, Tuple
+from typing import IO, List, Tuple
 from pathlib import Path
 import time
 import sys
@@ -291,7 +291,7 @@ def exit_script(
     *,
     original_stdout: IO[str],
     output_url: str
-) -> NoReturn:
+) -> None:
     """
     Exit from a script and complete the html file.
 
