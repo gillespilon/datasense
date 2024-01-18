@@ -2,8 +2,8 @@
 Data munging
 """
 
-from typing import Callable, Dict, List, Pattern, Tuple
 from shutil import copytree, move, rmtree
+from typing import Callable, Pattern
 from tkinter import filedialog
 from pathlib import Path
 from tkinter import Tk
@@ -148,7 +148,7 @@ def dataframe_info(
 def find_bool_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Create a list of boolean column names of a DataFrame.
 
@@ -159,7 +159,7 @@ def find_bool_columns(
 
     Returns
     -------
-    columns_bool : List[str]
+    columns_bool : list[str]
         A list of boolean column names.
 
     Example
@@ -177,7 +177,7 @@ def find_bool_columns(
 def find_category_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Create list of category column names of a DataFrame.
 
@@ -188,7 +188,7 @@ def find_category_columns(
 
     Returns
     -------
-    columns_category : List[str]
+    columns_category : list[str]
         A list of category column names.
 
     Example
@@ -206,7 +206,7 @@ def find_category_columns(
 def find_datetime_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all datetime columns of a DataFrame.
 
@@ -217,7 +217,7 @@ def find_datetime_columns(
 
     Returns
     -------
-    datetime_columns : List[str]
+    datetime_columns : list[str]
         A list of datetime column names.
 
     Example
@@ -235,7 +235,7 @@ def find_datetime_columns(
 def find_float_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all float columns of a DataFrame.
 
@@ -246,7 +246,7 @@ def find_float_columns(
 
     Returns
     -------
-    float_columns : List[str]
+    float_columns : list[str]
         A list of float column names.
 
     Example
@@ -264,7 +264,7 @@ def find_float_columns(
 def find_integer_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all integer columns of a DataFrame.
 
@@ -275,7 +275,7 @@ def find_integer_columns(
 
     Returns
     -------
-    integer_columns : List[str]
+    integer_columns : list[str]
         A list of integer column names.
 
     Example
@@ -295,7 +295,7 @@ def find_integer_columns(
 def find_int_float_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all integer and float columns of a DataFrame.
 
@@ -306,7 +306,7 @@ def find_int_float_columns(
 
     Returns
     -------
-    columns_int_float : List[str]
+    columns_int_float : list[str]
         A list of integer and float column names.
 
     Example
@@ -326,7 +326,7 @@ def find_int_float_columns(
 def find_object_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all object columns of a DataFrame.
 
@@ -337,7 +337,7 @@ def find_object_columns(
 
     Returns
     -------
-    object_columns : List[str]
+    object_columns : list[str]
         A list of object column names.
 
     Example
@@ -355,7 +355,7 @@ def find_object_columns(
 def find_timedelta_columns(
     *,
     df: pd.DataFrame
-) -> List[str]:
+) -> list[str]:
     """
     Find all timedelta columns of a DataFrame.
 
@@ -366,7 +366,7 @@ def find_timedelta_columns(
 
     Returns
     -------
-    columns_timedelta : List[str]
+    columns_timedelta : list[str]
         A list of timedelta column names.
 
     Example
@@ -446,26 +446,26 @@ def number_empty_cells_in_columns(
 def process_columns(
     *,
     df: pd.DataFrame
-) -> Tuple[
+) -> tuple[
     pd.DataFrame,
     int,
     int,
     int,
-    List[str],
-    List[str],
-    List[str],
+    list[str],
+    list[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
-    List[str],
+    list[str],
     int,
 ]:
     """
@@ -511,35 +511,35 @@ def process_columns(
         The count of non-empty columns.
     columns_empty_count: int
         The count of empty columns.
-    columns_empty_list : List[str]
+    columns_empty_list : list[str]
         The list of empty columns.
-    columns_non_empty_list : List[str]
+    columns_non_empty_list : list[str]
         The list of non-empty columns.
-    columns_bool_list : List[str]
+    columns_bool_list : list[str]
         The list of boolean columns.
     columns_bool_count : int
         The count of boolean columns.
-    columns_float_list : List[str]
+    columns_float_list : list[str]
         The list of float columns.
     columns_float_count : int
         The count of float columns.
-    columns_integer_list : List[str]
+    columns_integer_list : list[str]
         The list of integer columns.
     columns_integer_count : int
         The count of integer columns
-    columns_datetime_list : List[str]
+    columns_datetime_list : list[str]
         The list of datetime columns.
     columns_datetime_count : int
         The count of datetime columns.
-    columns_object_list : List[str]
+    columns_object_list : list[str]
         The list of object columns.
     columns_object_count : int
         The count of object columns.
-    columns_category_list : List[str]
+    columns_category_list : list[str]
         The list of category columns.
     columns_category_count : int
         The count of category columns.
-    columns_timedelta_list : List[str]
+    columns_timedelta_list : list[str]
         The list of timedelta columns.
     columns_timedelta_count : int
         The count of timedelta columns.
@@ -625,7 +625,7 @@ def process_columns(
 def process_rows(
     *,
     df: pd.DataFrame
-) -> Tuple[pd.DataFrame, int, int, int]:
+) -> tuple[pd.DataFrame, int, int, int]:
     """
     Return a DataFrame without duplicate rows.
 
@@ -789,24 +789,24 @@ def save_file(
 def read_file(
     *,
     file_name: str | Path,
-    header: int | List[int] | None = 0,
-    skiprows: List[int] | None = None,
-    column_names_dict: Dict[str, str] = {},
-    index_columns: List[str] = [],
-    usecols: List[str] | None = None,
+    header: int | list[int] | None = 0,
+    skiprows: list[int] | None = None,
+    column_names_dict: dict[str, str] = {},
+    index_columns: list[str] = [],
+    usecols: list[str] | None = None,
     dtype: dict | None = None,
     converters: dict | None = None,
-    parse_dates: List[str] = False,
+    parse_dates: list[str] = False,
     date_parser: Callable | None = None,
     datetime_format: str | None = None,
-    time_delta_columns: List[str] = [],
-    category_columns: List[str] = [],
-    integer_columns: List[str] = [],
-    float_columns: List[str] = [],
-    boolean_columns: List[str] = [],
-    object_columns: List[str] = [],
-    sort_columns: List[str] = [],
-    sort_columns_bool: List[bool] = [],
+    time_delta_columns: list[str] = [],
+    category_columns: list[str] = [],
+    integer_columns: list[str] = [],
+    float_columns: list[str] = [],
+    boolean_columns: list[str] = [],
+    object_columns: list[str] = [],
+    sort_columns: list[str] = [],
+    sort_columns_bool: list[bool] = [],
     sheet_name: str = False,
     nrows: int | None = None,
     skip_blank_lines: bool = True
@@ -818,15 +818,15 @@ def read_file(
     ----------
     file_name : str | Path
         The name of the file to read.
-    header : int | List[int] | None = 0
+    header : int | list[int] | None = 0
         The row to use for the column labels. Use None if there is no header.
-    skiprows : List[int] | None = None
+    skiprows : list[int] | None = None
         The specific row indices to skip.
-    column_names_dict : Dict[str, str] = {}
+    column_names_dict : dict[str, str] = {}
         The new column names to replace the old column names.
-    index_columns : List[str] = []
+    index_columns : list[str] = []
         The columns to use for the DataFrame index.
-    usecols : List[str] | None = None
+    usecols : list[str] | None = None
         The columns to read.
     dtype : dict | None = None
         A dictionary of column names and dtypes.
@@ -834,28 +834,28 @@ def read_file(
         use .astype() on df after created.
     converters : dict | None = None
         Dictionary of functions for converting values in certain columns.
-    parse_dates : List[str] = False
+    parse_dates : list[str] = False
         The columns to use to parse date and time.
     date_parser : Callable | None = None
         The function to use for parsing date and time, when pandas needs
         extra help.
     datetime_format : str | None = None
         The str to use for formatting date and time.
-    time_delta_columns : List[str] = []
+    time_delta_columns : list[str] = []
         The columns to change to dtype timedelta.
-    category_columns : List[str] = []
+    category_columns : list[str] = []
         The columns to change to dtype category.
-    integer_columns : List[str] = []
+    integer_columns : list[str] = []
         The columns to change to dtype integer.
-    float_columns : List[str] = []
+    float_columns : list[str] = []
         The columns to change to dtype float.
-    boolean_columns : List[str] = []
+    boolean_columns : list[str] = []
         The columns to change to dtype boolean.
-    object_columns : List[str] = []
+    object_columns : list[str] = []
         The columns to change to dtype object.
-    sort_columns : List[str] = []
+    sort_columns : list[str] = []
         The columns on which to sort the DataFrame.
-    sort_columns_bool : List[bool] = []
+    sort_columns_bool : list[bool] = []
         The booleans for sort_columns.
     sheet_name : str = False
         The name of the worksheet in the workbook.
@@ -1248,9 +1248,9 @@ def byte_size(
 def feature_percent_empty(
     *,
     df: pd.DataFrame,
-    columns: List[str],
+    columns: list[str],
     threshold: float
-) -> List[str]:
+) -> list[str]:
     """
     Remove features that have NaN > threshold.
 
@@ -1258,14 +1258,14 @@ def feature_percent_empty(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    columns : List[str]
+    columns : list[str]
         The list of columns to evaluate.
     threshold : float
         The percentage empty threshold value.
 
     Returns
     -------
-    list_columns : List[str]
+    list_columns : list[str]
         The list of columns below the threshold value.
 
     Example
@@ -1285,7 +1285,7 @@ def feature_percent_empty(
 
 def create_directory(
     *,
-    directories: List[str],
+    directories: list[str],
     ignore_errors: bool = True
 ) -> None:
     """
@@ -1295,7 +1295,7 @@ def create_directory(
 
     Parameters
     ----------
-    directories : List[str]
+    directories : list[str]
         The list of directories.
     ignore_errors : bool = True
         Boolean to deal with errors.
@@ -1313,7 +1313,7 @@ def create_directory(
 
 def delete_directory(
     *,
-    directories: List[str],
+    directories: list[str],
     ignore_errors: bool = True
 ) -> None:
     """
@@ -1322,7 +1322,7 @@ def delete_directory(
 
     Parameters
     ----------
-    directories : List[str]
+    directories : list[str]
         The list of directories.
     ignore_errors : bool = True
         Boolean to deal with errors.
@@ -1339,8 +1339,8 @@ def delete_directory(
 
 def rename_directory(
     *,
-    sources: List[str],
-    destinations: List[str],
+    sources: list[str],
+    destinations: list[str],
     ignore_errors: bool = True
 ) -> None:
     """
@@ -1349,9 +1349,9 @@ def rename_directory(
 
     Parameters
     ----------
-    sources : List[str]
+    sources : list[str]
         The old directories.
-    destinations : List[str]
+    destinations : list[str]
         The new directories.
     ignore_errors : bool = True
         Boolean to deal with errors.
@@ -1409,9 +1409,9 @@ def copy_directory(
 def replace_text_numbers(
     *,
     df: pd.DataFrame,
-    columns: List[str] | List[int] | List[float] | List[Pattern[str]],
-    old: List[str] | List[int] | List[float] | List[Pattern[str]],
-    new: List[int],
+    columns: list[str] | list[int] | list[float] | list[Pattern[str]],
+    old: list[str] | list[int] | list[float] | list[Pattern[str]],
+    new: list[int],
     regex: bool = True
 ) -> pd.DataFrame:
     """
@@ -1421,11 +1421,11 @@ def replace_text_numbers(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    columns: List[str] | List[int] | List[float] | List[Pattern[str]]
+    columns: list[str] | list[int] | list[float] | list[Pattern[str]]
         The list of columns for replacement.
-    old: List[str] | List[int] | List[float] | List[Pattern[str]]
+    old: list[str] | list[int] | list[float] | list[Pattern[str]]
         The list of item to replace.
-    new : List[int]
+    new : list[int]
         The list of replacement items.
     regex : bool = True
         Determines if the passed-in pattern is a regular expression.
@@ -1618,7 +1618,7 @@ def create_dataframe_norm(
     loc: float = 69,
     scale: float = 13,
     random_state: int = None,
-    column_names: List[str] = None
+    column_names: list[str] = None
 ) -> pd.DataFrame:
     """
     Create DataFrame of random normal data.
@@ -1635,7 +1635,7 @@ def create_dataframe_norm(
         The standard deviation of the data.
     random_state: int = None
         The random number seed.
-    column_names: List[str]
+    column_names: list[str]
         The column names.
 
     Returns
@@ -1683,7 +1683,7 @@ def delete_rows(
     *,
     df: pd.DataFrame,
     delete_row_criteria:
-        Tuple[str, int] | Tuple[str, float] | Tuple[str, str]
+        tuple[str, int] | tuple[str, float] | tuple[str, str]
 ) -> pd.DataFrame:
     """
     Delete rows of a DataFrame based on a value in one column.
@@ -1693,7 +1693,7 @@ def delete_rows(
     df : pd.DataFrame
         The input DataFrame.
     delete_row_criteria:
-        Tuple[str, int] | Tuple[str, float] | Tuple[str, str]
+        tuple[str, int] | tuple[str, float] | tuple[str, str]
         A tuple of column name and criteria for the entire cell.
 
     Returns
@@ -1718,7 +1718,7 @@ def delete_rows(
 def delete_columns(
     *,
     df: pd.DataFrame,
-    columns: List[str]
+    columns: list[str]
 ) -> pd.DataFrame:
     """
     Delete columns of a DataFrame using a list.
@@ -1727,7 +1727,7 @@ def delete_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    columns : List[str]
+    columns : list[str]
         A list of column names.
 
     Returns
@@ -1750,8 +1750,8 @@ def delete_columns(
 def sort_rows(
     *,
     df: pd.DataFrame,
-    sort_columns: List[str],
-    sort_columns_bool: List[bool],
+    sort_columns: list[str],
+    sort_columns_bool: list[bool],
     kind: str = 'mergesort'
 ) -> pd.DataFrame:
     """
@@ -1761,9 +1761,9 @@ def sort_rows(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    sort_columns : List[str]
+    sort_columns : list[str]
         The sort columns.
-    sort_columns_bool : List[bool]
+    sort_columns_bool : list[bool]
         The booleans for sort_columns: True = ascending, False = descending.
     kind: str = 'mergesort'
         The sort algorithm.
@@ -1796,7 +1796,7 @@ def sort_rows(
 def rename_all_columns(
     *,
     df: pd.DataFrame,
-    labels: List[str]
+    labels: list[str]
 ) -> pd.DataFrame:
     """
     Rename all DataFrame columns.
@@ -1805,7 +1805,7 @@ def rename_all_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    labels : List[str]
+    labels : list[str]
         The list of all column names.
 
     Returns
@@ -1831,7 +1831,7 @@ def rename_all_columns(
 def rename_some_columns(
     *,
     df: pd.DataFrame,
-    column_names_dict: Dict[str, str]
+    column_names_dict: dict[str, str]
 ) -> pd.DataFrame:
     """
     Rename some columns with a dictionary.
@@ -1840,7 +1840,7 @@ def rename_some_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    column_names_dict : Dict[str, str]
+    column_names_dict : dict[str, str]
         The dictionary of old:new column names.
 
     Returns
@@ -1863,7 +1863,7 @@ def rename_some_columns(
 def replace_column_values(
     *,
     s: pd.Series,
-    replace_dict: Dict[str, str] | Dict[int, int] | Dict[float, float],
+    replace_dict: dict[str, str] | dict[int, int] | dict[float, float],
     regex: bool = False
 ) -> pd.Series:
     """
@@ -1873,7 +1873,7 @@ def replace_column_values(
     ----------
     s : pd.Series
         The input series.
-    replace_dict : Dict[str, str] | Dict[int, int] |, Dict[float, float]
+    replace_dict : dict[str, str] | dict[int, int] |, dict[float, float]
         The dictionary of values to replace.
     regex : bool = True
         Determines if the passed-in pattern is a regular expression.
@@ -1904,9 +1904,9 @@ def replace_column_values(
 def list_files(
     *,
     directory: str | Path,
-    pattern_startswith: List[str] | Tuple[str] | None = None,
-    pattern_extension: List[str] | Tuple[str] | None = None
-) -> List[Path]:
+    pattern_startswith: list[str] | tuple[str] | None = None,
+    pattern_extension: list[str] | tuple[str] | None = None
+) -> list[Path]:
     """
     Return a list of files within a directory.
 
@@ -1914,14 +1914,14 @@ def list_files(
     ----------
     directory : str | Path
         The path of the directory.
-    pattern_startswith : List[str] | Tuple[str] | None = None
+    pattern_startswith : list[str] | tuple[str] | None = None
         The string for determining if a file starts with this string.
-    pattern_extension : List[str] | Tuple[str] | None = None
+    pattern_extension : list[str] | tuple[str] | None = None
         The file extensions to use for finding files in the path.
 
     Returns
     -------
-    files : List[Path]
+    files : list[Path]
         A list of paths.
 
     Examples
@@ -1997,14 +1997,14 @@ def directory_file_print(
 
 def delete_list_files(
     *,
-    files: List[Path] | List[str]
+    files: list[Path] | list[str]
 ) -> None:
     """
     Delete a list of files
 
     Parameters
     ----------
-    files : List[Path] | List[str]
+    files : list[Path] | list[str]
         The list of files from which to remove the path.
 
     Example
@@ -2021,7 +2021,7 @@ def delete_list_files(
 
 def print_list_by_item(
     *,
-    list_to_print: List[str],
+    list_to_print: list[str],
     title: str = None
 ) -> None:
     """
@@ -2029,7 +2029,7 @@ def print_list_by_item(
 
     Parameters
     ----------
-    list_to_print : List[str]
+    list_to_print : list[str]
         The list of strings to print.
     title : str = None
         The title to print.
@@ -2094,7 +2094,7 @@ def ask_open_file_name_path(
     *,
     title: str,
     initialdir: Path | None = None,
-    filetypes: List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes: list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
 ) -> Path:
     """
     Ask user for the path of the file to open.
@@ -2105,7 +2105,7 @@ def ask_open_file_name_path(
         The title of the dialog window.
     initialdir : Path | None = None
         The directory in which the dialogue starts.
-    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
         The file types to make visible.
 
     Returns
@@ -2147,7 +2147,7 @@ def ask_save_as_file_name_path(
     *,
     title: str = 'Select file',
     initialdir: Path | None = None,
-    filetypes: List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')],
+    filetypes: list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')],
     print_bool: bool = True
 ) -> Path:
     """
@@ -2159,7 +2159,7 @@ def ask_save_as_file_name_path(
         The title of the dialog window.
     initialdir : Path | None = None
         The directory in which the dialogue starts.
-    filetypes : List[Tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes : list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
         The list of file types to show in the dialog.
     print_bool : bool = True
         A boolean. Print message if True.
@@ -2249,8 +2249,8 @@ def series_replace_string(
 def list_directories(
     *,
     path: str | Path,
-    pattern_startswith: List[str] | Tuple[str] | None = None
-) -> List[str]:
+    pattern_startswith: list[str] | tuple[str] | None = None
+) -> list[str]:
     """
     Return a list of directories found within a path.
 
@@ -2258,12 +2258,12 @@ def list_directories(
     ----------
     path : str | Path
         The path of the enclosing directory.
-    pattern_startswith : List[str] | Tuple[str] | None = None
+    pattern_startswith : list[str] | tuple[str] | None = None
         The string for determining if a directory start with this string.
 
     Returns
     -------
-    directory_list : List[str]
+    directory_list : list[str]
         A list of directories.
 
     Examples
@@ -2306,19 +2306,19 @@ def list_directories(
 
 def remove_punctuation(
     *,
-    list_dirty: List[str]
-) -> List[str]:
+    list_dirty: list[str]
+) -> list[str]:
     """
     Remove punctuation from list items.
 
     Parameters
     ----------
-    list_dirty : List[str]
+    list_dirty : list[str]
         The list of items containing punctuation.
 
     Returns
     -------
-    list_clean : List[str]
+    list_clean : list[str]
         The list of items without punctuation.
 
     Example
@@ -2339,22 +2339,22 @@ def remove_punctuation(
 
 def list_change_case(
     *,
-    list_dirty: List[str],
+    list_dirty: list[str],
     case: str
-) -> List[str]:
+) -> list[str]:
     """
     Change the case of items in a list.
 
     Parameters
     ----------
-    list_dirty : List[str]
+    list_dirty : list[str]
         The list of strings.
     case : str
         The type of case to apply.
 
     Returns
     -------
-    list_clean : List[str]
+    list_clean : list[str]
         The list of strings with case applied.
 
     Example
@@ -2378,23 +2378,23 @@ def list_change_case(
 
 def listone_contains_all_listtwo_substrings(
     *,
-    listone: List[str],
-    listtwo: List[str]
-) -> List[str]:
+    listone: list[str],
+    listtwo: list[str]
+) -> list[str]:
     """
     Return a list of items from one list that contain substrings of items
     from another list.
 
     Parameters
     ----------
-    listone : List[str]
+    listone : list[str]
         The list of items in which there are substrings to match from listtwo.
-    listwo : List[str]
+    listwo : list[str]
         The list of items that are substrings of the items in listone.
 
     Returns
     -------
-    matches : List[str]
+    matches : list[str]
         The list of items from listone that contain substrings of the items
         from listtwo.
 
@@ -2415,10 +2415,10 @@ def listone_contains_all_listtwo_substrings(
 
 def list_one_list_two_ops(
     *,
-    list_one: List[str] | List[int] | List[float],
-    list_two: List[str] | List[int] | List[float],
+    list_one: list[str] | list[int] | list[float],
+    list_two: list[str] | list[int] | list[float],
     action: str
-) -> List[str] | List[int] | List[float]:
+) -> list[str] | list[int] | list[float]:
     """
     Create a list of items comparing two lists:
     - Items unique to list_one
@@ -2427,16 +2427,16 @@ def list_one_list_two_ops(
 
     Parameters
     ----------
-    list_one : List[str] | List[int] | List[float]
+    list_one : list[str] | list[int] | list[float]
         A list of items.
-    list_two : List[str] | List[int] | List[float]
+    list_two : list[str] | list[int] | list[float]
         A list of items.
     action : str
         A string of either "list_one", "list_two", or "intersection".
 
     Returns
     -------
-    list_result : List[str] | List[int] | List[float]
+    list_result : list[str] | list[int] | list[float]
         The list of unique items.
 
     Examples
@@ -2508,9 +2508,9 @@ def parameters_text_replacement(
     *,
     file_name: Path,
     sheet_name: str,
-    usecols: List[str],
+    usecols: list[str],
     text_case: "str" = None
-) -> Tuple[Tuple[str, str]]:
+) -> tuple[tuple[str, str]]:
     """
     Read Excel worksheet.
     Create tuple of text replacement tuples.
@@ -2521,14 +2521,14 @@ def parameters_text_replacement(
         The path of the Excel file.
     sheet_name : str
         The Excel worksheet.
-    usecols : List[str]
+    usecols : list[str]
         The column names to read.
     case : "str" = None
         Change the case of all items: None, lower, upper.
 
     Returns
     -------
-    text_replacement : Tuple[Tuple[str, str]]
+    text_replacement : tuple[tuple[str, str]]
 
     Examples
     --------
@@ -2614,8 +2614,8 @@ def parameters_dict_replacement(
     *,
     file_name: Path,
     sheet_name: str,
-    usecols: List[str]
-) -> Dict[str, str]:
+    usecols: list[str]
+) -> dict[str, str]:
     """
     Read Excel worksheet.
     Create dictionary of text replacement key, value pairs.
@@ -2626,12 +2626,12 @@ def parameters_dict_replacement(
         The path of the Excel file.
     sheet_name : str
         The Excel worksheet.
-    usecols : List[str]
+    usecols : list[str]
         The column names to read.
 
     Returns
     -------
-    text_replacement : Dict[str, str]
+    text_replacement : dict[str, str]
 
     Example
     -------
@@ -2709,7 +2709,7 @@ def file_size(path: Path | str) -> int:
 
 def mask_outliers(
     df: pd.DataFrame,
-    mask: List[Tuple[str, float, float]]
+    mask: list[tuple[str, float, float]]
 ) -> pd.DataFrame:
     """
     Mask outliers within a scikit-learn pipeline.
@@ -2718,7 +2718,7 @@ def mask_outliers(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    mask : List[Tuple[str, float, float]]
+    mask : list[tuple[str, float, float]]
         The list of mask values.
 
     Returns
@@ -2770,7 +2770,7 @@ def mask_outliers(
 
 def delete_empty_rows(
     df: pd.DataFrame,
-    list_columns: List[str] | None = None
+    list_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty rows
@@ -2779,7 +2779,7 @@ def delete_empty_rows(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    list_columns : List[str] | None = None
+    list_columns : list[str] | None = None
         A list of columns to use to determine if row elements are empty.
 
     Returns
@@ -2848,7 +2848,7 @@ def delete_empty_rows(
 def delete_empty_columns(
     *,
     df: pd.DataFrame,
-    list_empty_columns: List[str] | None = None
+    list_empty_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty columns
@@ -2857,7 +2857,7 @@ def delete_empty_columns(
     ----------
     df : pd.DataFrame
         The input DataFrame.
-    list_empty_columns : List[str] | None = None
+    list_empty_columns : list[str] | None = None
         A list of empty columns to delete. The code does not check if these
         columns are empty, but assumes they are.
 
@@ -2926,7 +2926,7 @@ def delete_empty_columns(
 
 def optimize_float_columns(
     df: pd.DataFrame,
-    float_columns: List[str] = None
+    float_columns: list[str] = None
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -2935,7 +2935,7 @@ def optimize_float_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more float columns.
-    float_columns : List[str] | None = None
+    float_columns : list[str] | None = None
         A list of float columns to downcast.
 
     Returns
@@ -2970,7 +2970,7 @@ def optimize_float_columns(
 
 def optimize_integer_columns(
     df: pd.DataFrame,
-    integer_columns: List[str] | None = None
+    integer_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Downcast integer columns
@@ -2979,7 +2979,7 @@ def optimize_integer_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
-    integer_columns : List[str] | None = None
+    integer_columns : list[str] | None = None
         A list of integer columns to downcast.
 
     Returns
@@ -3014,7 +3014,7 @@ def optimize_integer_columns(
 
 def optimize_object_columns(
     df: pd.DataFrame,
-    object_columns: List[str] | None = None,
+    object_columns: list[str] | None = None,
     fraction_categories: int | None = 0.5
 ) -> pd.DataFrame:
     """
@@ -3024,7 +3024,7 @@ def optimize_object_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
-    object_columns : List[str] | None = None
+    object_columns : list[str] | None = None
         A list of object columns to downcast.
     fraction_categories : int | None = 0.5
         The fraction of categories in an object column.
@@ -3077,7 +3077,7 @@ def optimize_object_columns(
 
 def optimize_datetime_columns(
     df: pd.DataFrame,
-    datetime_columns: List[str] = None
+    datetime_columns: list[str] = None
 ) -> pd.DataFrame:
     """
     Cast object and datetime columns to pandas datetime. It does not reduce
@@ -3087,7 +3087,7 @@ def optimize_datetime_columns(
     ---------
     df : pd.DataFrame
         The DataFrame that contains one or more datetime columns.
-    datetime_columns : List[str] | None = None
+    datetime_columns : list[str] | None = None
         A list of datetime columns to cast.
 
     Returns
@@ -3121,10 +3121,10 @@ def optimize_datetime_columns(
 
 def optimize_columns(
     df: pd.DataFrame,
-    float_columns: List[str] = None,
-    integer_columns: List[str] | None = None,
-    datetime_columns: List[str] | None = None,
-    object_columns: List[str] | None = None,
+    float_columns: list[str] = None,
+    integer_columns: list[str] | None = None,
+    datetime_columns: list[str] | None = None,
+    object_columns: list[str] | None = None,
     fraction_categories: int | None = 0.5
 ) -> pd.DataFrame:
     """
@@ -3134,11 +3134,11 @@ def optimize_columns(
     ---------
     df : pd.DataFrame
         The DataFrame.
-    float_columns : List[str] | None = None
+    float_columns : list[str] | None = None
         A list of float columns to downcast.
-    integer_columns : List[str] | None = None
+    integer_columns : list[str] | None = None
         A list of integer columns to downcast.
-    object_columns : List[str] | None = None
+    object_columns : list[str] | None = None
         A list of object columns to downcast.
     fraction_categories : int | None = 0.5
         The fraction of categories in an object column.
@@ -3235,17 +3235,17 @@ def series_memory_usage(
 
 
 def convert_csv_to_feather(
-    paths_in: List[str] | Path,
-    paths_out: List[str] | Path
+    paths_in: list[str] | Path,
+    paths_out: list[str] | Path
 ) -> None:
     """
     Convert list of csv files to feather files
 
     Parameters
     ----------
-    paths_in : List[str] | Path
+    paths_in : list[str] | Path
         List of csv file names or paths.
-    paths_out : List[str] | Path
+    paths_out : list[str] | Path
         Liat of feather file names or paths.
 
     Note
@@ -3293,7 +3293,7 @@ def convert_csv_to_feather(
 
 def print_dictionary_by_key(
     *,
-    dictionary_to_print: Dict[str, List[str]],
+    dictionary_to_print: dict[str, list[str]],
     title: str = None
 ) -> None:
     """
@@ -3301,7 +3301,7 @@ def print_dictionary_by_key(
 
     Parameters
     ----------
-    dictionary_to_print : Dict[str, List[str]]
+    dictionary_to_print : dict[str, list[str]]
         The dictionary to print.
     title : str = None
         The title to print.
@@ -3321,7 +3321,7 @@ def print_dictionary_by_key(
 def convert_seconds_to_hh_mm_ss(
     *,
     seconds: int = None
-) -> Tuple[int, int, int]:
+) -> tuple[int, int, int]:
     """
     Convert seconds to hours, minutes and seconds.
 
