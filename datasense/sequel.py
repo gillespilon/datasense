@@ -2,12 +2,10 @@
 SQL functions
 """
 
-from typing import Dict
-
 import psycopg2
 
 
-def psycopg2_connection(params: Dict) -> psycopg2.connect:
+def psycopg2_connection(params: dict) -> psycopg2.connect:
     """
     Connect to the PostgreSQL database server.
 
