@@ -2,25 +2,24 @@
 Regular expressions
 """
 
-from typing import List
 import re
 
 
 def rgx_email_address(
     *,
-    strings: List[str]
-) -> List[str]:
+    strings: list[str]
+) -> list[str]:
     """
     Extract list of unique email addresses from a list of strings.
 
     Parameters
     ----------
-    strings : List[str]
+    strings : list[str]
         A list of strings which may contain email addresses.
 
     Returns
     -------
-    matches : List[str]
+    matches : list[str]
         A list of strings containing the email addresses in the input list.
 
     Examples
@@ -60,8 +59,8 @@ def rgx_email_address(
 
 def rgx_url(
     *,
-    strings: List[str]
-) -> List[str]:
+    strings: list[str]
+) -> list[str]:
     """
     Extract list of unique URLs from a list of strings.
 
@@ -69,12 +68,12 @@ def rgx_url(
 
     Parameters
     ----------
-    strings : List[str]
+    strings : list[str]
         A list of strings which may contain URLs.
 
     Returns
     -------
-    matches : List[str]
+    matches : list[str]
         A list of strings containing URLs in the input list.
 
     Example
