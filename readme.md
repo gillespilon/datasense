@@ -62,7 +62,49 @@ This is built into the docstrings of the functions. These can be easily accessed
     pydoc datasense.graphs.probability_plot
     etc.
 
-# Examples
+# Modules
+
+## automation.py
+
+TBD
+
+## control_charts.py
+
+TBD
+
+## graphs.py
+
+TBD
+
+## html_ds.py
+
+TBD
+
+## msa.py
+
+TBD
+
+## munging.py
+
+TBD
+## pyxl.py
+
+
+TBD
+
+## rgx.py
+
+TBD
+
+## sequel.py
+
+TBD
+
+## stats.py
+
+TBD
+
+# Example scripts
 
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
@@ -72,33 +114,23 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 - [Exponentially weighted average for Y vs X line plot](#exponentially-weighted-average-for-y-vs-x-line-plot)
 - [Piecewise natural cubic spline](#piecewise-natural-cubic-spline)
 
-## XmR control charts
+# Example graphs
 
 ![X control chart](scripts/x_mr_example_x.svg)
 
-
 ![mR control chart](scripts/x_mr_example_mr.svg)
-
-
-## XbarR control charts
 
 ![Xbar control chart](scripts/xbar_r_example_xbar.svg)
 
 ![R control chart](scripts/xbar_r_example_r.svg)
 
-# Cubic spline for Y vs X line plot
-
 ![cubic spline for Y vs X line plot](scripts/cubic_spline_datetime_float.svg)
 
 ![cubic spline for Y vs X line plot](scripts/cubic_spline_integer_float.svg)
 
-## Exponentially weighted average for Y vs X line plot
-
 ![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_datetime_float.svg)
 
 ![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_integer_float.svg)
-
-## Piecewise natural cubic spline
 
 ![Piecewise natural cubic spline](scripts/spline_piecewise_natural_cubic_spline_TARGET_FEATURE_30.svg)
 
