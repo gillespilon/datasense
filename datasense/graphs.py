@@ -21,10 +21,11 @@ import math
 
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
-from datasense import natural_cubic_spline
+from datasense import natural_cubic_spline, html_ds
 from scipy.stats import boxcox, boxcox_normplot, norm, probplot
 from matplotlib import rcParams as rc
 import matplotlib.dates as mdates
+import matplotlib.artist as mpla
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import pyqrcode as pq
@@ -54,7 +55,7 @@ def plot_scatter_y(
     marker: str = ".",
     markersize: float = 8,
     colour: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y. Optional smoothing applied to y.
@@ -108,23 +109,27 @@ def plot_scatter_y(
     ...     colour=colour_orange
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     # generate X series, required if using smoothing
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
-            X, y, marker=marker, markersize=markersize, linestyle="None",
-            color=colour
+            X,
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle="None",
+            color=colour,
         )
     elif smoothing == "natural_cubic_spline":
         model = natural_cubic_spline(X=X, y=y, number_knots=number_knots)
         ax.plot(
-            X, model.predict(X), marker=marker, markersize=markersize,
-            linestyle="None", color=colour
+            X,
+            model.predict(X),
+            marker=marker,
+            markersize=markersize,
+            linestyle="None",
+            color=colour,
         )
     if remove_spines:
         despine(ax=ax)
@@ -141,7 +146,7 @@ def plot_scatter_x_y(
     marker: str = ".",
     markersize: float = 4,
     colour: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X.  Optional smoothing applied to y.
@@ -217,17 +222,17 @@ def plot_scatter_x_y(
     ...     y=series_y
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
             format_dates(fig=fig, ax=ax)
         ax.plot(
-            X, y, marker=marker, markersize=markersize, linestyle="None",
-            color=colour
+            X,
+            y,
+            marker=marker,
+            markersize=markersize,
+            linestyle="None",
+            color=colour,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -237,8 +242,12 @@ def plot_scatter_x_y(
             XX = X
         model = natural_cubic_spline(X=XX, y=y, number_knots=number_knots)
         ax.plot(
-            X, model.predict(XX), marker=marker, markersize=markersize,
-            linestyle="None", color=colour
+            X,
+            model.predict(XX),
+            marker=marker,
+            markersize=markersize,
+            linestyle="None",
+            color=colour,
         )
     if remove_spines:
         despine(ax=ax)
@@ -255,7 +264,7 @@ def plot_line_y(
     markersize: float = 8,
     linestyle: str = "-",
     colour: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y. Optional smoothing applied to y.
@@ -311,11 +320,7 @@ def plot_line_y(
     ...     colour=colour_orange
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     X = pd.Series(range(1, y.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -324,21 +329,17 @@ def plot_line_y(
             marker=marker,
             markersize=markersize,
             linestyle=linestyle,
-            color=colour
+            color=colour,
         )
     elif smoothing == "natural_cubic_spline":
-        model = natural_cubic_spline(
-            X=X,
-            y=y,
-            number_knots=number_knots
-        )
+        model = natural_cubic_spline(X=X, y=y, number_knots=number_knots)
         ax.plot(
             X,
             model.predict(X),
             marker=marker,
             markersize=markersize,
             linestyle=linestyle,
-            color=colour
+            color=colour,
         )
     if remove_spines:
         despine(ax=ax)
@@ -357,7 +358,7 @@ def plot_line_x_y(
     linestyle: str = "-",
     linewidth: float = 1,
     colour: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y versus X. Optional smoothing applied to y.
@@ -442,17 +443,10 @@ def plot_line_x_y(
     ...     y=y
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X,
             y,
@@ -460,7 +454,7 @@ def plot_line_x_y(
             markersize=markersize,
             linestyle=linestyle,
             linewidth=linewidth,
-            color=colour
+            color=colour,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -469,19 +463,18 @@ def plot_line_x_y(
             fig.autofmt_xdate()
         else:
             XX = X
-        model = natural_cubic_spline(
-            X=XX,
-            y=y,
-            number_knots=number_knots
+        model = natural_cubic_spline(X=XX, y=y, number_knots=number_knots)
+        (
+            ax.plot(
+                X,
+                model.predict(XX),
+                marker=marker,
+                markersize=markersize,
+                linestyle=linestyle,
+                linewidth=linewidth,
+                color=colour,
+            ),
         )
-        ax.plot(
-            X,
-            model.predict(XX),
-            marker=marker,
-            markersize=markersize,
-            linestyle=linestyle,
-            linewidth=linewidth,
-            color=colour),
     if remove_spines:
         despine(ax=ax)
     plt.close("all")
@@ -508,7 +501,7 @@ def plot_scatter_scatter_x_y1_y2(
     colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X.
@@ -601,17 +594,10 @@ def plot_scatter_scatter_x_y1_y2(
     ... )
     >>> ax.legend(frameon=False) # doctest: +SKIP
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X,
             y1,
@@ -620,7 +606,7 @@ def plot_scatter_scatter_x_y1_y2(
             linestyle=linestyle1,
             linewidth=linewidth1,
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X,
@@ -630,7 +616,7 @@ def plot_scatter_scatter_x_y1_y2(
             linestyle=linestyle2,
             linewidth=linewidth2,
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -638,16 +624,8 @@ def plot_scatter_scatter_x_y1_y2(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
         ax.plot(
             X,
             model1.predict(X),
@@ -655,7 +633,7 @@ def plot_scatter_scatter_x_y1_y2(
             markersize=markersize1,
             linestyle="None",
             linewidth=linewidth1,
-            color=colour1
+            color=colour1,
         )
         ax.plot(
             X,
@@ -664,22 +642,10 @@ def plot_scatter_scatter_x_y1_y2(
             markersize=markersize2,
             linestyle="None",
             linewidth=linewidth2,
-            color=colour2
+            color=colour2,
         )
-        ax.plot(
-            X,
-            model1.predict(XX),
-            marker=".",
-            linestyle="",
-            color=colour1
-        )
-        ax.plot(
-            X,
-            model2.predict(XX),
-            marker=".",
-            linestyle="",
-            color=colour2
-        )
+        ax.plot(X, model1.predict(XX), marker=".", linestyle="", color=colour1)
+        ax.plot(X, model2.predict(XX), marker=".", linestyle="", color=colour2)
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
@@ -706,7 +672,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X1.
@@ -837,17 +803,10 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ... )
     >>> ax.legend(frameon=False) # doctest: +SKIP
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if (X1.dtype and X2.dtype) in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X1,
             y1,
@@ -856,7 +815,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             linestyle=linestyle1,
             linewidth=linewidth1,
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X2,
@@ -866,7 +825,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             linestyle=linestyle2,
             linewidth=linewidth2,
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
     elif smoothing == "natural_cubic_spline":
         if (X1.dtype and X2.dtype) in ["datetime64[ns]"]:
@@ -876,16 +835,8 @@ def plot_scatter_scatter_x1_x2_y1_y2(
         else:
             XX1 = X1
             XX2 = X2
-        model1 = natural_cubic_spline(
-            X=XX1,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX2,
-            y=y2,
-            number_knots=number_knots
-        )
+        model1 = natural_cubic_spline(X=XX1, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX2, y=y2, number_knots=number_knots)
         ax.plot(
             X1,
             y1,
@@ -894,7 +845,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             linestyle=linestyle1,
             linewidth=linewidth1,
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X2,
@@ -904,7 +855,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             linestyle=linestyle2,
             linewidth=linewidth2,
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
         ax.plot(
             X1,
@@ -913,7 +864,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             markersize=0,
             linestyle="-",
             linewidth=linewidth1,
-            color=colour1
+            color=colour1,
         )
         ax.plot(
             X2,
@@ -922,7 +873,7 @@ def plot_scatter_scatter_x1_x2_y1_y2(
             markersize=0,
             linestyle="-",
             linewidth=linewidth2,
-            color=colour2
+            color=colour2,
         )
     if remove_spines:
         despine(ax=ax)
@@ -943,7 +894,7 @@ def plot_scatter_line_x_y1_y2(
     colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Scatter plot of y1 versus X.
@@ -1010,24 +961,17 @@ def plot_scatter_line_x_y1_y2(
     ...     labellegendy2=f'number knots = {number_knots}'
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X,
             y1,
             marker=y1_marker,
             linestyle="",
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X,
@@ -1035,7 +979,7 @@ def plot_scatter_line_x_y1_y2(
             marker=y2_marker,
             linestyle="-",
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -1043,29 +987,21 @@ def plot_scatter_line_x_y1_y2(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
         ax.plot(
             X,
             model1.predict(XX),
             marker=y1_marker,
             linestyle="",
-            color=colour1
+            color=colour1,
         )
         ax.plot(
             X,
             model2.predict(XX),
             marker=y2_marker,
             linestyle="-",
-            color=colour2
+            color=colour2,
         )
     if remove_spines:
         despine(ax=ax)
@@ -1091,7 +1027,7 @@ def plot_line_line_y1_y2(
     colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 and y2.
@@ -1160,11 +1096,7 @@ def plot_line_line_y1_y2(
     ...     y2=series_y2
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     X = pd.Series(range(1, y1.size + 1, 1))
     if smoothing is None:
         ax.plot(
@@ -1175,7 +1107,7 @@ def plot_line_line_y1_y2(
             linestyle=linestyle1,
             linewidth=linewidth1,
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X,
@@ -1185,33 +1117,17 @@ def plot_line_line_y1_y2(
             linestyle=linestyle2,
             linewidth=linewidth2,
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
     elif smoothing == "natural_cubic_spline":
-        model1 = natural_cubic_spline(
-            X=X,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=X,
-            y=y2,
-            number_knots=number_knots
+        model1 = natural_cubic_spline(X=X, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=X, y=y2, number_knots=number_knots)
+        ax.plot(
+            X, model1.predict(X), marker=None, linestyle="-", color=colour1
         )
         ax.plot(
-            X,
-            model1.predict(X),
-            marker=None,
-            linestyle="-",
-            color=colour1
+            X, model2.predict(X), marker=None, linestyle="-", color=colour2
         )
-        ax.plot(
-            X,
-            model2.predict(X),
-            marker=None,
-            linestyle="-",
-            color=colour2
-            )
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
@@ -1237,7 +1153,7 @@ def plot_line_line_x_y1_y2(
     colour2: str = colour_cyan,
     labellegendy1: str = None,
     labellegendy2: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 versus X.
@@ -1312,17 +1228,10 @@ def plot_line_line_x_y1_y2(
     ...     figsize=figsize
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X,
             y1,
@@ -1331,7 +1240,7 @@ def plot_line_line_x_y1_y2(
             linestyle=linestyle1,
             linewidth=linewidth1,
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X,
@@ -1341,7 +1250,7 @@ def plot_line_line_x_y1_y2(
             linestyle=linestyle2,
             linewidth=linewidth2,
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -1349,30 +1258,14 @@ def plot_line_line_x_y1_y2(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
+        ax.plot(
+            X, model1.predict(XX), marker=None, linestyle="-", color=colour1
         )
         ax.plot(
-            X,
-            model1.predict(XX),
-            marker=None,
-            linestyle="-",
-            color=colour1
+            X, model2.predict(XX), marker=None, linestyle="-", color=colour2
         )
-        ax.plot(
-            X,
-            model2.predict(XX),
-            marker=None,
-            linestyle="-",
-            color=colour2
-            )
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
@@ -1393,7 +1286,7 @@ def plot_line_line_line_x_y1_y2_y3(
     labellegendy1: str = None,
     labellegendy2: str = None,
     labellegendy3: str = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Line plot of y1 versus X.
@@ -1483,24 +1376,17 @@ def plot_line_line_line_x_y1_y2_y3(
     ...     labellegendy3="predicted"
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax
-            )
+            format_dates(fig=fig, ax=ax)
         ax.plot(
             X,
             y1,
             marker=None,
             linestyle="-",
             color=colour1,
-            label=labellegendy1
+            label=labellegendy1,
         )
         ax.plot(
             X,
@@ -1508,7 +1394,7 @@ def plot_line_line_line_x_y1_y2_y3(
             marker=None,
             linestyle="-",
             color=colour2,
-            label=labellegendy2
+            label=labellegendy2,
         )
         ax.plot(
             X,
@@ -1516,7 +1402,7 @@ def plot_line_line_line_x_y1_y2_y3(
             marker=None,
             linestyle="-",
             color=colour3,
-            label=labellegendy3
+            label=labellegendy3,
         )
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
@@ -1524,41 +1410,17 @@ def plot_line_line_line_x_y1_y2_y3(
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
-        model3 = natural_cubic_spline(
-            X=XX,
-            y=y3,
-            number_knots=number_knots
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
+        model3 = natural_cubic_spline(X=XX, y=y3, number_knots=number_knots)
+        ax.plot(
+            X, model1.predict(XX), marker=None, linestyle="-", color=colour1
         )
         ax.plot(
-            X,
-            model1.predict(XX),
-            marker=None,
-            linestyle="-",
-            color=colour1
+            X, model2.predict(XX), marker=None, linestyle="-", color=colour2
         )
         ax.plot(
-            X,
-            model2.predict(XX),
-            marker=None,
-            linestyle="-",
-            color=colour2
-        )
-        ax.plot(
-            X,
-            model3.predict(XX),
-            marker=None,
-            linestyle="-",
-            color=colour3
+            X, model3.predict(XX), marker=None, linestyle="-", color=colour3
         )
     if remove_spines:
         despine(ax=ax)
@@ -1576,7 +1438,7 @@ def plot_scatterleft_scatterright_x_y1_y2(
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
     linestyle1: str = "None",
-    linestyle2: str = "None"
+    linestyle2: str = "None",
 ) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Scatter plot of y1 left vertical axis versus X.
@@ -1634,61 +1496,34 @@ def plot_scatterleft_scatterright_x_y1_y2(
     ...     linestyle2="-"
     ... )
     """
-    fig, ax1 = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax1
-            )
-        ax1.plot(
-            X,
-            y1,
-            marker=".",
-            linestyle=linestyle1,
-            color=colour1
-        )
-        ax2.plot(
-            X,
-            y2,
-            marker=".",
-            linestyle=linestyle2,
-            color=colour2
-        )
+            format_dates(fig=fig, ax=ax1)
+        ax1.plot(X, y1, marker=".", linestyle=linestyle1, color=colour1)
+        ax2.plot(X, y2, marker=".", linestyle=linestyle2, color=colour2)
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
         ax1.plot(
             X,
             model1.predict(XX),
             marker=".",
             linestyle=linestyle1,
-            color=colour1
+            color=colour1,
         )
         ax2.plot(
             X,
             model2.predict(XX),
             marker=".",
             linestyle=linestyle2,
-            color=colour2
+            color=colour2,
         )
     for tl in ax1.get_yticklabels():
         tl.set_color(colour1)
@@ -1809,60 +1644,23 @@ def plot_lineleft_lineright_x_y1_y2(
     ...     figsize=figsize
     ... )
     """
-    fig, ax1 = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax1
-            )
-        ax1.plot(
-            X,
-            y1,
-            color=colour1,
-            marker=marker1,
-            markersize=marker1size
-        )
-        ax2.plot(
-            X,
-            y2,
-            color=colour2,
-            marker=marker2,
-            markersize=marker2size
-        )
+            format_dates(fig=fig, ax=ax1)
+        ax1.plot(X, y1, color=colour1, marker=marker1, markersize=marker1size)
+        ax2.plot(X, y2, color=colour2, marker=marker2, markersize=marker2size)
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
-        ax1.plot(
-            X,
-            model1.predict(XX),
-            color=colour1,
-            linestyle=linestyle1
-        )
-        ax2.plot(
-            X,
-            model2.predict(XX),
-            color=colour2,
-            linestyle=linestyle2
-        )
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
+        ax1.plot(X, model1.predict(XX), color=colour1, linestyle=linestyle1)
+        ax2.plot(X, model2.predict(XX), color=colour2, linestyle=linestyle2)
     for tl in ax1.get_yticklabels():
         tl.set_color(colour1)
     for tl in ax2.get_yticklabels():
@@ -1884,7 +1682,7 @@ def plot_barleft_lineright_x_y1_y2(
     colour2: str = colour_cyan,
     linestyle1: str = "-",
     linestyle2: str = "-",
-    marker2: str = "o"
+    marker2: str = "o",
 ) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Bar plot of y1 left vertical axis versus X.
@@ -1949,58 +1747,23 @@ def plot_barleft_lineright_x_y1_y2(
     ...     colour2="#ee3377"
     ... )
     """
-    fig, ax1 = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(
-                fig=fig,
-                ax=ax1
-            )
-        ax1.bar(
-            X,
-            y1,
-            barwidth,
-            color=colour1
-        )
-        ax2.plot(
-            X,
-            y2,
-            color=colour2,
-            marker=marker2
-        )
+            format_dates(fig=fig, ax=ax1)
+        ax1.bar(X, y1, barwidth, color=colour1)
+        ax2.plot(X, y2, color=colour2, marker=marker2)
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
             fig.autofmt_xdate()
         else:
             XX = X
-        model1 = natural_cubic_spline(
-            X=XX,
-            y=y1,
-            number_knots=number_knots
-        )
-        model2 = natural_cubic_spline(
-            X=XX,
-            y=y2,
-            number_knots=number_knots
-        )
-        ax1.plot(
-            X,
-            model1.predict(XX),
-            color=colour1,
-            linestyle=linestyle1
-        )
-        ax2.plot(
-            X,
-            model2.predict(XX),
-            color=colour2,
-            linestyle=linestyle2
-        )
+        model1 = natural_cubic_spline(X=XX, y=y1, number_knots=number_knots)
+        model2 = natural_cubic_spline(X=XX, y=y2, number_knots=number_knots)
+        ax1.plot(X, model1.predict(XX), color=colour1, linestyle=linestyle1)
+        ax2.plot(X, model2.predict(XX), color=colour2, linestyle=linestyle2)
     for tl in ax1.get_yticklabels():
         tl.set_color(colour1)
     for tl in ax2.get_yticklabels():
@@ -2061,46 +1824,27 @@ def plot_pareto(
     ...     y=data["abscissa"]
     ... )
     """
-    df = pd.concat(
-        [X, y],
-        axis=1
-    ).sort_values(
-        by=y.name,
-        axis=0,
-        ascending=False,
-        kind="mergesort"
+    df = pd.concat([X, y], axis=1).sort_values(
+        by=y.name, axis=0, ascending=False, kind="mergesort"
     )
     total_y = df[y.name].sum()
     df["percentage"] = df[y.name] / total_y * 100
     df["cumulative_percentage"] = df["percentage"].cumsum(skipna=True)
-    fig, ax1 = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax1 = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax2 = ax1.twinx()
-    ax1.bar(
-        x=df[X.name],
-        height=df[y.name],
-        width=width,
-        color=colour1
-    )
+    ax1.bar(x=df[X.name], height=df[y.name], width=width, color=colour1)
     ax2.plot(
         df[X.name],
         df["cumulative_percentage"],
         marker=marker,
         markersize=markersize,
         linestyle=linestyle,
-        color=colour2
+        color=colour2,
     )
     return (fig, ax1, ax2)
 
 
-def format_dates(
-    *,
-    fig: plt.Figure,
-    ax: axes.Axes
-) -> None:
+def format_dates(*, fig: plt.Figure, ax: axes.Axes) -> None:
     """
     Format dates and ticks for plotting.
 
@@ -2138,7 +1882,7 @@ def probability_plot(
     plot: object = None,
     colour1: str = colour_blue,
     colour2: str = colour_cyan,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Plot a probability plot of data against the quantiles of a specified
@@ -2174,11 +1918,7 @@ def probability_plot(
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     (osm, osr), (slope, intercept, r) = probplot(
         x=data, dist=distribution, fit=True, plot=ax
     )
@@ -2195,10 +1935,7 @@ def probability_plot(
     return (fig, ax)
 
 
-def despine(
-    *,
-    ax: axes.Axes
-) -> None:
+def despine(*, ax: axes.Axes) -> None:
     """
     Remove the top and right spines of a graph.
 
@@ -2366,11 +2103,7 @@ def plot_histogram(
     >>> ax.set_xlabel(xlabel="X-axis label", labelpad=30) # doctest: +SKIP
     >>> plt.tight_layout()
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     if bin_width and not bin_range:
         x = (series.max() - series.min()) / bin_width
         number_bins = math.ceil(x)
@@ -2384,16 +2117,15 @@ def plot_histogram(
         edgecolor=edgecolor,
         linewidth=linewidth,
         color=color,
-        density=True
+        density=True,
     )
     if probability_density_function:
         series_std_dev = series.std()
         series_ave = series.mean()
-        y_fit = (
-            (1 / (np.sqrt(2 * np.pi) * series_std_dev)) *
-            np.exp(-0.5 * (1 / series_std_dev * (bins - series_ave)) ** 2)
+        y_fit = (1 / (np.sqrt(2 * np.pi) * series_std_dev)) * np.exp(
+            -0.5 * (1 / series_std_dev * (bins - series_ave)) ** 2
         )
-        ax.plot(bins, y_fit, linestyle='--', color='r')
+        ax.plot(bins, y_fit, linestyle="--", color="r")
     if bin_label_bool:
         ax.set_xticks(ticks=bins)
         ax.xaxis.set_major_formatter(
@@ -2405,26 +2137,20 @@ def plot_histogram(
                 text=f"{str(int(count))}",
                 xy=(x, 0),
                 xytext=(0, -18),
-                xycoords=(
-                    "data",
-                    "axes fraction"
-                ),
+                xycoords=("data", "axes fraction"),
                 textcoords="offset points",
                 va="top",
-                ha="center"
+                ha="center",
             )
             percent = f"{(100 * float(count) / counts.sum()):0.0f} %"
             ax.annotate(
                 text=percent,
                 xy=(x, 0),
                 xytext=(0, -32),
-                xycoords=(
-                    "data",
-                    "axes fraction"
-                ),
+                xycoords=("data", "axes fraction"),
                 textcoords="offset points",
                 va="top",
-                ha="center"
+                ha="center",
             )
     if remove_spines:
         despine(ax=ax)
@@ -2443,7 +2169,7 @@ def plot_horizontal_bars(
     edgecolor: str = colour_white,
     linewidth: int = 1,
     color: str = colour_blue,
-    left: datetime | int | float = None
+    left: datetime | int | float = None,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2531,11 +2257,7 @@ def plot_horizontal_bars(
     >>> ax.set_xticks(ticks=x_ticks) # doctest: +SKIP
     >>> ax.set_xticklabels(labels=x_labels, rotation=45) # doctest: +SKIP
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.barh(
         y=y,
         width=width,
@@ -2543,7 +2265,7 @@ def plot_horizontal_bars(
         edgecolor=edgecolor,
         linewidth=linewidth,
         color=color,
-        left=left
+        left=left,
     )
     return (fig, ax)
 
@@ -2556,7 +2278,7 @@ def plot_vertical_bars(
     figsize: tuple[float, float] = None,
     edgecolor: str = colour_white,
     linewidth: int = 1,
-    color: str = colour_blue
+    color: str = colour_blue,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2601,18 +2323,14 @@ def plot_vertical_bars(
     ...     width=0.4
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.bar(
         x=x,
         height=height,
         width=width,
         edgecolor=edgecolor,
         linewidth=linewidth,
-        color=color
+        color=color,
     )
     plt.close("all")
     return (fig, ax)
@@ -2625,7 +2343,7 @@ def plot_pie(
     figsize: tuple[float, float] = None,
     startangle: float = 0,
     colors: list[str] = None,
-    autopct: str = "%1.1f%%"
+    autopct: str = "%1.1f%%",
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Parameters
@@ -2672,19 +2390,81 @@ def plot_pie(
     ...     ]
     ... )
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.pie(
         x=x,
         labels=labels,
         startangle=startangle,
         colors=colors,
-        autopct=autopct
+        autopct=autopct,
     )
     return (fig, ax)
+
+
+def waterfall(
+    *,
+    df: pd.DataFrame,
+    path_in: Path | str,
+    xticklabels_rotation: float = 45,
+    last_column: str = "NET",
+    ylim_min: float | None = None,
+    ylim_max: float | None = None,
+    positive_colour: str = "green",
+    negative_colour: str = "red",
+    first_bar_colour: str = "blue",
+    last_bar_colour: str = "blue",
+    grid_alpha: float = 0.2,
+    graph_format: str = "svg",
+    title: str = "Waterfall Chart",
+) -> pd.DataFrame:
+    """
+    TODO
+    """
+    xlabel = df.columns[0]
+    ylabel = df.columns[-1]
+    df = df.set_index(df.columns[0])
+    amount = df.columns[0]
+    df_blank = df[amount].cumsum().shift(1).fillna(0)
+    df_total = df.sum()[amount]
+    df.loc[last_column] = df_total
+    df_blank.loc[last_column] = df_total
+    # step is a Series
+    step = df_blank.reset_index(drop=True).repeat(3).shift(-1)
+    step[1::3] = np.nan
+    df_blank.loc[last_column] = 0
+    fig, ax = plt.subplots()
+    x = df.index  # bar positions
+    # create the waterfall chart, no need for a stacked argument
+    ax.bar(x=x, height=df[amount], width=0.4, bottom=df_blank)
+    ax.set_ylim(ylim_min, ylim_max)
+    # set bar colors based on values
+    for i, p in enumerate(ax.patches):
+        if df.iloc[i][amount] > 0:
+            p.set_facecolor(positive_colour)
+        else:
+            p.set_facecolor(negative_colour)
+    # Change color of the first and last bars
+    # ax.patches contains a list of bar objects in the plot
+    ax.patches[0].set_facecolor(first_bar_colour)
+    ax.patches[-1].set_facecolor(last_bar_colour)
+    ax.plot(step.index, step.values, "b", linewidth=0.5)
+    ax.tick_params(axis="x", labelsize=14, labelrotation=90)
+    ax.tick_params(axis="y", labelsize=14)
+    ax.grid(visible=True, which="major", axis="y", alpha=grid_alpha)
+    ax.set_ylabel(ylabel=ylabel, weight="bold", fontsize=16)
+    ax.set_xlabel(xlabel=xlabel, weight="bold", fontsize=16)
+    ax.set_title(label=title, weight="bold", fontsize=18)
+    despine(ax=ax)
+    mpla.setp(
+        obj=ax.get_xticklabels(),
+        rotation=xticklabels_rotation,
+        ha="right",
+        rotation_mode="anchor",
+    )
+    path_graph = path_in.with_suffix("." + graph_format)
+    fig.savefig(fname=path_graph, format=graph_format, bbox_inches="tight")
+    html_ds.html_figure(file_name=path_graph)
+    return df
 
 
 def plot_stacked_bars(
@@ -2707,9 +2487,14 @@ def plot_stacked_bars(
     width: float = 0.8,
     figsize: tuple[float, float] = None,
     color: [list[str]] = [
-        colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
-        colour_magenta, colour_grey
-    ]
+        colour_blue,
+        colour_cyan,
+        colour_teal,
+        colour_orange,
+        colour_red,
+        colour_magenta,
+        colour_grey,
+    ],
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Stacked vertical bar plot of up to seven levels per bar.
@@ -2818,18 +2603,8 @@ def plot_stacked_bars(
     ... )
     >>> fig.legend(frameon=False, loc="upper right") # doctest: +SKIP
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
-    ax.bar(
-        x=x,
-        height=height1,
-        label=label1,
-        width=width,
-        color=color[0]
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    ax.bar(x=x, height=height1, label=label1, width=width, color=color[0])
     if label2:
         ax.bar(
             x=x,
@@ -2837,67 +2612,57 @@ def plot_stacked_bars(
             label=label2,
             width=width,
             bottom=height1,
-            color=color[1]
+            color=color[1],
         )
     if label3:
-        bottom = np.add(
-                height1, height2
-        ).tolist()
+        bottom = np.add(height1, height2).tolist()
         ax.bar(
             x=x,
             height=height3,
             label=label3,
             width=width,
             bottom=bottom,
-            color=color[2]
+            color=color[2],
         )
     if label4:
-        bottom = np.add(
-            bottom, height3
-        ).tolist()
+        bottom = np.add(bottom, height3).tolist()
         ax.bar(
             x=x,
             height=height4,
             label=label4,
             width=width,
             bottom=bottom,
-            color=color[3]
+            color=color[3],
         )
     if label5:
-        bottom = np.add(
-            bottom, height4
-        ).tolist()
+        bottom = np.add(bottom, height4).tolist()
         ax.bar(
             x=x,
             height=height5,
             label=label5,
             width=width,
             bottom=bottom,
-            color=color[4]
+            color=color[4],
         )
     if label6:
-        bottom = np.add(
-            bottom, height5
-        ).tolist()
+        bottom = np.add(bottom, height5).tolist()
         ax.bar(
             x=x,
             height=height6,
             label=label6,
             width=width,
             bottom=bottom,
-            color=color[5]
+            color=color[5],
         )
     if label7:
-        bottom = np.add(
-            bottom, height6
-        ).tolist()
+        bottom = np.add(bottom, height6).tolist()
         ax.bar(
             x=x,
             height=height7,
             label=label7,
             width=width,
             bottom=bottom,
-            color=color[6]
+            color=color[6],
         )
     return (fig, ax)
 
@@ -2934,7 +2699,7 @@ def plot_boxplot(
     notch: bool = True,
     showmeans: bool = None,
     figsize: tuple[float, float] = None,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Create a box-and-whisker plot with several elements:
@@ -2976,23 +2741,15 @@ def plot_boxplot(
     Reference
     ---------
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1,
-        figsize=figsize
-    )
-    ax.boxplot(
-        x=series,
-        notch=notch,
-        showmeans=showmeans
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
+    ax.boxplot(x=series, notch=notch, showmeans=showmeans)
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
 
 
 def decimal_degrees(
-        degrees: int, minutes: int, seconds: float, hemisphere: str
+    degrees: int, minutes: int, seconds: float, hemisphere: str
 ) -> tuple[float, str]:
     """
     Convert degrees, minutes, seconds location to decimal location.
@@ -3182,7 +2939,7 @@ def empirical_cdf(
     marker: str = ".",
     markersize: float = 4,
     colour: str = colour_blue,
-    remove_spines: bool = True
+    remove_spines: bool = True,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Create an empirical cumulative distribution function.
@@ -3219,17 +2976,9 @@ def empirical_cdf(
     -----
     scipy is working on scipy.stats.ecdf post version 1.10.1
     """
-    x_data = np.sort(
-        a=s,
-        axis=-1,
-        kind=None,
-        order=None
-    )
+    x_data = np.sort(a=s, axis=-1, kind=None, order=None)
     y_data = np.arange(start=1, stop=len(x_data) + 1) / len(x_data)
-    fig, ax = plot_scatter_x_y(
-        X=x_data,
-        y=y_data
-    )
+    fig, ax = plot_scatter_x_y(X=x_data, y=y_data)
     ax.set_title(label="Empirical Cumulative Distribution Function")
     ax.set_ylabel("Fraction")
     return (fig, ax)
@@ -3247,7 +2996,7 @@ def plot_boxcox(
     ylabel: str = "Correlation Coefficient",
     remove_spines: bool = True,
     lmbda: float | int | None = None,
-    alpha: float = 0.05
+    alpha: float = 0.05,
 ) -> tuple[plt.Figure, axes.Axes]:
     """
     Box-Cox normality plot
@@ -3304,47 +3053,17 @@ def plot_boxcox(
     - https://www.itl.nist.gov/div898/handbook/eda/section3/eda336.htm
     - https://www.itl.nist.gov/div898/handbook/eda/section3/boxcox.htm
     """
-    fig, ax = plt.subplots(
-        nrows=1,
-        ncols=1
-    )
-    boxcox_normplot(
-        x=s,
-        la=la,
-        lb=lb,
-        plot=ax
-    )
-    ax.get_lines()[0].set(
-        color=colour1,
-        marker=marker,
-        markersize=markersize
-    )
+    fig, ax = plt.subplots(nrows=1, ncols=1)
+    boxcox_normplot(x=s, la=la, lb=lb, plot=ax)
+    ax.get_lines()[0].set(color=colour1, marker=marker, markersize=markersize)
     boxcox_array, lmax_mle, (min_ci, max_ci) = boxcox(
-        x=s,
-        lmbda=lmbda,
-        alpha=alpha,
-        optimizer=None
+        x=s, lmbda=lmbda, alpha=alpha, optimizer=None
     )
-    ax.axvline(
-        x=min_ci,
-        color=colour2,
-        label=f"min CI = {min_ci:7.3f}"
-    )
-    ax.axvline(
-        lmax_mle,
-        color=colour1,
-        label=f"λ      = {lmax_mle:7.3f}"
-    )
-    ax.axvline(
-        x=max_ci,
-        color=colour2,
-        label=f"max CI = {max_ci:7.3f}"
-    )
+    ax.axvline(x=min_ci, color=colour2, label=f"min CI = {min_ci:7.3f}")
+    ax.axvline(lmax_mle, color=colour1, label=f"λ      = {lmax_mle:7.3f}")
+    ax.axvline(x=max_ci, color=colour2, label=f"max CI = {max_ci:7.3f}")
     ax.set_ylabel(ylabel=ylabel)
-    ax.legend(
-        frameon=False,
-        prop={"family": "monospace", "size": 8}
-    )
+    ax.legend(frameon=False, prop={"family": "monospace", "size": 8})
     if remove_spines:
         despine(ax=ax)
     return (fig, ax)
@@ -3377,6 +3096,7 @@ __all__ = (
     "plot_line_y",
     "plot_pareto",
     "style_graph",
+    "waterfall",
     "plot_pie",
     "despine",
     "qr_code",
