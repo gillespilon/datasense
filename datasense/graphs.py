@@ -19,10 +19,10 @@ from datetime import datetime
 from pathlib import Path
 import math
 
+from scipy.stats import boxcox, boxcox_normplot, norm, probplot
+from datasense import natural_cubic_spline, html_ds
 from matplotlib.ticker import StrMethodFormatter
 from matplotlib.offsetbox import AnchoredText
-from datasense import natural_cubic_spline, html_ds
-from scipy.stats import boxcox, boxcox_normplot, norm, probplot
 from matplotlib import rcParams as rc
 import matplotlib.dates as mdates
 import matplotlib.artist as mpla
