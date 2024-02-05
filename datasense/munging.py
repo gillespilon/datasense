@@ -2132,6 +2132,7 @@ def ask_open_file_name_path(
     ... ) # doctest: +SKIP
     """
     rootwindow = Tk()
+    rootwindow.withdraw()  # Hide the main window
     path = filedialog.askopenfilename(
         parent=rootwindow,
         title=title,
