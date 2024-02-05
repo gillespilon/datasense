@@ -234,7 +234,9 @@ def html_figure(
 <figcaption>../tests/my graph file caption</figcaption>\
 </figure><pre style="white-space: pre-wrap;">
     """
-    if caption is None:
+    if not caption:
+        caption = ""
+    else:
         caption = file_name
     print(
         '</pre>'
