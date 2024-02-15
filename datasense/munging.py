@@ -2426,6 +2426,8 @@ def list_one_list_two_ops(
     - Items unique to list_two
     - Items common to both lists (intersection)
 
+    Duplicate items are not removed.
+
     Parameters
     ----------
     list_one : list[str] | list[int] | list[float]
@@ -2480,11 +2482,11 @@ def list_one_list_two_ops(
     """
     match action:
         case "list_one":
-            list_result = list(set(list_one).difference(list_two))
+            list_result = [item for item in list_one if item not in list_two]
         case "list_two":
-            list_result = list(set(list_two).difference(list_one))
+            list_result = [item for item in list_two if item not in list_one]
         case "intersection":
-            list_result = list(set(list_one).intersection(list_two))
+            list_result = [item for item in list_one if item in list_two]
         case _:
             print(
                 'Error. Enter "list_one", "list_two", or "intersection" '
