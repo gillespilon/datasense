@@ -671,6 +671,7 @@ def save_file(
     index: bool = False,
     index_label: str = None,
     sheet_name: str = 'sheet_001',
+    encoding: str = "utf-8"
 ) -> None:
     """
     Save a DataFrame or Series to a file.
@@ -687,6 +688,8 @@ def save_file(
         The index label.
     sheet_name : str = 'sheet_001'
         The name of the worksheet in the workbook.
+    encoding : str = "utf-8"
+        Encoding to use for UTF when writing.
 
     Examples
     --------
@@ -744,7 +747,8 @@ def save_file(
         df.to_csv(
             path_or_buf=file_name,
             index=index,
-            index_label=index_label
+            index_label=index_label,
+            encoding=encoding,
         )
     elif file_name.suffix in ['.ods', '.ODS']:
         excel_writer = pd.ExcelWriter(
