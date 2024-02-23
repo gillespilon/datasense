@@ -66,53 +66,56 @@ This is built into the docstrings of the functions. These can be easily accessed
 
 ## automation.py
 
-TBD
+Functions to automate things in daily life.
 
 ## control_charts.py
 
-TBD
+Create X, mR, Xbar, R control charts
+Invoke Shewhart rules 1, 2, 3, 4
 
 ## graphs.py
 
-TBD
+Many graphs to simplify the use of matplotlib.
 
 ## html_ds.py
 
-TBD
+HTML and report functions.
+
 
 ## msa.py
 
-TBD
+Honest MSA reports on pandas DataFrames. This module is incomplete.
 
 ## munging.py
 
-TBD
+Many functions to munge data.
+
 ## pyxl.py
 
-
-TBD
+Many functions to simplify the use of openpyxl.
 
 ## rgx.py
 
-TBD
+Functions for specific applications of regex.
 
 ## sequel.py
 
-TBD
+Functions for specific applications to SQL.
 
 ## stats.py
 
-TBD
+Many functions for statistical analysis.
 
 # Example scripts
 
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
-- [XmR control charts](#xmr-control-charts)
-- [XbarR control charts](#xbarr-control-charts)
-- [Cubic spline for Y vs X line plot](#cubic-spline-for-y-vs-x-line-plot)
-- [Exponentially weighted average for Y vs X line plot](#exponentially-weighted-average-for-y-vs-x-line-plot)
-- [Piecewise natural cubic spline](#piecewise-natural-cubic-spline)
+- [XmR control charts](x_mr_control_charts.py)
+- [XbarR control charts](xbar_r_control_charts.py)
+- [Cubic spline for Y vs X line plot](cubic_spline.py)
+- [Exponentially weighted average for Y vs X line plot](exponentially_weighted_average_example.py)
+- [Piecewise natural cubic spline](scripts/piecewise_natural_cubic_spline.py)
+- [Y1, Y2 vs X line charts with separate Y axes](plot_lineleft_lineright_x_y1_y2.py)
 
 # Example graphs
 
@@ -134,6 +137,8 @@ In the [scripts](scripts/) directory, there are example scripts and data files.
 
 ![Piecewise natural cubic spline](scripts/spline_piecewise_natural_cubic_spline_TARGET_FEATURE_30.svg)
 
+![Y1, Y2 vs X line charts with separate Y axes](scripts/plot_lineleft_lineright_x_y1_y2.svg)
+
 # References
 
 To cite this repository, please use:
@@ -143,5 +148,5 @@ To cite this repository, please use:
   title       = {datasense},
   url         = {https://github.com/gillespilon/datasense},
   version     = {0.2},
-  date        = {2024-01-11}
+  date        = {2024-02-23}
 }
