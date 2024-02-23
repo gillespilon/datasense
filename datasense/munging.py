@@ -809,7 +809,8 @@ def read_file(
     sort_columns_bool: list[bool] = [],
     sheet_name: str = False,
     nrows: int | None = None,
-    skip_blank_lines: bool = True
+    skip_blank_lines: bool = True,
+    encoding: str = "utf-8"
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -863,6 +864,8 @@ def read_file(
         The number of rows to read.
     skip_blank_lines : bool = True
         If True, skip over blank lines rather than interpreting as NaN values.
+    encoding : str = "utf-8"
+        Encoding to use for UTF when reading.
 
 
     Returns
@@ -1132,7 +1135,8 @@ def read_file(
             parse_dates=parse_dates,
             date_parser=date_parser,
             nrows=nrows,
-            skip_blank_lines=skip_blank_lines
+            skip_blank_lines=skip_blank_lines,
+            encoding=encoding
         )
     elif file_name.suffix in ['.ods', '.ODS']:
         df = pd.read_excel(
@@ -2425,8 +2429,7 @@ def list_one_list_two_ops(
     - Items unique to list_one
     - Items unique to list_two
     - Items common to both lists (intersection)
-
-    Duplicate items are not removed.
+    Duplicate items are removed.
 
     Parameters
     ----------
