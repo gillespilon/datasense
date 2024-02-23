@@ -1548,6 +1548,9 @@ def plot_lineleft_lineright_x_y1_y2(
     marker1size: float = 8,
     marker2: str = ".",
     marker2size: float = 8,
+    labellegendy1: str = None,
+    labellegendy2: str = None,
+    xticklabels_rotation = None,
 ) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Line plot of y1 left vertical axis versus X.
@@ -1593,6 +1596,10 @@ def plot_lineleft_lineright_x_y1_y2(
         The type of plot point for y2.
     markersize2 : int = 8
         The size of the plot point for y2 (pt).
+    labellegendy1 : str = None
+        The legend label of the line y1.
+    labellegendy2 : str = None
+        The legend label of the line y2.
 
     Returns
     -------
@@ -1649,8 +1656,8 @@ def plot_lineleft_lineright_x_y1_y2(
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
             format_dates(fig=fig, ax=ax1)
-        ax1.plot(X, y1, color=colour1, marker=marker1, markersize=marker1size)
-        ax2.plot(X, y2, color=colour2, marker=marker2, markersize=marker2size)
+        ax1.plot(X, y1, color=colour1, marker=marker1, markersize=marker1size, label=labellegendy1)
+        ax2.plot(X, y2, color=colour2, marker=marker2, markersize=marker2size, label=labellegendy2)
     elif smoothing == "natural_cubic_spline":
         if X.dtype in ["datetime64[ns]"]:
             XX = pd.to_numeric(X)
@@ -1665,6 +1672,12 @@ def plot_lineleft_lineright_x_y1_y2(
         tl.set_color(colour1)
     for tl in ax2.get_yticklabels():
         tl.set_color(colour2)
+    mpla.setp(
+        obj=ax1.get_xticklabels(),
+        rotation=xticklabels_rotation,
+        ha="right",
+        rotation_mode="anchor",
+    )
     plt.close("all")
     return (fig, ax1, ax2)
 
