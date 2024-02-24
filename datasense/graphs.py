@@ -1551,6 +1551,7 @@ def plot_lineleft_lineright_x_y1_y2(
     labellegendy1: str = None,
     labellegendy2: str = None,
     xticklabels_rotation = None,
+    defaultfmt = "%Y-%m-%d",
 ) -> tuple[plt.Figure, axes.Axes, axes.Axes]:
     """
     Line plot of y1 left vertical axis versus X.
@@ -1655,7 +1656,7 @@ def plot_lineleft_lineright_x_y1_y2(
     ax2 = ax1.twinx()
     if smoothing is None:
         if X.dtype in ["datetime64[ns]"]:
-            format_dates(fig=fig, ax=ax1)
+            format_dates(fig=fig, ax=ax1, defaultfmt=defaultfmt)
         ax1.plot(X, y1, color=colour1, marker=marker1, markersize=marker1size, label=labellegendy1)
         ax2.plot(X, y2, color=colour2, marker=marker2, markersize=marker2size, label=labellegendy2)
     elif smoothing == "natural_cubic_spline":
@@ -1857,7 +1858,7 @@ def plot_pareto(
     return (fig, ax1, ax2)
 
 
-def format_dates(*, fig: plt.Figure, ax: axes.Axes) -> None:
+def format_dates(*, fig: plt.Figure, ax: axes.Axes, defaultfmt: str = "%Y-%m-%d") -> None:
     """
     Format dates and ticks for plotting.
 
@@ -1867,6 +1868,7 @@ def format_dates(*, fig: plt.Figure, ax: axes.Axes) -> None:
         A matplotlib figure.
     ax : axes.Axes
         A matplotlib Axes.
+    defaultfmt : str = "%Y-%m-%d"
 
     Example
     -------
@@ -1880,7 +1882,7 @@ def format_dates(*, fig: plt.Figure, ax: axes.Axes) -> None:
     ... )
     """
     loc = mdates.AutoDateLocator()
-    fmt = mdates.AutoDateFormatter(locator=loc)
+    fmt = mdates.AutoDateFormatter(locator=loc, defaultfmt=defaultfmt)
     ax.xaxis.set_major_locator(locator=loc)
     ax.xaxis.set_major_formatter(formatter=fmt)
     fig.autofmt_xdate()
