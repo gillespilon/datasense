@@ -148,7 +148,91 @@ def test_find_datetime_columns():
 
 
 def test_list_one_list_two_ops():
-    pass
+    """
+    Create a list of items comparing two lists:
+    - Items unique to list_one
+    - Items unique to list_two
+    - Items common to both lists (intersection)
+    Duplicate items are not removed.
+    """
+    list_one = [1, 2, 3, 4, 5, 6]
+    list_two = [4, 5, 6, 7, 8, 9]
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_one"
+    )
+    expected = [1, 2, 3]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_two"
+    )
+    expected = [7, 8, 9]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="intersection"
+    )
+    expected = [4, 5, 6]
+    assert result == expected
+    list_one = ["mo", "larry", "curly", "curly-joe", "shemp"]
+    list_two = ["curly-joe", "shemp", "tom", "dick", "harry"]
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_one"
+    )
+    expected = ["mo", "larry", "curly"]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_two"
+    )
+    expected = ["tom", "dick", "harry"]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="intersection"
+    )
+    expected = ["curly-joe", "shemp"]
+    assert result == expected
+    list_one = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    list_two = [4.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_one"
+    )
+    expected = [1.0, 2.0, 3.0]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_two"
+    )
+    expected = [7.0, 8.0, 9.0]
+    assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="intersection"
+    )
+    expected = [4.0, 5.0, 6.0]
+    assert result == expected
+    # list_one = [1, 2, 3.0, 4.0, 5, "mo", "larry", "curly-joe"]
+    # list_two = [2, 3, 4.0, 5.0, 6.0, "mo", "larry", "shemp"]
+    # result = ds.list_one_list_two_ops(
+    #     list_one=list_one,
+    #     list_two=list_two,
+    #     action="list_one"
+    # )
+    # expected = [1, 3.0, 5, "curly-joe"]
+    # assert result == expected
 
 
 def test_series_replace_string():
