@@ -21,10 +21,7 @@ import numpy as np
 
 
 def dataframe_info(
-    *,
-    df: pd.DataFrame,
-    file_in: Path | str,
-    unique_bool: bool = False
+    *, df: pd.DataFrame, file_in: Path | str, unique_bool: bool = False
 ) -> pd.DataFrame:
     """
     Describe a DataFrame.
@@ -90,65 +87,75 @@ def dataframe_info(
     ... ) # doctest: +SKIP
     """
     df, rows_in_count, rows_out_count, rows_empty_count = process_rows(df=df)
-    df, columns_in_count, columns_non_empty_count, columns_empty_count, \
-        columns_empty_list, columns_non_empty_list, columns_bool_list, \
-        columns_bool_count, \
-        columns_float_list, columns_float_count, \
-        columns_integer_list, columns_integer_count, columns_datetime_list, \
-        columns_datetime_count, columns_object_list, columns_object_count, \
-        columns_category_list, columns_category_count, \
-        columns_timedelta_list, columns_timedelta_count \
-        = process_columns(df=df)
-    print('==========================')
-    print(f'DataFrame information for: {file_in}')
+    (
+        df,
+        columns_in_count,
+        columns_non_empty_count,
+        columns_empty_count,
+        columns_empty_list,
+        columns_non_empty_list,
+        columns_bool_list,
+        columns_bool_count,
+        columns_float_list,
+        columns_float_count,
+        columns_integer_list,
+        columns_integer_count,
+        columns_datetime_list,
+        columns_datetime_count,
+        columns_object_list,
+        columns_object_count,
+        columns_category_list,
+        columns_category_count,
+        columns_timedelta_list,
+        columns_timedelta_count,
+    ) = process_columns(df=df)
+    print("==========================")
+    print(f"DataFrame information for: {file_in}")
     print()
-    print(f'Rows total        : {rows_in_count}')
-    print(f'Rows empty        : {rows_empty_count} (deleted)')
-    print(f'Rows not empty    : {rows_out_count}')
-    print(f'Columns total     : {columns_in_count}')
-    print(f'Columns empty     : {columns_empty_count} (deleted)')
-    print(f'Columns not empty : {columns_non_empty_count}')
+    print(f"Rows total        : {rows_in_count}")
+    print(f"Rows empty        : {rows_empty_count} (deleted)")
+    print(f"Rows not empty    : {rows_out_count}")
+    print(f"Columns total     : {columns_in_count}")
+    print(f"Columns empty     : {columns_empty_count} (deleted)")
+    print(f"Columns not empty : {columns_non_empty_count}")
     print()
     number_empty_cells_in_columns(df=df)
-    print(f'List of {columns_non_empty_count} non-empty columns:')
+    print(f"List of {columns_non_empty_count} non-empty columns:")
     print_list_by_item(list_to_print=columns_non_empty_list)
     print()
-    print(f'List of {columns_bool_count} bool columns:')
+    print(f"List of {columns_bool_count} bool columns:")
     print_list_by_item(list_to_print=columns_bool_list)
     print()
-    print(f'List of {columns_category_count} category columns:')
+    print(f"List of {columns_category_count} category columns:")
     print_list_by_item(list_to_print=columns_category_list)
     print()
-    print(f'List of {columns_datetime_count} datetime columns:')
+    print(f"List of {columns_datetime_count} datetime columns:")
     print_list_by_item(list_to_print=columns_datetime_list)
     print()
-    print(f'List of {columns_float_count} float columns:')
+    print(f"List of {columns_float_count} float columns:")
     print_list_by_item(list_to_print=columns_float_list)
     print()
-    print(f'List of {columns_integer_count} integer columns:')
+    print(f"List of {columns_integer_count} integer columns:")
     print_list_by_item(list_to_print=columns_integer_list)
     print()
-    print(f'List of {columns_object_count} string columns:')
+    print(f"List of {columns_object_count} string columns:")
     print_list_by_item(list_to_print=columns_object_list)
     print()
-    print(f'List of {columns_timedelta_count} timedelta columns:')
+    print(f"List of {columns_timedelta_count} timedelta columns:")
     print_list_by_item(list_to_print=columns_timedelta_list)
     print()
-    print(f'List of {columns_empty_count} empty columns:')
+    print(f"List of {columns_empty_count} empty columns:")
     print_list_by_item(list_to_print=columns_empty_list)
     print()
     if unique_bool:
         for column in columns_non_empty_list:
-            print('column:', column)
+            print("column:", column)
             print(df[column].unique())
             print()
     return df
 
 
-def find_bool_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_bool_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Create a list of boolean column names of a DataFrame.
 
@@ -170,14 +177,11 @@ def find_bool_columns(
     >>> columns_bool
     ['b', 'bn']
     """
-    columns_bool = list(df.select_dtypes(include=['bool', 'boolean']).columns)
+    columns_bool = list(df.select_dtypes(include=["bool", "boolean"]).columns)
     return columns_bool
 
 
-def find_category_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_category_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Create list of category column names of a DataFrame.
 
@@ -199,14 +203,11 @@ def find_category_columns(
     >>> columns_category
     ['c', 'cs']
     """
-    columns_category = list(df.select_dtypes(include=['category']).columns)
+    columns_category = list(df.select_dtypes(include=["category"]).columns)
     return columns_category
 
 
-def find_datetime_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_datetime_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all datetime columns of a DataFrame.
 
@@ -228,14 +229,11 @@ def find_datetime_columns(
     >>> columns_datetime
     ['t', 'u']
     """
-    datetime_columns = list(df.select_dtypes(include=['datetime64']).columns)
+    datetime_columns = list(df.select_dtypes(include=["datetime64"]).columns)
     return datetime_columns
 
 
-def find_float_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_float_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all float columns of a DataFrame.
 
@@ -257,14 +255,11 @@ def find_float_columns(
     >>> columns_float
     ['a', 'x', 'z']
     """
-    float_columns = df.select_dtypes(include=['float64']).columns.tolist()
+    float_columns = df.select_dtypes(include=["float64"]).columns.tolist()
     return float_columns
 
 
-def find_integer_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_integer_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all integer columns of a DataFrame.
 
@@ -286,16 +281,13 @@ def find_integer_columns(
     >>> columns_int
     ['i', 'y', 'yn']
     """
-    integer_columns = (
-        df.select_dtypes(include=['int64', 'Int64']).columns.tolist()
-    )
+    integer_columns = df.select_dtypes(
+        include=["int64", "Int64"]
+    ).columns.tolist()
     return integer_columns
 
 
-def find_int_float_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_int_float_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all integer and float columns of a DataFrame.
 
@@ -318,15 +310,12 @@ def find_int_float_columns(
     ['a', 'i', 'x', 'y', 'yn', 'z']
     """
     columns_int_float = list(
-        df.select_dtypes(include=['int64', 'float64']).columns
+        df.select_dtypes(include=["int64", "float64"]).columns
     )
     return columns_int_float
 
 
-def find_object_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_object_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all object columns of a DataFrame.
 
@@ -348,14 +337,11 @@ def find_object_columns(
     >>> columns_object
     ['r', 's']
     """
-    object_columns = df.select_dtypes(include=['object']).columns.tolist()
+    object_columns = df.select_dtypes(include=["object"]).columns.tolist()
     return object_columns
 
 
-def find_timedelta_columns(
-    *,
-    df: pd.DataFrame
-) -> list[str]:
+def find_timedelta_columns(*, df: pd.DataFrame) -> list[str]:
     """
     Find all timedelta columns of a DataFrame.
 
@@ -377,14 +363,11 @@ def find_timedelta_columns(
     >>> columns_timedelta
     ['d']
     """
-    columns_timedelta = list(df.select_dtypes(include=['timedelta']).columns)
+    columns_timedelta = list(df.select_dtypes(include=["timedelta"]).columns)
     return columns_timedelta
 
 
-def number_empty_cells_in_columns(
-    *,
-    df: pd.DataFrame
-) -> None:
+def number_empty_cells_in_columns(*, df: pd.DataFrame) -> None:
     """
     Create and print a table of data type, empty-cell count, and empty-all
     percentage for non-empty columns of a DataFrame.
@@ -412,19 +395,20 @@ def number_empty_cells_in_columns(
      Y        float64                    2           40.0        3
      Z        object                     1           20.0        4
     """
-    print('Information about non-empty columns')
+    print("Information about non-empty columns")
     table = BeautifulTable(maxwidth=90)
     table.set_style(BeautifulTable.STYLE_COMPACT)
     column_alignments = {
-        'Column': BeautifulTable.ALIGN_LEFT,
-        'Data type': BeautifulTable.ALIGN_LEFT,
-        'Empty cell count': BeautifulTable.ALIGN_RIGHT,
-        'Empty cell %': BeautifulTable.ALIGN_RIGHT,
-        'Unique': BeautifulTable.ALIGN_RIGHT,
+        "Column": BeautifulTable.ALIGN_LEFT,
+        "Data type": BeautifulTable.ALIGN_LEFT,
+        "Empty cell count": BeautifulTable.ALIGN_RIGHT,
+        "Empty cell %": BeautifulTable.ALIGN_RIGHT,
+        "Unique": BeautifulTable.ALIGN_RIGHT,
     }
     table.columns.header = list(column_alignments.keys())
-    for item, (_column_name, alignment) in\
-            enumerate(column_alignments.items()):
+    for item, (_column_name, alignment) in enumerate(
+        column_alignments.items()
+    ):
         table.columns.alignment[item] = alignment
     num_rows = df.shape[0]
     for column_name in df:
@@ -432,20 +416,21 @@ def number_empty_cells_in_columns(
             sum_nan = sum(pd.isna(df[column_name]))
             percent_nan = round(sum_nan / num_rows * 100, 1)
             table.rows.append(
-                [column_name,
-                 df[column_name].dtype,
-                 sum_nan,
-                 percent_nan,
-                 df[column_name].nunique()]
+                [
+                    column_name,
+                    df[column_name].dtype,
+                    sum_nan,
+                    percent_nan,
+                    df[column_name].nunique(),
+                ]
             )
         except KeyError:
-            print('Error on column:', column_name)
+            print("Error on column:", column_name)
     print(table)
 
 
 def process_columns(
-    *,
-    df: pd.DataFrame
+    *, df: pd.DataFrame
 ) -> tuple[
     pd.DataFrame,
     int,
@@ -577,10 +562,13 @@ def process_columns(
     columns_timedelta_list : ['d']
     columns_timedelta_count: 1
     """
-    columns_empty_list = sorted({
-        column_name for column_name in df.columns
-        if df[column_name].isna().all()
-    })
+    columns_empty_list = sorted(
+        {
+            column_name
+            for column_name in df.columns
+            if df[column_name].isna().all()
+        }
+    )
     columns_in_count = len(df.columns)
     columns_empty_count = len(columns_empty_list)
     columns_non_empty_count = columns_in_count - columns_empty_count
@@ -588,10 +576,7 @@ def process_columns(
     #     labels=columns_empty_list,
     #     axis="columns"
     # )
-    df = delete_empty_columns(
-        df=df,
-        list_empty_columns=columns_empty_list
-    )
+    df = delete_empty_columns(df=df, list_empty_columns=columns_empty_list)
     # ensure all column labels are strings
     df.columns = [str(column) for column in df.columns]
     columns_non_empty_list = sorted(df.columns)
@@ -610,22 +595,30 @@ def process_columns(
     columns_timedelta_list = find_timedelta_columns(df=df)
     columns_timedelta_count = len(columns_timedelta_list)
     return (
-        df, columns_in_count, columns_non_empty_count,
-        columns_empty_count, columns_empty_list, columns_non_empty_list,
-        columns_bool_list, columns_bool_count,
-        columns_float_list, columns_float_count,
-        columns_integer_list, columns_integer_count,
-        columns_datetime_list, columns_datetime_count,
-        columns_object_list, columns_object_count,
-        columns_category_list, columns_category_count,
-        columns_timedelta_list, columns_timedelta_count
+        df,
+        columns_in_count,
+        columns_non_empty_count,
+        columns_empty_count,
+        columns_empty_list,
+        columns_non_empty_list,
+        columns_bool_list,
+        columns_bool_count,
+        columns_float_list,
+        columns_float_count,
+        columns_integer_list,
+        columns_integer_count,
+        columns_datetime_list,
+        columns_datetime_count,
+        columns_object_list,
+        columns_object_count,
+        columns_category_list,
+        columns_category_count,
+        columns_timedelta_list,
+        columns_timedelta_count,
     )
 
 
-def process_rows(
-    *,
-    df: pd.DataFrame
-) -> tuple[pd.DataFrame, int, int, int]:
+def process_rows(*, df: pd.DataFrame) -> tuple[pd.DataFrame, int, int, int]:
     """
     Return a DataFrame without duplicate rows.
 
@@ -670,8 +663,8 @@ def save_file(
     file_name: str | Path,
     index: bool = False,
     index_label: str = None,
-    sheet_name: str = 'sheet_001',
-    encoding: str = "utf-8"
+    sheet_name: str = "sheet_001",
+    encoding: str = "utf-8",
 ) -> None:
     """
     Save a DataFrame or Series to a file.
@@ -743,33 +736,33 @@ def save_file(
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
-    if file_name.suffix in ['.csv', '.CSV']:
+    if file_name.suffix in [".csv", ".CSV"]:
         df.to_csv(
             path_or_buf=file_name,
             index=index,
             index_label=index_label,
             encoding=encoding,
         )
-    elif file_name.suffix in ['.ods', '.ODS']:
+    elif file_name.suffix in [".ods", ".ODS"]:
         excel_writer = pd.ExcelWriter(
             path=file_name,
-            engine='odf',
+            engine="odf",
         )
         df.to_excel(
             excel_writer=excel_writer,
             sheet_name=sheet_name,
             index=index,
-            index_label=index_label
+            index_label=index_label,
         )
         excel_writer.close()
-    elif file_name.suffix in ['.xlsx', '.XLSX']:
+    elif file_name.suffix in [".xlsx", ".XLSX"]:
         excel_writer = pd.ExcelWriter(file_name)
         df.to_excel(
             excel_writer=excel_writer,
             sheet_name=sheet_name,
-            engine='openpyxl',
+            engine="openpyxl",
             index=index,
-            index_label=index_label
+            index_label=index_label,
         )
         excel_writer.close()
     # Removed xlsb XLSB support because Arch Linux does not support
@@ -783,11 +776,8 @@ def save_file(
     #         index_label=index_label
     #     )
     #     excel_writer.save()
-    elif file_name.suffix in ['.feather']:
-        ft.write_feather(
-            df=df,
-            dest=file_name
-        )
+    elif file_name.suffix in [".feather"]:
+        ft.write_feather(df=df, dest=file_name)
 
 
 def read_file(
@@ -814,7 +804,7 @@ def read_file(
     sheet_name: str = False,
     nrows: int | None = None,
     skip_blank_lines: bool = True,
-    encoding: str = "utf-8"
+    encoding: str = "utf-8",
 ) -> pd.DataFrame:
     """
     Create a DataFrame from an external file.
@@ -1129,7 +1119,7 @@ def read_file(
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
-    if file_name.suffix in ['.csv', '.CSV']:
+    if file_name.suffix in [".csv", ".CSV"]:
         df = pd.read_csv(
             file_name,
             skiprows=skiprows,
@@ -1140,27 +1130,27 @@ def read_file(
             date_parser=date_parser,
             nrows=nrows,
             skip_blank_lines=skip_blank_lines,
-            encoding=encoding
+            encoding=encoding,
         )
-    elif file_name.suffix in ['.ods', '.ODS']:
+    elif file_name.suffix in [".ods", ".ODS"]:
         df = pd.read_excel(
             io=file_name,
             skiprows=skiprows,
             usecols=usecols,
             dtype=dtype,
-            engine='odf',
+            engine="odf",
             sheet_name=sheet_name,
             parse_dates=parse_dates,
-            date_parser=date_parser
+            date_parser=date_parser,
         )
-    elif file_name.suffix in ['.xlsx', '.XLSX', '.xlsm', '.XLSM']:
+    elif file_name.suffix in [".xlsx", ".XLSX", ".xlsm", ".XLSM"]:
         df = pd.read_excel(
             io=file_name,
             sheet_name=sheet_name,
             header=header,
             usecols=usecols,
             dtype=dtype,
-            engine='openpyxl',
+            engine="openpyxl",
             skiprows=skiprows,
             nrows=nrows,
             parse_dates=parse_dates,
@@ -1180,16 +1170,10 @@ def read_file(
     #         parse_dates=parse_dates,
     #         date_parser=date_parser,
     #     )
-    elif file_name.suffix in ['.feather']:
-        df = ft.read_feather(
-            source=file_name,
-            columns=usecols
-        )
+    elif file_name.suffix in [".feather"]:
+        df = ft.read_feather(source=file_name, columns=usecols)
     if column_names_dict:
-        df = rename_some_columns(
-            df=df,
-            column_names_dict=column_names_dict
-        )
+        df = rename_some_columns(df=df, column_names_dict=column_names_dict)
     if index_columns:
         df = df.set_index(index_columns)
     for column in category_columns:
@@ -1197,28 +1181,24 @@ def read_file(
     for column in time_delta_columns:
         df[column] = pd.to_timedelta(df[column])
     for column in integer_columns:
-        df[column] = df[column].astype(dtype='int64')
+        df[column] = df[column].astype(dtype="int64")
     for column in float_columns:
-        df[column] = df[column].astype(dtype='float64')
+        df[column] = df[column].astype(dtype="float64")
     for column in boolean_columns:
-        df[column] = df[column].astype(dtype='bool')
+        df[column] = df[column].astype(dtype="bool")
     for column in object_columns:
-        df[column] = df[column].astype(dtype='object')
+        df[column] = df[column].astype(dtype="object")
     if sort_columns and sort_columns_bool:
         df = sort_rows(
             df=df,
             sort_columns=sort_columns,
             sort_columns_bool=sort_columns_bool,
-            kind='mergesort'
+            kind="mergesort",
         )
     return df
 
 
-def byte_size(
-    *,
-    num: np.int64,
-    suffix: str = 'B'
-) -> str:
+def byte_size(*, num: np.int64, suffix: str = "B") -> str:
     """
     Convert bytes to requested units.
 
@@ -1245,19 +1225,16 @@ def byte_size(
     ... )
     4.2 KiB
     """
-    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+    for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(num) < 1024.0:
             return "%3.1f %s%s" % (num, unit, suffix)
         num /= 1024.0
-    memory_usage = "%.1f %s%s" % (num, 'Yi', suffix)
+    memory_usage = "%.1f %s%s" % (num, "Yi", suffix)
     return memory_usage
 
 
 def feature_percent_empty(
-    *,
-    df: pd.DataFrame,
-    columns: list[str],
-    threshold: float
+    *, df: pd.DataFrame, columns: list[str], threshold: float
 ) -> list[str]:
     """
     Remove features that have NaN > threshold.
@@ -1286,15 +1263,16 @@ def feature_percent_empty(
     ... ) # doctest: +SKIP
     """
     num_rows = df.shape[0]
-    list_columns = [col for col in columns if
-                    ((df[col].isna().sum() / num_rows * 100) <= threshold)]
+    list_columns = [
+        col
+        for col in columns
+        if ((df[col].isna().sum() / num_rows * 100) <= threshold)
+    ]
     return list_columns
 
 
 def create_directory(
-    *,
-    directories: list[str],
-    ignore_errors: bool = True
+    *, directories: list[str], ignore_errors: bool = True
 ) -> None:
     """
     Create empty directories for a path.
@@ -1320,9 +1298,7 @@ def create_directory(
 
 
 def delete_directory(
-    *,
-    directories: list[str],
-    ignore_errors: bool = True
+    *, directories: list[str], ignore_errors: bool = True
 ) -> None:
     """
     Delete a list of directories.
@@ -1346,10 +1322,7 @@ def delete_directory(
 
 
 def rename_directory(
-    *,
-    sources: list[str],
-    destinations: list[str],
-    ignore_errors: bool = True
+    *, sources: list[str], destinations: list[str], ignore_errors: bool = True
 ) -> None:
     """
     Delete destination directories (if present) and rename source directories
@@ -1381,7 +1354,7 @@ def copy_directory(
     *,
     sources: Path | str,
     destinations: Path | str,
-    ignore_errors: bool = True
+    ignore_errors: bool = True,
 ) -> None:
     """
     Delete destination directories (if present) and copy source directories
@@ -1408,10 +1381,7 @@ def copy_directory(
     """
     for source, destination in zip(sources, destinations):
         rmtree(path=destination, ignore_errors=ignore_errors)
-        copytree(
-            src=source,
-            dst=destination
-        )
+        copytree(src=source, dst=destination)
 
 
 def replace_text_numbers(
@@ -1420,7 +1390,7 @@ def replace_text_numbers(
     columns: list[str] | list[int] | list[float] | list[Pattern[str]],
     old: list[str] | list[int] | list[float] | list[Pattern[str]],
     new: list[int],
-    regex: bool = True
+    regex: bool = True,
 ) -> pd.DataFrame:
     """
     Replace text or numbers with text or numbers.
@@ -1505,17 +1475,13 @@ def replace_text_numbers(
     dfnew = df.copy(deep=True)
     for column in columns:
         dfnew[column] = dfnew[column].replace(
-            to_replace=old,
-            value=new,
-            regex=regex
+            to_replace=old, value=new, regex=regex
         )
     return dfnew
 
 
 def create_dataframe(
-    *,
-    size: int = 42,
-    fraction_nan: float = 0.13
+    *, size: int = 42, fraction_nan: float = 0.13
 ) -> pd.DataFrame:
     # TODO: why did I create distribution "u"?
     """
@@ -1557,63 +1523,35 @@ def create_dataframe(
     """
     df = pd.DataFrame(
         {
-            'a': random_data(
-                distribution='uniform',
+            "a": random_data(
+                distribution="uniform", size=size, loc=13, scale=70
+            ),
+            "b": random_data(distribution="bool", size=size),
+            "bn": random_data(distribution="boolean", size=size),
+            "c": random_data(
+                distribution="category",
                 size=size,
-                loc=13,
-                scale=70
+                categories=["blue", "white", "red"],
             ),
-            'b': random_data(
-                distribution='bool',
-                size=size
-            ),
-            'bn': random_data(
-                distribution='boolean',
-                size=size
-            ),
-            'c': random_data(
-                distribution='category',
+            "cs": random_data(
+                distribution="categories",
                 size=size,
-                categories=['blue', 'white', 'red']
+                categories=["small", "medium", "large"],
             ),
-            'cs': random_data(
-                distribution='categories',
-                size=size,
-                categories=['small', 'medium', 'large']
+            "d": timedelta_data(time_delta_days=size - 1),
+            "i": random_data(distribution="randint", size=size),
+            "r": random_data(
+                distribution="strings", strings=["0", "1"], size=size
             ),
-            'd': timedelta_data(time_delta_days=size-1),
-            'i': random_data(
-                distribution='randint',
-                size=size
+            "s": random_data(distribution="strings", size=size),
+            "t": datetime_data(time_delta_days=size - 1),
+            "u": datetime_data(time_delta_days=size - 1),
+            "x": random_data(distribution="norm", size=size),
+            "y": random_data(distribution="randint", size=size),
+            "yn": random_data(
+                distribution="randInt", size=size, fraction_nan=fraction_nan
             ),
-            'r': random_data(
-                distribution='strings',
-                strings=['0', '1'],
-                size=size
-            ),
-            's': random_data(
-                distribution='strings',
-                size=size
-                ),
-            't': datetime_data(time_delta_days=size-1),
-            'u': datetime_data(time_delta_days=size-1),
-            'x': random_data(
-                distribution='norm',
-                size=size
-            ),
-            'y': random_data(
-                distribution='randint',
-                size=size
-            ),
-            'yn': random_data(
-                distribution='randInt',
-                size=size,
-                fraction_nan=fraction_nan
-            ),
-            'z': random_data(
-                distribution='uniform',
-                size=size
-            )
+            "z": random_data(distribution="uniform", size=size),
         }
     )
     return df
@@ -1626,7 +1564,7 @@ def create_dataframe_norm(
     loc: float = 69,
     scale: float = 13,
     random_state: int = None,
-    column_names: list[str] = None
+    column_names: list[str] = None,
 ) -> pd.DataFrame:
     """
     Create DataFrame of random normal data.
@@ -1674,15 +1612,15 @@ def create_dataframe_norm(
     ... )
     """
     if not column_names:
-        column_names = [f'col{item}' for item in range(column_count)]
+        column_names = [f"col{item}" for item in range(column_count)]
     df = pd.DataFrame(
         norm.rvs(
             size=(row_count, column_count),
             loc=loc,
             scale=scale,
-            random_state=random_state
+            random_state=random_state,
         ),
-        columns=column_names
+        columns=column_names,
     )
     return df
 
@@ -1690,8 +1628,7 @@ def create_dataframe_norm(
 def delete_rows(
     *,
     df: pd.DataFrame,
-    delete_row_criteria:
-        tuple[str, int] | tuple[str, float] | tuple[str, str]
+    delete_row_criteria: tuple[str, int] | tuple[str, float] | tuple[str, str],
 ) -> pd.DataFrame:
     """
     Delete rows of a DataFrame based on a value in one column.
@@ -1723,11 +1660,7 @@ def delete_rows(
     return df
 
 
-def delete_columns(
-    *,
-    df: pd.DataFrame,
-    columns: list[str]
-) -> pd.DataFrame:
+def delete_columns(*, df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     """
     Delete columns of a DataFrame using a list.
 
@@ -1760,7 +1693,7 @@ def sort_rows(
     df: pd.DataFrame,
     sort_columns: list[str],
     sort_columns_bool: list[bool],
-    kind: str = 'mergesort'
+    kind: str = "mergesort",
 ) -> pd.DataFrame:
     """
     Sort a DataFrame for one or more columns.
@@ -1793,19 +1726,12 @@ def sort_rows(
     """
 
     df = df.sort_values(
-        by=sort_columns,
-        axis='index',
-        ascending=sort_columns_bool,
-        kind=kind
+        by=sort_columns, axis="index", ascending=sort_columns_bool, kind=kind
     )
     return df
 
 
-def rename_all_columns(
-    *,
-    df: pd.DataFrame,
-    labels: list[str]
-) -> pd.DataFrame:
+def rename_all_columns(*, df: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
     """
     Rename all DataFrame columns.
 
@@ -1829,17 +1755,12 @@ def rename_all_columns(
     ...     labels=labels
     ... ) # doctest: +SKIP
     """
-    df = df.set_axis(
-        labels=labels,
-        axis="columns"
-    )
+    df = df.set_axis(labels=labels, axis="columns")
     return df
 
 
 def rename_some_columns(
-    *,
-    df: pd.DataFrame,
-    column_names_dict: dict[str, str]
+    *, df: pd.DataFrame, column_names_dict: dict[str, str]
 ) -> pd.DataFrame:
     """
     Rename some columns with a dictionary.
@@ -1872,7 +1793,7 @@ def replace_column_values(
     *,
     s: pd.Series,
     replace_dict: dict[str, str] | dict[int, int] | dict[float, float],
-    regex: bool = False
+    regex: bool = False,
 ) -> pd.Series:
     """
     Replace values in a series using a dictionary.
@@ -1905,7 +1826,7 @@ def replace_column_values(
     # )
     list_from_series = s.to_list()
     list_transformed = [replace_dict.get(x, x) for x in list_from_series]
-    s = pd.Series(data=list_transformed).astype(dtype='object')
+    s = pd.Series(data=list_transformed).astype(dtype="object")
     return s
 
 
@@ -1913,7 +1834,7 @@ def list_files(
     *,
     directory: str | Path,
     pattern_startswith: list[str] | tuple[str] | None = None,
-    pattern_extension: list[str] | tuple[str] | None = None
+    pattern_extension: list[str] | tuple[str] | None = None,
 ) -> list[Path]:
     """
     Return a list of files within a directory.
@@ -1971,9 +1892,7 @@ def list_files(
 
 
 def directory_file_print(
-    *,
-    directory: str | Path,
-    text: str = 'Files in directory'
+    *, directory: str | Path, text: str = "Files in directory"
 ) -> None:
     """
     Print the files in a path.
@@ -1997,16 +1916,13 @@ def directory_file_print(
     """
     directory = Path(directory)
     if text:
-        print(f'{text}', directory)
+        print(f"{text}", directory)
     for x in directory.iterdir():
         print(x.name)
     print()
 
 
-def delete_list_files(
-    *,
-    files: list[Path] | list[str]
-) -> None:
+def delete_list_files(*, files: list[Path] | list[str]) -> None:
     """
     Delete a list of files
 
@@ -2027,11 +1943,7 @@ def delete_list_files(
         path.unlink()
 
 
-def print_list_by_item(
-    *,
-    list_to_print: list[str],
-    title: str = None
-) -> None:
+def print_list_by_item(*, list_to_print: list[str], title: str = None) -> None:
     """
     Print each item of a list.
 
@@ -2049,14 +1961,14 @@ def print_list_by_item(
     """
     if title:
         print(title)
-    print(*list_to_print, sep='\n')
+    print(*list_to_print, sep="\n")
 
 
 def ask_directory_path(
     *,
-    title: str = 'Select directory',
+    title: str = "Select directory",
     initialdir: Path = None,
-    print_bool: bool = False
+    print_bool: bool = False,
 ) -> Path:
     """
     Ask user for directory.
@@ -2085,9 +1997,7 @@ def ask_directory_path(
     """
     rootwindow = Tk()
     path = filedialog.askdirectory(
-        parent=rootwindow,
-        initialdir=initialdir,
-        title=title
+        parent=rootwindow, initialdir=initialdir, title=title
     )
     path = Path(path)
     rootwindow.destroy()
@@ -2102,7 +2012,7 @@ def ask_open_file_name_path(
     *,
     title: str,
     initialdir: Path | None = None,
-    filetypes: list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')]
+    filetypes: list[tuple[str]] = [("xlsx files", ".xlsx .XLSX")],
 ) -> Path:
     """
     Ask user for the path of the file to open.
@@ -2145,7 +2055,7 @@ def ask_open_file_name_path(
         parent=rootwindow,
         title=title,
         initialdir=initialdir,
-        filetypes=filetypes
+        filetypes=filetypes,
     )
     path = Path(path)
     rootwindow.destroy()
@@ -2154,10 +2064,10 @@ def ask_open_file_name_path(
 
 def ask_save_as_file_name_path(
     *,
-    title: str = 'Select file',
+    title: str = "Select file",
     initialdir: Path | None = None,
-    filetypes: list[tuple[str]] = [('xlsx files', '.xlsx .XLSX')],
-    print_bool: bool = True
+    filetypes: list[tuple[str]] = [("xlsx files", ".xlsx .XLSX")],
+    print_bool: bool = True,
 ) -> Path:
     """
     Ask user for the path of the file to save as.
@@ -2201,7 +2111,7 @@ def ask_save_as_file_name_path(
         parent=rootwindow,
         title=title,
         initialdir=initialdir,
-        filetypes=filetypes
+        filetypes=filetypes,
     )
     path = Path(path)
     rootwindow.destroy()
@@ -2213,11 +2123,7 @@ def ask_save_as_file_name_path(
 
 
 def series_replace_string(
-    *,
-    series: pd.Series,
-    find: str,
-    replace: str,
-    regex: bool = True
+    *, series: pd.Series, find: str, replace: str, regex: bool = True
 ) -> pd.Series:
     """
     Find and replace a string in a series.
@@ -2247,18 +2153,14 @@ def series_replace_string(
     ...     replace='replace with this text'
     ... ) # doctest: +SKIP
     """
-    series = series.str.replace(
-        pat=find,
-        repl=replace,
-        regex=regex
-    )
+    series = series.str.replace(pat=find, repl=replace, regex=regex)
     return series
 
 
 def list_directories(
     *,
     path: str | Path,
-    pattern_startswith: list[str] | tuple[str] | None = None
+    pattern_startswith: list[str] | tuple[str] | None = None,
 ) -> list[str]:
     """
     Return a list of directories found within a path.
@@ -2313,10 +2215,7 @@ def list_directories(
     return directories
 
 
-def remove_punctuation(
-    *,
-    list_dirty: list[str]
-) -> list[str]:
+def remove_punctuation(*, list_dirty: list[str]) -> list[str]:
     """
     Remove punctuation from list items.
 
@@ -2337,8 +2236,9 @@ def remove_punctuation(
     ...     # doctest: +SKIP
     """
     list_clean = [
-        ''.join(
-            character for character in item
+        "".join(
+            character
+            for character in item
             if character not in string.punctuation
         )
         for item in list_dirty
@@ -2346,11 +2246,7 @@ def remove_punctuation(
     return list_clean
 
 
-def list_change_case(
-    *,
-    list_dirty: list[str],
-    case: str
-) -> list[str]:
+def list_change_case(*, list_dirty: list[str], case: str) -> list[str]:
     """
     Change the case of items in a list.
 
@@ -2374,21 +2270,19 @@ def list_change_case(
     ...     case='upper'
     ... ) # doctest: +SKIP
     """
-    if case == 'upper':
+    if case == "upper":
         list_clean = [x.upper() for x in list_dirty]
-    elif case == 'lower':
+    elif case == "lower":
         list_clean = [x.lower() for x in list_dirty]
-    elif case == 'title':
+    elif case == "title":
         list_clean = [x.title() for x in list_dirty]
-    elif case == 'capitalize':
+    elif case == "capitalize":
         list_clean = [x.capitalize() for x in list_dirty]
     return list_clean
 
 
 def listone_contains_all_listtwo_substrings(
-    *,
-    listone: list[str],
-    listtwo: list[str]
+    *, listone: list[str], listtwo: list[str]
 ) -> list[str]:
     """
     Return a list of items from one list that contain substrings of items
@@ -2426,7 +2320,7 @@ def list_one_list_two_ops(
     *,
     list_one: list[str] | list[int] | list[float],
     list_two: list[str] | list[int] | list[float],
-    action: str
+    action: str,
 ) -> list[str] | list[int] | list[float]:
     """
     Create a list of items comparing two lists:
@@ -2490,22 +2384,79 @@ def list_one_list_two_ops(
     match action:
         case "list_one":
             # list_result = [item for item in list_one if item not in list_two]
-            list_result_integers = [x for x in list_one if isinstance(x, int) and x not in [y for y in list_two if isinstance(y, int)]]
-            list_result_floats = [x for x in list_one if isinstance(x, float) and x not in [y for y in list_two if isinstance(y, float)]]
-            list_result_strings = [x for x in list_one if isinstance(x, str) and x not in [y for y in list_two if isinstance(y, str)]]
-            list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
+            list_result_integers = [
+                x
+                for x in list_one
+                if isinstance(x, int)
+                and x not in [y for y in list_two if isinstance(y, int)]
+            ]
+            list_result_floats = [
+                x
+                for x in list_one
+                if isinstance(x, float)
+                and x not in [y for y in list_two if isinstance(y, float)]
+            ]
+            list_result_strings = [
+                x
+                for x in list_one
+                if isinstance(x, str)
+                and x not in [y for y in list_two if isinstance(y, str)]
+            ]
+            list_result = [
+                *list_result_integers,
+                *list_result_floats,
+                *list_result_strings,
+            ]
         case "list_two":
             # list_result = [item for item in list_two if item not in list_one]
-            list_result_integers = [x for x in list_two if isinstance(x, int) and x not in [y for y in list_one if isinstance(y, int)]]
-            list_result_floats = [x for x in list_two if isinstance(x, float) and x not in [y for y in list_one if isinstance(y, float)]]
-            list_result_strings = [x for x in list_two if isinstance(x, str) and x not in [y for y in list_one if isinstance(y, str)]]
-            list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
+            list_result_integers = [
+                x
+                for x in list_two
+                if isinstance(x, int)
+                and x not in [y for y in list_one if isinstance(y, int)]
+            ]
+            list_result_floats = [
+                x
+                for x in list_two
+                if isinstance(x, float)
+                and x not in [y for y in list_one if isinstance(y, float)]
+            ]
+            list_result_strings = [
+                x
+                for x in list_two
+                if isinstance(x, str)
+                and x not in [y for y in list_one if isinstance(y, str)]
+            ]
+            list_result = [
+                *list_result_integers,
+                *list_result_floats,
+                *list_result_strings,
+            ]
         case "intersection":
             # list_result = [item for item in list_one if item in list_two]
-            list_result_integers = [x for x in list_one if isinstance(x, int) and x in [y for y in list_two if isinstance(y, int)]]
-            list_result_floats = [x for x in list_one if isinstance(x, float) and x in [y for y in list_two if isinstance(y, float)]]
-            list_result_strings = [x for x in list_one if isinstance(x, str) and x in [y for y in list_two if isinstance(y, str)]]
-            list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
+            list_result_integers = [
+                x
+                for x in list_one
+                if isinstance(x, int)
+                and x in [y for y in list_two if isinstance(y, int)]
+            ]
+            list_result_floats = [
+                x
+                for x in list_one
+                if isinstance(x, float)
+                and x in [y for y in list_two if isinstance(y, float)]
+            ]
+            list_result_strings = [
+                x
+                for x in list_one
+                if isinstance(x, str)
+                and x in [y for y in list_two if isinstance(y, str)]
+            ]
+            list_result = [
+                *list_result_integers,
+                *list_result_floats,
+                *list_result_strings,
+            ]
         case _:
             print(
                 'Error. Enter "list_one", "list_two", or "intersection" '
@@ -2519,7 +2470,7 @@ def parameters_text_replacement(
     file_name: Path,
     sheet_name: str,
     usecols: list[str],
-    text_case: "str" = None
+    text_case: "str" = None,
 ) -> tuple[tuple[str, str]]:
     """
     Read Excel worksheet.
@@ -2580,11 +2531,7 @@ def parameters_text_replacement(
     ...     case="lower"
     ... ) # doctest: +SKIP
     """
-    df = read_file(
-        file_name=file_name,
-        sheet_name=sheet_name,
-        usecols=usecols
-    )
+    df = read_file(file_name=file_name, sheet_name=sheet_name, usecols=usecols)
     match text_case:
         case "upper":
             tuples = tuple(
@@ -2598,7 +2545,7 @@ def parameters_text_replacement(
             tuples = tuple(
                 zip(
                     df[usecols[0]].astype(dtype="object"),
-                    df[usecols[1]].astype(dtype="object")
+                    df[usecols[1]].astype(dtype="object"),
                 )
             )
     # introduced before Python 3.10
@@ -2621,10 +2568,7 @@ def parameters_text_replacement(
 
 
 def parameters_dict_replacement(
-    *,
-    file_name: Path,
-    sheet_name: str,
-    usecols: list[str]
+    *, file_name: Path, sheet_name: str, usecols: list[str]
 ) -> dict[str, str]:
     """
     Read Excel worksheet.
@@ -2655,11 +2599,7 @@ def parameters_dict_replacement(
     ...     usecols=usecols
     ... ) # doctest: +SKIP
     """
-    df = read_file(
-        file_name=file_name,
-        sheet_name=sheet_name,
-        usecols=usecols
-    )
+    df = read_file(file_name=file_name, sheet_name=sheet_name, usecols=usecols)
     dictionary = dict(zip(df[usecols[0]], df[usecols[1]]))
     return dictionary
 
@@ -2718,8 +2658,7 @@ def file_size(path: Path | str) -> int:
 
 
 def mask_outliers(
-    df: pd.DataFrame,
-    mask: list[tuple[str, float, float]]
+    df: pd.DataFrame, mask: list[tuple[str, float, float]]
 ) -> pd.DataFrame:
     """
     Mask outliers within a scikit-learn pipeline.
@@ -2773,14 +2712,13 @@ def mask_outliers(
     for column, lowvalue, highvalue in mask:
         df[column] = df[column].mask(
             cond=(df[column] <= lowvalue) | (df[column] >= highvalue),
-            other=pd.NA
+            other=pd.NA,
         )
     return pd.DataFrame(data=df)
 
 
 def delete_empty_rows(
-    df: pd.DataFrame,
-    list_columns: list[str] | None = None
+    df: pd.DataFrame, list_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty rows
@@ -2833,32 +2771,18 @@ def delete_empty_rows(
         :
     ]
     """
-    df = df.replace(
-        r"^\s*$",
-        np.NaN,
-        regex=True
-    ).replace(
-        "",
-        np.NaN,
-        regex=True
+    df = df.replace(r"^\s*$", np.NaN, regex=True).replace(
+        "", np.NaN, regex=True
     )
     if list_columns:
-        df = df.dropna(
-            axis="index",
-            subset=list_columns
-        )
+        df = df.dropna(axis="index", subset=list_columns)
     else:
-        df = df.dropna(
-            axis="index",
-            how="all"
-        )
+        df = df.dropna(axis="index", how="all")
     return df
 
 
 def delete_empty_columns(
-    *,
-    df: pd.DataFrame,
-    list_empty_columns: list[str] | None = None
+    *, df: pd.DataFrame, list_empty_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Delete empty columns
@@ -2901,24 +2825,15 @@ def delete_empty_columns(
     Delete columns where all elements are missing.
     df.loc[:, ~df.isna().all()]
     """
-    df = df.replace(
-        r"^\s*$",
-        np.NaN,
-        regex=True
-    ).replace(
-        "",
-        np.NaN,
-        regex=True
+    df = df.replace(r"^\s*$", np.NaN, regex=True).replace(
+        "", np.NaN, regex=True
     )
     if list_empty_columns:
         if (
-            len(list_empty_columns) * df.shape[0] ==
-            df[list_empty_columns].isna().sum().sum()
+            len(list_empty_columns) * df.shape[0]
+            == df[list_empty_columns].isna().sum().sum()
         ):
-            df = df.drop(
-                labels=list_empty_columns,
-                axis="columns"
-            )
+            df = df.drop(labels=list_empty_columns, axis="columns")
         else:
             print(
                 "One or more of the columns in the submitted list were not "
@@ -2927,16 +2842,12 @@ def delete_empty_columns(
             )
             print()
     else:
-        df = df.dropna(
-            axis="columns",
-            how="all"
-        )
+        df = df.dropna(axis="columns", how="all")
     return df
 
 
 def optimize_float_columns(
-    df: pd.DataFrame,
-    float_columns: list[str] = None
+    df: pd.DataFrame, float_columns: list[str] = None
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -2972,15 +2883,14 @@ def optimize_float_columns(
     """
     if not float_columns:
         float_columns = find_float_columns(df=df)
-    df[float_columns] = (
-        df[float_columns].apply(pd.to_numeric, downcast="float")
+    df[float_columns] = df[float_columns].apply(
+        pd.to_numeric, downcast="float"
     )
     return df
 
 
 def optimize_integer_columns(
-    df: pd.DataFrame,
-    integer_columns: list[str] | None = None
+    df: pd.DataFrame, integer_columns: list[str] | None = None
 ) -> pd.DataFrame:
     """
     Downcast integer columns
@@ -3016,8 +2926,8 @@ def optimize_integer_columns(
     """
     if not integer_columns:
         integer_columns = find_integer_columns(df=df)
-    df[integer_columns] = (
-        df[integer_columns].apply(pd.to_numeric, downcast="integer")
+    df[integer_columns] = df[integer_columns].apply(
+        pd.to_numeric, downcast="integer"
     )
     return df
 
@@ -3025,7 +2935,7 @@ def optimize_integer_columns(
 def optimize_object_columns(
     df: pd.DataFrame,
     object_columns: list[str] | None = None,
-    fraction_categories: int | None = 0.5
+    fraction_categories: int | None = 0.5,
 ) -> pd.DataFrame:
     """
     Downcast object columns
@@ -3077,17 +2987,13 @@ def optimize_object_columns(
         num_total_values = len(df[column])
         if float(num_unique_values) / num_total_values < fraction_categories:
             df[column] = df[column].astype(
-                CategoricalDtype(
-                    categories=None,
-                    ordered=False
-                )
+                CategoricalDtype(categories=None, ordered=False)
             )
     return df
 
 
 def optimize_datetime_columns(
-    df: pd.DataFrame,
-    datetime_columns: list[str] = None
+    df: pd.DataFrame, datetime_columns: list[str] = None
 ) -> pd.DataFrame:
     """
     Cast object and datetime columns to pandas datetime. It does not reduce
@@ -3135,7 +3041,7 @@ def optimize_columns(
     integer_columns: list[str] | None = None,
     datetime_columns: list[str] | None = None,
     object_columns: list[str] | None = None,
-    fraction_categories: int | None = 0.5
+    fraction_categories: int | None = 0.5,
 ) -> pd.DataFrame:
     """
     Downcast float columns
@@ -3190,30 +3096,18 @@ def optimize_columns(
     ...     fraction_categories=0.2
     ... ) # doctest: +SKIP
     """
-    df = optimize_float_columns(
-        df=df,
-        float_columns=float_columns
-    )
-    df = optimize_integer_columns(
-        df=df,
-        integer_columns=integer_columns
-    )
-    df = optimize_datetime_columns(
-        df=df,
-        datetime_columns=datetime_columns
-    )
+    df = optimize_float_columns(df=df, float_columns=float_columns)
+    df = optimize_integer_columns(df=df, integer_columns=integer_columns)
+    df = optimize_datetime_columns(df=df, datetime_columns=datetime_columns)
     df = optimize_object_columns(
         df=df,
         fraction_categories=fraction_categories,
-        object_columns=object_columns
+        object_columns=object_columns,
     )
     return df
 
 
-def series_memory_usage(
-    s: pd.Series,
-    suffix: str = "B"
-) -> str:
+def series_memory_usage(s: pd.Series, suffix: str = "B") -> str:
     """
     Determine memory usage of a pandas Series
 
@@ -3237,16 +3131,12 @@ def series_memory_usage(
     ...     suffix="B"
     ... ) # doctest: +SKIP
     """
-    memory_usage = byte_size(
-        num=s.memory_usage(index=False),
-        suffix="B"
-    )
+    memory_usage = byte_size(num=s.memory_usage(index=False), suffix="B")
     return memory_usage
 
 
 def convert_csv_to_feather(
-    paths_in: list[str] | Path,
-    paths_out: list[str] | Path
+    paths_in: list[str] | Path, paths_out: list[str] | Path
 ) -> None:
     """
     Convert list of csv files to feather files
@@ -3295,16 +3185,11 @@ def convert_csv_to_feather(
         sys.exit()
     for path_in, path_out in zip(paths_in, paths_out):
         df = read_file(file_name=path_in)
-        save_file(
-            df=df,
-            file_name=path_out
-        )
+        save_file(df=df, file_name=path_out)
 
 
 def print_dictionary_by_key(
-    *,
-    dictionary_to_print: dict[str, list[str]],
-    title: str = None
+    *, dictionary_to_print: dict[str, list[str]], title: str = None
 ) -> None:
     """
     Print each key, value of a dictionary, one key per line.
@@ -3325,12 +3210,11 @@ def print_dictionary_by_key(
         print(title)
 
     for key, value in dictionary_to_print.items():
-        print(str(key) + ' : ' + str(value))
+        print(str(key) + " : " + str(value))
 
 
 def convert_seconds_to_hh_mm_ss(
-    *,
-    seconds: int = None
+    *, seconds: int = None
 ) -> tuple[int, int, int]:
     """
     Convert seconds to hours, minutes and seconds.
