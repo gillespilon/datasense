@@ -2383,7 +2383,6 @@ def list_one_list_two_ops(
     """
     match action:
         case "list_one":
-            # list_result = [item for item in list_one if item not in list_two]
             list_result_integers = [
                 x
                 for x in list_one
@@ -2408,7 +2407,6 @@ def list_one_list_two_ops(
                 *list_result_strings,
             ]
         case "list_two":
-            # list_result = [item for item in list_two if item not in list_one]
             list_result_integers = [
                 x
                 for x in list_two
@@ -2433,7 +2431,6 @@ def list_one_list_two_ops(
                 *list_result_strings,
             ]
         case "intersection":
-            # list_result = [item for item in list_one if item in list_two]
             list_result_integers = [
                 x
                 for x in list_one
