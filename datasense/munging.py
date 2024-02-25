@@ -2495,26 +2495,22 @@ def list_one_list_two_ops(
             list_result_strings = [x for x in list_one if isinstance(x, str) and x not in [y for y in list_two if isinstance(y, str)]]
             list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
         case "list_two":
-            list_result = [item for item in list_two if item not in list_one]
+            # list_result = [item for item in list_two if item not in list_one]
+            list_result_integers = [x for x in list_two if isinstance(x, int) and x not in [y for y in list_one if isinstance(y, int)]]
+            list_result_floats = [x for x in list_two if isinstance(x, float) and x not in [y for y in list_one if isinstance(y, float)]]
+            list_result_strings = [x for x in list_two if isinstance(x, str) and x not in [y for y in list_one if isinstance(y, str)]]
+            list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
         case "intersection":
-            list_result = [item for item in list_one if item in list_two]
+            # list_result = [item for item in list_one if item in list_two]
+            list_result_integers = [x for x in list_one if isinstance(x, int) and x in [y for y in list_two if isinstance(y, int)]]
+            list_result_floats = [x for x in list_one if isinstance(x, float) and x in [y for y in list_two if isinstance(y, float)]]
+            list_result_strings = [x for x in list_one if isinstance(x, str) and x in [y for y in list_two if isinstance(y, str)]]
+            list_result = [*list_result_integers, *list_result_floats, *list_result_strings]
         case _:
             print(
                 'Error. Enter "list_one", "list_two", or "intersection" '
                 'for parameter "action".'
             )
-    # introduced before Python 3.10
-    # if action == 'list_one':
-    #     list_result = list(set(list_one).difference(list_two))
-    # elif action == 'list_two':
-    #     list_result = list(set(list_two).difference(list_one))
-    # elif action == 'intersection':
-    #     list_result = list(set(list_one).intersection(list_two))
-    # else:
-    #     print(
-    #         'Error. Enter "list_one", "list_two", or "intersection" '
-    #         'for parameter "action".'
-    #     )
     return list_result
 
 
