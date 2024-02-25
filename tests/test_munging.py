@@ -224,15 +224,15 @@ def test_list_one_list_two_ops():
     )
     expected = [4.0, 5.0, 6.0]
     assert result == expected
-    # list_one = [1, 2, 3.0, 4.0, 5, "mo", "larry", "curly-joe"]
-    # list_two = [2, 3, 4.0, 5.0, 6.0, "mo", "larry", "shemp"]
-    # result = ds.list_one_list_two_ops(
-    #     list_one=list_one,
-    #     list_two=list_two,
-    #     action="list_one"
-    # )
-    # expected = [1, 3.0, 5, "curly-joe"]
-    # assert result == expected
+    list_one = [1, 2, 3.0, 4.0, 5, "mo", "larry", "curly-joe"]
+    list_two = [2, 3, 4.0, 5.0, 6.0, "mo", "larry", "shemp"]
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="list_one"
+    )
+    expected = [1, 5, 3.0, "curly-joe"]
+    assert result == expected
 
 
 def test_series_replace_string():
