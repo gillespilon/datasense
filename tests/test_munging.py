@@ -240,6 +240,13 @@ def test_list_one_list_two_ops():
     )
     expected = [3, 5.0, 6.0, "shemp"]
     assert result == expected
+    result = ds.list_one_list_two_ops(
+        list_one=list_one,
+        list_two=list_two,
+        action="intersection"
+    )
+    expected = [2, 4.0, "mo", "larry"]
+    assert result == expected
 
 
 def test_series_replace_string():
