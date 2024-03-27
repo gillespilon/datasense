@@ -16,7 +16,6 @@ import math
 import sys
 
 from statsmodels.stats.outliers_influence import summary_table
-from scipy.interpolate import CubicSpline
 from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
@@ -25,6 +24,7 @@ from scipy.stats import norm, uniform, randint
 from statsmodels.stats.power import TTestPower
 from pandas.api.types import CategoricalDtype
 import statsmodels.stats.diagnostic as smd
+from scipy.interpolate import CubicSpline
 from sklearn.pipeline import Pipeline
 import statsmodels.api as sm
 import scipy.stats as stats
