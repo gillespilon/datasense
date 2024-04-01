@@ -33,3 +33,4 @@ from .pyxl import *
 from .sequel import *
 from .rgx import *
 from .automation import *
+from .taguchi import *
