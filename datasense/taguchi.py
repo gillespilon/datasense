@@ -54,7 +54,7 @@ def taguchi_loss_function(
     >>> acu
     0.05024711111111111
     """
-    # Calcuate the shape parameter.
+    # Calculate the shape parameter.
     k = cost / (x - target) ** 2
     # Calculate the ACU.
     acu = k * (std_dev ** 2 + (average - target) ** 2)
