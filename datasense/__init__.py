@@ -5,8 +5,10 @@ Tools for statistical, graphical, and predictive analysis:
 - Supervised machine learning
 - Six Sigma methodology
 - Regular expressions
+- Process capability
 - Process variation
 - Excel file edits
+- Taguchi Methods
 - Data Science
 - Automation
 - Analytics
@@ -19,7 +21,7 @@ Why this?
 - Functions to simplify statistics, graphs, etc.
 - Functions to support process control charts.
 - Functions to support SQL functionality.
-- Develop a free open-source package.
+- Develop a free open source package.
 '''
 
 
