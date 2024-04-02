@@ -36,8 +36,11 @@ def taguchi_loss_function(
     --------
     acu : float
 
-    Example
-    -------
+    Examples
+    --------
+    Example 1
+    ---------
+    Calculate ACU for an off-centred process with LS and US.
     >>> import datasense as ds
     >>> average = 4.66
     >>> std_dev = 1.80
@@ -53,6 +56,25 @@ def taguchi_loss_function(
     ... )
     >>> acu
     0.05024711111111111
+
+    Example 2
+    ---------
+    Calculate ACU for a centred process with LS and US.
+    >>> import datasense as ds
+    >>> average = 7.5
+    >>> std_dev = 1.80
+    >>> target = 7.5
+    >>> cost = 0.25
+    >>> x = 15
+    >>> acu = ds.taguchi_loss_function(
+    ...     average=average,
+    ...     std_dev=std_dev,
+    ...     target=target,
+    ...     cost=cost,
+    ...     x=x,
+    ... )
+    >>> acu
+    0.014400000000000001
     """
     # Calculate the shape parameter.
     k = cost / (x - target) ** 2
@@ -64,4 +86,3 @@ def taguchi_loss_function(
 __all__ = (
     "taguchi_loss_function",
 )
-
