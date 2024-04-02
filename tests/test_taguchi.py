@@ -19,6 +19,7 @@ def test_taguchi_loss_function():
         x=x,
     )
     expected = 0.05024711111111111
+    assert result == expected
     # centred process
     average = 7.5
     std_dev = 1.80
