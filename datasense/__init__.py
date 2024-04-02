@@ -34,3 +34,4 @@ from .sequel import *
 from .rgx import *
 from .automation import *
 from .taguchi import *
+from .process_capability import *
