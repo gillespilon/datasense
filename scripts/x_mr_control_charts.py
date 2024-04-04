@@ -5,7 +5,6 @@ Example of XmR control charts
 Requires datasense: https://github.com/gillespilon/datasense
 """
 
-from typing import NoReturn, Tuple
 import time
 
 from datasense import control_charts as cc
@@ -61,13 +60,13 @@ def create_data() -> pd.DataFrame:
 def x_chart(
     *,
     df: pd.DataFrame,
-    figsize: Tuple[float, float] = (8, 6),
+    figsize: tuple[float, float] = (8, 6),
     colour: str = "#33bbee",
     x_chart_title: str = "Individuals Control Chart",
     x_chart_ylabel: str = "Measurement X (units)",
     x_chart_xlabel: str = "Sample",
     graph_file_prefix: str = "x_mr_example"
-) -> NoReturn:
+) -> None:
     """
     Creates an X control chart.
     Identifies out-of-control points.
@@ -124,13 +123,13 @@ def x_chart(
 def mr_chart(
     *,
     df: pd.DataFrame,
-    figsize: Tuple[float, float] = (8, 6),
+    figsize: tuple[float, float] = (8, 6),
     colour: str = "#33bbee",
     mr_chart_title: str = "Moving Range Control Chart",
     mr_chart_ylabel: str = "Measurement mR (units)",
     mr_chart_xlabel: str = "Sample",
     graph_file_prefix: str = "x_mr_example"
-) -> NoReturn:
+) -> None:
     """
     Creates an mR control chart.
     Identifies out-of-control points.
@@ -144,7 +143,7 @@ def mr_chart(
         mr,
         ax,
         *cc.points_one(mr),
-        "1"
+        1
     )
     ax.set_title(label=mr_chart_title)
     ax.set_ylabel(ylabel=mr_chart_ylabel)
