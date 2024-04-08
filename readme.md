@@ -9,7 +9,7 @@ and understanding.
 Do this if this is your first-time installation. Ensure you have `git` installed.
 
 ```
-pip3 install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
+pip install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
 ```
 
 # To update #
