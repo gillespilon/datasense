@@ -41,3 +41,26 @@ def test_ppk():
         1.1457133294762083, 1.8397098630238369
     )
     assert result == expected
+
+
+def test_cp():
+    average = 0.11001
+    std_devn = 0.89312
+    subgroup_size = 2
+    number_subgroups = 39
+    lower_spec = -4
+    upper_spec = 4
+    alpha = 0.05
+    result = ds.cp(
+        average=average,
+        std_devn=std_devn,
+        subgroup_size=subgroup_size,
+        number_subgroups=number_subgroups,
+        lower_spec=lower_spec,
+        upper_spec=upper_spec,
+        alpha=alpha
+    )
+    expected = (1.4928938253911381, 1.141174267641542, 1.8439148118984439)
+    assert result == expected
+
+
