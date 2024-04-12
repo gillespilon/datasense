@@ -105,6 +105,28 @@ def test_cpk():
         1.0928917337156085, 1.8107792922010284
     )
     assert result == expected
+    average = 0.14063
+    std_devn = .003680138
+    subgroup_size = 5
+    number_subgroups = 27
+    lower_spec = .125
+    upper_spec = .155
+    alpha = 0.05
+    result = ds.cpk(
+        average=average,
+        std_devn=std_devn,
+        subgroup_size=subgroup_size,
+        number_subgroups=number_subgroups,
+        lower_spec=lower_spec,
+        upper_spec=upper_spec,
+        alpha=alpha,
+        toler=6,
+    )
+    expected = (
+        1.301581625471653, 1.4157077805234481, 1.301581625471653,
+        1.0802101837381173, 1.5229530672051887
+    )
+    assert result == expected
 
 
 def test_cpm():
