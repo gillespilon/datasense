@@ -156,9 +156,9 @@ def cp(
     """
     capability = (upper_spec - lower_spec) / (6 * std_devn)
     constant_name = ["d2", "d3"]
-    d2, d3 =  df_constants.loc[subgroup_size, constant_name]
+    d2, d3 = df_constants.loc[subgroup_size, constant_name]
     # as per wheeler in advanced topics of SPC
-    degrees_of_freedom = (d2 ** 2 * number_subgroups) / (2 * d3 ** 2) + 0.2
+    degrees_of_freedom = (d2**2 * number_subgroups) / (2 * d3**2) + 0.2
     chi2_lower = chi2.ppf(q=(alpha / 2), df=degrees_of_freedom)
     chi2_upper = chi2.ppf(q=(1 - alpha / 2), df=degrees_of_freedom)
     lower_bound = capability * math.sqrt(chi2_lower / degrees_of_freedom)
@@ -220,8 +220,9 @@ def cpk(
     -------
     >>> import datasense as ds
     >>> average = 0.11001
-    >>> std_devn = 0.868663
-    >>> sample_size = 40
+    >>> std_devn = 0.89312
+    >>> subgroup_size = 2
+    >>> number_subgroups = 39
     >>> lower_spec = -4
     >>> upper_spec = 4
     >>> alpha = 0.05
@@ -233,7 +234,7 @@ def cpk(
     >>>     lower_spec=lower_spec,
     >>>     upper_spec=upper_spec,
     >>>     alpha=alpha,
-    >>>     toler=6
+    >>>     toler=6,
     >>> )
     (
         1.4518355129583185, 1.533952137823958, 1.4518355129583185,
@@ -241,9 +242,9 @@ def cpk(
     )
     """
     constant_name = ["d2", "d3"]
-    d2, d3 =  df_constants.loc[subgroup_size, constant_name]
+    d2, d3 = df_constants.loc[subgroup_size, constant_name]
     # as per wheeler in advanced topics of SPC
-    degrees_of_freedom = (d2 ** 2 * number_subgroups) / (2 * d3 ** 2) + 0.2
+    degrees_of_freedom = (d2**2 * number_subgroups) / (2 * d3**2) + 0.2
     cpk_lower = (average - lower_spec) / (3 * std_devn)
     cpk_upper = (upper_spec - average) / (3 * std_devn)
     capability = min(cpk_lower, cpk_upper)
@@ -259,16 +260,81 @@ def cpk(
     return (capability, cpk_lower, cpk_upper, lower_bound, upper_bound)
 
 
-def cpm() -> None:
+def cpm(
+    average: float | int,
+    std_devn: float | int,
+    sample_size: int,
+    target: float | int,
+    lower_spec: float | int,
+    upper_spec: float | int,
+    alpha: float = 0.05,
+) -> tuple[float, float]:
     """
     Ppk and Cpk calculate process capability with respect to the deviation from
     the average. If a process average is not equal to the specification target,
     the process capability is not as good as one would assume. Cpm calculates
     process capability with respect to the deviation from the average and the
     the deviation from the target. The Cpm formula is closely related to the
-    Taguchi Loss Function.
+    Taguchi Loss Function. The standard deviation uses the "population standard
+    deviation."
+
+    Parameters
+    ----------
+    average : float | int,
+        The average of the process.
+    std_devn : float | int,
+        The standard deviation of the process. It should be the "sample
+        standard deviation".
+    sample_size : int,
+        This is the sample size for the data being analysed.
+    target : float
+        It is the target value of the product stream.
+    lower_spec : float | int,
+        The lower specification value.
+    upper_spec : float | int,
+        The upper specification value.
+    alpha : float = 0.05
+        The alpha value for the confidence interval calculations. An alpha of
+        0.05 is used for a 95 % confidence interval.
+
+    Returns
+    -------
+    capability : float
+        The Cpm process capability value.
+    lower_bound : float
+        The lower value of the confidence interval for Cpm.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> average = 0.11001
+    >>> std_devn = 0.868663
+    >>> sample_size = 40
+    >>> target = 0
+    >>> lower_spec = -4
+    >>> upper_spec = 4
+    >>> alpha = 0.05
+    >>> result = ds.cpm(
+    >>>     average=average,
+    >>>     std_devn=std_devn,
+    >>>     sample_size= sample_size,
+    >>>     target=target,
+    >>>     lower_spec=lower_spec,
+    >>>     upper_spec=upper_spec,
+    >>>     alpha=alpha
+    >>> )
+    (1.5227631097133512, 1.2396924251472865)
     """
-    pass
+    capability = min(target - lower_spec, upper_spec - target) / (
+        3 * math.sqrt(std_devn**2 + (average - target) ** 2)
+    )
+    aratio = (average - target) / std_devn
+    degrees_of_freedom = (
+        sample_size * (1 + aratio**2) ** 2 / (1 + 2 * aratio**2)
+    )
+    chi2_lower = chi2.ppf(q=alpha, df=degrees_of_freedom)
+    lower_bound = capability * math.sqrt(chi2_lower / degrees_of_freedom)
+    return (capability, lower_bound)
 
 
 def pp(
