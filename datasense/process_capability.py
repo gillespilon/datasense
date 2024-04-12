@@ -166,14 +166,97 @@ def cp(
     return (capability, lower_bound, upper_bound)
 
 
-def cpk() -> None:
+def cpk(
+    average: float | int,
+    std_devn: float | int,
+    subgroup_size: int,
+    number_subgroups: int,
+    lower_spec: float | int,
+    upper_spec: float | int,
+    alpha: float = 0.05,
+    toler: float | int = 6,
+) -> tuple[float, float, float, float, float]:
     """
     Cpk compares the width of the process specification to the width of the
     process variation. It takes into consideration the deviation from
     the average. The standard deviation estimate is taken from a range or
     moving range control chart.
+
+    Parameters
+    ----------
+    average : float | int,
+        The average of the process.
+    std_devn : float | int,
+        The standard deviation of the process. It should be the "sample
+        standard deviation".
+    subgroup_size : int,
+        This is the number of values in a control chart subgroup
+    number_subgroups : int,
+        This is the number of subgroups.
+    lower_spec : float | int,
+        The lower specification value.
+    upper_spec : float | int,
+        The upper specification value.
+    alpha : float = 0.05
+        The alpha value for the confidence interval calculations. An alpha of
+        0.05 is used for a 95 % confidence interval.
+    toler : float | int = 6
+        The multiplier of the standard deviation tolerance.
+
+    Returns
+    -------
+    capability : float
+        The Cpk process capability value.
+    cpk_lower : float
+        The Ppk value for left of the average,
+    cpk_lower : float
+        The Ppk value for right of the average,
+    lower_bound : float
+        The lower value of the confidence interval for Cpk.
+    upper_bound : float
+        The upper value of the confidence interval for Cpk.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> average = 0.11001
+    >>> std_devn = 0.868663
+    >>> sample_size = 40
+    >>> lower_spec = -4
+    >>> upper_spec = 4
+    >>> alpha = 0.05
+    >>> result = ds.cpk(
+    >>>     average=average,
+    >>>     std_devn=std_devn,
+    >>>     subgroup_size=subgroup_size,
+    >>>     number_subgroups=number_subgroups,
+    >>>     lower_spec=lower_spec,
+    >>>     upper_spec=upper_spec,
+    >>>     alpha=alpha,
+    >>>     toler=6
+    >>> )
+    (
+        1.4518355129583185, 1.533952137823958, 1.4518355129583185,
+        1.0928917337156085, 1.8107792922010284
+    )
     """
-    pass
+    constant_name = ["d2", "d3"]
+    d2, d3 =  df_constants.loc[subgroup_size, constant_name]
+    # as per wheeler in advanced topics of SPC
+    degrees_of_freedom = (d2 ** 2 * number_subgroups) / (2 * d3 ** 2) + 0.2
+    cpk_lower = (average - lower_spec) / (3 * std_devn)
+    cpk_upper = (upper_spec - average) / (3 * std_devn)
+    capability = min(cpk_lower, cpk_upper)
+    z = norm.ppf(q=(1 - alpha / 2))
+    lower_bound = capability - z * math.sqrt(
+        (1 / (((toler / 2) ** 2) * number_subgroups))
+        + ((capability**2) / (2 * degrees_of_freedom))
+    )
+    upper_bound = capability + z * math.sqrt(
+        (1 / (((toler / 2) ** 2) * number_subgroups))
+        + ((capability**2) / (2 * degrees_of_freedom))
+    )
+    return (capability, cpk_lower, cpk_upper, lower_bound, upper_bound)
 
 
 def cpm() -> None:
@@ -339,7 +422,6 @@ def ppk(
         (1 / (((toler / 2) ** 2) * sample_size))
         + ((capability**2) / (2 * degrees_of_freedom))
     )
-    # upper_bound = capability * math.sqrt(chi2_upper / degrees_of_freedom)
     return (capability, ppk_lower, ppk_upper, lower_bound, upper_bound)
 
 
