@@ -265,7 +265,7 @@ def ppk(
     upper_spec: float | int,
     alpha: float = 0.05,
     toler: float | int = 6,
-) -> tuple[float, float, float]:
+) -> tuple[float, float, float, float, float]:
     """
     Ppk compares the width of the process specification to the width of the
     process variation. It does take into consideration the deviation from
@@ -295,6 +295,10 @@ def ppk(
     -------
     capability : float
         The Ppk process capability value.
+    ppk_lower : float
+        The ppk value for left of the average,
+    ppk_lower : float
+        The ppk value for right of the average,
     lower_bound : float
         The lower value of the confidence interval for Ppk.
     upper_bound : float
