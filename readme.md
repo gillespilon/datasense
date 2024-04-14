@@ -110,7 +110,7 @@ Many functions for statistical analysis.
 
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
-- [XmR control charts](blob/master/scripts/x_mr_control_charts.py)
+- [XmR control charts](scripts/x_mr_control_charts.py)
 - [XbarR control charts](xbar_r_control_charts.py)
 - [Cubic spline for Y vs X line plot](cubic_spline.py)
 - [Exponentially weighted average for Y vs X line plot](exponentially_weighted_average_example.py)
