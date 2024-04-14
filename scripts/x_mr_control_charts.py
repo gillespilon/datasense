@@ -2,9 +2,23 @@
 """
 Example of XmR control charts
 
-Requires datasense: https://github.com/gillespilon/datasense
+The data file can be:
+    .csv | .CSV | .ods | .ODS | .xlsx | .XLSX | .xlsm | .XLSM | .feather
+
+The first row must be the column labels, such as, Sample and X. The first
+column is a series of integers that identify the samples. The second column
+is a series of data.
+
+Execute the script in a terminal:
+    ./x_mr_control_charts.py -pf <file_name_with_extension>
+
+For example:
+    ./x_mr_control_charts.py -pf x_mr_example.csv
 """
 
+from pathlib import Path
+from os import chdir
+import argparse
 import time
 
 from datasense import control_charts as cc
@@ -14,6 +28,19 @@ import pandas as pd
 
 
 def main():
+    chdir(Path(__file__).parent.resolve())  # required for cron
+    parser = argparse.ArgumentParser(
+        prog="x_mr_control_charts.py",
+        description="Create X and mR control charts and add Nelson's Rules"
+    )
+    parser.add_argument(
+        "-pf",
+        "--path_or_file",
+        type=Path,
+        required=True,
+        help="Provide a path or file of the .XLSX or .CSV file (required)",
+    )
+    args = parser.parse_args()
     HEADER_TITLE = "XmR Control Charts"
     OUTPUT_URL = "x_mr_example.html"
     HEADER_ID = "x-mr-example"
@@ -24,7 +51,10 @@ def main():
         header_id=HEADER_ID
     )
     ds.style_graph()
-    data = create_data()
+    # data = create_data()
+    df = ds.read_file(file_name=args.path_or_file)
+    data = df.set_index(df.columns[0]).copy()
+    print("path or file:", args.path_or_file)
     ds.page_break()
     x_chart(df=data)
     ds.page_break()
@@ -41,20 +71,20 @@ def main():
     )
 
 
-def create_data() -> pd.DataFrame:
-    """
-    Creates a dataframe.
-    """
-    df = pd.DataFrame(
-        {
-            "Sample":  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-            "X":       [
-                25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0,
-                16.0, 16.0, 16.0
-            ]
-        }
-    ).set_index("Sample")
-    return df
+# def create_data() -> pd.DataFrame:
+#     """
+#     Creates a dataframe.
+#     """
+#     df = pd.DataFrame(
+#         {
+#             "Sample":  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+#             "X":       [
+#                 25.0, 24.0, 38.5, 22.4, 23.1, 13.9, 13.9, 10.0, 13.3, 10.0,
+#                 16.0, 16.0, 16.0
+#             ]
+#         }
+#     ).set_index("Sample")
+#     return df
 
 
 def x_chart(
