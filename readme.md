@@ -111,11 +111,11 @@ Many functions for statistical analysis.
 In the [scripts](scripts/) directory, there are example scripts and data files.
 
 - [XmR control charts](scripts/x_mr_control_charts.py)
-- [XbarR control charts](xbar_r_control_charts.py)
-- [Cubic spline for Y vs X line plot](cubic_spline.py)
-- [Exponentially weighted average for Y vs X line plot](exponentially_weighted_average_example.py)
-- [Piecewise natural cubic spline](scripts/piecewise_natural_cubic_spline.py)
-- [Y1, Y2 vs X line charts with separate Y axes](plot_lineleft_lineright_x_y1_y2.py)
+- [XbarR control charts](scripts/xbar_r_control_charts.py)
+- [Cubic spline for Y vs X line plot](scripts/cubic_spline.py)
+- [Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_example.py)
+- [Piecewise natural cubic spline](scripts/scripts/piecewise_natural_cubic_spline.py)
+- [Y1, Y2 vs X line charts with separate Y axes](scripts/plot_lineleft_lineright_x_y1_y2.py)
 
 # Example graphs
 
