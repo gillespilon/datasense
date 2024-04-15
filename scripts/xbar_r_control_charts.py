@@ -2,10 +2,28 @@
 """
 Example of XbarR control charts
 
-Requires datasense: https://github.com/gillespilon/datasense
+The data file can be:
+    .csv | .CSV | .ods | .ODS | .xlsx | .XLSX | .xlsm | .XLSM | .feather
+
+The data file should be as follows, either A or B.
+
+A: One column contains sample IDs, such as integers or floats, and they must be
+in increasing order. This column can also be strings, with no restrictions. The
+other columns contain data values, and there must be two or more of these
+columns. The first row contains the labels for the columns.
+
+B: There is no sample ID column. The other columns contain data values,
+and there must be two or more of these columns. The first row contains the
+labels for the columns.
+
+Execute the script in a terminal:
+ ./xbar_r_control_charts.py -pf xbar_r_example.csv -sc Sample -dc X1 X2 X3 X4
+ ./xbar_r_control_charts.py -pf xbar_r_example.csv -dc X1 X2 X3 X4
 """
 
-from typing import NoReturn, Tuple
+from pathlib import Path
+from os import chdir
+import argparse
 import time
 
 from datasense import control_charts as cc
@@ -15,6 +33,36 @@ import pandas as pd
 
 
 def main():
+    chdir(Path(__file__).parent.resolve())  # required for cron
+    parser = argparse.ArgumentParser(
+        prog="xbar_r_control_charts.py",
+        description="Create Xbar and R control charts and add Nelson's Rules"
+    )
+    parser.add_argument(
+        "-pf",
+        "--path_or_file",
+        type=Path,
+        required=True,
+        help="Provide a path or file of the .XLSX or .CSV file (required)",
+    )
+    parser.add_argument(
+        "-sc",
+        "--sample_column",
+        default=None,
+        type=str,
+        required=False,
+        help="Provide a string of the sample column label (optional)",
+    )
+    parser.add_argument(
+        "-dc",
+        "--data_columns",
+        nargs="+",
+        default=None,
+        type=str,
+        required=True,
+        help="Provide a string of the data column label (required)",
+    )
+    args = parser.parse_args()
     HEADER_TITLE = "XbarR Control Charts"
     OUTPUT_URL = "xbar_r_example.html"
     HEADER_ID = "xbar-r-example"
@@ -25,7 +73,18 @@ def main():
         header_id=HEADER_ID
     )
     ds.style_graph()
-    data = create_data()
+    # data = create_data()
+    usecols = [args.sample_column] + args.data_columns
+    usecols = [item for item in usecols if item is not None]
+    df = ds.read_file(
+        file_name=args.path_or_file,
+        usecols=usecols
+    )
+    if args.sample_column is None:
+        data = df.copy()
+    elif args.sample_column is not None:
+        data = df.set_index(df.columns[0]).copy()
+    print("path or file:", args.path_or_file)
     ds.page_break()
     xbar_chart(df=data)
     ds.page_break()
@@ -92,13 +151,13 @@ def create_data() -> pd.DataFrame:
 def xbar_chart(
     *,
     df: pd.DataFrame,
-    figsize: Tuple[float, float] = (8, 6),
+    figsize: tuple[float, float] = (8, 6),
     colour: str = "#33bbee",
     xbar_chart_title: str = "Average Control Chart",
     xbar_chart_ylabel: str = "Measurement Xbar (units)",
     xbar_chart_xlabel: str = "Sample",
     graph_file_prefix: str = "xbar_r_example"
-) -> NoReturn:
+) -> None:
     """
     Creates an Xbar control chart.
     Identifies out-of-control points.
@@ -176,13 +235,13 @@ def xbar_chart(
 def r_chart(
     *,
     df: pd.DataFrame,
-    figsize: Tuple[float, float] = (8, 6),
+    figsize: tuple[float, float] = (8, 6),
     colour: str = "#33bbee",
     r_chart_title: str = "Range Control Chart",
     r_chart_ylabel: str = "Measurement R (units)",
     r_chart_xlabel: str = "Sample",
     graph_file_prefix: str = "xbar_r_example"
-) -> NoReturn:
+) -> None:
     """
     Creates an R control chart.
     Identifies out-of-control points.
