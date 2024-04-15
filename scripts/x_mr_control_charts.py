@@ -5,15 +5,16 @@ Example of XmR control charts
 The data file can be:
     .csv | .CSV | .ods | .ODS | .xlsx | .XLSX | .xlsm | .XLSM | .feather
 
-The first row must be the column labels, such as, Sample and X. The first
-column is a series of integers that identify the samples. The second column
-is a series of data.
+The file can have one data column with a label in the first row or the file
+can have two columns, one with a sample label and the other with a data label
+in the first row.
+
+If there is a sample ID column, it can be integers or floats, as long as they
+are in increasing order. The values can be strings, with no restrictions.
 
 Execute the script in a terminal:
-    ./x_mr_control_charts.py -pf <file_name_with_extension>
-
-For example:
-    ./x_mr_control_charts.py -pf x_mr_example.csv
+    ./x_mr_control_charts.py -pf x_mr_example.csv -sc Sample -dc X
+    ./x_mr_control_charts.py -pf x_mr_example.csv -dc X
 """
 
 from pathlib import Path
@@ -40,6 +41,22 @@ def main():
         required=True,
         help="Provide a path or file of the .XLSX or .CSV file (required)",
     )
+    parser.add_argument(
+        "-sc",
+        "--sample_column",
+        default=None,
+        type=str,
+        required=False,
+        help="Provide a string of the sample column label (optional)",
+    )
+    parser.add_argument(
+        "-dc",
+        "--data_column",
+        default=None,
+        type=str,
+        required=True,
+        help="Provide a string of the data column label (required)",
+    )
     args = parser.parse_args()
     HEADER_TITLE = "XmR Control Charts"
     OUTPUT_URL = "x_mr_example.html"
@@ -52,8 +69,16 @@ def main():
     )
     ds.style_graph()
     # data = create_data()
-    df = ds.read_file(file_name=args.path_or_file)
-    data = df.set_index(df.columns[0]).copy()
+    usecols = [args.sample_column, args.data_column]
+    usecols = [item for item in usecols if item is not None]
+    df = ds.read_file(
+        file_name=args.path_or_file,
+        usecols=usecols
+    )
+    if len(usecols) == 2:
+        data = df.set_index(df.columns[0]).copy()
+    elif len(usecols) == 1:
+        data = df.copy()
     print("path or file:", args.path_or_file)
     ds.page_break()
     x_chart(df=data)
