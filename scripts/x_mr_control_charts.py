@@ -75,9 +75,9 @@ def main():
         file_name=args.path_or_file,
         usecols=usecols
     )
-    if len(usecols) == 2:
+    if args.sample_column is not None:
         data = df.set_index(df.columns[0]).copy()
-    elif len(usecols) == 1:
+    elif args.sample_column is None:
         data = df.copy()
     print("path or file:", args.path_or_file)
     ds.page_break()
