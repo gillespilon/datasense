@@ -3,8 +3,8 @@ Data munging
 """
 
 from shutil import copytree, move, rmtree
-from typing import Callable, Pattern
 from tkinter import filedialog
+from typing import Pattern
 from pathlib import Path
 from tkinter import Tk
 import psutil
@@ -790,8 +790,8 @@ def read_file(
     usecols: list[str] | None = None,
     dtype: dict | None = None,
     converters: dict | None = None,
-    parse_dates: list[str] = False,
-    date_parser: Callable | None = None,
+    parse_dates: list[str | int] | dict | bool = False,
+    # date_format: str | dict = None,
     datetime_format: str | None = None,
     time_delta_columns: list[str] = [],
     category_columns: list[str] = [],
@@ -831,9 +831,9 @@ def read_file(
         Dictionary of functions for converting values in certain columns.
     parse_dates : list[str] = False
         The columns to use to parse date and time.
-    date_parser : Callable | None = None
-        The function to use for parsing date and time, when pandas needs
-        extra help.
+    # date_format : str | dict = None
+    #     If used in conjunction with parse_dates, will parse dates according to
+    #     this format.
     datetime_format : str | None = None
         The str to use for formatting date and time.
     time_delta_columns : list[str] = []
@@ -1015,14 +1015,12 @@ def read_file(
     >>> object_columns = ['Z']
     >>> sort_columns = ['I', 'A']
     >>> sort_columns_bool = [True, False]
-    >>> def date_parser() -> Callable:
-    ...     return lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
     >>> df = ds.read_file(
     ...     file_name='myfile.csv',
     ...     column_names_dict=column_names_dict,
     ...     index_columns=index_columns,
     ...     parse_dates=parse_dates,
-    ...     date_parser=date_parser(),
+    ...     # date_format=date_format,
     ...     time_delta_columns=time_delta_columns,
     ...     category_columns=category_columns,
     ...     integer_columns=integer_columns,
@@ -1037,7 +1035,7 @@ def read_file(
     ...     column_names_dict=column_names_dict,
     ...     index_columns=index_columns,
     ...     date_time_columns=date_time_columns,
-    ...     date_parser=date_parser,
+    ...     # date_format=date_format,
     ...     parse_dates=date_time_columns,
     ...     time_delta_columns=time_delta_columns,
     ...     category_columns=category_columns,
@@ -1127,7 +1125,7 @@ def read_file(
             dtype=dtype,
             converters=converters,
             parse_dates=parse_dates,
-            date_parser=date_parser,
+            # date_format=date_format,
             nrows=nrows,
             skip_blank_lines=skip_blank_lines,
             encoding=encoding,
@@ -1141,7 +1139,7 @@ def read_file(
             engine="odf",
             sheet_name=sheet_name,
             parse_dates=parse_dates,
-            date_parser=date_parser,
+            # date_format=date_format,
         )
     elif file_name.suffix in [".xlsx", ".XLSX", ".xlsm", ".XLSM"]:
         df = pd.read_excel(
@@ -1154,7 +1152,7 @@ def read_file(
             skiprows=skiprows,
             nrows=nrows,
             parse_dates=parse_dates,
-            date_parser=date_parser,
+            # date_format=date_format,
         )
     # Removed xlsb XLSB support because Arch Linux does not support
     # elif file_name.suffix in ['.xlsb', '.XLSB']:
@@ -1168,7 +1166,7 @@ def read_file(
     #         skiprows=skiprows,
     #         nrows=nrows,
     #         parse_dates=parse_dates,
-    #         date_parser=date_parser,
+    #         # date_format=date_format,
     #     )
     elif file_name.suffix in [".feather"]:
         df = ft.read_feather(source=file_name, columns=usecols)
