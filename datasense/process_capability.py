@@ -15,7 +15,7 @@ import pandas as pd
 import numpy as np
 
 
-df_constants = pd.DataFrame.from_dict(
+CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
     dict(
         n=np.array([
             2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -156,7 +156,7 @@ def cp(
     """
     capability = (upper_spec - lower_spec) / (6 * std_devn)
     constant_name = ["d2", "d3"]
-    d2, d3 = df_constants.loc[subgroup_size, constant_name]
+    d2, d3 = CONSTANTS.loc[subgroup_size, constant_name]
     # as per wheeler in advanced topics of SPC
     degrees_of_freedom = (d2**2 * number_subgroups) / (2 * d3**2) + 0.2
     chi2_lower = chi2.ppf(q=(alpha / 2), df=degrees_of_freedom)
@@ -242,7 +242,7 @@ def cpk(
     )
     """
     constant_name = ["d2", "d3"]
-    d2, d3 = df_constants.loc[subgroup_size, constant_name]
+    d2, d3 = CONSTANTS.loc[subgroup_size, constant_name]
     # as per wheeler in advanced topics of SPC
     degrees_of_freedom = (d2**2 * number_subgroups) / (2 * d3**2) + 0.2
     cpk_lower = (average - lower_spec) / (3 * std_devn)
