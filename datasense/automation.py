@@ -16,13 +16,13 @@ def fahrenheit_to_celsius_table(
 
     Parameters
     ----------
-    min_fahrenheit : int = 350
+    min_fahrenheit: int = 350
         The minimum Fahrenheit temperature to include in the table.
-    max_fahrenheit : int = 450
+    max_fahrenheit: int = 450
         The maximum Fahrenheit temperature to include in the table.
-    fahrenheit_increment : int = 5
+    fahrenheit_increment: int = 5
         The increment in Fahrenheit degrees between each row in the table.
-    rounding_increment : int = 5
+    rounding_increment: int = 5
         The increment of rounding in the ones place value.
 
     Returns
@@ -31,6 +31,7 @@ def fahrenheit_to_celsius_table(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> output_url = 'fahrenheit_to_celsius.html'
     >>> header_title = 'Fahrenheit to Celsius'
@@ -94,50 +95,50 @@ def water_coffee_tea_milk(
 
     Parameters
     ----------
-
-    mugs_coffee : int = 0,
+    mugs_coffee: int = 0,
         The number of coffee mugs.
-    cups_tea : int = 0,
+    cups_tea: int = 0,
         The number of tea cups.
-    mugs_tea : int = 0,
+    mugs_tea: int = 0,
         The number of tea mugs.
-    water_coffee_filter_mass : int = 150,
+    water_coffee_filter_mass: int = 150,
         The mass of water to wet one coffee filter.
-    water_tea_cup_mass : int = 400,
+    water_tea_cup_mass: int = 400,
         The mass of water for a tea cup.
-    water_tea_mug_mass : int = 300,
+    water_tea_mug_mass: int = 300,
         The mass of water for a coffee mug.
-    water_coffee_mass : int = 220
+    water_coffee_mass: int = 220
         The mass of water to wet the coffee grinds.
-    milk_coffee_mass : int = 150
+    milk_coffee_mass: int = 150
         The mass of milk for one serving.`
-    coffee_beans_mnass : int = 20
+    coffee_beans_mnass: int = 20
         The mass of coffee beans for one serving.
-    time_1000_g_water : int =340
+    time_1000_g_water: int =340
         The time to boil 1000 g of water at 8 on a 2300 W induction element.
 
     Returns
     -------
-        water : int
+    list[int]
+        A list of seven integers.
+
+        - water: int
             The total amount of water to boil (g).
-        coffee_mug_water : int
+        - coffee_mug_water: int
             The amount of water for the coffee mugs (g).
-        coffee_filter_water : int
+        - coffee_filter_water: int
             The amount of water to wet the coffee filters (g).
-        tea_cup_water : int
+        - tea_cup_water: int
             The amount of water for the tea cups (g).
-        tea_mug_water : int
+        - tea_mug_water: int
             The amount of water for the tea mugs (g).
-        coffee_milk : int
+        - coffee_milk: int
             The mass of milk to foam (g).
-        coffee_mass : int
+        - coffee_mass: int
             The mass of coffee beans to grind (g).
 
     Examples
     --------
 
-    Example 1
-    ---------
     >>> import datasense as ds
     >>> ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
@@ -146,8 +147,6 @@ def water_coffee_tea_milk(
     ... )
     (370, 220, 150, 0, 0, 150, 20, (0, 2, 5))
 
-    Example 2
-    ---------
     >>> import datasense as ds
     >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
@@ -157,8 +156,6 @@ def water_coffee_tea_milk(
     >>> print(coffee_mug_water, coffee_filter_water)
     220 150
 
-    Example 3
-    ---------
     >>> import datasense as ds
     >>> all_coffee_water = ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
