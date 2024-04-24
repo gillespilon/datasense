@@ -29,6 +29,7 @@ def html_header(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> ds.html_header(
     ...     header_title="header title",
@@ -71,6 +72,7 @@ def html_footer() -> None:
 
     Example
     -------
+
     >>> import datasense as ds
     >>> ds.html_footer() # doctest: +NORMALIZE_WHITESPACE
     </body>
@@ -86,6 +88,7 @@ def page_break() -> None:
 
     Example
     -------
+
     >>> import datasense as ds
     >>> ds.page_break() # doctest: +NORMALIZE_WHITESPACE
     </pre>
@@ -124,14 +127,11 @@ def html_begin(
 
     Examples
     --------
-    Example 1
-    ---------
+
     >>> import datasense as ds
     >>> output_url = '../tests/my_html_file.html'
     >>> original_stdout = ds.html_begin(output_url=output_url)
 
-    Example 2
-    ---------
     >>> header_title = 'My Report'
     >>> header_id = 'my-report'
     >>> original_stdout = ds.html_begin(
@@ -139,7 +139,7 @@ def html_begin(
     ...     header_title=header_title,
     ...     header_id=header_id
     ... )
-     """
+    """
     original_stdout = sys.stdout
     sys.stdout = open(
         file=output_url,
@@ -171,6 +171,7 @@ def html_end(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> output_url = '../tests/my_html_file.html'
     >>> # see original_stdout example in def html_begin()
@@ -179,6 +180,7 @@ def html_end(
     ...     header_title="header_title",
     ...     header_id="header-id"
     ... )
+
     >>> ds.html_end(
     ...     original_stdout=original_stdout,
     ...     output_url="output_url.html"
@@ -210,8 +212,7 @@ def html_figure(
 
     Examples
     --------
-    Example 1
-    ---------
+
     >>> import datasense as ds
     >>> import matplotlib.pyplot as plt
     >>> graph_file = 'my_graph_file.svg'
@@ -223,8 +224,6 @@ def html_figure(
 <figcaption>my_graph_file.svg</figcaption>\
 </figure><pre style="white-space: pre-wrap;">
 
-    Example 2
-    ---------
     >>> import datasense as ds
     >>> ds.html_figure(
     ...     file_name=graph_file,
@@ -284,6 +283,7 @@ def report_summary(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> import time
     >>> start_time = time.perf_counter()
@@ -332,21 +332,16 @@ def script_summary(
 
     Examples
     --------
-    Example 1
-    ---------
+
     >>> import datasense as ds
     >>> ds.script_summary(script_path=Path(__file__)) # doctest: +SKIP
 
-    Example 2
-    ---------
     >>> import datasense as ds
     >>> ds.script_summary(
     ...     script_path=Path(__file__),
     ...     action="started at"
     ... ) # doctest: +SKIP
 
-    Example 3
-    ---------
     >>> import datasense as ds
     >>> ds.script_summary(
     ...     script_path=Path(__file__),
@@ -391,6 +386,7 @@ def sync_directories(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> local_docs = 'string_to_directory'
     >>> sharepoint_docs = 'string_to_mapped_drive_of_sharepoint'
@@ -424,15 +420,12 @@ def explore_functions(function: str) -> None:
 
     Examples
     --------
-    Example 1
-    ---------
+
     >>> import datasense as ds
     >>> from sklearn.compose import make_column_transformer
     >>> function_to_explore = make_column_transformer
     >>> ds.explore_functions(function=function_to_explore) # doctest: +SKIP
 
-    Example 2
-    ---------
     >>> from sklearn.compose import make_column_transformer
     >>> from sklearn.pipeline import make_pipeline
     >>> functions = ["function_name_syntax", "function_name"]
