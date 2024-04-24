@@ -147,16 +147,16 @@ def water_coffee_tea_milk(
     ... )
     (370, 220, 150, 0, 0, 150, 20, (0, 2, 5))
 
-    >>> import datasense as ds
-    >>> coffee_mug_water, coffee_filter_water = [ds.water_coffee_tea_milk(
-    ...     mugs_coffee=1,
-    ...     cups_tea=0,
-    ...     mugs_tea=0
-    ... )[i] for i in [1, 2]]
+    >>> coffee_mug_water, coffee_filter_water = [
+    ...     ds.water_coffee_tea_milk(
+    ...         mugs_coffee=1,
+    ...         cups_tea=0,
+    ...         mugs_tea=0
+    ...     )[i] for i in [1, 2]
+    ... ]
     >>> print(coffee_mug_water, coffee_filter_water)
     220 150
 
-    >>> import datasense as ds
     >>> all_coffee_water = ds.water_coffee_tea_milk(
     ...     mugs_coffee=1,
     ...     cups_tea=0,
