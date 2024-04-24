@@ -2534,8 +2534,70 @@ def waterfall(
     title: str = "Waterfall Chart",
 ) -> pd.DataFrame:
     """
-    TODO
+    Create a waterfall chart, to understand the cumulative effect of
+    sequentially introduced positive or negative values.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        The DataFrame to convert to a waterfall DataFrame.
+    path_in: Path | str
+        The path of the data file.
+    xticklabels_rotation: float = 45
+        The angle to rotate the xticklabels.
+    last_column: str = "NET"
+        The name of the last column in the waterfall chart.
+    ylim_min: float | None = None
+        The lower limit of the y axis.
+    ylim_max: float | None = None
+        The upper limit of the y axis.
+    positive_colour: str = "green"
+        The colour of the positive bars.
+    negative_colour: str = "red"
+        The colour of the negative bars.
+    first_bar_colour: str = "blue"
+        The colour of the first bar.
+    last_bar_colour: str = "blue"
+        The colour of the last bar.
+    grid_alpha: float = 0.2
+        The fraction of the full colour of the grid.
+    graph_format: str = "svg"
+        The output format of the graph.
+    title: str = "Waterfall Chart"
+        The title on the graph.
+
+    Returns
+    -------
+    df: pd.DataFrame
+        The waterfall DataFrame.
+
+    Examples
+    --------
+    Budget waterfall chart
+
+    >>> import pandas as pd
+    # the df shown here is a proxy for waterfall_budget.xlsx
+    >>> df = pd.DataFrame(data={
+    ...     'Categories': [
+    ...         'Base', 'Inflation', 'Merit Raises',
+    ...         'Market Wages', 'Volume', 'Fuel',
+    ...         'Other', 'Compliance', 'Reorganization',
+    ...         'Consolidations', 'Initiative Savings',
+    ...         'Consultants'
+    ...     ],
+    ...     'Amount ($MM)': [
+    ...         423.5, 11.7, 2.9, 1.1, 1.5, 0.1,
+    ...         5.3, 1.1, -2.7, -23.3, -6.4, -8
+    ...     ],
+    ... })
+    >>> df = ds.waterfall(
+    ...     df=df,
+    ...     path_in="waterfall_budget.xls"
+    ...     ylim_min=400,
+    ...     ylim_max=455,
+    ... )
     """
+    path_in = Path(path_in)
     xlabel = df.columns[0]
     ylabel = df.columns[-1]
     df = df.set_index(df.columns[0])
