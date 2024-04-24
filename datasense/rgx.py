@@ -24,8 +24,7 @@ def rgx_email_address(
 
     Examples
     --------
-    Example 1
-    ---------
+
     >>> import datasense as ds
     >>> strings = [
     ...     "first email bob.smith@somemail.com send",
@@ -39,9 +38,8 @@ def rgx_email_address(
      'frank@twomail.com',
      'tom@onemail.com']
 
-    Example 2
-    ---------
-    # open a file containing email addresses and \n\t
+     open a file containing email addresses and \n\t
+
     >>> import datasense as ds
     >>> with open("../tests/mailbox.txt") as f:
     ...     data = f.read()
@@ -78,6 +76,7 @@ def rgx_url(
 
     Example
     -------
+
     >>> import datasense as ds
     >>> strings = [
     ...     "https://www.google.com",
