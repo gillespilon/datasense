@@ -2571,8 +2571,8 @@ def waterfall(
     df: pd.DataFrame
         The waterfall DataFrame.
 
-    Examples
-    --------
+    Example
+    -------
     Budget waterfall chart
 
     >>> import pandas as pd
@@ -3295,5 +3295,4 @@ __all__ = (
     "plot_pie",
     "despine",
     "qr_code",
-    "boxcox",
 )
