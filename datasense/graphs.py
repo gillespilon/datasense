@@ -69,37 +69,41 @@ def plot_scatter_y(
 
     Parameters
     ----------
-    y : pd.Series
+    y: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 8
+    markersize: float = 8
         The size of the plot point (pt).
-    colour : str = colour_blue
+    colour: str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_y(y=series_y)
 
-    Example 2
     >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_y(
     ...     y=series_y,
@@ -156,36 +160,41 @@ def plot_scatter_x_y(
     linear outside the range of the knots. The fitter curve is continuously
     differentiable to the second order at all of the knots.
 
-    ----------
     Parameters
-    x : pd.Series
+    ----------
+    x: pd.Series
         The data to plot on the abscissa.
-    y : pd.Series
+    y: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 4
+    markersize: float = 4
         The size of the plot point (pt).
-    colour : str = colour_blue
+    colour: str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> series_x = ds.datetime_data()
     >>> series_y = ds.random_data()
@@ -194,7 +203,6 @@ def plot_scatter_x_y(
     ...     y=series_y
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="randint").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
@@ -206,7 +214,7 @@ def plot_scatter_x_y(
     ...     colour=colour_red
     ... )
 
-    Example 3
+
     >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
@@ -214,7 +222,7 @@ def plot_scatter_x_y(
     ...     y=series_y
     ... )
 
-    Example 4
+
     >>> import datasense as ds
     >>> series_x = ds.random_data().sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
@@ -255,7 +263,7 @@ def plot_scatter_x_y(
 
 
 def plot_line_y(
-    *,
+        *,
     y: pd.Series,
     figsize: tuple[float, float] = None,
     smoothing: str = None,
@@ -278,39 +286,43 @@ def plot_line_y(
 
     Parameters
     ----------
-    y : pd.Series
+    y: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 8
+    markersize: float = 8
         The size of the plot point (pt).
-    linestyle : str = "-"
+    linestyle: str = "-"
         The style for the line.
-    colour : str = colour_blue
+    colour: str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
 
-    Example 2
     >>> import datasense as ds
     >>> fig, ax = ds.plot_line_y(
     ...     y=series_y,
@@ -370,38 +382,43 @@ def plot_line_x_y(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y : pd.Series
+    y: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 8
+    markersize: float = 8
         The size of the plot point (pt).
-    linestyle : str = "-"
+    linestyle: str = "-"
         The style of the line joining the points.
-    linewidth : float = 1
+    linewidth: float = 1
         The width of the line joining the points.
-    colour : str = colour_blue
+    colour: str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
-    remove_spines : bool = True
+    remove_spines: bool = True
         IF True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> X = ds.datetime_data()
     >>> y = ds.random_data()
@@ -410,7 +427,6 @@ def plot_line_x_y(
     ...     y=y
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> X = ds.random_data(distribution="randint").sort_values()
     >>> y = ds.random_data()
@@ -425,7 +441,6 @@ def plot_line_x_y(
     ...     colour="#ee3377"
     ... )
 
-    Example 3
     >>> import datasense as ds
     >>> X = ds.random_data(distribution="uniform").sort_values()
     >>> y = ds.random_data()
@@ -434,7 +449,6 @@ def plot_line_x_y(
     ...     y=y
     ... )
 
-    Example 4
     >>> import datasense as ds
     >>> X = ds.random_data().sort_values()
     >>> y = ds.random_data()
@@ -517,54 +531,59 @@ def plot_scatter_scatter_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = "."
+    marker1: str = "."
         The type of plot point for y1.
-    marker2 : str = "."
+    marker2: str = "."
         The type of plot point for y2.
-    markersize1 : int = 8
+    markersize1: int = 8
         The size of the plot point for y1.
-    markersize2 : int = 8
+    markersize2: int = 8
         The size of the plot point for y2.
-    linestyle1 : str = "None"
+    linestyle1: str = "None"
         The style of the line for y1.
-    linestyle2 : str = "None"
+    linestyle2: str = "None"
         The style of the line for y2.
-    linewidth1 : float = 1
+    linewidth1: float = 1
         The width of the line for y1.
-    linewidth2 : float = 1
+    linewidth2: float = 1
         The width of the line for y2.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
-    remove_spines : booll = True
+    remove_spines: booll = True
         IF True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> series_x = ds.datetime_data()
     >>> series_y1 = ds.random_data()
@@ -575,7 +594,6 @@ def plot_scatter_scatter_x_y1_y2(
     ...     y2=series_y2
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform")
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
@@ -688,56 +706,61 @@ def plot_scatter_scatter_x1_x2_y1_y2(
 
     Parameters
     ----------
-    X1 : pd.Series
+    X1: pd.Series
         The data to plot on the abscissa.
-    X2 : pd.Series
+    X2: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = "."
+    marker1: str = "."
         The type of plot point for y1.
-    marker2 : str = "."
+    marker2: str = "."
         The type of plot point for y2.
-    markersize1 : int = 8
+    markersize1: int = 8
         The size of the plot point for y1.
-    markersize2 : int = 8
+    markersize2: int = 8
         The size of the plot point for y2.
-    linestyle1 : str = "None"
+    linestyle1: str = "None"
         The style of the line for y1.
-    linestyle2 : str = "None"
+    linestyle2: str = "None"
         The style of the line for y2.
-    linewidth1 : float = 1
+    linewidth1: float = 1
         The width of the line for y1.
-    linewidth2 : float = 1
+    linewidth2: float = 1
         The width of the line for y2.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> series_x1 = ds.datetime_data()
     >>> series_x2 = ds.datetime_data()
@@ -750,7 +773,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     y2=series_y2
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     ...     X1=series_x1,
@@ -761,7 +783,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     number_knots=7
     ... )
 
-    Example 3
     >>> import datasense as ds
     >>> series_x1 = ds.random_data(distribution="uniform").sort_values()
     >>> series_x2 = ds.random_data(distribution="uniform").sort_values()
@@ -782,7 +803,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ... )
     >>> ax.legend(frameon=False) # doctest: +SKIP
 
-    Example 4
     >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     ...     X1=series_x1,
@@ -910,39 +930,45 @@ def plot_scatter_line_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The series for the horizontal axis.
-    y1 : pd.Series
+    y1: pd.Series
         The series for y1 to plot on the vertical axis.
-    y2 : pd.Series
+    y2: pd.Series
         The series for y2 to plot on the vertical axis.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots to create.
-    marker : str = None
+    marker: str = None
         The type of marker
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend for y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend for y2.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> number_knots = 100
     >>> figsize = (6, 4)
@@ -1043,51 +1069,57 @@ def plot_line_line_y1_y2(
 
     Parameters
     ----------
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    marker1 : str = "."
+    marker1: str = "."
         The type of plot point for y1.
-    marker2 : str = "."
+    marker2: str = "."
         The type of plot point for y2.
-    markersize1 : int = 8
+    markersize1: int = 8
         The size of the plot point for y1 (pt).
-    markersize2 : int = 8
+    markersize2: int = 8
         The size of the plot point for y2 (pt).
-    linestyle1 : str = "_"
+    linestyle1: str = "_"
         The style of the line for y1.
-    linestyle2 : str = "_"
+    linestyle2: str = "_"
         The style of the line for y2.
-    linewidth1 : float = 1
+    linewidth1: float = 1
         The width of the line for y1.
-    linewidth2 : float = 1
+    linewidth2: float = 1
         The width of the line for y2.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> series_y1 = ds.random_data()
     >>> series_y2 = ds.random_data()
@@ -1169,53 +1201,58 @@ def plot_line_line_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the y1 ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the y2 ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
-        The type of smoothing to apply.
-        Options: "natural_cubic_spline"
-    number_knots : int = None
+    smoothing: str = None
+        The type of smoothing to apply. Options: "natural_cubic_spline"
+    number_knots: int = None
         the number of knows for natural cubic spline smoothing.
-    marker1 : str = "."
+    marker1: str = "."
         The type of plot point for y1.
-    marker2 : str = "."
+    marker2: str = "."
         The type of plot point for y2.
-    markersize1 : int = 8
+    markersize1: int = 8
         The size of the plot point for y1.
-    markersize2 : int = 8
+    markersize2: int = 8
         The size of the plot point for y2.
-    linestyle1 : str = "-"
+    linestyle1: str = "-"
         The style of the line for y1.
-    linestyle2 : str = "-"
+    linestyle2: str = "-"
         The style of the line for y2.
-    linewidth1 : float = 1
+    linewidth1: float = 1
         The width of the line for y1.
-    linewidth2 : float = 1
+    linewidth2: float = 1
         The width of the line for y2.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
-    remove_spines : booll = True
+    remove_spines: booll = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
 
-    Exanple
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
+
+    Example
     -------
+
     >>> import datasense as ds
     >>> figsize = (6, 4)
     >>> X = ds.datetime_data()
@@ -1303,43 +1340,49 @@ def plot_line_line_line_x_y1_y2_y3(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the y1 ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the y2 ordinate.
-    y3 : pd.Series
+    y3: pd.Series
         The data to plot on the y3 ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    colour2 : str = colour_teal
+    colour2: str = colour_teal
         The colour of the line for y2.
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
-    labellegendy3 : str = None
+    labellegendy3: str = None
         The legend label of the line y3.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> import pandas as pd
     >>> figsize = (6, 4)
@@ -1455,35 +1498,41 @@ def plot_scatterleft_scatterright_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the y1 ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the y2 ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         the number of knows for natural cubic spline smoothing.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    linestyle1 : str = "None"
+    linestyle1: str = "None"
         The style of the line for y1.
-    linestyle2 : str = "None"
+    linestyle2: str = "None"
         The style of the line for y2.
 
     Returns
     -------
-    tuple[plt.Figure, axes.Axes, axes.Axes]
-        A matplotlib figure and Axes tuples.
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> X = ds.random_data(distribution="randint").sort_values()
     >>> y1 = ds.random_data(distribution="norm")
@@ -1568,48 +1617,53 @@ def plot_lineleft_lineright_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    linestyle1 : str = "-"
+    linestyle1: str = "-"
         The style of the line for y1.
-    linestyle2 : str = "-"
+    linestyle2: str = "-"
         The style of the line for y2.
-    marker1 : str = "."
+    marker1: str = "."
         The type of plot point for y1.
-    markersize1 : int = 8
+    markersize1: int = 8
         The size of the plot point for y1 (pt).
-    marker2 : str = "."
+    marker2: str = "."
         The type of plot point for y2.
-    markersize2 : int = 8
+    markersize2: int = 8
         The size of the plot point for y2 (pt).
-    labellegendy1 : str = None
+    labellegendy1: str = None
         The legend label of the line y1.
-    labellegendy2 : str = None
+    labellegendy2: str = None
         The legend label of the line y2.
 
     Returns
     -------
-    tuple[plt.Figure, axes.Axes, axes.Axes]
-        A matplotlib figure and Axes tuples.
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example1
+
     >>> import datasense as ds
     >>> import pandas as pd
     >>> figsize = (6, 4)
@@ -1629,7 +1683,6 @@ def plot_lineleft_lineright_x_y1_y2(
     ...     figsize=figsize
     ... )
 
-    Example2
     >>> import datasense as ds
     >>> import pandas as pd
     >>> figsize = (6, 4)
@@ -1713,39 +1766,45 @@ def plot_barleft_lineright_x_y1_y2(
 
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the abscissa.
-    y1 : pd.Series
+    y1: pd.Series
         The data to plot on the ordinate.
-    y2 : pd.Series
+    y2: pd.Series
         The data to plot on the ordinate.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    smoothing : str = None
+    smoothing: str = None
         The type of smoothing to apply.
         Options: "natural_cubic_spline"
-    number_knots : int = None
+    number_knots: int = None
         The number of knots for natural cubic spline smoothing.
-    barwidth : float = 10
+    barwidth: float = 10
         The width of the bars.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    linestyle1 : str = "-"
+    linestyle1: str = "-"
         The style of the line for y1.
-    linestyle2 : str = "-"
+    linestyle2: str = "-"
         The style of the line for y2.
-    marker2 : str = "o"
+    marker2: str = "o"
         The type of plot point for y2.
 
     Returns
     -------
-    tuple[plt.Figure, axes.Axes, axes.Axes]
-        A matplotlib figure and Axes tuples.
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> X = ds.datetime_data()
     >>> y1 = ds.random_data()
@@ -1800,32 +1859,38 @@ def plot_pareto(
     """
     Parameters
     ----------
-    X : pd.Series
+    X: pd.Series
         The data to plot on the ordinate.
-    y : pd.Series
+    y: pd.Series
         The data to plot on the abscissa.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    width : float = 0.8
+    width: float = 0.8
         The width of the bars (in).
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the line for y1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the line for y2.
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 8
+    markersize: float = 8
         The size of the plot point (pt).
-    linestyle : str = "-"
+    linestyle: str = "-"
         The style of the line joining the points.
 
     Returns
     -------
-    tuple[plt.Figure, axes.Axes, axes.Axes]
-        A matplotlib figure and Axes tuple.
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> data = pd.DataFrame(
     ...     {
@@ -1858,20 +1923,27 @@ def plot_pareto(
     return (fig, ax1, ax2)
 
 
-def format_dates(*, fig: plt.Figure, ax: axes.Axes, defaultfmt: str = "%Y-%m-%d") -> None:
+def format_dates(
+    *,
+    fig: plt.Figure,
+    ax: axes.Axes,
+    defaultfmt: str = "%Y-%m-%d"
+) -> None:
     """
     Format dates and ticks for plotting.
 
     Parameters
     ----------
-    fig : plt.Figure
+    fig: plt.Figure
         A matplotlib figure.
-    ax : axes.Axes
+    ax: axes.Axes
         A matplotlib Axes.
-    defaultfmt : str = "%Y-%m-%d"
+    defaultfmt: str = "%Y-%m-%d"
+        The date string.
 
     Example
     -------
+
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> fig = plt.figure()
@@ -1905,30 +1977,36 @@ def probability_plot(
 
     Parameters
     ----------
-    data : pd.Series
+    data: pd.Series
         A pandas Series.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    distribution : object = norm
+    distribution: object = norm
         Fit a normal distribution by default.
-    fit : bool = True
+    fit: bool = True
         Fit a least-squares regression line to the data if True.
-    plot : object = None
+    plot: object = None
         If given, plot the quantiles and least-squares fit.
-    colour1 : str = colour_blue,
+    colour1: str = colour_blue,
         The colour of line 1.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of line 2.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
     tuple[plt.Figure, axes.Axes]
-        A matplotlib figure and Axes tuple.
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> data = ds.random_data()
     >>> fig, ax = ds.probability_plot(data=data)
@@ -1956,11 +2034,12 @@ def despine(*, ax: axes.Axes) -> None:
 
     Parameters
     ----------
-    ax : axes.Axes
+    ax: axes.Axes
         A matplotlib Axes.
 
     Example
     -------
+
     >>> import matplotlib.pyplot as plt
     >>> import datasense as ds
     >>> fig = plt.figure()
@@ -1989,52 +2068,59 @@ def plot_histogram(
     """
     Parameters
     ----------
-    series : pd.Series
+    series: pd.Series
         The input series.
-    number_bins : int = None
+    number_bins: int = None
         The number of equal-width bins in the range s.max() - s.min().
-    bin_range : tuple[int, int] | tuple[int, int] = None
+    bin_range: tuple[int, int] | tuple[int, int] = None
         The lower and upper range of the bins. If not provided, range is
         (s.min(), s.max()).
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    bin_width : int = None
+    bin_width: int = None
         The width of the bin in same units as the series s.
-    edgecolor : str = colour_white
+    edgecolor: str = colour_white
         The hexadecimal color value for the bar edges.
-    linewidth : int = 1
+    linewidth: int = 1
         The bar edges line width (point).
-    bin_label_bool : bool = False
+    bin_label_bool: bool = False
         If True, label the bars with count and percentage of total.
-    color : str = colour_blue
+    color: str = colour_blue
         The color of the bar faces.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
-    probability_density_function : bool = False
+    probability_density_function: bool = False
         If True, a density parameter normalizes the bin heights so that the
         integral of the histogram is 1. The resulting histogram is an
         approximation of the probability density function.
-    percentiles : tuple[float, float] = [0.025, 0.975]
+    percentiles: tuple[float, float] = [0.025, 0.975]
         The percentiles for plotting vertical lines on the histogram.
-    percentiles_colour : str = colour_red
+    percentiles_colour: str = colour_red
         The colour of the vertical lines for the percentiles.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
-    # Create a series of random floats, normal distribution,
-    # with the default parameters.
+
+    Create a series of random floats, normal distribution, with the default
+    parameters.
+
     >>> import datasense as ds
     >>> s = ds.random_data()
     >>> fig, ax = ds.plot_histogram(series=s)
 
-    Example 2
-    # Create a series of random integers, integer distribution, size = 113,
-    # min = 0, max = 13.
+    Create a series of random integers, integer distribution, size = 113,
+    min = 0, max = 13.
+
     >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
@@ -2044,10 +2130,10 @@ def plot_histogram(
     ... )
     >>> fig, ax = ds.plot_histogram(series=s)
 
-    Example 3
-    # Create a series of random integers, integer distribution, size = 113,
-    # min = 0, max = 13.
-    # Set histogram parameters to control bin width.
+    Create a series of random integers, integer distribution, size = 113,
+    min = 0, max = 13.
+    Set histogram parameters to control bin width.
+
     >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
@@ -2060,10 +2146,10 @@ def plot_histogram(
     ...     bin_width=1
     ... )
 
-    Example 4
-    # Create a series of random integers, integer distribution, size = 113,
-    # min = 0, hight = 14,
-    # Set histogram parameters to control bin width and plotting range.
+    Create a series of random integers, integer distribution, size = 113,
+    min = 0, height = 14.
+    Set histogram parameters to control bin width and plotting range.
+
     >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
@@ -2077,10 +2163,10 @@ def plot_histogram(
     ...     bin_range=(0, 10)
     ... )
 
-    Example 5
-    # Create a series of random floats, size = 113,
-    # average = 69, standard deviation = 13.
-    # Set histogram parameters to control bin width and plotting range.
+    Create a series of random floats, size = 113,
+    average = 69, standard deviation = 13.
+    Set histogram parameters to control bin width and plotting range.
+
     >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="norm",
@@ -2094,12 +2180,12 @@ def plot_histogram(
     ...     bin_range=(30, 110)
     ... )
 
-    Example 6
-    # Create a series of random floats, size = 113,
-    # average = 69, standard deviation = 13.
-    # Set histogram parameters to control bin width, plotting range, labels.
-    # Set colour of the bars.
-    # Plot the probability density function on top of the histogram.
+    Create a series of random floats, size = 113,
+    average = 69, standard deviation = 13.
+    Set histogram parameters to control bin width, plotting range, labels.
+    Set colour of the bars.
+    Plot the probability density function on top of the histogram.
+
     >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="norm",
@@ -2189,30 +2275,36 @@ def plot_horizontal_bars(
     """
     Parameters
     ----------
-    y : list[int] | list[float] | list[str],
+    y: list[int] | list[float] | list[str],
         The y coordinates of the bars.
-    width : list[int] | list[float],
+    width: list[int] | list[float],
         The width(s) of the bars.
-    height : float = 0.8,
+    height: float = 0.8,
         The height of the bars.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = colour_white,
+    edgecolor: str = colour_white,
         The hexadecimal color value for the bar edges.
-    linewidth : int = 1,
+    linewidth: int = 1,
         The bar edges line width (point).
-    color : str = colour_blue
+    color: str = colour_blue
         The color of the bar faces.
-    left : datetime | int | float = None
+    left: datetime | int | float = None
         The x coordinates of the left sides of the bars.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
@@ -2221,7 +2313,6 @@ def plot_horizontal_bars(
     ...     width=width
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
@@ -2231,8 +2322,8 @@ def plot_horizontal_bars(
     ...     height=0.4
     ... )
 
-    Example 3
     Create Gantt chart
+
     >>> import datasense as ds
     >>> import datetime
     >>> data = {
@@ -2298,28 +2389,34 @@ def plot_vertical_bars(
     """
     Parameters
     ----------
-    x : list[int] | list[float] | list[str],
+    x: list[int] | list[float] | list[str],
         The x coordinates of the bars.
-    height : list[int] | list[float],
+    height: list[int] | list[float],
         The height(s) of the bars.
-    width : float = 0.8,
+    width: float = 0.8,
         The width of the bars.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    edgecolor : str = colour_white,
+    edgecolor: str = colour_white,
         The hexadecimal color value for the bar edges.
-    linewidth : int = 1,
+    linewidth: int = 1,
         The bar edges line width (point).
-    color : str = colour_blue
+    color: str = colour_blue
         The color of the bar faces.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
@@ -2328,7 +2425,6 @@ def plot_vertical_bars(
     ...     height=height
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
@@ -2363,26 +2459,32 @@ def plot_pie(
     """
     Parameters
     ----------
-    x : list[int] | list[float],
+    x: list[int] | list[float],
         The wedge sizes.
-    labels : list[int] | list[float] | list[str],
+    labels: list[int] | list[float] | list[str],
         The labels of the wedges.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    startangle : float = 0,
+    startangle: float = 0,
         The start angle of the pie, counterclockwise from the x axis.
-    colors : list[str] = None
+    colors: list[str] = None
         The color of the wedges.
-    autopct : str = "%1.1f%%"
+    autopct: str = "%1.1f%%"
         Label the wedges with their numeric value. If None, no label.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
@@ -2391,7 +2493,6 @@ def plot_pie(
     ...     labels=labels
     ... )
 
-    Example 2
     >>> import datasense as ds
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
@@ -2516,41 +2617,41 @@ def plot_stacked_bars(
 
     Parameters
     ----------
-    x : list[int] | list[float] | list[str],
+    x: list[int] | list[float] | list[str],
         The x coordinates of the bars.
-    height1 : list[int] | list[float],
+    height1: list[int] | list[float],
         The height of the level 1 bars.
-    label1 : str = None,
+    label1: str = None,
         The label of the level 1 bars.
-    height2 : list[int] | list[float],
+    height2: list[int] | list[float],
         The height of the level 2 bars.
-    label2 : str = None,
+    label2: str = None,
         The label of the level 2 bars.
-    height3 : list[int] | list[float],
+    height3: list[int] | list[float],
         The height of the level 3 bars.
-    label3 : str = None,
+    label3: str = None,
         The label of the level 3 bars.
-    height4 : list[int] | list[float],
+    height4: list[int] | list[float],
         The height of the level 4 bars.
-    label4 : str = None,
+    label4: str = None,
         The label of the level 4 bars.
-    height5 : list[int] | list[float],
+    height5: list[int] | list[float],
         The height of the level 5 bars.
-    label5 : str = None,
+    label5: str = None,
         The label of the level 5 bars.
-    height6 : list[int] | list[float],
+    height6: list[int] | list[float],
         The height of the level 6 bars.
-    label6 : str = None,
+    label6: str = None,
         The label of the level 6 bars.
-    height7 : list[int] | list[float],
+    height7: list[int] | list[float],
         The height of the level 7 bars.
-    label7 : str = None,
+    label7: str = None,
         The label of the level 7 bars.
-    width : float = 0.8,
+    width: float = 0.8,
         The width of the bars.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    color : str = [
+    color: str = [
         colour_blue, colour_cyan, colour_teal, colour_orange, colour_red,
         colour_magenta, colour_grey
     ]
@@ -2558,11 +2659,11 @@ def plot_stacked_bars(
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    fig, ax: tuple[plt.Figure, axes.Axes]
 
     Examples
     --------
-    Example 1
+
     >>> import datasense as ds
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
@@ -2579,7 +2680,6 @@ def plot_stacked_bars(
     ... )
     >>> fig.legend(frameon=False, loc="upper right") # doctest: +SKIP
 
-    Example 2
     >>> import datasense as ds
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
@@ -2688,13 +2788,14 @@ def qr_code(*, qr_code_string: str, qr_code_path: Path) -> None:
 
     Parameters
     ----------
-    qr_code_string : str
+    qr_code_string: str
         Text for the QR code
-    qr_code_path : Path
+    qr_code_path: Path
         Text for the path
 
     Example
     -------
+
     >>> import datasense as ds
     >>> code_string = "mystring"
     >>> code_path = Path("str_of_path")
@@ -2728,23 +2829,30 @@ def plot_boxplot(
 
     Parameters
     ----------
-    series : pd.Series
+    series: pd.Series
         The input series.
-    notch : bool = True,
+    notch: bool = True,
         Boolean to show the confidence interval of the second quartile.
-    showmeans : bool = None,
+    showmeans: bool = None,
         Boolean to show average.
-    figsize : tuple[float, float] = None,
+    figsize: tuple[float, float] = None,
         The (width, height) of the figure (in, in).
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     --------
+
     >>> import datasense as ds
     >>> series = ds.random_data()
     >>> fig, ax = ds.plot_boxplot(series=series)
@@ -2752,9 +2860,6 @@ def plot_boxplot(
     >>> ax.set_xticks(ticks=[1], labels=["series"]) # doctest: +SKIP
     >>> ax.set_ylabel("y") # doctest: +SKIP
     >>> ds.despine(ax=ax) # doctest: +SKIP
-
-    Reference
-    ---------
     """
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=figsize)
     ax.boxplot(x=series, notch=notch, showmeans=showmeans)
@@ -2763,163 +2868,157 @@ def plot_boxplot(
     return (fig, ax)
 
 
-def decimal_degrees(
-    degrees: int, minutes: int, seconds: float, hemisphere: str
-) -> tuple[float, str]:
+def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     """
-    Convert degrees, minutes, seconds location to decimal location.
-
-    Reference: https://bit.ly/3OUgeXO
+    Converts a list of decimal degrees (DD) to a list of tuples containing
+    degrees, minutes, and seconds (DMS).
 
     Parameters
     ----------
-    degrees : int
-        The degree portion of the location.
-    minutes : int
-        The minutes portion of the location.
-    seconds : float
-        The seconds portion of the location.
-    hemisphere : str
-        The relevant hemisphere: N, S, W, E
+    dd: list[float]
+        A list of two floats representing decimal degrees
+        (latitude, longitude).
 
     Returns
     -------
-    float
-        The location in decimal notation.
-    hemisphere : str
-        The relevant hemisphere: N, S, W, E
+    list[tuple[int, int, float, str]]
+        A list of tuples containing degrees, minutes, seconds, and hemisphere
+        (DMS) for latitude and longitude.
 
     Examples
     --------
-    Example 1
-    >>> import datasense as ds
-    >>> location_deg_min_sec = [(40, 38, 2.99976, "N"), (14, 36, 9.927, "E")]
-    >>> location_decimal = [
-    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    ...     for w, x, y, z in location_deg_min_sec
-    ... ]
-    >>> location_decimal
-    [(40.6341666, 'N'), (14.6027575, 'E')]
 
-    Example 2
-    >>> import datasense as ds
-    >>> location_deg_min_sec = [(34, 49, 59.06532, "S"), (20, 0, 0, "E")]
-    >>> location_decimal = [
-    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    ...     for w, x, y, z in location_deg_min_sec
-    ... ]
-    >>> location_decimal
-    [(-34.8330737, 'S'), (20.0, 'E')]
+    Ottawa Parliament
 
-    Example 3
     >>> import datasense as ds
-    >>> location_deg_min_sec = [(40, 41, 21.31224, "N"), (74, 2, 48.1002, "W")]
-    >>> location_decimal = [
-    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    ...     for w, x, y, z in location_deg_min_sec
-    ... ]
-    >>> location_decimal
-    [(40.6892534, 'N'), (-74.0466945, 'W')]
+    >>> dd = [45.4250225, -75.6970594]
+    >>> dsm = ds.dd_to_dms(dd=dd)
+    >>> dms
+    [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
 
-    Example 4
-    >>> import datasense as ds
-    >>> location_deg_min_sec = [
-    ...     (-13, 9, 47.89404, "S"), (-72, 32, 44.78892, "W")
-    ... ]
-    >>> location_decimal = [
-    ...     ds.decimal_degrees(degrees=w, minutes=x, seconds=y, hemisphere=z)
-    ...     for w, x, y, z in location_deg_min_sec
-    ... ]
-    >>> location_decimal
-    [(-13.1633039, 'S'), (-72.5457747, 'W')]
+    Effel Tower
+
+    >>> dd = [48.858393, 2.257616]
+    >>> dms = ds.dd_to_dms(dd=dd)
+    >>> dms
+    [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
+
+    Machu Pichu
+
+    >>> dd = [-13.163194, -72.547842]
+    >>> dms = ds.dd_to_dms(dd=dd)
+    >>> dms
+    [(13, 9, 47.4984, 'S'), (72, 32, 52.2312, 'W')]
+
+    Sydney Opera House
+
+    >>> dd = [-33.8567433, 151.1784306]
+    >>> dms = ds.dd_to_dms(dd=dd)
+    >>> dms
+    [(33, 51, 24.27588, 'S'), (151, 10, 42.35016, 'E')]
+
+    Notes
+    -----
+    DMS. Latitude north of the equation is "N" and south of the equator is "S".
+    Longitude west of longitude 0 (Greenwich UK) is "W" and east is "E".
+
+    DD. Latitude north of the equation is a positive float and south negative.
+    Longitude west of longitude 0 is negative and east is positive.
     """
-    deg = abs(degrees) + minutes / 60 + seconds / 3600
-    if hemisphere == "N":
-        deg = abs(deg)
-    elif hemisphere == "S":
-        deg = -1 * deg
-    elif hemisphere == "W":
-        deg = -1 * deg
-    elif hemisphere == "E":
-        deg = abs(deg)
-    return (round(deg, 7), hemisphere)
+    dms_locations = []
+    dms_hemisphere = []
+    for item in dd:
+        degrees = int(abs(item))
+        minutes = (abs(item) - degrees) * 60
+        seconds = round((minutes - int(minutes)) * 60, 5)
+        dms_locations.append((degrees, int(minutes), seconds))
+    if dd[0] > 0:
+        dms_hemisphere.append("N")
+    else:
+        dms_hemisphere.append("S")
+    if dd[1] > 0:
+        dms_hemisphere.append("E")
+    else:
+        dms_hemisphere.append("W")
+    dms = []
+    for item in dms_locations:
+        dms_tuple = item + (dms_hemisphere.pop(0),)
+        dms.append(dms_tuple)
+    return dms
 
 
-def deg_min_sec(
-    decimal_deg_min_sec: float, hemisphere: str
-) -> tuple[int, int, float, str]:
+def dms_to_dd(
+    dms: list[tuple[int, int, float, str]]
+) -> tuple[float, float]:
     """
-    Convert decimal location to degrees, minutes, seconds location.
-
-    Reference: https://bit.ly/3OUgeXO
+    Converts a list of tuples containing degrees, minutes, and seconds (DMS)
+    to decimal degrees (DD).
 
     Parameters
     ----------
-    decimal_deg_min_sec : float
-        The location in decimal notation.
-    hemisphere : str
-        The relevant hemisphere: N, S, W, E
+    dms: list[tuple[int, int, float, str]]
+        A list of tuples containing degrees, minutes, seconds, and hemisphere.
 
     Returns
     -------
-    tuple[int, int, float, str]
-        The location in degrees, minutes, seconds, hemisphere.
+    list[float]
+        A list of two floats containing two decimal degrees (DD) for
+        latitude and longitude.
 
     Examples
     --------
-    Example 1
-    >>> import datasense as ds
-    >>> location_decimal = [(40.6341666, "N"), (14.6027575, "E")]
-    >>> location_deg_min_sec = [
-    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    ...     for x, y in location_decimal
-    ... ]
-    >>> location_deg_min_sec
-    [(40, 38, 2.99976, 'N'), (14, 36, 9.927, 'E')]
+    Ottawa Parliament
 
-    Example 2
     >>> import datasense as ds
-    >>> location_decimal = [(34.8330737, "S"), (20, "E")]
-    >>> location_deg_min_sec = [
-    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    ...     for x, y in location_decimal
-    ... ]
-    >>> location_deg_min_sec
-    [(34, 49, 59.06532, 'S'), (20, 0, 0, 'E')]
+    >>> dms = [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
+    >>> dd = ds.dms_to_dd(dms=dms)
+    >>> dd
+    [45.4250225, -75.6970594]
 
-    Example 3
-    >>> import datasense as ds
-    >>> location_decimal = [(40.6892534, "N"), (-74.0466945, "W")]
-    >>> location_deg_min_sec = [
-    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    ...     for x, y in location_decimal
-    ... ]
-    >>> location_deg_min_sec
-    [(40, 41, 21.31224, 'N'), (-74, 2, 48.1002, 'W')]
+    Effel Tower
 
-    Example 4
-    >>> import datasense as ds
-    >>> location_decimal = [(-13.1633039, "S"), (-72.5457747, "W")]
-    >>> location_deg_min_sec = [
-    ...     ds.deg_min_sec(decimal_deg_min_sec=x, hemisphere=y)
-    ...     for x, y in location_decimal
-    ... ]
-    >>> location_deg_min_sec
-    [(-13, 9, 47.89404, 'S'), (-72, 32, 44.78892, 'W')]
+    >>> dms = [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
+    >>> dd = ds.dms_to_dd(dms=dms)
+    >>> dd
+    [48.858393, 2.257616]
+
+    Machu Pichu
+
+    >>> dms = [(13, 9, 47.4984, 'S'), (72, 32, 52.2312, 'W')]
+    >>> dd = ds.dms_to_dd(dms=ds)
+    >>> dd
+    [-13.163194, -72.547842]
+
+    Sydney Opera House
+
+    >>> dms = [(33, 51, 24.27588, 'S'), (151, 10, 42.35016, 'E')]
+    >>> dd = ds.dms_to_dd(dms=dms)
+    >>> dd
+    [-33.8567433, 151.1784306]
+
+    Notes
+    -----
+    DMS. Latitude north of the equation is "N" and south of the equator is "S".
+    Longitude west of longitude 0 (Greenwich UK) is "W" and east is "E".
+
+    DD. Latitude north of the equation is a positive float and south negative.
+    Longitude west of longitude 0 is negative and east is positive.
     """
-    min, sec = divmod(abs(decimal_deg_min_sec) * 3600, 60)
-    deg, min = divmod(min, 60)
-    deg = int(decimal_deg_min_sec)
-    return (deg, int(min), round(sec, 9), hemisphere)
+
+    dd_locations = []
+    for degrees, minutes, seconds, hemisphere in dms:
+      # Convert DMS to DD
+      dd = round(degrees + minutes / 60 + seconds / 3600, 7)
+      # Handle hemisphere sign
+      if hemisphere in ("W", "S"):
+        dd *= -1
+      dd_locations.append(dd)
+    return list(dd_locations)
 
 
 def style_graph() -> None:
     """
     Style graphs.
-
-    Reference
-    ---------
-    https://matplotlib.org/stable/tutorials/introductory/customizing.html
 
     Fonts
     -----
@@ -2928,8 +3027,14 @@ def style_graph() -> None:
 
     Example
     -------
+
     >>> import datasense as ds
     >>> ds.style_graph()
+
+    References
+    ----------
+    https://matplotlib.org/stable/tutorials/introductory/customizing.html
+
     """
     rc["axes.titlecolor"] = "#000000"
     rc["axes.labelweight"] = "bold"
@@ -2961,25 +3066,32 @@ def empirical_cdf(
 
     Parameters
     ----------
-    s : pd.Series
+    s: pd.Series
         The input series.
-    figsize : tuple[float, float] = None
+    figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
-    marker : str = "."
+    marker: str = "."
         The type of plot point.
-    markersize : float = 4
+    markersize: float = 4
         The size of the plot point (pt).
-    colour : str = colour_blue
+    colour: str = colour_blue
         The colour of the plot point (hexadecimal triplet string).
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
 
     Returns
     -------
-    fig, ax : tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> import datasense as ds
     >>> series_x = ds.random_data(
     ...     loc=69,
@@ -3018,30 +3130,30 @@ def plot_boxcox(
 
     Parameters
     ----------
-    s : pd.Series | np.ndarray
+    s: pd.Series | np.ndarray
         The data series or NumPy array.
-    la : int = -20
-    lb : int = 20
+    la: int = -20
+    lb: int = 20
         The lower and upper bounds for the lmbda values to pass to boxcox for
         Box-Cox transformations. These are also the limits of the horizontal
         axis of the plot if that is generated.
-    colour1 : str = colour_blue
+    colour1: str = colour_blue
         The colour of the plot points.
-    colour2 : str = colour_cyan
+    colour2: str = colour_cyan
         The colour of the lower and upper bound lines.
-    marker : str = "."
+    marker: str = "."
         The type of plot points.
-    markersize : float = 4
+    markersize: float = 4
         The size of the plot points.
-    ylabel : str = "Correlation Coefficient"
+    ylabel: str = "Correlation Coefficient"
         The label of the y axis.
-    remove_spines : bool = True
+    remove_spines: bool = True
         If True, remove top and right spines of axes.
-    lmbda : float | int | None = None
+    lmbda: float | int | None = None
         If lmbda is None (default), find the value of lmbda that maximizes the
         log-likelihood function and return it as the second output argument.
         If lmbda is not None, do the transformation for that value.
-    alpha : float = 0.05
+    alpha: float = 0.05
         If lmbda is None and alpha is not None (default), return the
         100 * (1-alpha)% confidence interval for lmbda as the third output
         argument. Must be between 0.0 and 1.0. If lmbda is not None, alpha is
@@ -3049,11 +3161,17 @@ def plot_boxcox(
 
     Returns
     -------
-    (fig, ax) : tuple[plt.Figure, axes.Axes]
-        A Matplotlib figure and Axes tuple.
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Example
     -------
+
     >>> from scipy import stats
     >>> import datasense as ds
     >>> s = stats.loggamma.rvs(5, size=500) + 5
@@ -3099,7 +3217,6 @@ __all__ = (
     "plot_stacked_bars",
     "probability_plot",
     "plot_scatter_x_y",
-    "decimal_degrees",
     "plot_histogram",
     "plot_scatter_y",
     "empirical_cdf",
@@ -3107,10 +3224,11 @@ __all__ = (
     "format_dates",
     "plot_boxplot",
     "plot_boxcox",
-    "deg_min_sec",
     "plot_line_y",
     "plot_pareto",
     "style_graph",
+    "dd_to_dms",
+    "dms_to_dd",
     "waterfall",
     "plot_pie",
     "despine",
