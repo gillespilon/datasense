@@ -104,7 +104,6 @@ def plot_scatter_y(
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_scatter_y(y=series_y)
 
-    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_y(
     ...     y=series_y,
     ...     figsize=(8, 4.5),
@@ -203,7 +202,6 @@ def plot_scatter_x_y(
     ...     y=series_y
     ... )
 
-    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="randint").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     ...     X=series_x,
@@ -215,7 +213,6 @@ def plot_scatter_x_y(
     ... )
 
 
-    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform").sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     ...     X=series_x,
@@ -223,7 +220,6 @@ def plot_scatter_x_y(
     ... )
 
 
-    >>> import datasense as ds
     >>> series_x = ds.random_data().sort_values()
     >>> fig, ax = ds.plot_scatter_x_y(
     ...     X=series_x,
@@ -323,7 +319,6 @@ def plot_line_y(
     >>> series_y = ds.random_data()
     >>> fig, ax = ds.plot_line_y(y=series_y)
 
-    >>> import datasense as ds
     >>> fig, ax = ds.plot_line_y(
     ...     y=series_y,
     ...     figsize=(8, 4.5),
@@ -427,7 +422,6 @@ def plot_line_x_y(
     ...     y=y
     ... )
 
-    >>> import datasense as ds
     >>> X = ds.random_data(distribution="randint").sort_values()
     >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
@@ -441,7 +435,6 @@ def plot_line_x_y(
     ...     colour="#ee3377"
     ... )
 
-    >>> import datasense as ds
     >>> X = ds.random_data(distribution="uniform").sort_values()
     >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
@@ -449,7 +442,6 @@ def plot_line_x_y(
     ...     y=y
     ... )
 
-    >>> import datasense as ds
     >>> X = ds.random_data().sort_values()
     >>> y = ds.random_data()
     >>> fig, ax = ds.plot_line_x_y(
@@ -594,7 +586,6 @@ def plot_scatter_scatter_x_y1_y2(
     ...     y2=series_y2
     ... )
 
-    >>> import datasense as ds
     >>> series_x = ds.random_data(distribution="uniform")
     >>> fig, ax = ds.plot_scatter_scatter_x_y1_y2(
     ...     X=series_x,
@@ -773,7 +764,6 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     y2=series_y2
     ... )
 
-    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     ...     X1=series_x1,
     ...     X2=series_x2,
@@ -783,9 +773,10 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     number_knots=7
     ... )
 
-    >>> import datasense as ds
     >>> series_x1 = ds.random_data(distribution="uniform").sort_values()
     >>> series_x2 = ds.random_data(distribution="uniform").sort_values()
+    >>> series_y1 = ds.random_data()
+    >>> series_y2 = ds.random_data()
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     ...     X1=series_x1,
     ...     X2=series_x2,
@@ -796,14 +787,13 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     marker2="+",
     ...     markersize1=8,
     ...     markersize2=12,
-    ...     colour1=colour_red,
-    ...     colour2=colour_magenta,
+    ...     colour1="red",
+    ...     colour2="magenta",
     ...     labellegendy1="y1",
     ...     labellegendy2="y2"
     ... )
     >>> ax.legend(frameon=False) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> fig, ax = ds.plot_scatter_scatter_x1_x2_y1_y2(
     ...     X1=series_x1,
     ...     X2=series_x2,
@@ -814,8 +804,8 @@ def plot_scatter_scatter_x1_x2_y1_y2(
     ...     marker2="+",
     ...     markersize1=8,
     ...     markersize2=12,
-    ...     colour1=colour_red,
-    ...     colour2=colour_magenta,
+    ...     colour1="red",
+    ...     colour2="magenta",
     ...     labellegendy1="y1",
     ...     labellegendy2="y2",
     ...     smoothing="natural_cubic_spline",
@@ -1683,7 +1673,6 @@ def plot_lineleft_lineright_x_y1_y2(
     ...     figsize=figsize
     ... )
 
-    >>> import datasense as ds
     >>> import pandas as pd
     >>> figsize = (6, 4)
     >>> df = pd.DataFrame(data={
@@ -2121,7 +2110,6 @@ def plot_histogram(
     Create a series of random integers, integer distribution, size = 113,
     min = 0, max = 13.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
     ...     size=113,
@@ -2134,7 +2122,6 @@ def plot_histogram(
     min = 0, max = 13.
     Set histogram parameters to control bin width.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
     ...     size=113,
@@ -2150,7 +2137,6 @@ def plot_histogram(
     min = 0, height = 14.
     Set histogram parameters to control bin width and plotting range.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
     ...     size=113,
@@ -2167,7 +2153,6 @@ def plot_histogram(
     average = 69, standard deviation = 13.
     Set histogram parameters to control bin width and plotting range.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="norm",
     ...     size=113,
@@ -2186,7 +2171,6 @@ def plot_histogram(
     Set colour of the bars.
     Plot the probability density function on top of the histogram.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="norm",
     ...     size=113,
@@ -2313,7 +2297,6 @@ def plot_horizontal_bars(
     ...     width=width
     ... )
 
-    >>> import datasense as ds
     >>> y = ["Yes", "No"]
     >>> width = [69, 31]
     >>> fig, ax = ds.plot_horizontal_bars(
@@ -2324,7 +2307,6 @@ def plot_horizontal_bars(
 
     Create Gantt chart
 
-    >>> import datasense as ds
     >>> import datetime
     >>> data = {
     ...     "start": ["2021-11-01", "2021-11-03", "2021-11-04", "2021-11-08"],
@@ -2425,7 +2407,6 @@ def plot_vertical_bars(
     ...     height=height
     ... )
 
-    >>> import datasense as ds
     >>> x = ["Yes", "No"]
     >>> height = [69, 31]
     >>> fig, ax = ds.plot_vertical_bars(
@@ -2493,7 +2474,6 @@ def plot_pie(
     ...     labels=labels
     ... )
 
-    >>> import datasense as ds
     >>> x = [69, 31]
     >>> labels = ["Yes", "No"]
     >>> fig, ax = ds.plot_pie(
@@ -2742,7 +2722,6 @@ def plot_stacked_bars(
     ... )
     >>> fig.legend(frameon=False, loc="upper right") # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> x = ["G1", "G2", "G3", "G4", "G5"]
     >>> height1 = [20, 35, 30, 35, 27]
     >>> label1 = "A"
