@@ -2937,7 +2937,7 @@ def dd_to_dms(dd: list[float]) -> list[tuple[int, int, float, str]]:
     >>> dms
     [(45, 25, 30.081, 'N'), (75, 41, 49.41384, 'W')]
 
-    Effel Tower
+    Eiffel Tower
 
     >>> dd = [48.858393, 2.257616]
     >>> dms = ds.dd_to_dms(dd=dd)
@@ -3016,7 +3016,7 @@ def dms_to_dd(
     >>> dd
     [45.4250225, -75.6970594]
 
-    Effel Tower
+    Eiffel Tower
 
     >>> dms = [(48, 51, 30.2148, 'N'), (2, 15, 27.4176, 'E')]
     >>> dd = ds.dms_to_dd(dms=dms)
