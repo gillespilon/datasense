@@ -264,8 +264,9 @@ class X(ControlChart):
 
         Examples
         --------
-        Example 1, minimal X control chart
-        ----------------------------------
+
+        minimal X control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -287,8 +288,8 @@ class X(ControlChart):
         >>> ax = x.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
-        Example 2, complete X control chart
-        -----------------------------------
+        complete X control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -436,8 +437,9 @@ class mR(ControlChart):
 
         Examples
         --------
-        Example 1, minimal mR control chart
-        ----------------------------------
+
+        minimal mR control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -459,8 +461,8 @@ class mR(ControlChart):
         >>> ax = mr.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
-        Example 2, complete mR control chart
-        -----------------------------------
+        complete mR control chart
+
         >>> import datasense.control_charts as cc
         >>> import datasense as ds
         >>> figsize = (8, 6)
@@ -571,8 +573,9 @@ class Xbar(ControlChart):
 
         Examples
         --------
-        Example 1, minimal Xbar control chart
-        -------------------------------------
+
+        minimal Xbar control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -617,8 +620,8 @@ class Xbar(ControlChart):
         >>> ax = xbar.ax(fig=fig)
         >>> fig.savefig(fname=graph_name)
 
-        Example 2, complete Xbar control chart
-        --------------------------------------
+        complete Xbar control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -793,8 +796,9 @@ class R(ControlChart):
 
         Examples
         --------
-        Example 1, minimal R control chart
-        ----------------------------------
+
+        minimal R control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -839,8 +843,8 @@ class R(ControlChart):
         >>> ax = r.ax(fig=fig)
         >>> fig.savefig(fname=graph_r_file_name)
 
-        Example 2, complete R control chart
-        -----------------------------------
+        complete R control chart
+
         >>> import datasense.control_charts as cc
         >>> import matplotlib.pyplot as plt
         >>> import datasense as ds
@@ -1057,10 +1061,18 @@ def points_one(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : tuple[pd.Series, pd.Series]
-        The data points that are out of control for rule one.
+    tuple[pd.Series]
+        A tuple containing two elements, the data points that are out of
+        control for rule one.
+
+        - series_above: pd.Series
+            The series of points above the control limit.
+        - series_below: pd.Series
+            The series of points below the control limit.
     """
-    return cc.y[cc.y > cc.ucl], cc.y[cc.y < cc.lcl],
+    points_above = cc.y[cc.y > cc.ucl]
+    points_below = cc.y[cc.y < cc.lcl]
+    return (points_above, points_below)
 
 
 def points_two(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
@@ -1080,29 +1092,34 @@ def points_two(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : tuple[pd.Series, pd.Series]
-        The data points that are out of control for rule two.
+    tuple[pd.Series]
+        A tuple containing two elements, the data points that are out of
+        control for rule two.
+
+        - series_above: pd.Series
+            The series of points above the control limit.
+        - series_below: pd.Series
+            The series of points below the control limit.
     """
 
-    above = []
-    below = []
+    points_above = []
+    points_below = []
     for group in _nwise(cc.y.items(), 3):
         above_in_window = [(x, y)
                            for x, y
                            in group
                            if y > cc.sigmas[+2]]
         if len(above_in_window) >= 2:
-            above.append(above_in_window[1])  # whether 2 or 3, 2nd
+            points_above.append(above_in_window[1])  # whether 2 or 3, 2nd
         below_in_window = [(x, y)
                            for x, y
                            in group
                            if y < cc.sigmas[-2]]
         if len(below_in_window) >= 2:
-            below.append(below_in_window[1])  # whether 2 or 3, 2nd
-    return (
-        pd.Series(dict(above), dtype='float64'),
-        pd.Series(dict(below), dtype='float64'),
-    )
+            points_below.append(below_in_window[1])  # whether 2 or 3, 2nd
+    series_above = (pd.Series(dict(points_above), dtype='float64'))
+    series_below = (pd.Series(dict(points_below), dtype='float64'))
+    return (series_above, series_below)
 
 
 def points_three(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
@@ -1122,28 +1139,33 @@ def points_three(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : tuple[pd.Series, pd.Series]
-        The data points that are out of control for rule three.
+    tuple[pd.Series]
+        A tuple containing two elements, the data points that are out of
+        control for rule three.
+
+        - series_above: pd.Series
+            The series of points above the control limit.
+        - series_below: pd.Series
+            The series of points below the control limit.
     """
-    above = []
-    below = []
+    points_above = []
+    points_below = []
     for group in _nwise(cc.y.items(), 5):
         above_in_window = [(x, y)
                            for x, y
                            in group
                            if y > cc.sigmas[+1]]
         if len(above_in_window) >= 4:
-            above.append(above_in_window[3])  # whether 4 or 5, 4th point
+            points_above.append(above_in_window[3])  # whether 4 or 5, 4th point
         below_in_window = [(x, y)
                            for x, y
                            in group
                            if y < cc.sigmas[-1]]
         if len(below_in_window) >= 4:
-            below.append(below_in_window[3])  # whether 4 or 5, 4th point
-    return (
-        pd.Series(dict(above), dtype='float64'),
-        pd.Series(dict(below), dtype='float64'),
-    )
+            points_below.append(below_in_window[3])  # whether 4 or 5, 4th point
+    series_above = (pd.Series(dict(points_above), dtype='float64'))
+    series_below = (pd.Series(dict(points_below), dtype='float64'))
+    return (series_above, series_below)
 
 
 def points_four(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
@@ -1162,8 +1184,14 @@ def points_four(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
 
     Returns
     -------
-        : tuple[pd.Series, pd.Series]
-        The data points that are out of control for rule four.
+    tuple[pd.Series]
+        A tuple containing two elements, the data points that are out of
+        control for rule four.
+
+        - series_above: pd.Series
+            The series of points above the control limit.
+        - series_below: pd.Series
+            The series of points below the control limit.
     """
     count_above = 0
     count_below = 0
@@ -1180,10 +1208,9 @@ def points_four(cc: ControlChart) -> tuple[pd.Series, pd.Series]:
             points_above.append((x, y))
         elif count_below >= 8:
             points_below.append((x, y))
-    return (
-        pd.Series(dict(points_above), dtype='float64'),
-        pd.Series(dict(points_below), dtype='float64'),
-    )
+    series_above = (pd.Series(dict(points_above), dtype='float64'))
+    series_below = (pd.Series(dict(points_below), dtype='float64'))
+    return (series_above, series_below)
 
 
 __all__ = (
