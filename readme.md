@@ -1,8 +1,6 @@
 # In brevi
 
-This repository contains a package of statistical and graphical functions
-that I use in my work of making sense of data to create information
-and understanding.
+datasense is a library of statistical and graphical functions that I use in my work of making sense of data to create information and understanding.
 
 # To install #
 
@@ -21,7 +19,9 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 ```
 # Documentation
 
-This is built into the docstrings of the functions. These can be easily accessed using pydoc.
+I am working on publishing the documentation to Read the Docs. The documentation is created with Sphinx. This will be available on or before 2024-05-01. I will provide a link.
+
+The library docstrings can be easily accessed using pydoc.
 
     pydoc datasense
     > ...
