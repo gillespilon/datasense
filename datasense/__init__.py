@@ -1,4 +1,6 @@
 '''
+:no-index:  # This prevents Sphinx from indexing the package docstring
+
 datasense
 
 Tools for statistical, graphical, and predictive analysis:
@@ -37,3 +39,11 @@ from .rgx import *
 from .automation import *
 from .taguchi import *
 from .process_capability import *
+
+
+def __init__(self, module_name='datasense'):
+    """
+    The datasense package... (module description)
+
+    .. :no-index:
+    """
