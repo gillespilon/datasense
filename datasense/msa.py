@@ -13,7 +13,9 @@ Honest MSA reports on pandas DataFrames
 # TODO: MSA intraclass correlation coefficient with operator bias.
 # TODO: MSA intraclass correlation coefficient without operator bias.
 
+import matplotlib.axes as axes
 import pandas as pd
+import numpy as np
 
 
 CONSTANTS: pd.DataFrame = pd.DataFrame.from_dict(
