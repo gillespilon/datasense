@@ -79,7 +79,7 @@ def taguchi_loss_function(
     k = cost / (x - target) ** 2
     # Calculate the ACU.
     acu = k * (std_dev ** 2 + (average - target) ** 2)
-    return (acu, k)
+    return acu
 
 
 __all__ = (
