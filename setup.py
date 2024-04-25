@@ -6,7 +6,7 @@ setup(
     name="datasense",
     description="functions for datasense",
     url="https://github.com/gillespilon/datasense",
-    version="0.2",
+    version="0.8",
     install_requires=[
         "basis-expansions",
         "cached_property",
