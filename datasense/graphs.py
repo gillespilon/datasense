@@ -2659,37 +2659,37 @@ def plot_stacked_bars(
 
     Parameters
     ----------
-    x: list[int] | list[float] | list[str],
+    x: list[int] | list[float] | list[str]
         The x coordinates of the bars.
-    height1: list[int] | list[float],
+    height1: list[int] | list[float]
         The height of the level 1 bars.
-    label1: str = None,
+    label1: str = None
         The label of the level 1 bars.
-    height2: list[int] | list[float],
+    height2: list[int] | list[float]
         The height of the level 2 bars.
-    label2: str = None,
+    label2: str = None
         The label of the level 2 bars.
-    height3: list[int] | list[float],
+    height3: list[int] | list[float]
         The height of the level 3 bars.
-    label3: str = None,
+    label3: str = None
         The label of the level 3 bars.
-    height4: list[int] | list[float],
+    height4: list[int] | list[float]
         The height of the level 4 bars.
-    label4: str = None,
+    label4: str = None
         The label of the level 4 bars.
-    height5: list[int] | list[float],
+    height5: list[int] | list[float]
         The height of the level 5 bars.
-    label5: str = None,
+    label5: str = None
         The label of the level 5 bars.
-    height6: list[int] | list[float],
+    height6: list[int] | list[float]
         The height of the level 6 bars.
-    label6: str = None,
+    label6: str = None
         The label of the level 6 bars.
-    height7: list[int] | list[float],
+    height7: list[int] | list[float]
         The height of the level 7 bars.
-    label7: str = None,
+    label7: str = None
         The label of the level 7 bars.
-    width: float = 0.8,
+    width: float = 0.8
         The width of the bars.
     figsize: tuple[float, float] = None
         The (width, height) of the figure (in, in).
@@ -2701,7 +2701,13 @@ def plot_stacked_bars(
 
     Returns
     -------
-    fig, ax: tuple[plt.Figure, axes.Axes]
+    tuple[plt.Figure, axes.Axes]
+        A matplotlib Figure and Axes tuple.
+
+        - fig: plt.Figure
+            A matplotlib Figure.
+        - ax: axes.Axes
+            A matplotlib Axes.
 
     Examples
     --------
