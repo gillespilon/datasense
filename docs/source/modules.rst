@@ -2,6 +2,6 @@ datasense
 =========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    datasense
