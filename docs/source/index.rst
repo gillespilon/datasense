@@ -12,7 +12,7 @@ Welcome to datasense's documentation!
    :caption: Contents:
 
    usage.rst
-   datasense.rst
+   generated/datasense.rst
    modules.rst
 
 .. note::
