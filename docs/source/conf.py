@@ -30,6 +30,7 @@ extensions = [
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
+autodoc_dirs = ['datasense']
 autodoc_default_flags = ['members', 'undoc-members']
 autodoc_member_order = 'bysource'
 autoclass_hierarchy = 'include'
