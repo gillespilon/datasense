@@ -30,6 +30,9 @@ extensions = [
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
+# The master toctree document
+master_doc = 'index'
+
 # autodoc_dirs = ['datasense']
 # autodoc_default_flags = ['members', 'undoc-members']
 # autodoc_member_order = 'bysource'
