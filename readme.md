@@ -19,9 +19,7 @@ pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#eg
 ```
 # Documentation
 
-View the documentation on [ReadtheDocs](https://datasense.readthedocs.io/en/latest/).
-
-Full documentation available at <a href="https://datasense.readthedocs.io/en/latest/" target="\_blank">https://datasense.readthedocs.io/en/latest/</a>.
+Full documentation available at  [https://datasense.readthedocs.io/en/latest/](https://datasense.readthedocs.io/en/latest/).
 
 # Example scripts
 
