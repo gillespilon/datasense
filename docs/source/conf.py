@@ -27,13 +27,13 @@ extensions = [
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 
-source_suffix = ['.rst', '.md']
-# source_suffix = '.rst'
+# source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
 
-autodoc_dirs = ['datasense']
-autodoc_default_flags = ['members', 'undoc-members']
-autodoc_member_order = 'bysource'
-autoclass_hierarchy = 'include'
+# autodoc_dirs = ['datasense']
+# autodoc_default_flags = ['members', 'undoc-members']
+# autodoc_member_order = 'bysource'
+# autoclass_hierarchy = 'include'
 
 # templates_path = ['_templates']
 exclude_patterns = []
