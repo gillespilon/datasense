@@ -11,9 +11,9 @@ Welcome to datasense's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   usage
-   generated/datasense
-   modules
+   usage.rst
+   generated/datasense.rst
+   modules.rst
 
 .. note::
    This project is under development.
