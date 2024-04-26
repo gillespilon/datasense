@@ -1,9 +1,8 @@
 '''
-:no-index:  # This prevents Sphinx from indexing the package docstring
-
-datasense
+datasense library of modules
 
 Tools for statistical, graphical, and predictive analysis:
+
 - Supervised machine learning
 - Six Sigma methodology
 - Regular expressions
@@ -16,6 +15,7 @@ Tools for statistical, graphical, and predictive analysis:
 - Analytics
 
 Why this?
+
 - Equivalent Python functions that are available in R, SAS, JMP, Minitab
 - Other packages have limited process control analysis features.
 - Other packages are abandoned or inadequately supported.
@@ -39,11 +39,3 @@ from .rgx import *
 from .automation import *
 from .taguchi import *
 from .process_capability import *
-
-
-def __init__(self, module_name='datasense'):
-    """
-    The datasense package... (module description)
-
-    .. :no-index:
-    """
