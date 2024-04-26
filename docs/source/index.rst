@@ -8,7 +8,7 @@ Welcome to datasense's documentation!
 .. Check out the :doc:`usage` section for further information.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
    usage.rst

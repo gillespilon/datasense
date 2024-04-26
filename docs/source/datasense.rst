@@ -1,9 +1,6 @@
 datasense package
 =================
 
-Submodules
-----------
-
 datasense.automation module
 ---------------------------
 
