@@ -1097,6 +1097,12 @@ def read_file(
     ...     df=df,
     ...     file_in=file_name
     ... )
+
+    Notes
+    -----
+
+    The parameter "date_format" will be made available as soon as Arch Linux
+    updates pandas to version 2.xx.
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
