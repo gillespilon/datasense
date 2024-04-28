@@ -10,7 +10,7 @@ import pytest
 
 
 def main():
-    chdir(Path(__file__).parent.resolve())  # required for cron
+    # chdir(Path(__file__).parent.resolve())  # required for cron
     url = ("pytest.html")
     pytest.main(["--html=pytest.html"])
     webbrowser.open_new_tab(url=url)
