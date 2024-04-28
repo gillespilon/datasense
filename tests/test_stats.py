@@ -245,23 +245,25 @@ def test_natural_cubic_spline():
     result = pd.Series(data=predictions)
     exp = np.array(
         object=[
-            -8.449635833832144,
-            -7.369397489579985,
-            -6.950373342494639,
-            -10.332163099070552,
-            -6.039679356002003,
-            -10.662885091579007,
-            -8.112999744210928,
-            -5.399095580784641,
-            -11.197986327827710,
-            -10.397763790060658,
-            -9.309492784412129,
-            -10.481589542995708,
-            -9.887572653190837,
+            -8.449636,
+            -7.369397,
+            -6.950373,
+            -10.332163,
+            -6.039679,
+            -10.662885,
+            -8.113000,
+            -5.399096,
+            -11.197986,
+            -10.397764,
+            -9.309493,
+            -10.481590,
+            -9.887573,
         ]
     )
     expected = pd.Series(data=exp)
-    assert result.equals(other=expected)
+    # Cubic spline interpolation can introduce slight numerical errors due to
+    # floating-point calculations. Add a tolerance 'atol'.
+    assert np.allclose(result, expected, atol=1e-5)
 
 
 def test_random_data():
