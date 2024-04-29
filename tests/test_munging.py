@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 
 
+pd.set_option('future.no_silent_downcasting', True)
 df_empty_test = pd.DataFrame(
     data=dict(
         floats=[1.0, np.NaN, 3.0, np.NaN, 5.0, 6.0, np.NaN],
