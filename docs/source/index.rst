@@ -8,11 +8,12 @@ Welcome to datasense's documentation!
 .. Check out the :doc:`usage` section for further information.
 
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 2
    :caption: Contents:
 
-   usage.rst
-   datasense.rst
+   install.rst
+   update.rst
+   generated/datasense.rst
    modules.rst
 
 .. note::
