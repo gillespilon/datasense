@@ -14,6 +14,7 @@ setup(
         "scikit-learn",
         "statsmodels",
         "matplotlib",
+        "pyautogui",
         "openpyxl",
         "psycopg2",
         "pyqrcode",
