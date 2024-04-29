@@ -13,8 +13,7 @@ Welcome to datasense's documentation!
 
    install.rst
    update.rst
-   generated/datasense.rst
-   modules.rst
+   datasense.rst
 
 .. note::
    This project is under development.
