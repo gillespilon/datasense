@@ -1,25 +1,10 @@
 # In brevi
 
-datasense is a library of statistical and graphical functions that I use in my work of making sense of data to create information and understanding.
+**datasense** is a Python library for data scientists, machine learning engineers, and statisticians. It contains statistical and graphical functions for making sense of data to create information and understanding.
 
-# To install #
-
-Do this if this is your first-time installation. Ensure you have `git` installed.
-
-```
-pip install --user -e "git+https://github.com/gillespilon/datasense#egg=datasense"
-```
-
-# To update #
-
-Do this if this is an update anytime after your first-time installation.
-
-```
-pip install --user --upgrade -e "git+https://github.com/gillespilon/datasense#egg=datasense"
-```
 # Documentation
 
-Full documentation available at  [https://datasense.readthedocs.io/en/latest/](https://datasense.readthedocs.io/en/latest/).
+Full documentation is available at  [https://datasense.readthedocs.io/en/latest/](https://datasense.readthedocs.io/en/latest/).
 
 # Example scripts
 
