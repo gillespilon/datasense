@@ -12,6 +12,11 @@ Welcome to datasense's documentation!
    :hidden:
 
    xmr_control_charts.rst
+   xbarr_control_charts.rst
+   cubic_spline_y_x_line_plot.rst
+   exponentially_weighted_moving_average_y_x_line_plot.rst
+   piecewise_natural_cubic_spline.rst
+   y1_y2_x_line_charts_separate_y_axes.rst
 
 .. toctree::
    :maxdepth: 2
