@@ -6,39 +6,6 @@
 
 Full documentation is available at  [https://datasense.readthedocs.io/en/latest/](https://datasense.readthedocs.io/en/latest/).
 
-# Example scripts
-
-In the [scripts](scripts/) directory, there are example scripts and data files.
-
-- [XmR control charts](scripts/x_mr_control_charts.py)
-- [XbarR control charts](scripts/xbar_r_control_charts.py)
-- [Cubic spline for Y vs X line plot](scripts/cubic_spline.py)
-- [Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_example.py)
-- [Piecewise natural cubic spline](scripts/scripts/piecewise_natural_cubic_spline.py)
-- [Y1, Y2 vs X line charts with separate Y axes](scripts/plot_lineleft_lineright_x_y1_y2.py)
-
-# Example graphs
-
-![X control chart](scripts/x_mr_example_x.svg)
-
-![mR control chart](scripts/x_mr_example_mr.svg)
-
-![Xbar control chart](scripts/xbar_r_example_xbar.svg)
-
-![R control chart](scripts/xbar_r_example_r.svg)
-
-![cubic spline for Y vs X line plot](scripts/cubic_spline_datetime_float.svg)
-
-![cubic spline for Y vs X line plot](scripts/cubic_spline_integer_float.svg)
-
-![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_datetime_float.svg)
-
-![Exponentially weighted average for Y vs X line plot](scripts/exponentially_weighted_average_integer_float.svg)
-
-![Piecewise natural cubic spline](scripts/spline_piecewise_natural_cubic_spline_TARGET_FEATURE_30.svg)
-
-![Y1, Y2 vs X line charts with separate Y axes](scripts/plot_lineleft_lineright_x_y1_y2.svg)
-
 # References
 
 To cite this repository, please use:
@@ -47,6 +14,6 @@ To cite this repository, please use:
   author      = {Gilles Pilon},
   title       = {datasense},
   url         = {https://github.com/gillespilon/datasense},
-  version     = {0.2},
-  date        = {2024-02-23}
+  version     = {0.8},
+  date        = {2024-02-29}
 }
