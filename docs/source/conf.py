@@ -13,23 +13,22 @@ sys.path.insert(0, '/home/gilles/documents/repositories/virtual/venv/lib/python3
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'datasense'
-copyright = '2024, Gilles'
+copyright = '2024, Gilles Pilon'
 author = 'Gilles'
-release = '2024-04-19'
+release = '0.9.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',
 ]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
+# source_suffix = '.rst'
 
 # The master toctree document
 master_doc = 'index'
