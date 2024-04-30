@@ -9,7 +9,7 @@ Welcome to datasense's documentation!
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    install.rst
@@ -18,7 +18,7 @@ Welcome to datasense's documentation!
    datasense.rst
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Scripts:
 
    xmr_control_charts.rst
