@@ -37,6 +37,7 @@ master_doc = 'index'
 # autodoc_default_flags = ['members', 'undoc-members']
 # autodoc_member_order = 'bysource'
 # autoclass_hierarchy = 'include'
+autodoc_typehints = "both"
 
 # templates_path = ['_templates']
 exclude_patterns = []
