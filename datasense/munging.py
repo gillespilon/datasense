@@ -715,7 +715,6 @@ def save_file(
     ...     df=df,
     ...     file_name=path
     ... )
-
     """
     if isinstance(type(file_name).__name__, str):
         file_name = Path(file_name)
@@ -1781,8 +1780,8 @@ def replace_column_values(
     regex : bool = True
         Determines if the passed-in pattern is a regular expression.
 
-    Returns:
-    --------
+    Returns
+    -------
     s : pd.Series
         The output series.
 
@@ -2212,14 +2211,14 @@ def list_change_case(*, list_dirty: list[str], case: str) -> list[str]:
 
     Parameters
     ----------
-    list_dirty : list[str]
+    list_dirty: list[str]
         The list of strings.
-    case : str
+    case: str
         The type of case to apply.
 
     Returns
     -------
-    list_clean : list[str]
+    list_clean: list[str]
         The list of strings with case applied.
 
     Example
@@ -2554,6 +2553,11 @@ def quit_sap_excel() -> None:
     """
     Several applications, Excel in particular, need to be closed otherwise
     they may cause a function to crash.
+
+    Example
+    -------
+
+    >>> import datasense as ds
     """
     for proc in psutil.process_iter():
         if proc.name().lower() == "excel.exe":
@@ -2562,7 +2566,9 @@ def quit_sap_excel() -> None:
             proc.kill()
 
 
-def get_mtime(path: Path) -> float:
+def get_mtime(
+    path: Path
+) -> float:
     """
     Get the time of last modification of a Path object.
 
@@ -2574,20 +2580,7 @@ def get_mtime(path: Path) -> float:
     Returns
     -------
     modified_time: float
-        The last modification time of a Path object.
-
-    Examples
-    --------
-
-    >>> import datasense as ds
-    >>> from pathlib import Path
-    >>> path = Path("readme.md")                # For example
-    >>> modified_time = get_mtime(path=path)
-    1714576968.9664862
-
-    >>> path = Path("~/documents/readme.md")
-    >>> modified_time = get_mtime(path=path)
-    1714576968.9664862
+        The last modification time of a Path object (in seconds since epoch).
     """
     modified_time = path.stat().st_mtime
     return modified_time
@@ -2975,22 +2968,22 @@ def optimize_columns(
     """
     Downcast float columns
 
-    Parameter
+    Parameters
     ----------
-    df : pd.DataFrame
+    df: pd.DataFrame
         The DataFrame.
-    float_columns : list[str] | None = None
+    float_columns: list[str] | None = None
         A list of float columns to downcast.
-    integer_columns : list[str] | None = None
+    integer_columns: list[str] | None = None
         A list of integer columns to downcast.
-    object_columns : list[str] | None = None
+    object_columns: list[str] | None = None
         A list of object columns to downcast.
-    fraction_categories : int | None = 0.5
+    fraction_categories: int | None = 0.5
         The fraction of categories in an object column.
 
     Returns
     ------
-    df : pd.DataFrame
+    df: pd.DataFrame
         The DataFrame with all columns downcast where possible or requested.
 
     Examples
