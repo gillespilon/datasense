@@ -116,7 +116,6 @@ def nonparametric_summary(
     >>> series = ds.random_data()
     >>> series = ds.nonparametric_summary(series=series)
 
-    >>> import datasense as ds
     >>> series = ds.random_data()
     >>> series = ds.nonparametric_summary(
     ...     series=series,
@@ -474,13 +473,11 @@ def random_data(
     with the default parameters.
     Set random_state seed for repeatable sample.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(random_state=42)
 
     Create a series of random float, normal distribution,
     with sample size = 113, mean = 69, standard deviation = 13.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="norm",
     ...     size=113,
@@ -491,14 +488,12 @@ def random_data(
     Create series of random floats, standard uniform distribution,
     with the default parameters.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="uniform")
 
     Create series of random floats, standard uniform distribution,
     with the default parameters.
     Set random_state seed for repeatable sample
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="uniform",
     ...     random_state=42
@@ -507,7 +502,6 @@ def random_data(
     Create series of random floats, uniform distribution, size = 113,
     min = 13, max = 69.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="uniform",
     ...     size=113,
@@ -518,19 +512,16 @@ def random_data(
     Create series of random integers, integer distribution,
     with the default parameters.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="randint")
 
     Create series of random nullable integers, integer distribution,
     with the default parameters.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="randInt")
 
     Create series of random integers, integer distribution, size = 113,
     min = 0, max = 1.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
     ...     size=113,
@@ -542,7 +533,6 @@ def random_data(
     min = 0, max = 1.
     Set random_state seed for repeatable sample
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="randint",
     ...     size=113,
@@ -553,12 +543,10 @@ def random_data(
 
     Create series of random strings from the default list.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="strings")
 
     Create series of random strings from a list of strings.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="strings",
     ...     size=113,
@@ -568,7 +556,6 @@ def random_data(
     Create series of random strings from a list of strings.
     Set random_state seed for repeatable sample
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="strings",
     ...     size=113,
@@ -578,17 +565,14 @@ def random_data(
 
     Create series of random booleans with the default parameters.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="bool")
 
     Create series of random nullable booleans with the default parameters.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="boolean")
 
     Create series of random booleans, size = 113.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="bool",
     ...     size=113
@@ -597,7 +581,6 @@ def random_data(
     Create series of random booleans, size = 113.
     Set random_state seed for repeatable sample
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="bool",
     ...     size=113,
@@ -606,17 +589,14 @@ def random_data(
 
     Create series of unordered categories.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="category")
 
     Create series of ordered categories.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(distribution="categories")
 
     Create series of ordered categories.
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="categories",
     ...     categories=["XS", "S", "M", "L", "XL"],
@@ -626,7 +606,6 @@ def random_data(
     Create series of ordered categories.
     Set random_state seed for repeatable sample
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="categories",
     ...     categories=["XS", "S", "M", "L", "XL"],
@@ -636,7 +615,6 @@ def random_data(
 
     Create series of timedelta64[ns].
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="timedelta",
     ...     size=7
@@ -644,7 +622,6 @@ def random_data(
 
     Create series of datetime64[ns].
 
-    >>> import datasense as ds
     >>> s = ds.random_data(
     ...     distribution="datetime",
     ...     size=7
@@ -911,7 +888,6 @@ def datetime_data(
     >>> # Create a default datetime series
     >>> X = ds.datetime_data()
 
-    >>> import datasense as ds
     >>> # Create a datetime series of one month in increments of six hours
     >>> X = ds.datetime_data(
     ...     start_year="2020",
@@ -1077,7 +1053,6 @@ def one_sample_t(
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is less than the hypothesized value.
 
-    >>> import datasense as ds
     >>> series = ds.random_data(random_state=42)
     >>> one_sample_t_test_result = ds.one_sample_t(
     ...     series=series,
@@ -1090,7 +1065,6 @@ def one_sample_t(
     Ho: the average of the sample is equal to the hypothesized value.
     Ha: the average of the sample is greater than the hypothesized value.
 
-    >>> import datasense as ds
     >>> series = ds.random_data(random_state=42)
     >>> one_sample_t_test_result = ds.one_sample_t(
     ...     series=series,
@@ -1541,7 +1515,6 @@ def two_sample_t(
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is less than the average of sample two.
 
-    >>> import datasense as ds
     >>> series1 = ds.random_data(random_state=13)
     >>> series2 = ds.random_data(random_state=69)
     >>> two_sample_t_test_result = ds.two_sample_t(
@@ -1554,7 +1527,6 @@ def two_sample_t(
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is greater than the average of sample three.
 
-    >>> import datasense as ds
     >>> series1 = ds.random_data(random_state=13)
     >>> series2 = ds.random_data(random_state=69)
     >>> two_sample_t_test_result = ds.two_sample_t(
@@ -2169,7 +2141,6 @@ def paired_t(
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences is less than zero.
 
-    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
     ...     series1=series1,
     ...     series2=series2,
@@ -2181,7 +2152,6 @@ def paired_t(
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences is greater than zero.
 
-    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
     ...     series1=series1,
     ...     series2=series2,
@@ -2193,7 +2163,6 @@ def paired_t(
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences does not equal d.
 
-    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
     ...     series1=series1,
     ...     series2=series2,
@@ -2205,7 +2174,6 @@ def paired_t(
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences is less than d.
 
-    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
     ...     series1=series1,
     ...     series2=series2,
@@ -2217,7 +2185,6 @@ def paired_t(
     Ho: The population average of the differences equals d.
     Ha: The population average of the differences is greater than d.
 
-    >>> import datasense as ds
     >>> paired_t_result = ds.paired_t(
     ...     series1=series1,
     ...     series2=series2,
