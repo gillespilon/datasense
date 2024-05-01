@@ -59,7 +59,6 @@ def taguchi_loss_function(
 
     Calculate ACU for a centred process with LS and US.
 
-    >>> import datasense as ds
     >>> average = 7.5
     >>> std_dev = 1.80
     >>> target = 7.5
