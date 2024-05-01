@@ -437,7 +437,6 @@ def list_empty_except_nan_worksheet_rows(
     ...     ws=ws,
     ...     min_row=2
     ... )
-
     """
     empty_rows = []
     for row in ws.iter_rows(min_row=min_row):
@@ -889,7 +888,6 @@ def unique_list_items(
     ...     text_to_replace=text_to_replace,
     ...     text_to_remove=text_to_remove
     ... ) # doctest: +SKIP
-
     """
     column_numbers = [
         col for col in range(ws.min_column, ws.max_column + 1)
