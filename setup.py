@@ -8,7 +8,7 @@ setup(
     url="https://github.com/gillespilon/datasense",
     version="0.8",
     install_requires=[
-        "basis-expansions",
+        "basis_expansions",
         "cached_property",
         "beautifultable",
         "scikit-learn",
