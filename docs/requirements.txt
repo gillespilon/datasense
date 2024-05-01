@@ -1,4 +1,4 @@
-basis-expansions @ git+https://github.com/madrury/basis-expansions.git@80dd98e27cb393fe09d79e186fd61aa2d8d0a834
+basis_expansions==0.0.1
 beautifulsoup4==4.12.3
 beautifultable==1.1.0
 bs4==0.0.2
