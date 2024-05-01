@@ -40,7 +40,6 @@ def rgx_email_address(
 
      open a file containing email addresses and \n\t
 
-    >>> import datasense as ds
     >>> with open("../tests/mailbox.txt") as f:
     ...     data = f.read()
     >>> strings = data.split("\\n")
