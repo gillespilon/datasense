@@ -82,16 +82,6 @@ def nonparametric_summary(
         APL method;
             alphap=0.35, betap=0.35
 
-    Notes
-    -----
-
-    The 1.57 used to calculate the confidence intervals was empirically
-    determined. See:
-    McGill, Robert, John W. Tukey, and Wayne A. Larsen (Feb. 1978).
-    “Variations of Box Plots”. In: The American Statistician
-    32.1, pp. 12–16. doi: https://doi.org/10.2307/2683468. url:
-    https://www.jstor.org/stable/2683468.
-
     Returns
     -------
     pd.Series containing:
@@ -122,6 +112,17 @@ def nonparametric_summary(
     ...     alphap=0,
     ...     betap=0
     ... )
+
+    Notes
+    -----
+
+    The 1.57 used to calculate the confidence intervals was empirically
+    determined. See:
+    McGill, Robert, John W. Tukey, and Wayne A. Larsen (Feb. 1978).
+    “Variations of Box Plots”. In: The American Statistician
+    32.1, pp. 12–16. doi: https://doi.org/10.2307/2683468. url:
+    https://www.jstor.org/stable/2683468.
+
     """
     xm = np.ma.masked_array(series, mask=np.isnan(series))
     q25 = mq(xm, prob=(0.25), alphap=alphap, betap=betap)
@@ -447,19 +448,6 @@ def random_data(
     series: pd.Series
         A pandas series of random items.
 
-    Notes
-    -----
-    distribution dtypes returned for distribution options:
-    "uniform"    float64
-    "bool"       boolean
-    "boolean"    boolean (nullable)
-    "strings"    str
-    "norm"       float64
-    "randint"    int64
-    "randInt"    Int64 (nullable)
-    "category"   category
-    "categories" category of type CategoricalDtype(ordered=True)
-
     Examples
     --------
 
@@ -626,6 +614,19 @@ def random_data(
     ...     distribution="datetime",
     ...     size=7
     ... )
+
+    Notes
+    -----
+    distribution dtypes returned for distribution options:
+    "uniform"    float64
+    "bool"       boolean
+    "boolean"    boolean (nullable)
+    "strings"    str
+    "norm"       float64
+    "randint"    int64
+    "randInt"    Int64 (nullable)
+    "category"   category
+    "categories" category of type CategoricalDtype(ordered=True)
     """
     distribution_list_continuous = ["norm", "uniform"]
     distribution_list_discrete = ["randint", "randInt"]
@@ -1496,8 +1497,8 @@ def two_sample_t(
             The upper bound of the confidence interval of the difference in the
             sample averages.
 
-    Notes
-    -----
+    Examples
+    --------
 
     Ho: the average of sample one is equal to the average of sample two.
     Ha: the average of sample one is not equal to the average of sample two.
@@ -1535,129 +1536,6 @@ def two_sample_t(
     ...     alternative_hypothesis="greater",
     ...     significance_level=0.05
     ... ) # doctest: +NORMALIZE_WHITESPACE
-    Parametric analysis
-    <BLANKLINE>
-    Sample 1
-    <BLANKLINE>
-    n                                   42
-    min                             -1.639
-    max                               2.15
-    ave                              0.153
-    confidence interval    (-0.146, 0.453)
-    s                                 0.96
-    var                              0.922
-    <BLANKLINE>
-    Shapiro-Wilk results for normal distribution lack-of-fit test
-    Shapiro-Wilk test statistic:   0.983
-    Shapiro-Wilk p value       :   0.779
-    The data in sample 1 probably follow a normal distribution.\
-            OK to proceed to homogeneity of variance test.
-    <BLANKLINE>
-    Sample 2
-    <BLANKLINE>
-    n                                   42
-    min                             -2.283
-    max                              1.592
-    ave                             -0.291
-    confidence interval    (-0.622, 0.041)
-    s                                1.064
-    var                              1.132
-    <BLANKLINE>
-    Shapiro-Wilk results for normal distribution lack-of-fit test
-    Shapiro-Wilk test statistic:   0.969
-    Shapiro-Wilk p value       :   0.302
-    The data in sample 2 probably follow a normal distribution.\
-            OK to proceed to homogeneity of variance test.
-    <BLANKLINE>
-    Bartlett results for homogeneity of variance test
-    Bartlett test statistic:   0.426
-    Bartlett p value       :   0.514
-    The two samples probably have equal variances.
-    <BLANKLINE>
-    t test results
-    average of sample 1:   0.153
-    average of sample 2:  -0.291
-    confidence interval   0.004, 0.884031656611471
-    t test statistic   :   2.008
-    t test p value     :   0.024
-    significance level :   0.050
-    power of the test  :   0.635
-    <BLANKLINE>
-    Ho: average of sample one == average of sample two
-    Ha: average of sample one > average of sample two
-    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
-            There is sufficient evidence to show that the average of\
-            sample 1 is greater than the average of sample 2.
-    <BLANKLINE>
-    Non-parametric analysis
-    <BLANKLINE>
-    Sample 1
-    <BLANKLINE>
-    lower outer fence              -5.111
-    lower inner fence               -2.87
-    lower quartile                 -0.629
-    median                          0.228
-    confidence interval    (-0.134, 0.59)
-    upper quartile                  0.866
-    upper inner fence               3.107
-    upper outer fence               5.348
-    interquartile range             1.494
-    inner outliers                     []
-    outer outliers                     []
-    minimum value                  -1.639
-    maximum value                    2.15
-    count                              42
-    <BLANKLINE>
-    Anderson-Darling results for normal distribution lack-of-fit test
-    Anderson-Darling test statistic:   0.174
-    Anderson-Darling critical value:   0.728
-    The data in sample 1 probably follow a normal distribution.\
-            OK to proceed to test for equal variances.
-    <BLANKLINE>
-    Sample 2
-    <BLANKLINE>
-    lower outer fence             -6.731
-    lower inner fence             -3.947
-    lower quartile                -1.163
-    median                        -0.249
-    confidence interval    (-0.699, 0.2)
-    upper quartile                 0.694
-    upper inner fence              3.478
-    upper outer fence              6.262
-    interquartile range            1.856
-    inner outliers                    []
-    outer outliers                    []
-    minimum value                 -2.283
-    maximum value                  1.592
-    count                             42
-    <BLANKLINE>
-    Anderson-Darling results for normal distribution lack-of-fit test
-    Anderson-Darling test statistic:   0.322
-    Anderson-Darling critical value:   0.728
-    The data in sample 2 probably follow a normal distribution.\
-            OK to proceed to test for equal variances.
-    <BLANKLINE>
-    Levene results for homogeneity of variance
-    Levene test statistic:   0.788
-    Levene p value       :   0.377
-    The two samples probably have equal variances.
-    <BLANKLINE>
-    t test results
-    average of sample 1   :   0.153
-    average of sample 2   :  -0.291
-    difference in averages:   0.444
-    confidence interval   :   0.004,   0.884
-    t test statistic      :   2.008
-    t test p value        :   0.024
-    significance level    :   0.050
-    power of the test     :   0.635
-    <BLANKLINE>
-    Ho: average of sample one == average of sample two
-    Ha: average of sample one > average of sample two
-    Reject the null hypothesis Ho. Accept the alternative hypothesis Ha.\
-            There is sufficient evidence to show that the average of\
-            sample 1 is greater than the average of sample 2.
-    <BLANKLINE>
     """
     # introduced for Python 3.10
     match alternative_hypothesis:
@@ -2122,8 +2000,8 @@ def paired_t(
             The upper value of the confidence interval of the average of the
             differences.
 
-    Notes
-    -----
+    Examples
+    --------
 
     Ho: The population average of the differences equals zero.
     Ha: The population average of the differences does not equal zero.
@@ -2661,7 +2539,7 @@ def linear_regression(
     https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html
 
     Example
-    --------
+    -------
 
     >>> import datasense as ds
     >>> import pandas as pd
