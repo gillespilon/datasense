@@ -75,7 +75,6 @@ def dataframe_info(
     ...     file_in='df'
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> df = ds.dataframe_info(
     ...     df=df,
     ...     file_in='df',
@@ -690,20 +689,17 @@ def save_file(
     ...     file_name='x_y.csv'
     ... )
 
-    >>> import datasense as ds
     >>> ds.save_file(
     ...     df=df,
     ...     file_name='x_y.csv',
     ...     index=True
     ... )
 
-    >>> import datasense as ds
     >>> ds.save_file(
     ...     df=df,
     ...     file_name='x_y.xlsx'
     ... )
 
-    >>> import datasense as ds
     >>> ds.save_file(
     ...     df=df,
     ...     file_name='x_y.xlsx',
@@ -711,7 +707,6 @@ def save_file(
     ...     sheet_name='sheet_one'
     ... )
 
-    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_save = 'myfeatherfile.feather'
     >>> path = Path(file_to_save)
@@ -890,7 +885,6 @@ def read_file(
     Read a csv file. There is no guarantee the column dtypes will be correct.
     Only [a, i, s, x, z] have the correct dtypes.
 
-    >>> import datasense as ds
     >>> file_name = "file.csv"
     >>> df = ds.read_file(file_name=file_name) # doctest: +SKIP
     >>> df.dtypes # doctest: +SKIP
@@ -910,7 +904,6 @@ def read_file(
 
     Read a csv file. Ensure the dtypes of datetime columns.
 
-    >>> import datasense as ds
     >>> parse_dates = ['t', 'u']
     >>> file_name = "file.csv"
     >>> df = ds.read_file(
@@ -937,7 +930,6 @@ def read_file(
 
     Read a csv file. Ensure the dtypes of columns; not timedelta, datetime.
 
-    >>> import datasense as ds
     >>> convert_dict = {
     ...     'a': 'float64',
     ...     'b': 'boolean',
@@ -974,7 +966,6 @@ def read_file(
     Read a csv file. Ensure the dtypes of columns. Rename the columns.
     Set index with another column. Convert float column to integer.
 
-    >>> import datasense as ds
     >>> column_names_dict = {
     ...     'a': 'A',
     ...     'b': 'B',
@@ -1028,7 +1019,6 @@ def read_file(
 
     Read an ods file.
 
-    >>> import datasense as ds
     >>> file_name = 'myfile.ods'
     >>> df = ds.create_dataframe()
     >>> ds.save_file(
@@ -1047,7 +1037,6 @@ def read_file(
 
     Read an xlsx file.
 
-    >>> import datasense as ds
     >>> file_name = 'myfile.xlsx'
     >>> sheet_name = 'raw_data'
     >>> df = ds.read_file(
@@ -1061,7 +1050,6 @@ def read_file(
 
     Read a feather file.
 
-    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_read = 'myfeatherfile.feather'
     >>> path = Path(file_to_read)
@@ -1069,7 +1057,6 @@ def read_file(
 
     Read a feather file with columns list.
 
-    >>> import datasense as ds
     >>> from pathlib import Path
     >>> file_to_read = 'myfeatherfile.feather'
     >>> usecols = ['col1', 'col2']
@@ -1085,7 +1072,6 @@ def read_file(
 
     Read an xlsb file.
 
-    >>> import datasense as ds
     >>> file_name = 'myfile.xlsb'
     >>> sheet_name = 'raw_data'
     >>> df = ds.read_file(
@@ -1431,7 +1417,6 @@ def replace_text_numbers(
     ...     regex=False
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> data = ds.replace_text_numbers(
     ...     df=data,
     ...     columns=['Q23'],
@@ -1440,7 +1425,6 @@ def replace_text_numbers(
     ...     regex=True
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> data = ds.replace_text_numbers(
     ...     df=data,
     ...     columns=['address_country'],
@@ -1583,7 +1567,6 @@ def create_dataframe_norm(
     >>> import datasense as ds
     >>> df = ds.create_dataframe_norm()
 
-    >>> import datasense as ds
     >>> column_count = 100
     >>> row_count = 1000
     >>> column_names = [f'col{item}' for item in range(column_count)]
@@ -1851,7 +1834,6 @@ def list_files(
     >>> import datasense as ds
     >>> files = ds.list_files(directory=path) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> pattern_extension = [".html", ".HTML"]
     >>> path = "path"
     >>> files = ds.list_files(
@@ -1859,7 +1841,6 @@ def list_files(
     ...     pattern_extension=pattern_extension
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> pattern_extension = [".html", ".HTML"]
     >>> pattern_startswith = ["job_aid"]
     >>> files = ds.list_files(
@@ -2031,7 +2012,6 @@ def ask_open_file_name_path(
     >>> import datasense as ds
     >>> path = ds.ask_open_file_name_path(title='message') # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path = ds.ask_open_file_name_path(
     ...     title='your message',
     ...     filetypes=[('csv files', '.csv .CSV')]
@@ -2085,7 +2065,6 @@ def ask_save_as_file_name_path(
     >>> import datasense as ds
     >>> path = ds.ask_save_as_file_name_path(title='message') # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path = ds.ask_save_as_file_name_path(
     ...     title='your message',
     ...     filetypes=[('csv files', '.csv .CSV')]
@@ -2170,7 +2149,6 @@ def list_directories(
     >>> path = "path"
     >>> directory_list = ds.list_directories(path=path) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path = "path"
     >>> pattern_startswith = ["job aids"]
     >>> directory_list = ds.list_directories(
@@ -2178,7 +2156,6 @@ def list_directories(
     ...     pattern_startswith=pattern_startswith
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path = "path"
     >>> pattern_startswith = ["job aids", "cheatsheet"]
     >>> directory_list = ds.list_directories(
@@ -2340,7 +2317,6 @@ def list_one_list_two_ops(
     ... ) # doctest: +SKIP
     [1, 2, 3]
 
-    >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_list_two_ops(
@@ -2350,7 +2326,6 @@ def list_one_list_two_ops(
     ... ) # doctest: +SKIP
     [7, 8, 9]
 
-    >>> import datasense as ds
     >>> list_one = [1, 2, 3, 4, 5, 6]
     >>> list_two = [4, 5, 6, 7, 8, 9]
     >>> list_one_unique = ds.list_one_list_two_ops(
@@ -2480,7 +2455,6 @@ def parameters_text_replacement(
     ...     usecols=usecols
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path_parameters = Path("bcp_parameters.xlsx")
     >>> usecols = ["old_text", "new_text"]
     >>> sheet_name = "text_replacement"
@@ -2491,7 +2465,6 @@ def parameters_text_replacement(
     ...     case="upper"
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> path_parameters = Path("bcp_parameters.xlsx")
     >>> usecols = ["old_text", "new_text"]
     >>> sheet_name = "text_replacement"
@@ -2748,7 +2721,6 @@ def delete_empty_rows(
     >>> import datasense as ds
     >>> df = ds.delete_empty_rows(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> list_columns = ["column_x", "column_y", "column_z"]
     >>> df = ds.delete_empty_rows(
     ...     df=df,
@@ -2792,7 +2764,6 @@ def delete_empty_columns(
     >>> import datasense as ds
     >>> df = ds.delete_empty_columns(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> list_empty_columns = ["mixed", "nan_none"]
     >>> df = ds.delete_empty_columns(
     ...    df=df,
@@ -2852,7 +2823,6 @@ def optimize_float_columns(
     >>> import datasense as ds
     >>> df = ds.optimize_float_columns(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> float_columns = ["column A", "column B"]
     >>> df = ds.optimize_float_columns(
     ...     df=df,
@@ -2892,7 +2862,6 @@ def optimize_integer_columns(
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> integer_columns = ["column A", "column B"]
     >>> df = ds.optimize_integer_columns(
     ...     df=df,
@@ -2936,14 +2905,12 @@ def optimize_object_columns(
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> fraction_categories = 0.25
     >>> df = ds.optimize_integer_columns(
     ...     df=df,
     ...     fraction_categories = fraction_categories
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> object_columns = ["column A", "column B"]
     >>> df = df.optimize_object_columns(
     ...     df=df,
@@ -2988,7 +2955,6 @@ def optimize_datetime_columns(
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> integer_columns = ["column A", "column B"]
     >>> df = ds.optimize_integer_columns(
     ...     df=df,
@@ -3039,13 +3005,11 @@ def optimize_columns(
 
     If using the default values, it is important to identify object columns
     that should be datetime columns in order to get the correct answer.
-    >>> import datasense as ds
     >>> df = ds.optimize_columns(
     ...     df=df,
     ...     datetime_columns=datetime_columns,
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> float_columns = ["column_A", "column_B"]
     >>> integer_columns = ["column_C", "column_D"]
     >>> object_columns = ["column_E", "column_F"]
@@ -3140,7 +3104,6 @@ def convert_csv_to_feather(
 
     Convert csv to feather.
 
-    >>> import datasense as ds
     >>> ds.convert_csv_to_feather(
     ...     paths_in=paths_in,
     ...     paths_out=paths_out
