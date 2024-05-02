@@ -290,10 +290,6 @@ class X(ControlChart):
 
         complete X control chart
 
-        >>> import datasense.control_charts as cc
-        >>> import matplotlib.pyplot as plt
-        >>> import datasense as ds
-        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_x.svg'
         >>> colour='#33bbee'
@@ -463,8 +459,6 @@ class mR(ControlChart):
 
         complete mR control chart
 
-        >>> import datasense.control_charts as cc
-        >>> import datasense as ds
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_mr.svg'
         >>> data = ds.random_data(
@@ -622,10 +616,6 @@ class Xbar(ControlChart):
 
         complete Xbar control chart
 
-        >>> import datasense.control_charts as cc
-        >>> import matplotlib.pyplot as plt
-        >>> import datasense as ds
-        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_xbar.svg'
         >>> colour='#33bbee'
@@ -845,10 +835,6 @@ class R(ControlChart):
 
         complete R control chart
 
-        >>> import datasense.control_charts as cc
-        >>> import matplotlib.pyplot as plt
-        >>> import datasense as ds
-        >>> import pandas as pd
         >>> figsize = (8, 6)
         >>> graph_name = 'graph_r.svg'
         >>> colour='#33bbee'
