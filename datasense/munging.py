@@ -2580,6 +2580,11 @@ def quit_sap_excel() -> None:
     """
     Several applications, Excel in particular, need to be closed otherwise
     they may cause a function to crash.
+
+    Example
+    -------
+    >>> import datasense as ds
+    >>> ds.quit_sap_excel()
     """
     for proc in psutil.process_iter():
         if proc.name().lower() == "excel.exe":
