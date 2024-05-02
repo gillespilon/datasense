@@ -19,7 +19,6 @@ from scipy.stats import norm
 import pandas as pd
 import numpy as np
 
-
 def dataframe_info(
     *, df: pd.DataFrame, file_in: Path | str, unique_bool: bool = False
 ) -> pd.DataFrame:
@@ -2589,7 +2588,7 @@ def quit_sap_excel() -> None:
             proc.kill()
 
 
-def get_mtime(*, path: Path) -> float:
+def get_mtime(path: Path) -> float:
     """
     Get the time of last modification of a Path object.
 
