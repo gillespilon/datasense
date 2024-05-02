@@ -1,10 +1,6 @@
 """
 Graphical analysis
 
-All examples use the following, as required:
-    import datasense as ds
-    import matplotlib.pyplot as plt
-
 Colours used are colour-blind friendly.
     blue    "#0077bb"
     cyan    "#33bbee"
