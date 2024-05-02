@@ -224,7 +224,6 @@ def html_figure(
 <figcaption>my_graph_file.svg</figcaption>\
 </figure><pre style="white-space: pre-wrap;">
 
-    >>> import datasense as ds
     >>> ds.html_figure(
     ...     file_name=graph_file,
     ...     caption='../tests/my graph file caption'
@@ -336,13 +335,11 @@ def script_summary(
     >>> import datasense as ds
     >>> ds.script_summary(script_path=Path(__file__)) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> ds.script_summary(
     ...     script_path=Path(__file__),
     ...     action="started at"
     ... ) # doctest: +SKIP
 
-    >>> import datasense as ds
     >>> ds.script_summary(
     ...     script_path=Path(__file__),
     ...     action="finished at"
