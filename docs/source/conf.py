@@ -2,7 +2,7 @@
 # add these directories to sys.path here.
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../datasense'))
+sys.path.insert(0, os.path.abspath('/home/gilles/documents/repositories/datasense'))
 sys.path.insert(0, '/home/gilles/documents/repositories/virtual/venv/lib/python3.12/site-packages')
 
 # Configuration file for the Sphinx documentation builder.
@@ -33,7 +33,7 @@ source_suffix = '.rst'
 # The master toctree document
 master_doc = 'index'
 
-# autodoc_dirs = ['datasense']
+# autodoc_dirs = ['../../datasense']
 # autodoc_default_flags = ['members', 'undoc-members']
 # autodoc_member_order = 'bysource'
 # autoclass_hierarchy = 'include'
@@ -46,3 +46,5 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+verbosity = 2
