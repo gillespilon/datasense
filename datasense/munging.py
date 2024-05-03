@@ -25,32 +25,22 @@ def dataframe_info(
     """
     Describe a DataFrame.
 
-    Display count of rows (rows_in_count)
-    Display count of empty rows (rows_empty_count)
-    Display count of non-empty rows (rows_out_count)
-    Display count of columns (columns_in_count)
-    Display count of empty columns (columns_empty_count)
-    Display count of non-empty columns (columns_non_empty_count)
-    Display table of data type, empty cell count, and empty cell percentage
-    for non-empty columns (calls def number_empty_cells_in_columns())
-    Display count and list of non-empty columns
-    (columns_non_empty_count, columns_non_empty_list)
-    Display count and list of boolean columns
-    (columns_bool_count, columns_bool_list)
-    Display count and list of category columns
-    (columns_category_count, columns_category_list)
-    Display count and list of datetime columns
-    (columns_datetime_count, columns_datetime_list)
-    Display count and list of float columns
-    (columns_float_count, columns_float_list)
-    Display count and list of integer columns
-    (columns_integer_count, columns_integer_list)
-    Display count and list of string columns
-    (columns_object_count, columns_object_list)
-    Display count and list of timedelta columns
-    (columns_timedelta_count, columns_timedelta_list)
-    Display count and list of empty columns
-    (columns_empty_count, columns_empty_list)
+    - Display count of rows (rows_in_count)
+    - Display count of empty rows (rows_empty_count)
+    - Display count of non-empty rows (rows_out_count)
+    - Display count of columns (columns_in_count)
+    - Display count of empty columns (columns_empty_count)
+    - Display count of non-empty columns (columns_non_empty_count)
+    - Display table of data type, empty cell count, and empty cell percentage for non-empty columns (calls def number_empty_cells_in_columns())
+    - Display count and list of non-empty columns (columns_non_empty_count, columns_non_empty_list)
+    - Display count and list of boolean columns (columns_bool_count, columns_bool_list)
+    - Display count and list of category columns (columns_category_count, columns_category_list)
+    - Display count and list of datetime columns (columns_datetime_count, columns_datetime_list)
+    - Display count and list of float columns (columns_float_count, columns_float_list)
+    - Display count and list of integer columns (columns_integer_count, columns_integer_list)
+    - Display count and list of string columns (columns_object_count, columns_object_list)
+    - Display count and list of timedelta columns (columns_timedelta_count, columns_timedelta_list)
+    - Display count and list of empty columns (columns_empty_count, columns_empty_list)
 
     Parameters
     ----------
@@ -461,18 +451,18 @@ def process_columns(
     Return a DataFrame without empty columns and ensure all column labels are
     strings.
 
-    Create various counts of columns of a DataFrame.
-    Create count of columns (columns_in_count)
-    Create count and list of empty columns (columns_empty_count, columns_empty_list)
-    Create count and list of non-empty columns (columns_non_empty_count, columns_non_empty_list)
-    Delete empty columns
-    Create count and list of boolean columns (columns_bool_count, columns_bool_list)
-    Create count and list of category columns (columns_category_count, columns_category_list)
-    Create count and list of datetime columns (columns_datetime_count, columns_datetime_list)
-    Create count and list of float columns (columns_float_count, columns_float_list)
-    Create count and list of integer columns (columns_integer_count, columns_integer_list)
-    Create count and list of string columns (columns_object_count, columns_object_list)
-    Create count of timedelta columns (columns_timedelta_count, columns_timedelta_list)
+    - Create various counts of columns of a DataFrame.
+    - Create count of columns (columns_in_count)
+    - Create count and list of empty columns (columns_empty_count, columns_empty_list)
+    - Create count and list of non-empty columns (columns_non_empty_count, columns_non_empty_list)
+    - Delete empty columns
+    - Create count and list of boolean columns (columns_bool_count, columns_bool_list)
+    - Create count and list of category columns (columns_category_count, columns_category_list)
+    - Create count and list of datetime columns (columns_datetime_count, columns_datetime_list)
+    - Create count and list of float columns (columns_float_count, columns_float_list)
+    - Create count and list of integer columns (columns_integer_count, columns_integer_list)
+    - Create count and list of string columns (columns_object_count, columns_object_list)
+    - Create count of timedelta columns (columns_timedelta_count, columns_timedelta_list)
 
     Parameters
     ----------
@@ -481,50 +471,52 @@ def process_columns(
 
     Returns
     -------
-    df : pd.DataFrame
-        The output DataFrame.
-    columns_in_count : int
-        The count of columns.
-    columns_non_empty_count : int
-        The count of non-empty columns.
-    columns_empty_count: int
-        The count of empty columns.
-    columns_empty_list : list[str]
-        The list of empty columns.
-    columns_non_empty_list : list[str]
-        The list of non-empty columns.
-    columns_bool_list : list[str]
-        The list of boolean columns.
-    columns_bool_count : int
-        The count of boolean columns.
-    columns_float_list : list[str]
-        The list of float columns.
-    columns_float_count : int
-        The count of float columns.
-    columns_integer_list : list[str]
-        The list of integer columns.
-    columns_integer_count : int
-        The count of integer columns
-    columns_datetime_list : list[str]
-        The list of datetime columns.
-    columns_datetime_count : int
-        The count of datetime columns.
-    columns_object_list : list[str]
-        The list of object columns.
-    columns_object_count : int
-        The count of object columns.
-    columns_category_list : list[str]
-        The list of category columns.
-    columns_category_count : int
-        The count of category columns.
-    columns_timedelta_list : list[str]
-        The list of timedelta columns.
-    columns_timedelta_count : int
-        The count of timedelta columns.
+    tuple[pd.DataFrame, int, int, int, list[str], list[str], list[str], int, list[str], int, list[str], int, list[str], int, list[str], int, list[str], int, list[str], int]
+        Return a DataFrame without empty columns and ensure all column labels are strings.
+
+        - df : pd.DataFrame
+            The output DataFrame.
+        - columns_in_count : int
+            The count of columns.
+        - columns_non_empty_count : int
+            The count of non-empty columns.
+        - columns_empty_count: int
+            The count of empty columns.
+        - columns_empty_list : list[str]
+            The list of empty columns.
+        - columns_non_empty_list : list[str]
+            The list of non-empty columns.
+        - columns_bool_list : list[str]
+            The list of boolean columns.
+        - columns_bool_count : int
+            The count of boolean columns.
+        - columns_float_list : list[str]
+            The list of float columns.
+        - columns_float_count : int
+            The count of float columns.
+        - columns_integer_list : list[str]
+            The list of integer columns.
+        - columns_integer_count : int
+            The count of integer columns
+        - columns_datetime_list : list[str]
+            The list of datetime columns.
+        - columns_datetime_count : int
+            The count of datetime columns.
+        - columns_object_list : list[str]
+            The list of object columns.
+        - columns_object_count : int
+            The count of object columns.
+        - columns_category_list : list[str]
+            The list of category columns.
+        - columns_category_count : int
+            The count of category columns.
+        - columns_timedelta_list : list[str]
+            The list of timedelta columns.
+        - columns_timedelta_count : int
+            The count of timedelta columns.
 
     Example
     -------
-
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> df, columns_in_count, columns_non_empty_count, columns_empty_count,\
@@ -625,18 +617,20 @@ def process_rows(*, df: pd.DataFrame) -> tuple[pd.DataFrame, int, int, int]:
 
     Returns
     -------
-    df : pd.DataFrame
-        The output DataFrame.
-    rows_in_count : int
-        The count of rows of the input DataFrame.
-    rows_out_count : int
-        The count of rows of the output DataFrame.
-    rows_empty_count : int
-        The count of empty rows of the input DataFrame.
+    tuple[pd.DataFrame, int, int, int]
+        A tuple of a DataFrame without duplicate rows, a count of the input rows, a count of the output rows, and a count of the empty rows.
+
+            - df : pd.DataFrame
+                The output DataFrame.
+            - rows_in_count : int
+                The count of rows of the input DataFrame.
+            - rows_out_count : int
+                The count of rows of the output DataFrame.
+            - rows_empty_count : int
+                The count of empty rows of the input DataFrame.
 
     Example
     -------
-
     >>> import datasense as ds
     >>> df = ds.create_dataframe()
     >>> df, rows_in_count, rows_out_count, rows_empty_count = \
@@ -1470,6 +1464,12 @@ def create_dataframe(
     df : pd.DataFrame
         The output DataFrame.
 
+    Example
+    -------
+
+    >>> import datasense as ds
+    >>> df = create_dataframe()
+
     Notes
     -----
     a  : float64
@@ -1486,12 +1486,6 @@ def create_dataframe(
     y  : int64
     yn : Int64
     z  : float64
-
-    Example
-    -------
-
-    >>> import datasense as ds
-    >>> df = create_dataframe()
     """
     df = pd.DataFrame(
         {
@@ -1780,8 +1774,8 @@ def replace_column_values(
     regex : bool = True
         Determines if the passed-in pattern is a regular expression.
 
-    Returns:
-    --------
+    Returns
+    -------
     s : pd.Series
         The output series.
 
@@ -2441,6 +2435,7 @@ def parameters_text_replacement(
     Returns
     -------
     text_replacement : tuple[tuple[str, str]]
+        A tuple of text replacement tuples.
 
     Examples
     --------
@@ -2530,6 +2525,7 @@ def parameters_dict_replacement(
     Returns
     -------
     text_replacement : dict[str, str]
+        A dictionary of text replacement tuples.
 
     Example
     -------
@@ -2690,19 +2686,6 @@ def delete_empty_rows(
     """
     Delete empty rows
 
-    Notes
-    -----
-    The following code also works, should dropna not work.
-
-    Delete rows where all elements are missing in all columns.
-    df.loc[~(df.shape[1] == df.isna().sum(axis=1)), :]
-
-    Delete rows where all elements are missing, in specific columns.
-    df.dropna(how="all", subset=specific_columns)
-
-    Delete rows where all elements are missing, in specific columns.
-    df.loc[~((df[look_in_columns].isna().sum(axis=1)) == (len(specific_columns))), :]
-
     Parameters
     ----------
     df : pd.DataFrame
@@ -2726,6 +2709,20 @@ def delete_empty_rows(
     ...     df=df,
     ...     list_columns=list_columns
     ... ) # doctest: +SKIP
+
+    Notes
+    -----
+    The following code also works, should dropna not work.
+
+    Delete rows where all elements are missing in all columns.
+    df.loc[~(df.shape[1] == df.isna().sum(axis=1)), :]
+
+    Delete rows where all elements are missing, in specific columns.
+    df.dropna(how="all", subset=specific_columns)
+
+    Delete rows where all elements are missing, in specific columns.
+    df.loc[~((df[look_in_columns].isna().sum(axis=1)) == (len(specific_columns))), :]
+
     """
     df = df.replace(r"^\s*$", np.NaN, regex=True).replace(
         "", np.NaN, regex=True
@@ -2804,22 +2801,21 @@ def optimize_float_columns(
     """
     Downcast float columns
 
-    Parameter
-    ---------
+    Parameters
+    ----------
     df : pd.DataFrame
         The DataFrame that contains one or more float columns.
     float_columns : list[str] | None = None
         A list of float columns to downcast.
 
     Returns
-    ------
+    -------
     df : pd.DataFrame
         The DataFrame with all float columns downcast and other columns
         unchanged.
 
     Examples
     --------
-
     >>> import datasense as ds
     >>> df = ds.optimize_float_columns(df=df) # doctest: +SKIP
 
@@ -2851,14 +2847,13 @@ def optimize_integer_columns(
         A list of integer columns to downcast.
 
     Returns
-    ------
+    -------
     df : pd.DataFrame
         The DataFrame with all integer columns downcast and other columns
         unchanged.
 
     Examples
     --------
-
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
@@ -2884,8 +2879,8 @@ def optimize_object_columns(
     """
     Downcast object columns
 
-    Parameter
-    ---------
+    Parameters
+    ----------
     df : pd.DataFrame
         The DataFrame that contains one or more integer columns.
     object_columns : list[str] | None = None
@@ -2894,14 +2889,13 @@ def optimize_object_columns(
         The fraction of categories in an object column.
 
     Returns
-    ------
+    -------
     df : pd.DataFrame
         The DataFrame with all object columns downcast and other columns
         unchanged.
 
     Examples
     --------
-
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
@@ -2936,22 +2930,21 @@ def optimize_datetime_columns(
     Cast object and datetime columns to pandas datetime. It does not reduce
     memory usage, but enables time-based operations.
 
-    Parameter
-    ---------
+    Parameters
+    ----------
     df : pd.DataFrame
         The DataFrame that contains one or more datetime columns.
     datetime_columns : list[str] | None = None
         A list of datetime columns to cast.
 
     Returns
-    ------
+    -------
     df : pd.DataFrame
         The DataFrame with all datetime columns cast and other columns
         unchanged.
 
     Examples
     --------
-
     >>> import datasense as ds
     >>> df = ds.optimize_integer_columns(df=df) # doctest: +SKIP
 
@@ -2979,7 +2972,7 @@ def optimize_columns(
     """
     Downcast float columns
 
-    Parameter
+    Parameters
     ----------
     df : pd.DataFrame
         The DataFrame.
@@ -2993,13 +2986,12 @@ def optimize_columns(
         The fraction of categories in an object column.
 
     Returns
-    ------
+    -------
     df : pd.DataFrame
         The DataFrame with all columns downcast where possible or requested.
 
     Examples
     --------
-
     >>> import datasense as ds
     >>> df = ds.optimize_columns(df=df) # doctest: +SKIP
 
@@ -3159,11 +3151,18 @@ def convert_seconds_to_hh_mm_ss(
 
     Returns
     -------
-        Tuple of (hours, minutes, seconds).
+    tuple[int]
+        A tuple containing hours, minutes, seconds.
+
+        - hours: int
+            An integer of hours.
+        - minutes: int
+            An integer of minutes.
+        - seconds: int
+            An integer of seconds.
 
     Example
     ------
-
     >>> import datasense as ds
     >>> hours_minutes_seconds = ds.convert_seconds_to_hh_mm_ss(seconds=251)
     >>> hours_minutes_seconds
