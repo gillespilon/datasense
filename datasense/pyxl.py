@@ -554,10 +554,13 @@ def read_workbook(
 
     Returns
     -------
-    wb : Workbook
-        A workbook.
-    sheet_names : list[str]
-        The sheet names in the workbook.
+    tuple[Workbook, list[str]]
+        A tuple of a Workbook and a list of sheet names.
+
+            - wb : Workbook
+                A workbook.
+            - sheet_names : list[str]
+                The sheet names in the workbook.
 
     Examples
     --------
@@ -870,10 +873,13 @@ def unique_list_items(
 
     Returns
     -------
-    varname : tuple[list[int]
-        The list of unique items.
-    column_numbers : list[int]]
-        The list of column numbers.
+    tuple[list[int], list[int]]
+        A tuple of a list of unique items and a list of column numbers.
+
+            - varname : tuple[list[int]
+                The list of unique items.
+            - column_numbers : list[int]]
+                The list of column numbers.
 
     Example
     -------
