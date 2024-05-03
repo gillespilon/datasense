@@ -209,7 +209,7 @@ class ControlChart(ABC):
 
 class X(ControlChart):
     """
-    X control chart
+    Individual values control chart (X)
     """
     def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
@@ -262,9 +262,18 @@ class X(ControlChart):
         Plots individual values of the column of the dataframe (y axis) versus
         the index of the dataframe (x axis)
 
+        Parameters
+        ----------
+        fig: plt.Figure = None
+            A matplotlib figure.
+
+        Returns
+        -------
+        axes: Axes
+            A matplotlib Axes.
+
         Examples
         --------
-
         minimal X control chart
 
         >>> import datasense.control_charts as cc
@@ -367,7 +376,7 @@ class X(ControlChart):
 
 class mR(ControlChart):
     """
-    mR chart
+    Moving range of individual values control chart (mR)
     """
     def __init__(self, data: pd.DataFrame, subgroup_size: int = 2):
         super().__init__(data)
@@ -431,9 +440,18 @@ class mR(ControlChart):
         Plots calculated moving ranges (y axis) versus
         the index of the dataframe (x axis)
 
+        Parameters
+        ----------
+        fig: plt.Figure = None
+            A matplotlib figure.
+
+        Returns
+        -------
+        axes: Axes
+            A matplotlib Axes.
+
         Examples
         --------
-
         minimal mR control chart
 
         >>> import datasense.control_charts as cc
@@ -507,7 +525,7 @@ class mR(ControlChart):
 
 class Xbar(ControlChart):
     """
-    Xbar chart
+    Average of a subgroup of values control chart (Xbar)
     """
     @cached_property
     def _average_range(self) -> float:
@@ -565,9 +583,18 @@ class Xbar(ControlChart):
         Plots calculated averages (y axis) versus
         the index of the dataframe (x axis)
 
+        Parameters
+        ----------
+        fig: plt.Figure = None
+            A matplotlib figure.
+
+        Returns
+        -------
+        axes: Axes
+            A matplotlib Axes.
+
         Examples
         --------
-
         minimal Xbar control chart
 
         >>> import datasense.control_charts as cc
@@ -723,7 +750,7 @@ class Xbar(ControlChart):
 
 class R(ControlChart):
     """
-    R chart
+    Range of a subgroup of values control chart (R)
     """
     @cached_property
     def _d2(self) -> float:
@@ -784,9 +811,18 @@ class R(ControlChart):
         Plots calculated ranges (y axis) versus
         the index of the dataframe (x axis)
 
+        Parameters
+        ----------
+        fig: plt.Figure = None
+            A matplotlib figure.
+
+        Returns
+        -------
+        axes: Axes
+            A matplotlib Axes.
+
         Examples
         --------
-
         minimal R control chart
 
         >>> import datasense.control_charts as cc
