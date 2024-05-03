@@ -22,6 +22,11 @@ def psycopg2_connection(params: dict) -> psycopg2.connect:
     port : int
         The port number.
 
+    Returns
+    -------
+    con: psycopg2.connect
+        A connection to the PostgreSQL database server.
+
     Example
     -------
     >>> import datasense as ds
