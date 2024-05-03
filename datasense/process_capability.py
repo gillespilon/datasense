@@ -126,12 +126,15 @@ def cp(
 
     Returns
     -------
-    capability : float
-        The Pp process capability value.
-    lower_bound : float
-        The lower value of the confidence interval for Pp.
-    upper_bound : float
-        The upper value of the confidence interval for Pp.
+    tuple[float, float, float]
+        A tuple of the capability, the lower confidence bound, and the upper confidence bound.
+
+            - capability : float
+                The Pp process capability value.
+            - lower_bound : float
+                The lower value of the confidence interval for Pp.
+            - upper_bound : float
+                The upper value of the confidence interval for Pp.
 
     Example
     -------
@@ -205,16 +208,19 @@ def cpk(
 
     Returns
     -------
-    capability : float
-        The Cpk process capability value.
-    cpk_lower : float
-        The Ppk value for left of the average,
-    cpk_lower : float
-        The Ppk value for right of the average,
-    lower_bound : float
-        The lower value of the confidence interval for Cpk.
-    upper_bound : float
-        The upper value of the confidence interval for Cpk.
+    tuple[float, float, float, float, float]
+        A tuple of the capability, the lower Cpk, the upper Cpk, the lower confidence bound, and the upper confidence bound.
+
+            - capability : float
+                The Cpk process capability value.
+            - cpk_lower : float
+                The Ppk value for left of the average,
+            - cpk_lower : float
+                The Ppk value for right of the average,
+            - lower_bound : float
+                The lower value of the confidence interval for Cpk.
+            - upper_bound : float
+                The upper value of the confidence interval for Cpk.
 
     Example
     -------
@@ -299,10 +305,13 @@ def cpm(
 
     Returns
     -------
-    capability : float
-        The Cpm process capability value.
-    lower_bound : float
-        The lower value of the confidence interval for Cpm.
+    tuple[float, float]
+        A tuple of the capability and the lower confidence bound.
+
+            - capability : float
+                The Cpm process capability value.
+            - lower_bound : float
+                The lower value of the confidence interval for Cpm.
 
     Example
     -------
@@ -371,12 +380,15 @@ def pp(
 
     Returns
     -------
-    capability : float
-        The Pp process capability value.
-    lower_bound : float
-        The lower value of the confidence interval for Pp.
-    upper_bound : float
-        The upper value of the confidence interval for Pp.
+    tuple[float, float, float]
+        A tuple of the capability, the lower confidence bound, and the upper confidence bound.
+
+            - capability : float
+                The Pp process capability value.
+            - lower_bound : float
+                The lower value of the confidence interval for Pp.
+            - upper_bound : float
+                The upper value of the confidence interval for Pp.
 
     Example
     -------
@@ -442,16 +454,19 @@ def ppk(
 
     Returns
     -------
-    capability : float
-        The Ppk process capability value.
-    ppk_lower : float
-        The ppk value for left of the average,
-    ppk_lower : float
-        The ppk value for right of the average,
-    lower_bound : float
-        The lower value of the confidence interval for Ppk.
-    upper_bound : float
-        The upper value of the confidence interval for Ppk.
+    tuple[float, float, float, float, float]
+        A tuple of the capability, the lower Ppk, the upper Ppk, the lower confidence bound, and the upper confidence bound.
+
+            - capability : float
+                The Ppk process capability value.
+            - ppk_lower : float
+                The ppk value for left of the average,
+            - ppk_lower : float
+                The ppk value for right of the average,
+            - lower_bound : float
+                The lower value of the confidence interval for Ppk.
+            - upper_bound : float
+                The upper value of the confidence interval for Ppk.
 
     Example
     -------
