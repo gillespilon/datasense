@@ -617,16 +617,17 @@ def random_data(
 
     Notes
     -----
-    distribution dtypes returned for distribution options:
-    "uniform"    float64
-    "bool"       boolean
-    "boolean"    boolean (nullable)
-    "strings"    str
-    "norm"       float64
-    "randint"    int64
-    "randInt"    Int64 (nullable)
-    "category"   category
-    "categories" category of type CategoricalDtype(ordered=True)
+    Distribution dtypes returned for distribution options:
+
+        - "uniform"    float64
+        - "bool"       boolean
+        - "boolean"    boolean (nullable)
+        - "strings"    str
+        - "norm"       float64
+        - "randint"    int64
+        - "randInt"    Int64 (nullable)
+        - "category"   category
+        - "categories" category of type CategoricalDtype(ordered=True)
     """
     distribution_list_continuous = ["norm", "uniform"]
     distribution_list_discrete = ["randint", "randInt"]
@@ -2521,18 +2522,21 @@ def linear_regression(
 
     Returns
     -------
-    fitted_model : sm.regression.linear_model.OLS
-        The fitted model.
-    predictions : pd.Series
-        The pandas Series with the predictions from the model.
-    confidence_interval_lower : pd.Series,
-        The lower confidence interval of the average.
-    confidence_interval_upper : pd.Series,
-        The upper confidence interval of the saverage.
-    prediction_interval_lower : pd.Series,
-        The lower prediction interval of the data.
-    prediction_interval_upper : pd.Series
-        The upper prediction interval of the data.
+    tuple[sm.regression.linear_model.OLS, pd.Series, pd.Series, pd.Series, pd.Series, pd.Series]
+        A tuple of the fitted model, the predictions, the lower confidence bound, the upper counfidence bound, the lower prediction bound, and the upper prediction bound.
+
+            - fitted_model : sm.regression.linear_model.OLS
+                The fitted model.
+            - predictions : pd.Series
+                The pandas Series with the predictions from the model.
+            - confidence_interval_lower : pd.Series,
+                The lower confidence interval of the average.
+            - confidence_interval_upper : pd.Series,
+                The upper confidence interval of the saverage.
+            - prediction_interval_lower : pd.Series,
+                The lower prediction interval of the data.
+            - prediction_interval_upper : pd.Series
+                The upper prediction interval of the data.
 
     References
     ----------
@@ -2540,7 +2544,6 @@ def linear_regression(
 
     Example
     -------
-
     >>> import datasense as ds
     >>> import pandas as pd
     >>> df = pd.DataFrame(
