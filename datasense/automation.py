@@ -10,7 +10,7 @@ def fahrenheit_to_celsius_table(
     max_fahrenheit: int = 450,
     fahrenheit_increment: int = 5,
     rounding_increment: int = 5
-):
+) -> str:
     """
     Generates an HTML table of Fahrenheit to Celsius conversions.
 
@@ -27,7 +27,8 @@ def fahrenheit_to_celsius_table(
 
     Returns
     -------
-    An HTML table of Fahrenheit to Celsius conversions.
+    html_table: str
+        An HTML table of Fahrenheit to Celsius conversions.
 
     Example
     -------
