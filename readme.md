@@ -36,6 +36,6 @@ To cite this repository, please use:
   author      = {Gilles Pilon},
   title       = {datasense},
   url         = {https://github.com/gillespilon/datasense},
-  version     = {0.9.0},
+  version     = {0.9.1},
   date        = {2024-04-30}
 }
