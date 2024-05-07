@@ -4,9 +4,10 @@ from setuptools import setup, find_packages
 
 setup(
     name="datasense",
+    version="0.9.1",
+    packages=find_packages(),
     description="functions for datasense",
     url="https://github.com/gillespilon/datasense",
-    version="0.8",
     install_requires=[
         "basis_expansions",
         "cached_property",
@@ -29,7 +30,6 @@ setup(
     ],
     author="Gilles Pilon",
     author_email="gillespilon13@gmail.com",
-    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "Development Status :: 3 - Alpha",
