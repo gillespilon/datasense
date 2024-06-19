@@ -4,7 +4,6 @@ readthedocs-sphinx-search==0.3.2
 basis-expansions @ git+https://github.com/madrury/basis-expansions.git@80dd98e27cb393fe09d79e186fd61aa2d8d0a834
 beautifulsoup4==4.12.3
 beautifultable==1.1.0
-bs4==0.0.2
 cached-property==1.5.2
 contourpy==1.2.1
 cycler==0.12.1
