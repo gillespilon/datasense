@@ -63,7 +63,7 @@ cryptography==42.0.7
 css-parser==1.0.10
 cssselect==1.2.0
 cuda-python==12.5.0
-cupshelpers==1.0
+# cupshelpers==1.0
 cycler==0.12.1
 Cython==3.0.10
 # Editable install with no version control (datasense==0.8)
