@@ -239,7 +239,7 @@ parso==0.8.4
 pathable==0.4.3
 pathspec==0.12.1
 patsy==0.5.6
-pdftotext==2.2.2
+# pdftotext==2.2.2
 pexpect==4.9.0
 pickleshare==0.7.5
 pigar==2.1.4
