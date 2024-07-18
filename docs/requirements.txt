@@ -457,6 +457,6 @@ yt-dlp==2024.7.9
 yubikey-manager==5.4.0
 zeroconf==0.63.0
 zipfile-deflate64==0.2.0
-zipp==3.18.1
+zipp==3.19.1
 zope.interface==6.3
 zstandard==0.22.0
