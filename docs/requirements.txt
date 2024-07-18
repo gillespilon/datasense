@@ -316,7 +316,7 @@ PySCIPOpt==5.1.1
 PyScreeze==0.1.30
 pyserial==3.5
 # pysmbc==1.0.25.1
-pytesseract==0.3.13
+# pytesseract==0.3.13
 pytest==8.2.0
 pytest-cov==5.0.0
 pytest-html==4.1.1
