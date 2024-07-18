@@ -27,7 +27,6 @@ Why this?
 '''
 
 
-from .stats import *
 from .control_charts import *
 from .msa import *
 from .munging import *
@@ -39,3 +38,4 @@ from .rgx import *
 from .automation import *
 from .taguchi import *
 from .process_capability import *
+from .stats import *
