@@ -35,7 +35,7 @@ beautifultable==1.1.0
 black==24.4.2
 bleach==6.1.0
 bottle==0.12.25
-Brlapi==0.8.5
+# Brlapi==0.8.5
 Brotli==1.1.0
 brotlicffi==1.1.0.0
 btrfsutil==6.9.2
