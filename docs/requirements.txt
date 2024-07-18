@@ -215,7 +215,7 @@ notebook==7.2.1
 notebook_shim==0.2.4
 notify2==0.3.1
 # notmuch==0.38.3
-notmuch2==0.38.3
+# notmuch2==0.38.3
 nspektr==0.5.0
 numexpr==2.10.1
 numpy==1.26.4
