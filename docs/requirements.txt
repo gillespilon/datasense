@@ -261,7 +261,7 @@ psycopg2==2.9.9
 psycopg2-binary==2.9.9
 ptyprocess==0.7.0
 pure_eval==0.2.2
-py==1.11.1.dev0+g447bac51.d20240403
+# py==1.11.1.dev0+g447bac51.d20240403
 py7zr==0.21.1
 pyaml==23.12.0
 pyarrow==16.0.0
