@@ -172,7 +172,7 @@ Keras_Applications==1.0.8
 keyring==24.3.1
 kiwisolver==1.4.5
 lazy-object-proxy==1.10.0
-lensfun==0.3.4
+# lensfun==0.3.4
 libclang==18.1.1
 libfdt==1.7.0
 lit==18.1.8.dev0
