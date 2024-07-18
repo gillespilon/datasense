@@ -402,7 +402,7 @@ tensorflow==2.16.2
 tensorflow-cpu==2.16.2
 tensorflow-serving-api==2.16.1
 tensorflow_estimator==2.15.0
-tensorflow_quantization==0.2.0
+# tensorflow_quantization==0.2.0
 tensorrt==10.2.0.post1
 tensorrt-cu12==10.2.0.post1
 tensorrt-cu12-bindings==10.2.0.post1
