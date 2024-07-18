@@ -15,7 +15,7 @@ import random
 import math
 import sys
 
-from statsmodels.stats.outliers_influence import summary_table
+from statsmodels.stats.outliers_influence.OLSInfluence import summary_table
 from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
