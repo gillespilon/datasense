@@ -38,7 +38,7 @@ bottle==0.12.25
 # Brlapi==0.8.5
 Brotli==1.1.0
 brotlicffi==1.1.0.0
-btrfsutil==6.9.2
+# btrfsutil==6.9.2
 build==1.2.1
 CacheControl==0.14.0
 cached-property==1.5.2
