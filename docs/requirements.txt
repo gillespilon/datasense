@@ -311,7 +311,6 @@ PyQt6_sip==13.6.0
 PyQtWebEngine==5.15.6
 PyRect==0.2.0
 pyrsistent==0.19.3
-# pyscard==2.0.8
 PySCIPOpt==5.1.1
 PyScreeze==0.1.30
 pyserial==3.5
