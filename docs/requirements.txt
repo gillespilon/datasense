@@ -433,7 +433,7 @@ Unidecode==1.3.8
 unrardll==0.1.7
 uri-template==1.3.0
 uritemplate==4.1.1
-urllib3==2.2.1
+urllib3==2.2.2
 userpath==1.9.2
 validate-pyproject==0.18
 w3lib==2.1.2
