@@ -312,7 +312,7 @@ PyQtWebEngine==5.15.6
 PyRect==0.2.0
 pyrsistent==0.19.3
 swig==4.2.1
-pyscard==2.0.8
+# pyscard==2.0.8
 PySCIPOpt==5.1.1
 PyScreeze==0.1.30
 pyserial==3.5
@@ -455,7 +455,7 @@ y-py==0.6.2
 yarl==1.9.4
 ypy-websocket==0.12.4
 yt-dlp==2024.7.9
-yubikey-manager==5.4.0
+# yubikey-manager==5.4.0
 zeroconf==0.63.0
 zipfile-deflate64==0.2.0
 zipp==3.19.1
