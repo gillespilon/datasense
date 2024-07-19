@@ -1,6 +1,14 @@
-sphinx==7.1.2
-sphinx-rtd-theme==1.3.0rc1
+Sphinx==7.1.2
 readthedocs-sphinx-search==0.3.2
+sphinx-lint==0.9.1
+sphinx-rtd-theme==1.3.0rc1
+sphinxcontrib-applehelp==1.0.8
+sphinxcontrib-devhelp==1.0.6
+sphinxcontrib-htmlhelp==2.0.5
+sphinxcontrib-jquery==4.1
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-serializinghtml==1.1.10
 absl-py==2.1.0
 aiohttp==3.9.5
 aiosignal==1.3.1
@@ -11,7 +19,6 @@ anyio==4.4.0
 apipkg==3.0.2
 appdirs==1.4.4
 apsw==3.45.2.0
-# arandr==0.1.11
 argcomplete==3.4.0
 argon2-cffi==23.1.0
 argon2-cffi-bindings==21.2.0
@@ -35,10 +42,8 @@ beautifultable==1.1.0
 black==24.4.2
 bleach==6.1.0
 bottle==0.12.25
-# Brlapi==0.8.5
 Brotli==1.1.0
 brotlicffi==1.1.0.0
-# btrfsutil==6.9.2
 build==1.2.1
 CacheControl==0.14.0
 cached-property==1.5.2
@@ -63,15 +68,9 @@ cryptography==42.0.7
 css-parser==1.0.10
 cssselect==1.2.0
 cuda-python==12.5.0
-# cupshelpers==1.0
 cycler==0.12.1
 Cython==3.0.10
-# Editable install with no version control (datasense==0.8)
-# -e /home/gilles/.local/lib/python3.12/site-packages/datasense-0.8-py3.12.egg
 -e git+https://github.com/gillespilon/datasense@841d1f032e778b3f44aa427151f6798d780cf3c5#egg=datasense
-# datasense @ git+https://github.com/gillespilon/datasense#egg=datasense
-# dbus-python==1.3.2
-# debugpy==1.8.2+0.g09b5af0b.dirty
 decorator==5.1.1
 defusedxml==0.7.1
 deprecation==2.1.0
@@ -92,7 +91,7 @@ faust-cchardet==2.1.19
 feedparser==6.0.11
 fido2==1.1.3
 filelock==3.14.0
-fiona==1.9.6
+fiona==1.10b2
 flake8==7.1.0
 flatbuffers==24.3.25
 fonttools==4.51.0
@@ -147,7 +146,7 @@ jaraco.functools==4.0.1
 jaraco.text==3.12.1
 jedi==0.19.1
 jeepney==0.8.0
-Jinja2==3.1.3
+Jinja2==3.1.4
 jmespath==1.0.1
 joblib==1.4.0
 json5==0.9.25
@@ -338,7 +337,6 @@ QtPy==2.4.1
 queuelib==1.7.0
 qutebrowser==3.2.1
 ranger-fm==1.9.3
-readthedocs-sphinx-search==0.3.2
 referencing==0.35.1
 regex==2024.4.28
 reportlab==4.1.0
@@ -378,16 +376,6 @@ six==1.16.0
 sniffio==1.3.1
 snowballstemmer==2.2.0
 soupsieve==2.5
-Sphinx==7.1.2
-sphinx-lint==0.9.1
-sphinx-rtd-theme==1.3.0rc1
-sphinxcontrib-applehelp==1.0.8
-sphinxcontrib-devhelp==1.0.6
-sphinxcontrib-htmlhelp==2.0.5
-sphinxcontrib-jquery==4.1
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.7
-sphinxcontrib-serializinghtml==1.1.10
 # SQLAlchemy==1.4.52.dev0
 stack_data==0.6.3
 statsmodels==0.14.1
