@@ -15,7 +15,6 @@ import random
 import math
 import sys
 
-from statsmodels.stats.outliers_influence.OLSInfluence import summary_table
 from sklearn.linear_model import LinearRegression
 from statsmodels.stats.power import TTestIndPower
 from basis_expansions import NaturalCubicSpline
@@ -2579,7 +2578,11 @@ def linear_regression(
         cov_type="nonrobust"
     )
     predictions = pd.Series(fitted_model.predict(exog=X))
-    results, measures, columns = summary_table(fitted_model, alpha=0.05)
+    results, measures, columns = (
+        sm.stats.outliers_influence.OLSInfluence.summary_table(
+            fitted_model, alpha=0.05
+        )
+    )
     confidence_interval_lower, confidence_interval_upper = measures[:, 4:6].T
     confidence_interval_lower = pd.Series(confidence_interval_lower)
     confidence_interval_upper = pd.Series(confidence_interval_upper)
