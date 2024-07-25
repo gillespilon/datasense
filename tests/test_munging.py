@@ -593,8 +593,8 @@ def test_list_files():
     pattern_extension = [".html", ".HTML", ".mkd", ".MKD"]
     pattern_startswith = ["file_", "job_aid_"]
     directory = "dir_files"
-    result1 = ds.list_files(directory=directory)
-    expected1 = [
+    result1 = sorted(ds.list_files(directory=directory))
+    expected1 = sorted([
         PosixPath("dir_files/job_aid_file_one.html"),
         PosixPath("dir_files/job_aid_file_two.HTML"),
         PosixPath("dir_files/job_aid_file_one.mkd"),
@@ -603,7 +603,7 @@ def test_list_files():
         PosixPath("dir_files/file_two.HTML"),
         PosixPath("dir_files/file_one.mkd"),
         PosixPath("dir_files/file_two.MKD")
-    ]
+    ])
     assert result1 == expected1
     result2 = ds.list_files(
         directory=directory,
