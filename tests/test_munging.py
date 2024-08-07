@@ -64,18 +64,18 @@ def test_convert_seconds_to_hh_mm_ss():
     """
     Convert seconds to hours, minutes and seconds.
     """
-    result = ds. convert_seconds_to_hh_mm_ss(seconds=1)
+    result = ds.convert_seconds_to_hh_mm_ss(seconds=1)
     expected = (0, 0, 1)
     assert result == expected
-    result = ds. convert_seconds_to_hh_mm_ss(seconds=61)
+    result = ds.convert_seconds_to_hh_mm_ss(seconds=61)
     expected = (0, 1, 1)
     assert result == expected
-    result = ds. convert_seconds_to_hh_mm_ss(seconds=3601)
+    result = ds.convert_seconds_to_hh_mm_ss(seconds=3601)
     expected = (1, 0, 1)
     assert result == expected
-    result = ds. convert_seconds_to_hh_mm_ss(seconds=3661)
+    result = ds.convert_seconds_to_hh_mm_ss(seconds=3661)
     expected = (1, 1, 1)
-    result = ds. convert_seconds_to_hh_mm_ss(seconds=251)
+    result = ds.convert_seconds_to_hh_mm_ss(seconds=251)
     expected = (0, 4, 11)
     assert result == expected
 
