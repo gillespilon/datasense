@@ -39,7 +39,6 @@ basis-expansions @ git+https://github.com/madrury/basis-expansions.git@80dd98e27
 Beaker==1.13.0
 beautifulsoup4==4.12.3
 beautifultable==1.1.0
-black==24.4.2
 bleach==6.1.0
 bottle==0.12.25
 Brotli==1.1.0
@@ -70,7 +69,7 @@ cssselect==1.2.0
 cuda-python==12.5.0
 cycler==0.12.1
 Cython==3.0.10
--e git+https://github.com/gillespilon/datasense@841d1f032e778b3f44aa427151f6798d780cf3c5#egg=datasense
+dawgdad==1.0.4
 decorator==5.1.1
 defusedxml==0.7.1
 deprecation==2.1.0
@@ -94,6 +93,7 @@ filelock==3.14.0
 fiona==1.10b2
 flake8==7.1.0
 flatbuffers==24.3.25
+flit_core>=3.9.0
 fonttools==4.51.0
 fqdn==1.5.1
 frozenlist==1.4.1
