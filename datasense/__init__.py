@@ -26,6 +26,8 @@ Why this?
 - Develop a free open source package.
 '''
 
+__version__ = "0.9.1"
+
 
 from .stats import *
 from .control_charts import *
