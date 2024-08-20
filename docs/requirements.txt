@@ -200,7 +200,7 @@ nbconvert==7.16.4
 nbformat==5.10.4
 nest_asyncio==1.6.0
 netifaces==0.11.0
-nltk==3.8.1
+nltk==3.9
 notebook==7.2.1
 notebook_shim==0.2.4
 notify2==0.3.1
