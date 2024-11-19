@@ -172,7 +172,7 @@ lazy-object-proxy==1.10.0
 libclang==18.1.1
 lockfile==0.12.2
 lxml==5.2.1
-lxml_html_clean==0.1.1
+lxml_html_clean==0.4.0
 Markdown==3.6
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
